@@ -17,7 +17,8 @@ import { TranslateModule } from '@ngx-translate/core';
   imports: [
     CommonModule,
     RouterModule,
-    LocalizeRouterModule
+    LocalizeRouterModule,
+    TranslateModule,
   ]
 })
 export class MainHeaderModule { }

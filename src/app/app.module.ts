@@ -24,15 +24,15 @@ import { AuthorizationPageModule } from './authorization-page/authorization-page
     CoreModule,
     AppRoutingModule,
     // shareds
-    RouterModule,
-    LocalizeRouterModule,
+    // RouterModule,
+    // LocalizeRouterModule,
     // created
     // HomePageModule,
     // CatalogPageModule,
     // DashboardPageModule,
     // ErrorPageModule,
     // AuthorizationPageModule,
-    TranslateModule,
+    // TranslateModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
