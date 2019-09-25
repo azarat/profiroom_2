@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { BaseInterceptor } from './interceptors/base-interceptor';
 import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
 import { LocalizeRouterModule, LocalizeParser, LocalizeRouterSettings } from 'localize-router';
@@ -16,6 +16,7 @@ export const url = new URL(location.href).origin;
   declarations: [],
   imports: [
     CommonModule,
+    HttpClientModule,
     TranslateModule.forRoot(
       {
       loader: {
@@ -40,7 +41,7 @@ export const url = new URL(location.href).origin;
       useClass: BaseInterceptor,
       multi: true
     },
-    AuthService
+    AuthService,
   ]
 })
 export class CoreModule { }

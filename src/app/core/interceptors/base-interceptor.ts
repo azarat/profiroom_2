@@ -12,7 +12,7 @@ export class BaseInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    const url = '';
+    const url = 'https://www.thecubetest.site/Backend/api';
     if (req.url.indexOf('http' || 'https' ) !== 0 ) {
       req = req.clone({
         url: url + req.url
