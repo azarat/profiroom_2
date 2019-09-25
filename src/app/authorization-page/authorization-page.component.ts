@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthorizationPageComponent implements OnInit {
 
+  auth = false;
   constructor() { }
 
   ngOnInit() {
+  }
+  swipeBtn() {
+    this.auth = !this.auth;
   }
 
 }

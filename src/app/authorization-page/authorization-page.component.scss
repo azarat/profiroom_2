@@ -1,0 +1,389 @@
+.nav-menu {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 99;
+}
+
+.auth-pg {
+  display: flex;
+
+  &.login {
+      .login-form {
+          width: 60%;
+      }
+
+      .registr-form {
+          display: none;
+      }
+  }
+
+  &.registr {
+      justify-content: flex-end;
+
+      .registr-form {
+          width: 60%;
+      }
+
+      .login-form {
+          display: none;
+      }
+  }
+
+  .swipe-block {
+      height: 100%;
+      background: #f5f6fa;
+      position: absolute;
+      width: 40%;
+      overflow: hidden;
+
+      &:before,
+      &:after {
+          position: absolute;
+          content: '';
+          width: 336px;
+          height: 336px;
+          right: -70px;
+          bottom: 0;
+          opacity: 0.9;
+          box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
+          border-radius: 40px;
+      }
+
+      &:before {
+          background: linear-gradient(135deg, #F2C314 0%, #FC3832 100%);
+      }
+
+      &:after {
+          background: linear-gradient(135deg, #9C09DB 0%, #1C0FD7 100%);
+      }
+
+      h2 {
+          color: #000000;
+          font-size: 36px;
+          font-weight: 900;
+      }
+
+      &.left {
+          left: 0;
+          animation: move_left 0.8s;
+
+          &:before {
+              transform: rotate(65deg);
+              animation: rotate_back-f 1.2s;
+          }
+
+          &:after {
+              transform: rotate(45deg);
+              animation: rotate_back-s 0.9s;
+          }
+
+          .inform:before {
+              animation: rotate_forvard 1s;
+              transform: rotate(315deg);
+          }
+
+          .login-txt {
+              animation: info_txt_show 1s;
+          }
+
+          .registr-txt {
+              position: absolute;
+              color: transparent;
+              animation: info_txt_hide_l 1s;
+          }
+      }
+
+      &.right {
+          right: 0;
+          animation: move_right 0.8s;
+
+          &:before {
+              transform: rotate(245deg);
+              animation: rotate_forvard-f 1.2s;
+          }
+
+          &:after {
+              transform: rotate(-135deg);
+              animation: rotate_forvard-s 0.9s;
+          }
+
+          .inform:before {
+              animation: rotate_back 1s;
+              transform: rotate(135deg);
+          }
+
+          .registr-txt {
+              animation: info_txt_show 1s;
+          }
+
+          .login-txt {
+              position: absolute;
+              color: transparent;
+              animation: info_txt_hide_r 1s;
+              left: 50%;
+              transform: translateX(-50%);
+          }
+      }
+
+      .inform {
+          margin-top: 270px;
+          text-align: center;
+          position: relative;
+
+          &:before {
+              position: absolute;
+              content: '';
+              width: 270px;
+              height: 270px;
+              box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+              border-radius: 40px;
+              background: linear-gradient(135deg, #32FBFC 0%, #3214F2 100%);
+              opacity: 0.9;
+              left: -70px;
+              top: -200px;
+          }
+
+          h2 {
+              color: #000000;
+              font-size: 36px;
+              font-weight: 900;
+          }
+
+          p {
+              width: 375px;
+              color: #585858;
+              font-size: 21px;
+              font-weight: 300;
+              line-height: 32px;
+              margin: 25px auto 60px;
+          }
+      }
+
+      .swap-btn {
+          height: 53px;
+          box-shadow: 0 2px 4px rgba(60, 9, 179, 0.3);
+          border-radius: 4px;
+          background-color: #540cfa;
+          border: none;
+          color: #ffffff;
+          font-size: 16px;
+          font-weight: 700;
+          line-height: 19px;
+          outline: none;
+
+          span {
+              outline: none;
+          }
+
+          &.registr-btn {
+              padding: 0 25px;
+              animation: btn_right 1.2s;
+
+              .login-btn-txt {
+                  position: absolute;
+                  color: transparent;
+              }
+          }
+
+          &.login-btn {
+              padding: 0 70px;
+              animation: btn_left 1.2s;
+
+              .registr-btn-txt {
+                  position: absolute;
+                  color: transparent;
+              }
+          }
+      }
+  }
+}
+
+// move global navigation-block
+@keyframes move_left {
+  0% {
+      left: 60%;
+      width: 40%;
+  }
+
+  50% {
+      width: 55%;
+  }
+
+  100% {
+      left: 0;
+      width: 40%;
+  }
+}
+
+@keyframes move_right {
+  0% {
+      right: 60%;
+      width: 40%;
+  }
+
+  50% {
+      width: 55%;
+  }
+
+  100% {
+      right: 0;
+      width: 40%;
+  }
+}
+
+
+// --------------swap-btn-animation--------------//
+@keyframes btn_right {
+  0% {
+      color: transparent;
+      // display: none;
+  }
+
+  50% {
+      color: #fff;
+      display: block;
+      padding-left: 120px;
+  }
+
+  100% {
+      color: #fff;
+  }
+}
+
+@keyframes btn_left {
+  0% {
+      color: transparent;
+      // display: none;
+  }
+
+  50% {
+      color: #fff;
+      display: block;
+      padding-right: 250px;
+  }
+
+  100% {
+      color: #fff;
+  }
+}
+
+
+// -------------------swipe_title_text---------------//
+@keyframes info_txt_show {
+  0% {
+      color: transparent;
+      position: absolute;
+  }
+
+  50% {
+      color: transparent;
+  }
+
+  100% {
+      color: #000000;
+  }
+}
+
+@keyframes info_txt_hide_l {
+  0% {
+      color: #000000;
+      position: relative;
+  }
+
+  50% {
+      color: transparent;
+
+  }
+
+  100% {
+      color: transparent;
+      display: none;
+  }
+}
+
+@keyframes info_txt_hide_r {
+  0% {
+      color: #000000;
+      position: relative;
+      // margin-left: -240px;
+  }
+
+  50% {
+      color: transparent;
+      // margin-left: -240px;
+
+  }
+
+  100% {
+      color: transparent;
+      position: absolute;
+      display: none;
+  }
+}
+
+// -----------------rotate square-top -----------//
+
+@keyframes rotate_forvard {
+  0% {
+      transform: rotate(135deg);
+  }
+
+  100% {
+      transform: rotate(315deg);
+  }
+}
+
+@keyframes rotate_back {
+  0% {
+      transform: rotate(315deg);
+  }
+
+  100% {
+      transform: rotate(135deg);
+  }
+}
+
+// -------------------rotate square -bottom ---------------//
+
+// =============fiert==============//
+@keyframes rotate_forvard-f {
+  0% {
+      transform: rotate(65deg);
+  }
+
+  100% {
+      transform: rotate(245deg);
+  }
+}
+
+@keyframes rotate_back-f {
+  0% {
+      transform: rotate(245deg);
+  }
+
+  100% {
+      transform: rotate(65deg);
+  }
+}
+
+// =============second=============//
+@keyframes rotate_forvard-s {
+  0% {
+      transform: rotate(45deg);
+  }
+
+  100% {
+      transform: rotate(-135deg);
+  }
+}
+
+@keyframes rotate_back-s {
+  0% {
+      transform: rotate(-135deg);
+  }
+
+  100% {
+      transform: rotate(45deg);
+  }
+}

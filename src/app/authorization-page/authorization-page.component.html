@@ -1,1 +1,31 @@
-<p>authorization-page works!</p>
+<div class="auth-pg" [ngClass]="auth? 'registr' : 'login'">
+  <div class="nav-menu">
+      <!-- <app-navbar></app-navbar> -->
+  </div>
+  <div class='login-form auth-form'>
+    <div class="form">
+      <!-- <app-login></app-login> -->
+    </div>
+  </div>
+  <div class='registr-form auth-form'>
+      <div class="form">
+        <!-- <app-registration></app-registration> -->
+      </div>
+  </div>
+  <div class="swipe-block" [ngClass]="auth? 'left' : 'right'">
+    <div class="inform">
+      <h2>
+        <span i18n class='registr-txt'>Впервые на сайте?</span>
+        <span i18n class='login-txt'>Уже заходили</span>
+      </h2>
+      <p>
+        <span i18n class='registr-txt'>Добро пожаловать на Who can!</span>
+        <span i18n class='login-txt'>Будем рады видеть вас снова!</span>
+      </p>
+      <button class='swap-btn' type="button" (click)="swipeBtn()" [ngClass]="auth? 'login-btn': 'registr-btn'" >
+        <span i18n class='login-btn-txt'>Войти</span>
+        <span i18n class='registr-btn-txt'>Хочу зарегистрироваться</span>
+      </button>
+    </div>
+  </div>
+</div>
