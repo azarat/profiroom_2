@@ -1,0 +1,12 @@
+.categorys-list{
+  display: flex;
+  justify-content: space-around;
+}
+.category{
+  width: 200px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+}

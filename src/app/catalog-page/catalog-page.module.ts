@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { CatalogPageComponent } from './catalog-page.component';
 import { Routes, RouterModule } from '@angular/router';
 import { LocalizeRouterModule } from 'localize-router';
+import { MainHeaderModule } from '../shared/modules/main-header/main-header.module';
+
 
 const routes: Routes = [
   {
@@ -12,11 +14,15 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [CatalogPageComponent],
+  declarations: [
+    CatalogPageComponent,
+  ],
   imports: [
     CommonModule,
     LocalizeRouterModule.forChild(routes),
     RouterModule.forChild(routes),
+
+    MainHeaderModule
   ],
   exports: [
     CatalogPageComponent
