@@ -7,6 +7,8 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { RegistrationPageComponent } from './registration-page/registration-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ShowHideInputDirective } from './login-page/show-hide-inputs';
+import { MatFormFieldModule } from '@angular/material';
+import { MatInputModule, MatButtonModule } from '@angular/material';
 
 const routes: Routes = [
   {
@@ -14,6 +16,7 @@ const routes: Routes = [
     component: AuthorizationPageComponent
   }
 ];
+
 
 @NgModule({
   declarations: [
@@ -28,6 +31,9 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     FormsModule,
     ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule
   ],
   exports: [
     AuthorizationPageComponent

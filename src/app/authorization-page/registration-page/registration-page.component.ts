@@ -11,35 +11,27 @@ import { AuthService } from 'src/app/core/services/auth.service';
 })
 export class RegistrationPageComponent implements OnInit {
 
-  registerForm: FormGroup;
   submitted = false;
-  public user: AuthInterface = null;
+  public registrationForm: FormGroup;
+
   constructor(
-    private formBuilder: FormBuilder,
-    private authService: AuthService,
+    private fb: FormBuilder
   ) { }
 
-  ngOnInit() {
-    this.user = { userId: null };
+  // private area(): any {
+  //   return this.fb.group({
+  //     email: ['', [Validators.required, Validators.email]]
+  //   });
+  // }
 
-    this.registerForm = this.formBuilder.group({
-      policy: [''],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', Validators.required]
-    }, {
-      validator: MustMatch('password', 'confirmPassword')
-    });
-  }
+  ngOnInit(): void {
+  this.registrationForm = this.fb.group({
+    email: ['', [Validators.required, Validators.email]]
+  });
+}
 
-  onSubmit() {
-    this.submitted = true;
-
-    if (this.registerForm.invalid) {
-      return;
-    }
-    console.log(this.registerForm);
-    // this.authService.registration()
-  }
+onSubmit() {
+  console.log(this.registrationForm.value);
+}
 
 }
