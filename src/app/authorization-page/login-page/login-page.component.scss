@@ -1,0 +1,165 @@
+.login-bl {
+  margin-top: 260px;
+}
+
+h2 {
+  color: #000000;
+  font-size: 36px;
+  font-weight: 900
+}
+
+p {
+  color: #585858;
+  font-size: 21px;
+  font-weight: 300;
+  text-align: center;
+}
+
+.form-control:focus {
+  border: none;
+  box-shadow: none;
+  background-color: #f5f6fa;
+}
+
+input {
+  height: 44px;
+  border-radius: 5px;
+  background-color: #f5f6fa;
+  border: none;
+  outline: none;
+  padding: 0 30px 0 10px;
+
+  &::-webkit-input-placeholder {
+      /* Chrome/Opera/Safari */
+      color: #7a7a7a;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 20px;
+  }
+
+  &::-moz-placeholder {
+      /* Firefox 19+ */
+      color: #7a7a7a;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 20px;
+  }
+
+  &:-ms-input-placeholder {
+      /* IE 10+ */
+      color: #7a7a7a;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 20px;
+  }
+
+  &:-moz-placeholder {
+      /* Firefox 18- */
+      color: #7a7a7a;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 20px;
+  }
+}
+
+.password {
+  position: relative;
+
+  .is-invalid+span:before {
+      display: none;
+  }
+
+  span.pass {
+      position: absolute;
+      right: 3px;
+      top: 1px;
+      width: 30px;
+      height: 44px;
+      cursor: pointer;
+
+      &:before {
+          position: absolute;
+          font-family: 'Font Awesome 5 Free';
+          font-weight: 900;
+          color: #dbdbdb;
+          font-size: 18px;
+          line-height: 44px;
+      }
+
+      &.hide:before {
+          content: '\f070'
+      }
+  }
+}
+
+.controll-block {
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+margin-bottom: 40px;
+}
+
+.get-pass {
+color: #a6a7a8;
+font-size: 14px;
+font-weight: 400;
+line-height: 16px;
+text-decoration: underline;
+cursor: pointer;
+line-height: 20px;
+}
+
+.checkbox {
+  .checkbox input {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+    margin: 10px 0 0 20px;
+    height: auto;
+    outline: none;
+  }
+  .checkbox__text {
+    position: relative;
+    padding: 0 0 0 25px;
+    cursor: pointer;
+    outline: none;
+    color: #a6a7a8;
+    font-size: 14px;
+    font-weight: 400;
+  }
+  .checkbox__text:before {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border: 1px solid #c8c8c8;
+    top: 2px;
+    left: 0;
+  }
+  .checkbox__text:after {
+    content: '\f00c';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    transition: .2s;
+    display: none;
+    color: #000000;
+    font-size: 10px;
+  }
+  .checkbox input:checked + .checkbox__text:after {
+    display: block;
+  }
+}
+
+.btn {
+  width: 193px;
+  height: 53px;
+  box-shadow: 0 2px 4px rgba(60, 9, 179, 0.3);
+  border-radius: 4px;
+  background-color: #540cfa;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+}

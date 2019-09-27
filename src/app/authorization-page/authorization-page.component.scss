@@ -7,7 +7,10 @@
 
 .auth-pg {
   display: flex;
-
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
   &.login {
       .login-form {
           width: 60%;
@@ -17,7 +20,10 @@
           display: none;
       }
   }
-
+.log {
+  width: 500px;
+  margin: auto;
+}
   &.registr {
       justify-content: flex-end;
 
@@ -28,6 +34,10 @@
       .login-form {
           display: none;
       }
+  }
+  .reg{
+    margin: auto;
+    width: 500px;
   }
 
   .swipe-block {

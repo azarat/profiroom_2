@@ -14,6 +14,7 @@ import { LanguageModule } from './shared/modules/language/language.module';
 import { AppRoutingModule } from './app-routing.module';
 import { ErrorPageModule } from './error-page/error-page.module';
 import { AuthorizationPageModule } from './authorization-page/authorization-page.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { AuthorizationPageModule } from './authorization-page/authorization-page
     BrowserModule,
     CoreModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
     // shareds
     // RouterModule,
     // LocalizeRouterModule,
