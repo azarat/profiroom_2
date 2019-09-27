@@ -1,21 +1,21 @@
 <div class="wrapper">
-<div class="menu">
+  <div class="menu">
     <div class="logo">
-   <a [routerLink]="'' | localize">Whocan</a>
+      <a [routerLink]="'' | localize"> <img src="assets/images/logo.svg" alt=""></a>
+      <a [routerLink]="'' | localize"> Whocan</a>
+    </div>
+    <nav>
+      <a [routerLink]="''">{{'header.how_it_works' | translate}}</a>
+      <a [routerLink]="'catalog'">Каталог</a>
+      <a [routerLink]="''">Проэкты</a>
+    </nav>
   </div>
-  <nav>
-    <a [routerLink]="''">{{'header.how_it_works' | translate}}</a>
-    <a [routerLink]="'catalog'">Каталог</a>
-    <a [routerLink]="''">Проэкты</a>
-  </nav>
-</div>
-<div class="auth">
-  <div>
-    <a [routerLink]="'/auth' | localize" role="button">Вход</a>
+  <div class="auth">
+    <div class="login">
+      <a [routerLink]="'/auth' | localize" role="button">Вход</a>
+    </div>
+    <div class="registrate">
+      <a [routerLink]="'/auth' | localize" role="button">Зарегистрироваться</a>
+    </div>
   </div>
-  <div>
-    <a [routerLink]="'/auth' | localize" role="button">Регистрация</a>
-  </div>
-</div>
-
 </div>
