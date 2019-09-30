@@ -216,9 +216,6 @@
 
 :host::ng-deep {
   form{
-    .mat-form-field-subscript-wrapper {
-      // margin: 0;
-    }
     .mat-checkbox-checked:not(.mat-checkbox-disabled).mat-accent .mat-ripple-element, .mat-checkbox-checked.mat-accent .mat-checkbox-background {
       background: #3C7EEA
     }

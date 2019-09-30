@@ -29,6 +29,7 @@ export class RegistrationPageComponent implements OnInit {
   public registrationForm: FormGroup;
   hideF = true;
   hideS = true;
+
   static passwordMatchValidator(control: AbstractControl) {
     const password: string = control.get('password').value; // get password from our password form control
     const confirmPassword: string = control.get('password_confirmation').value; // get password from our confirmPassword form control
@@ -40,12 +41,6 @@ export class RegistrationPageComponent implements OnInit {
       });
     }
   }
-
-  // private area(): any {
-  //   return this.fb.group({
-  //     email: ['', [Validators.required, Validators.email]]
-  //   });
-  // }
 
   ngOnInit(): void {
     this.registrationForm = this.fb.group({
