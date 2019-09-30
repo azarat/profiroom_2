@@ -36,11 +36,11 @@ export const url = new URL(location.href).origin;
     }),
   ],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: BaseInterceptor,
-      multi: true
-    },
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: BaseInterceptor,
+    //   multi: true
+    // },
     AuthService,
   ]
 })

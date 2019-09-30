@@ -3,23 +3,56 @@
     <div class="row">
       <h2>Регистрация</h2>
       <p class="text">Добро пожаловать на лучшую платформу фриланса Whocan!</p>
-      <form action="" [formGroup]="registrationForm" (ngSubmit)="onSubmit(registrationForm.value)">
+      <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
         <mat-form-field>
-          <input matInput type="email" placeholder="Email" formControlName="email" required />
+            <mat-label>Email</mat-label>
+          <input matInput type="email"formControlName="email" required />
           <mat-error *ngIf="registrationForm.get('email').hasError('required')">{{ "erorr" }}</mat-error>
           <mat-error *ngIf="registrationForm.get('email').hasError('email')">{{
             "not email"
           }}</mat-error>
         </mat-form-field>
-        <div>
-
-            <button type="submit" [disabled]="registrationForm.invalid" mat-raised-button>
-            Submit
+        <mat-form-field>
+            <mat-label>Введите пароль</mat-label>
+            <input matInput type="password" formControlName="password" required />
+            <button class="pass" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hideF" [style.color]="hideF ? '#DBDBDB': '#000'">
+            <mat-icon>{{hideF ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
+            <mat-error *ngIf="registrationForm.get('password').hasError('required')">{{ "erorr" }}</mat-error>
+            <!-- <mat-error *ngIf="registrationForm.get('password').hasError('email')">{{
+              "not email"
+            }}</mat-error> -->
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Повторно введите пароль</mat-label>
+            <input matInput type="password" formControlName="password_confirmation" required />
+            <button class="pass" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hideS" [style.color]="hideS ? '#DBDBDB': '#000'">
+            <mat-icon>{{hideS ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+            <mat-error *ngIf="registrationForm.get('password_confirmation').hasError('required')">{{ "erorr" }}</mat-error>
+            <!-- <mat-error *ngIf="registrationForm.get('password_confirmation').hasError('email')">{{
+              "not email"
+            }}</mat-error> -->
+            <mat-error *ngIf="registrationForm.get('password_confirmation').hasError('NoPassswordMatch')">{{ 'nooo' }}</mat-error>
+        </mat-form-field>
+        <section>
+            <mat-checkbox  class="policy" formControlName="agreed">Я согласен(а) с <span>Политикой конфиденциальности</span></mat-checkbox>
+        </section>
+        <section class="social-login">
+
+        </section>
+        <section  class="submit">
+
+            <button  mat-button  type="submit" mat-raised-button>
+                Войти
+            </button>
 
 
-        </div>
+          </section >
       </form>
     </div>
   </div>
+  <p>asdasdasdda</p>
 </div>

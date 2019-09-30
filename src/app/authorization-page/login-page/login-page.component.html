@@ -4,40 +4,41 @@
       <div class="">
         <h2>Войти в личный кабинет</h2>
         <p class="text">Рады видеть вас снова</p>
-        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-          <div class="form-group">
-            <!-- <label for="email">email</label> -->
-            <input placeholder="email" type="text" formControlName="email" class="form-control"
-              [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
-            <div *ngIf="submitted && !!f.email.errors" class="invalid-feedback">
-              <div *ngIf="!!f.email.errors.required">Username is required</div>
-            </div>
-          </div>
-          <div class="form-group password">
-            <!-- <label for="password">Password</label> -->
-            <input placeholder="password" type="password" formControlName="password" class="form-control"
-              [showHideInput]="showPassword" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-            <span class='pass hide' (click)="showPassword = !showPassword"></span>
-            <div *ngIf="submitted && !!f.password.errors" class="invalid-feedback">
-              <div *ngIf="!!f.password.errors.required">Password is required</div>
-            </div>
-          </div>
-          <div class="controll-block">
-            <div class="form-group checkbox">
-              <label class="checkbox"><input class='remember' type="checkbox">
-                <div class="checkbox__text">
-                  Запомнить меня
-                </div>
-              </label>
-            </div>
-            <div class="get-pass">
-              Не помню пароль
-            </div>
-          </div>
+        <form #form="ngForm" [formGroup]="loginForm" (ngSubmit)="authenticate(form)">
 
-          <div class="form-group text-center">
-            <button class="btn">Войти</button>
-          </div>
+          <mat-form-field appearance="legacy">
+              <mat-label>Email</mat-label>
+            <input matInput type="email" name="email"  formControlName="email" required>
+
+            <mat-error *ngIf="loginForm.get('email').hasError('required')">{{ "erorr" }}</mat-error>
+            <mat-error *ngIf="loginForm.get('email').hasError('email')">{{
+                  "not email"
+                }}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput [type]="hide ? 'password' : 'text'" name="password" formControlName="password" required>
+            <mat-label>Пароль</mat-label>
+            <button class="pass" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hide" [style.color]="hide ? '#DBDBDB': '#000'">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error *ngIf="loginForm.get('password').hasError('required')">{{ "erorr" }}</mat-error>
+          </mat-form-field>
+          <section class="controls">
+              <mat-checkbox  class="remember-me" formControlName="checked">Запомнить меня</mat-checkbox>
+              <a [routerLink]="['/reset-pass' | localize ]">Не помню пароль</a>
+          </section>
+
+          <section  class="submit">
+
+            <button  mat-button  type="submit" mat-raised-button>
+                Войти
+            </button>
+
+
+          </section >
+
         </form>
       </div>
     </div>

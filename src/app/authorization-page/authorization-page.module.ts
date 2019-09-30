@@ -6,14 +6,16 @@ import { LocalizeRouterModule } from 'localize-router';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { RegistrationPageComponent } from './registration-page/registration-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ShowHideInputDirective } from './login-page/show-hide-inputs';
-import { MatFormFieldModule } from '@angular/material';
+import { MatFormFieldModule, MatAutocompleteModule, MatCheckboxModule, MatFormFieldControl, MatIconModule } from '@angular/material';
 import { MatInputModule, MatButtonModule } from '@angular/material';
 
 const routes: Routes = [
   {
     path: '',
     component: AuthorizationPageComponent
+  },
+  {
+    path: 'reset-pass'
   }
 ];
 
@@ -22,8 +24,7 @@ const routes: Routes = [
   declarations: [
     AuthorizationPageComponent,
     LoginPageComponent,
-    RegistrationPageComponent,
-    ShowHideInputDirective
+    RegistrationPageComponent
   ],
   imports: [
     CommonModule,
@@ -33,7 +34,11 @@ const routes: Routes = [
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatAutocompleteModule,
+    MatCheckboxModule,
+    MatIconModule
+
   ],
   exports: [
     AuthorizationPageComponent

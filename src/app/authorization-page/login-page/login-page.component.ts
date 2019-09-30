@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { AuthInterface } from '../shared/autorization.interface';
-import { ShowHideInputDirective } from './show-hide-inputs';
+import { NgForm, FormControl, Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { User } from 'src/app/models/user.model';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-page',
@@ -10,24 +11,33 @@ import { ShowHideInputDirective } from './show-hide-inputs';
 })
 export class LoginPageComponent implements OnInit {
 
-  loginForm: FormGroup;
-  public user: AuthInterface = null;
   submitted = false;
   public showPassword = false;
-
+  public loginForm: FormGroup;
+  hide = true;
   constructor(
-    private formBuilder: FormBuilder,
+    private router: Router,
+    private fb: FormBuilder,
+    private authService: AuthService
   ) { }
-  @ViewChild(ShowHideInputDirective, { static: true }) input: ShowHideInputDirective;
 
   ngOnInit() {
-    this.loginForm = this.formBuilder.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required]
-  });
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
+      checked: ['']
+    });
   }
 
-  onSubmit() {
 
+  authenticate(form: NgForm) {
+    this.submitted = true;
+    console.log(form.value);
+    if (form.valid) {
+      // do auth
+      // this.router.navigateByUrl('/dashboard');
+    } else {
+      // error
+    }
   }
 }
