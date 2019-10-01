@@ -27,7 +27,6 @@ export class AuthService {
 
   ) {
     this.currentUser$ = this.currentUser.asObservable();
-    // this.currentUserSubject = this._localService.getItem('currentUser');
 
     this.token = this.localService.getItem('token');
     this.token$ = this.token.asObservable();
@@ -39,7 +38,6 @@ export class AuthService {
   registation = (userInputs: User): Observable<any> => {
     return this.http.post<any>('/register', userInputs);
   }
-  // this.currentUserSubject = this._localService.getItem('currentUser');
 
   authenticate = (userInputs: User): Observable<any> => {
     const translatedPath: any = this.localize.translateRoute('/dashboard');
