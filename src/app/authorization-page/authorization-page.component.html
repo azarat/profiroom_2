@@ -1,6 +1,6 @@
 <div class="auth-pg" [ngClass]="auth? 'registr' : 'login'">
   <div class="nav-menu">
-      <!-- <app-navbar></app-navbar> -->
+      <app-main-header [pageName]="'authoriz'"></app-main-header>
   </div>
   <div class='login-form auth-form'>
     <div class="form log">
@@ -22,10 +22,20 @@
         <span class='registr-txt'>Добро пожаловать на Who can!</span>
         <span class='login-txt'>Будем рады видеть вас снова!</span>
       </p>
-      <button class='swap-btn' type="button" (click)="swipeBtn()" [ngClass]="auth? 'login-btn': 'registr-btn'" >
+      <button mat-button class='swap-btn' type="button" (click)="swipeBtn()" [ngClass]="auth? 'login-btn': 'registr-btn'" >
         <span class='login-btn-txt'>Войти</span>
         <span class='registr-btn-txt'>Хочу зарегистрироваться</span>
       </button>
+    </div>
+  </div>
+  <div class="docs">
+    <div class='links'>
+      <a >Условия и соглашения</a>
+      <a >Политика конфиденциальности</a>
+      <a >Карта сайта</a>
+    </div>
+    <div class="copyr">
+      Copyright {{ year }}, Who can.  All rights reserved — Designed by Thecube.studio
     </div>
   </div>
 </div>

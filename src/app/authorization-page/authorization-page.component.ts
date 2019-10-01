@@ -8,8 +8,9 @@ import { Component, OnInit } from '@angular/core';
 export class AuthorizationPageComponent implements OnInit {
 
   auth = false;
-  constructor() { }
 
+  constructor() { }
+  year = new Date().getFullYear();
   ngOnInit() {
   }
   swipeBtn() {

@@ -8,6 +8,9 @@ import { LanguageComponent } from './language.component';
   declarations: [LanguageComponent],
   imports: [
     CommonModule
+  ],
+  exports: [
+    LanguageComponent
   ]
 })
 export class LanguageModule { }

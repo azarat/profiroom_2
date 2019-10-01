@@ -1,0 +1,9 @@
+<div class="wrapper" *ngIf="message">
+  <div class="popup">
+    <button class="close" (click)="closeInformPopUp()">×</button>
+    <div class="info">
+      <h4>{{ message.title }}</h4>
+      <p>{{ message.description}} </p>
+    </div>
+  </div>
+</div>
