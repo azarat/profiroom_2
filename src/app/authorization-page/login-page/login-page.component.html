@@ -43,3 +43,5 @@
       </div>
     </div>
   </div>
+  <div *ngIf="user">{{ user.token }}</div>
+  <app-inform-popup *ngIf="message" [(message)] ="message"></app-inform-popup>

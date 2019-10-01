@@ -8,6 +8,10 @@ import { RegistrationPageComponent } from './registration-page/registration-page
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule, MatAutocompleteModule, MatCheckboxModule, MatFormFieldControl, MatIconModule } from '@angular/material';
 import { MatInputModule, MatButtonModule } from '@angular/material';
+import { MainHeaderComponent } from '../shared/modules/main-header/main-header.component';
+import { MainHeaderModule } from '../shared/modules/main-header/main-header.module';
+import { LanguageModule } from '../shared/modules/language/language.module';
+import { InformPopupModule } from '../shared/modules/inform-popup/inform-popup.module';
 
 const routes: Routes = [
   {
@@ -37,7 +41,12 @@ const routes: Routes = [
     MatButtonModule,
     MatAutocompleteModule,
     MatCheckboxModule,
-    MatIconModule
+    MatIconModule,
+
+    // created
+    LanguageModule,
+    MainHeaderModule,
+    InformPopupModule
 
   ],
   exports: [

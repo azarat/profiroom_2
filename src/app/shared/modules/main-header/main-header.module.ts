@@ -4,6 +4,7 @@ import { MainHeaderComponent } from './main-header.component';
 import { LocalizeRouterModule } from 'localize-router';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
+import { LanguageModule } from '../language/language.module';
 
 
 
@@ -19,6 +20,7 @@ import { TranslateModule } from '@ngx-translate/core';
     RouterModule,
     LocalizeRouterModule,
     TranslateModule,
+    LanguageModule
   ]
 })
 export class MainHeaderModule { }

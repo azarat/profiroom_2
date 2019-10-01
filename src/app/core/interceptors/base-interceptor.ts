@@ -2,11 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { User } from 'src/app/models/user.model';
 
 @Injectable()
 export class BaseInterceptor implements HttpInterceptor {
 
-  constructor() {}
+  constructor(
+
+  ) {}
 
   intercept(
     req: HttpRequest<any>,
@@ -18,6 +21,9 @@ export class BaseInterceptor implements HttpInterceptor {
         url: url + req.url
       });
     }
+    // if (      ) {
+    //   console.log('xx');
+    // }
 
     return next.handle(req).pipe(
       catchError(err => {

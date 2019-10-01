@@ -10,12 +10,15 @@
       <a [routerLink]="''">Проэкты</a>
     </nav>
   </div>
-  <div class="auth">
+  <div class="auth" *ngIf="pageName !== 'authoriz'">
     <div class="login">
       <a [routerLink]="'/auth' | localize" role="button">Вход</a>
     </div>
     <div class="registrate">
       <a [routerLink]="'/auth' | localize" role="button">Зарегистрироваться</a>
     </div>
+  </div>
+  <div *ngIf="pageName === 'authoriz'">
+    <app-language></app-language>
   </div>
 </div>

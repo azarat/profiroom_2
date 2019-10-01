@@ -6,7 +6,8 @@ import {
   FormGroup,
   FormBuilder,
   Validators,
-  AbstractControl
+  AbstractControl,
+  NgForm
 } from '@angular/forms';
 import {
   MustMatch
@@ -14,6 +15,12 @@ import {
 import {
   AuthService
 } from 'src/app/core/services/auth.service';
+import {
+  map
+} from 'rxjs/operators';
+import {
+  InfoMessageInterface
+} from 'src/app/shared/interfaces/info-message.interface';
 
 @Component({
   selector: 'app-registration-page',
@@ -22,13 +29,16 @@ import {
 })
 export class RegistrationPageComponent implements OnInit {
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private autServ: AuthService
   ) {}
 
   submitted = false;
   public registrationForm: FormGroup;
   hideF = true;
   hideS = true;
+  message: InfoMessageInterface | boolean;
+
 
   static passwordMatchValidator(control: AbstractControl) {
     const password: string = control.get('password').value; // get password from our password form control
@@ -43,17 +53,41 @@ export class RegistrationPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.initializeForm();
+  }
+
+  registrate() {
+    this.submitted = true;
+    if (this.registrationForm.invalid) {
+      return;
+    }
+    this.autServ.registation(this.registrationForm.value)
+      .subscribe(res => {
+          console.log(res);
+          this.registrationForm.reset();
+          this.message = {
+            title: 'Регистрация успешна',
+            description: 'На указанную Вами почту придёт письмо с подтверждением регистрации.'
+          };
+        },
+        erorr => {
+          this.message = {
+            title: 'Ошибка',
+            description: 'Этот Email уже зарегистрирован'
+          };
+        }
+        );
+  }
+
+  initializeForm() {
     this.registrationForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      agreed: ['', Validators.required],
+      agreed: ['', [Validators.required]],
       password_confirmation: ['', Validators.required]
     }, {
       validator: RegistrationPageComponent.passwordMatchValidator
     });
-  }
-  onSubmit() {
-    console.log(this.registrationForm.value);
   }
 
 }

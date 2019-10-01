@@ -1,8 +1,25 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm, FormControl, Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { User } from 'src/app/models/user.model';
-import { AuthService } from 'src/app/core/services/auth.service';
-import { Router } from '@angular/router';
+import {
+  Component,
+  OnInit,
+  ViewChild
+} from '@angular/core';
+import {
+  NgForm,
+  FormControl,
+  Validators,
+  FormBuilder,
+  FormGroup
+} from '@angular/forms';
+import {
+  User
+} from 'src/app/models/user.model';
+import {
+  AuthService
+} from 'src/app/core/services/auth.service';
+import {
+  Router
+} from '@angular/router';
+import { InfoMessageInterface } from 'src/app/shared/interfaces/info-message.interface';
 
 @Component({
   selector: 'app-login-page',
@@ -15,11 +32,13 @@ export class LoginPageComponent implements OnInit {
   public showPassword = false;
   public loginForm: FormGroup;
   hide = true;
+  message: InfoMessageInterface | boolean;
   constructor(
     private router: Router,
     private fb: FormBuilder,
-    private authService: AuthService
-  ) { }
+    private authService: AuthService,
+    public user: User
+  ) {}
 
   ngOnInit() {
     this.loginForm = this.fb.group({
@@ -30,14 +49,22 @@ export class LoginPageComponent implements OnInit {
   }
 
 
-  authenticate(form: NgForm) {
+  authenticate() {
     this.submitted = true;
-    console.log(form.value);
-    if (form.valid) {
-      // do auth
-      // this.router.navigateByUrl('/dashboard');
-    } else {
-      // error
+    if (this.loginForm.invalid) {
+      return;
     }
+    this.authService.authenticate(this.loginForm.value)
+      .subscribe(
+        data => {
+          this.user = data;
+        },
+        error => {
+          console.log(error);
+          this.message = {
+            title: 'Ошибка',
+            description: 'Не верно укзанные данные'
+          };
+        });
   }
 }
