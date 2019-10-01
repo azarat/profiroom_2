@@ -20,6 +20,8 @@ import {
   Router
 } from '@angular/router';
 import { InfoMessageInterface } from 'src/app/shared/interfaces/info-message.interface';
+import { BehaviorSubject, Subscription, Observable } from 'rxjs';
+import { LocalizeRouterService } from 'localize-router';
 
 @Component({
   selector: 'app-login-page',
@@ -33,12 +35,13 @@ export class LoginPageComponent implements OnInit {
   public loginForm: FormGroup;
   hide = true;
   message: InfoMessageInterface | boolean;
+
   constructor(
-    private router: Router,
     private fb: FormBuilder,
     private authService: AuthService,
-    public user: User
-  ) {}
+  ) {
+
+  }
 
   ngOnInit() {
     this.loginForm = this.fb.group({
@@ -56,8 +59,9 @@ export class LoginPageComponent implements OnInit {
     }
     this.authService.authenticate(this.loginForm.value)
       .subscribe(
-        data => {
-          this.user = data;
+        (data: User ) => {
+          console.log(data);
+          // this.localize.translateRoute('dashboard');
         },
         error => {
           console.log(error);

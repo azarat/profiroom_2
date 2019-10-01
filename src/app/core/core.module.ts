@@ -9,6 +9,8 @@ import {Location} from '@angular/common';
 import {LocalizeRouterHttpLoader} from 'localize-router-http-loader';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { AuthService } from './services/auth.service';
+import { UserService } from './services/user.service';
+import { LocalStorageService } from './services/local-storage.service';
 
 export const url = new URL(location.href).origin;
 
@@ -42,6 +44,8 @@ export const url = new URL(location.href).origin;
       multi: true
     },
     AuthService,
+    UserService,
+    LocalStorageService
   ]
 })
 export class CoreModule { }
