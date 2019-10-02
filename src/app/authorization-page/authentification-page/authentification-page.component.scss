@@ -199,6 +199,7 @@
 
   .links {
     margin-bottom: 7px;
+
     a {
       font-family: Source Sans;
       font-weight: 400;
@@ -207,6 +208,7 @@
       margin-right: 23px;
       color: #707683;
       cursor: pointer;
+
       &:hover {
         color: #55585d;
       }
@@ -236,6 +238,7 @@
 
     display: flex;
     flex-direction: column;
+
     .mat-form-field {
       height: 95px;
 
@@ -245,34 +248,56 @@
     .mat-form-field-underline {
       display: none;
     }
-    .mat-warn .mat-input-element, .mat-form-field-invalid .mat-input-element {
-        border: 1px solid red
+
+    .mat-warn .mat-input-element,
+    .mat-form-field-invalid .mat-input-element {
+      border: 1px solid red
     }
+
     .pass-erorrs {
-      width: 100%;
-      margin-top: 5px;
-      // border: 1px solid #000000;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      span {
-        width: 19%;
-        border-radius: 2px;
-        height: 5px;
-        &.unvalidated {
-          background: rgba(100, 154, 243, 0.4);
-          order: 1;
-        }
-        &.validated{
-          background: #649AF3;
+      display: none;
+    }
+
+    .mat-focused {
+      .pass-erorrs {
+
+        width: 100%;
+        margin-top: 5px;
+        // border: 1px solid #000000;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: wrap;
+
+        span {
+          width: 19%;
+          border-radius: 2px;
+          height: 5px;
+
+          &.unvalidated {
+            background: rgba(100, 154, 243, 0.4);
+            order: 1;
+          }
+
+          &.validated {
+            background: #649AF3;
+          }
         }
       }
-
+      .description {
+        width: 100%;
+        order: 3;
+        position: relative;
+        z-index: 3;
+        background: #fff;
+      }
     }
+
     label {
       line-height: 44px;
       padding: 0 10px;
     }
+
     input {
       padding: 0 10px;
       box-sizing: border-box;

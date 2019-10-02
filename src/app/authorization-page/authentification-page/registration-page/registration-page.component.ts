@@ -116,7 +116,7 @@ export class RegistrationPageComponent implements OnInit {
         // tslint:disable-next-line: max-line-length
         CustomValidators.patternValidator( /^(?=.*[!@#\$%\^&\*])/, { hasSpecialCharacters: true }),
         // 6.; Has; a; minimum; length; of; 8; characters;  (?=.{6,100})
-        CustomValidators.patternValidator(/(?=.{6,100})/, { hasSpecialCharacters: true })])
+        CustomValidators.patternValidator(/(?=.{8,100})/, { minLengthCharacters: true })])
   ],
       agreed: [null, [Validators.required]],
       password_confirmation: [null, Validators.required]

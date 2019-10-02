@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { DashboardPageComponent } from './dashboard-page/dashboard-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
-import { AuthorizationPageComponent } from './authorization-page/authorization-page.component';
 import { CatalogPageComponent } from './catalog-page/catalog-page.component';
 import { UnauthorisatedGuard } from './core/guards/unauthorisated.guard';
 import { AuthorisatedGuard } from './core/guards/authorisated.guard';

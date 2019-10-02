@@ -17,11 +17,17 @@
             <input matInput type="password" formControlName="password" required />
             <div class="pass-erorrs">
               <span [ngClass]="registrationForm.controls['password'].hasError('required') || registrationForm.controls['password'].hasError('hasNumber') ? 'unvalidated': 'validated'"></span>
-              <span [ngClass]="registrationForm.controls['password'].hasError('required') || registrationForm.controls['password'].hasError('hasCapitalCase') ? 'unvalidated': 'validated'"
-              ></span>
+              <span [ngClass]="registrationForm.controls['password'].hasError('required') || registrationForm.controls['password'].hasError('hasCapitalCase') ? 'unvalidated': 'validated'"></span>
               <span [ngClass]="registrationForm.controls['password'].hasError('required') || registrationForm.controls['password'].hasError('hasSmallCase') ? 'unvalidated': 'validated'"></span>
               <span [ngClass]="registrationForm.controls['password'].hasError('required') || registrationForm.controls['password'].hasError('hasSpecialCharacters') ? 'unvalidated': 'validated'"></span>
-              <span [ngClass]="registrationForm.controls['password'].hasError('required') || registrationForm.controls['password'].hasError('hasSpecialCharacters') ? 'unvalidated': 'validated'"></span>
+              <span [ngClass]="registrationForm.controls['password'].hasError('required') || registrationForm.controls['password'].hasError('minLengthCharacters') ? 'unvalidated': 'validated'"></span>
+              <div class="description">
+                <li *ngIf="registrationForm.controls['password'].hasError('required') || registrationForm.controls['password'].hasError('hasNumber')">need number</li>
+                <li *ngIf="registrationForm.controls['password'].hasError('required') || registrationForm.controls['password'].hasError('hasSmallCase')">small </li>
+                <li *ngIf="registrationForm.controls['password'].hasError('required') || registrationForm.controls['password'].hasError('hasCapitalCase')">capital</li>
+                <li *ngIf="registrationForm.controls['password'].hasError('required') || registrationForm.controls['password'].hasError('hasSpecialCharacters')">specials </li>
+                <li *ngIf="registrationForm.controls['password'].hasError('required') || registrationForm.controls['password'].hasError('minLengthCharacters')">to short</li>
+              </div>
             </div>
             <button class="pass" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
             [attr.aria-pressed]="hideF" [style.color]="hideF ? '#DBDBDB': '#000'">
