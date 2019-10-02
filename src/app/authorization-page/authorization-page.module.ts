@@ -1,10 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AuthorizationPageComponent } from './authorization-page.component';
 import { Routes, RouterModule } from '@angular/router';
 import { LocalizeRouterModule } from 'localize-router';
-import { LoginPageComponent } from './login-page/login-page.component';
-import { RegistrationPageComponent } from './registration-page/registration-page.component';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule, MatAutocompleteModule, MatCheckboxModule, MatFormFieldControl, MatIconModule } from '@angular/material';
 import { MatInputModule, MatButtonModule } from '@angular/material';
@@ -13,22 +11,46 @@ import { MainHeaderModule } from '../shared/modules/main-header/main-header.modu
 import { LanguageModule } from '../shared/modules/language/language.module';
 import { InformPopupModule } from '../shared/modules/inform-popup/inform-popup.module';
 
+import { SocialLoginModule, AuthServiceConfig } from 'angularx-social-login';
+import { GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-login';
+import { ResetPasswordPageComponent } from './reset-password-page/reset-password-page.component';
+import { AuthentificationPageComponent } from './authentification-page/authentification-page.component';
+import { LoginPageComponent } from './authentification-page/login-page/login-page.component';
+import { RegistrationPageComponent } from './authentification-page/registration-page/registration-page.component';
+
 const routes: Routes = [
   {
     path: '',
-    component: AuthorizationPageComponent
+    component: AuthentificationPageComponent
   },
   {
-    path: 'reset-pass'
+    path: 'reset-pass',
+    component: ResetPasswordPageComponent
   }
 ];
+
+// const socialConfig = new AuthServiceConfig([
+//   {
+//     id: GoogleLoginProvider.PROVIDER_ID,
+//     provider: new GoogleLoginProvider('525258845420-q37hm7hqfvct3sm379nl7eisl9ock8tm.apps.googleusercontent.com')
+//   },
+//   // {
+//   //   id: FacebookLoginProvider.PROVIDER_ID,
+//   //   provider: new FacebookLoginProvider('Facebook-App-Id')
+//   // }
+// ]);
+
+// export function provideConfig() {
+//   return socialConfig;
+// }
 
 
 @NgModule({
   declarations: [
-    AuthorizationPageComponent,
     LoginPageComponent,
-    RegistrationPageComponent
+    RegistrationPageComponent,
+    ResetPasswordPageComponent,
+    AuthentificationPageComponent
   ],
   imports: [
     CommonModule,
@@ -42,6 +64,7 @@ const routes: Routes = [
     MatAutocompleteModule,
     MatCheckboxModule,
     MatIconModule,
+    SocialLoginModule,
 
     // created
     LanguageModule,
@@ -50,7 +73,14 @@ const routes: Routes = [
 
   ],
   exports: [
-    AuthorizationPageComponent
+    ResetPasswordPageComponent,
+    AuthentificationPageComponent
+  ],
+  providers: [
+    // {
+    //   provide: AuthServiceConfig,
+    //   useFactory: provideConfig
+    // }
   ]
 })
 export class AuthorizationPageModule { }

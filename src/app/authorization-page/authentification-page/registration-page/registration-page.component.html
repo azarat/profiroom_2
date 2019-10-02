@@ -15,6 +15,14 @@
         <mat-form-field>
             <mat-label>Введите пароль</mat-label>
             <input matInput type="password" formControlName="password" required />
+            <div class="pass-erorrs">
+              <span [ngClass]="registrationForm.controls['password'].hasError('required') || registrationForm.controls['password'].hasError('hasNumber') ? 'unvalidated': 'validated'"></span>
+              <span [ngClass]="registrationForm.controls['password'].hasError('required') || registrationForm.controls['password'].hasError('hasCapitalCase') ? 'unvalidated': 'validated'"
+              ></span>
+              <span [ngClass]="registrationForm.controls['password'].hasError('required') || registrationForm.controls['password'].hasError('hasSmallCase') ? 'unvalidated': 'validated'"></span>
+              <span [ngClass]="registrationForm.controls['password'].hasError('required') || registrationForm.controls['password'].hasError('hasSpecialCharacters') ? 'unvalidated': 'validated'"></span>
+              <span [ngClass]="registrationForm.controls['password'].hasError('required') || registrationForm.controls['password'].hasError('hasSpecialCharacters') ? 'unvalidated': 'validated'"></span>
+            </div>
             <button class="pass" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
             [attr.aria-pressed]="hideF" [style.color]="hideF ? '#DBDBDB': '#000'">
             <mat-icon>{{hideF ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -41,7 +49,7 @@
             <mat-checkbox required  class="policy" formControlName="agreed">Я согласен(а) с <span>Политикой конфиденциальности</span></mat-checkbox>
         </section>
         <section class="social-login">
-
+            <button>Google</button>
         </section>
         <section  class="submit">
 

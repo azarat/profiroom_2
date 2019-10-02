@@ -14,14 +14,16 @@ import {
   User
 } from 'src/app/models/user.model';
 import {
-  AuthService
+  AuthentificationService
 } from 'src/app/core/services/auth.service';
+import { AuthService } from 'angularx-social-login';
 import {
   Router
 } from '@angular/router';
 import { InfoMessageInterface } from 'src/app/shared/interfaces/info-message.interface';
 import { BehaviorSubject, Subscription, Observable } from 'rxjs';
 import { LocalizeRouterService } from 'localize-router';
+import { FacebookLoginProvider, GoogleLoginProvider } from 'angularx-social-login';
 
 @Component({
   selector: 'app-login-page',
@@ -38,7 +40,8 @@ export class LoginPageComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private authService: AuthService,
+    private authentificationService: AuthentificationService,
+    // private authService: AuthService
   ) {
 
   }
@@ -57,9 +60,9 @@ export class LoginPageComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     }
-    this.authService.authenticate(this.loginForm.value)
+    this.authentificationService.authenticate(this.loginForm.value)
       .subscribe(
-        (data: User ) => {
+        (data: User) => {
           console.log(data);
           // this.localize.translateRoute('dashboard');
         },
@@ -71,4 +74,11 @@ export class LoginPageComponent implements OnInit {
           };
         });
   }
+  // signInWithGoogle(): void {
+  //   this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+  // }
+
+  // signInWithFB(): void {
+  //   this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+  // }
 }

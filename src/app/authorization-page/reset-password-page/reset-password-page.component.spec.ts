@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AuthorizationPageComponent } from './authorization-page.component';
+import { ResetPasswordPageComponent } from './reset-password-page.component';
 
-describe('AuthorizationPageComponent', () => {
-  let component: AuthorizationPageComponent;
-  let fixture: ComponentFixture<AuthorizationPageComponent>;
+describe('ResetPasswordPageComponent', () => {
+  let component: ResetPasswordPageComponent;
+  let fixture: ComponentFixture<ResetPasswordPageComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AuthorizationPageComponent ]
+      declarations: [ ResetPasswordPageComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AuthorizationPageComponent);
+    fixture = TestBed.createComponent(ResetPasswordPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

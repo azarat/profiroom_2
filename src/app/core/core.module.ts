@@ -8,11 +8,27 @@ import { routes } from '../app-routing.module';
 import {Location} from '@angular/common';
 import {LocalizeRouterHttpLoader} from 'localize-router-http-loader';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
-import { AuthService } from './services/auth.service';
+import { AuthentificationService } from './services/auth.service';
 import { UserService } from './services/user.service';
 import { LocalStorageService } from './services/local-storage.service';
+import { UnauthorisatedGuard } from './guards/unauthorisated.guard';
+import { AngularFireModule } from '@angular/fire';
+import { config } from 'process';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AuthorisatedGuard } from './guards/authorisated.guard';
 
 export const url = new URL(location.href).origin;
+
+const gConfig = {
+  apiKey: 'AIzaSyCvUM_cRxpUTglNwMUcIFQdVsTtfLzIBtw',
+    authDomain: 'gigrum-6bd12.firebaseapp.com',
+    databaseURL: 'https://gigrum-6bd12.firebaseio.com',
+    projectId: 'gigrum-6bd12',
+    storageBucket: '',
+    messagingSenderId: '525258845420',
+    appId: '1:525258845420:web:635bceff56889f8ce949c9',
+    measurementId: 'G-4GNMQ0XZDM'
+};
 
 @NgModule({
   declarations: [],
@@ -36,6 +52,8 @@ export const url = new URL(location.href).origin;
         deps: [TranslateService, Location, LocalizeRouterSettings, HttpClient]
       }
     }),
+    AngularFireModule.initializeApp(gConfig),
+    AngularFireAuthModule
   ],
   providers: [
     {
@@ -43,9 +61,11 @@ export const url = new URL(location.href).origin;
       useClass: BaseInterceptor,
       multi: true
     },
-    AuthService,
+    AuthentificationService,
     UserService,
-    LocalStorageService
+    LocalStorageService,
+    UnauthorisatedGuard,
+    AuthorisatedGuard
   ]
 })
 export class CoreModule { }

@@ -4,7 +4,7 @@
       <a [routerLink]="'' | localize"> <img src="assets/images/logo.svg" alt=""></a>
       <a [routerLink]="'' | localize"> Whocan</a>
     </div>
-    <nav>
+    <nav *ngIf="pageName !== 'authoriz'">
       <a [routerLink]="''">{{'header.how_it_works' | translate}}</a>
       <a [routerLink]="'catalog'">Каталог</a>
       <a [routerLink]="''">Проэкты</a>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../core/services/auth.service';
+import { AuthentificationService } from '../core/services/auth.service';
 import { User } from '../models/user.model';
 import { UserService } from '../core/services/user.service';
 
@@ -11,7 +11,7 @@ import { UserService } from '../core/services/user.service';
 export class DashboardPageComponent implements OnInit {
   user: User;
   constructor(
-    private authService: AuthService,
+    private authService: AuthentificationService,
     private userService: UserService
   ) {
     this.authService.currentUser$
@@ -25,7 +25,11 @@ export class DashboardPageComponent implements OnInit {
     this.userService.getDashboardRes()
     .subscribe((res: any) => {
       this.authService.setUserData(res.user);
+
     });
+  }
+  logOut = () => {
+    this.authService.logOut();
   }
 
 }

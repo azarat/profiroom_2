@@ -5,6 +5,9 @@ import { DashboardPageComponent } from './dashboard-page/dashboard-page.componen
 import { HomePageComponent } from './home-page/home-page.component';
 import { AuthorizationPageComponent } from './authorization-page/authorization-page.component';
 import { CatalogPageComponent } from './catalog-page/catalog-page.component';
+import { UnauthorisatedGuard } from './core/guards/unauthorisated.guard';
+import { AuthorisatedGuard } from './core/guards/authorisated.guard';
+
 
 
 export const routes: Routes = [
@@ -20,7 +23,7 @@ export const routes: Routes = [
   },
   {
     path: 'auth',
-    pathMatch: 'full',
+    canActivateChild: [AuthorisatedGuard],
     loadChildren: () => import('./authorization-page/authorization-page.module').then(m => m.AuthorizationPageModule)
   },
   {
@@ -30,6 +33,7 @@ export const routes: Routes = [
   },
   {
     path: 'dashboard',
+    canActivateChild: [UnauthorisatedGuard],
     loadChildren: () => import('./dashboard-page/dashboard-page.module').then(m => m.DashboardPageModule)
   },
   {

@@ -18,14 +18,14 @@ import {
   User
 } from 'src/app/models/user.model';
 import {
-  AuthService
+  AuthentificationService
 } from '../services/auth.service';
 
 @Injectable()
 export class BaseInterceptor implements HttpInterceptor {
 
   constructor(
-    private authService: AuthService
+    private authService: AuthentificationService
   ) {}
 
   intercept(
@@ -33,14 +33,13 @@ export class BaseInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable < HttpEvent < any >> {
     const url = 'https://www.thecubetest.site/Backend/api';
-    const token: string = this.authService.currentUserValue;
+    const token: string | boolean = this.authService.currentUserToken;
     if (req.url.indexOf('http' || 'https') !== 0) {
       req = req.clone({
         url: url + req.url
       });
     }
     if (token) {
-      console.log(token);
       req = req.clone({
         headers: req.headers.set('Authorization',
           'Bearer ' + token)

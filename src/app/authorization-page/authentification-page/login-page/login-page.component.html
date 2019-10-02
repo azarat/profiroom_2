@@ -27,7 +27,7 @@
           </mat-form-field>
           <section class="controls">
               <mat-checkbox  class="remember-me" formControlName="checked">Запомнить меня</mat-checkbox>
-              <a [routerLink]="['/reset-pass' | localize ]">Не помню пароль</a>
+              <a [routerLink]="['/auth/reset-pass' | localize ]">Не помню пароль</a>
           </section>
 
           <section  class="submit">
@@ -43,5 +43,4 @@
       </div>
     </div>
   </div>
-  <div *ngIf="user">{{ user.token }}</div>
   <app-inform-popup *ngIf="message" [(message)] ="message"></app-inform-popup>
