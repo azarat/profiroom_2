@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-reset-password-page',
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./reset-password-page.component.scss']
 })
 export class ResetPasswordPageComponent implements OnInit {
-
+  public resetPass: FormGroup;
   constructor() { }
 
   ngOnInit() {
   }
 
+  ResetPass() {
+
+  }
 }

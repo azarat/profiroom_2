@@ -35,6 +35,7 @@
 
     .registr-form {
       width: 60%;
+      display: flex;
     }
 
     .login-form {
@@ -59,6 +60,7 @@
       color: #000000;
       font-size: 36px;
       font-weight: 800;
+      font-family: "Open Sans"
     }
 
     &.left {
@@ -138,6 +140,7 @@
         color: #000000;
         font-size: 36px;
         font-weight: 800;
+        font-family: "Open Sans"
       }
 
       p {
@@ -147,6 +150,7 @@
         font-weight: 300;
         line-height: 32px;
         margin: 25px auto 60px;
+        font-family: "Open Sans";
       }
     }
 
@@ -201,7 +205,7 @@
     margin-bottom: 7px;
 
     a {
-      font-family: Source Sans;
+      font-family: "Open Sans";
       font-weight: 400;
       font-size: 14px;
       line-height: 18px;
@@ -216,7 +220,7 @@
   }
 
   .copyr {
-    font-family: Source Sans;
+    font-family: "Open Sans";
     font-weight: 400;
     font-size: 12px;
     line-height: 15px;
@@ -260,20 +264,26 @@
 
     .mat-focused {
       .pass-erorrs {
-
         width: 100%;
         margin-top: 5px;
-        // border: 1px solid #000000;
+        background: #FFFFFF;
+        background: #FFFFFF;
+        box-shadow: 0px 15px 21px rgba(128, 152, 213, 0.25);
+        border-radius: 0px 0px 8px 8px;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         flex-wrap: wrap;
+        position: relative;
+        z-index: 3;
+        padding: 2px 0 9px;
+        
 
         span {
           width: 19%;
           border-radius: 2px;
           height: 5px;
-
+          // margin-bottom: 8px;
           &.unvalidated {
             background: rgba(100, 154, 243, 0.4);
             order: 1;
@@ -284,12 +294,46 @@
           }
         }
       }
+
       .description {
         width: 100%;
         order: 3;
-        position: relative;
-        z-index: 3;
-        background: #fff;
+        padding-left: 15px;
+        margin: 0;
+        li {
+          list-style: none;
+          margin: 8px 0 0;
+          font-family: Source Sans Pro;
+          font-style: normal;
+          font-weight: 600;
+          font-size: 13px;
+          line-height: 16px;
+          color: #4285F4;
+          padding-left: 15px;
+          position: relative;
+          &:last-of-type{
+            margin-bottom: 0;
+          }
+          &:before {
+            position: absolute;
+            content: '';
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            -ms-border-radius: 50%;
+            -o-border-radius: 50%;
+            background: #4285F4;
+            -webkit-transform: translateY(-50%);
+            -moz-transform: translateY(-50%);
+            -ms-transform: translateY(-50%);
+            -o-transform: translateY(-50%);
+}
+        }
       }
     }
 
@@ -312,6 +356,80 @@
       right: 0;
       top: -37px;
       font-size: 25px;
+    }
+  }
+
+  .social-login {
+    margin: 50px 0 36px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  
+    span {
+      font-family: "Open Sans";
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 18px;
+      color: #707683;
+      margin-bottom: 30px;
+      position: relative;
+      &:before {
+        position: absolute;
+        content: '';
+        width: 79px;
+        height: 1px;
+        background: #707683;
+        left: -92px;
+        top: 52%;
+        transform:   translateY(-50%)  ;
+        -webkit-transform:   translateY(-50%)  ;
+        -moz-transform:   translateY(-50%)  ;
+        -ms-transform:   translateY(-50%)  ;
+        -o-transform:   translateY(-50%)  ;
+  }
+      &:after {
+        position: absolute;
+        content: '';
+        width: 79px;
+        height: 1px;
+        background: #707683;
+        top: 52%;
+        transform:   translateY(-50%)  ;
+        -webkit-transform:   translateY(-50%)  ;
+        -moz-transform:   translateY(-50%)  ;
+        -ms-transform:   translateY(-50%)  ;
+        -o-transform:   translateY(-50%)  ;
+        right: -92px;
+      }
+    }
+  
+    .social {
+      display: flex;
+      justify-content: center;
+      button {
+        width: 24px;
+        height: 24px;
+        background: none;
+        border: none;
+        box-shadow: none;
+        margin: 0 13px;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+        cursor: pointer;
+        &.gl {
+          background-image: url(/assets/images/icons/google.png);
+        
+        }
+        &.fb {
+          background-image: url(/assets/images/icons/icon.png);
+        }
+        &.lin {
+          background-image: url(/assets/images/icons/linkedin.png);
+        }
+      }
     }
   }
 }

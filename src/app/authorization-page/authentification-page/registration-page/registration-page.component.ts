@@ -103,7 +103,7 @@ export class RegistrationPageComponent implements OnInit {
   initializeForm() {
     this.registrationForm = this.fb.group({
       email: [null, [Validators.required, Validators.email]],
-      password: ['', Validators.compose([
+      password: [null, Validators.compose([
         // 1. Password Field is Required
         Validators.required,
 
