@@ -17,6 +17,8 @@ import { ResetPasswordPageComponent } from './reset-password-page/reset-password
 import { AuthentificationPageComponent } from './authentification-page/authentification-page.component';
 import { LoginPageComponent } from './authentification-page/login-page/login-page.component';
 import { RegistrationPageComponent } from './authentification-page/registration-page/registration-page.component';
+import { SetNewPassComponent } from './set-new-pass/set-new-pass.component';
+import { PassResetGuard } from '../core/guards/pass-reset.guard';
 
 const routes: Routes = [
   {
@@ -26,6 +28,11 @@ const routes: Routes = [
   {
     path: 'reset-pass',
     component: ResetPasswordPageComponent
+  },
+  {
+    path: 'new-pass',
+    // canActivateChild: [PassResetGuard],
+    component: SetNewPassComponent
   }
 ];
 
@@ -50,7 +57,8 @@ const routes: Routes = [
     LoginPageComponent,
     RegistrationPageComponent,
     ResetPasswordPageComponent,
-    AuthentificationPageComponent
+    AuthentificationPageComponent,
+    SetNewPassComponent
   ],
   imports: [
     CommonModule,

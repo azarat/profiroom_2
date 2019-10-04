@@ -4,15 +4,15 @@
       <div class="">
         <h2>Войти в личный кабинет</h2>
         <p class="text">Рады видеть вас снова</p>
-        <form #form="ngForm" [formGroup]="loginForm" (ngSubmit)="authenticate(form)">
+        <form #form="ngForm" [formGroup]="loginForm" (ngSubmit)="authenticate()">
 
           <mat-form-field appearance="legacy">
               <mat-label>Email</mat-label>
             <input matInput type="email" name="email"  formControlName="email" required>
 
-            <mat-error *ngIf="loginForm.get('email').hasError('required')">{{ "erorr" }}</mat-error>
+            <mat-error *ngIf="loginForm.get('email').hasError('required')">{{ "Введите email" }}</mat-error>
             <mat-error *ngIf="loginForm.get('email').hasError('email')">{{
-                  "not email"
+                  "Не корректный email"
                 }}</mat-error>
           </mat-form-field>
 
@@ -23,7 +23,7 @@
               [attr.aria-pressed]="hide" [style.color]="hide ? '#DBDBDB': '#000'">
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
-            <mat-error *ngIf="loginForm.get('password').hasError('required')">{{ "erorr" }}</mat-error>
+            <mat-error *ngIf="loginForm.get('password').hasError('required')">{{ "Введите пароль" }}</mat-error>
           </mat-form-field>
           <section class="controls">
               <mat-checkbox  class="remember-me" formControlName="checked">Запомнить меня</mat-checkbox>
@@ -41,7 +41,7 @@
 
         </form>
         <section class="social-login">
-            <span>или  зарегистрироваться с помощью </span>
+            <span>или  войти с помощью </span>
               <div class="social">
                   <button class="fb"></button><button class="gl"></button><button class="lin"></button>
               </div>

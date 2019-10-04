@@ -6,6 +6,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-top: 24px;
   // border-bottom: 1px solid #FBFBFB;
 }
 .logo {
@@ -22,8 +23,9 @@
     font-size: 24px;
     line-height: 24px;
     font-weight: 800;
-    color: #540cfa;
+    color: #3C7EEA;
     text-transform: lowercase;
+    
   }
   img {
     margin-right: 13px;

@@ -5,7 +5,7 @@ h2 {
   color: #000000;
   font-size: 36px;
   font-weight: 900;
-  font-family: "Open Sans" ;
+  font-family: "Open Sans";
 }
 
 p {
@@ -94,19 +94,20 @@ input {
   margin: 14px 0 40px;
   display: flex;
   justify-content: space-between;
+  font-family: "Open Sans";
   .remember-me {
     color: #707683;
-    font-family: "Source Sans";
+    font-family: "Open Sans";
     font-weight: 400;
     font-size: 14px;
     line-height: 18px;
   }
   a {
-    font-family: Source Sans;
+    font-family: "Open Sans";
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
-    line-height: 18px;
+    line-height: 24px;
     text-decoration-line: underline;
     color: #707683;
     &:hover {
@@ -119,6 +120,7 @@ input {
 
 .submit {
   text-align: center;
+  font-family: "Open Sans";
   button{
   padding: 13px 73px;
   color: #ffffff;
@@ -127,6 +129,7 @@ input {
   background: #3C7EEA;
   box-shadow: 0px 10px 20px rgba(80, 123, 252, 0.5);
   border-radius: 8px;
+  font-family: "Open Sans";
   }
 
 }

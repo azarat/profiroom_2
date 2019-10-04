@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AuthentificationService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-reset-password-page',
@@ -8,12 +9,25 @@ import { FormGroup } from '@angular/forms';
 })
 export class ResetPasswordPageComponent implements OnInit {
   public resetPass: FormGroup;
-  constructor() { }
+  submitted = false;
+  constructor(
+    private fb: FormBuilder,
+    private AuthentificationService: AuthentificationService
+  ) { }
 
   ngOnInit() {
+    this.resetPass = this.fb.group({
+      email: [null, [Validators.required, Validators.email]]
+    })
   }
 
   ResetPass() {
-
+    this.submitted = true;
+    if (this.resetPass.invalid) {
+      return;
+    }
+    this.AuthentificationService.resetPass(this.resetPass.value).subscribe(res =>{
+      console.log(res);
+    })
   }
 }
