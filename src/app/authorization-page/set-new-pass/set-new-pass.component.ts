@@ -4,6 +4,7 @@ import { AuthentificationService } from 'src/app/core/services/auth.service';
 import { InfoMessageInterface } from 'src/app/shared/interfaces/info-message.interface';
 import { CustomValidators, RegistrationPageComponent } from '../authentification-page/registration-page/registration-page.component';
 import { Router, ActivatedRoute } from '@angular/router';
+import { LocalizeRouterService } from 'localize-router';
 
 @Component({
   selector: 'app-set-new-pass',
@@ -11,7 +12,8 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./set-new-pass.component.scss']
 })
 export class SetNewPassComponent implements OnInit {
-
+  token: string = null;
+  email: string = null;
   constructor(
     private fb: FormBuilder,
     private autServ: AuthentificationService,
@@ -19,11 +21,19 @@ export class SetNewPassComponent implements OnInit {
     private authService: AuthentificationService,
     // tslint:disable-next-line: variable-name
     private _route: ActivatedRoute,
-  ) { 
-    this._route.queryParams.subscribe(p => {
-      console.log(p)
+    private localize: LocalizeRouterService,
+  ) {
+    this._route.queryParams.subscribe(data => {
+      console.log(data.token === undefined ? true : false);
+      if (data.token !== undefined ) {
+        this.token = data.token;
+        this.email = data.email;
+      } else {
+        const redirectToAuthPath: any = this.localize.translateRoute('/dashboard');
+        this.router.navigate([redirectToAuthPath]);
+      }
     });
-  }  
+  }
 
   submitted = false;
   public registrationForm: FormGroup;
@@ -54,19 +64,27 @@ export class SetNewPassComponent implements OnInit {
     if (this.registrationForm.invalid) {
       return;
     }
-    this.autServ.registation(this.registrationForm.value)
+
+    this.autServ.confirmNewPass(this.registrationForm.value)
       .subscribe(res => {
         console.log(res);
-        this.registrationForm.reset();
-        this.message = {
-          title: 'Регистрация успешна',
-          description: 'На указанную Вами почту придёт письмо с подтверждением регистрации.'
+        if (res.message === 'This password reset token is invalid.') {
+          this.message = {
+            title: 'Ошибка',
+            description: 'Время сессии истекло'
+          };
+
+        } else {
+          this.message = {
+          title: 'Смена успешна',
+          description: 'Можете войти используя новый пароль'
         };
+        }
       },
         erorr => {
           this.message = {
             title: 'Ошибка',
-            description: 'Этот Email уже зарегистрирован'
+            description: 'Время сессии истекло'
           };
         }
       );
@@ -74,7 +92,8 @@ export class SetNewPassComponent implements OnInit {
 
   initializeForm() {
     this.registrationForm = this.fb.group({
-      email: [null, [Validators.required, Validators.email]],
+      email: [this.email, [Validators.required, Validators.email]],
+      token: [this.token, Validators.required],
       password: [null, Validators.compose([
         // 1. Password Field is Required
         Validators.required,
@@ -90,7 +109,6 @@ export class SetNewPassComponent implements OnInit {
         // 6.; Has; a; minimum; length; of; 8; characters;  (?=.{6,100})
         CustomValidators.patternValidator(/(?=.{8,100})/, { minLengthCharacters: true })])
   ],
-      agreed: [null, [Validators.required]],
       password_confirmation: [null, Validators.required]
     }, {
       validator: RegistrationPageComponent.passwordMatchValidator

@@ -84,8 +84,6 @@ export class RegistrationPageComponent implements OnInit {
     }
     this.autServ.registation(this.registrationForm.value)
       .subscribe(res => {
-        console.log(res);
-        this.registrationForm.reset();
         this.message = {
           title: 'Регистрация успешна',
           description: 'На указанную Вами почту придёт письмо с подтверждением регистрации.'

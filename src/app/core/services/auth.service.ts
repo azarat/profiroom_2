@@ -65,9 +65,13 @@ export class AuthentificationService {
     this.localStorageService.removeItem('token');
     this.router.navigate([translatedPath]);
   }
- 
+
   resetPass(userInputs: User): Observable<any> {
      return this.http.post<any>('/password/email', userInputs);
+  }
+
+  confirmNewPass = (userInputs: User) => {
+    return this.http.post<any>('/password/reset', userInputs);
   }
 
   setUserData = (response: User) => {

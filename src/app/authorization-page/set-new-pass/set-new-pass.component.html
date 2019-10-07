@@ -8,14 +8,6 @@
 
       <form #form="ngForm" [formGroup]="registrationForm" (ngSubmit)="registrate()">
         <mat-form-field>
-          <mat-label>Email</mat-label>
-          <input matInput type="email" formControlName="email" required />
-          <mat-error *ngIf="registrationForm.get('email').hasError('required')">{{ "Введите Email" }}</mat-error>
-          <mat-error *ngIf="registrationForm.get('email').hasError('email')">{{
-                  "Некорректный email"
-                }}</mat-error>
-        </mat-form-field>
-        <mat-form-field>
           <mat-label>Введите пароль</mat-label>
           <input matInput type="password" formControlName="password" required />
           <div class="pass-erorrs">

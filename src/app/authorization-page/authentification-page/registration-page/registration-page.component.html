@@ -22,13 +22,13 @@
               <span [ngClass]="registrationForm.controls['password'].hasError('required') || registrationForm.controls['password'].hasError('hasSpecialCharacters') ? 'unvalidated': 'validated'"></span>
               <span [ngClass]="registrationForm.controls['password'].hasError('required') || registrationForm.controls['password'].hasError('minLengthCharacters') ? 'unvalidated': 'validated'"></span>
               <ul class="description" *ngIf="registrationForm.controls['password'].invalid">
-                
+
                 <li *ngIf="registrationForm.controls['password'].hasError('hasNumber')">Должна быть минимум одна цифра</li>
                 <li *ngIf="registrationForm.controls['password'].hasError('hasSmallCase')">Должна быть минимум одна маленькая буква a-z</li>
                 <li *ngIf="registrationForm.controls['password'].hasError('hasCapitalCase')">Должна быть минимум одна большая буква A-Z</li>
                 <li *ngIf="registrationForm.controls['password'].hasError('hasSpecialCharacters')">Должна быть минимум один спец символ</li>
                 <li *ngIf="registrationForm.controls['password'].hasError('minLengthCharacters')">Пароль не меньше 8 символов</li>
-              </ul>  
+              </ul>
             </div>
             <button class="pass" mat-icon-button matSuffix (click)="hideF = !hideF" [attr.aria-label]="'Hide password'"
             [attr.aria-pressed]="hideF" [style.color]="hideF ? '#DBDBDB': '#000'">
@@ -45,7 +45,7 @@
             [attr.aria-pressed]="hideS" [style.color]="hideS ? '#DBDBDB': '#000'">
             <mat-icon>{{hideS ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
-            <mat-error *ngIf="registrationForm.get('password_confirmation').hasError('required')">{{ "erorr" }}</mat-error>
+            <mat-error *ngIf="registrationForm.get('password_confirmation').hasError('required')">{{ "Введите пароль" }}</mat-error>
             <mat-error *ngIf="registrationForm.get('password_confirmation').hasError('NoPassswordMatch')">{{
               "Пароли не совпадают"
             }}</mat-error>
