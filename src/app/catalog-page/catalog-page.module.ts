@@ -4,6 +4,7 @@ import { CatalogPageComponent } from './catalog-page.component';
 import { Routes, RouterModule } from '@angular/router';
 import { LocalizeRouterModule } from 'localize-router';
 import { MainHeaderModule } from '../shared/modules/main-header/main-header.module';
+import { HttpClientModule } from '@angular/common/http';
 
 
 const routes: Routes = [
@@ -21,8 +22,8 @@ const routes: Routes = [
     CommonModule,
     LocalizeRouterModule.forChild(routes),
     RouterModule.forChild(routes),
-
-    MainHeaderModule
+    MainHeaderModule,
+    HttpClientModule
   ],
   exports: [
     CatalogPageComponent
