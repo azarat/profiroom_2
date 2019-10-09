@@ -33,14 +33,14 @@ export class ResetPasswordPageComponent implements OnInit {
       res => {
       console.log(res);
       this.message = {
-        title: 'Регистрация прошла успешно!',
-        description: 'На указанную Вами почту придёт письмо с подтверждением регистрации.'
+        title: 'Запрос одобрен!',
+        description: 'На указанную Вами почту придёт письмо для создания нового пароля.'
       };
     },
     erorr => {
       this.message = {
         title: 'Ошибка',
-        description: 'Этот Email уже зарегистрирован'
+        description: 'Этот Email не зарегистрирован'
       };
     });
   }

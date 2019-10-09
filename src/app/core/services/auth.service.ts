@@ -29,10 +29,8 @@ export class AuthentificationService {
     public  afAuth: AngularFireAuth
 
   ) {
-    this.currentUser$ = this.currentUser.asObservable();
+    // this.currentUser$ = this.currentUser.asObservable();
 
-    this.token = this.localStorageService.getItem('token');
-    this.token$ = this.token.asObservable();
   }
   public get currentUserToken(): string | boolean {
     return this.token.value;
@@ -44,20 +42,7 @@ export class AuthentificationService {
   }
 
   authenticate = (userInputs: User): Observable<any> => {
-    const translatedPath: any = this.localize.translateRoute('/dashboard');
-    return this.http.post<any>('/login', userInputs).pipe(
-      map(userData => {
-        if (userData) {
-          this.currentUser.next(userData);
-          this.localStorageService.setItem('token', userData.token);
-          this.router.navigate([translatedPath]);
-        }
-        // console.log(userData);
-      }),
-      catchError(error => {
-        return error;
-      })
-    );
+    return this.http.post<any>('/login', userInputs);
   }
 
   logOut = () => {
@@ -72,9 +57,5 @@ export class AuthentificationService {
 
   confirmNewPass = (userInputs: User) => {
     return this.http.post<any>('/password/reset', userInputs);
-  }
-
-  setUserData = (response: User) => {
-    this.currentUser.next(response);
   }
 }

@@ -1,0 +1,154 @@
+.wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  header {
+    background-color: #649af3;
+    padding: 30px 80px 30px 50px;
+    display: flex;
+    justify-content: space-between;
+    .logo {
+      font-family: "Open Sans";
+      font-weight: 800;
+      font-size: 24px;
+      line-height: 24px;
+      text-transform: lowercase;
+      color: #ffffff;
+      text-decoration: none;
+    }
+  }
+}
+
+:host ::ng-deep {
+  .controls {
+    .mat-slide-toggle-bar {
+      width: 34px;
+      height: 20px;
+      background-color: #fff;
+      box-shadow: 0px 7px 20px rgba(0, 0, 0, 0.07);
+      border-radius: 16px;
+    }
+    .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb-container {
+      transform: translate3d(14px, 0, 0);
+    }
+    .mat-slide-toggle-thumb-container {
+      left: 2px;
+      top: 2px;
+    }
+    .mat-slide-toggle-thumb {
+      width: 16px;
+      height: 16px;
+      background-color: #3c7eea;
+    }
+  }
+}
+
+//  --------------------------- togle btn ------------------------
+.switch {
+  position: relative;
+  label {
+    cursor: pointer;
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    text-align: center;
+    color: #ffffff;
+    opacity: 0.33;
+    transition: opacity 0.25s ease;
+    width: 50%;
+    height: 100%;
+    &:first-of-type {
+      margin-right: 62px;
+    }
+  }
+  input {
+    position: absolute;
+    top: 0;
+    z-index: 2;
+    opacity: 0;
+    width: 50%;
+    height: 100%;
+    cursor: pointer;
+    &:checked {
+      z-index: 1;
+      & + label {
+        opacity: 1;
+        cursor: default;
+      }
+    }
+    &:not(:checked) + label {
+      opacity: 0.6;
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+  .toggle-outside {
+    width: 34px;
+    height: 20px;
+    box-shadow: 0px 7px 20px rgba(0, 0, 0, 0.07);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: 0.25s ease all;
+    background: #fff;
+    position: absolute;
+    left: 52%;
+    transform: translateX(-50%);
+  }
+  .toggle-inside {
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    background: #3c7eea;
+    position: absolute;
+    transition: 0.25s ease all;
+    top: 2px;
+  }
+  input {
+    width: 50%;
+    height: 100%;
+    margin: 0 auto;
+  }
+  input:checked ~ .toggle-outside .toggle-inside {
+    left: 2px;
+  }
+  input ~ input:checked ~ .toggle-outside .toggle-inside {
+    left: 16px;
+
+  }
+}
+.notifications {
+  margin-right: 30px;
+  mat-icon {
+    color: #fff;
+    span {
+      color: transparent;
+      width: 8px;
+      height: 8px;
+      border: 1px solid #FFFFFF;
+    }
+  }
+}
+.controls {
+  display: flex;
+  .exit {
+    button {
+      border: none;
+      background: none;
+      margin-left: 80px;
+      font-family: "Open Sans";
+      font-style: normal;
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 20px;
+      text-transform: capitalize;
+      color: #FFFFFF;
+      cursor: pointer;
+    }
+  }
+  .notifications {
+    margin-right: 30px;
+  }
+}

@@ -24,6 +24,7 @@ import { InfoMessageInterface } from 'src/app/shared/interfaces/info-message.int
 import { BehaviorSubject, Subscription, Observable } from 'rxjs';
 import { LocalizeRouterService } from 'localize-router';
 import { FacebookLoginProvider, GoogleLoginProvider } from 'angularx-social-login';
+import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 
 @Component({
   selector: 'app-login-page',
@@ -41,6 +42,9 @@ export class LoginPageComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authentificationService: AuthentificationService,
+    private localStorageService: LocalStorageService,
+    private localize: LocalizeRouterService,
+    private router: Router,
     // private authService: AuthService
   ) {
 
@@ -63,11 +67,14 @@ export class LoginPageComponent implements OnInit {
     this.authentificationService.authenticate(this.loginForm.value)
       .subscribe(
         (data: User) => {
-          console.log(data);
-          // this.localize.translateRoute('dashboard');
+          if (data) {
+            const translatedPath: any = this.localize.translateRoute('/dashboard');
+            this.localStorageService.setItem('token', data.token);
+            this.router.navigate([translatedPath]);
+          }
         },
         error => {
-          console.log(error);
+          // console.log(error);
           this.message = {
             title: 'Ошибка',
             description: 'Не верно укзанные данные'

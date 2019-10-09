@@ -1,5 +1,40 @@
-<p>dashboard-page works!</p>
-<div class="wraper" *ngIf="user">
-<h1>{{ user.name }}</h1>
-<button (click)="logOut()"> logOut</button>
+<div class="wrapper">
+  <header>
+    <a [routerLink]="'/' | localize" class="logo">whocan</a>
+    <div class="controls">
+      <section class="notifications">
+          <mat-icon aria-hidden="false" matBadge="1" aria-label="Example home icon" matBadgeColor="warn">notifications</mat-icon>
+      </section>
+      <section class="type-section">
+        <div class="switch">
+          <input
+            id="radio-a"
+            type="radio"
+            name="first-switch"
+            checked="checked"
+          /><label  for="radio-a">Фрилансер</label
+          ><input id="radio-b" type="radio" name="first-switch" /><label class="radio-b"
+            for="radio-b"
+            >Заказчик</label
+          ><span class="toggle-outside"
+            ><span class="toggle-inside"></span
+          ></span>
+        </div>
+      </section>
+      <section class="exit">
+        <button (click)="userExit()">Выйти</button>
+      </section>
+    </div>
+  </header>
+  <div class="side-bar">
+    <section class="avatar">
+      <img src="" alt="" />
+    </section>
+    <section class="menu">
+      <nav></nav>
+    </section>
+  </div>
+  <div class="content-part">
+    <router-outlet></router-outlet>
+  </div>
 </div>

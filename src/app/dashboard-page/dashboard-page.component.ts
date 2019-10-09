@@ -9,26 +9,22 @@ import { UserService } from '../core/services/user.service';
   styleUrls: ['./dashboard-page.component.scss']
 })
 export class DashboardPageComponent implements OnInit {
+
+  color = 'accent';
+  checked = false;
+  disabled = false;
+
   user: User;
   constructor(
     private authService: AuthentificationService,
     private userService: UserService
   ) {
-    this.authService.currentUser$
-    .subscribe(res => {
-      console.log(res);
-      this.user = res;
-    });
    }
 
   ngOnInit() {
-    this.userService.getDashboardRes()
-    .subscribe((res: any) => {
-      this.authService.setUserData(res.user);
 
-    });
   }
-  logOut = () => {
+  userExit = () => {
     this.authService.logOut();
   }
 

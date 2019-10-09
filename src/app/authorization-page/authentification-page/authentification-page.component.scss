@@ -59,7 +59,6 @@
     align-items: center;
     justify-content: center;
 
-
     h2 {
       color: #000000;
       font-size: 36px;
@@ -136,7 +135,6 @@
     }
 
     .inform {
-
       text-align: center;
       position: relative;
       height: 700px;
@@ -145,7 +143,7 @@
         color: #000000;
         font-size: 36px;
         font-weight: 800;
-        font-family: "Open Sans"
+        font-family: "Open Sans";
       }
 
       p {
@@ -161,7 +159,7 @@
 
     .swap-btn {
       height: 53px;
-      background: #3C7EEA;
+      background: #3c7eea;
       box-shadow: 0px 10px 20px rgba(80, 123, 252, 0.5);
       border-radius: 8px;
       border: none;
@@ -232,7 +230,7 @@
     line-height: 15px;
     text-align: center;
 
-    color: #99ACB7;
+    color: #99acb7;
   }
 }
 
@@ -243,9 +241,10 @@
     width: 416px;
     margin: auto;
     font-family: "Open Sans";
-    .mat-checkbox-checked:not(.mat-checkbox-disabled).mat-accent .mat-ripple-element,
+    .mat-checkbox-checked:not(.mat-checkbox-disabled).mat-accent
+      .mat-ripple-element,
     .mat-checkbox-checked.mat-accent .mat-checkbox-background {
-      background: #3C7EEA
+      background: #3c7eea;
     }
 
     display: flex;
@@ -262,7 +261,7 @@
 
     .mat-warn .mat-input-element,
     .mat-form-field-invalid .mat-input-element {
-      border: 1px solid red
+      border: 1px solid red;
     }
 
     .pass-erorrs {
@@ -273,9 +272,8 @@
       .pass-erorrs {
         width: 100%;
         margin-top: 5px;
-        background: #FFFFFF;
-        background: #FFFFFF;
-
+        background: #ffffff;
+        background: #ffffff;
         border-radius: 0px 0px 8px 8px;
         display: flex;
         flex-direction: row;
@@ -284,26 +282,22 @@
         position: relative;
         z-index: 3;
         padding: 2px 0 9px;
-
-
         span {
           width: 19%;
           border-radius: 2px;
           height: 5px;
-
-          // margin-bottom: 8px;
           &.unvalidated {
             background: rgba(100, 154, 243, 0.4);
             order: 1;
           }
 
           &.validated {
-            background: #649AF3;
+            background: #649af3;
           }
         }
       }
 
-     .description {
+      .description {
         width: 100%;
         order: 3;
         padding-left: 15px;
@@ -321,7 +315,7 @@
           font-weight: 600;
           font-size: 13px;
           line-height: 16px;
-          color: #4285F4;
+          color: #4285f4;
           padding: 0 15px;
           position: relative;
 
@@ -331,7 +325,7 @@
 
           &:before {
             position: absolute;
-            content: '';
+            content: "";
             left: 0;
             top: 50%;
             transform: translateY(-50%);
@@ -342,7 +336,7 @@
             -moz-border-radius: 50%;
             -ms-border-radius: 50%;
             -o-border-radius: 50%;
-            background: #4285F4;
+            background: #4285f4;
             -webkit-transform: translateY(-50%);
             -moz-transform: translateY(-50%);
             -ms-transform: translateY(-50%);
@@ -350,39 +344,36 @@
           }
         }
       }
-
+      &.mat-form-field-invalid .mat-form-field-label {
+        padding-left: 0;
+      }
       &.mat-form-field .mat-form-field-label {
         padding-left: 0;
-
-
       }
 
       .mat-form-field-label-wrapper {
         line-height: normal;
-
-
       }
-
-
     }
     .ng-valid {
       &.mat-form-field .mat-form-field-label {
-          padding-left: 0;
-        }
+        padding-left: 0;
+      }
       .mat-form-field-label-wrapper {
-          line-height: normal;
-        }
-  }
-  .controls, .policy {
-    label {
-      padding: 0;
+        line-height: normal;
+      }
     }
-  }
+    .controls,
+    .policy {
+      label {
+        padding: 0;
+      }
+    }
     label {
       line-height: 44px;
       padding: 0 10px;
       font-family: "Open Sans";
-      color: #99ACB7;
+      color: #99acb7;
     }
 
     input {
@@ -392,7 +383,8 @@
       color: #707683;
     }
 
-    .mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+    .mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float
+      .mat-form-field-label {
       line-height: normal;
     }
 
@@ -423,7 +415,7 @@
 
       &:before {
         position: absolute;
-        content: '';
+        content: "";
         width: 79px;
         height: 1px;
         background: #707683;
@@ -438,7 +430,7 @@
 
       &:after {
         position: absolute;
-        content: '';
+        content: "";
         width: 79px;
         height: 1px;
         background: #707683;
@@ -470,7 +462,6 @@
 
         &.gl {
           background-image: url(/assets/images/icons/google.png);
-
         }
 
         &.fb {
@@ -486,35 +477,35 @@
 
   &::-webkit-input-placeholder {
     /* Chrome/Opera/Safari */
-    color: #99ACB7;
+    color: #99acb7;
     font-size: 16px;
     font-weight: 400;
     line-height: 20px;
-}
+  }
 
-&::-moz-placeholder {
+  &::-moz-placeholder {
     /* Firefox 19+ */
-    color: #99ACB7;
+    color: #99acb7;
     font-size: 16px;
     font-weight: 400;
     line-height: 20px;
-}
+  }
 
-&:-ms-input-placeholder {
+  &:-ms-input-placeholder {
     /* IE 10+ */
-    color: #99ACB7;
+    color: #99acb7;
     font-size: 16px;
     font-weight: 400;
     line-height: 20px;
-}
+  }
 
-&:-moz-placeholder {
+  &:-moz-placeholder {
     /* Firefox 18- */
-    color: #99ACB7;
+    color: #99acb7;
     font-size: 16px;
     font-weight: 400;
     line-height: 20px;
-}
+  }
 }
 
 // move global navigation-block
@@ -549,170 +540,3 @@
     width: 40%;
   }
 }
-
-// -------- docs animation --------------------//
-
-// @keyframes docsAnimation {
-//   0%{
-//     opacity: 0;
-//   }
-
-//   100% {
-//     opacity: 1;
-//   }
-// }
-
-// // --------------swap-btn-animation--------------//
-// @keyframes btn_right {
-//   0% {
-//       color: transparent;
-//       // display: none;
-//   }
-
-//   50% {
-//       color: #fff;
-//       display: block;
-//       padding-left: 120px;
-//   }
-
-//   100% {
-//       color: #fff;
-//   }
-// }
-
-// @keyframes btn_left {
-//   0% {
-//       color: transparent;
-//       // display: none;
-//   }
-
-//   50% {
-//       color: #fff;
-//       display: block;
-//       padding-right: 250px;
-//   }
-
-//   100% {
-//       color: #fff;
-//   }
-// }
-
-
-// // -------------------swipe_title_text---------------//
-// @keyframes info_txt_show {
-//   0% {
-//       color: transparent;
-//       position: absolute;
-//   }
-
-//   50% {
-//       color: transparent;
-//   }
-
-//   100% {
-//       color: #000000;
-//   }
-// }
-
-// @keyframes info_txt_hide_l {
-//   0% {
-//       color: #000000;
-//       position: relative;
-//   }
-
-//   50% {
-//       color: transparent;
-
-//   }
-
-//   100% {
-//       color: transparent;
-//       display: none;
-//   }
-// }
-
-// @keyframes info_txt_hide_r {
-//   0% {
-//       color: #000000;
-//       position: relative;
-//       // margin-left: -240px;
-//   }
-
-//   50% {
-//       color: transparent;
-//       // margin-left: -240px;
-
-//   }
-
-//   100% {
-//       color: transparent;
-//       position: absolute;
-//       display: none;
-//   }
-// }
-
-// // -----------------rotate square-top -----------//
-
-// @keyframes rotate_forvard {
-//   0% {
-//       transform: rotate(135deg);
-//   }
-
-//   100% {
-//       transform: rotate(315deg);
-//   }
-// }
-
-// @keyframes rotate_back {
-//   0% {
-//       transform: rotate(315deg);
-//   }
-
-//   100% {
-//       transform: rotate(135deg);
-//   }
-// }
-
-// // -------------------rotate square -bottom ---------------//
-
-// // =============fiert==============//
-// @keyframes rotate_forvard-f {
-//   0% {
-//       transform: rotate(65deg);
-//   }
-
-//   100% {
-//       transform: rotate(245deg);
-//   }
-// }
-
-// @keyframes rotate_back-f {
-//   0% {
-//       transform: rotate(245deg);
-//   }
-
-//   100% {
-//       transform: rotate(65deg);
-//   }
-// }
-
-// // =============second=============//
-// @keyframes rotate_forvard-s {
-//   0% {
-//       transform: rotate(45deg);
-//   }
-
-//   100% {
-//       transform: rotate(-135deg);
-//   }
-// }
-
-// @keyframes rotate_back-s {
-//   0% {
-//       transform: rotate(-135deg);
-//   }
-
-//   100% {
-//       transform: rotate(45deg);
-//   }
-// }
