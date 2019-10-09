@@ -1,16 +1,8 @@
 <app-main-header></app-main-header>
 
 <div class="categorys-list">
-  <!-- <div class="category">design</div>
-  <div class="category">front</div>
-  <div class="category">backend</div> -->
-  <a [routerLink]="['/catalog/category/design'] | localize" routerLinkActive="router-link-active" >design</a>
+  <a [routerLink]="['/catalog/category', 'design'] | localize" routerLinkActive="router-link-active" >design</a>
 </div>
-<!-- <app-categorys-filter>(module)</app-categorys-filter> -->
-
-<!-- <router-outlet></router-outlet> -->
-
-
 
 <div class="cards-list" *ngIf="freelancerList">
   <div class="card" *ngFor="let freelancer of freelancerList.gigs">
