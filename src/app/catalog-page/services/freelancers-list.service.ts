@@ -1,25 +1,27 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { freelancersListInterface } from 'src/app/shared/interfaces/freelancerList.interface';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
+export interface FreelancersList {
+  avaible_gigs?: number;
+  gigs?: [];
+  descroption?: string;
+  comments_count?: number;
+  rating?: number;
+  min_price?: number;
+  liked?: boolean;
+  level?: string;
+  name?: string;
+  surname?: string;
+  ava?: string;
+}
+
+@Injectable({providedIn: 'root'})
+
 export class FreelancersListService {
+  constructor(private http: HttpClient) {}
 
-  public dataList: Observable<freelancersListInterface>; // - observable
-  picService: any;
-
-  constructor(private httpClient: HttpClient) {
-    // this.listData
+  getList(): Observable<FreelancersList> {
+    return this.http.get<FreelancersList>('https://www.thecubetest.site/Backend/api/catalog');
   }
-
-  getFreelancersList() {
-    this.picService.get('http://anyurl.com').subscibe(value => {
-      this.dataList = value;
-  });
-  }
-
-
 }

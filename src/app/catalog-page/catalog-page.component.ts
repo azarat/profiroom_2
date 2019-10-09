@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { FreelancersList, FreelancersListService} from './services/freelancers-list.service';
+
+
 
 @Component({
   selector: 'app-catalog-page',
@@ -8,9 +11,19 @@ import { HttpClientModule } from '@angular/common/http';
 })
 export class CatalogPageComponent implements OnInit {
 
-  constructor() { }
+  freelancerList: FreelancersList;
+
+  constructor(private freelancersListService: FreelancersListService) { }
 
   ngOnInit() {
+    this.getList();
+  }
+
+  getList() {
+    this.freelancersListService.getList()
+      .subscribe(freelancerList => {
+        this.freelancerList = freelancerList;
+      });
   }
 
 }
