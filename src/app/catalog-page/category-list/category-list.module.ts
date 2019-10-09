@@ -13,7 +13,7 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     // RouterModule.forRoot(categoryRoutes),
-    RouterModule.forChild(categoryRoutes),
+    // RouterModule.forChild(categoryRoutes),
   ]
 })
 export class CategoryListModule { }

@@ -7,6 +7,10 @@ export const categoryRoutes: Routes = [
     path: 'design',
     component: CategoryListComponent
   },
+  {
+    path: 'gavno',
+    component: CategoryListComponent
+  }
 ];
 
 

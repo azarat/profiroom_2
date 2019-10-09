@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CategoryListComponent } from './category-list/category-list.component';
 import { CategorysFilterComponent } from './categorys-filter/categorys-filter.component';
 import { ItemsListComponent } from './items-list/items-list.component';
+import { CategoryResolver } from './services/category.resolve';
 
 
 const routes: Routes = [
@@ -16,8 +17,10 @@ const routes: Routes = [
     component: CatalogPageComponent,
   },
   {
-    path: 'category/:categ',
-    loadChildren: () => import('./category-list/category-list.module').then(m => m.CategoryListModule)
+    path: 'category/:category',
+    component: CategoryListComponent,
+    resolve: { items: CategoryResolver }
+    // loadChildren: () => import('./category-list/category-list.module').then(m => m.CategoryListModule)
 
   }
 ];
@@ -26,7 +29,8 @@ const routes: Routes = [
   declarations: [
     CatalogPageComponent,
     CategorysFilterComponent,
-    ItemsListComponent
+    ItemsListComponent,
+    CategoryListComponent
   ],
   imports: [
     CommonModule,
@@ -37,6 +41,9 @@ const routes: Routes = [
   ],
   exports: [
     CatalogPageComponent
+  ],
+  providers: [
+    CategoryResolver
   ]
 })
 export class CatalogPageModule { }
