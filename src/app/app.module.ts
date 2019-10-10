@@ -15,6 +15,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { ErrorPageModule } from './error-page/error-page.module';
 import { AuthorizationPageModule } from './authorization-page/authorization-page.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CategoryResolver } from './catalog-page/services/category.resolve';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     // AuthorizationPageModule,
     // TranslateModule,
   ],
-  providers: [],
+  providers: [
+    // CategoryResolver
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

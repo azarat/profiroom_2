@@ -24,4 +24,12 @@ export class FreelancersListService {
   getList(): Observable<FreelancersList> {
     return this.http.get<FreelancersList>('https://www.thecubetest.site/Backend/api/catalog');
   }
+
+  getCategoryData(category: string): Observable<FreelancersList> {
+    console.log(category);
+    return this.http.post<FreelancersList>('https://www.thecubetest.site/Backend/api/categories', category);
+    // .subscribe(x => {
+    //   console.log(x);
+    // });
+  }
 }
