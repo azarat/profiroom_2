@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-category-list',
@@ -7,9 +10,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CategoryListComponent implements OnInit {
 
-  constructor() { }
+  categoryData: Observable<any>;
+  selectedCategory: string;
+  constructor(
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit() {
+    this.categoryData = this.route.paramMap
+      .pipe(
+        switchMap(params => {
+          this.selectedCategory = params.get('category');
+          console.log(this.selectedCategory);
+          return this.selectedCategory;
+        })
+      )
+
   }
 
 }
