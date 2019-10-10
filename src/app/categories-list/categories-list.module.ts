@@ -15,14 +15,11 @@ const routes: Routes = [
   {
     path: '',
     component: CategoriesListComponent,
-    // redirectTo: '/catalog/:category',
-    // resolve: { items: CategoryResolver }
   },
   {
     path: ':category',
     component: SubcategoriesListComponent,
     resolve: { items: CategoryResolver },
-    // loadChildren: () => import('./category-page/category-page.module').then(m => m.CategoryPageModule)
     children: [
       {
         path: ':subcategorie',
