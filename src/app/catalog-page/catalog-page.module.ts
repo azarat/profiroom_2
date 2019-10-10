@@ -5,22 +5,24 @@ import { Routes, RouterModule } from '@angular/router';
 import { LocalizeRouterModule } from 'localize-router';
 import { MainHeaderModule } from '../shared/modules/main-header/main-header.module';
 import { HttpClientModule } from '@angular/common/http';
-import { CategoryListComponent } from './category-list/category-list.component';
 import { CategorysFilterComponent } from './categorys-filter/categorys-filter.component';
 import { ItemsListComponent } from './items-list/items-list.component';
 import { CategoryResolver } from './services/category.resolve';
+import { CategoryPageComponent } from './category-page/category-page.component';
 
 
 const routes: Routes = [
   {
     path: '',
     component: CatalogPageComponent,
+    // redirectTo: '/catalog/:category',
+    // resolve: { items: CategoryResolver }
   },
   {
-    path: 'category/:category',
-    component: CategoryListComponent,
-    resolve: { items: CategoryResolver }
-    // loadChildren: () => import('./category-list/category-list.module').then(m => m.CategoryListModule)
+    path: ':category',
+    component: CategoryPageComponent,
+    resolve: { items: CategoryResolver },
+    // loadChildren: () => import('./category-page/category-page.module').then(m => m.CategoryPageModule)
 
   }
 ];
@@ -29,7 +31,8 @@ const routes: Routes = [
   declarations: [
     CatalogPageComponent,
     CategorysFilterComponent,
-    CategoryListComponent
+    CategoryPageComponent,
+    ItemsListComponent
   ],
   imports: [
     CommonModule,

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FreelancersList, FreelancersListService } from '../services/freelancers-list.service';
 
 @Component({
   selector: 'app-items-list',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ItemsListComponent implements OnInit {
 
-  constructor() { }
+  freelancerList: FreelancersList;
+
+  constructor(private freelancersListService: FreelancersListService) { }
 
   ngOnInit() {
+    this.fetchCategoryData( "як сюди запхати id категорії яку ми вибрали" );
+  }
+
+  fetchCategoryData() {
+    this.freelancersListService.getCategoryData('2')
+      .subscribe(freelancerList => {
+        console.log('freelancerList', freelancerList);
+        this.freelancerList = freelancerList;
+      });
   }
 
 }

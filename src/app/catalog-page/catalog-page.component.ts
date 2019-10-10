@@ -16,14 +16,15 @@ export class CatalogPageComponent implements OnInit {
   constructor(private freelancersListService: FreelancersListService) { }
 
   ngOnInit() {
-    this.getList();
+    // this.getCategoryData();
   }
 
-  getList() {
-    this.freelancersListService.getList()
-      .subscribe(freelancerList => {
-        this.freelancerList = freelancerList;
-      });
-  }
+  // getCategoryData() {
+  //   this.freelancersListService.getCategoryData('2')
+  //     .subscribe(freelancerList => {
+  //       console.log("freelancerList", freelancerList);
+  //       this.freelancerList = freelancerList;
+  //     });
+  // }
 
 }
