@@ -18,8 +18,11 @@ export const routes: Routes = [
   },
   {
     path: 'catalog',
+    loadChildren: () => import('./categories-list/categories-list.module').then(m => m.CategoriesListModule)
+  },
+  {
+    path: 'catalog2',
     loadChildren: () => import('./catalog-page/catalog-page.module').then(m => m.CatalogPageModule)
-
   },
   {
     path: 'auth',

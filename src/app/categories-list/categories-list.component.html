@@ -1,0 +1,30 @@
+<app-main-header></app-main-header>
+<app-categories-header></app-categories-header>
+<p>categories-list works! Site map, список всех категорий, УРОВЕНЬ 1</p>
+
+<div class="subcategories">
+  <div class="subcategory">
+      <h1><a [routerLink]="['/catalog', 'Design'] | localize">Design (на 2 уровень)</a></h1>
+      <ul>
+        <li> <a [routerLink]="['/catalog', 'Design', 'Design-mobile'] | localize"> Design-mobile (на 3 уровень)</a> </li>
+        <li> <a [routerLink]="['/catalog', 'Design', 'Design-web' ] | localize"> Design-web (на 3 уровень)</a> </li>
+        <li> <a [routerLink]="['/catalog', 'Design', 'Design-UI'] | localize"> Design-UI (на 3 уровень)</a> </li>
+      </ul>
+  </div>
+  <div class="subcategory">
+      <h1>Dev</h1>
+      <ul>
+        <li> <a> Dev-mobile </a> </li>
+        <li> <a> Dev-web </a> </li>
+        <li> <a> Dev-UI </a> </li>
+      </ul>
+  </div>
+  <div class="subcategory">
+      <h1>Text</h1>
+      <ul>
+        <li> <a> Text-mobile </a> </li>
+        <li> <a> Text-web </a> </li>
+        <li> <a> Text-UI </a> </li>
+      </ul>
+  </div>
+</div>
