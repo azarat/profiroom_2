@@ -14,23 +14,46 @@ import { SubCategoryResolver } from './services/subcategory.resolve';
 const routes: Routes = [
   {
     path: '',
+    pathMatch: 'full',
     component: CategoriesListComponent,
   },
   {
     path: ':category',
     component: SubcategoriesListComponent,
     resolve: { items: CategoryResolver },
-    children: [
-      {
-        path: ':subcategorie',
-        resolve: { items: SubCategoryResolver },
-        component: SubcategorieComponent
-      }
-    ]
+    // children: [
+    //   {
+    //     path: ':subcategorie',
+    //     resolve: { items: SubCategoryResolver },
+    //     component: SubcategorieComponent
+    //   }
+    // ]
   },
+  {
+    path: ':category/:subcategory',
+    resolve: { items: SubCategoryResolver },
+    component: SubcategorieComponent
+  }
   // {
-  //   path: ':category/:subcategorie',
-  //   component: SubcategorieComponent,
+  //   path: '',
+  //   component: CategoriesListComponent,
+  //   pathMatch: 'full',
+  //   children: [
+  //     {
+  //       path: ':category',
+  //       pathMatch: 'full',
+  //       resolve: { items: CategoryResolver },
+  //       component: SubcategoriesListComponent,
+  //       children: [
+  //         {
+  //           path: ':subcategory',
+  //           pathMatch: 'full',
+  //           resolve: { items: SubCategoryResolver },
+  //           component: SubcategorieComponent
+  //         }
+  //     ]
+  //     }
+  //   ]
   //   // resolve: { items: CategoryResolver },
   //   // loadChildren: () => import('./category-page/category-page.module').then(m => m.CategoryPageModule)
   // }
