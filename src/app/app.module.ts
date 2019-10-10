@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { HomePageModule } from './home-page/home-page.module';
 import { CatalogPageModule } from './catalog-page/catalog-page.module';
+import { CategoriesListModule } from './categories-list/categories-list.module';
 import { DashboardPageModule } from './dashboard-page/dashboard-page.module';
 import { LocalizeRouterModule } from 'localize-router';
 import {Location} from '@angular/common';
@@ -16,10 +17,11 @@ import { ErrorPageModule } from './error-page/error-page.module';
 import { AuthorizationPageModule } from './authorization-page/authorization-page.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CategoryResolver } from './catalog-page/services/category.resolve';
+import { CategoriesListComponent } from './categories-list/categories-list.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
