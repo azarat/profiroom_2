@@ -11,6 +11,7 @@
   height: 100%;
   width: 100%;
   top: 0;
+  background: #fff;
 
   &.login {
     .login-form {
@@ -18,10 +19,12 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      background: #fff;
     }
 
     .registr-form {
       display: none;
+      // background: #fff;
     }
   }
 
@@ -36,10 +39,12 @@
     .registr-form {
       width: 60%;
       display: flex;
+      background: #fff;
     }
 
     .login-form {
       display: none;
+      background: #fff;
     }
   }
 
@@ -50,7 +55,7 @@
 
   .swipe-block {
     height: 100%;
-    background: #f5f6fa;
+    background: #F4F7FC;
     position: absolute;
     width: 40%;
     z-index: 2;
@@ -63,7 +68,8 @@
       color: #000000;
       font-size: 36px;
       font-weight: 800;
-      font-family: "Open Sans";
+      font-family: "Source Sans Pro";
+      text-align: center;
     }
 
     &.left {
@@ -143,7 +149,8 @@
         color: #000000;
         font-size: 36px;
         font-weight: 800;
-        font-family: "Open Sans";
+        font-family: "Source Sans Pro";
+        text-align: center;
       }
 
       p {
@@ -153,7 +160,7 @@
         font-weight: 300;
         line-height: 32px;
         margin: 25px auto 60px;
-        font-family: "Open Sans";
+        font-family: "Source Sans Pro";
       }
     }
 
@@ -169,7 +176,7 @@
       line-height: 19px;
       outline: none;
       cursor: pointer;
-      font-family: "Open Sans";
+      font-family: "Source Sans Pro";
 
       span {
         outline: none;
@@ -209,7 +216,7 @@
     margin-bottom: 7px;
 
     a {
-      font-family: "Open Sans";
+      font-family: "Source Sans Pro";
       font-weight: 400;
       font-size: 14px;
       line-height: 18px;
@@ -224,7 +231,7 @@
   }
 
   .copyr {
-    font-family: "Open Sans";
+    font-family: "Source Sans Pro";
     font-weight: 400;
     font-size: 12px;
     line-height: 15px;
@@ -240,7 +247,7 @@
   form {
     width: 416px;
     margin: auto;
-    font-family: "Open Sans";
+    font-family: "Source Sans Pro";
     .mat-checkbox-checked:not(.mat-checkbox-disabled).mat-accent
       .mat-ripple-element,
     .mat-checkbox-checked.mat-accent .mat-checkbox-background {
@@ -263,8 +270,13 @@
     .mat-form-field-invalid .mat-input-element {
       border: 1px solid red;
     }
+    .mat-form-field-appearance-legacy .mat-form-field-subscript-wrapper {
+      margin-top: -3px;
+      padding-left: 10px;
+    }
 
     .pass-erorrs {
+      // z-index: -20;
       display: none;
     }
 
@@ -274,7 +286,7 @@
         margin-top: 5px;
         background: #ffffff;
         background: #ffffff;
-        border-radius: 0px 0px 8px 8px;
+        // border-radius: 0px 0px 8px 8px;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -300,17 +312,18 @@
       .description {
         width: 100%;
         order: 3;
-        padding-left: 15px;
+        padding-left: 0;
         margin: 0;
         position: absolute;
-        top: 20px;
+        top: 15px;
         box-shadow: 0px 15px 21px rgba(128, 152, 213, 0.25);
         background: #fff;
+        border-radius: 0px 0px 8px 8px;
 
         li {
           list-style: none;
-          margin: 8px 0 0;
-          font-family: "Open Sans";
+          margin: 8px 0 0 15px;
+          font-family: "Source Sans Pro";
           font-style: normal;
           font-weight: 600;
           font-size: 13px;
@@ -344,20 +357,22 @@
           }
         }
       }
-      &.mat-form-field-invalid .mat-form-field-label {
-        padding-left: 0;
-      }
+
+
       &.mat-form-field .mat-form-field-label {
-        padding-left: 0;
+        // padding-left: 0;
       }
 
       .mat-form-field-label-wrapper {
         line-height: normal;
       }
     }
+    .mat-form-field-invalid .mat-form-field-label {
+      // padding-left: 0;
+    }
     .ng-valid {
       &.mat-form-field .mat-form-field-label {
-        padding-left: 0;
+        // padding-left: 0;
       }
       .mat-form-field-label-wrapper {
         line-height: normal;
@@ -366,33 +381,36 @@
     .controls,
     .policy {
       label {
-        padding: 0;
+        // padding: 0;
       }
     }
     label {
-      line-height: 44px;
-      padding: 0 10px;
-      font-family: "Open Sans";
-      color: #99acb7;
-    }
-
-    input {
+      line-height: 40px;
       padding: 0 14px;
-      box-sizing: border-box;
-      font-family: "Open Sans";
-      color: #707683;
+      font-family: "Source Sans Pro";
+      color: #99acb7;
+      font-size: 17.5px;
+      font-weight: 400;
     }
-
-    .mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float
+ .mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float
       .mat-form-field-label {
       line-height: normal;
     }
+    input {
+      padding: 0 14px;
+      box-sizing: border-box;
+      font-family: "Source Sans Pro";
+      color: #707683;
+    }
+
+
 
     .pass.mat-icon-button.mat-button-base {
       position: absolute;
       right: 0;
       top: -37px;
       font-size: 25px;
+      width: 50px;
     }
   }
 
@@ -403,9 +421,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
+    opacity: 0;
     span {
-      font-family: "Open Sans";
+      font-family: "Source Sans Pro";
       font-weight: 400;
       font-size: 14px;
       line-height: 18px;
