@@ -19,7 +19,7 @@ const routes: Routes = [
     // resolve: { items: CategoryResolver }
   },
   {
-    path: ':category',
+    path: ':category/:subcategory',
     component: CategoryPageComponent,
     resolve: { items: CategoryResolver },
     // loadChildren: () => import('./category-page/category-page.module').then(m => m.CategoryPageModule)

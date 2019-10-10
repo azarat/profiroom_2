@@ -21,17 +21,17 @@
               [ngClass]="registrationForm.controls['password'].hasError('required') || registrationForm.controls['password'].hasError('hasSpecialCharacters') ? 'unvalidated': 'validated'"></span>
             <span
               [ngClass]="registrationForm.controls['password'].hasError('required') || registrationForm.controls['password'].hasError('minLengthCharacters') ? 'unvalidated': 'validated'"></span>
-            <ul class="description" *ngIf="registrationForm.controls['password']. invalid">
+            <ul class="description">
 
-              <li *ngIf="registrationForm.controls['password'].hasError('hasNumber')">Должна быть минимум одна цифра
+              <li *ngIf=" registrationForm.controls['password'].hasError('required') || registrationForm.controls['password'].hasError('hasNumber')">Должна быть минимум одна цифра
               </li>
-              <li *ngIf="registrationForm.controls['password'].hasError('hasSmallCase')">Должна быть минимум онда
+              <li *ngIf=" registrationForm.controls['password'].hasError('required') ||registrationForm.controls['password'].hasError('hasSmallCase')">Должна быть минимум онда
                 маленькая буква</li>
-              <li *ngIf="registrationForm.controls['password'].hasError('hasCapitalCase')">Должна быть минимум онда
+              <li *ngIf=" registrationForm.controls['password'].hasError('required') ||registrationForm.controls['password'].hasError('hasCapitalCase')">Должна быть минимум онда
                 большая буква</li>
-              <li *ngIf="registrationForm.controls['password'].hasError('hasSpecialCharacters')">Должна быть минимум
+              <li *ngIf=" registrationForm.controls['password'].hasError('required') ||registrationForm.controls['password'].hasError('hasSpecialCharacters')">Должна быть минимум
                 один спец символ</li>
-              <li *ngIf="registrationForm.controls['password'].hasError('minLengthCharacters')">Пароль не меньше 8
+              <li *ngIf=" registrationForm.controls['password'].hasError('required') ||registrationForm.controls['password'].hasError('minLengthCharacters')">Пароль не меньше 8
                 символов</li>
             </ul>
           </div>

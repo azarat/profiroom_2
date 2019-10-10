@@ -13,7 +13,7 @@ export class ItemsListComponent implements OnInit {
   constructor(private freelancersListService: FreelancersListService) { }
 
   ngOnInit() {
-    this.fetchCategoryData( "як сюди запхати id категорії яку ми вибрали" );
+    this.fetchCategoryData(  );
   }
 
   fetchCategoryData() {

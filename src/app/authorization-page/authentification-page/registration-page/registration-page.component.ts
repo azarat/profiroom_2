@@ -48,17 +48,15 @@ export class CustomValidators {
   styleUrls: ['./registration-page.component.scss']
 })
 export class RegistrationPageComponent implements OnInit {
+   submitted = false;
+    public registrationForm: FormGroup;
+    hideF = true;
+    hideS = true;
+    message: InfoMessageInterface | boolean;
   constructor(
     private fb: FormBuilder,
     private autServ: AuthentificationService
   ) { }
-
-  submitted = false;
-  public registrationForm: FormGroup;
-  hideF = true;
-  hideS = true;
-  message: InfoMessageInterface | boolean;
-
 
   static passwordMatchValidator(control: AbstractControl) {
     const password: string = control.get('password').value; // get password from our password form control
