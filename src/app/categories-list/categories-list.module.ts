@@ -8,6 +8,8 @@ import { CategoriesListComponent } from './categories-list.component';
 import { Routes, RouterModule } from '@angular/router';
 import { LocalizeRouterModule } from 'localize-router/src/localize-router.module';
 import { HttpClientModule } from '@angular/common/http';
+import { CategoryResolver } from './services/categories.resolve';
+import { SubCategoryResolver } from './services/subcategory.resolve';
 
 const routes: Routes = [
   {
@@ -19,15 +21,22 @@ const routes: Routes = [
   {
     path: ':category',
     component: SubcategoriesListComponent,
-    // resolve: { items: CategoryResolver },
+    resolve: { items: CategoryResolver },
     // loadChildren: () => import('./category-page/category-page.module').then(m => m.CategoryPageModule)
+    children: [
+      {
+        path: ':subcategorie',
+        resolve: { items: SubCategoryResolver },
+        component: SubcategorieComponent
+      }
+    ]
   },
-  {
-    path: ':category/:subcategorie',
-    component: SubcategorieComponent,
-    // resolve: { items: CategoryResolver },
-    // loadChildren: () => import('./category-page/category-page.module').then(m => m.CategoryPageModule)
-  }
+  // {
+  //   path: ':category/:subcategorie',
+  //   component: SubcategorieComponent,
+  //   // resolve: { items: CategoryResolver },
+  //   // loadChildren: () => import('./category-page/category-page.module').then(m => m.CategoryPageModule)
+  // }
 ];
 
 @NgModule({
@@ -47,5 +56,9 @@ const routes: Routes = [
   exports: [
     CategoriesListComponent
   ],
+  providers: [
+    CategoryResolver,
+    SubCategoryResolver
+  ]
 })
 export class CategoriesListModule { }
