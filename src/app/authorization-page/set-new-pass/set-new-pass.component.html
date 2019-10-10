@@ -9,7 +9,7 @@
       <form #form="ngForm" [formGroup]="registrationForm" (ngSubmit)="registrate()">
         <mat-form-field>
           <mat-label>Введите пароль</mat-label>
-          <input matInput type="password" formControlName="password" required />
+          <input matInput type="password" [type]="hideF ? 'password' : 'text'" formControlName="password" required />
           <div class="pass-erorrs">
             <span
               [ngClass]="registrationForm.controls['password'].hasError('required') || registrationForm.controls['password'].hasError('hasNumber') ? 'unvalidated': 'validated'"></span>
@@ -46,12 +46,12 @@
         </mat-form-field>
         <mat-form-field>
           <mat-label>Повторно введите пароль</mat-label>
-          <input matInput type="password" formControlName="password_confirmation" required />
+          <input matInput type="password" [type]="hideS ? 'password' : 'text'" formControlName="password_confirmation" required />
           <button class="pass" mat-icon-button matSuffix (click)="hideS = !hideS" [attr.aria-label]="'Hide password'"
             [attr.aria-pressed]="hideS" [style.color]="hideS ? '#DBDBDB': '#000'">
             <mat-icon>{{hideS ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
-          <mat-error *ngIf="registrationForm.get('password_confirmation').hasError('required')">{{ "erorr" }}
+          <mat-error *ngIf="registrationForm.get('password_confirmation').hasError('required')">{{ "Введите пароль" }}
           </mat-error>
           <mat-error *ngIf="registrationForm.get('password_confirmation').hasError('NoPassswordMatch')">{{
                     "Пароли не совпадают"

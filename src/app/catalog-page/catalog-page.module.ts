@@ -29,7 +29,6 @@ const routes: Routes = [
   declarations: [
     CatalogPageComponent,
     CategorysFilterComponent,
-    ItemsListComponent,
     CategoryListComponent
   ],
   imports: [
