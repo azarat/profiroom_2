@@ -4,7 +4,7 @@ import { FreelancersListService } from './freelancers-list.service';
 
 @Injectable()
 
-export class CategoryResolveR implements Resolve<any> {
+export class SubCategoryResolver implements Resolve<any> {
   category: string;
   constructor(
     private aPiService: FreelancersListService
@@ -13,6 +13,6 @@ export class CategoryResolveR implements Resolve<any> {
   }
   resolve(route: ActivatedRouteSnapshot) {
     console.log(route.params);
-    this.aPiService.getCategoryData(route.params.category);
+    this.aPiService.getCategoryData(route.params.subcategory);
   }
 }
