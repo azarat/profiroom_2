@@ -1,2 +1,12 @@
-<p>categories-header works!</p>
-
+<!-- <ul *ngIf="categorysList !== null"> -->
+<div *ngIf="categorysList" class="category-list">
+  <ul class="categorie" *ngFor="let category of categorysList.category">
+    <h3>{{category.name}}</h3>
+    <ul class="all-subcategories" *ngFor="let group of category.groups">
+      <div class="subcategory-group">
+        <h4 class="subcategory-group__name">{{group}}</h4>
+        <!-- <li class="subcategory" *ngIf = "group !== category.sub_categories.group" *ngFor="let sub_category of categorie.sub_categories">{{category.sub_categories.name}} </li> -->
+      </div>
+    </ul>
+  </ul>
+</div>

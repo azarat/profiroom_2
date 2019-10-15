@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
-import { FreelancersListService } from './freelancers-list.service';
+import { FreelancersListService } from '../services/freelancers-list.service';
 
 @Injectable()
 
@@ -13,6 +13,6 @@ export class SubCategoryResolver implements Resolve<any> {
   }
   resolve(route: ActivatedRouteSnapshot) {
     console.log(route.params);
-    this.aPiService.getCategoryData(route.params.subcategory);
+    this.aPiService.getSubcategoryFreelancers(route.params.subcategory);
   }
 }
