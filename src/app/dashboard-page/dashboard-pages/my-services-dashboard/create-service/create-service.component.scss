@@ -21,6 +21,8 @@
       margin-bottom: 14px;
       padding: 20px 25px 20px 23px;
       position: relative;
+
+      cursor: default;
       h5 {
         margin: 0;
         font-family: Source Sans Pro;
@@ -31,6 +33,7 @@
         align-items: left;
         color: #323c47;
         margin-bottom: 16px;
+        opacity: 0.5;
       }
       h4 {
         margin: 0;
@@ -41,6 +44,7 @@
         line-height: 20px;
         align-items: center;
         color: #f2f7ff;
+        opacity: 0.5;
       }
       p {
         font-family: Source Sans Pro;
@@ -51,6 +55,7 @@
         align-items: left;
         color: #aab2c0;
         margin: 0;
+        opacity: 0.5;
       }
       &:last-child {
         // width: 295px;
@@ -63,6 +68,7 @@
         justify-content: center;
         align-items: center;
       }
+
       .step-order {
         position: absolute;
         left: -42px;
@@ -80,23 +86,58 @@
         text-align: center;
         text-transform: uppercase;
         color: #bfc5d1;
-
         background: #ffffff;
         border: 1px solid #bfc5d1;
         box-sizing: border-box;
         /* Dropshadow 1 */
         box-shadow: 0px 7px 64px rgba(0, 0, 0, 0.07);
+        z-index: 2;
+
       }
       &:before {
         content: "";
         position: absolute;
         width: 4px;
-        height: 50%;
+        height: 60%;
         left: -31px;
         background: #e5e8ed;
         border-radius: 2px;
-        top: 0;
+        top: -10%;
 
+      }
+      &:after {
+        content: "";
+        position: absolute;
+        width: 4px;
+        height: 60%;
+        left: -31px;
+        background: #e5e8ed;
+        border-radius: 2px;
+        bottom: -10%;
+
+      }
+      &:first-child:before {
+        top: 0;
+        height: 50%;
+      }
+      &:last-child:after {
+        bottom: 0;
+        height: 50%;
+      }
+      &.dev {
+        & > * {
+          opacity: 1;
+        }
+        cursor: pointer;
+        .step-order {
+          background: #659AF3;
+          color: #FFFFFF;
+          border: 3px solid #fff;
+          line-height: 18px;
+        }
+        &:before {
+          background: #AECCFF;
+        }
       }
     }
   }

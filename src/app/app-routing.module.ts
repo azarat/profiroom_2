@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { DashboardPageComponent } from './dashboard-page/dashboard-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
-import { CatalogPageComponent } from './catalog-page/catalog-page.component';
 import { UnauthorisatedGuard } from './core/guards/unauthorisated.guard';
 import { AuthorisatedGuard } from './core/guards/authorisated.guard';
 
@@ -18,10 +17,6 @@ export const routes: Routes = [
   {
     path: 'catalog',
     loadChildren: () => import('./categories-list/categories-list.module').then(m => m.CategoriesListModule)
-  },
-  {
-    path: 'catalog2',
-    loadChildren: () => import('./catalog-page/catalog-page.module').then(m => m.CatalogPageModule)
   },
   {
     path: 'auth',
