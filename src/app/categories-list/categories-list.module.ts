@@ -8,8 +8,8 @@ import { CategoriesListComponent } from './categories-list.component';
 import { Routes, RouterModule } from '@angular/router';
 import { LocalizeRouterModule } from 'localize-router/src/localize-router.module';
 import { HttpClientModule } from '@angular/common/http';
-import { CategoryResolver } from './services/categories.resolve';
-import { SubCategoryResolver } from './services/subcategory.resolve';
+import { CategoryResolver } from './resolves/categories.resolve';
+import { SubCategoryResolver } from './resolves/subcategory.resolve';
 
 const routes: Routes = [
   {
@@ -48,7 +48,8 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     MainHeaderModule,
     CategoriesHeaderModule,
-    HttpClientModule
+    HttpClientModule,
+    CategoriesHeaderModule
   ],
   exports: [
     CategoriesListComponent

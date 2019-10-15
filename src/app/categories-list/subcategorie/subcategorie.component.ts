@@ -8,21 +8,29 @@ import { FreelancersList, FreelancersListService } from '../services/freelancers
 })
 export class SubcategorieComponent implements OnInit {
 
-  freelancerList: FreelancersList;
+  freelancerList: FreelancersList[] = [];
+  // FreelancersListService: any;
 
   constructor(private freelancersListService: FreelancersListService) { }
 
   ngOnInit() {
-    console.log("alert");
-    this.getCategoryData();
+    this.getList();
   }
 
-  getCategoryData(){
-    this.freelancerList.getCategoryData()
-      .subscribe(freelancerList => {
-        console.log('freelancerList', freelancerList);
-        this.freelancerList = freelancerList;
-      });
+  // getSubcategoryFreelancers() {
+  //   this.freelancersListService.getSubcategoryFreelancers({})
+  //   .subscribe(freelancerList => {
+  //     console.log('freelancerList', freelancerList);
+  //     this.freelancerList = freelancerList;
+  //   });
+  // }
+
+  getList() {
+    // this.freelancersListService.getCategoriesList('')
+    // .subscribe(freelancerList => {
+    //   console.log('freelancerList', freelancerList);
+    //   this.freelancerList = freelancerList;
+    // });
   }
 
 }

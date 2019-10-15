@@ -1,0 +1,19 @@
+.category-list{
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  background: #649AF3;
+  padding: 20px 0;
+  list-style-type: none;
+}
+.categorie{
+  margin: 0;
+  padding: 0;
+}
+ul{
+  font-family: "Source Sans Pro";
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  color: #FFFFFF;
+}
