@@ -25,6 +25,7 @@ import { PassResetGuard } from '../core/guards/pass-reset.guard';
 const routes: Routes = [
   {
     path: '',
+    pathMatch: 'full',
     component: AuthentificationPageComponent
   },
   {

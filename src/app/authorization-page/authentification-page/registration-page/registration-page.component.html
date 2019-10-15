@@ -54,7 +54,7 @@
             <mat-checkbox class="controls" required  class="policy" formControlName="agreed">Я согласен(а) с <span>Политикой конфиденциальности</span></mat-checkbox>
         </section>
         <section  class="submit">
-            <button [style.background-color]="!registrationForm.valid? 'gray': '#3c7eea'" mat-button disabled="!registrationForm.valid"  type="submit" mat-raised-button>
+            <button [style.background-color]="!registrationForm.valid? 'gray': '#3c7eea'" mat-button [disabled]="registrationForm.invalid"  type="submit" mat-raised-button>
                 Зарегистрироваться
             </button>
         </section >

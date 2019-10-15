@@ -14,6 +14,7 @@ import { SubCategoryResolver } from './resolves/subcategory.resolve';
 const routes: Routes = [
   {
     path: '',
+    pathMatch: 'full',
     component: CategoriesListComponent,
   },
   {

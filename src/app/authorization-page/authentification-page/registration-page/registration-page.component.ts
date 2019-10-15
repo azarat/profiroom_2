@@ -76,10 +76,12 @@ export class RegistrationPageComponent implements OnInit {
   }
 
   registrate() {
-    this.submitted = true;
+
     if (this.registrationForm.invalid) {
       return;
     }
+    console.log(!this.registrationForm.invalid);
+    this.submitted = true;
     this.autServ.registation(this.registrationForm.value)
       .subscribe(res => {
         this.message = {

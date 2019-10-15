@@ -11,6 +11,7 @@ import { CategoryResolverr } from './services/category.resolve';
 import { CategoryPageComponent } from './category-page/category-page.component';
 
 
+
 const routes: Routes = [
   {
     path: '',
