@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 
 export interface FreelancersList {
+  getCategoryData: any;
   avaible_gigs?: number;
   gigs?: [];
   descroption?: string;
@@ -26,7 +27,7 @@ export class FreelancersListService {
   }
 
   getCategoryData(category: string): Observable<FreelancersList> {
-    console.log(category);
+    console.log('category+123', category);
     return this.http.post<FreelancersList>('https://www.thecubetest.site/Backend/api/categories', category);
     // .subscribe(x => {
     //   console.log(x);

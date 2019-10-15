@@ -20,20 +20,20 @@ const routes: Routes = [
     path: ':category',
     component: SubcategoriesListComponent,
     resolve: { items: CategoryResolver },
-    children: [
-      {
-        path: ':subcategorie',
-        resolve: { items: SubCategoryResolver },
-        component: SubcategorieComponent
-      }
-    ]
+    // children: [
+    //   {
+    //     path: ':subcategorie',
+    //     resolve: { items: SubCategoryResolver },
+    //     component: SubcategorieComponent
+    //   }
+    // ]
   },
-  // {
-  //   path: ':category/:subcategorie',
-  //   component: SubcategorieComponent,
-  //   // resolve: { items: CategoryResolver },
-  //   // loadChildren: () => import('./category-page/category-page.module').then(m => m.CategoryPageModule)
-  // }
+  {
+    path: ':category/:subcategorie',
+    component: SubcategorieComponent,
+    resolve: { items: CategoryResolver },
+    // loadChildren: () => import('./category-page/category-page.module').then(m => m.CategoryPageModule)
+  }
 ];
 
 @NgModule({

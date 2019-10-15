@@ -4,7 +4,7 @@ import { FreelancersListService } from './freelancers-list.service';
 
 @Injectable()
 
-export class CategoryResolveR implements Resolve<any> {
+export class CategoryResolverr implements Resolve<any> {
   category: string;
   constructor(
     private aPiService: FreelancersListService

@@ -6,7 +6,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { CatalogPageComponent } from './catalog-page/catalog-page.component';
 import { UnauthorisatedGuard } from './core/guards/unauthorisated.guard';
 import { AuthorisatedGuard } from './core/guards/authorisated.guard';
-import { CategoryResolver } from './catalog-page/services/category.resolve';
+// import { CategoryResolver } from './catalog-page/services/category.resolve';
 
 
 

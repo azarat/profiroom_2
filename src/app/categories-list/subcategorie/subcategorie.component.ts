@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FreelancersList, FreelancersListService } from '../services/freelancers-list.service';
 
 @Component({
   selector: 'app-subcategorie',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SubcategorieComponent implements OnInit {
 
-  constructor() { }
+  freelancerList: FreelancersList;
+
+  constructor(private freelancersListService: FreelancersListService) { }
 
   ngOnInit() {
+    console.log("alert");
+    this.getCategoryData();
+  }
+
+  getCategoryData(){
+    this.freelancerList.getCategoryData()
+      .subscribe(freelancerList => {
+        console.log('freelancerList', freelancerList);
+        this.freelancerList = freelancerList;
+      });
   }
 
 }
