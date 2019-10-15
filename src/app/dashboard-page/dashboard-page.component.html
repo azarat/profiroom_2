@@ -28,10 +28,16 @@
   </header>
   <div class="side-bar">
     <section class="avatar">
-      <img src="" alt="" />
+      <div class="lines"></div>
+      <img src="/assets//images/images/ava.jpg" alt="avatar" />
+      <p class="name">Анна Цветаева</p>
+      <div class="raiting"></div>
     </section>
     <section class="menu">
-      <nav></nav>
+      <nav>
+        <a [routerLink]="'/dashboard' | localize">главная</a>
+        <a [routerLink]="'/dashboard/my-services' | localize" >услуги</a>
+      </nav>
     </section>
   </div>
   <div class="content-part">

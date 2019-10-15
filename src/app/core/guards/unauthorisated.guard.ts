@@ -34,7 +34,6 @@ export class UnauthorisatedGuard implements  CanActivateChild {
   }
 
   checkLoginStatus = () => {
-    console.log(this.token.value);
     if (this.token.value) {
 
       return true;

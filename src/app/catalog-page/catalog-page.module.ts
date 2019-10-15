@@ -9,6 +9,7 @@ import { CategorysFilterComponent } from './categorys-filter/categorys-filter.co
 import { ItemsListComponent } from './items-list/items-list.component';
 import { CategoryResolveR } from './services/category.resolve';
 import { CategoryPageComponent } from './category-page/category-page.component';
+import { CategoryResolver } from '../categories-list/services/categories.resolve';
 
 
 const routes: Routes = [
@@ -21,7 +22,7 @@ const routes: Routes = [
   {
     path: ':category/:subcategory',
     component: CategoryPageComponent,
-    resolve: { items: CategoryResolveR },
+    resolve: { items: CategoryResolver },
     // loadChildren: () => import('./category-page/category-page.module').then(m => m.CategoryPageModule)
 
   }
@@ -45,7 +46,7 @@ const routes: Routes = [
     CatalogPageComponent
   ],
   providers: [
-    CategoryResolveR
+    CategoryResolver
   ]
 })
 export class CatalogPageModule { }

@@ -1,0 +1,106 @@
+.wrapper {
+  padding: 30px 17px;
+  .steps {
+    width: 22%;
+    h3 {
+      margin: 0;
+      font-family: Source Sans Pro;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 24px;
+      line-height: 30px;
+      text-align: left;
+      color: #323c47;
+      margin-bottom: 22px;
+    }
+    .step {
+      background: #ffffff;
+      box-shadow: 0px 9px 21px rgba(128, 152, 213, 0.1);
+      border-radius: 8px;
+      margin-left: 44px;
+      margin-bottom: 14px;
+      padding: 20px 25px 20px 23px;
+      position: relative;
+      h5 {
+        margin: 0;
+        font-family: Source Sans Pro;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 20px;
+        align-items: left;
+        color: #323c47;
+        margin-bottom: 16px;
+      }
+      h4 {
+        margin: 0;
+        font-family: Source Sans Pro;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 20px;
+        align-items: center;
+        color: #f2f7ff;
+      }
+      p {
+        font-family: Source Sans Pro;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 20px;
+        align-items: left;
+        color: #aab2c0;
+        margin: 0;
+      }
+      &:last-child {
+        // width: 295px;
+        height: 83px;
+        background: #000;
+        background: #3f60fb;
+        box-shadow: 0px 9px 21px rgba(128, 152, 213, 0.1);
+        border-radius: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .step-order {
+        position: absolute;
+        left: -42px;
+        top: 50%;
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        transform: translateY(-50%);
+        text-align: center;
+        font-family: Source Sans Pro;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 23px;
+        text-align: center;
+        text-transform: uppercase;
+        color: #bfc5d1;
+
+        background: #ffffff;
+        border: 1px solid #bfc5d1;
+        box-sizing: border-box;
+        /* Dropshadow 1 */
+        box-shadow: 0px 7px 64px rgba(0, 0, 0, 0.07);
+      }
+      &:before {
+        content: "";
+        position: absolute;
+        width: 4px;
+        height: 50%;
+        left: -31px;
+        background: #e5e8ed;
+        border-radius: 2px;
+        top: 0;
+
+      }
+    }
+  }
+  .step-detail {
+    width: 80%;
+  }
+}

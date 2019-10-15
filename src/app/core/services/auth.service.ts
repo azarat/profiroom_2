@@ -51,11 +51,16 @@ export class AuthentificationService {
     this.router.navigate([translatedPath]);
   }
 
-  resetPass(userInputs: User): Observable<any> {
+  resetPass = (userInputs: User): Observable<any> => {
      return this.http.post<any>('/password/email', userInputs);
   }
 
   confirmNewPass = (userInputs: User) => {
     return this.http.post<any>('/password/reset', userInputs);
+  }
+
+  // tslint:disable-next-line: variable-name
+  verifyEmail(_id, _expires, _signature) {
+    return this.http.post<any>('/email/verify', { id: _id, expires: _expires, signature: _signature });
   }
 }

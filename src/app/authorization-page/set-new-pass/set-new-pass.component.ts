@@ -24,7 +24,6 @@ export class SetNewPassComponent implements OnInit {
     private localize: LocalizeRouterService,
   ) {
     this._route.queryParams.subscribe(data => {
-      console.log(data.token === undefined ? true : false);
       if (data.token !== undefined ) {
         this.token = data.token;
         this.email = data.email;
