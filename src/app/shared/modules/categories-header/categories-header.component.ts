@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CategorysListService } from './categorys-list.service';
+
 
 @Component({
   selector: 'app-categories-header',
@@ -6,10 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./categories-header.component.scss']
 })
 export class CategoriesHeaderComponent implements OnInit {
+  categorysList: any;
 
-  constructor() { }
+  constructor(
+    private categorysListService: CategorysListService
+    ) {}
 
   ngOnInit() {
+    this.categorysListService.getCategorys()
+    .subscribe(res => {
+      console.log(res);
+      this.categorysList = res;
+    });
   }
 
 }

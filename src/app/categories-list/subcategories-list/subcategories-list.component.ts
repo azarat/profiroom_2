@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FreelancersList, FreelancersListService } from '../services/freelancers-list.service';
 
 @Component({
   selector: 'app-subcategories-list',
@@ -10,6 +11,7 @@ export class SubcategoriesListComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
   }
 
 }

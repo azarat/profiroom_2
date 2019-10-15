@@ -10,7 +10,7 @@ import { LanguageModule } from '../language/language.module';
 
 @NgModule({
   declarations: [
-    MainHeaderComponent
+    MainHeaderComponent,
   ],
   exports: [
     MainHeaderComponent
@@ -20,7 +20,7 @@ import { LanguageModule } from '../language/language.module';
     RouterModule,
     LocalizeRouterModule,
     TranslateModule,
-    LanguageModule
+    LanguageModule,
   ]
 })
 export class MainHeaderModule { }

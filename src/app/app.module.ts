@@ -16,8 +16,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { ErrorPageModule } from './error-page/error-page.module';
 import { AuthorizationPageModule } from './authorization-page/authorization-page.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CategoryResolveR } from './catalog-page/services/category.resolve';
-import { CategoriesListComponent } from './categories-list/categories-list.component';
+// import { CategoryResolverr } from './catalog-page/services/category.resolve';
+// import { CategoryResolveR } from './catalog-page/services/category.resolve';
+// import { CategoriesListComponent } from './categories-list/categories-list.component';
 
 @NgModule({
   declarations: [

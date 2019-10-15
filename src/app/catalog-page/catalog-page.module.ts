@@ -7,9 +7,9 @@ import { MainHeaderModule } from '../shared/modules/main-header/main-header.modu
 import { HttpClientModule } from '@angular/common/http';
 import { CategorysFilterComponent } from './categorys-filter/categorys-filter.component';
 import { ItemsListComponent } from './items-list/items-list.component';
-import { CategoryResolveR } from './services/category.resolve';
+import { CategoryResolverr } from './services/category.resolve';
 import { CategoryPageComponent } from './category-page/category-page.component';
-import { CategoryResolver } from '../categories-list/services/categories.resolve';
+
 
 
 const routes: Routes = [
@@ -17,12 +17,12 @@ const routes: Routes = [
     path: '',
     component: CatalogPageComponent,
     // redirectTo: '/catalog/:category',
-    // resolve: { items: CategoryResolver }
+    // resolve: { items: CategoryResolverr }
   },
   {
     path: ':category/:subcategory',
     component: CategoryPageComponent,
-    resolve: { items: CategoryResolver },
+    // resolve: { items: CategoryResolverr },
     // loadChildren: () => import('./category-page/category-page.module').then(m => m.CategoryPageModule)
 
   }
@@ -46,7 +46,7 @@ const routes: Routes = [
     CatalogPageComponent
   ],
   providers: [
-    CategoryResolver
+    CategoryResolverr
   ]
 })
 export class CatalogPageModule { }
