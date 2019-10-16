@@ -1,0 +1,35 @@
+<div class="step-wrapper">
+  <h3>1. Титульная информация</h3>
+  <form #form="ngForm" [formGroup]="firstStepForm" (ngSubmit)="registrate()">
+    <h5>Название услуги</h5>
+    <mat-form-field floatLabel="always" class="service-title" appearance="outline" maxlength="150" ngbPopover="Оно должно отражать суть вашего предложения 
+    и описывать услугу, которую вы готовы выполнить." triggers="mouseenter:mouseleave"
+      popoverTitle="Введите название услуги" placement="right" popoverClass="popover" [closeDelay]="500">
+      <textarea #serviceTitle  formControlName="serviceTitle" matInput required></textarea>
+
+      <mat-hint align="end">{{serviceTitle.value.length}} / 256 максимально</mat-hint>
+    </mat-form-field>
+
+    <h5>Basic mat-select</h5>
+    <div class="service-category">
+      <mat-form-field appearance="outline">
+        
+        <mat-label>Категория</mat-label>
+        <mat-select *ngIf="categoryList" formControlName="serviceCategory" [(ngModel)]="">
+          <mat-option *ngFor="let category of categoryList.category" [value]="category.id">
+            {{category.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- <mat-form-field appearance="outline">
+        <mat-label>Подкатегория</mat-label>
+        <mat-select #serviceSubCategory formControlName="serviceSubCategory">
+          <mat-option>
+            {{"example"}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field> -->
+    </div>
+  </form>
+</div>

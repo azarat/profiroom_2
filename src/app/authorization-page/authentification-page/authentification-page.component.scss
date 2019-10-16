@@ -68,7 +68,7 @@
       color: #000000;
       font-size: 36px;
       font-weight: 800;
-      font-family: "Source Sans Pro";
+      font-family: "Source Sans Pro", sans-serif;
       text-align: center;
     }
 
@@ -149,7 +149,7 @@
         color: #000000;
         font-size: 36px;
         font-weight: 800;
-        font-family: "Source Sans Pro";
+        font-family: 'Source Sans Pro', sans-serif;
         text-align: center;
       }
 
@@ -160,7 +160,7 @@
         font-weight: 300;
         line-height: 32px;
         margin: 25px auto 60px;
-        font-family: "Source Sans Pro";
+        font-family: "Source Sans Pro", sans-serif;
       }
     }
 
@@ -176,7 +176,7 @@
       line-height: 19px;
       outline: none;
       cursor: pointer;
-      font-family: "Source Sans Pro";
+      font-family: 'Source Sans Pro', sans-serif;
 
       span {
         outline: none;
@@ -216,7 +216,7 @@
     margin-bottom: 7px;
 
     a {
-      font-family: "Source Sans Pro";
+      font-family: "Source Sans Pro", sans-serif;
       font-weight: 400;
       font-size: 14px;
       line-height: 18px;
@@ -231,7 +231,7 @@
   }
 
   .copyr {
-    font-family: "Source Sans Pro";
+    font-family: "Source Sans Pro", sans-serif;
     font-weight: 400;
     font-size: 12px;
     line-height: 15px;
@@ -247,7 +247,7 @@
   form {
     width: 416px;
     margin: auto;
-    font-family: "Source Sans Pro";
+    font-family: "Source Sans Pro", sans-serif;
     .mat-checkbox-checked:not(.mat-checkbox-disabled).mat-accent
       .mat-ripple-element,
     .mat-checkbox-checked.mat-accent .mat-checkbox-background {
@@ -323,7 +323,7 @@
         li {
           list-style: none;
           margin: 8px 0 0 15px;
-          font-family: "Source Sans Pro";
+          font-family: "Source Sans Pro", sans-serif;
           font-style: normal;
           font-weight: 600;
           font-size: 13px;
@@ -359,35 +359,23 @@
       }
 
 
-      &.mat-form-field .mat-form-field-label {
-        // padding-left: 0;
-      }
+     
 
       .mat-form-field-label-wrapper {
         line-height: normal;
       }
     }
-    .mat-form-field-invalid .mat-form-field-label {
-      // padding-left: 0;
-    }
+   
     .ng-valid {
-      &.mat-form-field .mat-form-field-label {
-        // padding-left: 0;
-      }
+      
       .mat-form-field-label-wrapper {
         line-height: normal;
-      }
-    }
-    .controls,
-    .policy {
-      label {
-        // padding: 0;
       }
     }
     label {
       line-height: 40px;
       padding: 0 14px;
-      font-family: "Source Sans Pro";
+      font-family: "Source Sans Pro", sans-serif;
       color: #99acb7;
       font-size: 17.5px;
       font-weight: 400;
@@ -399,7 +387,7 @@
     input {
       padding: 0 14px;
       box-sizing: border-box;
-      font-family: "Source Sans Pro";
+      font-family: "Source Sans Pro", sans-serif;
       color: #707683;
     }
 
@@ -423,7 +411,7 @@
     align-items: center;
     opacity: 0;
     span {
-      font-family: "Source Sans Pro";
+      font-family: "Source Sans Pro", sans-serif;
       font-weight: 400;
       font-size: 14px;
       line-height: 18px;

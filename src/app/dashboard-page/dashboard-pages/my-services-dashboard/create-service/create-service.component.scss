@@ -1,10 +1,12 @@
 .wrapper {
   padding: 30px 17px;
+  display: flex;
+  flex-direction: row;
   .steps {
     width: 22%;
     h3 {
       margin: 0;
-      font-family: Source Sans Pro;
+      font-family: "Source Sans Pro", sans-serif;
       font-style: normal;
       font-weight: bold;
       font-size: 24px;
@@ -25,7 +27,7 @@
       cursor: default;
       h5 {
         margin: 0;
-        font-family: Source Sans Pro;
+        font-family: "Source Sans Pro", sans-serif;
         font-style: normal;
         font-weight: normal;
         font-size: 16px;
@@ -37,7 +39,7 @@
       }
       h4 {
         margin: 0;
-        font-family: Source Sans Pro;
+        font-family: "Source Sans Pro", sans-serif;
         font-style: normal;
         font-weight: bold;
         font-size: 16px;
@@ -47,7 +49,7 @@
         opacity: 0.5;
       }
       p {
-        font-family: Source Sans Pro;
+        font-family: "Source Sans Pro", sans-serif;
         font-style: normal;
         font-weight: normal;
         font-size: 14px;
@@ -78,7 +80,7 @@
         border-radius: 50%;
         transform: translateY(-50%);
         text-align: center;
-        font-family: Source Sans Pro;
+        font-family: "Source Sans Pro", sans-serif;
         font-style: normal;
         font-weight: 600;
         font-size: 14px;
@@ -133,7 +135,7 @@
           background: #659AF3;
           color: #FFFFFF;
           border: 3px solid #fff;
-          line-height: 18px;
+          line-height: 20px;
         }
         &:before {
           background: #AECCFF;
@@ -143,5 +145,8 @@
   }
   .step-detail {
     width: 80%;
+    padding-left: 90px;
+    padding-right: 38px;
+    padding-bottom: 72px;
   }
 }
