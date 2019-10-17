@@ -2,13 +2,16 @@
 <div class="categorys-list"*ngIf="categorysList">
   <ul class="categorie" *ngFor="let category of categorysList.category">
     <h3 class="categorie-name">{{category.name}}</h3>
-    <ul class="subcategory-group" *ngFor="let group of category.groups">
+    <div class="subcategorys-list">
+      <ul class="subcategory-group" *ngFor="let group of category.groups;">
 
-      <h4 class="subcategory-group__name">{{group}}</h4>
-      <div *ngFor="let sub_category of category.sub_categories">
-          <li class="subcategorie" *ngIf = "group === sub_category.group">{{sub_category.name}} </li>
-      </div>
+        <h4 class="subcategory-group__name">{{group}}</h4>
+        <div *ngFor="let sub_category of category.sub_categories">
+            <a href="" class="subcategorie" *ngIf = "group === sub_category.group">{{sub_category.name}} </a>
+        </div>
 
-    </ul>
+      </ul>
+    </div>
+
   </ul>
 </div>
