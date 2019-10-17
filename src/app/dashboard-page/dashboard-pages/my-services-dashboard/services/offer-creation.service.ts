@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 
@@ -13,6 +13,5 @@ export class OfferCreationService {
     getCategorys() {
         return this.http.get<any>('/categories');
       }
-    
 
 }

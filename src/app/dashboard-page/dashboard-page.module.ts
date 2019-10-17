@@ -38,7 +38,7 @@ const routes: Routes = [
     MatSlideToggleModule,
     MatIconModule,
     MatBadgeModule,
-    
+
   ],
   exports: [
     DashboardPageComponent

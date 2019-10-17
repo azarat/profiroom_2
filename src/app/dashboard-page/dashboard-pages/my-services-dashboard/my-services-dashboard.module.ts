@@ -8,7 +8,8 @@ import { CreateServiceComponent } from './create-service/create-service.componen
 import { FirstStepServiceCreationComponent } from './create-service/first-step-service-creation/first-step-service-creation.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatFormFieldModule, MatAutocompleteModule, MatCheckboxModule, MatIconModule, MatTooltipModule, MatSelectModule, MatButtonModule, MatInputModule } from '@angular/material';
+import { MatFormFieldModule, MatAutocompleteModule, MatCheckboxModule,
+  MatIconModule, MatTooltipModule, MatSelectModule, MatButtonModule, MatInputModule } from '@angular/material';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { OfferCreationService } from './services/offer-creation.service';
 
