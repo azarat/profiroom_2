@@ -7,6 +7,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatIconModule} from '@angular/material/icon';
 import {MatBadgeModule} from '@angular/material/badge';
 import { HomeDashboardComponent } from './dashboard-pages/home-dashboard/home-dashboard.component';
+import { MatSelectModule } from '@angular/material';
 
 const routes: Routes = [
   {
@@ -37,6 +38,7 @@ const routes: Routes = [
     MatSlideToggleModule,
     MatIconModule,
     MatBadgeModule,
+
   ],
   exports: [
     DashboardPageComponent

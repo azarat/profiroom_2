@@ -16,16 +16,18 @@ import {
 } from 'rxjs/operators';
 import {
   User
-} from 'src/app/models/user.model';
+} from 'src/app/models/user/user.model';
 import {
   AuthentificationService
 } from '../services/auth.service';
+import { LocalStorageService } from '../services/local-storage.service';
 
 @Injectable()
 export class BaseInterceptor implements HttpInterceptor {
 
   constructor(
-    private authService: AuthentificationService
+    private authService: AuthentificationService,
+    private localStorageService: LocalStorageService
   ) {}
 
   intercept(
@@ -33,18 +35,21 @@ export class BaseInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable < HttpEvent < any >> {
     const url = 'https://www.thecubetest.site/Backend/api';
-    const token: string | boolean = this.authService.currentUserToken;
+    const token = this.localStorageService.getItem('token').value;
     if (req.url.indexOf('http' || 'https') !== 0) {
+
       req = req.clone({
         url: url + req.url
       });
+
+      if (token) {
+        req = req.clone({
+          headers: req.headers.set('Authorization',
+            'Bearer ' + token)
+        });
+      }
     }
-    if (token) {
-      req = req.clone({
-        headers: req.headers.set('Authorization',
-          'Bearer ' + token)
-      });
-    }
+
     return next.handle(req).pipe(
       catchError(err => {
         const error = err.error.message || err.statusText;

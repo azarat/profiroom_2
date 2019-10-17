@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthentificationService } from '../core/services/auth.service';
-import { User } from '../models/user.model';
+import { User } from '../models/user/user.model';
 import { UserService } from '../core/services/user.service';
 
 @Component({
@@ -22,6 +22,10 @@ export class DashboardPageComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.userService.getDashboardRes()
+    .subscribe(res => {
+      console.log(res);
+    });
 
   }
   userExit = () => {
