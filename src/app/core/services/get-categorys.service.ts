@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 export interface CategorysList {
   category?: [];
@@ -12,9 +12,14 @@ export interface CategorysList {
 @Injectable({providedIn: 'root'})
 export class CategorysListService {
 
-  categorysList: CategorysList = null;
+  // categorysList: CategorysList = null;
 
-  constructor(private http: HttpClient) { }
+  // private categorysList = new BehaviorSubject(null);
+  // public categorysList$: Observable<CategorysList>;
+
+  constructor(private http: HttpClient) {
+    // this.categorysList$ = this.categorysList.asObservable();
+  }
 
   getCategorys() {
     return this.http.get<CategorysList>('/categories');

@@ -1,29 +1,17 @@
 <app-main-header></app-main-header>
 <app-categories-header></app-categories-header>
+<div class="wrapper">
+  <div class="catalog-categories" *ngIf="categorysList">
+    <ul class="categorie" *ngFor="let category of categorysList.category">
+      <h3 class="categorie-name">{{category.name}}</h3>
 
-<div class="subcategories">
-  <div class="subcategory">
-      <h1><a [routerLink]="['/catalog', 'Design'] | localize">Design (на 2 уровень)</a></h1>
-      <ul>
-        <li> <a (click)="navigateTo()" [routerLink]="['/catalog', 'Design', 'Design-mobile'] | localize"> Design-mobile (на 3 уровень)</a> </li>
-        <li> <a [routerLink]="['/catalog', 'Design', 'Design-web' ] | localize"> Design-web (на 3 уровень)</a> </li>
-        <li> <a [routerLink]="['/catalog', 'Design', 'Design-UI'] | localize"> Design-UI (на 3 уровень)</a> </li>
-      </ul>
-  </div>
-  <div class="subcategory">
-      <h1>Dev</h1>
-      <ul>
-        <li> <a> Dev-mobile </a> </li>
-        <li> <a> Dev-web </a> </li>
-        <li> <a> Dev-UI </a> </li>
-      </ul>
-  </div>
-  <div class="subcategory">
-      <h1>Text</h1>
-      <ul>
-        <li> <a> Text-mobile </a> </li>
-        <li> <a> Text-web </a> </li>
-        <li> <a> Text-UI </a> </li>
-      </ul>
+      <li class="subcategorie-name"*ngFor="let sub_categorie of category.sub_categories">
+        <a [routerLink]="['/catalog', category.name] | localize" class="subcategorie">
+          {{sub_categorie.name}}
+        </a>
+      </li>
+
+    </ul>
   </div>
 </div>
+
