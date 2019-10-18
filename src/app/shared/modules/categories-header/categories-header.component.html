@@ -7,7 +7,12 @@
 
         <h4 class="subcategory-group__name">{{group}}</h4>
         <div *ngFor="let sub_category of category.sub_categories">
-            <a href="" class="subcategorie" *ngIf = "group === sub_category.group">{{sub_category.name}} </a>
+            <a
+              [routerLink]="['/catalog', category.name] | localize"
+              class="subcategorie"
+              *ngIf = "group === sub_category.group">
+              {{sub_category.name}}
+          </a>
         </div>
 
       </ul>
