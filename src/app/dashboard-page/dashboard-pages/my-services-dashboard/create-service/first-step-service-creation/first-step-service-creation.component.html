@@ -1,6 +1,7 @@
 <div class="step-wrapper">
-  <h3>1. Титульная информация</h3>
   <form #form="ngForm" [formGroup]="firstStepForm" (ngSubmit)="registrate()">
+    <h3>1. Титульная информация</h3>
+
     <h5>Название услуги</h5>
     <mat-form-field
       floatLabel="always"
@@ -13,7 +14,7 @@
       popoverTitle="Введите название услуги"
       placement="right"
       popoverClass="popover"
-      closeDelay="500"
+      closeDelay="200"
     >
       <textarea
         #serviceTitle
@@ -23,32 +24,114 @@
       ></textarea>
 
       <mat-hint align="end"
-        >{{ serviceTitle.value.length }} / 256 максимально</mat-hint
+        >{{ serviceTitle.value.length }} из 256 максимально</mat-hint
       >
     </mat-form-field>
 
-    <h5>Basic mat-select</h5>
-    <div class="service-category">
-      <mat-form-field appearance="outline" *ngIf="categories">
-        <mat-label>Категория</mat-label>
-        <mat-select matNativeControl (ngModelChange)="onFiltersChange()" formControlName="category">
-          <mat-option
-            *ngFor="let category of categories"
-            [value]="category.id"
+    <div class="service-selects">
+      <div class="category">
+        <h5>Категория Вашей деятельности</h5>
+        <mat-form-field
+          appearance="outline"
+          *ngIf="categories"
+          ngbPopover="Это позволит покупателям быстро найти Вашу услугу."
+          triggers="mouseenter:mouseleave"
+          popoverTitle="Выберите категорию, наиболее подходящую для Вашей услуги"
+          placement="right"
+          popoverClass="popover-select"
+          closeDelay="200"
+        >
+          <mat-select
+            (ngModelChange)="onFiltersChange()"
+            formControlName="category"
+            required
           >
-            {{ category.name }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-<!--
-      <mat-form-field appearance="outline">
-        <mat-label>Подкатегория</mat-label>
-        <mat-select #serviceSubCategory formControlName="serviceSubCategory">
-          <mat-option >
+            <mat-option
+              *ngFor="let category of categories"
+              [value]="category.id"
+            >
+              {{ category.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
 
-          </mat-option>
-        </mat-select>
-      </mat-form-field> -->
+      <div class="sucat" *ngIf="firstStepForm.value.category">
+        <h5>Подкатегория Вашей деятельности</h5>
+        <mat-form-field
+          appearance="outline"
+          ngbPopover="Это позволит покупателям быстро найти Вашу услугу."
+          triggers="mouseenter:mouseleave"
+          popoverTitle="Выберите подкатегорию, наиболее подходящую для Вашей услуги"
+          placement="right"
+          popoverClass="popover-select"
+          closeDelay="20000"
+        >
+          <mat-select
+            #serviceSubCategory
+            formControlName="subcategory"
+            required
+          >
+            <mat-option
+              *ngFor="let subcategory of sub_categories"
+              [value]="subcategory.id"
+            >
+              {{ subcategory.name }}
+            </mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="firstStepForm.get('subcategory').hasError('required')"
+            >{{ "Выберите подкатегорию" }}</mat-error
+          >
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="tags">
+      <h5>Ключевые слова для поиска вашей услуги</h5>
+      <mat-form-field
+        appearance="outline"
+        ngbPopover="Это поможет заказчикам найти Вас во время поиска."
+        triggers="mouseenter:mouseleave"
+        popoverTitle="Введите теги"
+        placement="right"
+        popoverClass="popover"
+        closeDelay="200"
+      >
+        <textarea
+          #serviceTitle
+          formControlName="tags"
+          matInput
+          required
+          placeholder="Поисковые теги"
+        ></textarea>
+      </mat-form-field>
+    </div>
+    <div class="portfolio">
+      <h5>Загрузка портфолио</h5>
+
+      <div class="items">
+        <ng-container *ngIf="previewUrl">
+          <img *ngFor="let ingUrl of previewUrl" [src]="ingUrl" height="300" />
+        </ng-container>
+
+        <div class="dr-dp">
+          <object
+            data="/assets/images/svg/upload.svg"
+            type="image/svg+xml"
+          ></object>
+          <span>. JPG . PNG . GIF .</span>
+          <span>Перетащите файлы или </span>
+          <input
+            type="file"
+            id="file"
+            formControlName="gallery"
+            multiple="true"
+            class="input-file"
+            (change)="fileProgress($event)"
+          />
+          <label for="file">кликните сюда</label>
+        </div>
+      </div>
     </div>
   </form>
 </div>

@@ -23,7 +23,7 @@
       margin-bottom: 14px;
       padding: 20px 25px 20px 23px;
       position: relative;
-
+      min-width: 244px;
       cursor: default;
       h5 {
         margin: 0;
@@ -60,8 +60,8 @@
         opacity: 0.5;
       }
       &:last-child {
-        // width: 295px;
-        height: 83px;
+
+        height: 43px;
         background: #000;
         background: #3f60fb;
         box-shadow: 0px 9px 21px rgba(128, 152, 213, 0.1);
