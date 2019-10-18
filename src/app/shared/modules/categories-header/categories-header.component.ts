@@ -20,6 +20,9 @@ export class CategoriesHeaderComponent implements OnInit {
       console.log(res);
       this.categorysList = res;
     });
+    // this.categorysListService.sharedCatList(this.categorysList);
+    // console.log("sharedCatList");
+    // console.log(this.categorysList);
   }
 
 }

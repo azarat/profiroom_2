@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FreelancersList, FreelancersListService } from '../services/freelancers-list.service';
+import { Route, Router } from '@angular/router';
+import { CategorysListService, SubCategorysListInterface } from '../../core/services/get-categorys.service';
+import { CategoryResolver } from '../resolves/categories.resolve';
 
 @Component({
   selector: 'app-subcategories-list',
@@ -7,11 +9,19 @@ import { FreelancersList, FreelancersListService } from '../services/freelancers
   styleUrls: ['./subcategories-list.component.scss']
 })
 export class SubcategoriesListComponent implements OnInit {
-
-  constructor() { }
+  subcategoriesList: SubCategorysListInterface;
+  constructor(
+    // private route: Router,
+    // tslint:disable-next-line: no-shadowed-variable
+    private CategorysListService: CategorysListService,
+  ) { }
 
   ngOnInit() {
-
+    this.CategorysListService.categoriesList$
+    .subscribe(res => {
+      console.log(['res', res])
+      this.subcategoriesList = res;
+    });
   }
 
 }

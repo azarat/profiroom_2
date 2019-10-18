@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
-import { CategorysListService, CategorysList } from '../core/services/get-categorys.service';
+import { CategorysListService, CategorysListInterface  } from '../core/services/get-categorys.service';
 
 @Component({
   selector: 'app-categories-list',
@@ -8,7 +8,9 @@ import { CategorysListService, CategorysList } from '../core/services/get-catego
   styleUrls: ['./categories-list.component.scss']
 })
 export class CategoriesListComponent implements OnInit {
-  categorysList: CategorysList;
+  categorysList: CategorysListInterface ;
+  // dataList: CategorysList;
+
   constructor(
     private route: Router,
     // tslint:disable-next-line: no-shadowed-variable
@@ -21,6 +23,7 @@ export class CategoriesListComponent implements OnInit {
       console.log(res);
       this.categorysList = res;
     });
+    // this.CategorysListService.CatList$.subscribe(dataList => this.dataList = dataList);
   }
   navigateTo() {
     this.route.navigate( [''] );
