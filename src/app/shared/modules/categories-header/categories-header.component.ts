@@ -17,7 +17,7 @@ export class CategoriesHeaderComponent implements OnInit {
   ngOnInit() {
     this.categorysListService.getCategorys()
     .subscribe(res => {
-      console.log(res);
+      // console.log(res);
       this.categorysList = res;
     });
     // this.categorysListService.sharedCatList(this.categorysList);

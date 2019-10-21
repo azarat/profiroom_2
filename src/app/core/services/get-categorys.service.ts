@@ -1,24 +1,11 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
-
-export interface CategorysListInterface {
-  category?: [];
-  id?: number;
-  name?: string;
-  descroption?: string;
-}
-
-export interface SubCategorysListInterface {
-  category?: [];
-  id?: number;
-  name?: string;
-  descroption?: string;
-}
+import { CategoryListInterface } from '../../shared/interfaces/categories-list.interface';
+import { SubCategoryListInterface } from '../../shared/interfaces/subcategories-list.interface';
 
 @Injectable()
 export class CategorysListService {
-
 
   // tslint:disable-next-line: variable-name
   private _categoriesList = new BehaviorSubject(null);
@@ -27,11 +14,11 @@ export class CategorysListService {
   constructor(private http: HttpClient) {}
 
   getCategorys() {
-    return this.http.get<CategorysListInterface >('/categories');
+    return this.http.get<CategoryListInterface >('/categories');
   }
 
   getSubCategorys(subcategories: string) {
-    this.http.get<CategorysListInterface >('/subcategories?catedory=' + subcategories)
+    this.http.get<SubCategoryListInterface >('/subcategories?catedory=' + subcategories)
     .subscribe(res => {
       this._categoriesList.next(res);
     });

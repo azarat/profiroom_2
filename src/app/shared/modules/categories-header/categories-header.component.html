@@ -1,9 +1,9 @@
 <!-- <ul *ngIf="categorysList !== null"> -->
 <div class="categorys-list" *ngIf="categorysList">
   <div class="wrapper">
-    <ul class="categorie" *ngFor="let category of categorysList.category">
+    <ul class="categorie-wrapper" *ngFor="let category of categorysList.category">
       <h3 class="categorie-name">
-        <a class="subcategorie" [routerLink]="['/catalog', category.link] | localize" >{{category.name}}</a>
+        <a class="categorie" [routerLink]="['/catalog', category.link] | localize" >{{category.name}}</a>
       </h3>
       <div class="subcategorys-list">
         <ul class="subcategory-group" *ngFor="let group of category.groups;">

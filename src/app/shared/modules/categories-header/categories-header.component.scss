@@ -10,20 +10,23 @@
   padding: 0;
   list-style-type: none;
 }
-.categorie {
+.categorie-wrapper {
   margin: 0;
   padding: 0;
   position: relative;
   padding: 20px 15px;
   overflow: hidden;
   transition: overflow 0.5s;
-  &-name {
-    font-family: "Source Sans Pro";
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 20px;
-    color: #ffffff;
+  .categorie-name{
     margin: 0;
+    a{
+      font-family: "Source Sans Pro";
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 20px;
+      color: #ffffff;
+      text-decoration: none;
+    }
   }
   &:hover {
     overflow: visible;
@@ -84,7 +87,7 @@
   // z-index: -1;
   transition: all 0.5s;
 
-
+  z-index: 9;
   background: #ffffff;
   border: 1px solid rgba(220, 224, 230, 0.1);
   box-shadow: 0px 10px 16px rgba(128, 152, 213, 0.2);
