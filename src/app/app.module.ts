@@ -16,8 +16,6 @@ import { ErrorPageModule } from './error-page/error-page.module';
 import { AuthorizationPageModule } from './authorization-page/authorization-page.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { CategoriesListComponent } from './categories-list/categories-list.component';
-
 @NgModule({
   declarations: [
     AppComponent,

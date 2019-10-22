@@ -6,7 +6,7 @@
       <h3 class="categorie-name">{{category.name}}</h3>
 
       <li class="subcategorie-name"*ngFor="let sub_categorie of category.sub_categories">
-        <a [routerLink]="['/catalog', category.name] | localize" class="subcategorie">
+        <a [routerLink]="['/catalog', category.link, sub_categorie.link] | localize" class="subcategorie">
           {{sub_categorie.name}}
         </a>
       </li>

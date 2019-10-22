@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { FreelancersListService } from '../services/freelancers-list.service';
-import { CategorysListService, SubCategorysListInterface  } from 'src/app/core/services/get-categorys.service';
+import { CategorysListService } from '../../core/services/get-categorys.service';
+import { CategoryListInterface } from '../../shared/interfaces/categories-list.interface';
 
 @Injectable()
 
 export class CategoryResolver implements Resolve<any> {
-  category: SubCategorysListInterface ;
+  category: CategoryListInterface ;
   constructor(
     private aPiService: CategorysListService
    ) {
@@ -15,7 +16,6 @@ export class CategoryResolver implements Resolve<any> {
   resolve(route: ActivatedRouteSnapshot) {
     // console.log(route.params);
     this.aPiService.getSubCategorys(route.params.category);
-
   }
 }
 

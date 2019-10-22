@@ -23,7 +23,7 @@ export class CategoriesCatalogComponent implements OnInit {
     this.CategorysListService.categoriesList$
     .subscribe(res => {
       // console.log("subcategoriesList");
-      if( res !== null) {
+      if ( res !== null) {
         this.subcategoriesList = res.category[0];
         // console.log(this.subcategoriesList);
       }

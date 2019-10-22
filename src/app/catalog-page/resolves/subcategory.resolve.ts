@@ -13,6 +13,6 @@ export class SubCategoryResolver implements Resolve<any> {
   }
   resolve(route: ActivatedRouteSnapshot) {
     // console.log(route.params);
-    this.aPiService.getSubcategoryFreelancers(route.params.subcategory);
+    // this.aPiService.getSubcategoryFreelancers(route.params.subcategory);
   }
 }

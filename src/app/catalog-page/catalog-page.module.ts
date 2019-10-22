@@ -12,8 +12,10 @@ import { CategoriesHeaderModule } from '../shared/modules/categories-header/cate
 
 import { CategoryResolver } from './resolves/categories.resolve';
 import { SubCategoryResolver } from './resolves/subcategory.resolve';
+import { OffersResolver } from './resolves/offers.resolve';
 import { FilterComponent } from './catalog/filter/filter.component';
 import { ItemsComponent } from './catalog/items/items.component';
+import { GetOffersService } from '../core/services/get-offers.service';
 
 const routes: Routes = [
   {
@@ -37,7 +39,7 @@ const routes: Routes = [
   {
     path: ':category/:subcategorie',
     component: CatalogComponent,
-    resolve: { items: CategoryResolver },
+    resolve: { items: OffersResolver },
     // loadChildren: () => import('./category-page/category-page.module').then(m => m.CategoryPageModule)
   }
 ];
@@ -64,7 +66,9 @@ const routes: Routes = [
   ],
   providers: [
     CategoryResolver,
-    SubCategoryResolver
+    SubCategoryResolver,
+    OffersResolver,
+    GetOffersService
   ]
 })
 export class CatalogPageModule { }
