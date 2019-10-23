@@ -27,4 +27,4 @@
 //     LocalizeRouterModule
 //   ]
 // })
-// export class SharedModule { }
+export class SharedModule { }

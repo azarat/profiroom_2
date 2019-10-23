@@ -1,0 +1,129 @@
+.wrapper{
+  max-width: 1549px;
+  margin: 0 auto;
+}
+.container{
+  margin-top: 80px;
+  display: flex;
+}
+.bread-crumbs{
+  margin-top: 35px;
+  ul{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+  }
+  li{
+    padding-right: 20px;
+    position: relative;
+    &::after {
+      content: ">";
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    a{
+      text-decoration: none;
+      font-family: "Source Sans Pro";
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 18px;
+      color: #323C47;
+    }
+    &:last-child{
+      a{
+        font-weight: 600;
+      }
+      &::after{
+        display: none;
+      }
+    }
+    &:hover{
+      a{
+        text-decoration: underline;
+      }
+    }
+  }
+}
+.category-title{
+  font-family: "Source Sans Pro";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 48px;
+  line-height: 60px;
+  color: #323C47;
+  text-align: center;
+}
+.sidebar {
+  width: 300px;
+  display: inline-block;
+  border: 0.5px solid #DCE0E6;
+  height: max-content;
+  &__subcategories-list{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    border-top: 0.5px solid #DCE0E6;
+    box-shadow: 0px 10px 16px rgba(128, 152, 213, 0.2);
+  }
+  &__subcategories{
+    background-color: #fff;
+    border-bottom: 0.5px solid #DCE0E6;
+    a{
+      display: block;
+      font-family: "Source Sans Pro";
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      padding: 16px 20px 16px 20px;
+      color: #707683;
+      text-decoration: none;
+
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+    }
+    &:hover{
+      background: #3C7EEA;
+      a{
+        color: #fff;
+      }
+    }
+  }
+}
+.subcategories-list {
+  width: calc(100% - 300px);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  .subcategory-full {
+    margin-bottom: 50px;
+    &-img{
+      width: 350px;
+      height: 240px;
+      // background: url(2143176.jpg);
+      box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+      border-radius: 3px;
+      background-color: #fff;
+    }
+    &-title{
+      margin: 0;
+      width: 350px;
+      a{
+        font-family: "Source Sans Pro";
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 23px;
+        color: #323C47;
+        text-decoration: none;
+      }
+      &:hover{
+        a{
+          color: #3C7EEA;
+        }
+      }
+    }
+  }
+}

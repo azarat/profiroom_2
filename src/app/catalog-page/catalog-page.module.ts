@@ -1,25 +1,31 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SubcategoriesListComponent } from './subcategories-list/subcategories-list.component';
-import { SubcategorieComponent } from './subcategorie/subcategorie.component';
-import { MainHeaderModule } from '../shared/modules/main-header/main-header.module';
-import { CategoriesHeaderModule } from '../shared/modules/categories-header/categories-header.module';
-import { CategoriesListComponent } from './categories-list.component';
 import { Routes, RouterModule } from '@angular/router';
 import { LocalizeRouterModule } from 'localize-router/src/localize-router.module';
 import { HttpClientModule } from '@angular/common/http';
+
+import { CategoriesCatalogComponent } from './categories-catalog/categories-catalog.component';
+import { CatalogHomeComponent } from './catalog-home/catalog-home.component';
+import { CatalogComponent } from './catalog/catalog.component';
+import { MainHeaderModule } from '../shared/modules/main-header/main-header.module';
+import { CategoriesHeaderModule } from '../shared/modules/categories-header/categories-header.module';
+
 import { CategoryResolver } from './resolves/categories.resolve';
 import { SubCategoryResolver } from './resolves/subcategory.resolve';
+import { OffersResolver } from './resolves/offers.resolve';
+import { FilterComponent } from './catalog/filter/filter.component';
+import { ItemsComponent } from './catalog/items/items.component';
+import { GetOffersService } from '../core/services/get-offers.service';
 
 const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    component: CategoriesListComponent,
+    component: CatalogHomeComponent,
   },
   {
     path: ':category',
-    component: SubcategoriesListComponent,
+    component: CategoriesCatalogComponent,
     resolve: { items: CategoryResolver },
     // children: [
     //   {
@@ -29,19 +35,22 @@ const routes: Routes = [
     //   }
     // ]
   },
+
   {
     path: ':category/:subcategorie',
-    component: SubcategorieComponent,
-    resolve: { items: CategoryResolver },
+    component: CatalogComponent,
+    resolve: { items: OffersResolver },
     // loadChildren: () => import('./category-page/category-page.module').then(m => m.CategoryPageModule)
   }
 ];
 
 @NgModule({
   declarations: [
-    SubcategoriesListComponent,
-    SubcategorieComponent,
-    CategoriesListComponent,
+    CategoriesCatalogComponent,
+    CatalogComponent,
+    CatalogHomeComponent,
+    FilterComponent,
+    ItemsComponent,
   ],
   imports: [
     CommonModule,
@@ -53,11 +62,13 @@ const routes: Routes = [
     CategoriesHeaderModule
   ],
   exports: [
-    CategoriesListComponent
+    CatalogHomeComponent
   ],
   providers: [
     CategoryResolver,
-    SubCategoryResolver
+    SubCategoryResolver,
+    OffersResolver,
+    GetOffersService
   ]
 })
-export class CategoriesListModule { }
+export class CatalogPageModule { }

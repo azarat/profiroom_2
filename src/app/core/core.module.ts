@@ -16,6 +16,7 @@ import { AngularFireModule } from '@angular/fire';
 import { config } from 'process';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AuthorisatedGuard } from './guards/authorisated.guard';
+import { CategorysListService } from './services/get-categorys.service';
 
 export const url = new URL(location.href).origin;
 
@@ -65,7 +66,8 @@ const gConfig = {
     UserService,
     LocalStorageService,
     UnauthorisatedGuard,
-    AuthorisatedGuard
+    AuthorisatedGuard,
+    CategorysListService
   ]
 })
 export class CoreModule { }

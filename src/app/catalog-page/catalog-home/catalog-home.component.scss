@@ -1,0 +1,52 @@
+.subcategories{
+  display: flex;
+  flex-wrap: wrap;
+}
+.subcategory{
+  width: 30%;
+  padding: 30px;
+}
+
+.wrapper{
+  max-width: 1549px;
+  margin: 0 auto;
+}
+
+.catalog-categories{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.categorie{
+  margin: 0;
+  list-style-type: none;
+  padding: 20px 15px 0;
+  width: 20%;
+  box-sizing: border-box;
+  &-name{
+    font-family: "Source Sans Pro";
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 20px;
+    color: #323c47;
+    margin: 0 0 16px;
+  }
+  .subcategorie-name{
+    margin-bottom: 12px;
+    a{
+      font-family: "Source Sans Pro";
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 20px;
+      color: #707683;
+      text-decoration: none;
+      width: fit-content;
+    }
+    &:hover{
+      a{
+        color: #3C7EEA;
+        text-decoration: underline;
+      }
+    }
+  }
+}

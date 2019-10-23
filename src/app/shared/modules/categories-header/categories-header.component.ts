@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CategorysListService } from './categorys-list.service';
+import { CategorysListService } from '../../../core/services/get-categorys.service';
 
 
 @Component({
@@ -17,9 +17,12 @@ export class CategoriesHeaderComponent implements OnInit {
   ngOnInit() {
     this.categorysListService.getCategorys()
     .subscribe(res => {
-      console.log(res);
+      // console.log(res);
       this.categorysList = res;
     });
+    // this.categorysListService.sharedCatList(this.categorysList);
+    // console.log("sharedCatList");
+    // console.log(this.categorysList);
   }
 
 }
