@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { FreelancersListService } from '../services/freelancers-list.service';
 import { GetSubCategoryService } from '../services/get-subcategorys.service';
-import { CategoryListInterface } from '../../shared/interfaces/categories-list.interface';
+import { SubCategoryListInterface } from 'src/app/shared/interfaces/subcategories-list.interface';
 
 @Injectable()
 
 export class CategoryResolver implements Resolve<any> {
-  category: SubCategorysListInterface ;
+  category: SubCategoryListInterface  ;
   constructor(
     private aPiService: GetSubCategoryService
    ) {
