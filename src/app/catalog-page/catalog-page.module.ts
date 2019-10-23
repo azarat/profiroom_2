@@ -13,7 +13,6 @@ import { CategoriesHeaderModule } from '../shared/modules/categories-header/cate
 
 import { CategoryResolver } from './resolves/categories.resolve';
 import { SubCategoryResolver } from './resolves/subcategory.resolve';
-import { OffersResolver } from './resolves/offers.resolve';
 import { FilterComponent } from './catalog/filter/filter.component';
 import { ItemsComponent } from './catalog/items/items.component';
 import { GetOffersService } from './services/get-offers.service';
@@ -45,7 +44,7 @@ const routes: Routes = [
   {
     path: ':category/:subcategorie',
     component: CatalogComponent,
-    resolve: { items: OffersResolver },
+    resolve: { items: CategoryResolver },
     // loadChildren: () => import('./category-page/category-page.module').then(m => m.CategoryPageModule)
   }
 ];

@@ -7,7 +7,7 @@ import { CategoryListInterface } from '../../shared/interfaces/categories-list.i
 @Injectable()
 
 export class CategoryResolver implements Resolve<any> {
-  category: CategoryListInterface ;
+  category: SubCategorysListInterface ;
   constructor(
     private aPiService: GetSubCategoryService
    ) {
@@ -16,6 +16,7 @@ export class CategoryResolver implements Resolve<any> {
   resolve(route: ActivatedRouteSnapshot) {
     // console.log(route.params);
     this.aPiService.getSubCategorys(route.params.category);
+
   }
 }
 
