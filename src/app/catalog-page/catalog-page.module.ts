@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { LocalizeRouterModule } from 'localize-router/src/localize-router.module';
 import { HttpClientModule } from '@angular/common/http';
+// import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { CategoriesCatalogComponent } from './categories-catalog/categories-catalog.component';
 import { CatalogHomeComponent } from './catalog-home/catalog-home.component';
@@ -15,7 +16,12 @@ import { SubCategoryResolver } from './resolves/subcategory.resolve';
 import { OffersResolver } from './resolves/offers.resolve';
 import { FilterComponent } from './catalog/filter/filter.component';
 import { ItemsComponent } from './catalog/items/items.component';
-import { GetOffersService } from '../core/services/get-offers.service';
+import { GetOffersService } from './services/get-offers.service';
+import { GetSubCategoryService } from './services/get-subcategorys.service';
+import { BaseInterceptor } from '../core/interceptors/base-interceptor';
+
+
+import { HttpClient } from '@angular/common/http';
 
 const routes: Routes = [
   {
@@ -59,7 +65,7 @@ const routes: Routes = [
     MainHeaderModule,
     CategoriesHeaderModule,
     HttpClientModule,
-    CategoriesHeaderModule
+    // HttpClient
   ],
   exports: [
     CatalogHomeComponent
@@ -68,7 +74,8 @@ const routes: Routes = [
     CategoryResolver,
     SubCategoryResolver,
     OffersResolver,
-    GetOffersService
+    GetOffersService,
+    GetSubCategoryService
   ]
 })
 export class CatalogPageModule { }

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FilterInterface } from 'src/app/shared/interfaces/filter.interface';
 
 @Component({
   selector: 'app-filter',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FilterComponent implements OnInit {
 
+  public filterData: FilterInterface = {};
+
   constructor() { }
 
   ngOnInit() {
   }
+
+  onFilterChange(){ };
 
 }
