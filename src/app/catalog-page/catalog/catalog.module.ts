@@ -5,6 +5,7 @@ import { ItemsComponent } from './items/items.component';
 import { CatalogComponent } from './catalog.component';
 import { CategoriesHeaderComponent } from 'src/app/shared/modules/categories-header/categories-header.component';
 import { MainHeaderComponent } from 'src/app/shared/modules/main-header/main-header.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -17,7 +18,8 @@ import { MainHeaderComponent } from 'src/app/shared/modules/main-header/main-hea
     MainHeaderComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ]
 })
 export class CatalogModule { }

@@ -59,7 +59,7 @@ export class GetOffersService {
     this.filters.next(this._filterValue);
     console.log(this._filterValue);
     console.log('getOffers');
-    this.http.post('catalog?category=' + this._filterValue.subCategory , this._filterValue).subscribe(
+    this.http.post('/catalog?category=' + this._filterValue.subCategory , this._filterValue).subscribe(
       (res: OffersListInterface) => {
         this._offersList.next(res);
         console.log(this._offersList);
