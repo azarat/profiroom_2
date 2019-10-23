@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 // import { CategoryListInterface } from '../../shared/interfaces/categories-list.interface';
 // import { SubCategoryListInterface } from '../../shared/interfaces/subcategories-list.interface';
 import { FilterInterface } from '../../shared/interfaces/filter.interface';
 import { OffersListInterface } from '../../shared/interfaces/offers-list.interface';
 import { ActivatedRoute, Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 
 
