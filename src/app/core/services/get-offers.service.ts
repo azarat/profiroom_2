@@ -18,8 +18,7 @@ export class GetOffersService {
 
   // tslint:disable-next-line: variable-name
   private _filterValue: FilterInterface = {
-    filterBy: ' ',
-    subCategory: '1C'
+    filterBy: ' '
   };
 
   private filters = new BehaviorSubject(this._filterValue);
@@ -49,7 +48,7 @@ export class GetOffersService {
     if (link === undefined) {
       this._filterValue = {
         filterBy: ' ',
-        subCategory: '1C'
+        subCategory: 'InterfaceDesign'
       };
     }
     // else if (typeof link === 'string') {
@@ -57,7 +56,7 @@ export class GetOffersService {
     // }
     this.filters.next(this._filterValue);
     console.log(this._filterValue);
-    this.http.post('catalog?category=' + this._filterValue.subCategory , this._filterValue).subscribe(
+    return this.http.post('/catalog', this._filterValue).subscribe(
       (res: OffersListInterface) => {
         this._offersList.next(res);
         console.log(this._offersList);
