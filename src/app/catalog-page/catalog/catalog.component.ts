@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { GetOffersService } from '../../core/services/get-offers.service';
+import { GetOffersService } from '../services/get-offers.service';
 import { OffersListInterface } from '../../shared/interfaces/offers-list.interface';
 
 @Component({
