@@ -19,6 +19,7 @@ import { BaseInterceptor } from '../core/interceptors/base-interceptor';
 
 
 import { HttpClient } from '@angular/common/http';
+import { OffersResolver } from './resolves/offers.resolve';
 
 const routes: Routes = [
   {
