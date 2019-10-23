@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { LocalizeRouterModule } from 'localize-router/src/localize-router.module';
-import { HttpClientModule } from '@angular/common/http';
-// import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { CategoriesCatalogComponent } from './categories-catalog/categories-catalog.component';
 import { CatalogHomeComponent } from './catalog-home/catalog-home.component';
@@ -63,17 +61,16 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     MainHeaderModule,
     CategoriesHeaderModule,
-    HttpClientModule,
     // HttpClient
   ],
   exports: [
     CatalogHomeComponent
   ],
   providers: [
+    GetOffersService,
     CategoryResolver,
     SubCategoryResolver,
     OffersResolver,
-    GetOffersService,
     GetSubCategoryService
   ]
 })
