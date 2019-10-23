@@ -12,6 +12,7 @@ import { MatFormFieldModule, MatAutocompleteModule, MatCheckboxModule,
   MatIconModule, MatTooltipModule, MatSelectModule, MatButtonModule, MatInputModule } from '@angular/material';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { OfferCreationService } from './services/offer-creation.service';
+import { DragDropDirective } from './directives/drag-drop.directive';
 
 
 const servicesRoutes: Routes = [
@@ -29,7 +30,8 @@ const servicesRoutes: Routes = [
   declarations: [
     MyServicesHomeComponent,
     CreateServiceComponent,
-    FirstStepServiceCreationComponent
+    FirstStepServiceCreationComponent,
+    DragDropDirective
   ],
   imports: [
     CommonModule,
