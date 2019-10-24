@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { CategoryInterface } from 'src/app/shared/interfaces/category.interface';
 import { UserServiceModel } from 'src/app/models/user-service/user-service.model';
+import { FileClass } from '../../classes/file.class';
 
 @Component({
   selector: 'app-first-step-service-creation',
@@ -19,7 +20,7 @@ export class FirstStepServiceCreationComponent implements OnInit {
   // tslint:disable-next-line: variable-name
   public sub_categories = [];
 
-  fileData: File = null;
+  files: File = null;
   previewUrl = [];
   fileUploadProgress: string = null;
   uploadedFilePath: string = null;
@@ -27,11 +28,12 @@ export class FirstStepServiceCreationComponent implements OnInit {
   constructor(
     private offerCreationService: OfferCreationService,
     private fb: FormBuilder,
-    private http: HttpClient
+    private http: HttpClient,
+    // tslint:disable-next-line: variable-name
+    private _formConverter$: FileClass
   ) {
     this.offerCreationService.getCategorys()
       .subscribe((res: CategoryInterface) => {
-        console.log(res)
         this.categoryList = res;
         this._loadCategoriesFilter();
       });
@@ -39,17 +41,17 @@ export class FirstStepServiceCreationComponent implements OnInit {
 
   ngOnInit() {
     this.firstStepForm = this.fb.group({
-      serviceTitle: [null],
+      name: [null],
       category: [null],
-      subcategory: [null, Validators.required],
+      subCategory: [null, Validators.required],
       tags: [null],
-      gallery: [null]
+      photos: null
     });
   }
   onFiltersChange() {
     this._loadCategoriesFilter();
     this._loadSubcategoryFilter();
-    console.log(this.sub_categories);
+
   }
 
   // tslint:disable-next-line: variable-name
@@ -64,7 +66,7 @@ export class FirstStepServiceCreationComponent implements OnInit {
       this.firstStepForm.value.subcategory = null;
       return;
     }
-    const x: any = this.categoryList.category.find((d: any) => d.id === this.firstStepForm.value.category)
+    const x: any = this.categoryList.category.find((d: any) => d.id === this.firstStepForm.value.category);
     this.sub_categories = x.sub_categories;
   }
 
@@ -72,32 +74,69 @@ export class FirstStepServiceCreationComponent implements OnInit {
 
 
   registrate = () => {
+    const formData: FormData = new FormData();
+    formData.append('photos', this.files, this.files.name );
+    // tslint:disable-next-line: forin
+    for (const key in this.firstStepForm.value) {
+      formData.append(key, this.firstStepForm.value[key]);
+    }
+    formData.append('photos', this.files, this.files.name );
+    console.log(formData);
+    // const result = this._formConverter$.fromGroupToGroupData(this.firstStepForm.value);
+    // console.log(result);
+    // const formData = new FormData();
+    // formData.append('file', this.files);
 
+    this.offerCreationService.offerCreation(formData).subscribe(
+      res => {
+    console.log(formData);
+      }
+    );
   }
 
 
   //  --------------- file uploading ---------------
 
-  fileProgress = (fileInput: any) => {
-    console.log(fileInput)
-    this.fileData = fileInput.target.files[0] as File;
-    this.preview();
+  fileProgress = (event: any) => {
+
+
+    // tslint:disable-next-line: prefer-for-of
+    for (let index = 0; index < event.length; index++) {
+      // this.files.push(event);
+      this.preview(event[index]);
+      // console.log(event);
+    }
+    this.files = event.item(0);
+    // this.firstStepForm.get('photos').setValue(this.files);
+    console.log(this.files);
+
+
   }
 
-  preview = () => {
-    // Show preview
-    const mimeType = this.fileData.type;
-    if (mimeType.match(/image\/*/) == null) {
+  // this.fileData = fileInput.target.files[0] as File;
+
+
+  preview = (el) => {
+    //   // Show preview
+
+  // this.files.forEach(el => {
+    if (el.type.match(/image\/*/) == null) {
       return;
     }
 
+
     const reader = new FileReader();
-    reader.readAsDataURL(this.fileData);
-    // tslint:disable-next-line: variable-name
+    // console.log(el);
+    // console.log();
+
+    reader.readAsDataURL(el);
+     // tslint:disable-next-line: variable-name
     reader.onload = (_event) => {
-      // console.log(reader.result)
-      this.previewUrl.push(reader.result);
-    }
+          // console.log(reader.result)
+          this.previewUrl.push(reader.result);
+        };
   }
 
-}
+  }
+
+

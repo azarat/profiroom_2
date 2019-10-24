@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-second-step-creation',
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./second-step-creation.component.scss']
 })
 export class SecondStepCreationComponent implements OnInit {
-
+  public firstStepForm: FormGroup;
   constructor() { }
 
   ngOnInit() {
   }
 
+  registrate(){
+
+  }
 }

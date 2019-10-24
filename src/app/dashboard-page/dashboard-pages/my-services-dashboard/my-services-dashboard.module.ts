@@ -14,6 +14,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { OfferCreationService } from './services/offer-creation.service';
 import { DragDropDirective } from './directives/drag-drop.directive';
 import { SecondStepCreationComponent } from './create-service/second-step-creation/second-step-creation.component';
+import { CKEditorModule } from 'ng2-ckeditor';
+import { FileClass } from './classes/file.class';
 
 
 const servicesRoutes: Routes = [
@@ -51,12 +53,14 @@ const servicesRoutes: Routes = [
     MatTooltipModule,
     NgbModule,
     MatSelectModule,
+    CKEditorModule,
   ],
   exports: [
 
   ],
   providers: [
-    OfferCreationService
+    OfferCreationService,
+    FileClass
   ]
 })
 export class MyServicesDashboardModule { }

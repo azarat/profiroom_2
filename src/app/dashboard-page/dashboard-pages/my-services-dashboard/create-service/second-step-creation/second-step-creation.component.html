@@ -1,1 +1,37 @@
-<p>second-step-creation works!</p>
+<div class="step-wrapper">
+  <form #form="ngForm" [formGroup]="firstStepForm" (ngSubmit)="registrate()">
+    <h3>2. Описание услуги</h3>
+    <h5>Опишите услугу как можно подробнее</h5>
+    <div class="area-styling">
+      button*3
+    </div>
+    <mat-form-field
+      floatLabel="always"
+      class="service-title"
+      appearance="outline"
+      maxlength="70"
+      ngbPopover="Проявите оригинальность:  добавьте аргументы в свою пользу, дайте гарантии, предоставьте бонусы и т.Д. чтобы покупатель выбрал именно Вашу услугу."
+      triggers="mouseenter:mouseleave"
+      popoverTitle="Опишите услугу, которую вы предлагаете, как можно подробнее. "
+      placement="right"
+      popoverClass="popover"
+      closeDelay="200"
+    >
+      <textarea
+        #serviceTit
+        formControlName="serviceTitle"
+        matInput
+        required
+        minlength="100"
+      ></textarea>
+
+      <mat-hint align="end"
+        >{{ serviceTit.value.length }} из 100 минимум</mat-hint
+      >
+    </mat-form-field>
+    <div class="form-butons">
+        <button class="back">сохранить и выйти</button>
+        <button class="save">сохранить и продолжить</button>
+      </div>
+  </form>
+</div>

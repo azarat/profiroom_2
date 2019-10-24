@@ -1,5 +1,5 @@
 <div class="step-wrapper">
-  <form #form="ngForm" [formGroup]="firstStepForm" (ngSubmit)="registrate()">
+  <form #form="ngForm" [formGroup]="firstStepForm">
     <h3>1. Титульная информация</h3>
 
     <h5>Название услуги</h5>
@@ -7,7 +7,7 @@
       floatLabel="always"
       class="service-title"
       appearance="outline"
-      maxlength="150"
+      maxlength="70"
       ngbPopover="Оно должно отражать суть вашего предложения
     и описывать услугу, которую вы готовы выполнить."
       triggers="mouseenter:mouseleave"
@@ -17,14 +17,15 @@
       closeDelay="200"
     >
       <textarea
-        #serviceTitle
-        formControlName="serviceTitle"
+        #serviceTit
+        formControlName="name"
         matInput
         required
+        maxlength="70"
       ></textarea>
 
       <mat-hint align="end"
-        >{{ serviceTitle.value.length }} из 256 максимально</mat-hint
+        >{{ serviceTit.value.length }} из 70 максимально</mat-hint
       >
     </mat-form-field>
 
@@ -69,7 +70,7 @@
         >
           <mat-select
             #serviceSubCategory
-            formControlName="subcategory"
+            formControlName="subCategory"
             required
           >
             <mat-option
@@ -80,7 +81,7 @@
             </mat-option>
           </mat-select>
           <mat-error
-            *ngIf="firstStepForm.get('subcategory').hasError('required')"
+            *ngIf="firstStepForm.get('subCategory').hasError('required')"
             >{{ "Выберите подкатегорию" }}</mat-error
           >
         </mat-form-field>
@@ -109,34 +110,41 @@
     <div class="portfolio">
       <h5>Загрузка портфолио</h5>
 
-      <div class="items">
+      <div class="items" >
         <ng-container *ngIf="previewUrl">
           <img *ngFor="let ingUrl of previewUrl" [src]="ingUrl" height="300" />
         </ng-container>
 
-        <div class="dr-dp">
+        <div class="dr-dp"  appDragDrop (onFileDropped)="fileProgress($event)"
+        ngbPopover="Добавьте запоминающийся контент в свою галерею, чтобы отличаться от конкурентов.
+        С загруженных файлов, вы можете выбрать один для титульного изображения на странице."
+          triggers="mouseenter:mouseleave"
+          popoverTitle="Загрузка портфолио"
+          placement="right"
+          popoverClass="popover-file"
+          closeDelay="20000"
+        >
           <object
             data="/assets/images/svg/upload.svg"
             type="image/svg+xml"
           ></object>
-          <span>. JPG . PNG . GIF .</span>
+          <span>.JPG .PNG .GIF </span>
           <span>Перетащите файлы или </span>
           <input
             type="file"
             id="file"
-            formControlName="gallery"
             multiple="true"
             class="input-file"
-            (change)="fileProgress($event)"
+            #fileInput
+            (change)="fileProgress($event.target.files)"
           />
           <label for="file">кликните сюда</label>
         </div>
       </div>
     </div>
     <div class="form-butons">
-      <button class="back">сохранить и выйти</button>
-      <button class="save">сохранить и продолжить</button>
+      <button class="back" >сохранить и выйти</button>
+      <button class="save" (click)="registrate()">сохранить и продолжить</button>
     </div>
-    
   </form>
 </div>

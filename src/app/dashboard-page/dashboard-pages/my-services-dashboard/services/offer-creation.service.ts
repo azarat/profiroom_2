@@ -6,12 +6,16 @@ import { HttpClient } from '@angular/common/http';
 
 export class OfferCreationService {
 
-    constructor(
-        private http: HttpClient
-        ) { }
+  constructor(
+    private http: HttpClient
+  ) { }
 
-    getCategorys() {
-        return this.http.get<any>('/categories');
-      }
+  getCategorys() {
+    return this.http.get<any>('/categories');
+  }
+
+public offerCreation( offerData) {
+  return this.http.post<any>('/newoffer', offerData);
+}
 
 }
