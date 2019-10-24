@@ -11,16 +11,17 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 @Injectable()
 export class GetOffersService {
+  // tslint:disable-next-line: variable-name
+  private _subCategory = new BehaviorSubject(null);
+  public subCategory$ = this._subCategory.asObservable();
 
   // tslint:disable-next-line: variable-name
   private _offersList = new BehaviorSubject(null);
   public offersList: Observable<OffersListInterface>;
 
   // tslint:disable-next-line: variable-name
-  private _filterValue: FilterInterface = {
-    filterBy: ' ',
-    subCategory: '1C'
-  };
+  private _filterValue: FilterInterface = {};   // All value filters that will transferred in url
+
 
   private filters = new BehaviorSubject(this._filterValue);
   public filterVaraibles: Observable<FilterInterface>;
@@ -34,6 +35,17 @@ export class GetOffersService {
     // tslint:disable-next-line: variable-name
   ) {
     this.offersList = this._offersList.asObservable();
+    this.filterVaraibles = this.filters.asObservable();
+  }
+
+  // -------- put subcategory value from resolver ----------------//
+  public setSubcategoryValue(subcategory: string ) {
+    console.log('set.subval');
+    this._subCategory.next(subcategory);
+    this.subCategory$.subscribe(
+      res => this._filterValue.subCategory = res
+    );
+
   }
 
     // getOffers(offersList: string) {
@@ -44,25 +56,27 @@ export class GetOffersService {
   //   });
   // }
 
-
   getOffers(link: string | boolean | object) {
+    console.log(this._filterValue);
     this._offersList.next(null);
+    // console.log(this.currentFilters);
+
     if (link === undefined) {
       this._filterValue = {
-        filterBy: ' ',
-        subCategory: '1C'
+        filterBy: '',
+        subCategory: '',
+
       };
     }
+
     // else if (typeof link === 'string') {
     //   this.sortParams(link);
     // }
-    this.filters.next(this._filterValue);
-    console.log(this._filterValue);
-    console.log('getOffers');
-    this.http.post('/catalog?category=' + this._filterValue.subCategory , this._filterValue).subscribe(
+    // this.filters.next(this._filterValue);
+
+    this.http.post('/catalog?category=' + this._filterValue.subCategory, this._filterValue).subscribe(
       (res: OffersListInterface) => {
         this._offersList.next(res);
-        console.log(this._offersList);
       });
   }
 }

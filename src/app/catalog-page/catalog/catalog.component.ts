@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { GetOffersService } from '../services/get-offers.service';
 import { OffersListInterface } from '../../shared/interfaces/offers-list.interface';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-catalog',
@@ -11,8 +12,11 @@ import { OffersListInterface } from '../../shared/interfaces/offers-list.interfa
 })
 export class CatalogComponent implements OnInit {
 
-  offersList: OffersListInterface;
-  private currentFilters: string;
+  // offersList: OffersListInterface;
+  private currentFilters: string = null;
+  public subcategory;
+
+  catalogSubscription: Subscription;
 
   constructor(
     // tslint:disable-next-line: no-shadowed-variable
@@ -20,20 +24,27 @@ export class CatalogComponent implements OnInit {
     // tslint:disable-next-line: variable-name
     private _route: ActivatedRoute,
   ) {
-    this._route.queryParams.subscribe(p => {
-      if (p._filters !== undefined) {
-          this.currentFilters = p._filters;
-      }
-      this.GetOffersService.getOffers(this.currentFilters);
+    this.GetOffersService.subCategory$.subscribe(data => {
+      this.subcategory = data;
     });
   }
 
   ngOnInit() {
-    // this.CategorysListService.offersList$
-    // .subscribe(res => {
-    //   // console.log(res);
-    //   this.offersList = res;
-    // });
+    console.log('start');
+    this._route.queryParams.subscribe(p => {
+      if (p._filters !== undefined) {
+          // console.log(this.currentFilters);
+      }
+      // console.log(this.currentFilters);
+      // this.GetOffersService.getOffers(this.currentFilters);
+      // this.GetOffersService.offersList.subscribe(data => {
+      //   this.offersList = data;
+      //   console.log(this.offersList);
+      // });
+    });
+    this.GetOffersService.getOffers(this.currentFilters);
   }
+
+
 
 }

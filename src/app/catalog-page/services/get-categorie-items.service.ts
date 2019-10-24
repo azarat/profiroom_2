@@ -5,7 +5,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { SubCategoryListInterface } from '../../shared/interfaces/subcategories-list.interface';
 
 @Injectable()
-export class GetSubCategoryService {
+export class GetCategorieItemsService {
 
   // tslint:disable-next-line: variable-name
   private _categoriesList = new BehaviorSubject(null);
@@ -13,12 +13,10 @@ export class GetSubCategoryService {
 
   constructor(private http: HttpClient) {}
 
-  getSubCategorys(subcategories: string) {
-    console.log('getSubCategorys');
+  getCategorieItems(subcategories: string) {
     this.http.get<SubCategoryListInterface >('/subcategories?catedory=' + subcategories)
-    .subscribe(res => {
-      this._categoriesList.next(res);
-      // console.log(this._categoriesList);
+    .subscribe((res: SubCategoryListInterface) => {
+      this._categoriesList.next(res.category[0]);
     });
   }
 }

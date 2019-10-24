@@ -1,5 +1,16 @@
 <app-main-header></app-main-header>
 <app-categories-header></app-categories-header>
-<p>catalog works!</p>
-<app-filter></app-filter>
-<app-items></app-items>
+<div class="wrapper">
+  <div class="bread-crumbs">
+    <ul *ngIf="subcategory">
+      <li><a [routerLink]="['/'] | localize">Главная</a></li>
+      <li><a>ПЕРЕХОД НА КАТЕГОРИЮ + ССЫЛКА</a></li>
+      <li><a>{{ subcategory }}</a></li>
+      <!-- <li><a [routerLink]="['/catalog', subcategoriesList.link] | localize">{{ subcategory }}</a></li> -->
+    </ul>
+  </div>
+  <h2 class="category-title" *ngIf="subcategory">{{ subcategory }}</h2>
+  <app-filter></app-filter>
+  <app-items></app-items>
+</div>
+

@@ -4,16 +4,21 @@ import {Observable} from 'rxjs';
 
 export interface OffersListInterface {
   getSubcategoryFreelancers: any;
-  avaible_gigs?: number;
-  gigs?: [];
-  descroption?: string;
+
+  category_id: number;
   comments_count?: number;
-  rating?: number;
-  min_price?: number;
-  liked?: boolean;
-  level?: string;
+  description?: string;
+  id?: number;
+  minprice: number;
   name?: string;
-  surname?: string;
-  ava?: string;
-  data: [];
+  rating?: number;
+  sub_category_id: number;
+  user?: [{
+    avatar?: string;
+    id?: number;
+    name?: string;
+    rank_id: number;
+    surname?: string;
+  }];
+  liked?: boolean;
 }

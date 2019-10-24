@@ -36,7 +36,6 @@ export class BaseInterceptor implements HttpInterceptor {
   ): Observable < HttpEvent < any >> {
     const url = 'https://www.thecubetest.site/Backend/api';
     const token = this.localStorageService.getItem('token').value;
-    console.log(req)
     if (req.url.indexOf('http' || 'https') !== 0) {
 
       req = req.clone({

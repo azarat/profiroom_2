@@ -10,14 +10,17 @@ export class FilterComponent implements OnInit {
 
   public filterData: FilterInterface = {};
 
-  constructor() { }
+  constructor(
+
+  ) { }
 
   ngOnInit() {
+
   }
 
-  onFilterChange(){
-    console.log("filters");
+  onFilterChange() {
+    console.log('filters');
     console.log(this.filterData);
-  };
+  }
 
 }
