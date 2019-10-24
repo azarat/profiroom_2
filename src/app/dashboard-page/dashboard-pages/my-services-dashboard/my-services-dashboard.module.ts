@@ -13,6 +13,7 @@ import { MatFormFieldModule, MatAutocompleteModule, MatCheckboxModule,
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { OfferCreationService } from './services/offer-creation.service';
 import { DragDropDirective } from './directives/drag-drop.directive';
+import { SecondStepCreationComponent } from './create-service/second-step-creation/second-step-creation.component';
 
 
 const servicesRoutes: Routes = [
@@ -31,7 +32,8 @@ const servicesRoutes: Routes = [
     MyServicesHomeComponent,
     CreateServiceComponent,
     FirstStepServiceCreationComponent,
-    DragDropDirective
+    DragDropDirective,
+    SecondStepCreationComponent
   ],
   imports: [
     CommonModule,
