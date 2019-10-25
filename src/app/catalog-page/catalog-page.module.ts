@@ -20,6 +20,9 @@ import { BaseInterceptor } from '../core/interceptors/base-interceptor';
 import { HttpClient } from '@angular/common/http';
 import { OffersResolver } from './resolves/offers.resolve';
 import { FormsModule } from '@angular/forms';
+import { MatSelectModule, MatInputModule } from '@angular/material';
+
+
 
 const routes: Routes = [
   {
@@ -54,7 +57,9 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     MainHeaderModule,
     CategoriesHeaderModule,
-    FormsModule
+    FormsModule,
+    MatSelectModule,
+    MatInputModule
   ],
   exports: [
     CatalogHomePageComponent
@@ -63,7 +68,7 @@ const routes: Routes = [
     GetOffersService,
     CategorysResolver,
     OffersResolver,
-    GetCategorieItemsService
+    GetCategorieItemsService,
   ]
 })
 export class CatalogPageModule { }

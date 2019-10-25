@@ -11,21 +11,6 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ItemsComponent implements OnInit {
 
-  // offersList: OffersListInterface;
-
-  // constructor(
-  //   private GetOffersService: GetOffersService,
-  // ) {
-  //   this.GetOffersService.offersList.subscribe(data => {
-  //     // console.log(data);
-  //     this.offersList = data;
-  //   });
-  //  }
-
-  // ngOnInit() {
-
-  // }
-    // offersList: OffersListInterface;
     private currentFilters: string = null;
     public subcategory;
     offersList: OffersListInterface;
@@ -57,13 +42,14 @@ export class ItemsComponent implements OnInit {
       });
 
       this.GetOffersService.offersList.subscribe(data => {
-            // console.log(data);
+
             this.offersList = data;
+            // console.log( this.offersList);
           });
     }
 
     ngOnInit() {
-      console.log('start');
+      // console.log('start');
 
       // this.GetOffersService.getOffers(this.currentFilters);
     }

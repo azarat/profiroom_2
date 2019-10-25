@@ -8,15 +8,38 @@
       <div class="filter price">
         <div>
           <label for="price-mn"></label>
-          <input [(ngModel)]="filterData.Price" (ngModelChange)="onFilterChange()" type="text" name="price-min"
-            id="price-mn" />
+          <mat-form-field>
+            <input
+              matInput
+              number
+              placeholder="UAH"
+              [(ngModel)]="filterData.price"
+              (ngModelChange)="onFilterChange()"
+              type="text"
+              name="price-min"
+              id="price-mn"
+              >
+          </mat-form-field>
         </div>
         <div>
           <label for="price-mx"></label>
-          <input [(ngModel)]="filterData.Price_max" (ngModelChange)="onFilterChange()" type="text" name="price-max"
-            id="price-mx" />
+          <mat-form-field>
+            <input
+              matInput
+              number
+              placeholder="UAH"
+              [(ngModel)]="filterData.Price_max"
+              (ngModelChange)="onFilterChange()"
+              type="text"
+              name="price-max"
+              id="price-mx"
+              >
+          </mat-form-field>
         </div>
       </div>
+    </div>
+    <div class="set-filter-btn" (click)="loadData()">
+      <span>фильтровать</span>
     </div>
   </div>
 </div>

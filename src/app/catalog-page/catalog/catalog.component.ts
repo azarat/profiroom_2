@@ -30,7 +30,7 @@ export class CatalogComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('start');
+    // console.log('start');
     this._route.queryParams.subscribe(p => {
       if (p._filters !== undefined) {
           // console.log(this.currentFilters);
@@ -42,6 +42,7 @@ export class CatalogComponent implements OnInit {
       //   console.log(this.offersList);
       // });
     });
+    // console.log(this.currentFilters);
     this.GetOffersService.getOffers(this.currentFilters);
   }
 

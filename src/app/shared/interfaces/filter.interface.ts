@@ -1,6 +1,6 @@
 export interface FilterInterface {
   filterBy?: string;
   subCategory?: string;
-  Price?: number;
+  price?: number;
   Price_max?: number;
 }
