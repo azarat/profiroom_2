@@ -11,7 +11,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule, MatAutocompleteModule, MatCheckboxModule,
   MatIconModule, MatTooltipModule, MatSelectModule, MatButtonModule, MatInputModule } from '@angular/material';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { OfferCreationService } from './services/offer-creation.service';
 import { DragDropDirective } from './directives/drag-drop.directive';
 import { SecondStepCreationComponent } from './create-service/second-step-creation/second-step-creation.component';
 import { CKEditorModule } from 'ng2-ckeditor';
@@ -25,7 +24,17 @@ const servicesRoutes: Routes = [
   },
   {
     path: 'create',
-    component: CreateServiceComponent
+    component: CreateServiceComponent,
+    children: [
+      {
+        path: '',
+        component: FirstStepServiceCreationComponent
+      },
+      {
+        path: 'second-step',
+        component: SecondStepCreationComponent
+      }
+  ]
   }
 ];
 
@@ -59,7 +68,6 @@ const servicesRoutes: Routes = [
 
   ],
   providers: [
-    OfferCreationService,
     FileClass
   ]
 })

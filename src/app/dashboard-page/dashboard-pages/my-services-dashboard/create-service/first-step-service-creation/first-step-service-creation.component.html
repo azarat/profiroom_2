@@ -49,7 +49,7 @@
           >
             <mat-option
               *ngFor="let category of categories"
-              [value]="category.id"
+              [value]="category.link"
             >
               {{ category.name }}
             </mat-option>
@@ -70,18 +70,18 @@
         >
           <mat-select
             #serviceSubCategory
-            formControlName="subCategory"
+            formControlName="subcategory"
             required
           >
             <mat-option
               *ngFor="let subcategory of sub_categories"
-              [value]="subcategory.id"
+              [value]="subcategory.link"
             >
               {{ subcategory.name }}
             </mat-option>
           </mat-select>
           <mat-error
-            *ngIf="firstStepForm.get('subCategory').hasError('required')"
+            *ngIf="firstStepForm.get('subcategory').hasError('required')"
             >{{ "Выберите подкатегорию" }}</mat-error
           >
         </mat-form-field>

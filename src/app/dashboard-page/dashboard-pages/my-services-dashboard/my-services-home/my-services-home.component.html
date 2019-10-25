@@ -1,3 +1,7 @@
 <h3>Мои услуги</h3>
 
-<button (click)="createNewService()">Создать услугу</button>
+<button (click)="createNewService()">Создать услугу</button><br><br>
+
+<ng-container *ngIf="userOffers">
+  <button *ngFor="let userOffer of userOffers" (click)="openOffer(userOffer.id)">{{ userOffer.name }}</button>
+</ng-container>

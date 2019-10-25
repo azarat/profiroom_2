@@ -34,10 +34,10 @@ export const routes: Routes = [
     canActivateChild: [UnauthorisatedGuard],
     loadChildren: () => import('./dashboard-page/dashboard-page.module').then(m => m.DashboardPageModule)
   },
-  {
-    path: '**',
-    redirectTo: '/404'
-  },
+  // {
+  //   path: '**',
+  //   redirectTo: '/404'
+  // },
   {
     path: '404',
     loadChildren: () => import('./error-page/error-page.module').then(m => m.ErrorPageModule)

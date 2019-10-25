@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { OfferCreationService } from '../../services/offer-creation.service';
+import { UserOffersService } from '../../services/user-offers.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { CategoryInterface } from 'src/app/shared/interfaces/category.interface';
-import { UserServiceModel } from 'src/app/models/user-service/user-service.model';
 import { FileClass } from '../../classes/file.class';
-
+import { Router, ActivatedRoute } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import { UserServiceModel } from 'src/app/models/user-service/user-service.model';
 @Component({
   selector: 'app-first-step-service-creation',
   templateUrl: './first-step-service-creation.component.html',
@@ -20,19 +21,22 @@ export class FirstStepServiceCreationComponent implements OnInit {
   // tslint:disable-next-line: variable-name
   public sub_categories = [];
 
-  files: File = null;
+  files = [];
   previewUrl = [];
   fileUploadProgress: string = null;
   uploadedFilePath: string = null;
 
   constructor(
-    private offerCreationService: OfferCreationService,
+    private userOffersService: UserOffersService,
     private fb: FormBuilder,
     private http: HttpClient,
+    public translate: TranslateService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
     // tslint:disable-next-line: variable-name
     private _formConverter$: FileClass
   ) {
-    this.offerCreationService.getCategorys()
+    this.userOffersService.getCategorys()
       .subscribe((res: CategoryInterface) => {
         this.categoryList = res;
         this._loadCategoriesFilter();
@@ -40,13 +44,26 @@ export class FirstStepServiceCreationComponent implements OnInit {
   }
 
   ngOnInit() {
+
+
+
     this.firstStepForm = this.fb.group({
       name: [null],
       category: [null],
-      subCategory: [null, Validators.required],
+      subcategory: [null, Validators.required],
       tags: [null],
-      photos: null
+      step: 1
     });
+
+    this.userOffersService.userOffer$
+      .subscribe(servData => {
+        if (servData) {
+
+          console.log(servData.userOffers);
+          this.firstStepForm = servData.userOffers;
+          console.log(this.firstStepForm );
+        }
+      });
   }
   onFiltersChange() {
     this._loadCategoriesFilter();
@@ -66,77 +83,64 @@ export class FirstStepServiceCreationComponent implements OnInit {
       this.firstStepForm.value.subcategory = null;
       return;
     }
-    const x: any = this.categoryList.category.find((d: any) => d.id === this.firstStepForm.value.category);
+    const x: any = this.categoryList.category.find((d: any) => d.link === this.firstStepForm.value.category);
     this.sub_categories = x.sub_categories;
   }
 
-
-
-
   registrate = () => {
     const formData: FormData = new FormData();
-    formData.append('photos', this.files, this.files.name );
-    // tslint:disable-next-line: forin
-    for (const key in this.firstStepForm.value) {
+
+    for (const key of Object.keys(this.firstStepForm.value)) {
       formData.append(key, this.firstStepForm.value[key]);
     }
-    formData.append('photos', this.files, this.files.name );
-    console.log(formData);
-    // const result = this._formConverter$.fromGroupToGroupData(this.firstStepForm.value);
-    // console.log(result);
-    // const formData = new FormData();
-    // formData.append('file', this.files);
+    // ------- put files in FormData -------//
+    this.files.forEach(el => {
+      formData.append('filesname[]', el, el.name);
+    });
 
-    this.offerCreationService.offerCreation(formData).subscribe(
-      res => {
-    console.log(formData);
+
+    this.userOffersService.serviceCreation(formData).subscribe(
+      (res: object) => {
+        if (res) {
+          this.setQuerryParams(res);
+        }
       }
     );
   }
 
+  // ------------- put offerId in params -----------//
+
+  private setQuerryParams(obj: object) {
+    this.router.navigate(['./second-step'], {
+      relativeTo: this.activatedRoute,
+      queryParams: obj,
+      queryParamsHandling: 'merge',
+    });
+  }
 
   //  --------------- file uploading ---------------
 
   fileProgress = (event: any) => {
 
-
     // tslint:disable-next-line: prefer-for-of
     for (let index = 0; index < event.length; index++) {
-      // this.files.push(event);
+      this.files.push(event[index]);
       this.preview(event[index]);
-      // console.log(event);
     }
-    this.files = event.item(0);
-    // this.firstStepForm.get('photos').setValue(this.files);
-    console.log(this.files);
-
-
   }
 
-  // this.fileData = fileInput.target.files[0] as File;
-
-
   preview = (el) => {
-    //   // Show preview
-
-  // this.files.forEach(el => {
     if (el.type.match(/image\/*/) == null) {
       return;
     }
-
-
     const reader = new FileReader();
-    // console.log(el);
-    // console.log();
-
     reader.readAsDataURL(el);
-     // tslint:disable-next-line: variable-name
+    // tslint:disable-next-line: variable-name
     reader.onload = (_event) => {
-          // console.log(reader.result)
-          this.previewUrl.push(reader.result);
-        };
+      this.previewUrl.push(reader.result);
+    };
   }
 
-  }
+}
 
 
