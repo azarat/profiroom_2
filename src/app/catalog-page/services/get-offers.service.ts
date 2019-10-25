@@ -18,7 +18,7 @@ export class GetOffersService {
   public offersList: Observable<OffersListInterface>;
 
   // tslint:disable-next-line: variable-name
-  private _filterValue: FilterInterface = {}; // All value filters that will transferred in url
+  private _filterValue: FilterInterface = {};
 
   private filters = new BehaviorSubject(this._filterValue);
   public filterVaraibles: Observable<FilterInterface>;
@@ -57,7 +57,7 @@ export class GetOffersService {
     if (link === undefined) {
       this._filterValue = {
         filterBy: '',
-        subCategory: ''
+        subCategory: '',
       };
     } else if (typeof link === 'string') {
       // this.sortParams(link);

@@ -1,5 +1,92 @@
 .wrapper{
   max-width: 1549px;
   margin: 0 auto;
-  border: 1px solid black
+}
+
+.filters-list{
+  display: flex;
+}
+
+.filter-item{
+  background: #FFFFFF;
+  border: 1px solid rgba(220, 224, 230, 0.1);
+  box-shadow: 0px 10px 16px rgba(128, 152, 213, 0.2);
+  border-radius: 3px;
+
+  position: relative;
+  width: 214px;
+  margin-right: 40px;
+  .title{
+    p{
+     margin: 0;
+     padding: 15px 20px;
+     font-family: "Source Sans Pro";
+     font-style: normal;
+     font-weight: normal;
+     font-size: 16px;
+     line-height: 21px;
+     color: #323C47;
+    }
+
+  }
+  .filter{
+    height: 1px;
+    overflow: hidden;
+    transition: all .5s;
+    &.open{
+      background: #FFFFFF;
+      border: 1px solid rgba(220, 224, 230, 0.1);
+      box-shadow: 0px 10px 16px rgba(128, 152, 213, 0.2);
+      border-radius: 3px;
+
+      height: 90px;
+      padding-top: 10px;
+      box-sizing: border-box;
+      overflow: hidden;
+      transition: all 0.5s;
+      position: absolute;
+      left: 0;
+      bottom: calc(-100% - 50px);
+      background: #fff;
+      z-index: 9;
+    }
+  }
+  .price{
+    display: flex;
+    .filter-section{
+      width: 80px;
+      padding: 0 10px;
+    }
+    label{
+      font-family: "Source Sans Pro";
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 21px;
+      color: #707683;
+      display: block;
+      margin-bottom: 7px;
+    }
+    .inputs{
+      border: 1px solid #DCE0E6;
+      box-sizing: border-box;
+      border-radius: 2px;
+      font-size: 14px;
+      padding: 12px 5px;
+    }
+  }
+}
+
+.set-filter-btn{
+  padding: 15px 20px;
+  margin: 0;
+  font-family: "Source Sans Pro";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 21px;
+  color: #323C47;
+  height: fit-content;
+  border: 1px solid black;
+  cursor: pointer;
 }
