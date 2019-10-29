@@ -36,10 +36,10 @@ export class ItemsComponent implements OnInit {
         // });
       });
 
-      this.GetOffersService.subCategory$.subscribe(data => {
-        this.subcategory = data;
-        this.GetOffersService.getOffers(this.currentFilters);
-      });
+      // this.GetOffersService.subCategory$.subscribe(data => {
+      //   this.subcategory = data;
+      //   this.GetOffersService.getOffers(this.currentFilters);
+      // });
 
       this.GetOffersService.offersList.subscribe(data => {
 

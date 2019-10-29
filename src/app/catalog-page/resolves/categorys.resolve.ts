@@ -14,6 +14,7 @@ export class CategorysResolver implements Resolve<any> {
   }
   resolve(route: ActivatedRouteSnapshot) {
     this.aPiService.getCategorieItems(route.params.category);
+
   }
 }
 

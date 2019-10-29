@@ -18,8 +18,8 @@ export class OffersResolver implements Resolve<any> {
 
   }
   resolve(route: ActivatedRouteSnapshot) {
-    // console.log('resolver');
-    this.getOffersService.setSubcategoryValue(route.params.subcategorie);
+    const subcategory: string = route.params.subcategorie.split('?' && '%')[0];
+    this.getOffersService.setSubcategoryValue(subcategory);
   }
 }
 

@@ -23,75 +23,64 @@ export class GetOffersService {
   private filters = new BehaviorSubject(this._filterValue);
   public filterVaraibles: Observable<FilterInterface>;
 
-
-
-
-
   constructor(
     private http: HttpClient,
     // tslint:disable-next-line: variable-name
     private _route: ActivatedRoute,
     // tslint:disable-next-line: variable-name
-    private _router: Router
-  ) // tslint:disable-next-line: variable-name
-  {
+    private _router: Router // tslint:disable-next-line: variable-name
+  ) {
     this.offersList = this._offersList.asObservable();
     this.filterVaraibles = this.filters.asObservable();
-
   }
 
   // -------- put subcategory value from resolver ----------------//
   public setSubcategoryValue(subcategory: string) {
     // console.log('set.subval');
     this._subCategory.next(subcategory);
+    // ??????????
     this.subCategory$.subscribe(res => (this._filterValue.subCategory = res));
   }
 
   // -------- main functions in catalog ----------------//
 
   getOffers(link: string | boolean | object) {
-    // console.log(this._filterValue);
     this._offersList.next(null);
-    // console.log(this.currentFilters);
 
     if (link === undefined) {
       this._filterValue = {
         filterBy: '',
-        subCategory: '',
+        subCategory: ''
       };
     } else if (typeof link === 'string') {
       // this.sortParams(link);
-      this.http.get('/catalog?' + link).subscribe((res: OffersListInterface) => {
-        this._offersList.next(res);
-        // console.log(res);
-      });
+      this.http
+        .get('/catalog?' + link)
+        .subscribe((res: OffersListInterface) => {
+          this._offersList.next(res);
+        });
       return;
     }
     // this.filters.next(this._filterValue);
 
-    this.http.get('/catalog?subCategory=' + this._filterValue.subCategory
-    )
-    .subscribe((res: OffersListInterface) => {
-      this._offersList.next(res);
-      // console.log(res);
-    });
+    this.http
+      .get('/catalog?subCategory=' + this._filterValue.subCategory)
+      .subscribe((res: OffersListInterface) => {
+        this._offersList.next(res);
+      });
   }
 
   // tslint:disable-next-line: variable-name
   setFilters(_filters: FilterInterface) {
-    this._filterValue = _filters;
-    this.filters.next(_filters);
 
-    // console.log('setFilters() - _filterValue');
-    // console.log(this._filterValue);
+      this._filterValue = _filters;
+      this.filters.next(_filters);
 
-    return true;
+      this.pushFilters(_filters);
 
-    // this.pushFilters(_filters);
   }
 
   pushFilters(getfilters?: FilterInterface) {
-    // this.catalogData.next(null);
     this._filterValue = getfilters;
 
     // --------------------delete empty filters -----------------------//
@@ -103,18 +92,14 @@ export class GetOffersService {
 
     // tslint:disable-next-line: variable-name
     const _filters = Object.keys(this.filters.value).map(key => key + '=' + this.filters.value[key]).join('&');
-    // console.log(_filters);
-    // console.log(this._route);
-    // this._router.navigate(['/catalog/Programming/HybridMobileApplications/'], {
 
-    //   relativeTo: this._route,
-    //   queryParams: {
-    //     _filters
-    //   },
-    //   queryParamsHandling: 'merge',
-    // });
+    this._router.navigate([this._router.url], {
+      relativeTo: this._route,
+      queryParams: getfilters,
+      queryParamsHandling: 'merge'
+    });
 
+    // console.log("getOffers from service - pushFilters()")
     this.getOffers(_filters);
   }
-
 }

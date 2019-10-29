@@ -1,9 +1,9 @@
 <div class="wrapper">
   <div class="filters-list">
     <div class="filter-item f-price">
-      <div class="title">
+      <div class="title" (click)="showFullFilter()">
         <p>Бюджет</p>
-        <div class="btn-show-full" (click)="showFullFilter()" [ngClass]="fliterOpen? 'open': ''"></div>
+        <div class="btn-show-full" [ngClass]="fliterOpen? 'open': ''"></div>
       </div>
       <div class="filter price" [ngClass]="fliterOpen? 'open': ''">
         <div class="filter-section">
@@ -54,7 +54,7 @@
 
       </div> -->
     </div>
-    <div class="set-filter-btn" (click)="loadData()">
+    <div class="set-filter-btn">
       <span>фильтровать</span>
     </div>
   </div>

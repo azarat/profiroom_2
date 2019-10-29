@@ -35,25 +35,13 @@ export class FilterComponent implements OnInit {
 
   onFilterChange() {
     this._getOffersService.setFilters(this.filterData);
-    // console.log('onFilterChange');
-    // console.log(this.filterData);
-  }
-
-
-
-  loadData() {
-    // console.log('loadData()');
-    // console.log(this.filterData);
-    this._getOffersService.pushFilters(this.filterData);
   }
 
   showFullFilter() {
     if (this.fliterOpen === null) {
       this.fliterOpen = true;
-      console.log(this.fliterOpen);
     } else {
       this.fliterOpen = !this.fliterOpen;
-      console.log(this.fliterOpen);
     }
 
   }
