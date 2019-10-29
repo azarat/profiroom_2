@@ -11,6 +11,7 @@ import { GetOffersService } from '../../services/get-offers.service';
 })
 export class FilterComponent implements OnInit {
 
+  public fliterOpen = false;
   // tslint:disable-next-line: variable-name
   public filterData: FilterInterface = {};
   public subcategory;
@@ -44,6 +45,17 @@ export class FilterComponent implements OnInit {
     // console.log('loadData()');
     // console.log(this.filterData);
     this._getOffersService.pushFilters(this.filterData);
+  }
+
+  showFullFilter() {
+    if (this.fliterOpen === null) {
+      this.fliterOpen = true;
+      console.log(this.fliterOpen);
+    } else {
+      this.fliterOpen = !this.fliterOpen;
+      console.log(this.fliterOpen);
+    }
+
   }
 
 }

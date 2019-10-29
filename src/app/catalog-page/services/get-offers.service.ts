@@ -86,6 +86,8 @@ export class GetOffersService {
     // console.log(this._filterValue);
 
     return true;
+
+    // this.pushFilters(_filters);
   }
 
   pushFilters(getfilters?: FilterInterface) {
@@ -102,7 +104,8 @@ export class GetOffersService {
     // tslint:disable-next-line: variable-name
     const _filters = Object.keys(this.filters.value).map(key => key + '=' + this.filters.value[key]).join('&');
     // console.log(_filters);
-    // this._router.navigate(['/catalog?'], {
+    // console.log(this._route);
+    // this._router.navigate(['/catalog/Programming/HybridMobileApplications/'], {
 
     //   relativeTo: this._route,
     //   queryParams: {
