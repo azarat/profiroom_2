@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LocalizeRouterService } from 'localize-router';
-import { UserServiceModel } from 'src/app/models/user-service/user-service.model';
+import { UserService } from 'src/app/models/user-service/user-service.model';
 import { UserOffersService } from '../services/user-offers.service';
+import { map } from 'rxjs/operators';
+import {plainToClass} from 'class-transformer';
 
 @Component({
   selector: 'app-my-services-home',
@@ -11,20 +13,22 @@ import { UserOffersService } from '../services/user-offers.service';
 })
 export class MyServicesHomeComponent implements OnInit {
 
-  userOffers: UserServiceModel = null;
+  userOffers: UserService ;
   activatedRoute: ActivatedRoute;
 
   constructor(
     private router: Router,
     private localize: LocalizeRouterService,
-    private userOfferService: UserOffersService
+    private userOfferService: UserOffersService,
+    // private _userService: UserServices
   ) { }
 
   ngOnInit() {
     this.userOfferService.showUserServices()
       .subscribe((res: any) => {
-        console.log(res);
-        this.userOffers = res.userOffers.slice().reverse();
+        console.log(res)
+        // let userOffers = plainToClass()
+        // this.userOffers = res.userOffers.slice().reverse();
       });
   }
   createNewService() {
@@ -38,7 +42,6 @@ export class MyServicesHomeComponent implements OnInit {
     this.router.navigate([translatedPath]);
 
     this.router.navigate([translatedPath],
-
        {
         relativeTo: this.activatedRoute,
         queryParams: {
@@ -47,6 +50,5 @@ export class MyServicesHomeComponent implements OnInit {
         queryParamsHandling: 'merge',
       }
     );
-    console.log(this.router.url);
   }
 }

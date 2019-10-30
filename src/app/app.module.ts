@@ -6,7 +6,7 @@ import { CoreModule } from './core/core.module';
 import { AppRoutingModule } from './app-routing.module';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import 'reflect-metadata';
 @NgModule({
   declarations: [
     AppComponent,

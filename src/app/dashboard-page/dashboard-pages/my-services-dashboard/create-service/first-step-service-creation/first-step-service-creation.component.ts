@@ -6,7 +6,7 @@ import { CategoryInterface } from 'src/app/shared/interfaces/category.interface'
 import { FileClass } from '../../classes/file.class';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { UserServiceModel } from 'src/app/models/user-service/user-service.model';
+import { UserService } from 'src/app/models/user-service/user-service.model';
 @Component({
   selector: 'app-first-step-service-creation',
   templateUrl: './first-step-service-creation.component.html',
@@ -15,7 +15,7 @@ import { UserServiceModel } from 'src/app/models/user-service/user-service.model
 export class FirstStepServiceCreationComponent implements OnInit {
   public categoryList: CategoryInterface;
   public firstStepForm: FormGroup;
-  public userServiceForm: UserServiceModel;
+  public userService: UserService;
 
   public categories = [];
   // tslint:disable-next-line: variable-name
@@ -45,8 +45,6 @@ export class FirstStepServiceCreationComponent implements OnInit {
 
   ngOnInit() {
 
-
-
     this.firstStepForm = this.fb.group({
       name: [null],
       category: [null],
@@ -56,12 +54,15 @@ export class FirstStepServiceCreationComponent implements OnInit {
     });
 
     this.userOffersService.userOffer$
-      .subscribe(servData => {
-        if (servData) {
-
-          console.log(servData.userOffers);
-          this.firstStepForm = servData.userOffers;
-          console.log(this.firstStepForm );
+      .subscribe(response => {
+        console.log(response);
+        if (response) {
+          console.log(response)
+          console.log('test1');
+          this.userService = response;
+        } else {
+          console.log('test2');
+          this.userService = null;
         }
       });
   }

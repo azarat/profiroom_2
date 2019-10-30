@@ -1,5 +1,5 @@
 <div class="step-wrapper">
-  <form #form="ngForm" [formGroup]="firstStepForm">
+  <form #form="ngForm" [formGroup]="firstStepForm" *ngIf="userService">
     <h3>1. Титульная информация</h3>
 
     <h5>Название услуги</h5>
@@ -18,7 +18,8 @@
     >
       <textarea
         #serviceTit
-        formControlName="name"
+        formControlName="userService.name"
+        [(ngModel)]="userService.name"
         matInput
         required
         maxlength="70"
@@ -28,7 +29,7 @@
         >{{ serviceTit.value.length }} из 70 максимально</mat-hint
       >
     </mat-form-field>
-
+    <!--
     <div class="service-selects">
       <div class="category">
         <h5>Категория Вашей деятельности</h5>
@@ -45,6 +46,7 @@
           <mat-select
             (ngModelChange)="onFiltersChange()"
             formControlName="category"
+            [(ngModel)]="userServiceForm.category"
             required
           >
             <mat-option
@@ -72,6 +74,7 @@
             #serviceSubCategory
             formControlName="subcategory"
             required
+            [(ngModel)]="userServiceForm.subcategory"
           >
             <mat-option
               *ngFor="let subcategory of sub_categories"
@@ -100,7 +103,8 @@
       >
         <textarea
           #serviceTitle
-          formControlName="tags"
+          formControlName="userServiceForm.tags"
+          [(ngModel)]="userServiceForm.tags"
           matInput
           required
           placeholder="Поисковые теги"
@@ -141,10 +145,12 @@
           <label for="file">кликните сюда</label>
         </div>
       </div>
-    </div>
+    </div> -->
     <div class="form-butons">
-      <button class="back" >сохранить и выйти</button>
-      <button class="save" (click)="registrate()">сохранить и продолжить</button>
+      <button class="back">сохранить и выйти</button>
+      <button class="save" (click)="registrate()">
+        сохранить и продолжить
+      </button>
     </div>
   </form>
 </div>

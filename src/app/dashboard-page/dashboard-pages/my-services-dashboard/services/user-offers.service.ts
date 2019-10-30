@@ -29,7 +29,9 @@ export class UserOffersService {
   public changeUserService(offerId) {
     return this.http.post('/getOffer', offerId)
     .subscribe(
-      res => this.userOffer.next(res)
+      res => {
+        this.userOffer.next(res);
+      }
     );
   }
 
