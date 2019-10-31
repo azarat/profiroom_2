@@ -15,11 +15,11 @@ export class CreateServiceComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.queryParams.subscribe(p => {
-      if (p.offerId) {
-        this.userOffersService.changeUserService(p);
-      }
-    });
+    // this.route.queryParams.subscribe(p => {
+    //   if (p.offerId) {
+    //     this.userOffersService.changeUserService(p);
+    //   }
+    // });
   }
 
 }

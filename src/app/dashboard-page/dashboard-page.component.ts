@@ -24,7 +24,7 @@ export class DashboardPageComponent implements OnInit {
   ngOnInit() {
     this.userService.getDashboardRes()
     .subscribe((res: any ) => {
-      console.log(res);
+      
     });
 
   }

@@ -6,19 +6,23 @@ import { CategoryInterface } from 'src/app/shared/interfaces/category.interface'
 import { FileClass } from '../../classes/file.class';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { UserService } from 'src/app/models/user-service/user-service.model';
+import { UserServiceModel } from 'src/app/models/user-service/user-service.model';
+import { filter } from 'rxjs/operators';
+
+import { plainToClass, Expose } from 'class-transformer';
+
+
 @Component({
   selector: 'app-first-step-service-creation',
   templateUrl: './first-step-service-creation.component.html',
   styleUrls: ['./first-step-service-creation.component.scss']
 })
 export class FirstStepServiceCreationComponent implements OnInit {
-  public categoryList: CategoryInterface;
+  public categoryList: CategoryInterface[] = [];
   public firstStepForm: FormGroup;
-  public userService: UserService;
+  public userService: UserServiceModel;
 
   public categories = [];
-  // tslint:disable-next-line: variable-name
   public sub_categories = [];
 
   files = [];
@@ -32,59 +36,71 @@ export class FirstStepServiceCreationComponent implements OnInit {
     private http: HttpClient,
     public translate: TranslateService,
     private router: Router,
+    private _route: ActivatedRoute,
     private activatedRoute: ActivatedRoute,
-    // tslint:disable-next-line: variable-name
     private _formConverter$: FileClass
   ) {
     this.userOffersService.getCategorys()
-      .subscribe((res: CategoryInterface) => {
-        this.categoryList = res;
+      .subscribe((res:any) => {
+        
+        this.categoryList = res.category;
         this._loadCategoriesFilter();
       });
   }
 
   ngOnInit() {
+    if (this._route.snapshot.queryParams.offerId) {
+      this.userOffersService.changeService(this._route.snapshot.queryParams)
+        .pipe(
+          filter((response: any) => !!response)
+        )
+        .subscribe(response => {
+          this.userService = plainToClass(UserServiceModel, response.userOffer);
+          // this._loadSubcategoryFilter()
+          console.log(this.userService)
+        })
+    } else {
+      this.userService = plainToClass(UserServiceModel, {}, { excludeExtraneousValues: true });
+
+    }
 
     this.firstStepForm = this.fb.group({
       name: [null],
       category: [null],
-      subcategory: [null, Validators.required],
+      subCategory: [null, Validators.required],
       tags: [null],
+      files: [null],
       step: 1
     });
-
-    this.userOffersService.userOffer$
-      .subscribe(response => {
-        console.log(response);
-        if (response) {
-          console.log(response)
-          console.log('test1');
-          this.userService = response;
-        } else {
-          console.log('test2');
-          this.userService = null;
-        }
-      });
   }
   onFiltersChange() {
     this._loadCategoriesFilter();
     this._loadSubcategoryFilter();
-
   }
 
-  // tslint:disable-next-line: variable-name
   private _loadCategoriesFilter = () => {
-    this.categories = this.categoryList.category;
+    this.categories = this.categoryList;
   }
 
-  // tslint:disable-next-line: variable-name
   private _loadSubcategoryFilter = () => {
+    // if(!this.userService) {
+    //    this.sub_categories = [];
+    //   this.userService.subСategory = null;
+    //   return
+    // }
     if (!this.firstStepForm.value.category) {
-      this.sub_categories = [];
-      this.firstStepForm.value.subcategory = null;
-      return;
+      if(this.userService.category === undefined){
+        this.sub_categories = [];
+        this.userService.subСategory = null;
+        return
+      } else {
+        const x: any = this.categoryList.find((d: any) => d.link === this.userService.category);
+        this.sub_categories = x.sub_categories;
+        return;
+      }
     }
-    const x: any = this.categoryList.category.find((d: any) => d.link === this.firstStepForm.value.category);
+    
+    const x: any = this.categoryList.find((d: any) => d.link === this.firstStepForm.value.category);
     this.sub_categories = x.sub_categories;
   }
 
@@ -122,8 +138,6 @@ export class FirstStepServiceCreationComponent implements OnInit {
   //  --------------- file uploading ---------------
 
   fileProgress = (event: any) => {
-
-    // tslint:disable-next-line: prefer-for-of
     for (let index = 0; index < event.length; index++) {
       this.files.push(event[index]);
       this.preview(event[index]);
@@ -136,7 +150,6 @@ export class FirstStepServiceCreationComponent implements OnInit {
     }
     const reader = new FileReader();
     reader.readAsDataURL(el);
-    // tslint:disable-next-line: variable-name
     reader.onload = (_event) => {
       this.previewUrl.push(reader.result);
     };

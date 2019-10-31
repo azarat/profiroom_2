@@ -7,8 +7,8 @@ import { BehaviorSubject } from 'rxjs';
 
 export class UserOffersService {
 
-  private userOffer = new BehaviorSubject(null);
-  public userOffer$ = this.userOffer.asObservable();
+  // private userOffer = new BehaviorSubject(null);
+  // public userOffer$ = this.userOffer.asObservable();
 
   constructor(
     private http: HttpClient
@@ -18,7 +18,7 @@ export class UserOffersService {
     return this.http.get<any>('/categories');
   }
 
-  public showUserServices() {
+  public showServices() {
     return this.http.get('/userOffers');
   }
 
@@ -26,13 +26,13 @@ export class UserOffersService {
     return this.http.post<any>('/newoffer', offerData);
   }
 
-  public changeUserService(offerId) {
-    return this.http.post('/getOffer', offerId)
-    .subscribe(
-      res => {
-        this.userOffer.next(res);
-      }
-    );
+  public changeService(offerId) {
+    return this.http.post('/getOffer', offerId);
+    // .subscribe(
+    //   res => {
+    //     this.userOffer.next(res);
+    //   }
+    // );
   }
 
 }

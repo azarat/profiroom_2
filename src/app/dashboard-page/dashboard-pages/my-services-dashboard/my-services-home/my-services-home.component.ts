@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LocalizeRouterService } from 'localize-router';
-import { UserService } from 'src/app/models/user-service/user-service.model';
+import { UserServiceModel } from 'src/app/models/user-service/user-service.model';
 import { UserOffersService } from '../services/user-offers.service';
 import { map } from 'rxjs/operators';
 import {plainToClass} from 'class-transformer';
@@ -13,35 +13,30 @@ import {plainToClass} from 'class-transformer';
 })
 export class MyServicesHomeComponent implements OnInit {
 
-  userOffers: UserService ;
+  public userService: UserServiceModel = null;
   activatedRoute: ActivatedRoute;
-
+  translatedPath: any = this.localize.translateRoute('/dashboard/my-services/create');
   constructor(
     private router: Router,
     private localize: LocalizeRouterService,
     private userOfferService: UserOffersService,
-    // private _userService: UserServices
   ) { }
 
   ngOnInit() {
-    this.userOfferService.showUserServices()
+    this.userOfferService.showServices()
       .subscribe((res: any) => {
-        console.log(res)
-        // let userOffers = plainToClass()
-        // this.userOffers = res.userOffers.slice().reverse();
+        if (res.userOffers.length > 0) {
+          this.userService = plainToClass(UserServiceModel, res.userOffers.slice().reverse());
+        }
       });
   }
   createNewService() {
-    const translatedPath: any = this.localize.translateRoute('/dashboard/my-services/create');
-    this.router.navigate([translatedPath]);
+    this.router.navigate([this.translatedPath]);
   }
 
   openOffer(id: number) {
 
-    const translatedPath: any = this.localize.translateRoute('/dashboard/my-services/create');
-    this.router.navigate([translatedPath]);
-
-    this.router.navigate([translatedPath],
+    this.router.navigate([this.translatedPath],
        {
         relativeTo: this.activatedRoute,
         queryParams: {

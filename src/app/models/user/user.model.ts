@@ -1,4 +1,4 @@
-import { UserService } from '../user-service/user-service.model';
+import { UserServiceModel } from '../user-service/user-service.model';
 
 export class User {
   id: number;
@@ -20,5 +20,13 @@ export class User {
   role_id: number;
   // tslint:disable-next-line: variable-name
   updated_at: any;
-  userServices: UserService[];
+  userServices: UserServiceModel[];
+
+  // constructor(data) {
+  //   data = data || {};
+  //   this.id = data.id || null;
+  //   this.name = data.name || null;
+  //   this.surname = data.surname || null;
+
+  // }
 }
