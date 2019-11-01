@@ -25,54 +25,66 @@ export class FirstStepServiceCreationComponent implements OnInit {
   public categories = [];
   public sub_categories = [];
 
-  files = [];
-  previewUrl = [];
-  fileUploadProgress: string = null;
-  uploadedFilePath: string = null;
+  files: any = [];
+  previewUrl: any;
+
 
   constructor(
     private userOffersService: UserOffersService,
     private fb: FormBuilder,
-    private http: HttpClient,
     public translate: TranslateService,
     private router: Router,
     private _route: ActivatedRoute,
     private activatedRoute: ActivatedRoute,
-    private _formConverter$: FileClass
   ) {
     this.userOffersService.getCategorys()
-      .subscribe((res:any) => {
-        
+      .subscribe((res: any) => {
+
         this.categoryList = res.category;
         this._loadCategoriesFilter();
       });
   }
 
   ngOnInit() {
-    if (this._route.snapshot.queryParams.offerId) {
-      this.userOffersService.changeService(this._route.snapshot.queryParams)
-        .pipe(
-          filter((response: any) => !!response)
-        )
-        .subscribe(response => {
-          this.userService = plainToClass(UserServiceModel, response.userOffer);
-          // this._loadSubcategoryFilter()
-          console.log(this.userService)
-        })
-    } else {
-      this.userService = plainToClass(UserServiceModel, {}, { excludeExtraneousValues: true });
-
-    }
+    this.getUserService();
 
     this.firstStepForm = this.fb.group({
       name: [null],
       category: [null],
       subCategory: [null, Validators.required],
       tags: [null],
-      files: [null],
+      files: null,
       step: 1
     });
   }
+
+  //  ** load userServiceData from server
+  getUserService() {
+    let request
+    if (this._route.snapshot.queryParams.offerId) {
+      request = this._route.snapshot.queryParams;
+
+    } else {
+      request = {
+        offerId: 0
+      }
+    }
+    this.userOffersService.getServiceData(request)
+      .pipe(
+        filter((response: any) => !!response)
+      )
+      .subscribe(response => {
+        this.userService = plainToClass(UserServiceModel, response.userOffer);
+        console.log(this.userService)
+        if(this.userService.files){
+          this.previewUrl = this.userService.files
+
+        }
+      })
+    
+  }
+
+
   onFiltersChange() {
     this._loadCategoriesFilter();
     this._loadSubcategoryFilter();
@@ -83,13 +95,9 @@ export class FirstStepServiceCreationComponent implements OnInit {
   }
 
   private _loadSubcategoryFilter = () => {
-    // if(!this.userService) {
-    //    this.sub_categories = [];
-    //   this.userService.subСategory = null;
-    //   return
-    // }
+
     if (!this.firstStepForm.value.category) {
-      if(this.userService.category === undefined){
+      if (this.userService.category === undefined) {
         this.sub_categories = [];
         this.userService.subСategory = null;
         return
@@ -99,24 +107,13 @@ export class FirstStepServiceCreationComponent implements OnInit {
         return;
       }
     }
-    
+
     const x: any = this.categoryList.find((d: any) => d.link === this.firstStepForm.value.category);
     this.sub_categories = x.sub_categories;
   }
 
   registrate = () => {
-    const formData: FormData = new FormData();
-
-    for (const key of Object.keys(this.firstStepForm.value)) {
-      formData.append(key, this.firstStepForm.value[key]);
-    }
-    // ------- put files in FormData -------//
-    this.files.forEach(el => {
-      formData.append('filesname[]', el, el.name);
-    });
-
-
-    this.userOffersService.serviceCreation(formData).subscribe(
+    this.userOffersService.serviceCreation(this.firstStepForm.value).subscribe(
       (res: object) => {
         if (res) {
           this.setQuerryParams(res);
@@ -138,23 +135,42 @@ export class FirstStepServiceCreationComponent implements OnInit {
   //  --------------- file uploading ---------------
 
   fileProgress = (event: any) => {
+    const formData: FormData = new FormData();
+    console.log(this.userService.id);
+    formData.append('offerId', this.userService.id);
+    this.files = new Array;
     for (let index = 0; index < event.length; index++) {
       this.files.push(event[index]);
-      this.preview(event[index]);
     }
+    // ------- put files in FormData -------//
+    this.files.forEach(el => {
+      formData.append('filesname[]', el, el.name);
+    });
+
+    // ------- load Files -----
+
+    this.userOffersService.uploadFiles(formData)
+      .subscribe((res: []) => {
+        this.previewUrl = res;
+        console.log(res)
+      })
   }
 
-  preview = (el) => {
-    if (el.type.match(/image\/*/) == null) {
-      return;
-    }
-    const reader = new FileReader();
-    reader.readAsDataURL(el);
-    reader.onload = (_event) => {
-      this.previewUrl.push(reader.result);
-    };
+
+  // --------------- delete files -----------------//
+
+  deleteAttachment(index) {
+    this.userOffersService.deleteFile({ id: index })
+      .subscribe((res: any) => {
+        console.log(res);
+        if (res.status == 'ok') {
+
+          this.previewUrl = this.previewUrl.filter((obj: any) => {
+            return obj.id !== index;
+          })
+        }
+
+      })
   }
 
 }
-
-

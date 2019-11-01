@@ -56,12 +56,17 @@
       <h5>Загрузка портфолио</h5>
 
       <div class="items">
-          <ng-container *ngIf="userService.files">
-              <img *ngFor="let item of userService.files" [src]="'https://www.thecubetest.site/Backend//storage/app/' + item.file" height="300" />
-            </ng-container>
+          <!-- <ng-container *ngIf="userService.files">
+              <img *ngFor="let item of userService.files" [src]="'https://www.thecubetest.site/Backend/storage/app/' + item.name" height="300" />
 
         <ng-container *ngIf="previewUrl">
-          <img *ngFor="let ingUrl of previewUrl" [src]="ingUrl" height="300" />
+          <div class="img-item" *ngFor="let ingUrl of previewUrl, let i = index" >
+              <button class="delete-file" (click)="deleteAttachment(ingUrl.id)">
+                </button>
+              <img [src]="'https://www.thecubetest.site/Backend/storage/app/' + ingUrl.link" height="300" />
+            
+          </div>
+          
         </ng-container>
 
         <div class="dr-dp" appDragDrop (onFileDropped)="fileProgress($event)" ngbPopover="Добавьте запоминающийся контент в свою галерею, чтобы отличаться от конкурентов.

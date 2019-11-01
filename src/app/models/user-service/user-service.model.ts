@@ -2,13 +2,14 @@ import { Expose } from 'class-transformer';
 
 export class UserServiceModel {
   @Expose() offerId: number;
+  @Expose() id: any;
   @Expose() name: string;
   @Expose() category: string;
   @Expose() subCategories: any;
   @Expose() subСategory: string;
   @Expose() tags: string;
   @Expose() step: number;
-  @Expose() files: [];
+  @Expose() files: any;
 
   // constructor(data) {
   //   data = data || {};

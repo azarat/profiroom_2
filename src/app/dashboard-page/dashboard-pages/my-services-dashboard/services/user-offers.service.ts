@@ -26,7 +26,7 @@ export class UserOffersService {
     return this.http.post<any>('/newoffer', offerData);
   }
 
-  public changeService(offerId) {
+  public getServiceData(offerId) {
     return this.http.post('/getOffer', offerId);
     // .subscribe(
     //   res => {
@@ -35,4 +35,11 @@ export class UserOffersService {
     // );
   }
 
+  uploadFiles(files){
+    return this.http.post('/loadOfferFiles', files);
+  }
+
+  deleteFile(id){
+    return this.http.post('/deleteOfferFile', id);
+  }
 }
