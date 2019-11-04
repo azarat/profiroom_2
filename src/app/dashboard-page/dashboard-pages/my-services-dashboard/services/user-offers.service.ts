@@ -28,11 +28,6 @@ export class UserOffersService {
 
   public getServiceData(offerId) {
     return this.http.post('/getOffer', offerId);
-    // .subscribe(
-    //   res => {
-    //     this.userOffer.next(res);
-    //   }
-    // );
   }
 
   uploadFiles(files){

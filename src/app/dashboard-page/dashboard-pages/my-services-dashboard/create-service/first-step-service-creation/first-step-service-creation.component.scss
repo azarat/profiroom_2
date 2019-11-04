@@ -19,7 +19,7 @@ form {
 }
 
 form::ng-deep {
-  * {
+  *:not(mat-icon) {
     font-family: "Source Sans Pro", sans-serif;
   }
 
@@ -32,6 +32,7 @@ form::ng-deep {
   }
 
   .mat-form-field-outline-thick {
+    background-color: #fff;
     div {
       color: rgba(0, 0, 0, 0.1);
       border-width: 0px;
@@ -48,11 +49,24 @@ form::ng-deep {
     text-transform: uppercase;
     margin: 0 0 13px;
   }
-
+  // .example-chip-list {
+  //   .mat-form-field-infix {
+  //     border: none;
+  //     padding: 0;
+  //   }
+  // }
+mat-form-field{
+  &:not(.example-chip-list ) {
+    .mat-form-field-infix {
+      border: none;
+      padding: 0;
+    }
+  }
   .mat-form-field-infix {
     border: none;
-    padding: 0;
   }
+}
+
 
   .mat-form-field-invalid .mat-input-element {
     caret-color: #323c47;
@@ -60,6 +74,7 @@ form::ng-deep {
 
   .mat-form-field-outline:first-of-type {
     color: #dce0e6;
+    background-color: #fff;
 
     &+div div {
       color: #dce0e6;
@@ -171,22 +186,24 @@ form::ng-deep {
       // }
       .mat-form-field-outline:first-of-type {
         box-shadow: 0px 10px 16px rgba(128, 152, 213, 0.1);
-
+        background-color: #fff;
         div {
           border-color: rgba(220, 224, 230, 0.1);
         }
       }
 
       .mat-form-field-outline-thick {
+        background-color: #fff;
         div {
           border-width: 1px;
-          color: rgba(220, 224, 230, 0.1);
+          color: rgba(255,255,255);
           box-shadow: 0px 10px 16px rgba(128, 152, 213, 0.1);
         }
       }
 
       .mat-form-field-infix {
         padding: 15px 0 10px 0;
+        border-top: none;
       }
 
       .ng-star-inserted {
@@ -284,16 +301,49 @@ form::ng-deep {
   display: flex;
   flex-wrap: wrap;
   .img-item {
+    width: 198px;
+    height: 198px;
     margin-right: 3%;
     margin-bottom: 20px;
+    position: relative;
+    button {
+      position: absolute;
+      height: 24px;
+      width: 24px;
+      border-radius: 50%;
+      background-color: transparent;
+      border: 1px solid red;
+      box-shadow: none;
+      right: 13px;
+      top: 13px;
+      outline: none;
+      padding: 0;
+      cursor: pointer;
+      &:before{
+        position: absolute;
+        content: '\e900';
+        font-size: 18px;
+        font-family: 'icomoon';
+        transform: translate(-50%, -50%);
+        color:  red;
+      }
+    }
     &:nth-child(3n + 3) {
       margin-right: 0;
     }
+    &:before {
+      position: absolute;
+      content: '';
+      width: 100%;
+      height: 100%;
+      border: 2px dashed #DCE0E6;
+
+    }
   }
   img {
-    
+
     object-fit: contain;
-    
+
   }
 
   .img-item +.dr-dp {
@@ -345,7 +395,8 @@ form::ng-deep {
   img {
     width: 198px;
     height: 198px;
-    border: 2px dashed #DCE0E6;
+
+
   }
 }
 

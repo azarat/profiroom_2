@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
-import { CategorysListService } from '../../core/services/get-categorys.service';
+import { CategorysListService } from '../../core/services/categorys.service';
 import { SubCategoryListInterface } from '../../shared/interfaces/subcategories-list.interface';
 
 import { CategoryResolver } from '../resolves/categories.resolve';

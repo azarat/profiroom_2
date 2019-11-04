@@ -9,7 +9,7 @@ import { FirstStepServiceCreationComponent } from './create-service/first-step-s
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule, MatAutocompleteModule, MatCheckboxModule,
-  MatIconModule, MatTooltipModule, MatSelectModule, MatButtonModule, MatInputModule } from '@angular/material';
+  MatIconModule, MatTooltipModule, MatSelectModule, MatButtonModule, MatInputModule, MatChipsModule } from '@angular/material';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { DragDropDirective } from './directives/drag-drop.directive';
 import { SecondStepCreationComponent } from './create-service/second-step-creation/second-step-creation.component';
@@ -25,16 +25,16 @@ const servicesRoutes: Routes = [
   {
     path: 'create',
     component: CreateServiceComponent,
-    children: [
-      {
-        path: '',
-        component: FirstStepServiceCreationComponent
-      },
-      {
-        path: 'second-step',
-        component: SecondStepCreationComponent
-      }
-  ]
+  //   children: [
+  //     {
+  //       path: '',
+  //       component: FirstStepServiceCreationComponent
+  //     },
+  //     {
+  //       path: 'second-step',
+  //       component: SecondStepCreationComponent
+  //     }
+  // ]
   }
 ];
 
@@ -60,6 +60,7 @@ const servicesRoutes: Routes = [
     MatInputModule,
     MatButtonModule,
     MatTooltipModule,
+    MatChipsModule,
     NgbModule,
     MatSelectModule,
     CKEditorModule,

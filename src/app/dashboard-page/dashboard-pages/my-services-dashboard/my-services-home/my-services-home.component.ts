@@ -5,6 +5,7 @@ import { UserServiceModel } from 'src/app/models/user-service/user-service.model
 import { UserOffersService } from '../services/user-offers.service';
 import { map } from 'rxjs/operators';
 import {plainToClass} from 'class-transformer';
+import { untilDestroyed } from 'ngx-take-until-destroy';
 
 @Component({
   selector: 'app-my-services-home',
@@ -30,6 +31,10 @@ export class MyServicesHomeComponent implements OnInit {
         }
       });
   }
+
+  ngOnDestroy() {
+  }
+
   createNewService() {
     this.router.navigate([this.translatedPath]);
   }

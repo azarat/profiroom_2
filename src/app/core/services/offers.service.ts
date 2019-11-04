@@ -10,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
 
 
 @Injectable()
-export class GetOffersService {
+export class OffersService {
 
   // tslint:disable-next-line: variable-name
   private _offersList = new BehaviorSubject(null);
