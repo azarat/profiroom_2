@@ -3,8 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { LocalizeRouterService } from 'localize-router';
 import { UserServiceModel } from 'src/app/models/user-service/user-service.model';
 import { UserOffersService } from '../services/user-offers.service';
-import { map } from 'rxjs/operators';
-import {plainToClass} from 'class-transformer';
+import { map, filter } from 'rxjs/operators';
+import { plainToClass } from 'class-transformer';
 import { untilDestroyed } from 'ngx-take-until-destroy';
 
 @Component({
@@ -36,13 +36,23 @@ export class MyServicesHomeComponent implements OnInit {
   }
 
   createNewService() {
-    this.router.navigate([this.translatedPath]);
+    this.userOfferService.serviceCreation()
+      .pipe(filter((response: any) => !!response))
+      .subscribe(res => {
+        this.router.navigate([this.translatedPath],
+          {
+            relativeTo: this.activatedRoute,
+            queryParams: res,
+            queryParamsHandling: 'merge',
+          });
+      });
+
+
   }
 
   openOffer(id: number) {
-
     this.router.navigate([this.translatedPath],
-       {
+      {
         relativeTo: this.activatedRoute,
         queryParams: {
           offerId: id

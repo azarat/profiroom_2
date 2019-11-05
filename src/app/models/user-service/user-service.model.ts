@@ -10,6 +10,8 @@ export class UserServiceModel {
   @Expose() tags: [{ name: string }];
   @Expose() step: number;
   @Expose() files: any;
+  @Expose() description: any;
+
 
   // constructor(data) {
   //   data = data || {};

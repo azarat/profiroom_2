@@ -13,9 +13,9 @@ import { MatFormFieldModule, MatAutocompleteModule, MatCheckboxModule,
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { DragDropDirective } from './directives/drag-drop.directive';
 import { SecondStepCreationComponent } from './create-service/second-step-creation/second-step-creation.component';
-import { CKEditorModule } from 'ng2-ckeditor';
 import { FileClass } from './classes/file.class';
-
+import { HighlightJsModule, HIGHLIGHT_JS } from 'angular-highlight-js';
+import { QuillModule } from 'ngx-quill';
 
 const servicesRoutes: Routes = [
   {
@@ -63,7 +63,8 @@ const servicesRoutes: Routes = [
     MatChipsModule,
     NgbModule,
     MatSelectModule,
-    CKEditorModule,
+    HighlightJsModule,
+    QuillModule.forRoot()
   ],
   exports: [
 

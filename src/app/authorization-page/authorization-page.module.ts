@@ -37,6 +37,8 @@ const routes: Routes = [
     canActivateChild: [PassResetGuard],
     component: SetNewPassComponent
   }
+
+
 ];
 
 // const socialConfig = new AuthServiceConfig([

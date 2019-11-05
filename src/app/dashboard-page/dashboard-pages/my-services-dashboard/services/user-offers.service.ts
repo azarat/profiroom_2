@@ -22,8 +22,12 @@ export class UserOffersService {
     return this.http.get('/userOffers');
   }
 
-  public serviceCreation(offerData) {
-    return this.http.post<any>('/newoffer', offerData);
+  public serviceCreation() {
+    return this.http.get<any>('/newOffer');
+  }
+
+  public updateService( formData){
+    return this.http.post<any>('/updateOffer', formData);
   }
 
   public getServiceData(offerId) {

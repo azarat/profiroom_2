@@ -26,9 +26,12 @@
             "styles": [
               "src/custom-theme.scss",
               "src/assets/icoMoon/style.css",
+              "./node_modules/quill/dist/quill.core.css",
+              "./node_modules/quill/dist/quill.bubble.css",
+              "./node_modules/quill/dist/quill.snow.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": ["./node_modules/quill/dist/quill.min.js"]
           },
           "configurations": {
             "production": {
@@ -87,7 +90,8 @@
             ],
             "styles": [
               "src/styles.css",
-              "src/assets/icoMoon/style.css"
+              "src/assets/icoMoon/style.css",
+              "./node_modules/quill/dist/quill.core.css"
             ],
             "scripts": []
           }
