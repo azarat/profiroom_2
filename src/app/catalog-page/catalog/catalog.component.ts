@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 import { GetOffersService } from '../services/get-offers.service';
-import { OffersListInterface } from '../../shared/interfaces/offers-list.interface';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -13,8 +12,9 @@ import { Subscription } from 'rxjs';
 export class CatalogComponent implements OnInit {
 
   // offersList: OffersListInterface;
-  private currentFilters: string = null;
+  private currentFilters: string;
   public subcategory;
+
 
   catalogSubscription: Subscription;
 
@@ -27,25 +27,12 @@ export class CatalogComponent implements OnInit {
     this.GetOffersService.subCategory$.subscribe(data => {
       this.subcategory = data;
     });
+    this._route.queryParams.subscribe(p => {
+      this.GetOffersService.getOffers(p);
+    });
   }
 
   ngOnInit() {
-    // console.log('start');
-    this._route.queryParams.subscribe(p => {
-      if (p._filters !== undefined) {
-          // console.log(this.currentFilters);
-      }
-      // console.log(this.currentFilters);
-      // this.GetOffersService.getOffers(this.currentFilters);
-      // this.GetOffersService.offersList.subscribe(data => {
-      //   this.offersList = data;
-      //   console.log(this.offersList);
-      // });
-    });
-    // console.log(this.currentFilters);
-    this.GetOffersService.getOffers(this.currentFilters);
+
   }
-
-
-
 }
