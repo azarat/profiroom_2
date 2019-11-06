@@ -1,24 +1,20 @@
 <div class="step-wrapper">
-  <form #form="ngForm" [formGroup]="descriptionForm" >
+  <form #form="ngForm" [formGroup]="descriptionForm">
     <h3>2. Описание услуги</h3>
 
     <h5>Опишите услугу как можно подробнее</h5>
     <div class="form-group">
       <label for="description"></label>
-      <quill-editor [modules]="config" [(ngModel)]="this.userService.description" formControlName="description" placeholder=""></quill-editor>
+      <quill-editor [modules]="config" [(ngModel)]="this.userService.description" formControlName="description"
+        placeholder=""
+        ngbPopover="Проявите оригинальность:  добавьте аргументы в свою пользу, дайте гарантии, предоставьте бонусы и т.Д. чтобы покупатель выбрал именно Вашу услугу."
+        triggers="mouseenter:mouseleave" popoverTitle="Опишите услугу, которую вы предлагаете, как можно подробнее."
+        placement="right" popoverClass="popover" closeDelay="20000"></quill-editor>
     </div>
-    <!-- <quill-editor (onEditorCreated)="onEditorCreated($event)" [placeholder]="' '">
-      <div quill-editor-toolbar>
-        <span class="ql-formats">
-          <button class="ql-bold" [title]="'Bold'"></button>
-          <button class="ql-italic" [title]="'Italic'"></button>
-          <button class="ql-underline" [title]="'Underline'"></button>
-          <button class="ql-list" value="bullet"></button>
-        </span>
-      </div>
-    </quill-editor> -->
-        <button class="back" (click)="registrate()">сохранить и выйти</button>
-        <button class="save" >сохранить и продолжить</button>
-      <!-- </div> -->
+
+    <div class="form-butons">
+      <button class="back" (click)="registrate()">сохранить и выйти</button>
+      <button class="save">сохранить и продолжить</button>
+    </div>
   </form>
 </div>

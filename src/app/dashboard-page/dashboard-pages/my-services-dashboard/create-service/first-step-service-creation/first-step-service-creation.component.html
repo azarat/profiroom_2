@@ -44,13 +44,10 @@
 
     <div class="tags">
       <h5>Ключевые слова для поиска вашей услуги</h5>
-      <!-- <mat-form-field appearance="outline" ngbPopover="Это поможет заказчикам найти Вас во время поиска."
-        triggers="mouseenter:mouseleave" popoverTitle="Введите теги" placement="right" popoverClass="popover"
-        closeDelay="200">
-        <textarea #serviceTitle formControlName="tags" [(ngModel)]="userService.tags" matInput required
-          placeholder="Поисковые теги"></textarea>
-      </mat-form-field> -->
-      <mat-form-field class="example-chip-list" appearance="outline">
+
+      <mat-form-field class="example-chip-list" appearance="outline"  ngbPopover="Это поможет заказчикам найти Вас во время поиска."
+      triggers="mouseenter:mouseleave" popoverTitle="Введите теги" placement="right" popoverClass="popover"
+      closeDelay="200">
           <mat-chip-list #chipList aria-label="Fruit selection">
             <mat-chip *ngFor="let tag of tags" [selectable]="selectable" color="silver"
                      [removable]="removable" (removed)="remove(tag)">

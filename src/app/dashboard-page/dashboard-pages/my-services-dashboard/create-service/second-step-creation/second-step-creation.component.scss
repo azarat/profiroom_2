@@ -366,7 +366,16 @@ form::ng-deep {
   }
 
 }
-
+quill-editor::ng-deep {
+  .ql-toolbar {
+    background: #F4F7FC;
+    border-radius: 3px 3px 0px 0px;
+  }
+  .ql-container {
+    border: 1px solid #DCE0E6;
+    border-radius: 0px 0px 3px 3px;
+  }
+}
 
 // -----------------buttons ----------------------//
 
@@ -374,7 +383,7 @@ form::ng-deep {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-
+  margin-top: 50px;
   button {
     font-family: Source Sans Pro, sans-serif;
     border: none;
@@ -408,4 +417,59 @@ form::ng-deep {
       box-shadow: none;
     }
   }
+}
+
+// --------------------- popover ------------------
+
+ngb-popover-window {
+  &.popover {
+    background: #ffffff;
+    box-shadow: 0px 15px 21px rgba(128, 152, 213, 0.5);
+    border-radius: 8px;
+    padding: 18px 23px 19px 28px;
+    left: 14px !important;
+    top: -30px !important;
+    z-index: 2;
+    max-width: 323px;
+
+    &:before {
+      content: "";
+      position: absolute;
+      left: -9px;
+      top: 8px;
+      width: 22px;
+      height: 22px;
+      background: #ffffff;
+      -webkit-transform: rotate(47deg);
+      transform: rotate(47deg);
+      box-sizing: border-box;
+      z-index: -1;
+    }
+
+    h3 {
+      font-family: "Source Sans Pro", sans-serif;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 18px;
+      color: #000000;
+      margin: 0 0 12px;
+    }
+
+    .popover-body {
+      margin: 0;
+      font-family: "Source Sans Pro", sans-serif;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 18px;
+      color: #707683;
+    }
+  }
+
+  // &.popover-select {
+  //   top: 25px !important;
+  // }
+  // &.popover-file {
+  //   top: -43px !important;
+  // }
 }

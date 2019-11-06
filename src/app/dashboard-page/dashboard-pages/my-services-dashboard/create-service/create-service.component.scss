@@ -141,6 +141,36 @@
           background: #AECCFF;
         }
       }
+      &.done {
+        & > * {
+          opacity: 1;
+        }
+        cursor: pointer;
+        .step-order {
+          background: #659AF3;
+          color: #FFFFFF;
+          border: 3px solid #fff;
+          line-height: 20px;
+          font-size: 0;
+          &:before {
+            position: absolute;
+            content: '\e901';
+            font-family: icoMoon;
+            font-family: icoMoon;
+            font-size: 7px;
+            color: #fff;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+          }
+        }
+        &:before {
+          background: #AECCFF;
+        }
+        &:after {
+          background: #AECCFF;
+        }
+      }
     }
   }
   .step-detail {

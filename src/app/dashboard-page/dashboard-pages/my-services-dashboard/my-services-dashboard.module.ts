@@ -16,6 +16,7 @@ import { SecondStepCreationComponent } from './create-service/second-step-creati
 import { FileClass } from './classes/file.class';
 import { HighlightJsModule, HIGHLIGHT_JS } from 'angular-highlight-js';
 import { QuillModule } from 'ngx-quill';
+import { ThirdStepCreationComponent } from './create-service/third-step-creation/third-step-creation.component';
 
 const servicesRoutes: Routes = [
   {
@@ -44,7 +45,8 @@ const servicesRoutes: Routes = [
     CreateServiceComponent,
     FirstStepServiceCreationComponent,
     DragDropDirective,
-    SecondStepCreationComponent
+    SecondStepCreationComponent,
+    ThirdStepCreationComponent
   ],
   imports: [
     CommonModule,

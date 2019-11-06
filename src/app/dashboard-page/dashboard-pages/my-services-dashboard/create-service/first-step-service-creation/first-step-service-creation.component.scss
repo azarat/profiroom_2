@@ -288,15 +288,6 @@ mat-form-field{
 }
 
 // ---------------------------file upload form ---------------------------
-// .portfolio {
-//   // display: flex;
-//   // flex-direction: row;
-//   // flex-wrap: wrap;
-
-// }
-// .load {
-
-// }
 .items {
   display: flex;
   flex-wrap: wrap;
@@ -311,7 +302,7 @@ mat-form-field{
       height: 24px;
       width: 24px;
       border-radius: 50%;
-      background-color: transparent;
+      background-color: #fff;
       border: 1px solid red;
       box-shadow: none;
       right: 13px;
