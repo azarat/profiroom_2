@@ -9,11 +9,14 @@ import { FirstStepServiceCreationComponent } from './create-service/first-step-s
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule, MatAutocompleteModule, MatCheckboxModule,
-  MatIconModule, MatTooltipModule, MatSelectModule, MatButtonModule, MatInputModule } from '@angular/material';
+  MatIconModule, MatTooltipModule, MatSelectModule, MatButtonModule, MatInputModule, MatChipsModule } from '@angular/material';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { OfferCreationService } from './services/offer-creation.service';
 import { DragDropDirective } from './directives/drag-drop.directive';
-
+import { SecondStepCreationComponent } from './create-service/second-step-creation/second-step-creation.component';
+import { FileClass } from './classes/file.class';
+import { HighlightJsModule, HIGHLIGHT_JS } from 'angular-highlight-js';
+import { QuillModule } from 'ngx-quill';
+import { ThirdStepCreationComponent } from './create-service/third-step-creation/third-step-creation.component';
 
 const servicesRoutes: Routes = [
   {
@@ -22,7 +25,17 @@ const servicesRoutes: Routes = [
   },
   {
     path: 'create',
-    component: CreateServiceComponent
+    component: CreateServiceComponent,
+  //   children: [
+  //     {
+  //       path: '',
+  //       component: FirstStepServiceCreationComponent
+  //     },
+  //     {
+  //       path: 'second-step',
+  //       component: SecondStepCreationComponent
+  //     }
+  // ]
   }
 ];
 
@@ -31,7 +44,9 @@ const servicesRoutes: Routes = [
     MyServicesHomeComponent,
     CreateServiceComponent,
     FirstStepServiceCreationComponent,
-    DragDropDirective
+    DragDropDirective,
+    SecondStepCreationComponent,
+    ThirdStepCreationComponent
   ],
   imports: [
     CommonModule,
@@ -47,14 +62,17 @@ const servicesRoutes: Routes = [
     MatInputModule,
     MatButtonModule,
     MatTooltipModule,
+    MatChipsModule,
     NgbModule,
     MatSelectModule,
+    HighlightJsModule,
+    QuillModule.forRoot()
   ],
   exports: [
 
   ],
   providers: [
-    OfferCreationService
+    FileClass
   ]
 })
 export class MyServicesDashboardModule { }

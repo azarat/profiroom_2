@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FilterComponent } from './filter.component';
+import { ThirdStepCreationComponent } from './third-step-creation.component';
 
-describe('FilterComponent', () => {
-  let component: FilterComponent;
-  let fixture: ComponentFixture<FilterComponent>;
+describe('ThirdStepCreationComponent', () => {
+  let component: ThirdStepCreationComponent;
+  let fixture: ComponentFixture<ThirdStepCreationComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FilterComponent ]
+      declarations: [ ThirdStepCreationComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FilterComponent);
+    fixture = TestBed.createComponent(ThirdStepCreationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

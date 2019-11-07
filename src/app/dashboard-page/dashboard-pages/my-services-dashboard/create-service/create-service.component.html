@@ -1,48 +1,20 @@
 <div class="wrapper">
   <div class="steps">
     <h3>Создание услуги</h3>
-    <div class="steps-wrap">
-      <div class="step dev">
-        <h5>Титульная информация</h5>
-        <p>
-          Успех выбора Вашей услуги зависит насколько качественно и точно Вы
-          назовёте услуги и заполните критерии поиска.
-        </p>
-        <span class="step-order">1</span>
+    <div class="steps-wrap" >
+      <div class="step" *ngFor="let step of serviceCreationSteps, let i = index " (click)="goToStep(i+1)" [ngClass]="{dev: currentStep === i+1, done: currentStep > i+1 }">
+        <h5>{{ step.title }}</h5>
+        <p>{{ step.description }}</p>
+        <span class="step-order">{{ i+1 }}</span>
       </div>
-      <div class="step">
-        <h5>Описание услуги</h5>
-        <p>Опишите услугу, которую вы предлагаете, как можно подробнее.</p>
-        <span class="step-order">2</span>
-      </div>
-      <div class="step">
-        <h5>Пакеты и цены</h5>
-        <p>Предложите покупателю три пакета услуг по разной цене.</p>
-        <span class="step-order">3</span>
-      </div>
-      <div class="step">
-        <h5>Часто задаваемые вопросы</h5>
-        <p>Составьте список часто задаваемых вопросов от клиентов.</p>
-        <span class="step-order">4</span>
-      </div>
-      <div class="step">
-        <h5>Бриф</h5>
-        <p>
-          Добавьте вопросы для заказчика, которые предоставят Вам необходимую
-          информацию, чтобы Вы могли приступить к заказу.
-        </p>
-        <span class="step-order">5</span>
-      </div>
-      <div class="step">
-        <h4>Готово к публикации!</h4>
-        <span class="step-order">6</span>
-      </div>
+
     </div>
   </div>
   <div class="step-detail">
-    <app-first-step-service-creation></app-first-step-service-creation>
-    <!-- <div>2</div>
-    <div>3</div>
+    <!-- <app-first-step-service-creation *ngIf="userService && currentStep === 1" [userService]="userService" (setCurrentStep)="setCurrentStep($event)"></app-first-step-service-creation>
+    <app-second-step-creation *ngIf="userService && currentStep === 2" [userService]="userService" (setCurrentStep)="setCurrentStep($event)"></app-second-step-creation> -->
+    <app-third-step-creation></app-third-step-creation>
+    <!--  <div>3</div>
     <div>4</div>
     <div>5</div>
     <div>6</div> -->

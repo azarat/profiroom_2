@@ -1,142 +1,103 @@
 <div class="step-wrapper">
-  <form #form="ngForm" [formGroup]="firstStepForm" (ngSubmit)="registrate()">
+  <form #form="ngForm" [formGroup]="firstStepForm" *ngIf="userService">
     <h3>1. Титульная информация</h3>
 
     <h5>Название услуги</h5>
-    <mat-form-field
-      floatLabel="always"
-      class="service-title"
-      appearance="outline"
-      maxlength="150"
-      ngbPopover="Оно должно отражать суть вашего предложения
-    и описывать услугу, которую вы готовы выполнить."
-      triggers="mouseenter:mouseleave"
-      popoverTitle="Введите название услуги"
-      placement="right"
-      popoverClass="popover"
-      closeDelay="200"
-    >
-      <textarea
-        #serviceTitle
-        formControlName="serviceTitle"
-        matInput
-        required
-      ></textarea>
+    <mat-form-field floatLabel="always" class="service-title" appearance="outline" maxlength="70" ngbPopover="Оно должно отражать суть вашего предложения
+    и описывать услугу, которую вы готовы выполнить." triggers="mouseenter:mouseleave"
+      popoverTitle="Введите название услуги" placement="right" popoverClass="popover" closeDelay="200">
+      <textarea #serviceTit formControlName="name" [(ngModel)]="userService.name" matInput required
+        maxlength="70"></textarea>
 
-      <mat-hint align="end"
-        >{{ serviceTitle.value.length }} из 256 максимально</mat-hint
-      >
+      <mat-hint align="end">{{ serviceTit.value.length }} из 70 максимально</mat-hint>
     </mat-form-field>
-
     <div class="service-selects">
       <div class="category">
         <h5>Категория Вашей деятельности</h5>
-        <mat-form-field
-          appearance="outline"
-          *ngIf="categories"
-          ngbPopover="Это позволит покупателям быстро найти Вашу услугу."
-          triggers="mouseenter:mouseleave"
-          popoverTitle="Выберите категорию, наиболее подходящую для Вашей услуги"
-          placement="right"
-          popoverClass="popover-select"
-          closeDelay="200"
-        >
-          <mat-select
-            (ngModelChange)="onFiltersChange()"
-            formControlName="category"
-            required
-          >
-            <mat-option
-              *ngFor="let category of categories"
-              [value]="category.id"
-            >
+        <mat-form-field appearance="outline" ngbPopover="Это позволит покупателям быстро найти Вашу услугу."
+          triggers="mouseenter:mouseleave" popoverTitle="Выберите категорию, наиболее подходящую для Вашей услуги"
+          placement="right" popoverClass="popover-select" closeDelay="200">
+          <mat-select (ngModelChange)="onFiltersChange()"  formControlName="category" [(ngModel)]="userService.category"
+            required>
+            <mat-option *ngFor="let category of categoryList" [value]="category.link">
               {{ category.name }}
             </mat-option>
           </mat-select>
         </mat-form-field>
       </div>
 
-      <div class="sucat" *ngIf="firstStepForm.value.category">
+      <div class="sucat" *ngIf="userService.category">
         <h5>Подкатегория Вашей деятельности</h5>
-        <mat-form-field
-          appearance="outline"
-          ngbPopover="Это позволит покупателям быстро найти Вашу услугу."
-          triggers="mouseenter:mouseleave"
-          popoverTitle="Выберите подкатегорию, наиболее подходящую для Вашей услуги"
-          placement="right"
-          popoverClass="popover-select"
-          closeDelay="20000"
-        >
-          <mat-select
-            #serviceSubCategory
-            formControlName="subcategory"
-            required
-          >
-            <mat-option
-              *ngFor="let subcategory of sub_categories"
-              [value]="subcategory.id"
-            >
+        <mat-form-field appearance="outline" ngbPopover="Это позволит покупателям быстро найти Вашу услугу."
+          triggers="mouseenter:mouseleave" popoverTitle="Выберите подкатегорию, наиболее подходящую для Вашей услуги"
+          placement="right" popoverClass="popover-select" closeDelay="20000">
+          <mat-select formControlName="subCategory" required [(ngModel)]="userService.subCategory">
+            <mat-option *ngFor="let subcategory of sub_categories" [value]="subcategory.link">
               {{ subcategory.name }}
             </mat-option>
           </mat-select>
-          <mat-error
-            *ngIf="firstStepForm.get('subcategory').hasError('required')"
-            >{{ "Выберите подкатегорию" }}</mat-error
-          >
+          <mat-error *ngIf="firstStepForm.get('subCategory').hasError('required')">{{ "Выберите подкатегорию" }}
+          </mat-error>
         </mat-form-field>
       </div>
     </div>
+
     <div class="tags">
       <h5>Ключевые слова для поиска вашей услуги</h5>
-      <mat-form-field
-        appearance="outline"
-        ngbPopover="Это поможет заказчикам найти Вас во время поиска."
-        triggers="mouseenter:mouseleave"
-        popoverTitle="Введите теги"
-        placement="right"
-        popoverClass="popover"
-        closeDelay="200"
-      >
-        <textarea
-          #serviceTitle
-          formControlName="tags"
-          matInput
-          required
-          placeholder="Поисковые теги"
-        ></textarea>
-      </mat-form-field>
+
+      <mat-form-field class="example-chip-list" appearance="outline"  ngbPopover="Это поможет заказчикам найти Вас во время поиска."
+      triggers="mouseenter:mouseleave" popoverTitle="Введите теги" placement="right" popoverClass="popover"
+      closeDelay="200">
+          <mat-chip-list #chipList aria-label="Fruit selection">
+            <mat-chip *ngFor="let tag of tags" [selectable]="selectable" color="silver"
+                     [removable]="removable" (removed)="remove(tag)">
+              {{tag.tag}}
+              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input
+                   [matChipInputFor]="chipList"
+                   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                   [matChipInputAddOnBlur]="addOnBlur"
+                   (matChipInputTokenEnd)="add($event)">
+          </mat-chip-list>
+        </mat-form-field>
     </div>
+
     <div class="portfolio">
       <h5>Загрузка портфолио</h5>
 
       <div class="items">
+
+
         <ng-container *ngIf="previewUrl">
-          <img *ngFor="let ingUrl of previewUrl" [src]="ingUrl" height="300" />
+          <div class="img-item" *ngFor="let ingUrl of previewUrl, let i = index">
+            <button class="delete-file" (click)="deleteAttachment(ingUrl.id)">
+
+            </button>
+            <img [src]="'https://www.thecubetest.site/Backend/storage/app/' + ingUrl.link" height="300" />
+
+          </div>
+
         </ng-container>
 
-        <div class="dr-dp">
-          <object
-            data="/assets/images/svg/upload.svg"
-            type="image/svg+xml"
-          ></object>
-          <span>. JPG . PNG . GIF .</span>
+        <div class="dr-dp" appDragDrop (onFileDropped)="fileProgress($event)" ngbPopover="Добавьте запоминающийся контент в свою галерею, чтобы отличаться от конкурентов.
+        С загруженных файлов, вы можете выбрать один для титульного изображения на странице."
+          triggers="mouseenter:mouseleave" popoverTitle="Загрузка портфолио" placement="right"
+          popoverClass="popover-file" closeDelay="20000">
+          <object data="/assets/images/svg/upload.svg" type="image/svg+xml"></object>
+          <span>.JPG .PNG .GIF </span>
           <span>Перетащите файлы или </span>
-          <input
-            type="file"
-            id="file"
-            formControlName="gallery"
-            multiple="true"
-            class="input-file"
-            (change)="fileProgress($event)"
-          />
+          <input type="file" id="file" multiple="true" class="input-file" #fileInput
+            (change)="fileProgress($event.target.files)" />
           <label for="file">кликните сюда</label>
         </div>
       </div>
     </div>
     <div class="form-butons">
       <button class="back">сохранить и выйти</button>
-      <button class="save">сохранить и продолжить</button>
+      <button class="save" (click)="registrate()">
+        сохранить и продолжить
+      </button>
     </div>
-    
   </form>
 </div>

@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ServicePageComponent } from './service-page.component';
+import { ServicePageComponent } from './components/service-page/service-page.component';
 import { Routes, RouterModule } from '@angular/router';
 import { LocalizeRouterModule } from 'localize-router';
+import { ServicePageService } from './services/service-page.service';
 
 const routes: Routes = [
   {
@@ -19,7 +20,10 @@ const routes: Routes = [
     RouterModule.forChild(routes),
   ],
   exports: [
-    ServicePageComponent
+    ServicePageComponent,
+  ],
+  providers: [
+    ServicePageService
   ]
 })
 export class ServicePageModule { }

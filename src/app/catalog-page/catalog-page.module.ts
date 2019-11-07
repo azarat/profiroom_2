@@ -10,8 +10,8 @@ import { MainHeaderModule } from '../shared/modules/main-header/main-header.modu
 import { CategoriesHeaderModule } from '../shared/modules/categories-header/categories-header.module';
 
 import { CategorysResolver } from './resolves/categorys.resolve';
-import { FilterComponent } from './catalog/filter/filter.component';
-import { ItemsComponent } from './catalog/items/items.component';
+import { FilterComponent } from './catalog/catalog-filter/catalog-filter.component';
+import { ItemsComponent } from './catalog/catalog-items/catalog-items.component';
 import { GetOffersService } from './services/get-offers.service';
 import { GetCategorieItemsService } from './services/get-categorie-items.service';
 import { BaseInterceptor } from '../core/interceptors/base-interceptor';

@@ -16,7 +16,9 @@ import { AngularFireModule } from '@angular/fire';
 import { config } from 'process';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AuthorisatedGuard } from './guards/authorisated.guard';
-import { CategorysListService } from './services/get-categorys-list.service';
+import { OffersService } from './services/offers.service';
+import { CategorysListService } from './services/categorys.service';
+
 
 export const url = new URL(location.href).origin;
 
@@ -57,6 +59,7 @@ const gConfig = {
     AngularFireAuthModule
   ],
   providers: [
+    OffersService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: BaseInterceptor,

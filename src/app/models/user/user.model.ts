@@ -20,5 +20,13 @@ export class User {
   role_id: number;
   // tslint:disable-next-line: variable-name
   updated_at: any;
-  userServices: [UserServiceModel];
+  userServices: UserServiceModel[];
+
+  // constructor(data) {
+  //   data = data || {};
+  //   this.id = data.id || null;
+  //   this.name = data.name || null;
+  //   this.surname = data.surname || null;
+
+  // }
 }

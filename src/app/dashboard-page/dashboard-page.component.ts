@@ -23,8 +23,8 @@ export class DashboardPageComponent implements OnInit {
 
   ngOnInit() {
     this.userService.getDashboardRes()
-    .subscribe(res => {
-      console.log(res);
+    .subscribe((res: any ) => {
+      
     });
 
   }

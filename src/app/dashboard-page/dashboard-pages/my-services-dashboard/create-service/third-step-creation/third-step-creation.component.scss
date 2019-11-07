@@ -1,0 +1,190 @@
+form {
+  display: flex;
+  flex-direction: column;
+  width: 66%;
+
+  h3 {
+    font-family: Source Sans Pro, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 23px;
+    color: #323c47;
+  }
+}
+
+.form-butons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 35px;
+  button {
+    font-family: Source Sans Pro, sans-serif;
+    border: none;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
+    // color: #4285F4;
+    padding: 15px 24px;
+    cursor: pointer;
+
+    &:first-of-type {
+      border: 1px solid #4285f4;
+      background: #fff;
+      color: #4285f4;
+      box-shadow: none;
+      &:hover {
+        color: #fff;
+        background: #3c7eea;
+        box-shadow: 0px 2px 4px rgba(60, 9, 179, 0.3);
+      }
+    }
+
+    color: #fff;
+    background: #3c7eea;
+    box-shadow: 0px 2px 4px rgba(60, 9, 179, 0.3);
+    &:hover {
+      border: 1px solid #4285f4;
+      background: #fff;
+      color: #4285f4;
+      box-shadow: none;
+    }
+  }
+}
+
+.offer-packages {
+  width: 100%;
+  background: #ffffff;
+  box-shadow: 0px 6px 18px rgba(128, 152, 213, 0.17);
+  border-radius: 5px;
+  margin-bottom: 64px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  &> div {
+    width: 100%;
+  }
+  .package-title {
+    display: flex;
+    flex-direction: row;
+    &> div {
+      width: 25%;
+      h6 {
+        text-align: center;
+      }
+    }
+  }
+  .packages-description {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    &> div {
+      width: 25%;
+      height: 275px;
+      border-right: 1px solid red;
+
+      .textarea {
+        width: 90%;
+    margin: auto;
+    height: 90%;
+    padding: 10px;
+      }
+      // min-width: calc(25% - 10px);
+    }
+    textarea {
+      resize: none;
+      padding: 0;
+      border: none;
+      height: 100%;
+      outline: none;
+      width: 100%;
+    }
+  }
+  // .advanced-packages {
+  //   width: 50%;
+  //   display: flex;
+  //   flex-direction: row;
+  //   & > div {
+  //     width: 50%;
+  //   }
+  // }
+  // textarea {
+  //   min-width: inherit;
+  //   min-height: inherit;
+  //   // border-color: none;
+  //   resize: none;
+
+  //   height: inherit;
+  //   padding: 0;
+  //   outline: none;
+  //   width: 100%;
+  //   border-color: transparent;
+  //   border-right: 1px solid #dce0e6;
+  //   // &:last-of-type {
+  //   //   border-right: none;
+  //   // }
+  // }
+
+  // & > div {
+  //   width: 25%;
+  //   .packages {
+  //     display: flex;
+  //     flex-direction: column;
+  //   }
+  //   .title {
+  //     background: #f4f7fc;
+  //     border-bottom: 1px solid #dce0e6;
+  //     // border-radius: 5px 5px 0px 0px;
+  //     background: #f4f7fc;
+  //     min-height: 67px;
+  //     border-right: 1px solid #dce0e6;
+  //     h6 {
+  //       font-family: Source Sans Pro;
+  //       font-style: normal;
+  //       font-weight: normal;
+  //       text-transform: uppercase;
+  //       font-size: 14px;
+  //       line-height: 6px;
+  //       letter-spacing: 0.15px;
+  //       font-feature-settings: "liga" off;
+  //       margin: 0;
+  //       color: #323c47;
+  //       padding: 30px 0 30px;
+  //       text-align: center;
+  //     }
+  //   }
+
+  //   .premium-packages {
+  //     & > * {
+  //       border-right: none !important;
+  //       textarea {
+  //         border-right: none !important;
+  //       }
+  //     }
+  //   }
+  //   &.package-fields {
+  //     &> *{
+  //       background: #F4F7FC;
+
+  //       p {
+  //         margin: 0;
+  //         padding: 0;
+  //         padding: 16px 10px 10px 20px;
+  //         font-family: Source Sans Pro, sans-serif;
+  //         font-style: normal;
+  //         font-weight: normal;
+  //         font-size: 14px;
+  //         line-height: 18px;
+  //         text-align: left;
+  //         color: #323C47;
+  //         background: #F4F7FC;
+  //       }
+  //     }
+
+  //   }
+  //   .short-description {
+  //     height: 205px;
+  //   }
+  // }
+}

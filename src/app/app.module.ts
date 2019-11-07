@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 
 
+import 'reflect-metadata';
 @NgModule({
   declarations: [
     AppComponent,
