@@ -9,6 +9,8 @@ import { FormGroup } from '@angular/forms';
 export class ThirdStepCreationComponent implements OnInit {
   packagesForm: FormGroup;
 
+
+
   constructor() { }
 
   ngOnInit() {
@@ -16,5 +18,13 @@ export class ThirdStepCreationComponent implements OnInit {
 
   saveStep(){
 
+  }
+
+  changesArrayCounter() {
+    const changes = new Array();
+    for(let i = 1; i <= 30; i++) {
+      changes.push(i);
+    }
+    return changes;
   }
 }

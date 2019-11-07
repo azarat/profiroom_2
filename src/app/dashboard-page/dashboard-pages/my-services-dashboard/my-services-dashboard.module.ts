@@ -17,6 +17,12 @@ import { FileClass } from './classes/file.class';
 import { HighlightJsModule, HIGHLIGHT_JS } from 'angular-highlight-js';
 import { QuillModule } from 'ngx-quill';
 import { ThirdStepCreationComponent } from './create-service/third-step-creation/third-step-creation.component';
+import { NgKnifeModule } from 'ng-knife';
+import { NgxMaskModule, IConfig } from 'ngx-mask';
+
+
+export let options: Partial<IConfig> | (() => Partial<IConfig>);
+
 
 const servicesRoutes: Routes = [
   {
@@ -66,7 +72,9 @@ const servicesRoutes: Routes = [
     NgbModule,
     MatSelectModule,
     HighlightJsModule,
-    QuillModule.forRoot()
+    QuillModule.forRoot(),
+    NgKnifeModule,
+    NgxMaskModule.forRoot(options)
   ],
   exports: [
 

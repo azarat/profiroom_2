@@ -53,6 +53,7 @@ export class BaseInterceptor implements HttpInterceptor {
     return next.handle(req).pipe(
       catchError(err => {
         const error = err.error.message || err.statusText;
+        console.log(err.status)
         if (err.status === 401) {
           this.authService.logOut();
         }

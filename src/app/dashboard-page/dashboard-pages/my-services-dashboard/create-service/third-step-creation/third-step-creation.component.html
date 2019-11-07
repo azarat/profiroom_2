@@ -2,50 +2,164 @@
   <form #form="ngForm" [formGroup]="packagesForm">
     <h3>3. Пакеты услуг и цены</h3>
     <div class="offer-packages">
-      <!-- title -->
-      <div class="package-title">
+      <!-- packages-name-->
+      <div class="package-name line">
         <div>
 
         </div>
         <div>
           <h6>
-              Базовый
+            Базовый
           </h6>
         </div>
         <div>
           <h6>
-              Стандарт
+            Стандарт
           </h6>
         </div>
         <div>
           <h6>
-              Премиум
+            Премиум
           </h6>
+        </div>
+      </div>
+      <!-- packages-title -->
+      <div class="packages-titles line">
+        <div class="packages-title title">
+          <p>Название услуги</p>
+
+        </div>
+        <div class="packages-title">
+          <div class="textarea">
+            <textarea name="" id="" rows="2" maxlength="35"></textarea>
+          </div>
+
+        </div>
+        <div class="packages-title">
+          <div class="textarea">
+            <textarea name="" id="" rows="2" maxlength="35"></textarea>
+          </div>
+
+        </div>
+        <div class="packages-title">
+          <div class="textarea">
+            <textarea name="" id="" rows="2" maxlength="35"></textarea>
+          </div>
+
         </div>
       </div>
       <!-- descriptions -->
-    <div class="packages-description">
-      <div>text</div>
-      <div class="textarea-wrap">
-        <div class="textarea">
-          <textarea name="" id="" ></textarea>
+      <div class="packages-description line">
+        <div class="description-title">
+          <p>
+            Краткое описание
+          </p>
         </div>
+        <div class="textarea-wrap">
+          <div class="textarea">
+            <textarea name="" id="" maxlength="270"></textarea>
+          </div>
 
-      </div>
-      <div class="textarea-wrap">
-        <div class="textarea">
-          <textarea name="" id="" ></textarea>
         </div>
+        <div class="textarea-wrap">
+          <div class="textarea">
+            <textarea name="" id="" maxlength="270"></textarea>
+          </div>
 
-      </div>
-      <div class="textarea-wrap">
-        <div class="textarea">
-          <textarea name="" id="" ></textarea>
         </div>
+        <div class="textarea-wrap">
+          <div class="textarea">
+            <textarea name="" id="" maxlength="270"></textarea>
+          </div>
 
+        </div>
       </div>
-    </div>
-<!-- <textarea name="" id="" cols="30" rows="10"></textarea> -->
+      <!-- time to Do -->
+      <div class="package-deadlines line">
+        <div class="deadline-title title">
+          <p>
+            Сроки (дней)
+          </p>
+        </div>
+        <div>
+          <div class="input-wrap">
+            <input type="text" knifeOnlyNumbers maxlength="3">
+          </div>
+
+        </div>
+        <div>
+          <div class="input-wrap">
+            <input type="text" knifeOnlyNumbers maxlength="3">
+          </div>
+
+        </div>
+        <div>
+          <div class="input-wrap">
+            <input type="text" knifeOnlyNumbers maxlength="3">
+          </div>
+
+        </div>
+      </div>
+
+      <!-- packages changes -->
+      <div class="packages-changes line">
+        <div class="packages-change title">
+          <p>Кол-во правок</p>
+        </div>
+        <div>
+          <div class="select-wrap">
+            <mat-select>
+              <mat-option *ngFor="let change of changesArrayCounter(), let i = index" [value]="change">
+                {{ change }}
+              </mat-option>
+            </mat-select>
+          </div>
+        </div>
+        <div>
+            <div class="select-wrap">
+              <mat-select>
+                <mat-option *ngFor="let change of changesArrayCounter(), let i = index" [value]="change">
+                  {{ change }}
+                </mat-option>
+              </mat-select>
+            </div>
+          </div>
+          <div>
+              <div class="select-wrap">
+                <mat-select>
+                  <mat-option *ngFor="let change of changesArrayCounter(), let i = index" [value]="change">
+                    {{ change }}
+                  </mat-option>
+                </mat-select>
+              </div>
+            </div>
+      </div>
+      <!-- package price -->
+      <div class="package-deadlines line">
+        <div class="deadline-title title">
+          <p>
+            Цена
+          </p>
+        </div>
+        <div>
+          <div class="input-wrap">
+            <input type="text" knifeOnlyNumbers maxlength="7" mask="000 000">
+          </div>
+
+        </div>
+        <div>
+          <div class="input-wrap">
+            <input type="text" knifeOnlyNumbers maxlength="7" mask="000 000">
+          </div>
+
+        </div>
+        <div>
+          <div class="input-wrap">
+            <input type="text" knifeOnlyNumbers maxlength="7" mask="000 000">
+          </div>
+
+        </div>
+      </div>
     </div>
     <div class="form-butons">
       <button class="back">сохранить и выйти</button>
@@ -53,49 +167,3 @@
     </div>
   </form>
 </div>
-
-
- <!-- <div class="package-fields packages">
-    <div class="title">
-
-    </div>
-    <div class="short-description">
-      <p>Краткое описание</p>
-    </div>
-  </div>
- basic packages
-  <div class="basic-package packages">
-    <div class="title">
-      <h6></h6>
-    </div>
-    <div class="short-description">
-      <textarea name="" rows="1">
-
-      </textarea>
-    </div>
-  </div>
-  <div class="advanced-packages">
-     standart packages column
-    <div class="standart-packages packages">
-      <div class="title">
-        <h6>Стандарт</h6>
-      </div>
-      <div class="short-description">
-        <textarea name="" rows="1">
-
-        </textarea>
-      </div>
-    </div>
-     premium packages column
-    <div class="premium-packages packages">
-      <div class="title">
-        <h6>Премиум</h6>
-      </div>
-      <div class="short-description">
-        <textarea  name="" rows="1">
-
-        </textarea>
-      </div>
-    </div>
-  </div>
--->
