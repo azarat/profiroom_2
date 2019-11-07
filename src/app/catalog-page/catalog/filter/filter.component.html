@@ -1,23 +1,58 @@
-<p>filter works!</p>
 <div class="wrapper">
   <div class="filters-list">
-    <div class="filter f-price">
+    <div class="filter-item f-price">
+      <div class="title" (click)="showFullFilter()">
+        <p>Бюджет</p>
+        <div class="btn-show-full" [ngClass]="fliterOpen? 'open': ''"></div>
+      </div>
+      <div class="filter price" [ngClass]="fliterOpen? 'open': ''">
+        <div class="filter-section">
+          <label for="price-mn">От</label>
+          <input
+            class="inputs"
+            matInput
+            number
+            placeholder="UAH"
+            [(ngModel)]="filterData.minPrice"
+            (ngModelChange)="onFilterChange()"
+            type="text"
+            name="price-min"
+            id="price-mn"
+            >
+        </div>
+        <div class="filter-section">
+          <label for="price-mx">До</label>
+          <input
+            class="inputs"
+            matInput
+            number
+            placeholder="UAH"
+            [(ngModel)]="filterData.maxPrice"
+            (ngModelChange)="onFilterChange()"
+            type="text"
+            name="price-max"
+            id="price-mx"
+            >
+        </div>
+      </div>
+    </div>
+    <div class="filter-item f-term">
       <div class="title">
-        <p>бюджет</p>
-        <div class="plus"></div>
+        <mat-form-field>
+          <mat-label>Срок выполнения</mat-label>
+          <mat-select [(ngModel)]="filterData.maxTerm" (ngModelChange)="onFilterChange()">
+            <mat-option value="">None</mat-option>
+            <mat-option value="1" >Экспресс за 24 часа</mat-option>
+            <mat-option value="3" >До 3 дней</mat-option>
+            <mat-option value="7" >До 7 дней</mat-option>
+            <mat-option value="30">До месяца</mat-option>
+            <mat-option value="99">Любое время</mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
-      <div class="filter price">
-        <div>
-          <label for="price-mn"></label>
-          <!-- <input [(ngModel)]="filterData" (ngModelChange)="onFilterChange()" type="text" name="price-min" -->
-            <!-- id="price-mn" /> -->
-        </div>
-        <div>
-          <label for="price-mx"></label>
-          <!-- <input [(ngModel)]="carFilter.Price_max" (ngModelChange)="onFilterChange()" type="text" name="price-max" -->
-            <!-- id="price-mx" /> -->
-        </div>
-      </div>
+      <!-- <div class="filter term">
+
+      </div> -->
     </div>
   </div>
 </div>

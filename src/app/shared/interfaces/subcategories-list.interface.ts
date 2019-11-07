@@ -1,5 +1,9 @@
 export interface SubCategoryListInterface {
-  category?: [];
+  category?: [
+    {
+      groups: []
+    }
+  ];
   descroption?: string;
   groups?: [];
   id?: number;

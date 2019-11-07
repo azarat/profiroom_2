@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 import { GetOffersService } from '../services/get-offers.service';
-import { OffersListInterface } from '../../shared/interfaces/offers-list.interface';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-catalog',
@@ -11,8 +11,12 @@ import { OffersListInterface } from '../../shared/interfaces/offers-list.interfa
 })
 export class CatalogComponent implements OnInit {
 
-  offersList: OffersListInterface;
+  // offersList: OffersListInterface;
   private currentFilters: string;
+  public subcategory;
+
+
+  catalogSubscription: Subscription;
 
   constructor(
     // tslint:disable-next-line: no-shadowed-variable
@@ -20,20 +24,15 @@ export class CatalogComponent implements OnInit {
     // tslint:disable-next-line: variable-name
     private _route: ActivatedRoute,
   ) {
+    this.GetOffersService.subCategory$.subscribe(data => {
+      this.subcategory = data;
+    });
     this._route.queryParams.subscribe(p => {
-      if (p._filters !== undefined) {
-          this.currentFilters = p._filters;
-      }
-      this.GetOffersService.getOffers(this.currentFilters);
+      this.GetOffersService.getOffers(p);
     });
   }
 
   ngOnInit() {
-    // this.CategorysListService.offersList$
-    // .subscribe(res => {
-    //   // console.log(res);
-    //   this.offersList = res;
-    // });
-  }
 
+  }
 }

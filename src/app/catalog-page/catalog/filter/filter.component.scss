@@ -1,0 +1,126 @@
+.wrapper{
+  max-width: 1549px;
+  margin: 0 auto;
+}
+
+.filters-list{
+  display: flex;
+}
+
+.filter-item{
+  background: #FFFFFF;
+  border: 1px solid rgba(220, 224, 230, 0.1);
+  box-shadow: 0px 10px 16px rgba(128, 152, 213, 0.2);
+  border-radius: 3px;
+
+  position: relative;
+  width: 214px;
+  margin-right: 40px;
+  .title{
+    position: relative;
+    p{
+     margin: 0;
+     padding: 22px 20px;
+     font-family: "Source Sans Pro";
+     font-style: normal;
+     font-weight: normal;
+     font-size: 16px;
+     line-height: 21px;
+     color: #323C47;
+    }
+    .btn-show-full{
+      display: block;
+      width: 12px;
+      height: 8px;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%) rotate(180deg);
+      right: 26px;
+      background-image: url('/assets/images/icons/arrow.png');
+      cursor: pointer;
+      transition: transform .3s;
+      &.open{
+        transform: translateY(-50%) rotate(0);
+      }
+    }
+  }
+  .filter{
+    height: 1px;
+    width: 100%;
+    overflow: hidden;
+    transition: all .3s;
+
+    background: #FFFFFF;
+    border: 1px solid rgba(220, 224, 230, 0.1);
+    box-sizing: border-box;
+    box-shadow: 0px 10px 16px rgba(128, 152, 213, 0.2);
+    border-radius: 3px;
+
+    height: 90px;
+    padding-top: 10px;
+    overflow: hidden;
+    transition: all 0.5s;
+    position: absolute;
+    left: 0;
+
+    bottom: 0;
+    opacity: 0;
+    z-index: -1;
+    &.open{
+      bottom: calc(-100% - 35px);
+      opacity: 1;
+      z-index: 9;
+    }
+  }
+  .price{
+    display: flex;
+    justify-content: space-between;
+    .filter-section{
+      width: 80px;
+      padding: 0 10px;
+      position: relative;
+      &:first-child{
+        &::before{
+          content: "";
+          position: absolute;
+          top: 62%;
+          right: -10px;
+          height: 1px;
+          width: 8px;
+          background-color: #111;
+        }
+      }
+    }
+    label{
+      font-family: "Source Sans Pro";
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 21px;
+      color: #707683;
+      display: block;
+      margin-bottom: 7px;
+    }
+    .inputs{
+      border: 1px solid #DCE0E6;
+      box-sizing: border-box;
+      border-radius: 2px;
+      font-size: 14px;
+      padding: 12px 5px;
+    }
+  }
+}
+
+.set-filter-btn{
+  padding: 15px 20px;
+  margin: 0;
+  font-family: "Source Sans Pro";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 21px;
+  color: #323C47;
+  height: fit-content;
+  border: 1px solid black;
+  cursor: pointer;
+}
