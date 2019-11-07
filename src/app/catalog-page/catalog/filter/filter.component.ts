@@ -32,7 +32,7 @@ export class FilterComponent implements OnInit {
       this.filterData.subCategory = this.subcategory;
     });
     this._route.queryParams.subscribe(p => {
-      console.log(p);
+      // console.log(p);
       this.filterData.minPrice = p.minPrice;
       this.filterData.maxPrice = p.maxPrice;
       this.filterData.maxTerm = p.maxTerm;

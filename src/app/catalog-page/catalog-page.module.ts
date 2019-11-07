@@ -35,7 +35,6 @@ const routes: Routes = [
     component: CategorysCatalogPageComponent,
     resolve: { items: CategorysResolver },
   },
-
   {
     path: ':category/:subcategorie',
     component: CatalogComponent,

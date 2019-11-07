@@ -3,5 +3,5 @@ export interface FilterInterface {
   subCategory?: string;
   minPrice?: number;
   maxPrice?: number;
-  maxTerm?: number;
+  maxTerm?: any;
 }

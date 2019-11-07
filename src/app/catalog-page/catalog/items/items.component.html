@@ -11,13 +11,12 @@
           <div class="card-description__ava"><img *ngIf="offer.name" src="{{offer.user.avatar}}" alt="avatar">
           </div>
           <div>
-            <div class="card-description__name">{{offer.user.name}} {{offer.user.surname}}</div>
+            <span class="card-description__name" (click)="openOffer(offer.user.id)">{{offer.user.name}} {{offer.user.surname}}</span>
             <div class="card-description__skill">{{offer.user.rank_id}}</div>
           </div>
         </div>
 
         <p class="card-description__about">{{offer.description}}</p>
-
         <div class="card-description__bottom">
           <div class="card-description__level">{{offer.rating}}</div>
           <div class="card-description__comments"><a>({{offer.comments_count}} отзывов)</a></div>

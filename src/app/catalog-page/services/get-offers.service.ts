@@ -23,6 +23,9 @@ export class GetOffersService {
   private filters = new BehaviorSubject(this._filterValue);
   public filterVaraibles: Observable<FilterInterface>;
 
+  public _offerDate = new BehaviorSubject(null);
+  public offerDate: Observable<OffersListInterface>;
+
   private urlWithoutFilters = this._router.url;
 
   constructor(
@@ -51,8 +54,7 @@ export class GetOffersService {
       return;
     }
     this._offersList.next(null);
-    this.http.post('/catalog', link)
-      .subscribe((res: OffersListInterface) => {
+    this.http.post('/catalog', link).subscribe((res: OffersListInterface) => {
       this._offersList.next(res);
     });
   }
@@ -88,5 +90,19 @@ export class GetOffersService {
 
     // console.log("getOffers from service - pushFilters()")
     this.getOffers(_filters);
+  }
+
+  showOffer(id) {
+    // this.http.post('/showOffer', id)
+    // .subscribe((res: OffersListInterface) => {
+    //   this._offerDate.next(res);
+    //   console.log(this._offerDate);
+    // });
+    // console.log(this._router.url);
+    this._router.navigate( ['/service'], {
+      // relativeTo: this._route,
+      queryParams: id,
+      queryParamsHandling: 'merge'
+    });
   }
 }

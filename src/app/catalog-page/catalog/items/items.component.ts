@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GetOffersService } from '../../services/get-offers.service';
 import { OffersListInterface } from 'src/app/shared/interfaces/offers-list.interface';
 import { Subscription } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-items',
@@ -11,6 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ItemsComponent implements OnInit {
   public subcategory;
+  public id;
   offersList: OffersListInterface;
 
   catalogSubscription: Subscription;
@@ -19,7 +20,8 @@ export class ItemsComponent implements OnInit {
     // tslint:disable-next-line: no-shadowed-variable
     private GetOffersService: GetOffersService,
     // tslint:disable-next-line: variable-name
-    private _route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router,
   ) {
     this.GetOffersService.offersList.subscribe(data => {
       this.offersList = data;
@@ -28,4 +30,16 @@ export class ItemsComponent implements OnInit {
   }
 
   ngOnInit() {}
+
+  openOffer(offerid) {
+    this.id = {
+      offerId: offerid
+    };
+    // this.GetOffersService.showOffer(this.id);
+    this.router.navigate( ['/service'], {
+      relativeTo: this.route,
+      queryParams: this.id,
+      queryParamsHandling: 'merge'
+    });
+  }
 }
