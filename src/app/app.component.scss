@@ -3,3 +3,71 @@
 body{
   background: #F1F2F4;
 }
+
+input[type=checkbox] + label {
+  display: block;
+  margin: 0.2em;
+  cursor: pointer;
+  padding: 0.2em;
+}
+
+input[type=checkbox] {
+  display: none;
+}
+
+input[type=checkbox] + label:before {
+  content: "\e901";
+  display: inline-block;
+  font-family: icoMoon;
+  width: 16px;
+  height: 16px;
+  // padding-left: 0.2em;
+  // padding-bottom: 0.3em;
+  // margin-right: 0.2em;
+  vertical-align: bottom;
+  color: transparent;
+  transition: .2s;
+  border: 2px solid #BFC5D1;
+  box-sizing: border-box;
+  border-radius: 4px;
+  font-size: 8px;
+  text-align: center;
+  line-height: 13px;
+}
+
+input[type=checkbox] + label:active:before {
+  transform: scale(0);
+}
+input[type=checkbox]:hover + label:before {
+  border-color: #3C7EEA;
+}
+input[type=checkbox]:checked + label:before {
+  background: #3C7EEA;
+  border-color: #3C7EEA;
+  color: #fff;
+}
+
+input[type=checkbox]:disabled + label{
+  position: relative;
+  &:before {
+    transform: scale(1);
+    border-color: #DFE2E7;
+    background: #DFE2E7;
+  }
+  &:after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 60%);
+    content: '';
+    width: 8px;
+    height: 2px;
+    background: #BFC5D1;
+  }
+}
+
+input[type=checkbox]:checked:disabled + label:before {
+  transform: scale(1);
+  background-color: #bfb;
+  border-color: #bfb;
+}

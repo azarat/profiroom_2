@@ -109,30 +109,30 @@
         <div>
           <div class="select-wrap">
             <mat-select>
-              <mat-option *ngFor="let change of changesArrayCounter(), let i = index" [value]="change">
+              <mat-option *ngFor="let change of changesArrayCounter(); let i = index" [value]="change">
                 {{ change }}
               </mat-option>
             </mat-select>
           </div>
         </div>
         <div>
-            <div class="select-wrap">
-              <mat-select>
-                <mat-option *ngFor="let change of changesArrayCounter(), let i = index" [value]="change">
-                  {{ change }}
-                </mat-option>
-              </mat-select>
-            </div>
+          <div class="select-wrap">
+            <mat-select>
+              <mat-option *ngFor="let change of changesArrayCounter(); let i = index" [value]="change">
+                {{ change }}
+              </mat-option>
+            </mat-select>
           </div>
-          <div>
-              <div class="select-wrap">
-                <mat-select>
-                  <mat-option *ngFor="let change of changesArrayCounter(), let i = index" [value]="change">
-                    {{ change }}
-                  </mat-option>
-                </mat-select>
-              </div>
-            </div>
+        </div>
+        <div>
+          <div class="select-wrap">
+            <mat-select>
+              <mat-option *ngFor="let change of changesArrayCounter(); let i = index" [value]="change">
+                {{ change }}
+              </mat-option>
+            </mat-select>
+          </div>
+        </div>
       </div>
       <!-- package price -->
       <div class="package-deadlines line">
@@ -158,6 +158,41 @@
             <input type="text" knifeOnlyNumbers maxlength="7" mask="000 000">
           </div>
 
+        </div>
+      </div>
+      <!-- add options -->
+      <div class="package-options " formArrayName="mainOptions">
+        <div class="added-option line" *ngFor="let arrayItem of mainOptionsArray.controls; let i = index"
+          [formGroupName]="i">
+
+
+          <div class="option-title">
+            <div class="input-wrap">
+              <input type="text" formControlName="title" placeholder="Название опции" maxlength="15">
+            </div>
+            <!-- <span (click)="deleteMainOption(i)">delete</span> -->
+          </div>
+          <div class="checkbox-wrap">
+            <input id="basic_{{ i }}" type="checkbox" formControlName="basic">
+            <label for="basic_{{ i }}"></label>
+          </div>
+          <div class="checkbox-wrap">
+            <input id="standart_{{ i }}" type="checkbox" formControlName="standart">
+            <label for="standart_{{ i }}"></label>
+          </div>
+          <div class="checkbox-wrap">
+            <input id="premium_{{ i }}" type="checkbox" formControlName="premium">
+            <label for="premium_{{ i }}"></label>
+          </div>
+        </div>
+        <div class="add-option">
+
+          <span class="add" (click)="addMainOptin()">
+            <i class="material-icons">
+              add_circle_outline
+            </i>
+            <span>Добавить опцию</span>
+          </span>
         </div>
       </div>
     </div>

@@ -91,7 +91,7 @@ form {
       font-weight: normal;
       font-size: 16px;
       line-height: 21px;
-      color: #323C47;
+      color: #323c47;
       text-align: center;
       border: none;
       outline: none;
@@ -101,9 +101,9 @@ form {
     padding: 0 20px 0 30px;
     .mat-select {
       height: 60px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
   }
   & > div {
@@ -194,9 +194,82 @@ form {
       }
     }
   }
-  .package-deadlines, .packages-changes {
+  .package-deadlines,
+  .packages-changes {
     & > div {
       height: 60px;
+    }
+  }
+  .package-options {
+    .added-option {
+      height: 60px;
+      .checkbox-wrap {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+
+    .add-option {
+
+      background: #f4f7fc;
+      padding: 23px 20px 20px 20px;
+
+      i {
+        font-size: 18px;
+        margin-right: 16px;
+      }
+      .add {
+        display: flex;
+        flex-direction: row;
+        font-family: Source Sans Pro, sans-serif;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 18px;
+
+        color: #3c7eea;
+        cursor: pointer;
+        position: relative;
+      }
+    }
+    .option-title {
+      background: #f4f7fc;
+      input {
+        background: #f4f7fc;
+        &::-webkit-input-placeholder {
+          /* Chrome/Opera/Safari */
+          font-size: 14px;
+          line-height: 18px;
+          /* identical to box height */
+
+          color: #99acb7;
+        }
+        &::-moz-placeholder {
+          /* Firefox 19+ */
+          font-size: 14px;
+          line-height: 18px;
+          /* identical to box height */
+
+          color: #99acb7;
+        }
+        &:-ms-input-placeholder {
+          /* IE 10+ */
+          font-size: 14px;
+          line-height: 18px;
+          /* identical to box height */
+
+          color: #99acb7;
+        }
+        &:-moz-placeholder {
+          /* Firefox 18- */
+          font-size: 14px;
+          line-height: 18px;
+          /* identical to box height */
+
+          color: #99acb7;
+        }
+      }
     }
   }
 }
@@ -207,7 +280,7 @@ mat-select::ng-deep .mat-select-arrow-wrapper {
   position: relative;
   &:before {
     position: absolute;
-    content: '';
+    content: "";
     width: 24px;
     height: 24px;
     background-image: url(/assets/images/icons/up.png);
