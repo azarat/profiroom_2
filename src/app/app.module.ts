@@ -7,7 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
-
+// import { NgxGalleryModule } from 'ngx-gallery';
 
 import 'reflect-metadata';
 @NgModule({
@@ -19,7 +19,8 @@ import 'reflect-metadata';
     CoreModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    // NgxGalleryModule
     // shareds
     // RouterModule,
     // LocalizeRouterModule,
@@ -30,6 +31,9 @@ import 'reflect-metadata';
     // ErrorPageModule,
     // AuthorizationPageModule,
     // TranslateModule,
+  ],
+  exports: [
+    // NgxGalleryModule
   ],
   providers: [
     // CategoryResolver

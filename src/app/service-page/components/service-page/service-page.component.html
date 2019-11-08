@@ -1,2 +1,67 @@
-<p>service-page works!</p>
-<p>{{ offerDate.userOffer.description }}</p>
+<app-main-header></app-main-header>
+<app-categories-header></app-categories-header>
+<nav class="navigation_page">
+  <div class="wrapper">
+    <ul>
+      <li>Портфолио</li>
+      <li>пакеты и услуги</li>
+      <li>описание</li>
+      <li>рейтинг</li>
+      <li>отзывы</li>
+      <li>Вопросы и ответы</li>
+      <li>О фрилансере</li>
+    </ul>
+  </div>
+</nav>
+
+<div class="wrapper">
+  <div class="bread-crumbs">
+    <ul *ngIf="offerDate">
+      <li><a [routerLink]="['/'] | localize">Главная</a></li>
+      <li><a [routerLink]="['/catalog', offerDate.userOffer.category] | localize">{{ offerDate.userOffer.category }}</a>
+      </li>
+      <li><a>{{ offerDate.userOffer.name }}</a></li>
+      <!-- <li><a [routerLink]="['/catalog', subcategoriesList.link] | localize">{{ subcategory }}</a></li> -->
+    </ul>
+  </div>
+  <div class="main-block">
+    <div class="description" *ngIf="offerDate">
+      <h2 class="description-name">{{ offerDate.userOffer.name }}</h2>
+      <div class="container">
+        <div class="user">
+          <div class="user-avatar">
+            <img src="{{ offerDate.userOffer.user.avatar }}" alt="user avatar">
+          </div>
+          <div class="user-text">
+            <span class="user-name">{{ offerDate.userOffer.user.name }} {{ offerDate.userOffer.user.surname }}</span>
+            <div class="user-raiting-wrapp">
+              <span class="user-raiting">{{ offerDate.userOffer.raiting }}</span>
+            </div>
+            <span class="user-comments">({{ offerDate.userOffer.comments_count }}+отзывов)</span>
+          </div>
+        </div>
+        <div class="actions">
+          <div class="action">
+            <a href=""> <img src="assets/images/svg/service-page/shape.svg" alt=""></a>
+          </div>
+          <div class="action">
+            <a href=""> <img src="assets/images/svg/service-page/envelope.svg" alt=""></a>
+          </div>
+          <div class="action">
+            <a href=""> <img src="assets/images/svg/service-page/heart.svg" alt=""></a>
+          </div>
+          <div class="action">
+            <a href=""> <img src="assets/images/svg/service-page/auction.svg" alt=""></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="gallery">
+          <ngx-gallery *ngIf="offerDate" [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
+          <!-- <img *ngIf="carData.Image_URL == null" src="{{'http://' + carData.Image_Thumbnail }}" alt=""> -->
+      </div>
+
+    </div>
+    <div class="choose-packet"></div>
+  </div>
+</div>

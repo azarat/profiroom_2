@@ -28,6 +28,7 @@ export class ServicePageService {
 
     this.http.post('/showOffer', this.id).subscribe((res: OfferDateInterface) => {
       this._offerDate.next(res);
+      console.log(res);
     });
   }
 }
