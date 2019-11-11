@@ -1,9 +1,21 @@
-export interface OfferDateInterface {
-  name?: string;
-  description?: string;
-  raiting?: number;
-  comments_count?: number;
-  profi: [{
+export interface OfferDataInterface {
     name?: string;
-  }]
+    user?: {
+      avatar?: string;
+      name?: string;
+      surname?: string;
+    };
+    category: string;
+    description?: string;
+    raiting?: number;
+    comments_count?: number;
+    profi?: {
+      name?: string;
+    };
+    files?: [{
+      small?: string;
+      medium?: string;
+      big?: string;
+    }
+    ];
 }

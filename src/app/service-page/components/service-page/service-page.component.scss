@@ -111,15 +111,13 @@
     overflow: hidden;
     margin-right: 20px;
     margin-top: 10px;
-
-    background-color: green;
     img {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 55px;
-      height: 55px;
+      width: auto;
+      height: 100%;
       border-radius: 50%;
     }
   }

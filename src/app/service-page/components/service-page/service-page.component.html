@@ -16,28 +16,28 @@
 
 <div class="wrapper">
   <div class="bread-crumbs">
-    <ul *ngIf="offerDate">
+    <ul *ngIf="offerData">
       <li><a [routerLink]="['/'] | localize">Главная</a></li>
-      <li><a [routerLink]="['/catalog', offerDate.userOffer.category] | localize">{{ offerDate.userOffer.category }}</a>
+      <li><a [routerLink]="['/catalog', offerData.category] | localize">{{ offerData.category }}</a>
       </li>
-      <li><a>{{ offerDate.userOffer.name }}</a></li>
+      <li><a>{{ offerData.name }}</a></li>
       <!-- <li><a [routerLink]="['/catalog', subcategoriesList.link] | localize">{{ subcategory }}</a></li> -->
     </ul>
   </div>
   <div class="main-block">
-    <div class="description" *ngIf="offerDate">
-      <h2 class="description-name">{{ offerDate.userOffer.name }}</h2>
+    <div class="description" *ngIf="offerData">
+      <h2 class="description-name">{{ offerData.name }}</h2>
       <div class="container">
         <div class="user">
           <div class="user-avatar">
-            <img src="{{ offerDate.userOffer.user.avatar }}" alt="user avatar">
+            <img [src]="'https://www.thecubetest.site/Backend/storage/app/' + offerData.user.avatar" alt="user avatar">
           </div>
           <div class="user-text">
-            <span class="user-name">{{ offerDate.userOffer.user.name }} {{ offerDate.userOffer.user.surname }}</span>
+            <span class="user-name">{{ offerData.user.name }} {{ offerData.user.surname }}</span>
             <div class="user-raiting-wrapp">
-              <span class="user-raiting">{{ offerDate.userOffer.raiting }}</span>
+              <span class="user-raiting">{{ offerData.raiting }}</span>
             </div>
-            <span class="user-comments">({{ offerDate.userOffer.comments_count }}+отзывов)</span>
+            <span class="user-comments">({{ offerData.comments_count }}+отзывов)</span>
           </div>
         </div>
         <div class="actions">
@@ -56,9 +56,9 @@
         </div>
       </div>
 
-      <div class="gallery">
-          <ngx-gallery *ngIf="offerDate" [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
-          <!-- <img *ngIf="carData.Image_URL == null" src="{{'http://' + carData.Image_Thumbnail }}" alt=""> -->
+      <div class="gallery" *ngIf="offerData">
+          <ngx-gallery  [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
+          <img [src]="'https://www.thecubetest.site/Backend/storage/app/' + galleryImages">
       </div>
 
     </div>

@@ -8,6 +8,8 @@ import {
   NgxGalleryImage,
   NgxGalleryAnimation
 } from 'ngx-gallery';
+import { OfferDataInterface } from 'src/app/shared/interfaces/offer-date.interface';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-service-page',
@@ -16,28 +18,71 @@ import {
 })
 export class ServicePageComponent implements OnInit {
   public offerId;
-  public offerDate;
+  public offerData: OfferDataInterface;
 
   catalogSubscription: Subscription;
 
   galleryOptions: NgxGalleryOptions[];
-  galleryImages: NgxGalleryImage[];
+  galleryImages: NgxGalleryImage[] = [{
+    big: 'https://www.thecubetest.site/Backend/storage/app/' + 'offerFiles/testfile1.jpg',
+    medium: 'https://www.thecubetest.site/Backend/storage/app/' + 'offerFiles/testfile1.jpg',
+    small: 'https://www.thecubetest.site/Backend/storage/app/' + 'offerFiles/testfile1.jpg'
+  },
+  {
+    big: 'https://www.thecubetest.site/Backend/storage/app/' + 'offerFiles/testfile2.png',
+    medium: 'https://www.thecubetest.site/Backend/storage/app/' + 'offerFiles/testfile2.png',
+    small: 'https://www.thecubetest.site/Backend/storage/app/' + 'offerFiles/testfile2.png'
+  },
+  {
+    big: 'https://www.thecubetest.site/Backend/storage/app/' + 'offerFiles/testfile3.jpg',
+    medium: 'https://www.thecubetest.site/Backend/storage/app/' + 'offerFiles/testfile3.jpg',
+    small: 'https://www.thecubetest.site/Backend/storage/app/' + 'offerFiles/testfile3.jpg'
+  },
+  {
+    big: 'https://www.thecubetest.site/Backend/storage/app/' + 'offerFiles/testfile1.jpg',
+    medium: 'https://www.thecubetest.site/Backend/storage/app/' + 'offerFiles/testfile1.jpg',
+    small: 'https://www.thecubetest.site/Backend/storage/app/' + 'offerFiles/testfile1.jpg'
+  },
+  {
+    big: 'https://www.thecubetest.site/Backend/storage/app/' + 'offerFiles/testfile2.png',
+    medium: 'https://www.thecubetest.site/Backend/storage/app/' + 'offerFiles/testfile2.png',
+    small: 'https://www.thecubetest.site/Backend/storage/app/' + 'offerFiles/testfile2.png'
+  },
+  {
+    big: 'https://www.thecubetest.site/Backend/storage/app/' + 'offerFiles/testfile3.jpg',
+    medium: 'https://www.thecubetest.site/Backend/storage/app/' + 'offerFiles/testfile3.jpg',
+    small: 'https://www.thecubetest.site/Backend/storage/app/' + 'offerFiles/testfile3.jpg'
+  },
+  ];
 
   constructor(
     // tslint:disable-next-line: variable-name
     private _route: ActivatedRoute,
-    private _router: Router, // tslint:disable-next-line: variable-name
+    // tslint:disable-next-line: variable-name
+    private _router: Router,
     private servicePageService: ServicePageService
   ) {
-    this.servicePageService.offerDate.subscribe(data => {
-      this.offerDate = data;
-      // console.log( this.offersList);
+    this.servicePageService.offerDate$
+    .pipe(filter((res: any) => !!res))
+    .subscribe(data => {
+      this.offerData = data.userOffer;
+
+      // this.offerData.files.forEach(el => {
+      //   this.galleryImages.push(el);
+      // });
+
+      // console.log(this.galleryImages);
+      console.log(data);
+      // this.galleryImages = [
+      //   // big: 'offerFiles/testfile1.jpg',
+      //   // medium: 'offerFiles/testfile2.jpg',
+      //   // small: 'offerFiles/testfile3.jpg'
+      // ];
     });
   }
 
   ngOnInit() {
     this.offerId = this._router.url.split('&offerId=')[1];
-    console.log(this.offerId);
     this.servicePageService.loadOfferDate(this.offerId);
 
     this.galleryOptions = [
@@ -45,7 +90,8 @@ export class ServicePageComponent implements OnInit {
         width: '600px',
         height: '400px',
         thumbnailsColumns: 4,
-        imageAnimation: NgxGalleryAnimation.Slide
+        imageAnimation: NgxGalleryAnimation.Slide,
+        imageInfinityMove: true
       },
       // max-width 800
       {
@@ -63,5 +109,8 @@ export class ServicePageComponent implements OnInit {
         preview: false
       }
     ];
+
+
   }
+
 }
