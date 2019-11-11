@@ -8,7 +8,7 @@
       <div class="card-description">
 
         <div class="card-description__top">
-          <div class="card-description__ava"><img *ngIf="offer.name" src="{{offer.user.avatar}}" alt="avatar">
+          <div class="card-description__ava"><img *ngIf="offer.name" [src]="'https://www.thecubetest.site/Backend/storage/app/' + offer.user.avatar" alt="avatar">
           </div>
           <div>
             <span class="card-description__name" (click)="openOffer(offer.user.id)">{{offer.user.name}} {{offer.user.surname}}</span>

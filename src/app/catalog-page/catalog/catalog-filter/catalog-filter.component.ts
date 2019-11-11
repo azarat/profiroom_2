@@ -40,7 +40,7 @@ export class FilterComponent implements OnInit {
   }
 
   ngOnInit() {
-    // console.log(filterData);
+    this._getOffersService.setFilters(this.filterData);
   }
 
   onFilterChange() {

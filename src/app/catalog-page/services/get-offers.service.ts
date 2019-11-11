@@ -42,18 +42,22 @@ export class GetOffersService {
     this._subCategory.next(subcategory);
     // ??????????
     this.subCategory$.subscribe(res => (this._filterValue.subCategory = res));
+    // console.log(this._filterValue.subCategory);
   }
 
   // -------- main functions in catalog ----------------//
 
   getOffers(link: FilterInterface | any) {
     if (typeof link === 'string') {
+      console.log(1);
       return;
     }
+
     this._offersList.next(null);
     this.http.post('/catalog', link).subscribe((res: OffersListInterface) => {
       this._offersList.next(res);
     });
+
   }
 
   // tslint:disable-next-line: variable-name

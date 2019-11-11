@@ -24,15 +24,15 @@ export class CatalogComponent implements OnInit {
     // tslint:disable-next-line: variable-name
     private _route: ActivatedRoute,
   ) {
+
+  }
+
+  ngOnInit() {
     this.GetOffersService.subCategory$.subscribe(data => {
       this.subcategory = data;
     });
     this._route.queryParams.subscribe(p => {
       this.GetOffersService.getOffers(p);
     });
-  }
-
-  ngOnInit() {
-
   }
 }
