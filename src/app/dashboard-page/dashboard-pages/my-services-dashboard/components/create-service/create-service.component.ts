@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { UserOffersService } from '../services/user-offers.service';
+
 import { filter } from 'rxjs/operators';
 import { plainToClass } from 'class-transformer';
 import { UserServiceModel } from 'src/app/models/user-service/user-service.model';
-import {serviceCreationSteps } from '../consts/steps.const';
+import { serviceCreationSteps } from '../../consts/steps.const';
+import { UserOffersService } from '../../services/user-offers.service';
+
 @Component({
   selector: 'app-create-service',
   templateUrl: './create-service.component.html',

@@ -46,32 +46,34 @@
         </div>
       </div>
       <!-- packages-title -->
-      <div class="packages-titles line">
+      <div class="packages-titles line" formGroupName="packagesTitle">
         <div class="packages-title title">
           <p>Название услуги</p>
 
         </div>
         <div class="packages-title">
           <div class="textarea">
-            <textarea name="" id="" rows="2" maxlength="35"></textarea>
+            <textarea formControlName="basicTitle" name="" id="" rows="2" maxlength="35"></textarea>
           </div>
 
         </div>
         <div class="packages-title">
           <div class="textarea">
-            <textarea name="" id="" rows="2" maxlength="35"></textarea>
+            <textarea name="" id="" formControlName="advancedTitle" [required]="showPackages" rows="2"
+              maxlength="35"></textarea>
           </div>
 
         </div>
         <div class="packages-title">
           <div class="textarea">
-            <textarea name="" id="" rows="2" maxlength="35"></textarea>
+            <textarea name="" id="" formControlName="premiumTitle" [required]="showPackages" rows="2"
+              maxlength="35"></textarea>
           </div>
 
         </div>
       </div>
       <!-- descriptions -->
-      <div class="packages-description line">
+      <div class="packages-description line" formGroupName="packagesDescriptions">
         <div class="description-title">
           <p>
             Краткое описание
@@ -79,25 +81,27 @@
         </div>
         <div class="textarea-wrap">
           <div class="textarea">
-            <textarea name="" id="" maxlength="270"></textarea>
+            <textarea name="" id="" formControlName="basicDescription" maxlength="270"></textarea>
           </div>
 
         </div>
         <div class="textarea-wrap">
           <div class="textarea">
-            <textarea name="" id="" maxlength="270"></textarea>
+            <textarea name="" id="" formControlName="basicDescription" [required]="showPackages"
+              maxlength="270"></textarea>
           </div>
 
         </div>
         <div class="textarea-wrap">
           <div class="textarea">
-            <textarea name="" id="" maxlength="270"></textarea>
+            <textarea name="" id="" formControlName="basicDescription" [required]="showPackages"
+              maxlength="270"></textarea>
           </div>
 
         </div>
       </div>
       <!-- time to Do -->
-      <div class="package-deadlines line">
+      <div class="package-deadlines line" formGroupName="packagesDeadlines">
         <div class="deadline-title title">
           <p>
             Сроки (дней)
@@ -105,32 +109,34 @@
         </div>
         <div>
           <div class="input-wrap">
-            <input type="text" knifeOnlyNumbers maxlength="3">
+            <input type="text" knifeOnlyNumbers maxlength="3" formControlName="basicDeadline">
           </div>
 
         </div>
         <div>
           <div class="input-wrap">
-            <input type="text" knifeOnlyNumbers maxlength="3">
+            <input type="text" knifeOnlyNumbers maxlength="3" [required]="showPackages"
+              formControlName="advancedDeadline">
           </div>
 
         </div>
         <div>
           <div class="input-wrap">
-            <input type="text" knifeOnlyNumbers maxlength="3">
+            <input type="text" knifeOnlyNumbers maxlength="3" [required]="showPackages"
+              formControlName="premiumDeadline">
           </div>
 
         </div>
       </div>
 
       <!-- packages changes -->
-      <div class="packages-changes line">
+      <div class="packages-changes line" formGroupName="packagesChanges">
         <div class="packages-change title">
           <p>Кол-во правок</p>
         </div>
         <div>
           <div class="select-wrap">
-            <mat-select formControlName="basicChanges">
+            <mat-select formControlName="basicChange">
               <mat-option *ngFor="let change of changesArrayCounter(); let i = index" [value]="change">
                 {{ change }}
               </mat-option>
@@ -139,7 +145,7 @@
         </div>
         <div>
           <div class="select-wrap">
-            <mat-select formControlName="classicChanges">
+            <mat-select formControlName="advancedChange" [required]="showPackages">
               <mat-option *ngFor="let change of changesArrayCounter(); let i = index" [value]="change">
                 {{ change }}
               </mat-option>
@@ -148,7 +154,7 @@
         </div>
         <div>
           <div class="select-wrap">
-            <mat-select formControlName="premiumChanges">
+            <mat-select formControlName="premiumChange" [required]="showPackages">
               <mat-option *ngFor="let change of changesArrayCounter(); let i = index" [value]="change">
                 {{ change }}
               </mat-option>
@@ -157,7 +163,7 @@
         </div>
       </div>
       <!-- package price -->
-      <div class="package-deadlines line">
+      <div class="package-deadlines line" formGroupName="packagesPrices">
         <div class="deadline-title title">
           <p>
             Цена
@@ -165,19 +171,19 @@
         </div>
         <div>
           <div class="input-wrap">
-            <input type="text" knifeOnlyNumbers maxlength="7" mask="000 000">
+            <input type="text" knifeOnlyNumbers maxlength="7" formControlName="basicPrice">
           </div>
 
         </div>
         <div>
           <div class="input-wrap">
-            <input type="text" knifeOnlyNumbers maxlength="7" mask="000 000">
+            <input type="text" knifeOnlyNumbers formControlName="basicPrice" [required]="showPackages">
           </div>
 
         </div>
         <div>
           <div class="input-wrap">
-            <input type="text" knifeOnlyNumbers maxlength="7" mask="000 000">
+            <input type="text" knifeOnlyNumbers formControlName="basicPrice" [required]="showPackages">
           </div>
 
         </div>
@@ -225,23 +231,87 @@
       <div class="extra-packages">
         <!-- options -->
         <div class="time-option">
-          <div class="checkbox">
-            <input type="checkbox" name="" class="tgl-classic" id="timeToDo">
-            <label for="timeToDo"></label>
-            <span class="options-name">Сжатые сроки</span>
-          </div>
-          <div class="options">
-            <span>Сделаю за</span>
-            <div>
-              <div class="select-wrap">
-                <mat-select formControlName="basicCompressTime">
-                  <mat-option *ngFor="let change of changesArrayCounter(); let i = index" [value]="change">
-                    {{ change }}
-                  </mat-option>
-                </mat-select>
+          <div class="option-wrap">
+            <div class="checkbox">
+              <input type="checkbox" name="" class="tgl-classic" id="timeToDo">
+              <label for="timeToDo"></label>
+              <span class="options-name">Сжатые сроки</span>
+            </div>
+            <div class="options" *ngIf="showPackages !== true">
+              <span>Сделаю за</span>
+              <div>
+                <div class=" select-wrap-extra">
+                  <mat-select formControlName="basicCompressTime">
+                    <mat-option *ngFor="let change of changesArrayCounter(); let i = index" [value]="change">
+                      {{ change }}
+                    </mat-option>
+                  </mat-select>
+                </div>
+              </div>
+              <div class="price">
+                <input type="text" knifeOnlyNumbers maxlength="4"> <span class="money">UAH</span>
               </div>
             </div>
+            <button (click)="showOptions()" *ngIf="showPackages == true" >open</button>
+          </div>
 
+          <div class="all-types" [@openClose]="optionsVisible ? 'open' : 'closed'" >
+            <div *ngIf="showPackages === true">
+              <div>
+                <div class="extraoption-title">Базовый</div>
+                <div class="options">
+                  <span>Сделаю за</span>
+                  <div>
+                    <div class=" select-wrap-extra">
+                      <mat-select formControlName="basicCompressTime">
+                        <mat-option *ngFor="let change of changesArrayCounter(); let i = index" [value]="change">
+                          {{ change }}
+                        </mat-option>
+                      </mat-select>
+                    </div>
+                  </div>
+                  <div class="price">
+                    <input type="text" knifeOnlyNumbers maxlength="4"> <span class="money">UAH</span>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="extraoption-title">Базовый</div>
+                <div class="options">
+                  <span>Сделаю за</span>
+                  <div>
+                    <div class=" select-wrap-extra">
+                      <mat-select formControlName="basicCompressTime">
+                        <mat-option *ngFor="let change of changesArrayCounter(); let i = index" [value]="change">
+                          {{ change }}
+                        </mat-option>
+                      </mat-select>
+                    </div>
+                  </div>
+                  <div class="price">
+                    <input type="text" knifeOnlyNumbers maxlength="4"> <span class="money">UAH</span>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="extraoption-title">Базовый</div>
+                <div class="options">
+                  <span>Сделаю за</span>
+                  <div>
+                    <div class=" select-wrap-extra">
+                      <mat-select formControlName="basicCompressTime">
+                        <mat-option *ngFor="let change of changesArrayCounter(); let i = index" [value]="change">
+                          {{ change }}
+                        </mat-option>
+                      </mat-select>
+                    </div>
+                  </div>
+                  <div class="price">
+                    <input type="text" knifeOnlyNumbers maxlength="4"> <span class="money">UAH</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <!-- <div class="package-options " formArrayName="extraOptions"> -->
@@ -255,7 +325,7 @@
                 <input type="text" formControlName="title" placeholder="Название опции" maxlength="15">
               </div>
               <i class="material-icons delete-pack" (click)="deleteMainOption(i)">delete</i>
-              
+
             </div>
             <div class="checkbox-wrap">
               <input class="tgl tgl-classic" id="basic_{{ i }}" type="checkbox" formControlName="basic">

@@ -9,8 +9,8 @@ export class DragDropDirective {
   // tslint:disable-next-line: no-output-on-prefix
   @Output() onFileDropped = new EventEmitter<any>();
 
-  @HostBinding('style.background-color') private background = 'transparent';
-  @HostBinding('style.opacity') private opacity = '1';
+  @HostBinding('style.background-color') public background = 'transparent';
+  @HostBinding('style.opacity') public opacity = '1';
 
   // Dragover listener
   @HostListener('dragover', ['$event']) onDragOver(evt) {
