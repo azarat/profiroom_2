@@ -1,7 +1,29 @@
 <div class="step-wrapper">
   <form #form="ngForm" [formGroup]="packagesForm">
-    <h3>3. Пакеты услуг и цены</h3>
+    <div class="form-title">
+      <h3>3. Пакеты услуг и цены</h3>
+
+      <!-- <mat-slide-toggle>3 пакета</mat-slide-toggle> -->
+      <div class="pckg-swap">
+        <input class="tgl tgl-swp" id="cb2" type="checkbox" formControlName="allPackages"
+          (ngModelChange)="changePackageAmount($event)" />
+        <label class="tgl-btn" for="cb2"></label>
+        <span>3 пакета</span>
+      </div>
+    </div>
+
+    <!-- main options -->
     <div class="offer-packages">
+
+      <!-- block hiden 2 pack -->
+      <div class="show-all-pack" *ngIf="showPackages !== true">
+        <h4>Оформите услуги в трёх ценовых вариантах</h4>
+        <p>
+          Расширьте свои возможности
+        </p>
+        <button class="btn" (click)="openAllPackages()">открыть</button>
+      </div>
+
       <!-- packages-name-->
       <div class="package-name line">
         <div>
@@ -108,7 +130,7 @@
         </div>
         <div>
           <div class="select-wrap">
-            <mat-select>
+            <mat-select formControlName="basicChanges">
               <mat-option *ngFor="let change of changesArrayCounter(); let i = index" [value]="change">
                 {{ change }}
               </mat-option>
@@ -117,7 +139,7 @@
         </div>
         <div>
           <div class="select-wrap">
-            <mat-select>
+            <mat-select formControlName="classicChanges">
               <mat-option *ngFor="let change of changesArrayCounter(); let i = index" [value]="change">
                 {{ change }}
               </mat-option>
@@ -126,7 +148,7 @@
         </div>
         <div>
           <div class="select-wrap">
-            <mat-select>
+            <mat-select formControlName="premiumChanges">
               <mat-option *ngFor="let change of changesArrayCounter(); let i = index" [value]="change">
                 {{ change }}
               </mat-option>
@@ -170,22 +192,23 @@
             <div class="input-wrap">
               <input type="text" formControlName="title" placeholder="Название опции" maxlength="15">
             </div>
-            <!-- <span (click)="deleteMainOption(i)">delete</span> -->
+            <i class="material-icons delete-pack" (click)="deleteMainOption(i)">delete</i>
+            <!-- <span >delete</span> -->
           </div>
           <div class="checkbox-wrap">
-            <input id="basic_{{ i }}" type="checkbox" formControlName="basic">
+            <input class="tgl tgl-classic" id="basic_{{ i }}" type="checkbox" formControlName="basic">
             <label for="basic_{{ i }}"></label>
           </div>
           <div class="checkbox-wrap">
-            <input id="standart_{{ i }}" type="checkbox" formControlName="standart">
+            <input class="tgl tgl-classic" id="standart_{{ i }}" type="checkbox" formControlName="standart">
             <label for="standart_{{ i }}"></label>
           </div>
           <div class="checkbox-wrap">
-            <input id="premium_{{ i }}" type="checkbox" formControlName="premium">
+            <input class="tgl tgl-classic" id="premium_{{ i }}" type="checkbox" formControlName="premium">
             <label for="premium_{{ i }}"></label>
           </div>
         </div>
-        <div class="add-option">
+        <div class="add-option" *ngIf="mainOptionsArray.controls.length < 10">
 
           <span class="add" (click)="addMainOptin()">
             <i class="material-icons">
@@ -196,6 +219,69 @@
         </div>
       </div>
     </div>
+    <!-- extra options -->
+    <div class="extra-packages-wrap">
+      <h4>дополнительно к пакетам услуг </h4>
+      <div class="extra-packages">
+        <!-- options -->
+        <div class="time-option">
+          <div class="checkbox">
+            <input type="checkbox" name="" class="tgl-classic" id="timeToDo">
+            <label for="timeToDo"></label>
+            <span class="options-name">Сжатые сроки</span>
+          </div>
+          <div class="options">
+            <span>Сделаю за</span>
+            <div>
+              <div class="select-wrap">
+                <mat-select formControlName="basicCompressTime">
+                  <mat-option *ngFor="let change of changesArrayCounter(); let i = index" [value]="change">
+                    {{ change }}
+                  </mat-option>
+                </mat-select>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <!-- <div class="package-options " formArrayName="extraOptions"> -->
+
+
+        <!-- <div class="added-option line" *ngFor="let arrayItem of extraOptionsArray.controls; let i = index"
+          [formGroupName]="i">
+
+            <div class="option-title">
+              <div class="input-wrap">
+                <input type="text" formControlName="title" placeholder="Название опции" maxlength="15">
+              </div>
+              <i class="material-icons delete-pack" (click)="deleteMainOption(i)">delete</i>
+              
+            </div>
+            <div class="checkbox-wrap">
+              <input class="tgl tgl-classic" id="basic_{{ i }}" type="checkbox" formControlName="basic">
+              <label for="basic_{{ i }}"></label>
+            </div>
+            <div class="checkbox-wrap">
+              <input class="tgl tgl-classic" id="standart_{{ i }}" type="checkbox" formControlName="standart">
+              <label for="standart_{{ i }}"></label>
+            </div>
+            <div class="checkbox-wrap">
+              <input class="tgl tgl-classic" id="premium_{{ i }}" type="checkbox" formControlName="premium">
+              <label for="premium_{{ i }}"></label>
+            </div> -->
+        <!-- </div>  -->
+        <!-- <div class="add-option" *ngIf="mainOptionsArray.controls.length < 10">
+
+          <span class="add" (click)="addMainOptin()">
+            <i class="material-icons">
+              add_circle_outline
+            </i>
+            <span>Добавить опцию</span>
+          </span>
+        </div> -->
+      </div>
+    </div>
+
     <div class="form-butons">
       <button class="back">сохранить и выйти</button>
       <button class="save" (click)="saveStep()">сохранить и продолжить</button>

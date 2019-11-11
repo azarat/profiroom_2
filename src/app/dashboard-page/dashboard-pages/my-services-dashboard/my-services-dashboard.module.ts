@@ -9,7 +9,7 @@ import { FirstStepServiceCreationComponent } from './create-service/first-step-s
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule, MatAutocompleteModule, MatCheckboxModule,
-  MatIconModule, MatTooltipModule, MatSelectModule, MatButtonModule, MatInputModule, MatChipsModule } from '@angular/material';
+  MatIconModule, MatTooltipModule, MatSelectModule, MatButtonModule, MatInputModule, MatChipsModule, MatSlideToggleModule } from '@angular/material';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { DragDropDirective } from './directives/drag-drop.directive';
 import { SecondStepCreationComponent } from './create-service/second-step-creation/second-step-creation.component';
@@ -55,12 +55,23 @@ const servicesRoutes: Routes = [
     ThirdStepCreationComponent
   ],
   imports: [
+    // ---- angular 
     CommonModule,
     LocalizeRouterModule.forChild(servicesRoutes),
     RouterModule.forChild(servicesRoutes),
-
     FormsModule,
     ReactiveFormsModule,
+
+    // ---- loaded 
+    NgbModule,
+    HighlightJsModule,
+    QuillModule.forRoot(),
+    NgKnifeModule,
+    NgxMaskModule.forRoot(options),
+
+    // -----matherials 
+    MatSlideToggleModule,
+    MatSelectModule,
     MatFormFieldModule,
     MatAutocompleteModule,
     MatCheckboxModule,
@@ -69,12 +80,6 @@ const servicesRoutes: Routes = [
     MatButtonModule,
     MatTooltipModule,
     MatChipsModule,
-    NgbModule,
-    MatSelectModule,
-    HighlightJsModule,
-    QuillModule.forRoot(),
-    NgKnifeModule,
-    NgxMaskModule.forRoot(options)
   ],
   exports: [
 
