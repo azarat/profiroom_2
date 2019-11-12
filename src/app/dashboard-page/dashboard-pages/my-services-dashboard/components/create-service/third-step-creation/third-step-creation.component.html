@@ -2,8 +2,6 @@
   <form #form="ngForm" [formGroup]="packagesForm">
     <div class="form-title">
       <h3>3. Пакеты услуг и цены</h3>
-
-      <!-- <mat-slide-toggle>3 пакета</mat-slide-toggle> -->
       <div class="pckg-swap">
         <input class="tgl tgl-swp" id="cb2" type="checkbox" formControlName="allPackages"
           (ngModelChange)="changePackageAmount($event)" />
@@ -12,10 +10,10 @@
       </div>
     </div>
 
-    <!-- main options -->
+    <!-------------------- main options -------------------->
     <div class="offer-packages">
 
-      <!-- block hiden 2 pack -->
+      <!-------------------- block hiden 2 pack -------------------->
       <div class="show-all-pack" *ngIf="showPackages !== true">
         <h4>Оформите услуги в трёх ценовых вариантах</h4>
         <p>
@@ -24,7 +22,7 @@
         <button class="btn" (click)="openAllPackages()">открыть</button>
       </div>
 
-      <!-- packages-name-->
+      <!-------------------- packages-name -------------------->
       <div class="package-name line">
         <div>
 
@@ -45,7 +43,7 @@
           </h6>
         </div>
       </div>
-      <!-- packages-title -->
+      <!--------------------packages-title -------------------->
       <div class="packages-titles line" formGroupName="packagesTitle">
         <div class="packages-title title">
           <p>Название услуги</p>
@@ -72,7 +70,7 @@
 
         </div>
       </div>
-      <!-- descriptions -->
+      <!-------------------- Descriptions -------------------->
       <div class="packages-description line" formGroupName="packagesDescriptions">
         <div class="description-title">
           <p>
@@ -100,7 +98,7 @@
 
         </div>
       </div>
-      <!-- time to Do -->
+      <!--------------------Time to Do -------------------->
       <div class="package-deadlines line" formGroupName="packagesDeadlines">
         <div class="deadline-title title">
           <p>
@@ -129,7 +127,7 @@
         </div>
       </div>
 
-      <!-- packages changes -->
+      <!-------------------- packages changes -------------------->
       <div class="packages-changes line" formGroupName="packagesChanges">
         <div class="packages-change title">
           <p>Кол-во правок</p>
@@ -162,7 +160,7 @@
           </div>
         </div>
       </div>
-      <!-- package price -->
+      <!--------------------package price -------------------->
       <div class="package-deadlines line" formGroupName="packagesPrices">
         <div class="deadline-title title">
           <p>
@@ -188,7 +186,7 @@
 
         </div>
       </div>
-      <!-- add options -->
+      <!--------------------add options -------------------->
       <div class="package-options " formArrayName="mainOptions">
         <div class="added-option line" *ngFor="let arrayItem of mainOptionsArray.controls; let i = index"
           [formGroupName]="i">
@@ -225,16 +223,18 @@
         </div>
       </div>
     </div>
-    <!-- extra options -->
+    <!-------------------- Extra Options -------------------->
     <div class="extra-packages-wrap">
       <h4>дополнительно к пакетам услуг </h4>
       <div class="extra-packages">
-        <!-- options -->
+        <!-------------------- Options Items   -------------------->
+
+          <!--------------------  Deadlines -------------------->
         <div class="time-option">
           <div class="option-wrap">
             <div class="checkbox">
-              <input type="checkbox" name="" class="tgl-classic" id="timeToDo">
-              <label for="timeToDo"></label>
+              <input type="checkbox" name="" class="tgl-classic" id="time-to-do">
+              <label for="time-to-do"></label>
               <span class="options-name">Сжатые сроки</span>
             </div>
             <div class="options" *ngIf="showPackages !== true">
@@ -252,10 +252,11 @@
                 <input type="text" knifeOnlyNumbers maxlength="4"> <span class="money">UAH</span>
               </div>
             </div>
-            <button (click)="showOptions()" *ngIf="showPackages == true" >open</button>
+            <button class="show-pack-options" [ngClass]="optionsVisible ? 'up' : 'down'" (click)="showOptions()"
+              *ngIf="showPackages == true"></button>
           </div>
-
-          <div class="all-types" [@openClose]="optionsVisible ? 'open' : 'closed'" >
+          <!-------------------- Exta Options if All Packages -------------------->
+          <div class="all-types" [ngClass]="optionsVisible ? 'open' : 'closed'">
             <div *ngIf="showPackages === true">
               <div>
                 <div class="extraoption-title">Базовый</div>
@@ -276,7 +277,7 @@
                 </div>
               </div>
               <div>
-                <div class="extraoption-title">Базовый</div>
+                <div class="extraoption-title">Стандарт</div>
                 <div class="options">
                   <span>Сделаю за</span>
                   <div>
@@ -294,7 +295,7 @@
                 </div>
               </div>
               <div>
-                <div class="extraoption-title">Базовый</div>
+                <div class="extraoption-title">Премиум</div>
                 <div class="options">
                   <span>Сделаю за</span>
                   <div>
@@ -314,6 +315,85 @@
             </div>
           </div>
         </div>
+        <!-------------------- //** deadlines -------------------->
+
+        <!-------------------- extra changes  -------------------->
+        <div class="deffault-field">
+          <div class="option-wrap">
+            <div class="checkbox">
+              <input type="checkbox" name="" class="tgl-classic" id="extra-changes">
+              <label for="extra-changes"></label>
+              <span class="options-name">Дополнительные правки</span>
+            </div>
+            <div class="options">
+              <span>Сделаю за</span>
+              <div>
+                <div class=" select-wrap-extra">
+                  <mat-select formControlName="basicCompressTime">
+                    <mat-option *ngFor="let change of changesArrayCounter(); let i = index" [value]="change">
+                      {{ change }}
+                    </mat-option>
+                  </mat-select>
+                </div>
+              </div>
+              <div class="price">
+                <input type="text" knifeOnlyNumbers maxlength="4"> <span class="money">UAH</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- //** extra changes -->
+        <!--  commercila use -->
+        <div class="deffault-field">
+          <div class="option-wrap">
+            <div class="checkbox">
+              <input type="checkbox" name="" class="tgl-classic" id="commercial-use">
+              <label for="commercial-use"></label>
+              <span class="options-name">Коммерческое использование</span>
+            </div>
+            <div class="options commercial" >
+              <span>Сделаю за</span>
+              <div class="price">
+                <input type="text" knifeOnlyNumbers maxlength="4"> <span class="money">UAH</span>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+        <!--  // commercila use -->
+<!-- Add extra Option -->
+<div class="secondary-extra-options" formArrayName="extraOptionsArray">
+  <div class="secondary-extra-options-item" *ngFor=" let option of extraOptionsArray.controls; let j = index">
+    <div class="option-creation">
+      <div class="extra-option-title">
+          <h5>Название опции</h5>
+          <div>
+             <input type="text">
+          </div>
+         
+      </div>
+      <div class="extra-option-description">
+           <h5>Описание </h5>
+           <div></div>
+           <!-- <textarea name="" id="" cols="30" rows="10"></textarea> -->
+      </div>
+      <div></div>
+    </div>
+  </div>
+</div>
+
+<!---------- Add Extra field to secondary option ------->
+<div class="add-option secondary-optins" *ngIf="extraOptionsArray.controls.length < 10">
+
+  <span class="add" (click)="addExtraOptin()">
+    <i class="material-icons">
+      add_circle_outline
+    </i>
+    <span>Добавить опцию</span>
+  </span>
+</div> 
+</div>
+
         <!-- <div class="package-options " formArrayName="extraOptions"> -->
 
 
@@ -340,16 +420,7 @@
               <label for="premium_{{ i }}"></label>
             </div> -->
         <!-- </div>  -->
-        <!-- <div class="add-option" *ngIf="mainOptionsArray.controls.length < 10">
 
-          <span class="add" (click)="addMainOptin()">
-            <i class="material-icons">
-              add_circle_outline
-            </i>
-            <span>Добавить опцию</span>
-          </span>
-        </div> -->
-      </div>
     </div>
 
     <div class="form-butons">
