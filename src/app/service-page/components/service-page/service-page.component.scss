@@ -78,7 +78,7 @@
   }
 }
 
-.main-block{
+.main-block {
   display: flex;
 }
 .description {
@@ -98,7 +98,7 @@
   }
 }
 
-.container{
+.container {
   display: flex;
 }
 .user {
@@ -121,7 +121,7 @@
       border-radius: 50%;
     }
   }
-  &-text{
+  &-text {
     display: flex;
     flex-wrap: wrap;
   }
@@ -145,7 +145,7 @@
     padding-right: 5px;
     padding-left: 26px;
     box-sizing: border-box;
-    &::before{
+    &::before {
       content: "";
       position: absolute;
       top: 57%;
@@ -156,9 +156,8 @@
       background-image: url(/assets/images/icons/Star.png);
       background-size: contain;
       background-repeat: no-repeat;
-
     }
-    &-wrapp{
+    &-wrapp {
       width: fit-content;
       text-align: right;
       position: relative;
@@ -176,22 +175,151 @@
   }
 }
 
-.actions{
+.actions {
   display: flex;
-  .action{
+  .action {
     width: 40px;
     height: 40px;
-    border: 1px solid #BFC5D1;
+    border: 1px solid #bfc5d1;
     border-radius: 4px;
     box-sizing: border-box;
     margin-right: 17px;
     position: relative;
     cursor: pointer;
-    img{
+    img {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
+    }
+  }
+}
+
+.about-offer {
+  h4 {
+    margin: 0;
+    // font-family: Source Sans Pro;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 30px;
+    color: #323c47;
+    margin-bottom: 14px;
+  }
+  p {
+    margin: 0;
+    // font-family: Source Sans Pro;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 23px;
+    color: #4e5051;
+  }
+}
+
+.section-title {
+  margin: 30px 0 15px;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 30px;
+  color: #323c47;
+}
+.table {
+  margin-bottom: 40px;
+  display: table;
+  border: 1px solid rgba(220, 224, 230, 0.4);
+  border-radius: 5px 5px 0px 0px;
+  &-titles {
+    display: table-header-group;
+    background: #F4F7FC;
+    border-bottom: 1px solid #DCE0E6;
+    border-radius: 5px 5px 0px 0px;
+    .table-cell{
+      text-align: center;
+      padding: 40px 0;
+      border-left: 1px solid #DCE0E6;
+
+      font-style: normal;
+      font-weight: normal;
+      font-size: 18px;
+      text-transform: uppercase;;
+      letter-spacing: 0.15px;
+      color: #323C47;
+
+      width: 25%;
+    }
+  }
+  &-item {
+    display: table-row;
+    border-bottom: 1px solid #DCE0E6;
+    background: #fff;
+  }
+  &-cell {
+    display: table-cell;
+    border-bottom: 1px solid #DCE0E6;
+    border-left: 1px solid #DCE0E6;
+    padding: 7px 15px;
+
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 20px;
+    // text-align: center;
+    color: #323C47;
+    &.title-cell{
+      background: #F4F7FC;
+    }
+  }
+}
+
+.offer-raiting{
+  margin-bottom: 40px;
+  .raiting-type{
+    display: flex;
+    margin-bottom: 13px;
+    &_name{
+      width: 250px;
+
+      font-style: normal;
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 23px;
+      color: #323C47;
+    }
+    &_numeral{
+      display: flex;
+    }
+    &_number{
+      position: relative;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 23px;
+      color: #323C47;
+      padding-left: 25px;
+      &::before {
+        content: "";
+        position: absolute;
+        top: 57%;
+        left: 0;
+        height: 17px;
+        width: 17px;
+        transform: translateY(-50%);
+        background-image: url(/assets/images/icons/Star.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
+    }
+    &_comments{
+      width: 110px;
+
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 23px;
+      color: #99acb7;
+      padding-left: 5px;
     }
   }
 }

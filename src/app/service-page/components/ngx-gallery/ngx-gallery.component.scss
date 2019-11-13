@@ -1,0 +1,56 @@
+.gallery{
+  margin-top: 25px;
+  ::ng-deep .ngx-gallery-arrow-wrapper{
+    width: 41px;
+    height: 100.5%;
+    background-color: #fff;
+    &.ngx-gallery-arrow-left{
+      .ngx-gallery-icon::after{
+        transform: translate(-30%, -50%) rotate(135deg);
+      }
+      .ngx-gallery-arrow{
+        left: 0;
+      }
+    }
+    &.ngx-gallery-arrow-right{
+      .ngx-gallery-icon::after{
+        transform: translate(-70%, -50%) rotate(-45deg);
+      }
+      .ngx-gallery-arrow{
+        right: 0;
+      }
+    }
+    .ngx-gallery-icon{
+      width: 100%;
+      height: 100%;
+      background-color: transparent;
+      top: 0;
+      left: 0;
+      transform: translate(0);
+      &::after{
+        content: "";
+        position: absolute;
+        border: 3px solid #3F60FB;
+        border-left: transparent;
+        border-top: transparent;
+        width: 10px;
+        height: 10px;
+        top: 50%;
+        left: 50%;
+      }
+    }
+  }
+  ::ng-deep .ngx-gallery-close{
+    background-color: black;
+  }
+
+  ::ng-deep ngx-gallery-thumbnails{
+    .ngx-gallery-arrow-wrapper{
+      width: 27px;
+    }
+  }
+}
+
+
+
+

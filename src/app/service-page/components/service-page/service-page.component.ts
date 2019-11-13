@@ -29,11 +29,14 @@ export class ServicePageComponent implements OnInit {
     .subscribe(data => {
       this.offerData = data.userOffer;
     });
+
   }
 
   ngOnInit() {
     this.offerId = this._router.url.split('&offerId=')[1];
     this.servicePageService.loadOfferDate(this.offerId);
+
+    console.log(this.offerData);
   }
 
 }

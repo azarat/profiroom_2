@@ -58,6 +58,74 @@
 
       <app-ngx-gallery *ngIf="offerData"></app-ngx-gallery>
 
+      <div class="about-offer">
+        <h4>Описание услуги</h4>
+        <p>{{ offerData.description }}</p>
+      </div>
+
+      <section class="compare">
+        <h4 class="section-title">
+          Сравните и выберите вариант пакета услуг
+        </h4>
+        <div class="table">
+          <div class="table-titles">
+            <div class="table-cell"></div>
+            <div class="table-cell">Базовый</div>
+            <div class="table-cell">Cандарт</div>
+            <div class="table-cell">Премиум</div>
+          </div>
+          <div class="table-item">
+            <div class="table-cell title-cell">Название услуги</div>
+            <div class="table-cell">Дизайн сайта</div>
+            <div class="table-cell">Дизайн сайта + адапт</div>
+            <div class="table-cell">Логотип+ дизайн сайта
+              + адапт</div>
+          </div>
+          <div class="table-item">
+            <div class="table-cell title-cell">Краткое описание</div>
+            <div class="table-cell">Сайты содержат различную статику, которая как и HTML-файл не генерируется на лету.
+              Чаще всего это картинки, CSS-файлы, JS-скрипты, но могут быть и любые другие файлы: mp3, mov, csv, pdf.
+            </div>
+            <div class="table-cell">Сайты содержат различную статику, которая как и HTML-файл не генерируется на лету.
+              Чаще всего это картинки, CSS-файлы.</div>
+            <div class="table-cell">Сайты содержат различную статику, которая как и HTML-файл не генерируется на лету.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="offer-raiting">
+        <h4 class="section-title">
+          Рейтинг услуги “Дизайн сайтов”
+        </h4>
+        <div class="raiting-type">
+          <div class="raiting-type_name">Качество услуги</div>
+          <div class="raiting-type_numeral">
+            <span class="raiting-type_number">{{ offerData.raiting }}</span>
+            <span class="raiting-type_comments">(1k+ отзывов)</span>
+          </div>
+        </div>
+        <div class="raiting-type">
+          <div class="raiting-type_name">Срок исполнения</div>
+          <div class="raiting-type_numeral">
+            <span class="raiting-type_number">{{ offerData.raiting }}</span>
+            <span class="raiting-type_comments">(1k+ отзывов)</span>
+          </div>
+        </div>
+        <div class="raiting-type">
+          <div class="raiting-type_name">Вежливость фрилансера</div>
+          <div class="raiting-type_numeral">
+            <span class="raiting-type_number">{{ offerData.raiting }}</span>
+            <span class="raiting-type_comments">(1k+ отзывов)</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="offer-raiting">
+        <h4 class="section-title">
+            Отзывы
+        </h4>
+      </section>
     </div>
     <div class="choose-packet"></div>
   </div>

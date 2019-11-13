@@ -12,6 +12,7 @@ export interface OfferDataInterface {
     profi?: {
       name?: string;
     };
+    filesDirectory?: string,
     files?: [{
       small?: string;
       medium?: string;

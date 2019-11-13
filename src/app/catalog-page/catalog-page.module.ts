@@ -21,6 +21,7 @@ import { HttpClient } from '@angular/common/http';
 import { OffersResolver } from './resolves/offers.resolve';
 import { FormsModule } from '@angular/forms';
 import { MatSelectModule, MatInputModule } from '@angular/material';
+import { CategorysListService } from '../core/services/categorys.service';
 
 
 
@@ -68,6 +69,7 @@ const routes: Routes = [
     CategorysResolver,
     OffersResolver,
     GetCategorieItemsService,
+    CategorysListService
   ]
 })
 export class CatalogPageModule { }
