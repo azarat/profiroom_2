@@ -3,5 +3,5 @@
 <button (click)="createNewService()">Создать услугу</button><br><br>
 
 <ng-container *ngIf="userService">
-  <button *ngFor="let userOffer of userService" (click)="openOffer(userOffer.id)">{{ userOffer.name }}</button>
+  <button *ngFor="let userOffer of userService" (click)="openOffer(userOffer.id)">{{ userOffer.title }}</button>
 </ng-container>

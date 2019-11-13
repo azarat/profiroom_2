@@ -1,12 +1,12 @@
 <div class="step-wrapper">
-  <form #form="ngForm" [formGroup]="firstStepForm" *ngIf="userService">
+  <form #form="ngForm" *ngIf="userService">
     <h3>1. Титульная информация</h3>
 
     <h5>Название услуги</h5>
     <mat-form-field floatLabel="always" class="service-title" appearance="outline" maxlength="70" ngbPopover="Оно должно отражать суть вашего предложения
     и описывать услугу, которую вы готовы выполнить." triggers="mouseenter:mouseleave"
       popoverTitle="Введите название услуги" placement="right" popoverClass="popover" closeDelay="200">
-      <textarea #serviceTit formControlName="title" [(ngModel)]="userService.title" matInput required
+      <textarea name="title" #serviceTit [(ngModel)]="userService.title" matInput required
         maxlength="70"></textarea>
 
       <mat-hint align="end">{{ serviceTit.value.length }} из 70 максимально</mat-hint>
@@ -17,7 +17,7 @@
         <mat-form-field appearance="outline" ngbPopover="Это позволит покупателям быстро найти Вашу услугу."
           triggers="mouseenter:mouseleave" popoverTitle="Выберите категорию, наиболее подходящую для Вашей услуги"
           placement="right" popoverClass="popover-select" closeDelay="200">
-          <mat-select (ngModelChange)="onFiltersChange()" formControlName="category" [(ngModel)]="userService.category"
+          <mat-select (ngModelChange)="loadSubcategoryFilter($event)" [(ngModel)]="userService.category" name="category"
             required>
             <mat-option *ngFor="let category of categoryList" [value]="category.link">
               {{ category.name }}
@@ -31,13 +31,13 @@
         <mat-form-field appearance="outline" ngbPopover="Это позволит покупателям быстро найти Вашу услугу."
           triggers="mouseenter:mouseleave" popoverTitle="Выберите подкатегорию, наиболее подходящую для Вашей услуги"
           placement="right" popoverClass="popover-select" closeDelay="20000">
-          <mat-select formControlName="subCategory" required [(ngModel)]="userService.subCategory">
+          <mat-select required [(ngModel)]="userService.subCategory" name="subCategory" >
             <mat-option *ngFor="let subcategory of sub_categories" [value]="subcategory.link">
               {{ subcategory.name }}
             </mat-option>
           </mat-select>
-          <mat-error *ngIf="firstStepForm.get('subCategory').hasError('required')">{{ "Выберите подкатегорию" }}
-          </mat-error>
+          <!-- <mat-error *ngIf="firstStepForm.get('subCategory').hasError('required')">{{ "Выберите подкатегорию" }}
+          </mat-error> -->
         </mat-form-field>
       </div>
     </div>

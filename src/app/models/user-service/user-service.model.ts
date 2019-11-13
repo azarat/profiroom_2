@@ -7,7 +7,8 @@ export class UserServiceModel {
   @Expose() category: string;
   @Expose() subCategories: any;
   @Expose() subCategory: string;
-  @Expose() tags: [{ name: string }];
+  @Expose() tags: { tag: string }[];
+  @Expose() nextStep: number;
   @Expose() step: number;
   @Expose() files: any;
   @Expose() description: any;

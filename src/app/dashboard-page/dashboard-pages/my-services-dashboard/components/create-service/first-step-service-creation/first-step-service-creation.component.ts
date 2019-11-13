@@ -6,7 +6,7 @@ import { CategoryInterface } from 'src/app/shared/interfaces/category.interface'
 import { Router, ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { UserServiceModel } from 'src/app/models/user-service/user-service.model';
-import { filter } from 'rxjs/operators';
+import { filter, first } from 'rxjs/operators';
 
 import { plainToClass, Expose } from 'class-transformer';
 import { untilDestroyed } from 'ngx-take-until-destroy';
@@ -37,7 +37,7 @@ export class FirstStepServiceCreationComponent implements OnInit {
   removable = true;
   addOnBlur = true;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
-  tags = [];
+  tags: {tag: string}[] = [];
 
 
   constructor(
@@ -57,10 +57,16 @@ export class FirstStepServiceCreationComponent implements OnInit {
 
 
     this.userOffersService.getCategorys()
-      .pipe(filter((res: any) => !!res))
+      .pipe(
+        filter((res: any) => !!res),
+        first()
+      )
       .subscribe((res: any) => {
         this.categoryList = res.category;
-        this._loadSubcategoryFilter();
+        if ( this.userService.category ) {
+          this.loadSubcategoryFilter(this.userService.category)
+        }
+        // this.loadSubcategoryFilter();
       });
 
     if (this.userService.files) {
@@ -68,17 +74,17 @@ export class FirstStepServiceCreationComponent implements OnInit {
     }
     this.tags = this.userService.tags;
 
-    this.firstStepForm = this.fb.group({
-      title: [null],
-      category: [null],
-      subCategory: [null, Validators.required],
-      tags: [null],
-      step: 1,
-      offerId: null
-    });
+    // this.firstStepForm = this.fb.group({
+    //   title: [null],
+    //   category: [null],
+    //   subCategory: [null, Validators.required],
+    //   tags: [null],
+    //   step: 1,
+    //   offerId: null
+    // });
 
-    console.log(this.userService);
-    console.log(this.firstStepForm.value)
+    // console.log(this.userService);
+    // console.log(this.firstStepForm.value)
   }
 
   // ** stop observables
@@ -88,39 +94,37 @@ export class FirstStepServiceCreationComponent implements OnInit {
 
 
   onFiltersChange() {
-    if (this.categoryList.length > 0) {
-      this._loadSubcategoryFilter();
-    }
+    console.log(this.userService.category);
+    // this._loadSubcategoryFilter();
   }
 
   // tslint:disable-next-line: variable-name
-  private _loadSubcategoryFilter = () => {
-    if (!this.firstStepForm.value.category && !this.userService.subCategory) {
-      this.sub_categories = [];
-      // this.userService.subCategory = null;
-      return;
-    } else if (this.userService.subCategory && !this.firstStepForm.value.category) {
-      const x: any = this.categoryList.find((d: any) => d.link === this.userService.category);
-      this.sub_categories = x.sub_categories;
-      return;
-    } else {
-      const x: any = this.categoryList.find((d: any) => d.link === this.firstStepForm.value.category);
-      this.sub_categories = x.sub_categories;
-    }
+  public loadSubcategoryFilter = (category: string) => {
+    console.log(category);
+    // if (!this.userService.category) {
+    //   this.sub_categories = [];
+    //   // this.userService.subCategory = null;
+    //   return;
+    // }
+    console.log(this.userService.category)
+    const x: any = this.categoryList.find((d: any) => d.link === category);
+    this.sub_categories = x.sub_categories;
+    console.log(this.categoryList)
+    return;
   }
 
   registrate = () => {
-    this.firstStepForm.value.offerId = this.userService.id;
-    this.firstStepForm.value.tags = this.tags;
+    this.userService.tags = this.tags;
     console.log(this.userService);
-    console.log(this.firstStepForm.value)
-    // this.userOffersService.updateService(this.firstStepForm.value)
-    // .pipe(filter((res: any) => !! res))
-    // .subscribe(
-    //   (res) => {
-    //     this.setCurrentStep.emit(2);
-    //   }
-    // );
+    this.userOffersService.updateService(this.userService)
+    .pipe(filter((res: any) => !! res))
+    .subscribe(
+      (res) => {
+        console.log(res);
+        this.userService.step = res.step;
+       console.log(this.userService)
+      }
+    );
   }
 
   // ------------- put offerId in params -----------//

@@ -27,6 +27,7 @@ export class MyServicesHomeComponent implements OnInit {
   ngOnInit() {
     this.userOfferService.showServices()
       .subscribe((res: any) => {
+        console.log(res)
         if (res.userOffers.length > 0) {
           this.userService = plainToClass(UserServiceModel, res.userOffers.slice().reverse());
         }
