@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
-import { UserOffersService } from '../../services/user-offers.service';
+
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { CategoryInterface } from 'src/app/shared/interfaces/category.interface';
@@ -12,6 +12,7 @@ import { plainToClass, Expose } from 'class-transformer';
 import { untilDestroyed } from 'ngx-take-until-destroy';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { UserOffersService } from '../../../services/user-offers.service';
 // import { EventEmitter } from 'events';
 
 

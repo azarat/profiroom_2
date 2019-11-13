@@ -388,13 +388,13 @@ quill-editor::ng-deep {
     font-family: Source Sans Pro, sans-serif;
     border: none;
     border-radius: 4px;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 14px;
     line-height: 18px;
     // color: #4285F4;
     padding: 15px 24px;
     cursor: pointer;
-
+    text-transform: uppercase;
     &:first-of-type {
       border: 1px solid #4285F4;
       background: #fff;

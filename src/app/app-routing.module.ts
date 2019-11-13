@@ -42,10 +42,6 @@ export const routes: Routes = [
   //   path: '404',
   //   loadChildren: () => import('./error-page/error-page.module').then(m => m.ErrorPageModule)
   // }
-  {
-    path: '404',
-    loadChildren: () => import('./error-page/error-page.module').then(m => m.ErrorPageModule)
-  }
 
 ];
 

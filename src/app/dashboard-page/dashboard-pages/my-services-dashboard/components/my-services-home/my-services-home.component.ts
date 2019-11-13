@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LocalizeRouterService } from 'localize-router';
 import { UserServiceModel } from 'src/app/models/user-service/user-service.model';
-import { UserOffersService } from '../services/user-offers.service';
+
 import { map, filter } from 'rxjs/operators';
 import { plainToClass } from 'class-transformer';
 import { untilDestroyed } from 'ngx-take-until-destroy';
+import { UserOffersService } from '../../services/user-offers.service';
 
 @Component({
   selector: 'app-my-services-home',

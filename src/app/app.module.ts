@@ -6,10 +6,10 @@ import { CoreModule } from './core/core.module';
 import { AppRoutingModule } from './app-routing.module';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import 'reflect-metadata';
 import { FormsModule } from '@angular/forms';
 // import { NgxGalleryModule } from 'ngx-gallery';
 
-import 'reflect-metadata';
 @NgModule({
   declarations: [
     AppComponent,

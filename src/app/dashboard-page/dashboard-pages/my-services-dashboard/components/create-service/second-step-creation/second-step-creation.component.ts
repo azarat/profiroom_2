@@ -1,8 +1,9 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { UserServiceModel } from 'src/app/models/user-service/user-service.model';
-import { UserOffersService } from '../../services/user-offers.service';
+
 import { filter } from 'rxjs/operators';
+import { UserOffersService } from '../../../services/user-offers.service';
 
 @Component({
   selector: 'app-second-step-creation',
@@ -57,8 +58,8 @@ export class SecondStepCreationComponent implements OnInit {
     this.descriptionForm.value.step = 2;
     console.log(this.editor);
     this.userOffersService.updateService(this.descriptionForm.value)
-    .pipe(filter((res: any)=> !! res))
-    .subscribe(res => this.setCurrentStep.emit(2));
+    .pipe(filter((res: any) => !! res))
+    .subscribe(res => this.setCurrentStep.emit(3));
 
   }
   onSubmit() {

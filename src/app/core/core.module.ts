@@ -16,9 +16,8 @@ import { AngularFireModule } from '@angular/fire';
 import { config } from 'process';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AuthorisatedGuard } from './guards/authorisated.guard';
-import { OffersService } from './services/offers.service';
 import { CategorysListService } from './services/categorys.service';
-
+import { OffersService } from './services/offers.service';
 
 export const url = new URL(location.href).origin;
 

@@ -1,0 +1,431 @@
+<div class="step-wrapper">
+  <form #form="ngForm" [formGroup]="packagesForm">
+    <div class="form-title">
+      <h3>3. Пакеты услуг и цены</h3>
+      <div class="pckg-swap">
+        <input class="tgl tgl-swp" id="cb2" type="checkbox" formControlName="allPackages"
+          (ngModelChange)="changePackageAmount($event)" />
+        <label class="tgl-btn" for="cb2"></label>
+        <span>3 пакета</span>
+      </div>
+    </div>
+
+    <!-------------------- main options -------------------->
+    <div class="offer-packages">
+
+      <!-------------------- block hiden 2 pack -------------------->
+      <div class="show-all-pack" *ngIf="showPackages !== true">
+        <h4>Оформите услуги в трёх ценовых вариантах</h4>
+        <p>
+          Расширьте свои возможности
+        </p>
+        <button class="btn" (click)="openAllPackages()">открыть</button>
+      </div>
+
+      <!-------------------- packages-name -------------------->
+      <div class="package-name line">
+        <div>
+
+        </div>
+        <div>
+          <h6>
+            Базовый
+          </h6>
+        </div>
+        <div>
+          <h6>
+            Стандарт
+          </h6>
+        </div>
+        <div>
+          <h6>
+            Премиум
+          </h6>
+        </div>
+      </div>
+      <!--------------------packages-title -------------------->
+      <div class="packages-titles line" formGroupName="packagesTitle">
+        <div class="packages-title title">
+          <p>Название услуги</p>
+
+        </div>
+        <div class="packages-title">
+          <div class="textarea">
+            <textarea formControlName="basicTitle" name="" id="" rows="2" maxlength="35"></textarea>
+          </div>
+
+        </div>
+        <div class="packages-title">
+          <div class="textarea">
+            <textarea name="" id="" formControlName="advancedTitle" [required]="showPackages" rows="2"
+              maxlength="35"></textarea>
+          </div>
+
+        </div>
+        <div class="packages-title">
+          <div class="textarea">
+            <textarea name="" id="" formControlName="premiumTitle" [required]="showPackages" rows="2"
+              maxlength="35"></textarea>
+          </div>
+
+        </div>
+      </div>
+      <!-------------------- Descriptions -------------------->
+      <div class="packages-description line" formGroupName="packagesDescriptions">
+        <div class="description-title">
+          <p>
+            Краткое описание
+          </p>
+        </div>
+        <div class="textarea-wrap">
+          <div class="textarea">
+            <textarea name="" id="" formControlName="basicDescription" maxlength="270"></textarea>
+          </div>
+
+        </div>
+        <div class="textarea-wrap">
+          <div class="textarea">
+            <textarea name="" id="" formControlName="basicDescription" [required]="showPackages"
+              maxlength="270"></textarea>
+          </div>
+
+        </div>
+        <div class="textarea-wrap">
+          <div class="textarea">
+            <textarea name="" id="" formControlName="basicDescription" [required]="showPackages"
+              maxlength="270"></textarea>
+          </div>
+
+        </div>
+      </div>
+      <!--------------------Time to Do -------------------->
+      <div class="package-deadlines line" formGroupName="packagesDeadlines">
+        <div class="deadline-title title">
+          <p>
+            Сроки (дней)
+          </p>
+        </div>
+        <div>
+          <div class="input-wrap">
+            <input type="text" knifeOnlyNumbers maxlength="3" formControlName="basicDeadline">
+          </div>
+
+        </div>
+        <div>
+          <div class="input-wrap">
+            <input type="text" knifeOnlyNumbers maxlength="3" [required]="showPackages"
+              formControlName="advancedDeadline">
+          </div>
+
+        </div>
+        <div>
+          <div class="input-wrap">
+            <input type="text" knifeOnlyNumbers maxlength="3" [required]="showPackages"
+              formControlName="premiumDeadline">
+          </div>
+
+        </div>
+      </div>
+
+      <!-------------------- packages changes -------------------->
+      <div class="packages-changes line" formGroupName="packagesChanges">
+        <div class="packages-change title">
+          <p>Кол-во правок</p>
+        </div>
+        <div>
+          <div class="select-wrap">
+            <mat-select formControlName="basicChange">
+              <mat-option *ngFor="let change of changesArrayCounter(); let i = index" [value]="change">
+                {{ change }}
+              </mat-option>
+            </mat-select>
+          </div>
+        </div>
+        <div>
+          <div class="select-wrap">
+            <mat-select formControlName="advancedChange" [required]="showPackages">
+              <mat-option *ngFor="let change of changesArrayCounter(); let i = index" [value]="change">
+                {{ change }}
+              </mat-option>
+            </mat-select>
+          </div>
+        </div>
+        <div>
+          <div class="select-wrap">
+            <mat-select formControlName="premiumChange" [required]="showPackages">
+              <mat-option *ngFor="let change of changesArrayCounter(); let i = index" [value]="change">
+                {{ change }}
+              </mat-option>
+            </mat-select>
+          </div>
+        </div>
+      </div>
+      <!--------------------package price -------------------->
+      <div class="package-deadlines line" formGroupName="packagesPrices">
+        <div class="deadline-title title">
+          <p>
+            Цена
+          </p>
+        </div>
+        <div>
+          <div class="input-wrap">
+            <input type="text" knifeOnlyNumbers maxlength="7" formControlName="basicPrice">
+          </div>
+
+        </div>
+        <div>
+          <div class="input-wrap">
+            <input type="text" knifeOnlyNumbers formControlName="basicPrice" [required]="showPackages">
+          </div>
+
+        </div>
+        <div>
+          <div class="input-wrap">
+            <input type="text" knifeOnlyNumbers formControlName="basicPrice" [required]="showPackages">
+          </div>
+
+        </div>
+      </div>
+      <!--------------------add options -------------------->
+      <div class="package-options " formArrayName="mainOptions">
+        <div class="added-option line" *ngFor="let arrayItem of mainOptionsArray.controls; let i = index"
+          [formGroupName]="i">
+
+
+          <div class="option-title">
+            <div class="input-wrap">
+              <input type="text" formControlName="title" placeholder="Название опции" maxlength="15">
+            </div>
+            <i class="material-icons delete-pack" (click)="deleteMainOption(i)">delete</i>
+            <!-- <span >delete</span> -->
+          </div>
+          <div class="checkbox-wrap">
+            <input class="tgl tgl-classic" id="basic_{{ i }}" type="checkbox" formControlName="basic">
+            <label for="basic_{{ i }}"></label>
+          </div>
+          <div class="checkbox-wrap">
+            <input class="tgl tgl-classic" id="standart_{{ i }}" type="checkbox" formControlName="standart">
+            <label for="standart_{{ i }}"></label>
+          </div>
+          <div class="checkbox-wrap">
+            <input class="tgl tgl-classic" id="premium_{{ i }}" type="checkbox" formControlName="premium">
+            <label for="premium_{{ i }}"></label>
+          </div>
+        </div>
+        <div class="add-option" *ngIf="mainOptionsArray.controls.length < 10">
+
+          <span class="add" (click)="addMainOptin()">
+            <i class="material-icons">
+              add_circle_outline
+            </i>
+            <span>Добавить опцию</span>
+          </span>
+        </div>
+      </div>
+    </div>
+    <!-------------------- Extra Options -------------------->
+    <div class="extra-packages-wrap">
+      <h4>дополнительно к пакетам услуг </h4>
+      <div class="extra-packages">
+        <!-------------------- Options Items   -------------------->
+
+          <!--------------------  Deadlines -------------------->
+        <div class="time-option">
+          <div class="option-wrap">
+            <div class="checkbox">
+              <input type="checkbox" name="" class="tgl-classic" id="time-to-do">
+              <label for="time-to-do"></label>
+              <span class="options-name">Сжатые сроки</span>
+            </div>
+            <div class="options" *ngIf="showPackages !== true">
+              <span>Сделаю за</span>
+              <div>
+                <div class=" select-wrap-extra">
+                  <mat-select formControlName="basicCompressTime">
+                    <mat-option *ngFor="let change of changesArrayCounter(); let i = index" [value]="change">
+                      {{ change }}
+                    </mat-option>
+                  </mat-select>
+                </div>
+              </div>
+              <div class="price">
+                <input type="text" knifeOnlyNumbers maxlength="4"> <span class="money">UAH</span>
+              </div>
+            </div>
+            <button class="show-pack-options" [ngClass]="optionsVisible ? 'up' : 'down'" (click)="showOptions()"
+              *ngIf="showPackages == true"></button>
+          </div>
+          <!-------------------- Exta Options if All Packages -------------------->
+          <div class="all-types" [ngClass]="optionsVisible ? 'open' : 'closed'">
+            <div *ngIf="showPackages === true">
+              <div>
+                <div class="extraoption-title">Базовый</div>
+                <div class="options">
+                  <span>Сделаю за</span>
+                  <div>
+                    <div class=" select-wrap-extra">
+                      <mat-select formControlName="basicCompressTime">
+                        <mat-option *ngFor="let change of changesArrayCounter(); let i = index" [value]="change">
+                          {{ change }}
+                        </mat-option>
+                      </mat-select>
+                    </div>
+                  </div>
+                  <div class="price">
+                    <input type="text" knifeOnlyNumbers maxlength="4"> <span class="money">UAH</span>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="extraoption-title">Стандарт</div>
+                <div class="options">
+                  <span>Сделаю за</span>
+                  <div>
+                    <div class=" select-wrap-extra">
+                      <mat-select formControlName="basicCompressTime">
+                        <mat-option *ngFor="let change of changesArrayCounter(); let i = index" [value]="change">
+                          {{ change }}
+                        </mat-option>
+                      </mat-select>
+                    </div>
+                  </div>
+                  <div class="price">
+                    <input type="text" knifeOnlyNumbers maxlength="4"> <span class="money">UAH</span>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="extraoption-title">Премиум</div>
+                <div class="options">
+                  <span>Сделаю за</span>
+                  <div>
+                    <div class=" select-wrap-extra">
+                      <mat-select formControlName="basicCompressTime">
+                        <mat-option *ngFor="let change of changesArrayCounter(); let i = index" [value]="change">
+                          {{ change }}
+                        </mat-option>
+                      </mat-select>
+                    </div>
+                  </div>
+                  <div class="price">
+                    <input type="text" knifeOnlyNumbers maxlength="4"> <span class="money">UAH</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-------------------- //** deadlines -------------------->
+
+        <!-------------------- extra changes  -------------------->
+        <div class="deffault-field">
+          <div class="option-wrap">
+            <div class="checkbox">
+              <input type="checkbox" name="" class="tgl-classic" id="extra-changes">
+              <label for="extra-changes"></label>
+              <span class="options-name">Дополнительные правки</span>
+            </div>
+            <div class="options">
+              <span>Сделаю за</span>
+              <div>
+                <div class=" select-wrap-extra">
+                  <mat-select formControlName="basicCompressTime">
+                    <mat-option *ngFor="let change of changesArrayCounter(); let i = index" [value]="change">
+                      {{ change }}
+                    </mat-option>
+                  </mat-select>
+                </div>
+              </div>
+              <div class="price">
+                <input type="text" knifeOnlyNumbers maxlength="4"> <span class="money">UAH</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- //** extra changes -->
+        <!--  commercila use -->
+        <div class="deffault-field">
+          <div class="option-wrap">
+            <div class="checkbox">
+              <input type="checkbox" name="" class="tgl-classic" id="commercial-use">
+              <label for="commercial-use"></label>
+              <span class="options-name">Коммерческое использование</span>
+            </div>
+            <div class="options commercial" >
+              <span>Сделаю за</span>
+              <div class="price">
+                <input type="text" knifeOnlyNumbers maxlength="4"> <span class="money">UAH</span>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+        <!--  // commercila use -->
+<!-- Add extra Option -->
+<div class="secondary-extra-options" formArrayName="extraOptionsArray">
+  <div class="secondary-extra-options-item" *ngFor=" let option of extraOptionsArray.controls; let j = index">
+    <div class="option-creation">
+      <div class="extra-option-title">
+          <h5>Название опции</h5>
+          <div>
+             <input type="text">
+          </div>
+         
+      </div>
+      <div class="extra-option-description">
+           <h5>Описание </h5>
+           <div></div>
+           <!-- <textarea name="" id="" cols="30" rows="10"></textarea> -->
+      </div>
+      <div></div>
+    </div>
+  </div>
+</div>
+
+<!---------- Add Extra field to secondary option ------->
+<div class="add-option secondary-optins" *ngIf="extraOptionsArray.controls.length < 10">
+
+  <span class="add" (click)="addExtraOptin()">
+    <i class="material-icons">
+      add_circle_outline
+    </i>
+    <span>Добавить опцию</span>
+  </span>
+</div> 
+</div>
+
+        <!-- <div class="package-options " formArrayName="extraOptions"> -->
+
+
+        <!-- <div class="added-option line" *ngFor="let arrayItem of extraOptionsArray.controls; let i = index"
+          [formGroupName]="i">
+
+            <div class="option-title">
+              <div class="input-wrap">
+                <input type="text" formControlName="title" placeholder="Название опции" maxlength="15">
+              </div>
+              <i class="material-icons delete-pack" (click)="deleteMainOption(i)">delete</i>
+
+            </div>
+            <div class="checkbox-wrap">
+              <input class="tgl tgl-classic" id="basic_{{ i }}" type="checkbox" formControlName="basic">
+              <label for="basic_{{ i }}"></label>
+            </div>
+            <div class="checkbox-wrap">
+              <input class="tgl tgl-classic" id="standart_{{ i }}" type="checkbox" formControlName="standart">
+              <label for="standart_{{ i }}"></label>
+            </div>
+            <div class="checkbox-wrap">
+              <input class="tgl tgl-classic" id="premium_{{ i }}" type="checkbox" formControlName="premium">
+              <label for="premium_{{ i }}"></label>
+            </div> -->
+        <!-- </div>  -->
+
+    </div>
+
+    <div class="form-butons">
+      <button class="back">сохранить и выйти</button>
+      <button class="save" (click)="saveStep()">сохранить и продолжить</button>
+    </div>
+  </form>
+</div>
