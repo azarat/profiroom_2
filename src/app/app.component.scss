@@ -1,20 +1,20 @@
 body {
-  background: #F1F2F4;
+  background: #f1f2f4;
 }
 
 // -------- inputn classic
-input[type=checkbox].tgl-classic+label {
+input[type="checkbox"].tgl-classic + label {
   display: block;
   margin: 0.2em;
   cursor: pointer;
   padding: 0.2em;
 }
 
-input[type=checkbox].tgl-classic {
+input[type="checkbox"].tgl-classic {
   display: none;
 }
 
-input[type=checkbox].tgl-classic+label:before {
+input[type="checkbox"].tgl-classic + label:before {
   content: "\e901";
   display: inline-block;
   font-family: icoMoon;
@@ -25,8 +25,8 @@ input[type=checkbox].tgl-classic+label:before {
   // margin-right: 0.2em;
   vertical-align: bottom;
   color: transparent;
-  transition: .2s;
-  border: 2px solid #BFC5D1;
+  transition: 0.2s;
+  border: 2px solid #bfc5d1;
   box-sizing: border-box;
   border-radius: 4px;
   font-size: 8px;
@@ -34,27 +34,27 @@ input[type=checkbox].tgl-classic+label:before {
   line-height: 13px;
 }
 
-input[type=checkbox].tgl-classic+label:active:before {
+input[type="checkbox"].tgl-classic + label:active:before {
   transform: scale(0);
 }
 
-input[type=checkbox].tgl-classic:hover+label:before {
-  border-color: #3C7EEA;
+input[type="checkbox"].tgl-classic:hover + label:before {
+  border-color: #3c7eea;
 }
 
-input[type=checkbox].tgl-classic:checked+label:before {
-  background: #3C7EEA;
-  border-color: #3C7EEA;
+input[type="checkbox"].tgl-classic:checked + label:before {
+  background: #3c7eea;
+  border-color: #3c7eea;
   color: #fff;
 }
 
-input[type=checkbox].tgl-classic:disabled+label {
+input[type="checkbox"].tgl-classic:disabled + label {
   position: relative;
 
   &:before {
     transform: scale(1);
-    border-color: #DFE2E7;
-    background: #DFE2E7;
+    border-color: #dfe2e7;
+    background: #dfe2e7;
   }
 
   &:after {
@@ -62,14 +62,14 @@ input[type=checkbox].tgl-classic:disabled+label {
     top: 50%;
     left: 50%;
     transform: translate(-50%, 60%);
-    content: '';
+    content: "";
     width: 8px;
     height: 2px;
-    background: #BFC5D1;
+    background: #bfc5d1;
   }
 }
 
-input[type=checkbox].tgl-classic:checked:disabled+label:before {
+input[type="checkbox"].tgl-classic:checked:disabled + label:before {
   transform: scale(1);
   background-color: #bfb;
   border-color: #bfb;
@@ -87,7 +87,7 @@ input[type=checkbox].tgl-classic:checked:disabled+label:before {
   & *,
   & *:after,
   & *:before,
-  &+.tgl-btn {
+  & + .tgl-btn {
     box-sizing: border-box;
 
     &::selection {
@@ -95,7 +95,7 @@ input[type=checkbox].tgl-classic:checked:disabled+label:before {
     }
   }
 
-  +.tgl-btn {
+  + .tgl-btn {
     outline: 0;
     display: block;
     width: 34px;
@@ -122,28 +122,25 @@ input[type=checkbox].tgl-classic:checked:disabled+label:before {
     }
   }
 
-  &:checked+.tgl-btn:after {
+  &:checked + .tgl-btn:after {
     left: 50%;
   }
 }
 
 .tgl-swp {
-  +.tgl-btn {
-    background: #AAB2C0;
+  + .tgl-btn {
+    background: #aab2c0;
     border-radius: 2em;
     padding: 2px;
-    transition: all .4s ease;
+    transition: all 0.4s ease;
     border: 1px solid #e8eae9;
 
     &:after {
       border-radius: 2em;
       background: #fbfbfb;
-      transition:
-        left .3s cubic-bezier(0.175, 0.885, 0.320, 1.275),
-        padding .3s ease, margin .3s ease;
-      box-shadow:
-        0 0 0 1px rgba(0, 0, 0, .1),
-        0 4px 0 rgba(0, 0, 0, .08);
+      transition: left 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+        padding 0.3s ease, margin 0.3s ease;
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 4px 0 rgba(0, 0, 0, 0.08);
     }
 
     &:hover:after {
@@ -154,19 +151,19 @@ input[type=checkbox].tgl-classic:checked:disabled+label:before {
       box-shadow: inset 0 0 0 2em #e8eae9;
 
       &:after {
-        padding-right: .8em;
+        padding-right: 0.8em;
       }
     }
   }
 
-  &:checked+.tgl-btn {
-    background: #3C7EEA;
+  &:checked + .tgl-btn {
+    background: #3c7eea;
 
     &:active {
       box-shadow: none;
 
       &:after {
-        margin-left: -.8em;
+        margin-left: -0.8em;
       }
     }
   }
@@ -185,8 +182,8 @@ input[type=checkbox].tgl-classic:checked:disabled+label:before {
   text-align: center;
   letter-spacing: 1px;
   text-transform: uppercase;
-  color: #FFFFFF;
-  background: #3C7EEA;
+  color: #ffffff;
+  background: #3c7eea;
   box-shadow: 0px 2px 4px rgba(60, 9, 179, 0.3);
   border-radius: 4px;
   border: none;
@@ -196,18 +193,16 @@ input[type=checkbox].tgl-classic:checked:disabled+label:before {
   cursor: pointer;
   outline: none;
   &:hover {
-    background: #5695FD;
+    background: #5695fd;
   }
   &:active {
-    background: #1666EA;
+    background: #1666ea;
   }
   &:disabled {
-    background: #C2CFE0;
+    background: #c2cfe0;
     cursor: default;
   }
-
 }
-
 
 // ---------------simple secondary button ------------
 
@@ -223,7 +218,6 @@ input[type=checkbox].tgl-classic:checked:disabled+label:before {
   letter-spacing: 1px;
   font-variant: small-caps;
   text-transform: uppercase;
-  color: #FFFFFF;
   background: #fff;
 
   box-shadow: none;
@@ -231,24 +225,57 @@ input[type=checkbox].tgl-classic:checked:disabled+label:before {
   padding: 16px 50px;
   cursor: pointer;
   outline: none;
-  border: 1px solid #3C7EEA;
+  border: 1px solid #3c7eea;
   box-sizing: border-box;
 
-// letter-spacing: 0.01em;
+  // letter-spacing: 0.01em;
 
-
-color: #3C7EEA;
+  color: #3c7eea;
   &:hover {
-    border: 1px solid #5695FD;
-    color: #5695FD;
+    border: 1px solid #5695fd;
+    color: #5695fd;
   }
   &:active {
-    border: 1px solid #1666EA;
-    color: #1666EA;
+    border: 1px solid #1666ea;
+    color: #1666ea;
   }
   &:disabled {
-    border: 1px solid #C2CFE0;
-    color: #C2CFE0;
+    border: 1px solid #c2cfe0;
+    color: #c2cfe0;
+    cursor: default;
+  }
+}
+
+//  ---------- tetrary button ---------- //
+
+.btn-tetraty {
+  // font-family: Source Sans Pro, sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: #3c7eea;
+  display: flex;
+  background: #fff;
+  box-shadow: none;
+  border-radius: 4px;
+  min-width: 160px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  box-sizing: border-box;
+  &:hover {
+    color: #5695fd;
+  }
+  &:active {
+    color: #1666ea;
+  }
+  &:disabled {
+    color: #3c7eea;
+    opacity: 0.4;
     cursor: default;
   }
 }

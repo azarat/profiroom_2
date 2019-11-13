@@ -6,7 +6,7 @@
     <mat-form-field floatLabel="always" class="service-title" appearance="outline" maxlength="70" ngbPopover="Оно должно отражать суть вашего предложения
     и описывать услугу, которую вы готовы выполнить." triggers="mouseenter:mouseleave"
       popoverTitle="Введите название услуги" placement="right" popoverClass="popover" closeDelay="200">
-      <textarea #serviceTit formControlName="name" [(ngModel)]="userService.name" matInput required
+      <textarea #serviceTit formControlName="title" [(ngModel)]="userService.title" matInput required
         maxlength="70"></textarea>
 
       <mat-hint align="end">{{ serviceTit.value.length }} из 70 максимально</mat-hint>

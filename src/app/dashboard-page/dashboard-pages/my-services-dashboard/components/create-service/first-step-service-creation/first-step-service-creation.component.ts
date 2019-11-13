@@ -54,6 +54,8 @@ export class FirstStepServiceCreationComponent implements OnInit {
   @Output() public setCurrentStep = new EventEmitter();
 
   ngOnInit() {
+
+
     this.userOffersService.getCategorys()
       .pipe(filter((res: any) => !!res))
       .subscribe((res: any) => {
@@ -67,13 +69,16 @@ export class FirstStepServiceCreationComponent implements OnInit {
     this.tags = this.userService.tags;
 
     this.firstStepForm = this.fb.group({
-      name: [null],
+      title: [null],
       category: [null],
       subCategory: [null, Validators.required],
       tags: [null],
       step: 1,
       offerId: null
     });
+
+    console.log(this.userService);
+    console.log(this.firstStepForm.value)
   }
 
   // ** stop observables
@@ -107,13 +112,15 @@ export class FirstStepServiceCreationComponent implements OnInit {
   registrate = () => {
     this.firstStepForm.value.offerId = this.userService.id;
     this.firstStepForm.value.tags = this.tags;
-    this.userOffersService.updateService(this.firstStepForm.value)
-    .pipe(filter((res: any) => !! res))
-    .subscribe(
-      (res) => {
-        this.setCurrentStep.emit(2);
-      }
-    );
+    console.log(this.userService);
+    console.log(this.firstStepForm.value)
+    // this.userOffersService.updateService(this.firstStepForm.value)
+    // .pipe(filter((res: any) => !! res))
+    // .subscribe(
+    //   (res) => {
+    //     this.setCurrentStep.emit(2);
+    //   }
+    // );
   }
 
   // ------------- put offerId in params -----------//

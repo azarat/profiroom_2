@@ -11,10 +11,9 @@ import { trigger, state, style, animate, transition, } from '@angular/animations
 })
 export class ThirdStepCreationComponent implements OnInit {
   packagesForm: FormGroup;
-  user
+  user;
   showPackages = false;
   optionsVisible = false;
-  width = '300px'
   constructor(
     private fb: FormBuilder
   ) { }
@@ -25,36 +24,37 @@ export class ThirdStepCreationComponent implements OnInit {
   ngOnInit() {
     this.packagesForm = this.fb.group({
       allPackages: false,
+      step: 3,
       packagesTitle: new FormGroup({
-          basicTitle: new FormControl(null, Validators.required), // string
-          advancedTitle: new FormControl(null), // string
-          premiumTitle: new FormControl(null), // string
-        }),
+        basicTitle: new FormControl(null, Validators.required), // string
+        advancedTitle: new FormControl(null), // string
+        premiumTitle: new FormControl(null), // string
+      }),
 
       packagesDescriptions: new FormGroup({
-          basicDescription: new FormControl(null, Validators.required), // string
-          advancedDescription: new FormControl(null), // string
-          premiumDescription: new FormControl(null), // string
-        }),
+        basicDescription: new FormControl(null, Validators.required), // string
+        advancedDescription: new FormControl(null), // string
+        premiumDescription: new FormControl(null), // string
+      }),
 
       packagesDeadlines: new FormGroup({
-          basicDeadline: new FormControl(null, Validators.required), // number
-          advancedDeadline: new FormControl(null), // number
-          premiumDeadline: new FormControl(null), // number
-        }),
+        basicDeadline: new FormControl(null, Validators.required), // number
+        advancedDeadline: new FormControl(null), // number
+        premiumDeadline: new FormControl(null), // number
+      }),
 
       packagesChanges: new FormGroup({
-          basicChange: new FormControl(null, Validators.required), // number
-          advancedChange: new FormControl(null), // number
-          premiumChange: new FormControl(null), // number
-        }),
+        basicChange: new FormControl(null, Validators.required), // number
+        advancedChange: new FormControl(null), // number
+        premiumChange: new FormControl(null), // number
+      }),
 
       packagesPrices: new FormGroup({
-          basicPrice: new FormControl(null, [Validators.required, Validators.minLength(2)]), // number
-          advancedPrice: new FormControl(null, Validators.maxLength(7)), // number
-          premiumPrice: new FormControl(null, Validators.maxLength(7)), // number
+        basicPrice: new FormControl(null, [Validators.required, Validators.minLength(2)]), // number
+        advancedPrice: new FormControl(null, Validators.maxLength(7)), // number
+        premiumPrice: new FormControl(null, Validators.maxLength(7)), // number
       }),
-      // -------------------- Added Options to Main FormBlock --------------------// 
+      // -------------------- Added Options to Main FormBlock --------------------//
       mainOptions: this.fb.array([
       ]),
 
@@ -79,7 +79,7 @@ export class ThirdStepCreationComponent implements OnInit {
         priceForCommercialOffer: new FormControl(null) // number
       }),
 
-      
+
 
       basicCompressTime: null,
       basicCompressPrice: null,
@@ -91,7 +91,7 @@ export class ThirdStepCreationComponent implements OnInit {
         }
       ),
 
-      extraOptionsArray: this.fb.array([
+      extraOptions: this.fb.array([
       ])
     });
 
@@ -118,7 +118,7 @@ export class ThirdStepCreationComponent implements OnInit {
       {
         title: [null, Validators.required],
         basic: false,
-        standart: false,
+        advanced: false,
         premium: false
       }
     ));
@@ -142,11 +142,11 @@ export class ThirdStepCreationComponent implements OnInit {
   }
 
   openAllPackages() {
-    this.packagesForm.controls['allPackages'].setValue(true);
+    this.packagesForm.controls.allPackages.setValue(true);
   }
 
   changePackageAmount(e: boolean) {
-    console.log(e)
+    console.log(e);
     this.showPackages = e;
   }
 
@@ -157,10 +157,14 @@ export class ThirdStepCreationComponent implements OnInit {
   // -------------------- Get extra optionsArray --------------------
 
   get extraOptionsArray() {
-    return this.packagesForm.get('extraOptionsArray') as FormArray;
+    return this.packagesForm.get('extraOptions') as FormArray;
   }
 
   addExtraOptin() {
+
+    // if (this.packagesForm.controls.extraOptions.invalid ){
+    //   return;
+    // }
     this.extraOptionsArray.push(this.fb.group(
       {
         optionTitle: null,
@@ -169,7 +173,7 @@ export class ThirdStepCreationComponent implements OnInit {
         optionPerTime: null
       }
     ));
-    console.log(this.extraOptionsArray)
+    console.log(this.extraOptionsArray);
   }
 
   // -------------------- Show options --------------------

@@ -204,7 +204,7 @@
             <label for="basic_{{ i }}"></label>
           </div>
           <div class="checkbox-wrap">
-            <input class="tgl tgl-classic" id="standart_{{ i }}" type="checkbox" formControlName="standart">
+            <input class="tgl tgl-classic" id="standart_{{ i }}" type="checkbox" formControlName="advanced">
             <label for="standart_{{ i }}"></label>
           </div>
           <div class="checkbox-wrap">
@@ -229,7 +229,7 @@
       <div class="extra-packages">
         <!-------------------- Options Items   -------------------->
 
-          <!--------------------  Deadlines -------------------->
+        <!--------------------  Deadlines -------------------->
         <div class="time-option">
           <div class="option-wrap">
             <div class="checkbox">
@@ -351,81 +351,84 @@
               <label for="commercial-use"></label>
               <span class="options-name">Коммерческое использование</span>
             </div>
-            <div class="options commercial" >
+            <div class="options commercial">
               <span>Сделаю за</span>
               <div class="price">
                 <input type="text" knifeOnlyNumbers maxlength="4"> <span class="money">UAH</span>
               </div>
             </div>
-          
+
           </div>
         </div>
         <!--  // commercila use -->
-<!-- Add extra Option -->
-<div class="secondary-extra-options" formArrayName="extraOptionsArray">
-  <div class="secondary-extra-options-item" *ngFor=" let option of extraOptionsArray.controls; let j = index">
-    <div class="option-creation">
-      <div class="extra-option-title">
-          <h5>Название опции</h5>
-          <div>
-             <input type="text">
-          </div>
-         
-      </div>
-      <div class="extra-option-description">
-           <h5>Описание </h5>
-           <div></div>
-           <!-- <textarea name="" id="" cols="30" rows="10"></textarea> -->
-      </div>
-      <div></div>
-    </div>
-  </div>
-</div>
-
-<!---------- Add Extra field to secondary option ------->
-<div class="add-option secondary-optins" *ngIf="extraOptionsArray.controls.length < 10">
-
-  <span class="add" (click)="addExtraOptin()">
-    <i class="material-icons">
-      add_circle_outline
-    </i>
-    <span>Добавить опцию</span>
-  </span>
-</div> 
-</div>
-
-        <!-- <div class="package-options " formArrayName="extraOptions"> -->
-
-
-        <!-- <div class="added-option line" *ngFor="let arrayItem of extraOptionsArray.controls; let i = index"
-          [formGroupName]="i">
-
-            <div class="option-title">
-              <div class="input-wrap">
-                <input type="text" formControlName="title" placeholder="Название опции" maxlength="15">
+        <!--  **************************************   [(ngModel)]="userService.extraOptions[j].optionDescription" -->
+        <!-- Add extra Option -->
+        <div class="secondary-extra-options" formArrayName="extraOptions">
+          <div class="secondary-extra-options-item" *ngFor=" let option of extraOptionsArray.controls; let j = index"  [formGroupName]="j">
+            <div class="display-option" *ngIf="j > 0">
+              <div class="display-title">
+                {{ j }}
               </div>
-              <i class="material-icons delete-pack" (click)="deleteMainOption(i)">delete</i>
-
             </div>
-            <div class="checkbox-wrap">
-              <input class="tgl tgl-classic" id="basic_{{ i }}" type="checkbox" formControlName="basic">
-              <label for="basic_{{ i }}"></label>
-            </div>
-            <div class="checkbox-wrap">
-              <input class="tgl tgl-classic" id="standart_{{ i }}" type="checkbox" formControlName="standart">
-              <label for="standart_{{ i }}"></label>
-            </div>
-            <div class="checkbox-wrap">
-              <input class="tgl tgl-classic" id="premium_{{ i }}" type="checkbox" formControlName="premium">
-              <label for="premium_{{ i }}"></label>
-            </div> -->
-        <!-- </div>  -->
+            <div class="option-creation">
+              <div class="extra-option-title">
+                <h5>Название опции</h5>
+                <div>
+                  <input type="text" formControlName="optionTitle"   required>
+                </div>
 
-    </div>
+              </div>
+              <div class="extra-option-description">
+                <h5>Описание </h5>
+                <div>
+                  <textarea name="extra-option-description" formControlName="optionDescription"   required></textarea>
+                </div>
 
-    <div class="form-butons">
-      <button class="back">сохранить и выйти</button>
-      <button class="save" (click)="saveStep()">сохранить и продолжить</button>
-    </div>
+              </div>
+              <div>
+                  <div class="deffault-field extra-option">
+                      <div class="option-wrap">
+
+                        <div class="options">
+                          <span>Сделаю за</span>
+                          <div>
+                            <div class=" select-wrap-extra">
+                              <mat-select formControlName="optionPrice" required>
+                                <mat-option *ngFor="let change of changesArrayCounter(); let i = index" [value]="change">
+                                  {{ change }}
+                                </mat-option>
+                              </mat-select>
+                            </div>
+                          </div>
+                          <div class="price">
+                            <input type="text" formControlName="optionPerTime" required knifeOnlyNumbers maxlength="4"> <span class="money">UAH</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!---------- Add Extra field to secondary option ------->
+        <div class="add-option secondary-optins" *ngIf="extraOptionsArray.controls.length < 10">
+            <!-- [disabled]="packagesForm.controls['extraOptions'].invalid" -->
+          <button class="add btn-tetraty"  (click)="addExtraOptin()">
+            <i class="material-icons">
+              add_circle_outline
+            </i>
+            <span>Добавить опцию</span>
+          </button>
+        </div>
+      </div>
+
+
+      </div>
+
+      <div class="form-butons">
+        <button class="back">сохранить и выйти</button>
+        <button class="save" (click)="saveStep()">сохранить и продолжить</button>
+      </div>
   </form>
 </div>
