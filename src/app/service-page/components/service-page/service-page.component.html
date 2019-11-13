@@ -56,10 +56,7 @@
         </div>
       </div>
 
-      <div class="gallery" *ngIf="offerData">
-          <ngx-gallery  [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
-          <img [src]="'https://www.thecubetest.site/Backend/storage/app/' + galleryImages">
-      </div>
+      <app-ngx-gallery *ngIf="offerData"></app-ngx-gallery>
 
     </div>
     <div class="choose-packet"></div>

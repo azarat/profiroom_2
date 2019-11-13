@@ -7,6 +7,7 @@ import { ServicePageService } from './services/service-page.service';
 import { MainHeaderModule } from '../shared/modules/main-header/main-header.module';
 import { CategoriesHeaderModule } from '../shared/modules/categories-header/categories-header.module';
 import { NgxGalleryModule } from 'ngx-gallery';
+import { NgxGalleryComponent } from './components/ngx-gallery/ngx-gallery.component';
 
 
 const routes: Routes = [
@@ -17,7 +18,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [ServicePageComponent],
+  declarations: [ServicePageComponent, NgxGalleryComponent],
   imports: [
     CommonModule,
     LocalizeRouterModule.forChild(routes),
