@@ -279,3 +279,46 @@ input[type="checkbox"].tgl-classic:checked:disabled + label:before {
     cursor: default;
   }
 }
+
+// ---------- tags ---------- //
+
+.mat-chip.mat-standard-chip {
+  border: 1px solid rgba(153, 172, 183, 0.5);
+  border-radius: 3px;
+  background-color: #fff;
+
+  font-family: Source Sans Pro, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 18px;
+  color: #707683;
+  margin-bottom: 0 !important;
+  mat-icon {
+    color: transparent !important;
+    position: relative;
+    &:before {
+      position: absolute;
+      content: "\e900";
+      font-family: icomoon;
+      color: #707683;
+    }
+  }
+}
+
+
+//  ---------- editor ---------- //
+
+quill-editor {
+  .ql-toolbar {
+  background: #F4F7FC;
+  border-radius: 3px 3px 0px 0px;
+  border-width: 1px 1px 0 1px !important;
+  border-color: #DCE0E6 !important;
+}
+.ql-editor {
+  height: 230px !important;
+  border-width: 0 1px 1px 1px !important;
+  border-color: #DCE0E6 !important;
+}
+}

@@ -11,11 +11,7 @@ import { UserOffersService } from '../../../services/user-offers.service';
   styleUrls: ['./second-step-creation.component.scss']
 })
 export class SecondStepCreationComponent implements OnInit {
-  serviceDescriprionForm = {
-    description: null,
-    step: 2,
-    offerId: null
-  };
+
   config = {
     toolbar: [[ 'bold', 'italic', 'underline', ],
     [{ list: 'bullet' }] ]
@@ -27,42 +23,25 @@ export class SecondStepCreationComponent implements OnInit {
   public editor;
   constructor(
     private userOffersService: UserOffersService,
-    private fb: FormBuilder
   ) { }
 
   @Input() userService: UserServiceModel;
   @Output() public setCurrentStep = new EventEmitter();
-  ngOnInit() {
 
-
-    console.log(this.userService);
-    // this.serviceDescriprionForm.offerId = this.userService.id;
-    // // if (this.userService.description) {
-    // //   this.editor.container.innerHTML = this.userService.description;
-    // // }
-
-    this.descriptionForm = this.fb.group({
-      description: null,
-      step: 2,
-      offerId: null
-    });
-  }
+  ngOnInit() { }
 
   onEditorCreated(event) {
 
     this.editor = event;
   }
-  registrate() {
-
-    this.descriptionForm.value.offerId = this.userService.id;
-    this.descriptionForm.value.step = 2;
-    console.log(this.editor);
-    this.userOffersService.updateService(this.descriptionForm.value)
-    .pipe(filter((res: any) => !! res))
-    .subscribe(res => this.setCurrentStep.emit(3));
-
-  }
   onSubmit() {
-  console.log(this.descriptionForm.value.editor);
+    console.log(this.userService);
+    this.userOffersService.updateService(this.userService)
+    .pipe(filter((res: any) => !! res))
+    .subscribe(res => {
+      this.userService.step = res.step;
+    } );
+
   }
+
 }

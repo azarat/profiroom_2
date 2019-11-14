@@ -10,93 +10,16 @@ import { trigger, state, style, animate, transition, } from '@angular/animations
   styleUrls: ['./third-step-creation.component.scss'],
 })
 export class ThirdStepCreationComponent implements OnInit {
-  packagesForm: FormGroup;
+
   user;
   showPackages = false;
   optionsVisible = false;
-  constructor(
-    private fb: FormBuilder
-  ) { }
+  constructor() { }
 
   @Input() userService: UserServiceModel;
   @Output() public setCurrentStep = new EventEmitter();
 
-  ngOnInit() {
-    this.packagesForm = this.fb.group({
-      allPackages: false,
-      step: 3,
-      packagesTitle: new FormGroup({
-        basicTitle: new FormControl(null, Validators.required), // string
-        advancedTitle: new FormControl(null), // string
-        premiumTitle: new FormControl(null), // string
-      }),
-
-      packagesDescriptions: new FormGroup({
-        basicDescription: new FormControl(null, Validators.required), // string
-        advancedDescription: new FormControl(null), // string
-        premiumDescription: new FormControl(null), // string
-      }),
-
-      packagesDeadlines: new FormGroup({
-        basicDeadline: new FormControl(null, Validators.required), // number
-        advancedDeadline: new FormControl(null), // number
-        premiumDeadline: new FormControl(null), // number
-      }),
-
-      packagesChanges: new FormGroup({
-        basicChange: new FormControl(null, Validators.required), // number
-        advancedChange: new FormControl(null), // number
-        premiumChange: new FormControl(null), // number
-      }),
-
-      packagesPrices: new FormGroup({
-        basicPrice: new FormControl(null, [Validators.required, Validators.minLength(2)]), // number
-        advancedPrice: new FormControl(null, Validators.maxLength(7)), // number
-        premiumPrice: new FormControl(null, Validators.maxLength(7)), // number
-      }),
-      // -------------------- Added Options to Main FormBlock --------------------//
-      mainOptions: this.fb.array([
-      ]),
-
-      // -------------------- Extra options -------------------- //
-
-      compressedDeadlines: new FormGroup({
-        useCompressedDeadlines: new FormControl(false), // boolean
-        basicCompressedDays: new FormControl(null, Validators.required), // number
-        basicCompressedPrice: new FormControl(null, Validators.required), // number
-        advancedCompressedDays: new FormControl(null, Validators.required), // number
-        advancedCompressedPrice: new FormControl(null, Validators.required), // number
-        premiumCompressedDays: new FormControl(null, Validators.required), // number
-        premiumCompressedPrice: new FormControl(null, Validators.required), // number
-      }),
-      extraOfferChanges: new FormGroup({
-        useExtraOfferChanges: new FormControl(false),
-        extraChangesDays: new FormControl(null, Validators.required), // number
-        extraChangesPrice: new FormControl(null, Validators.required), // number
-      }),
-      commercialOffer: new FormGroup({
-        useCommercialOffer: new FormControl(false), // boolean
-        priceForCommercialOffer: new FormControl(null) // number
-      }),
-
-
-
-      basicCompressTime: null,
-      basicCompressPrice: null,
-
-      shortDeadlines: new FormGroup(
-        {
-          shortDeadlinesActivated: new FormControl(false),
-
-        }
-      ),
-
-      extraOptions: this.fb.array([
-      ])
-    });
-
-
-  }
+  ngOnInit() { }
 
   changesArrayCounter() {
     const changes = new Array();
@@ -109,40 +32,42 @@ export class ThirdStepCreationComponent implements OnInit {
   // -------------------- Get main  optionsArray --------------------
 
   get mainOptionsArray() {
-    return this.packagesForm.get('mainOptions') as FormArray;
+    return this.userService.main_options;
   }
 
   // ---------- Add option to main packages
   addMainOptin() {
-    this.mainOptionsArray.push(this.fb.group(
+    console.log(this.userService.main_options)
+    // if(!this.userService.main_options) {
+    //   console.log('test');
+    // }
+    this.userService.main_options.push(
       {
-        title: [null, Validators.required],
+        title: null,
         basic: false,
         advanced: false,
         premium: false
-      }
-    ));
+    });
   }
 
   deleteMainOption(index) {
-    this.mainOptionsArray.removeAt(index);
+    this.userService.removeMainOption(index)
   }
 
   saveStep() {
-    if (this.packagesForm.invalid) {
-      return;
-    }
-    console.log(this.packagesForm.value);
-    // console.log(this.packagesForm.value.optionsArray = this.mainOptionsArray);
+    // if (this.ngForm.invalid) {
+    //   return;
+    // }
+    console.log(this.userService);
   }
 
-  get useAllPackages() {
+  // get useAllPackages() {
 
-    return this.packagesForm.get('allPackages').value;
-  }
+  //   return this.packagesForm.get('allPackages').value;
+  // }
 
   openAllPackages() {
-    this.packagesForm.controls.allPackages.setValue(true);
+    this.userService.allPackages = true;
   }
 
   changePackageAmount(e: boolean) {
@@ -154,26 +79,13 @@ export class ThirdStepCreationComponent implements OnInit {
 
   // *********************** Extra optins functions *******************//
 
-  // -------------------- Get extra optionsArray --------------------
-
-  get extraOptionsArray() {
-    return this.packagesForm.get('extraOptions') as FormArray;
-  }
-
   addExtraOptin() {
-
-    // if (this.packagesForm.controls.extraOptions.invalid ){
-    //   return;
-    // }
-    this.extraOptionsArray.push(this.fb.group(
-      {
-        optionTitle: null,
-        optionDescription: null,
-        optionPrice: null,
-        optionPerTime: null
-      }
-    ));
-    console.log(this.extraOptionsArray);
+    this.userService.extra_features.push({
+      optionTitle: null,
+      optionDescription: null,
+      optionPrice: null,
+      optionPerTime: null
+    });
   }
 
   // -------------------- Show options --------------------

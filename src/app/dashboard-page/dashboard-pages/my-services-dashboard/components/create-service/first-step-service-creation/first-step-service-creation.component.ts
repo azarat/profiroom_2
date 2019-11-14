@@ -55,7 +55,7 @@ export class FirstStepServiceCreationComponent implements OnInit {
 
   ngOnInit() {
 
-
+    console.log(this.userService)
     this.userOffersService.getCategorys()
       .pipe(
         filter((res: any) => !!res),
@@ -66,32 +66,16 @@ export class FirstStepServiceCreationComponent implements OnInit {
         if ( this.userService.category ) {
           this.loadSubcategoryFilter(this.userService.category)
         }
-        // this.loadSubcategoryFilter();
       });
 
     if (this.userService.files) {
       this.previewUrl = this.userService.files;
     }
     this.tags = this.userService.tags;
-
-    // this.firstStepForm = this.fb.group({
-    //   title: [null],
-    //   category: [null],
-    //   subCategory: [null, Validators.required],
-    //   tags: [null],
-    //   step: 1,
-    //   offerId: null
-    // });
-
-    // console.log(this.userService);
-    // console.log(this.firstStepForm.value)
   }
-
-  // ** stop observables
   // tslint:disable-next-line: use-lifecycle-interface
   ngOnDestroy() {
   }
-
 
   onFiltersChange() {
     console.log(this.userService.category);
@@ -100,13 +84,6 @@ export class FirstStepServiceCreationComponent implements OnInit {
 
   // tslint:disable-next-line: variable-name
   public loadSubcategoryFilter = (category: string) => {
-    console.log(category);
-    // if (!this.userService.category) {
-    //   this.sub_categories = [];
-    //   // this.userService.subCategory = null;
-    //   return;
-    // }
-    console.log(this.userService.category)
     const x: any = this.categoryList.find((d: any) => d.link === category);
     this.sub_categories = x.sub_categories;
     console.log(this.categoryList)
@@ -115,14 +92,12 @@ export class FirstStepServiceCreationComponent implements OnInit {
 
   registrate = () => {
     this.userService.tags = this.tags;
-    console.log(this.userService);
+    console.log(this.userService)
     this.userOffersService.updateService(this.userService)
     .pipe(filter((res: any) => !! res))
     .subscribe(
       (res) => {
-        console.log(res);
         this.userService.step = res.step;
-       console.log(this.userService)
       }
     );
   }
@@ -136,6 +111,12 @@ export class FirstStepServiceCreationComponent implements OnInit {
       queryParamsHandling: 'merge',
     });
   }
+
+//  ----------  choose Main OfferPhoto  ----------
+
+putAsMainPhoto(link: string) {
+  this.userService.offerMainImage = link;
+}
 
   //  --------------- file uploading ---------------
 

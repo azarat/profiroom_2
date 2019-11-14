@@ -297,19 +297,20 @@ mat-form-field{
     margin-right: 3%;
     margin-bottom: 20px;
     position: relative;
-    button {
+    button.delete-file {
       position: absolute;
       height: 24px;
       width: 24px;
       border-radius: 50%;
       background-color: #fff;
-      border: 1px solid red;
+      border: none;
       box-shadow: none;
       right: 13px;
       top: 13px;
       outline: none;
       padding: 0;
       cursor: pointer;
+      outline: none;
       &:before{
         position: absolute;
         content: '\e900';
@@ -329,6 +330,39 @@ mat-form-field{
       height: 100%;
       border: 2px dashed #DCE0E6;
 
+    }
+
+    .main-photo{
+      display: none;
+      height: 44px;
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-49%);
+      font-family: Source Sans Pro, sans-serif;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 20px;
+      text-align: center;
+      text-transform: uppercase;
+      background-color: #fff;
+      border: none;
+      cursor: pointer;
+      outline: none;
+      color: #4285F4;
+      &:hover {
+        color: #5695FD;
+      }
+      &:active {
+        color: #1666EA;
+      }
+    }
+    &:hover {
+      .main-photo {
+        display: block;
+      }
     }
   }
   img {
@@ -356,9 +390,22 @@ mat-form-field{
   border: 1px dashed #dce0e6;
   position: relative;
   z-index: 2;
-  object {
-    fill: red;
+  .upload {
+    position: relative;
+    height: 41px;
+    margin-bottom: 19px;
+    &:before{
+      position: absolute;
+      content: '\e902';
+      font-family: icoMoon;
+      color: #BFC5D1;
+      font-size: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+
+    }
   }
+
 
   span {
     display: block;

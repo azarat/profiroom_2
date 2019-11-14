@@ -1,11 +1,11 @@
 <div class="step-wrapper">
-  <form #form="ngForm" [formGroup]="descriptionForm">
+  <form #form="ngForm" >
     <h3>2. Описание услуги</h3>
 
     <h5>Опишите услугу как можно подробнее</h5>
     <div class="form-group">
       <label for="description"></label>
-      <quill-editor [modules]="config" [(ngModel)]="this.userService.description" formControlName="description"
+      <quill-editor [modules]="config" [(ngModel)]="this.userService.description" name="editor"
         placeholder=""
         ngbPopover="Проявите оригинальность:  добавьте аргументы в свою пользу, дайте гарантии, предоставьте бонусы и т.Д. чтобы покупатель выбрал именно Вашу услугу."
         triggers="mouseenter:mouseleave" popoverTitle="Опишите услугу, которую вы предлагаете, как можно подробнее."
@@ -13,8 +13,8 @@
     </div>
 
     <div class="form-butons">
-      <button class="back" (click)="registrate()">сохранить и выйти</button>
-      <button class="save">сохранить и продолжить</button>
+      <button class="back" >сохранить и выйти</button>
+      <button class="save" (click)="onSubmit()">сохранить и продолжить</button>
     </div>
   </form>
 </div>

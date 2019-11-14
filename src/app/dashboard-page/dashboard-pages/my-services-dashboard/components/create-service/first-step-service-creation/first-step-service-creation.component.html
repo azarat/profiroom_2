@@ -1,5 +1,5 @@
-<div class="step-wrapper">
-  <form #form="ngForm" *ngIf="userService">
+<div class="step-wrapper" *ngIf="userService">
+  <form #form="ngForm" >
     <h3>1. Титульная информация</h3>
 
     <h5>Название услуги</h5>
@@ -38,7 +38,7 @@
           </mat-select>
           <!-- <mat-error *ngIf="firstStepForm.get('subCategory').hasError('required')">{{ "Выберите подкатегорию" }}
           </mat-error> -->
-        </mat-form-field>
+         </mat-form-field>
       </div>
     </div>
 
@@ -72,7 +72,7 @@
 
             </button>
             <img [src]="'https://www.thecubetest.site/Backend/storage/app/' + ingUrl.link" height="300" />
-
+            <button class="main-photo" (click)="putAsMainPhoto(ingUrl.link)">сделать обложкой</button>
           </div>
 
         </ng-container>
@@ -81,7 +81,7 @@
         С загруженных файлов, вы можете выбрать один для титульного изображения на странице."
           triggers="mouseenter:mouseleave" popoverTitle="Загрузка портфолио" placement="right"
           popoverClass="popover-file" closeDelay="20000">
-          <object data="/assets/images/svg/upload.svg" type="image/svg+xml"></object>
+          <div class="upload"></div>
           <span>.JPG .PNG .GIF </span>
           <span>Перетащите файлы или </span>
           <input type="file" id="file" multiple="true" class="input-file" #fileInput

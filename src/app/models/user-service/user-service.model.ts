@@ -1,4 +1,65 @@
-import { Expose } from 'class-transformer';
+import { Expose, Type } from 'class-transformer';
+
+
+export class PackagesTitle {
+  @Expose() basicTitle: string;
+  @Expose() advancedTitle: string;
+  @Expose() premiumTitle: string;
+}
+
+export class PackagesDescriptions {
+  @Expose() basicDescription: string;
+  @Expose() advancedDescription: string;
+  @Expose() premiumDescription: string;
+}
+
+export class PackagesTerms {
+  basicTerm: string;
+  advancedTerm: string;
+  premiumTerm: string;
+}
+
+export class PackagesChanges {
+  basicChange: string;
+  advancedChange: string;
+  premiumChange: string;
+}
+
+export class PackagesPrices {
+  basicPrice: string;
+  advancedPrice: string;
+  premiumPrice: string;
+}
+export class CompressedDeadlines {
+  useCompressedDeadlines: boolean;
+  basicCompressedDays: string; // required    --- if  [useCompressedDeadlines]
+  basicCompressedPrice: string; // required   --- if  [useCompressedDeadlines]
+  advancedCompressedDays: string; // required ---- if  [useCompressedDeadlines && allPackages]
+  advancedCompressedPrice: string; // required ---- if  [useCompressedDeadlines && allPackages]
+  premiumCompressedDays: string; // required ---- if  [useCompressedDeadlines && allPackages]
+  premiumCompressedPrice: string; // required ---- if  [useCompressedDeadlines && allPackages]
+}
+export class ExtraOfferChanges {
+  useExtraOfferChanges: boolean;
+  extraChangesDays: string; // required   --- if  [useExtraOfferChanges]
+  extraChangesPrice: string; // required   --- if  [useExtraOfferChanges]
+}
+export class CommercialOffer {
+  useCommercialOffer: boolean;
+  priceForCommercialOffer: string; // required   --- if  [useCommercialOffer]
+}
+export class MainOptions {
+  title: string;
+  basic: boolean;
+  advanced: boolean;
+  premium: boolean;
+}
+export class ExtraOptions {
+  optionTitle: string;
+      optionDescription: string;
+      optionPrice: string;
+      optionPerTime: string;
+}
 
 export class UserServiceModel {
   @Expose() offerId: number;
@@ -8,47 +69,35 @@ export class UserServiceModel {
   @Expose() subCategories: any;
   @Expose() subCategory: string;
   @Expose() tags: { tag: string }[];
+  @Expose() offerMainImage: string;
   @Expose() nextStep: number;
   @Expose() step: number;
   @Expose() files: any;
   @Expose() description: any;
   @Expose() allPackages: boolean;
-  @Expose() packagesTitle:
-    {
-      basicTitle: string, // string
-      classicTitle: string, // string
-      premiumTitle: string, // string
-    };
-  @Expose() packagesDescriptions:
-    {
-      basicDescription: string, // string
-      classicDescription: string, // string
-      premiumDescription: string, // string
-    };
-  @Expose() packagesDeadlines:
-    {
-      basicDeadline: string, // number
-      classicDeadline: string, // number
-      premiumDeadline: string, // number
-    };
-  @Expose() packagesChanges:
-    {
-      basicChange: string, // number
-      classicChange: string, // number
-      premiumChange: string, // number
-    };
-  @Expose() packagesPrices:
-    {
-      basicPrice: string, // number
-      classicPrice: string, // number
-      premiumPrice: string, // number
-    };
-    @Expose() extraOptions:
-    {
-      optionTitle: string,
-      optionDescription: string,
-      optionPrice: string,
-      optionPerTime: string
-    } [];
+  @Type(() => PackagesTitle) packagesTitle: PackagesTitle;
+  @Type(() => PackagesDescriptions) packagesDescriptions: PackagesDescriptions;
+  @Type(() => PackagesTerms) packagesTerms: PackagesTerms;
+  @Type(() => PackagesChanges) packagesChanges: PackagesChanges;
+  @Type(() => PackagesPrices) packagesPrices: PackagesPrices;
+  @Type(() => CompressedDeadlines) compressedDeadlines: CompressedDeadlines;
+  @Type(() => ExtraOfferChanges) extraOfferChanges: ExtraOfferChanges;
+  @Type(() => CommercialOffer) commercialOffer: CommercialOffer;
+  // tslint:disable-next-line: variable-name
+  @Type(() => MainOptions) main_options: MainOptions[];
+  // tslint:disable-next-line: variable-name
+  @Type(() => ExtraOptions) extra_features: ExtraOptions[];
+
+  // -------delete option------
+ removeMainOption(index) {
+
+    console.log(index)
+    // return arr.slice(index, 1);
+
+    this.main_options.slice(index, 1);
+    console.log(this.main_options);
+  }
+
+
 }
 
