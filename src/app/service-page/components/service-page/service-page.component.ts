@@ -28,6 +28,8 @@ export class ServicePageComponent implements OnInit {
     .pipe(filter((res: any) => !!res))
     .subscribe(data => {
       this.offerData = data.userOffer;
+      console.log(this.offerData);
+      console.log(this.offerData.positiveComments);
     });
 
   }
@@ -35,8 +37,6 @@ export class ServicePageComponent implements OnInit {
   ngOnInit() {
     this.offerId = this._router.url.split('&offerId=')[1];
     this.servicePageService.loadOfferDate(this.offerId);
-
-    console.log(this.offerData);
   }
 
 }

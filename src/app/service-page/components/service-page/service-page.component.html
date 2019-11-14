@@ -20,38 +20,50 @@
       <li><a [routerLink]="['/'] | localize">Главная</a></li>
       <li><a [routerLink]="['/catalog', offerData.category] | localize">{{ offerData.category }}</a>
       </li>
-      <li><a>{{ offerData.name }}</a></li>
+      <li><a>{{ offerData.title }}</a></li>
       <!-- <li><a [routerLink]="['/catalog', subcategoriesList.link] | localize">{{ subcategory }}</a></li> -->
     </ul>
   </div>
   <div class="main-block">
     <div class="description" *ngIf="offerData">
-      <h2 class="description-name">{{ offerData.name }}</h2>
+      <h2 class="description-name">{{ offerData.title }}</h2>
       <div class="container">
-        <div class="user">
+        <div class="user" *ngIf="offerData">
           <div class="user-avatar">
             <img [src]="'https://www.thecubetest.site/Backend/storage/app/' + offerData.user.avatar" alt="user avatar">
           </div>
           <div class="user-text">
             <span class="user-name">{{ offerData.user.name }} {{ offerData.user.surname }}</span>
             <div class="user-raiting-wrapp">
-              <span class="user-raiting">{{ offerData.raiting }}</span>
+              <span class="star-raiting">{{ offerData.raiting }}</span>
             </div>
-            <span class="user-comments">({{ offerData.comments_count }}+отзывов)</span>
+            <span class="user-comments">({{ offerData.comments_count }} +отзывов)</span>
           </div>
         </div>
         <div class="actions">
-          <div class="action">
-            <a href=""> <img src="assets/images/svg/service-page/shape.svg" alt=""></a>
+          <div class="action tooltip" data-title="Смотреть профиль">
+            <a href="">
+              <img src="assets/images/svg/service-page/shape.svg" alt="" class="default-img">
+              <img src="assets/images/svg/service-page/shape-hov.svg" alt="" class="hover-img">
+            </a>
           </div>
-          <div class="action">
-            <a href=""> <img src="assets/images/svg/service-page/envelope.svg" alt=""></a>
+          <div class="action tooltip" data-title="Написать сообщение">
+            <a href="">
+              <img src="assets/images/svg/service-page/envelope.svg" alt="" class="default-img">
+              <img src="assets/images/svg/service-page/envelope-hov.svg" alt="" class="hover-img">
+            </a>
           </div>
-          <div class="action">
-            <a href=""> <img src="assets/images/svg/service-page/heart.svg" alt=""></a>
+          <div class="action tooltip" data-title="Добавить к избранным">
+            <a href="">
+              <img src="assets/images/svg/service-page/heart.svg" alt="" class="default-img">
+              <img src="assets/images/svg/service-page/heart-hov.svg" alt="" class="hover-img">
+            </a>
           </div>
-          <div class="action">
-            <a href=""> <img src="assets/images/svg/service-page/auction.svg" alt=""></a>
+          <div class="action tooltip" data-title="Пожаловаться">
+            <a href="">
+              <img src="assets/images/svg/service-page/auction.svg" alt="" class="default-img">
+              <img src="assets/images/svg/service-page/auction-hov.svg" alt="" class="hover-img">
+            </a>
           </div>
         </div>
       </div>
@@ -121,11 +133,62 @@
         </div>
       </section>
 
-      <section class="offer-raiting">
+      <section class="comments_wrapper" *ngIf="offerData">
         <h4 class="section-title">
-            Отзывы
+          Отзывы <span>({{ offerData.comments_count }})</span>
         </h4>
+        <div class="tabs-wrapp">
+          <input id="tab1" type="radio" name="tabs" checked>
+          <label for="tab1" title="Вкладка 1">Положительные ({{ offerData.positive_comments_count }})</label>
+
+          <input id="tab2" type="radio" name="tabs">
+          <label for="tab2" title="Вкладка 2">Отрицательные ({{ offerData.negative_comments_count }})</label>
+
+
+          <div class="commets-array" id="positive">
+            <div class="comment" *ngFor="let comment of offerData.positiveComments">
+              <div class="left-side">
+                <div class="ava">
+                  <img [src]="'https://www.thecubetest.site/Backend/storage/app/' + comment.user.avatar"
+                    alt="user avatar">
+                </div>
+              </div>
+              <div class="right-side">
+                <div class="user-name">{{ comment.user.name }} {{ comment.user.surname }}</div>
+                <div class="user-raiting-wrapp">
+                  <span class="star-raiting">{{ comment.mark }}</span>
+                </div>
+                <p class="comment-text">
+                  {{ comment.commentText }}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="commets-array" id="negative">
+            <div class="comment" *ngFor="let comment of offerData.negativeComments">
+              <div class="left-side">
+                <div class="ava">
+                  <img [src]="'https://www.thecubetest.site/Backend/storage/app/' + comment.user.avatar"
+                    alt="user avatar">
+                </div>
+              </div>
+              <div class="right-side">
+                <div class="user-name">{{ comment.user.name }} {{ comment.user.surname }}</div>
+                <div class="user-raiting-wrapp">
+                  <span class="star-raiting">{{ comment.mark }}</span>
+                </div>
+                <p class="comment-text">
+                  {{ comment.commentText }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </section>
+
+      <app-questions></app-questions>
     </div>
     <div class="choose-packet"></div>
   </div>

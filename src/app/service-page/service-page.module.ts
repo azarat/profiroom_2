@@ -8,6 +8,7 @@ import { MainHeaderModule } from '../shared/modules/main-header/main-header.modu
 import { CategoriesHeaderModule } from '../shared/modules/categories-header/categories-header.module';
 import { NgxGalleryModule } from 'ngx-gallery';
 import { NgxGalleryComponent } from './components/ngx-gallery/ngx-gallery.component';
+import { QuestionsComponent } from './components/questions/questions.component';
 
 
 const routes: Routes = [
@@ -18,7 +19,11 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [ServicePageComponent, NgxGalleryComponent],
+  declarations: [
+    ServicePageComponent,
+    NgxGalleryComponent,
+    QuestionsComponent
+  ],
   imports: [
     CommonModule,
     LocalizeRouterModule.forChild(routes),

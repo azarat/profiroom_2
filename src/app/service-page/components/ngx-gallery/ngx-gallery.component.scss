@@ -1,8 +1,13 @@
 .gallery{
   margin-top: 25px;
+  position: relative;
+  ::ng-deep ngx-gallery-image{
+    border: 1px solid #F2F5FB;
+    box-sizing: border-box;
+  }
   ::ng-deep .ngx-gallery-arrow-wrapper{
     width: 41px;
-    height: 100.5%;
+    height: 100.2%;
     background-color: #fff;
     &.ngx-gallery-arrow-left{
       .ngx-gallery-icon::after{
@@ -45,8 +50,34 @@
   }
 
   ::ng-deep ngx-gallery-thumbnails{
+    .ngx-gallery-thumbnail{
+      border: 1px solid #F2F5FB;
+      box-sizing: border-box;
+    }
     .ngx-gallery-arrow-wrapper{
       width: 27px;
+    }
+  }
+  .fantom_full-size{
+    content: "";
+    position: absolute;
+    background: rgba(255, 255, 255, 0.77);
+    // background-image: url(/assets/images/svg/service-page/full-size.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: auto;
+    height: 56px;
+    width: 56px;
+    top: 1px;
+    right: 70px;
+    border-radius: 7px;
+    cursor: pointer;
+    z-index: 2000;
+    img{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
   }
 }

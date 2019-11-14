@@ -136,27 +136,6 @@
     color: #323c47;
   }
   &-raiting {
-    font-style: normal;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 20px;
-
-    position: relative;
-    padding-right: 5px;
-    padding-left: 26px;
-    box-sizing: border-box;
-    &::before {
-      content: "";
-      position: absolute;
-      top: 57%;
-      left: 0;
-      height: 17px;
-      width: 17px;
-      transform: translateY(-50%);
-      background-image: url(/assets/images/icons/Star.png);
-      background-size: contain;
-      background-repeat: no-repeat;
-    }
     &-wrapp {
       width: fit-content;
       text-align: right;
@@ -186,11 +165,81 @@
     margin-right: 17px;
     position: relative;
     cursor: pointer;
+    &.tooltip {
+      &:before {
+        display: block;
+        position: absolute;
+        bottom: 55px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 9px 26px 8px;
+        white-space: nowrap;
+        width: fit-content;
+        text-align: center;
+        box-shadow: 0px 15px 21px rgba(128, 152, 213, 0.5);
+        border-radius: 8px;
+        content: attr(data-title);
+        box-sizing: border-box;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.7s;
+        color: #323c47;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 18px;
+      }
+      &:hover {
+        &:before {
+          opacity: 1;
+          visibility: visible;
+        }
+      }
+
+      &:after {
+        content: "";
+        display: block;
+        position: absolute;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.7s;
+        bottom: 45px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-top: 10px solid #fff;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        box-shadow: 0px 15px 21px rgba(128, 152, 213, 0.5);
+      }
+      &:hover {
+        &:after {
+          opacity: 1;
+          visibility: visible;
+        }
+      }
+    }
     img {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
+      &.default-img {
+        display: block;
+      }
+      &.hover-img {
+        display: none;
+      }
+    }
+    &:hover {
+      border: 1px solid #3c7eea;
+      img {
+        &.default-img {
+          display: none;
+        }
+        &.hover-img {
+          display: block;
+        }
+      }
     }
   }
 }
@@ -232,33 +281,33 @@
   border-radius: 5px 5px 0px 0px;
   &-titles {
     display: table-header-group;
-    background: #F4F7FC;
-    border-bottom: 1px solid #DCE0E6;
+    background: #f4f7fc;
+    border-bottom: 1px solid #dce0e6;
     border-radius: 5px 5px 0px 0px;
-    .table-cell{
+    .table-cell {
       text-align: center;
       padding: 40px 0;
-      border-left: 1px solid #DCE0E6;
+      border-left: 1px solid #dce0e6;
 
       font-style: normal;
       font-weight: normal;
       font-size: 18px;
-      text-transform: uppercase;;
+      text-transform: uppercase;
       letter-spacing: 0.15px;
-      color: #323C47;
+      color: #323c47;
 
       width: 25%;
     }
   }
   &-item {
     display: table-row;
-    border-bottom: 1px solid #DCE0E6;
+    border-bottom: 1px solid #dce0e6;
     background: #fff;
   }
   &-cell {
     display: table-cell;
-    border-bottom: 1px solid #DCE0E6;
-    border-left: 1px solid #DCE0E6;
+    border-bottom: 1px solid #dce0e6;
+    border-left: 1px solid #dce0e6;
     padding: 7px 15px;
 
     font-style: normal;
@@ -266,37 +315,37 @@
     font-size: 16px;
     line-height: 20px;
     // text-align: center;
-    color: #323C47;
-    &.title-cell{
-      background: #F4F7FC;
+    color: #323c47;
+    &.title-cell {
+      background: #f4f7fc;
     }
   }
 }
 
-.offer-raiting{
+.offer-raiting {
   margin-bottom: 40px;
-  .raiting-type{
+  .raiting-type {
     display: flex;
     margin-bottom: 13px;
-    &_name{
+    &_name {
       width: 250px;
 
       font-style: normal;
       font-weight: 600;
       font-size: 18px;
       line-height: 23px;
-      color: #323C47;
+      color: #323c47;
     }
-    &_numeral{
+    &_numeral {
       display: flex;
     }
-    &_number{
+    &_number {
       position: relative;
       font-style: normal;
       font-weight: 600;
       font-size: 18px;
       line-height: 23px;
-      color: #323C47;
+      color: #323c47;
       padding-left: 25px;
       &::before {
         content: "";
@@ -311,7 +360,7 @@
         background-repeat: no-repeat;
       }
     }
-    &_comments{
+    &_comments {
       width: 110px;
 
       font-style: normal;
@@ -322,4 +371,165 @@
       padding-left: 5px;
     }
   }
+}
+
+.comments_wrapper {
+  margin-bottom: 40px;
+  .section-title span {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 23px;
+    color: #979797;
+    padding-left: 20px;
+  }
+  .commets-array {
+    height: 530px;
+    overflow-y: scroll;
+    background: #ffffff;
+    border: 1px solid rgba(220, 224, 230, 0.1);
+    box-shadow: 0px 10px 16px rgba(128, 152, 213, 0.2);
+    border-radius: 3px;
+
+    &::-webkit-scrollbar { width: 10px; height: 10px;}
+    // &::-webkit-scrollbar-button {  background-color: #666; }
+    &::-webkit-scrollbar-track {  background-color: transparent;}
+    &::-webkit-scrollbar-track-piece { background-color: transparent;}
+    &::-webkit-scrollbar-thumb { height: 80px; background-color: #EBEBEB; border-radius: 5px;}
+    &::-webkit-scrollbar-corner { background-color: green;}
+    &::-webkit-resizer { background-color: blue;}
+  }
+  .comment {
+    display: flex;
+    padding: 20px;
+    .left-side {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .ava {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      position: relative;
+      overflow: hidden;
+      margin-right: 20px;
+      // margin-top: 10px;
+      img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: auto;
+        height: 100%;
+        border-radius: 50%;
+      }
+    }
+    .right-side {
+      flex-direction: row;
+      flex-wrap: wrap;
+      display: flex;
+      width: 100%;
+    }
+    .user-name {
+      width: fit-content;
+      margin-top: 2px;
+    }
+    .user-raiting-wrapp {
+      margin-left: 20px;
+    }
+    .comment-text {
+      width: 100%;
+      margin: 0;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 18px;
+      line-height: 23px;
+      color: #4e5051;
+    }
+    &:nth-child(odd) {
+      background-color: #fbfcfd;
+    }
+  }
+}
+
+.tabs-wrapp {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  margin-top: -54px;
+  .commets-array {
+    display: none;
+  }
+  .commets-array {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-name: fadeIn;
+    animation-name: fadeIn;
+  }
+  input {
+    display: none;
+    position: absolute;
+  }
+  label {
+    display: inline-block;
+    margin: 0 0 7px 7px;
+    padding: 15px 21px;
+    color: #323c47;
+
+    text-align: center;
+    border: 1px solid rgba(220, 224, 230, 0.1);
+    background: #fff;
+    box-shadow: 0px 10px 16px rgba(128, 152, 213, 0.2);
+    border-radius: 3px;
+
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 20px;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Изменения стиля переключателей вкладок при наведении */
+.tabs-wrapp > label:hover {
+  color: rgba(255, 255, 255, 0.9);
+  background: #3c7eea;
+  border: 1px solid rgba(220, 224, 230, 0.1);
+  box-shadow: 0px 10px 16px rgba(128, 152, 213, 0.2);
+  border-radius: 3px;
+  transition: all 0.3s;
+}
+/* Стили для активной вкладки */
+.tabs-wrapp > input:checked + label {
+  color: rgba(255, 255, 255, 0.9);
+  background: #3c7eea;
+  border: 1px solid rgba(220, 224, 230, 0.1);
+  box-shadow: 0px 10px 16px rgba(128, 152, 213, 0.2);
+  border-radius: 3px;
+}
+/* Активация секций с помощью псевдокласса :checked */
+#tab1:checked ~ #positive,
+#tab2:checked ~ #negative {
+  display: block;
 }

@@ -8,6 +8,7 @@ import 'hammerjs';
 import { OfferDataInterface } from 'src/app/shared/interfaces/offer-date.interface';
 import { ServicePageService } from '../../services/service-page.service';
 import { filter } from 'rxjs/operators';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-ngx-gallery',
@@ -92,6 +93,9 @@ export class NgxGalleryComponent implements OnInit {
         preview: false
       }
     ];
+    $('.fantom_full-size').on('click', () => {
+      $('.ngx-gallery-active').click();
+    });
   }
 
 
@@ -108,6 +112,5 @@ export class NgxGalleryComponent implements OnInit {
       );
     });
 
-    console.log(this.galleryImages);
   }
 }
