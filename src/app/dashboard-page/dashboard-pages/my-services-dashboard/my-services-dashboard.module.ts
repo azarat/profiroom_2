@@ -25,6 +25,7 @@ import { CreateServiceComponent } from './components/create-service/create-servi
 import { FirstStepServiceCreationComponent } from './components/create-service/first-step-service-creation/first-step-service-creation.component';
 import { SecondStepCreationComponent } from './components/create-service/second-step-creation/second-step-creation.component';
 import { ThirdStepCreationComponent } from './components/create-service/third-step-creation/third-step-creation.component';
+import { ThirdStepExtraOptionsComponent } from './components/create-service/third-step-creation/third-step-extra-options/third-step-extra-options.component';
 
 
 const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
@@ -58,7 +59,8 @@ const servicesRoutes: Routes = [
     FirstStepServiceCreationComponent,
     DragDropDirective,
     SecondStepCreationComponent,
-    ThirdStepCreationComponent
+    ThirdStepCreationComponent,
+    ThirdStepExtraOptionsComponent
   ],
   imports: [
     // ---- angular

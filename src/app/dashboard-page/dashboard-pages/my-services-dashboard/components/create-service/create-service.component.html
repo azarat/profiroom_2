@@ -11,10 +11,10 @@
     </div>
   </div>
   <div class="step-detail">
-    <!-- <app-first-step-service-creation *ngIf="userService && userService.step === 1" [userService]="userService" (setCurrentStep)="setCurrentStep($event)"></app-first-step-service-creation> -->
-    <!-- <app-second-step-creation *ngIf="userService && userService.step === 2" [userService]="userService" (setCurrentStep)="setCurrentStep($event)"></app-second-step-creation> -->
+    <app-first-step-service-creation *ngIf="userService && userService.step === 1" [userService]="userService" (setCurrentStep)="setCurrentStep($event)"></app-first-step-service-creation>
+    <app-second-step-creation *ngIf="userService && userService.step === 2" [userService]="userService" (setCurrentStep)="setCurrentStep($event)"></app-second-step-creation>
 
-    <app-third-step-creation *ngIf="userService" [userService]="userService"></app-third-step-creation>
+    <app-third-step-creation *ngIf="userService && userService.step === 3" [userService]="userService"></app-third-step-creation>
     <!--  <div>3</div>
     <div>4</div>
     <div>5</div>

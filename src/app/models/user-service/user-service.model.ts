@@ -1,4 +1,7 @@
-import { Expose, Type } from 'class-transformer';
+import {
+  Expose,
+  Type
+} from 'class-transformer';
 
 
 export class PackagesTitle {
@@ -31,7 +34,7 @@ export class PackagesPrices {
   premiumPrice: string;
 }
 export class CompressedDeadlines {
-  useCompressedDeadlines: boolean;
+  publishCompressedDeadlines: boolean;
   basicCompressedDays: string; // required    --- if  [useCompressedDeadlines]
   basicCompressedPrice: string; // required   --- if  [useCompressedDeadlines]
   advancedCompressedDays: string; // required ---- if  [useCompressedDeadlines && allPackages]
@@ -40,12 +43,12 @@ export class CompressedDeadlines {
   premiumCompressedPrice: string; // required ---- if  [useCompressedDeadlines && allPackages]
 }
 export class ExtraOfferChanges {
-  useExtraOfferChanges: boolean;
+  publishExtraOfferChanges: boolean;
   extraChangesDays: string; // required   --- if  [useExtraOfferChanges]
   extraChangesPrice: string; // required   --- if  [useExtraOfferChanges]
 }
 export class CommercialOffer {
-  useCommercialOffer: boolean;
+  publishCommercialOffer: boolean;
   priceForCommercialOffer: string; // required   --- if  [useCommercialOffer]
 }
 export class MainOptions {
@@ -55,10 +58,11 @@ export class MainOptions {
   premium: boolean;
 }
 export class ExtraOptions {
+  optionPublish: boolean;
   optionTitle: string;
-      optionDescription: string;
-      optionPrice: string;
-      optionPerTime: string;
+  optionDescription: string;
+  optionPrice: string;
+  optionPerTime: string;
 }
 
 export class UserServiceModel {
@@ -68,7 +72,9 @@ export class UserServiceModel {
   @Expose() category: string;
   @Expose() subCategories: any;
   @Expose() subCategory: string;
-  @Expose() tags: { tag: string }[];
+  @Expose() tags: {
+    tag: string
+  } [];
   @Expose() offerMainImage: string;
   @Expose() nextStep: number;
   @Expose() step: number;
@@ -88,16 +94,14 @@ export class UserServiceModel {
   // tslint:disable-next-line: variable-name
   @Type(() => ExtraOptions) extra_features: ExtraOptions[];
 
+
+
   // -------delete option------
- removeMainOption(index) {
-
-    console.log(index)
-    // return arr.slice(index, 1);
-
-    this.main_options.slice(index, 1);
-    console.log(this.main_options);
+  public removeMainOption(index) {
+    this.main_options.splice(index, 1);
+  }
+  public removeExtraOption(index) {
+    this.extra_features.splice(index, 1);
   }
 
-
 }
-

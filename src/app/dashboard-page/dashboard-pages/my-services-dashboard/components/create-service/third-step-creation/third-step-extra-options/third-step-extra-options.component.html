@@ -1,0 +1,244 @@
+<h4>дополнительно к пакетам услуг </h4>
+<div class="extra-packages">
+  <!-------------------- Options Items   -------------------->
+
+  <!--------------------  Deadlines -------------------->
+  <div class="time-option">
+    <div class="option-wrap">
+      <div class="checkbox">
+        <input type="checkbox" name="time-to-do" class="tgl-classic"
+          [(ngModel)]="userService.compressedDeadlines.publishCompressedDeadlines" id="time-to-do">
+        <label for="time-to-do"></label>
+        <span class="options-name">Сжатые сроки</span>
+      </div>
+      <div class="options" *ngIf="userService.allPackages !== true">
+        <span>Сделаю за</span>
+        <div>
+          <div class=" select-wrap-extra">
+            <mat-select [(ngModel)]="userService.compressedDeadlines.basicCompressedDays" name="basicCompressedDays">
+              <mat-option *ngFor="let days of changesArrayCounter(); let i = index" [value]="days">
+                {{ days }}
+              </mat-option>
+            </mat-select>
+          </div>
+        </div>
+        <div class="price">
+          <input type="text" knifeOnlyNumbers maxlength="4"
+            [(ngModel)]="userService.compressedDeadlines.basicCompressedPrice" name="basicCompressedPrice"> <span
+            class="money">UAH</span>
+        </div>
+      </div>
+      <button class="show-pack-options" [ngClass]="optionsVisible ? 'up' : 'down'" (click)="showOptions()"
+        *ngIf="userService.allPackages == true"></button>
+    </div>
+    <!-------------------- Exta Options if All Packages -------------------->
+    <div class="all-types" [ngClass]="optionsVisible ? 'open' : 'closed'">
+      <div *ngIf="userService.allPackages === true">
+        <div>
+          <div class="extraoption-title">Базовый</div>
+          <div class="options">
+            <span>Сделаю за</span>
+            <div>
+              <div class=" select-wrap-extra">
+                <mat-select [(ngModel)]="userService.compressedDeadlines.basicCompressedDays"
+                  name="basicCompressedDays">
+                  <mat-option *ngFor="let days of changesArrayCounter(); let i = index" [value]="days">
+                    {{ days }}
+                  </mat-option>
+                </mat-select>
+              </div>
+            </div>
+            <div class="price">
+              <input type="text" knifeOnlyNumbers maxlength="4"
+                [(ngModel)]="userService.compressedDeadlines.basicCompressedPrice" name="basicCompressedPrice">
+              <span class="money">UAH</span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="extraoption-title">Стандарт</div>
+          <div class="options">
+            <span>Сделаю за</span>
+            <div>
+              <div class=" select-wrap-extra">
+                <mat-select [(ngModel)]="userService.compressedDeadlines.advancedCompressedDays"
+                  name="advancedCompressedDays">
+                  <mat-option *ngFor="let days of changesArrayCounter(); let i = index" [value]="days">
+                    {{ days }}
+                  </mat-option>
+                </mat-select>
+              </div>
+            </div>
+            <div class="price">
+              <input type="text" knifeOnlyNumbers maxlength="4" name="advancedCompressedPrice"
+                [(ngModel)]="userService.compressedDeadlines.advancedCompressedPrice"> <span class="money">UAH</span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="extraoption-title">Премиум</div>
+          <div class="options">
+            <span>Сделаю за</span>
+            <div>
+              <div class=" select-wrap-extra">
+                <mat-select name="premiumCompressedDays"
+                  [(ngModel)]="userService.compressedDeadlines.premiumCompressedDays">
+                  <mat-option *ngFor="let days of changesArrayCounter(); let i = index" [value]="days">
+                    {{ days }}
+                  </mat-option>
+                </mat-select>
+              </div>
+            </div>
+            <div class="price">
+              <input type="text" knifeOnlyNumbers maxlength="4" name="premiumCompressedPrice"
+                [(ngModel)]="userService.compressedDeadlines.premiumCompressedPrice"> <span class="money">UAH</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-------------------- //** deadlines -------------------->
+
+  <!-------------------- extra changes  -------------------->
+  <div class="deffault-field">
+    <div class="option-wrap">
+      <div class="checkbox">
+        <input type="checkbox" name="useExtraOfferChanges"
+          [(ngModel)]="userService.extraOfferChanges.publishExtraOfferChanges" class="tgl-classic" id="extra-changes">
+        <label for="extra-changes"></label>
+        <span class="options-name">Дополнительные правки</span>
+      </div>
+      <div class="options">
+        <span>Сделаю за</span>
+        <div>
+          <div class=" select-wrap-extra">
+            <mat-select name="extraOfferChanges" [(ngModel)]="userService.extraOfferChanges.extraChangesDays">
+              <mat-option *ngFor="let days of changesArrayCounter(); let i = index" [value]="days">
+                {{ days }}
+              </mat-option>
+            </mat-select>
+          </div>
+        </div>
+        <div class="price">
+          <input type="text" name="extraChangesPrice" knifeOnlyNumbers
+            [(ngModel)]="userService.extraOfferChanges.extraChangesPrice" maxlength="4"> <span class="money">UAH</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- //** extra changes -->
+  <!--  commercila use -->
+  <div class="deffault-field">
+    <div class="option-wrap">
+      <div class="checkbox">
+        <input type="checkbox" name="useCommercialOffer" class="tgl-classic" id="commercial-use"
+          [(ngModel)]="userService.commercialOffer.publishCommercialOffer">
+        <label for="commercial-use"></label>
+        <span class="options-name">Коммерческое использование</span>
+      </div>
+      <div class="options commercial">
+        <span>Сделаю за</span>
+        <div class="price">
+          <input type="text" knifeOnlyNumbers maxlength="4"
+            [(ngModel)]="userService.commercialOffer.priceForCommercialOffer" name="priceForCommercialOffer"> <span
+            class="money">UAH</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- Add extra Option -->
+  <div class="secondary-extra-options">
+    <div class="secondary-extra-options-item" *ngFor=" let option of userService.extra_features; let j = index"
+      [ngClass]="{ rolled: expandedOption !== j+1 }">
+      <div class="display-option" *ngIf="userService.extra_features.length > 1 && expandedOption !== j+1 ">
+        <div class="display-title">
+          <!-- extra option bar -->
+          <div class="deffault-field extra-option-preview">
+
+
+            <div class="option-wrap">
+                
+                <i class="material-icons create" (click)="changeOption(j+1)">create</i>
+              <i class="material-icons delete-pack" (click)="deleteExtraOption(j)">delete</i>
+              <div class="checkbox">
+                    <input type="checkbox" name="useCommercialOffer" class="tgl-classic" id="commercial-use"
+                    [(ngModel)]="userService.extra_features[j].optionPublish">
+                  <label for="commercial-use"></label>
+                <span class="options-name">{{ userService.extra_features[j].optionTitle }}</span>
+              </div>
+              <div class="options">
+                <span>Сделаю за</span>
+                <div>
+                  <div class="select-wrap-extra">
+
+                    {{ userService.extra_features[j].optionPrice }}
+                  </div>
+                </div>
+                <div class="price">
+                  {{ userService.extra_features[j].optionPerTime }} <span class="money">UAH</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="option-creation" [ngClass]="{ expanded: expandedOption === j+1 }">
+        <div class="extra-option-title">
+          <h5>Название опции</h5>
+          <div>
+            <input type="text" name="optionTitle" [(ngModel)]="userService.extra_features[j].optionTitle" required>
+          </div>
+
+        </div>
+        <div class="extra-option-description">
+          <h5>Описание </h5>
+          <div>
+            <textarea name="optionDescription" [(ngModel)]="userService.extra_features[j].optionDescription"
+              required></textarea>
+          </div>
+
+        </div>
+        <div>
+          <div class="deffault-field extra-option">
+            <div class="option-wrap">
+
+              <div class="options">
+                <span>Сделаю за</span>
+                <div>
+                  <div class=" select-wrap-extra">
+                    <mat-select name="optionPrice" required [(ngModel)]="userService.extra_features[j].optionPrice">
+                      <mat-option *ngFor="let days of changesArrayCounter(); let i = index" [value]="days">
+                        {{ days }}
+                      </mat-option>
+                    </mat-select>
+                  </div>
+                </div>
+                <div class="price">
+                  <input type="text" name="optionPerTime" [(ngModel)]="userService.extra_features[j].optionPerTime"
+                    required knifeOnlyNumbers maxlength="4">
+                  <span class="money">UAH</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!---------- Add Extra field to secondary option ------->
+  <div class="add-option secondary-optins"
+    *ngIf=" !userService.extra_features || userService.extra_features.length < 10">
+    <!-- [disabled]="packagesForm.controls['extraOptions'].invalid" -->
+    <button class="add btn-tetraty" (click)="addExtraOptin()">
+      <i class="material-icons">
+        add_circle_outline
+      </i>
+      <span>Добавить опцию</span>
+    </button>
+  </div>
+</div>

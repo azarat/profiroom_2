@@ -216,7 +216,6 @@ input[type="checkbox"].tgl-classic:checked:disabled + label:before {
   align-items: center;
   text-align: center;
   letter-spacing: 1px;
-  font-variant: small-caps;
   text-transform: uppercase;
   background: #fff;
 
@@ -259,7 +258,7 @@ input[type="checkbox"].tgl-classic:checked:disabled + label:before {
   text-transform: uppercase;
   color: #3c7eea;
   display: flex;
-  background: #fff;
+  background: transparent;
   box-shadow: none;
   border-radius: 4px;
   min-width: 160px;

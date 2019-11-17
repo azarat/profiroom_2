@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, FormArray, Validators, FormControl } from '@ang
 import { UserServiceModel } from 'src/app/models/user-service/user-service.model';
 
 import { trigger, state, style, animate, transition, } from '@angular/animations';
+import { UserOffersService } from '../../../services/user-offers.service';
 
 @Component({
   selector: 'app-third-step-creation',
@@ -14,7 +15,9 @@ export class ThirdStepCreationComponent implements OnInit {
   user;
   showPackages = false;
   optionsVisible = false;
-  constructor() { }
+  constructor(
+    private userOffersService: UserOffersService,
+  ) { }
 
   @Input() userService: UserServiceModel;
   @Output() public setCurrentStep = new EventEmitter();
@@ -59,12 +62,11 @@ export class ThirdStepCreationComponent implements OnInit {
     //   return;
     // }
     console.log(this.userService);
+    this.userOffersService.updateService(this.userService)
+    .subscribe(res => {
+      console.log(res)
+    })
   }
-
-  // get useAllPackages() {
-
-  //   return this.packagesForm.get('allPackages').value;
-  // }
 
   openAllPackages() {
     this.userService.allPackages = true;
@@ -77,16 +79,7 @@ export class ThirdStepCreationComponent implements OnInit {
 
 
 
-  // *********************** Extra optins functions *******************//
 
-  addExtraOptin() {
-    this.userService.extra_features.push({
-      optionTitle: null,
-      optionDescription: null,
-      optionPrice: null,
-      optionPerTime: null
-    });
-  }
 
   // -------------------- Show options --------------------
 

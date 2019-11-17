@@ -1,0 +1,19 @@
+.option-wrap {
+  position: relative;
+
+  .delete-pack {
+    left: -25px;
+    top: 30px;
+  }
+  .create {
+    left: -25px;
+    top: -10px;
+    position: absolute;
+    font-size: 16px;
+    color: #bfc5d1;
+    cursor: pointer;
+    &:hover {
+        color: #649af3;
+    }
+  }
+}
