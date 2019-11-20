@@ -4,6 +4,7 @@ import { UserServiceModel } from 'src/app/models/user-service/user-service.model
 
 import { trigger, state, style, animate, transition, } from '@angular/animations';
 import { UserOffersService } from '../../../services/user-offers.service';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-third-step-creation',
@@ -40,7 +41,7 @@ export class ThirdStepCreationComponent implements OnInit {
 
   // ---------- Add option to main packages
   addMainOptin() {
-    console.log(this.userService.main_options)
+    // console.log(this.userService.main_options)
     // if(!this.userService.main_options) {
     //   console.log('test');
     // }
@@ -58,14 +59,11 @@ export class ThirdStepCreationComponent implements OnInit {
   }
 
   saveStep() {
-    // if (this.ngForm.invalid) {
-    //   return;
-    // }
-    console.log(this.userService);
     this.userOffersService.updateService(this.userService)
+    .pipe(filter((res: any) => !! res))
     .subscribe(res => {
-      console.log(res)
-    })
+      this.userService.step = res.step;
+    } );
   }
 
   openAllPackages() {

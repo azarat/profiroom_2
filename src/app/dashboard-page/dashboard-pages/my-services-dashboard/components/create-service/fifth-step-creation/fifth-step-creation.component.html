@@ -1,0 +1,29 @@
+<div class="step-wrapper">
+  <form #form="ngForm" >
+    <h3>5. Бриф</h3>
+
+    <h5>Кратко опишите, что вам требуется для работы</h5>
+    <div class="form-group" *ngFor="let item of userService.offerBreef; let i = index">
+      <div class="title">
+        <textarea name="breefTtitle" id="" cols="30" rows="10"></textarea>
+      </div>
+      <div class="options">
+        <mat-select>
+          <mat-option [value]="type.value" [(ngModel)]="userService.offerBreef[i].breefAnswerType" *ngFor="let type of answerTypes"> {{ type.name }}</mat-option>
+
+        </mat-select>
+        <input  type="checkbox" checkbox="" id="required">
+        <label for="required"></label>
+      </div>
+      <div class="multi" >
+
+      </div>
+
+    </div>
+
+    <div class="form-butons">
+      <button class="back" >сохранить и выйти</button>
+      <button class="save" (click)="onSubmit()">сохранить и продолжить</button>
+    </div>
+  </form>
+</div>

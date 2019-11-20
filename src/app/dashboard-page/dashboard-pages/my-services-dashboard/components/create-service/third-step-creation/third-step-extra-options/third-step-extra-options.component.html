@@ -151,7 +151,7 @@
 
 
   <!-- Add extra Option -->
-  <div class="secondary-extra-options">
+  <form #addOptionForm="ngForm" class="secondary-extra-options">
     <div class="secondary-extra-options-item" *ngFor=" let option of userService.extra_features; let j = index"
       [ngClass]="{ rolled: expandedOption !== j+1 }">
       <div class="display-option" *ngIf="userService.extra_features.length > 1 && expandedOption !== j+1 ">
@@ -161,13 +161,13 @@
 
 
             <div class="option-wrap">
-                
+
                 <i class="material-icons create" (click)="changeOption(j+1)">create</i>
               <i class="material-icons delete-pack" (click)="deleteExtraOption(j)">delete</i>
               <div class="checkbox">
-                    <input type="checkbox" name="useCommercialOffer" class="tgl-classic" id="commercial-use"
+                    <input type="checkbox" name="publish-option" class="tgl-classic" id="publish-extra-option-{{ j }}"
                     [(ngModel)]="userService.extra_features[j].optionPublish">
-                  <label for="commercial-use"></label>
+                  <label for="publish-extra-option-{{ j }}"></label>
                 <span class="options-name">{{ userService.extra_features[j].optionTitle }}</span>
               </div>
               <div class="options">
@@ -179,7 +179,7 @@
                   </div>
                 </div>
                 <div class="price">
-                  {{ userService.extra_features[j].optionPerTime }} <span class="money">UAH</span>
+                  {{ userService.extra_features[j].optionCountDays }} <span class="money">UAH</span>
                 </div>
               </div>
             </div>
@@ -218,7 +218,7 @@
                   </div>
                 </div>
                 <div class="price">
-                  <input type="text" name="optionPerTime" [(ngModel)]="userService.extra_features[j].optionPerTime"
+                  <input type="text" name="optionPerTime" [(ngModel)]="userService.extra_features[j].optionCountDays"
                     required knifeOnlyNumbers maxlength="4">
                   <span class="money">UAH</span>
                 </div>
@@ -228,13 +228,13 @@
         </div>
       </div>
     </div>
-  </div>
+  </form>
 
   <!---------- Add Extra field to secondary option ------->
   <div class="add-option secondary-optins"
     *ngIf=" !userService.extra_features || userService.extra_features.length < 10">
     <!-- [disabled]="packagesForm.controls['extraOptions'].invalid" -->
-    <button class="add btn-tetraty" (click)="addExtraOptin()">
+    <button class="add btn-tetraty" [disabled]="addOptionForm.invalid" (click)="addExtraOptin()">
       <i class="material-icons">
         add_circle_outline
       </i>

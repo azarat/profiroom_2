@@ -137,7 +137,7 @@
         </div>
         <div>
           <div class="select-wrap">
-            <mat-select [(ngModel)]="userService.packagesChanges.basicChange" name="basicChange">
+            <mat-select [(ngModel)]="userService.packagesChanges.basicChanges" name="basicChange">
               <mat-option *ngFor="let change of changesArrayCounter(); let i = index" [value]="change">
                 {{ change }}
               </mat-option>
@@ -146,7 +146,7 @@
         </div>
         <div>
           <div class="select-wrap">
-            <mat-select [required]="userService.allPackages" [(ngModel)]="userService.packagesChanges.advancedChange"
+            <mat-select [required]="userService.allPackages" [(ngModel)]="userService.packagesChanges.advancedChanges"
               name="advancedChange">
               <mat-option *ngFor="let change of changesArrayCounter(); let i = index" [value]="change">
                 {{ change }}
@@ -156,7 +156,7 @@
         </div>
         <div>
           <div class="select-wrap">
-            <mat-select [required]="userService.allPackages" [(ngModel)]="userService.packagesChanges.premiumChange"
+            <mat-select [required]="userService.allPackages" [(ngModel)]="userService.packagesChanges.premiumChanges"
               name="premiumChange">
               <mat-option *ngFor="let change of changesArrayCounter(); let i = index" [value]="change">
                 {{ change }}

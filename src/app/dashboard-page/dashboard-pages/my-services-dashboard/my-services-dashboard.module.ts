@@ -26,6 +26,8 @@ import { FirstStepServiceCreationComponent } from './components/create-service/f
 import { SecondStepCreationComponent } from './components/create-service/second-step-creation/second-step-creation.component';
 import { ThirdStepCreationComponent } from './components/create-service/third-step-creation/third-step-creation.component';
 import { ThirdStepExtraOptionsComponent } from './components/create-service/third-step-creation/third-step-extra-options/third-step-extra-options.component';
+import { FourthStepCreationComponent } from './components/create-service/fourth-step-creation/fourth-step-creation.component';
+import { FifthStepCreationComponent } from './components/create-service/fifth-step-creation/fifth-step-creation.component';
 
 
 const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
@@ -60,7 +62,9 @@ const servicesRoutes: Routes = [
     DragDropDirective,
     SecondStepCreationComponent,
     ThirdStepCreationComponent,
-    ThirdStepExtraOptionsComponent
+    ThirdStepExtraOptionsComponent,
+    FourthStepCreationComponent,
+    FifthStepCreationComponent
   ],
   imports: [
     // ---- angular

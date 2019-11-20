@@ -1,0 +1,329 @@
+h3 {
+  margin-bottom: 19px;
+  margin-top: 0;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 66%;
+
+  h3 {
+    font-family: Source Sans Pro, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 23px;
+    color: #323c47;
+  }
+
+  h6 {
+    background: #f4f7fc;
+    // border: 1px solid rgba(128, 152, 213, 0.1);
+    font-family: Source Sans Pro, sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    color: #323c47;
+    padding: 20px 100px 20px 24px;
+    margin: 0;
+  }
+  .faq-item {
+    border: 1px solid #dce0e6;
+    box-sizing: border-box;
+    border-radius: 0px 0px 4px 4px;
+    background: #f4f7fc;
+    position: relative;
+
+    &:not(:first-of-type) {
+      margin-top: 30px;
+    }
+    &.hiddenItem {
+      .item-options {
+        display: block;
+        button {
+          border: none;
+          background: none;
+          margin-right: 22px;
+          color: #C2CFE0;
+          padding: 0;
+          cursor: pointer;
+          &>i {
+            font-size: 17px;
+          }
+          &.change:hover {
+            color: #3C7EEA;
+          }
+          &.delete:hover {
+            color: #FF647C;
+          }
+        }
+      }
+      .question-title {
+        height: 0;
+        padding: 0;
+        margin: 0;
+      }
+      .item-unswer {
+        height: 0;
+        overflow: hidden;
+      }
+    }
+    .item-options {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: none;
+    }
+  }
+  .question-title {
+    padding: 24px 24px 18px;
+    background: #fff;
+    margin-bottom: 5px;
+    overflow: hidden;
+    input {
+      width: 100%;
+      font-family: Source Sans Pro, sans-serif;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 20px;
+      background: #fff;
+      border: none;
+      outline: none;
+
+      &::placeholder {
+        /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: #33596e;
+        opacity: 0.5;
+      }
+
+      &:-ms-input-placeholder {
+        /* Internet Explorer 10-11 */
+        color: #33596e;
+        opacity: 0.5;
+      }
+
+      &::-ms-input-placeholder {
+        /* Microsoft Edge */
+        color: #33596e;
+        opacity: 0.5;
+      }
+    }
+  }
+}
+.options {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 13px;
+  button {
+    padding: 10px 16px;
+    font-size: 14px;
+    line-height: 18px;
+  }
+  button:first-of-type {
+    margin-right: 25px;
+  }
+}
+.add-item {
+  margin: 13px 0 30px;
+
+  & > * {
+    font-size: 16px;
+    line-height: 20px;
+    font-style: normal;
+    text-transform: none;
+  }
+
+  button {
+    display: flex;
+    align-items: center;
+  }
+  i {
+    margin-right: 13px;
+    font-size: 18px;
+  }
+}
+
+form::ng-deep {
+  // * {
+  //   font-family: "Source Sans Pro", sans-serif;
+  // }
+
+  ngb-popover-window {
+    &.popover {
+      background: #ffffff;
+      box-shadow: 0px 15px 21px rgba(128, 152, 213, 0.5);
+      border-radius: 8px;
+      padding: 18px 23px 19px 28px;
+      left: 14px !important;
+      top: -5px !important;
+      z-index: 2;
+      max-width: 323px;
+
+      &:before {
+        content: "";
+        position: absolute;
+        left: -9px;
+        top: 8px;
+        width: 22px;
+        height: 22px;
+        background: #ffffff;
+        -webkit-transform: rotate(47deg);
+        transform: rotate(47deg);
+        box-sizing: border-box;
+        z-index: -1;
+      }
+
+      h3 {
+        font-family: "Source Sans Pro", sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 18px;
+        color: #000000;
+        margin: 0 0 12px;
+      }
+
+      .popover-body {
+        margin: 0;
+        font-family: "Source Sans Pro", sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 18px;
+        color: #707683;
+      }
+    }
+
+    &.popover-select {
+      top: 25px !important;
+    }
+    &.popover-file {
+      top: -43px !important;
+    }
+  }
+}
+
+quill-editor::ng-deep {
+  .ql-toolbar {
+    background: #fff;
+    // border-radius: 3px 3px 0px 0px;
+    border: none;
+  }
+  .ql-container {
+    border: none;
+    padding: 20px 24px;
+    // border-radius: 0px 0px 3px 3px;
+    & > * {
+      font-family: Source Sans Pro, sans-serif;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 20px;
+      color: #33596e;
+      padding: 0;
+    }
+  }
+  .ql-editor.ql-blank::before {
+    font-family: Source Sans Pro, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 20px;
+    color: #33596e;
+    opacity: 0.5;
+    left: 24px;
+  }
+}
+
+
+// -----------------buttons ----------------------//
+
+.form-butons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  button {
+    font-family: Source Sans Pro, sans-serif;
+    border: none;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 18px;
+    // color: #4285F4;
+    padding: 15px 24px;
+    cursor: pointer;
+    text-transform: uppercase;
+    &:first-of-type {
+      border: 1px solid #4285f4;
+      background: #fff;
+      color: #4285f4;
+      box-shadow: none;
+      &:hover {
+        color: #fff;
+        background: #3c7eea;
+        box-shadow: 0px 2px 4px rgba(60, 9, 179, 0.3);
+      }
+    }
+
+    color: #fff;
+    background: #3c7eea;
+    box-shadow: 0px 2px 4px rgba(60, 9, 179, 0.3);
+    &:hover {
+      border: 1px solid #4285f4;
+      background: #fff;
+      color: #4285f4;
+      box-shadow: none;
+    }
+  }
+}
+
+// --------------------- popover ------------------
+
+ngb-popover-window {
+  &.popover {
+    background: #ffffff;
+    box-shadow: 0px 15px 21px rgba(128, 152, 213, 0.5);
+    border-radius: 8px;
+    padding: 18px 23px 19px 28px;
+    left: 14px !important;
+    top: -30px !important;
+    z-index: 2;
+    max-width: 323px;
+
+    &:before {
+      content: "";
+      position: absolute;
+      left: -9px;
+      top: 8px;
+      width: 22px;
+      height: 22px;
+      background: #ffffff;
+      -webkit-transform: rotate(47deg);
+      transform: rotate(47deg);
+      box-sizing: border-box;
+      z-index: -1;
+    }
+
+    h3 {
+      font-family: "Source Sans Pro", sans-serif;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 18px;
+      color: #000000;
+      margin: 0 0 12px;
+    }
+
+    .popover-body {
+      margin: 0;
+      font-family: "Source Sans Pro", sans-serif;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 18px;
+      color: #707683;
+    }
+  }
+}

@@ -17,53 +17,71 @@ export class PackagesDescriptions {
 }
 
 export class PackagesTerms {
-  basicTerm: string;
-  advancedTerm: string;
-  premiumTerm: string;
+  @Expose()  basicTerm: string;
+  @Expose()  advancedTerm: string;
+  @Expose() premiumTerm: string;
 }
 
 export class PackagesChanges {
-  basicChange: string;
-  advancedChange: string;
-  premiumChange: string;
+  @Expose() basicChanges: string;
+  @Expose() advancedChanges: string;
+  @Expose() premiumChanges: string;
 }
 
 export class PackagesPrices {
-  basicPrice: string;
-  advancedPrice: string;
-  premiumPrice: string;
+  @Expose() basicPrice: string;
+  @Expose() advancedPrice: string;
+  @Expose() premiumPrice: string;
 }
 export class CompressedDeadlines {
-  publishCompressedDeadlines: boolean;
-  basicCompressedDays: string; // required    --- if  [useCompressedDeadlines]
-  basicCompressedPrice: string; // required   --- if  [useCompressedDeadlines]
-  advancedCompressedDays: string; // required ---- if  [useCompressedDeadlines && allPackages]
-  advancedCompressedPrice: string; // required ---- if  [useCompressedDeadlines && allPackages]
-  premiumCompressedDays: string; // required ---- if  [useCompressedDeadlines && allPackages]
-  premiumCompressedPrice: string; // required ---- if  [useCompressedDeadlines && allPackages]
+  @Expose() publishCompressedDeadlines: boolean;
+  @Expose() basicCompressedDays: string; // required    --- if  [useCompressedDeadlines]
+  @Expose() basicCompressedPrice: string; // required   --- if  [useCompressedDeadlines]
+  @Expose() advancedCompressedDays: string; // required ---- if  [useCompressedDeadlines && allPackages]
+  @Expose() advancedCompressedPrice: string; // required ---- if  [useCompressedDeadlines && allPackages]
+  @Expose() premiumCompressedDays: string; // required ---- if  [useCompressedDeadlines && allPackages]
+  @Expose() premiumCompressedPrice: string; // required ---- if  [useCompressedDeadlines && allPackages]
 }
 export class ExtraOfferChanges {
-  publishExtraOfferChanges: boolean;
-  extraChangesDays: string; // required   --- if  [useExtraOfferChanges]
-  extraChangesPrice: string; // required   --- if  [useExtraOfferChanges]
+  @Expose() publishExtraOfferChanges: boolean;
+  @Expose()  extraChangesDays: string; // required   --- if  [useExtraOfferChanges]
+  @Expose()  extraChangesPrice: string; // required   --- if  [useExtraOfferChanges]
 }
 export class CommercialOffer {
-  publishCommercialOffer: boolean;
-  priceForCommercialOffer: string; // required   --- if  [useCommercialOffer]
+  @Expose() publishCommercialOffer: boolean;
+  @Expose()  priceForCommercialOffer: string; // required   --- if  [useCommercialOffer]
 }
 export class MainOptions {
-  title: string;
-  basic: boolean;
-  advanced: boolean;
-  premium: boolean;
+  @Expose() title: string;
+  @Expose() basic: boolean;
+  @Expose() advanced: boolean;
+  @Expose() premium: boolean;
 }
-export class ExtraOptions {
-  optionPublish: boolean;
-  optionTitle: string;
-  optionDescription: string;
-  optionPrice: string;
-  optionPerTime: string;
+export class ExtraFeatures {
+  @Expose() optionPublish: boolean;
+  @Expose() optionTitle: string;
+  @Expose() optionDescription: string;
+  @Expose() optionPrice: string;
+  @Expose() optionCountDays: string;
 }
+
+export class OfferFaq {
+  @Expose() question: string;
+  @Expose() answer: string;
+}
+
+export class BreefAnswerWariants {
+  @Expose() answerWariant: string;
+}
+export class Breef {
+  @Expose() breefTitle: string;
+  @Expose() breefAnswerType: string;
+  @Expose() breefAnwerRequired: boolean;
+  @Type(() => BreefAnswerWariants) breefAnswerWariants: BreefAnswerWariants[];
+  @Expose() breefMultiAnswers: boolean;
+}
+
+
 
 export class UserServiceModel {
   @Expose() offerId: number;
@@ -92,16 +110,65 @@ export class UserServiceModel {
   // tslint:disable-next-line: variable-name
   @Type(() => MainOptions) main_options: MainOptions[];
   // tslint:disable-next-line: variable-name
-  @Type(() => ExtraOptions) extra_features: ExtraOptions[];
-
+  @Type(() => ExtraFeatures) extra_features: ExtraFeatures[];
+  // tslint:disable-next-line: variable-name
+  @Type(() => OfferFaq) offer_faq: OfferFaq[];
+  @Type(() => Breef) offerBreef: Breef[];
 
 
   // -------delete option------
-  public removeMainOption(index) {
+  public removeMainOption(index: number) {
     this.main_options.splice(index, 1);
   }
-  public removeExtraOption(index) {
+  public removeExtraOption(index: number) {
     this.extra_features.splice(index, 1);
   }
 
+  public removeFaqItem(index: number) {
+    this.offer_faq.splice(index, 1);
+  }
+
 }
+
+
+// export class BreefAnswerWariants {
+//   @Expose() answerWariant: string;
+// }
+// export class Breef {
+//   @Expose() breefTitle: string;
+//   @Expose() breefAnswerType: string;
+//   @Expose() breefAnwerRequired: boolean;
+//   @Type(() => BreefAnswerWariants) breefAnwerRequired: BreefAnswerWariants[];
+//   @Expose() breefAnwerRequired: boolean;
+// }
+
+// offerBreef : [
+//   {
+//     breefTitle
+//     breefAnswerType
+//     breefAnwerRequired
+//     breefAnwerRequired: [
+//       {
+//         answerWariant
+//       },
+//       {
+//         answerWariant
+//       }
+//     ]
+//     breefAnwerRequired
+//   },
+//   {
+//     breefTitle
+//     breefAnswerType
+//     breefAnwerRequired
+//     breefAnwerRequired: [
+//       {
+//         answerWariant
+//       },
+//       {
+//         answerWariant
+//       }
+//     ]
+//     breefAnwerRequired
+//   }
+// ]

@@ -15,7 +15,7 @@ export class ThirdStepExtraOptionsComponent implements OnInit {
 
   @Input() userService: UserServiceModel;
   ngOnInit() {
-    
+
   }
 
   changesArrayCounter() {
@@ -33,19 +33,19 @@ export class ThirdStepExtraOptionsComponent implements OnInit {
         optionTitle: null,
         optionDescription: null,
         optionPrice: null,
-        optionPerTime: null
+        optionCountDays: null
       });
       if (this.userService.extra_features.length > 1) {
-        this.expandedOption = this.userService.extra_features.length
+        this.expandedOption = this.userService.extra_features.length;
       }
     }
-    
+
     deleteExtraOption(index) {
       this.userService.removeExtraOption(index)
       if (this.expandedOption > index ) {
         this.expandedOption = this.expandedOption - 1;
       }
-      
+
     }
 
     changeOption(index: number) {
