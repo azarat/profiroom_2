@@ -9,6 +9,8 @@ import { CategoriesHeaderModule } from '../shared/modules/categories-header/cate
 import { NgxGalleryModule } from 'ngx-gallery';
 import { NgxGalleryComponent } from './components/ngx-gallery/ngx-gallery.component';
 import { QuestionsComponent } from './components/questions/questions.component';
+import { AboutOfferComponent } from './components/about-offer/about-offer.component';
+import { PackagesComponent } from './components/packages/packages.component';
 
 
 const routes: Routes = [
@@ -22,7 +24,9 @@ const routes: Routes = [
   declarations: [
     ServicePageComponent,
     NgxGalleryComponent,
-    QuestionsComponent
+    QuestionsComponent,
+    AboutOfferComponent,
+    PackagesComponent
   ],
   imports: [
     CommonModule,

@@ -49,6 +49,30 @@
             <mat-option value="99">Любое время</mat-option>
           </mat-select>
         </mat-form-field>
+
+        <!-- <select [(ngModel)]="selectedCity" (ngModelChange)="onChange($event)" >
+          <option *ngFor="let c of cities" [ngValue]="c"> {{c.name}} </option>
+        </select> -->
+
+        <!-- <select class="old-select">
+            <option value="html">HTML</option>
+            <option value="css">CSS</option>
+            <option value="sass">SASS</option>
+            <option value="javascript">Javascript</option>
+            <option value="jquery" selected>jQuery</option>
+        </select> -->
+
+        <!-- Bouton Select reconstruit -->
+        <div class="new-select">
+            <div class="selection">
+                <p>
+                    <span></span>
+                    <i></i>
+                </p>
+                <span></span>
+            </div>
+        </div>
+
       </div>
       <!-- <div class="filter term">
 

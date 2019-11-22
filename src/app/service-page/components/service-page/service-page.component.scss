@@ -80,6 +80,8 @@
 
 .main-block {
   display: flex;
+  flex-wrap: wrap;
+
 }
 .description {
   width: 67%;
@@ -491,6 +493,9 @@
     line-height: 20px;
     text-transform: uppercase;
     cursor: pointer;
+
+    max-height: 52px;
+    box-sizing: border-box;
   }
 }
 
@@ -532,4 +537,21 @@
 #tab1:checked ~ #positive,
 #tab2:checked ~ #negative {
   display: block;
+}
+
+.choose-packet{
+  width: 33%;
+  position: relative;
+  .runing-block{
+    width: 300px;
+    height: 300px;
+    background-color: red;
+    position: sticky;
+    top: 30px;
+    margin: 30px auto 30px;
+  }
+}
+
+.sliders-block{
+  height: 1210px;
 }
