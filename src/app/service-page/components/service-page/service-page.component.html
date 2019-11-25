@@ -146,50 +146,100 @@
 
 
           <div class="commets-array" id="positive">
-            <div class="comment" *ngFor="let comment of offerData.positiveComments">
-              <div class="left-side">
-                <div class="ava">
-                  <img [src]="'https://www.thecubetest.site/Backend/storage/app/' + comment.user.avatar"
-                    alt="user avatar">
+            <div class="comment-wrapper" *ngFor="let comment of offerData.positiveComments">
+
+              <div class="comment main">
+                <div class="left-side">
+                  <div class="ava">
+                    <img [src]="'https://www.thecubetest.site/Backend/storage/app/' + comment.user.avatar"
+                      alt="user avatar">
+                  </div>
+                </div>
+                <div class="right-side">
+                  <div class="user-name">{{ comment.user.name }} {{ comment.user.surname }}</div>
+                  <div class="user-raiting-wrapp">
+                    <span class="star-raiting">{{ comment.mark }}</span>
+                  </div>
+                  <p class="comment-text">
+                    {{ comment.commentText }}
+                  </p>
                 </div>
               </div>
-              <div class="right-side">
-                <div class="user-name">{{ comment.user.name }} {{ comment.user.surname }}</div>
-                <div class="user-raiting-wrapp">
-                  <span class="star-raiting">{{ comment.mark }}</span>
-                </div>
-                <p class="comment-text">
-                  {{ comment.commentText }}
-                </p>
-              </div>
+
+              <ng-container *ngIf="comment.childs">
+                <div class="comment sub" *ngFor="let child of comment.childs">
+                    <div class="left-side">
+                      <div class="ava">
+                        <img [src]="'https://www.thecubetest.site/Backend/storage/app/' + child.user.avatar"
+                          alt="user avatar">
+                      </div>
+                    </div>
+                    <div class="right-side">
+                      <div class="user-name">{{ child.user.name }} {{ child.user.surname }}</div>
+                      <div class="user-raiting-wrapp">
+                        <span class="star-raiting">{{ child.mark }}</span>
+                      </div>
+                      <p class="comment-text">
+                        {{ child.commentText }}
+                      </p>
+                    </div>
+                  </div>
+              </ng-container>
+
+
             </div>
+
           </div>
 
           <div class="commets-array" id="negative">
-            <div class="comment" *ngFor="let comment of offerData.negativeComments">
-              <div class="left-side">
-                <div class="ava">
-                  <img [src]="'https://www.thecubetest.site/Backend/storage/app/' + comment.user.avatar"
-                    alt="user avatar">
+            <div class="comment-wrapper" *ngFor="let comment of offerData.negativeComments">
+
+              <div class="comment main">
+                <div class="left-side">
+                  <div class="ava">
+                    <img [src]="'https://www.thecubetest.site/Backend/storage/app/' + comment.user.avatar"
+                      alt="user avatar">
+                  </div>
+                </div>
+                <div class="right-side">
+                  <div class="user-name">{{ comment.user.name }} {{ comment.user.surname }}</div>
+                  <div class="user-raiting-wrapp">
+                    <span class="star-raiting">{{ comment.mark }}</span>
+                  </div>
+                  <p class="comment-text">
+                    {{ comment.commentText }}
+                  </p>
                 </div>
               </div>
-              <div class="right-side">
-                <div class="user-name">{{ comment.user.name }} {{ comment.user.surname }}</div>
-                <div class="user-raiting-wrapp">
-                  <span class="star-raiting">{{ comment.mark }}</span>
-                </div>
-                <p class="comment-text">
-                  {{ comment.commentText }}
-                </p>
-              </div>
+
+              <ng-container *ngIf="comment.childs">
+                <div class="comment sub" *ngFor="let child of comment.childs">
+                    <div class="left-side">
+                      <div class="ava">
+                        <img [src]="'https://www.thecubetest.site/Backend/storage/app/' + child.user.avatar"
+                          alt="user avatar">
+                      </div>
+                    </div>
+                    <div class="right-side">
+                      <div class="user-name">{{ child.user.name }} {{ child.user.surname }}</div>
+                      <div class="user-raiting-wrapp">
+                        <span class="star-raiting">{{ child.mark }}</span>
+                      </div>
+                      <p class="comment-text">
+                        {{ child.commentText }}
+                      </p>
+                    </div>
+                  </div>
+              </ng-container>
+
             </div>
           </div>
         </div>
 
       </section>
 
-      <app-questions></app-questions>
-      <app-about-offer></app-about-offer>
+      <app-service-page-questions></app-service-page-questions>
+      <app-service-page-about-offer></app-service-page-about-offer>
     </div>
     <div class="choose-packet">
       <div class="runing-block">
@@ -197,8 +247,7 @@
       </div>
     </div>
     <div class="sliders-block">
-      Занимаюсь дизайном с 2010 года.  Мои профессиональные навыки создание дизайна сайтов, лоотипов, мобильных приложений и прочего. Занимаюсь дизайном с 2010 года.  Мои профессиональные навыки создание дизайна сайтов, лоотипов, мобильных приложений и прочего. Занимаюсь дизайном с 2010 года.  Мои профессиональные навыки создание дизайна сайтов, лоотипов, мобильных приложений и прочего. Занимаюсь дизайном с 2010 года.  Мои профессиональные навыки создание дизайна сайтов, лоотипов, мобильных приложений и прочего.
-
+      Туть будут красивые слайдеры
     </div>
   </div>
 </div>

@@ -8,8 +8,8 @@ import { MainHeaderModule } from '../shared/modules/main-header/main-header.modu
 import { CategoriesHeaderModule } from '../shared/modules/categories-header/categories-header.module';
 import { NgxGalleryModule } from 'ngx-gallery';
 import { NgxGalleryComponent } from './components/ngx-gallery/ngx-gallery.component';
-import { QuestionsComponent } from './components/questions/questions.component';
-import { AboutOfferComponent } from './components/about-offer/about-offer.component';
+import { ServicePageQuestionsComponent } from './components/service-page-questions/service-page-questions.component';
+import { ServicePageAboutOfferComponent } from './components/service-page-about-offer/service-page-about-offer.component';
 import { ServicePagePackagesComponent } from './components/service-page-packages/service-page-packages.component';
 // import { PackagesComponent } from './components/packages/packages.component';
 
@@ -25,8 +25,8 @@ const routes: Routes = [
   declarations: [
     ServicePageComponent,
     NgxGalleryComponent,
-    QuestionsComponent,
-    AboutOfferComponent,
+    ServicePageQuestionsComponent,
+    ServicePageAboutOfferComponent,
     ServicePagePackagesComponent,
     // PackagesComponent
   ],

@@ -1,0 +1,11 @@
+<section class="questions" *ngIf="offerData">
+  <h4 class="section-title">
+    Часто задаваемые вопросы
+  </h4>
+  <div class="question-list">
+    <div class="question-item" [ngClass]="btnNumber === i? 'active': 'none'" *ngFor="let question of offerData.offer_faq; let i">
+      <h4 class="question-item__title" (click)="showfull(i)">{{question.question}}<div class="element-plus"></div></h4>
+      <p class="question-item__text">{{question.answer}}</p>
+    </div>
+  </div>
+</section>

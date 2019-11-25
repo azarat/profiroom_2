@@ -35,6 +35,14 @@ export interface OfferDataInterface {
       surname?: string;
       avatar?: string;
     }
+    child?: [{
+      commentText?: string;
+      user?: {
+        name?: string;
+        surname?: string;
+        avatar?: string;
+      }
+    }];
   }];
   positive_comments_count?: number;
   negativeComments?: [{
@@ -45,6 +53,14 @@ export interface OfferDataInterface {
       surname?: string;
       avatar?: string;
     }
+    child?: [{
+      commentText?: string;
+      user?: {
+        name?: string;
+        surname?: string;
+        avatar?: string;
+      }
+    }];
   }];
   negative_comments_count?: number;
   basic?: [{
@@ -75,4 +91,8 @@ export interface OfferDataInterface {
     premium?: number;
     title?: string;
   }];
+  offer_faq?: [{
+    question?: string;
+    answer?: string;
+  }]
 }

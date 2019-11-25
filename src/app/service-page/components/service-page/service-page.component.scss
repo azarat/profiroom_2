@@ -452,6 +452,10 @@
     &:nth-child(odd) {
       background-color: #fbfcfd;
     }
+    &.sub{
+      padding-left: 80px;
+      padding-right: 60px;
+    }
   }
 }
 
