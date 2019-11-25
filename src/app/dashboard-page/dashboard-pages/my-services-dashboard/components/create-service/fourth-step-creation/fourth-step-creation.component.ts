@@ -34,7 +34,7 @@ export class FourthStepCreationComponent implements OnInit {
     .pipe(filter((res: any) => !! res))
     .subscribe(res => {
       console.log(res)
-      // this.userService.step = res.step;
+      this.userService.step = res.step;
     } );
   }
 

@@ -4,23 +4,54 @@
 
     <h5>Кратко опишите, что вам требуется для работы</h5>
     <div class="breef-item" *ngFor="let item of userService.offerBreef; let i = index">
+      <p class="item-count">{{ i+1 }}.</p>
       <div class="title">
-        <textarea name="breefTtitle"></textarea>
+        <textarea name="breefTtitle" [(ngModel)]="userService.offerBreef[i].breefTitle"></textarea>
       </div>
       <div class="options service-selects">
         <label for="answer-type">Тип ответа</label>
-        <mat-form-field appearance="outline" >
-          <mat-select id="answer-type" name="breefAnswerType" [(ngModel)]="userService.offerBreef[i].breefAnswerType" >
-            <mat-option [value]="type.value" 
-              *ngFor="let type of answerTypes"> {{ type.name }}</mat-option>
+        <mat-form-field appearance="outline">
+          <mat-select id="answer-type" (ngModelChange)="onFiltersChange($event, i)" name="breefAnswerType"
+            [(ngModel)]="userService.offerBreef[i].breefAnswerType">
+            <mat-option [value]="type.value" *ngFor="let type of answerTypes"> {{ type.name }}</mat-option>
           </mat-select>
         </mat-form-field>
 
-        <input type="checkbox" name="requered" checkbox="" id="required">
+        <input type="checkbox" [(ngModel)]="userService.offerBreef[i].breefAnwerRequired" class="tgl tgl-classic" name="requered" checkbox="" id="required">
         <label for="required"></label>
+        <span>Ответ обязательный</span>
       </div>
       <div class="multi" *ngIf="userService.offerBreef[i].breefAnswerType === 'radio'">
-asdqweqwe
+        <div class="breef-question-item"
+          *ngFor="let el of userService.offerBreef[i].breefAnswerVariants, let j = index">
+
+          <input type="text" [(ngModel)]="userService.offerBreef[i].breefAnswerVariants[j].answerVariant" name="answerVariant" placeholder="Дополнительный ответ" requered maxlength="80">
+
+        </div>
+        <div class="add-question">
+          <button class="add btn-tetraty" [disabled]="form.invalid" (click)="addBreefAnswers(i)">
+            <i class="material-icons">
+              add_circle_outline
+            </i>
+            <span>Добавить еще ответ</span>
+
+          </button>
+          <div class="comment">
+              <input type="checkbox"
+               [(ngModel)]="userService.offerBreef[i].breefMultiAnswers" class="tgl tgl-classic" name="requered" checkbox="" id="multi-answer">
+              <label for="multi-answer"></label>
+              <p>
+                  Разрешить более одного ответа на вопрос
+                  <span>
+                      (покупатель сможет отметить несколько вариантов)
+                  </span>
+              </p>
+          </div>
+        </div>
+      </div>
+      <div class="item-controls">
+        <button class="btn-sec">отменить</button>
+        <button class="btn">Добавить</button>
       </div>
     </div>
 

@@ -70,14 +70,14 @@ export class OfferFaq {
   @Expose() answer: string;
 }
 
-export class BreefAnswerWariants {
-  @Expose() answerWariant: string;
+export class BreefAnswerVariants {
+  @Expose() answerVariant: string;
 }
 export class Breef {
   @Expose() breefTitle: string;
   @Expose() breefAnswerType: string;
   @Expose() breefAnwerRequired: boolean;
-  @Type(() => BreefAnswerWariants) breefAnswerWariants: BreefAnswerWariants[];
+  @Type(() => BreefAnswerVariants) breefAnswerVariants: BreefAnswerVariants[];
   @Expose() breefMultiAnswers: boolean;
 }
 
@@ -85,6 +85,7 @@ export class Breef {
 
 export class UserServiceModel {
   @Expose() offerId: number;
+  @Expose() published: boolean;
   @Expose() id: any;
   @Expose() title: string;
   @Expose() category: string;
