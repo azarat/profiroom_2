@@ -10,7 +10,8 @@ import { NgxGalleryModule } from 'ngx-gallery';
 import { NgxGalleryComponent } from './components/ngx-gallery/ngx-gallery.component';
 import { QuestionsComponent } from './components/questions/questions.component';
 import { AboutOfferComponent } from './components/about-offer/about-offer.component';
-import { PackagesComponent } from './components/packages/packages.component';
+import { ServicePagePackagesComponent } from './components/service-page-packages/service-page-packages.component';
+// import { PackagesComponent } from './components/packages/packages.component';
 
 
 const routes: Routes = [
@@ -26,7 +27,8 @@ const routes: Routes = [
     NgxGalleryComponent,
     QuestionsComponent,
     AboutOfferComponent,
-    PackagesComponent
+    ServicePagePackagesComponent,
+    // PackagesComponent
   ],
   imports: [
     CommonModule,

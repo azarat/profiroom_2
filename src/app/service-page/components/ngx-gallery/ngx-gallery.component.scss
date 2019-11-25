@@ -4,6 +4,9 @@
   ::ng-deep ngx-gallery-image{
     border: 1px solid #F2F5FB;
     box-sizing: border-box;
+    &.ngx-gallery-active{
+      z-index: 1;
+    }
   }
   ::ng-deep .ngx-gallery-arrow-wrapper{
     width: 41px;
