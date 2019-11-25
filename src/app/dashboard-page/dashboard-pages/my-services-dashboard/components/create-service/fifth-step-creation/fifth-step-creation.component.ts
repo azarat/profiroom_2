@@ -16,11 +16,11 @@ export class FifthStepCreationComponent implements OnInit {
     },
     {
       name: 'Мультивыбор',
-      value: 'file'
+      value: 'radio'
     },
     {
       name: 'Закрепить файл',
-      value: 'radio'
+      value: 'file'
     },
   ];
 

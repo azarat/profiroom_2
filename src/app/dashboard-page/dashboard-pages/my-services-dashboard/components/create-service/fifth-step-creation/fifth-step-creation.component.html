@@ -1,28 +1,32 @@
 <div class="step-wrapper">
-  <form #form="ngForm" >
+  <form #form="ngForm">
     <h3>5. Бриф</h3>
 
     <h5>Кратко опишите, что вам требуется для работы</h5>
-    <div class="form-group" *ngFor="let item of userService.offerBreef; let i = index">
+    <div class="breef-item" *ngFor="let item of userService.offerBreef; let i = index">
       <div class="title">
-        <textarea name="breefTtitle" id="" cols="30" rows="10"></textarea>
+        <textarea name="breefTtitle"></textarea>
       </div>
-      <div class="options">
-        <mat-select>
-          <mat-option [value]="type.value" [(ngModel)]="userService.offerBreef[i].breefAnswerType" *ngFor="let type of answerTypes"> {{ type.name }}</mat-option>
+      <div class="options service-selects">
+        <label for="answer-type">Тип ответа</label>
+        <mat-form-field appearance="outline" >
+          <mat-select id="answer-type" name="breefAnswerType" [(ngModel)]="userService.offerBreef[i].breefAnswerType" >
+            <mat-option [value]="type.value" 
+              *ngFor="let type of answerTypes"> {{ type.name }}</mat-option>
+          </mat-select>
+        </mat-form-field>
 
-        </mat-select>
-        <input  type="checkbox" checkbox="" id="required">
+        <input type="checkbox" name="requered" checkbox="" id="required">
         <label for="required"></label>
       </div>
-      <div class="multi" >
-
+      <div class="multi" *ngIf="userService.offerBreef[i].breefAnswerType === 'radio'">
+asdqweqwe
       </div>
-
     </div>
 
+
     <div class="form-butons">
-      <button class="back" >сохранить и выйти</button>
+      <button class="back">сохранить и выйти</button>
       <button class="save" (click)="onSubmit()">сохранить и продолжить</button>
     </div>
   </form>
