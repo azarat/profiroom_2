@@ -94,5 +94,12 @@ export interface OfferDataInterface {
   offer_faq?: [{
     question?: string;
     answer?: string;
-  }]
+  }];
+  userOffers?: [{
+    title?: string;
+    raiting?: number;
+    comments_count?: number;
+    mainImage?: string;
+    minprice?: number;
+  }];
 }

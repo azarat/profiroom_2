@@ -6,6 +6,9 @@
     margin-bottom: 12px;
     height: 53px;
   }
+  .tabContentContainer{
+    margin-bottom: 14px;
+  }
   .tab {
     display: flex;
     align-items: center;
@@ -49,7 +52,14 @@
     border-radius: 3px;
     display: flex;
     padding: 40px 55px;
-    margin-bottom: 7px;
+    // margin-bottom: 7px;
+
+    -webkit-animation-duration: .7s;
+    animation-duration: .7s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-name: fadeIn;
+    animation-name: fadeIn;
     .main-info {
       .title-price {
         display: flex;
@@ -155,12 +165,12 @@
       }
     }
   }
-  .hide {
-    display: none;
-  }
-  .show {
-    display: block;
-  }
+  // .hide {
+  //   display: none;
+  // }
+  // .show {
+  //   display: block;
+  // }
 
   .btn-order-service {
     font-style: normal;
@@ -230,6 +240,23 @@
       height: 28px;
       top: 44%;
     }
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 

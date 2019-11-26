@@ -27,7 +27,6 @@ export class ItemsComponent implements OnInit {
   ) {
     this.GetOffersService.offersList.subscribe(data => {
       this.offersList = data;
-      // console.log( this.offersList);
     });
   }
 
@@ -43,7 +42,6 @@ export class ItemsComponent implements OnInit {
     this.router.navigate( [translatedPath], {
       relativeTo: this.route,
       queryParams: this.id,
-      queryParamsHandling: 'merge'
     });
   }
 }

@@ -1,11 +1,11 @@
 <div class="tabs">
   <div class="tabs-top">
-    <div class="tab active" (click)="showTabsConent(0)"><span>Базовый</span> </div>
-    <div class="tab" (click)="showTabsConent(1)"><span>Стандарт</span> </div>
-    <div class="tab" (click)="showTabsConent(2)"><span>Премиум</span> </div>
+    <div *ngFor="let tab of tabs; let i = index" class="tab" (click)="openTab(i+1)" [ngClass]="{'active': currentTab === i+1 }">
+      {{ tab.name }}
+    </div>
   </div>
   <div class="tabContentContainer">
-    <div class="tabContent">
+    <div class="tabContent" *ngIf="currentTab === 1">
       <div class="main-info" *ngIf="offerData">
         <div class="title-price">
           <h4>{{offerData.basic.title }}</h4>
@@ -29,7 +29,7 @@
         Заказать услугу <span>(за {{ offerData.basic.price }} ₴)</span>
       </div>
     </div>
-    <div class="tabContent">
+    <div class="tabContent" *ngIf="currentTab === 2">
       <div class="main-info" *ngIf="offerData">
         <div class="title-price">
           <h4>{{offerData.advanced.title }}</h4>
@@ -53,7 +53,7 @@
         </div>
       </div>
     </div>
-    <div class="tabContent">
+    <div class="tabContent" *ngIf="currentTab === 3">
       <div class="main-info" *ngIf="offerData">
         <div class="title-price">
           <h4>{{offerData.premium.title }}</h4>

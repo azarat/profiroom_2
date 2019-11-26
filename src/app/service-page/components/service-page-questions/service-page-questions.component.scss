@@ -82,7 +82,7 @@
 
     padding: 0 100px 0 20px;
     overflow: hidden;
-    transition: all 0.3s;
+    // transition: all 0.3s;
   }
   &.none {
     .question-item__text {
@@ -93,7 +93,8 @@
   &:nth-child(1) {
     &.active {
       .question-item__text {
-        height: 130px;
+        // height: 130px;
+        animation: tabAnimation 0.3s;
       }
     }
   }
@@ -135,5 +136,16 @@
   }
   &:last-child {
     border-bottom: none;
+  }
+}
+
+
+@keyframes tabAnimation {
+  from {
+    height: 0;
+  }
+
+  to {
+    height: 100%;
   }
 }

@@ -11,8 +11,9 @@ import { NgxGalleryComponent } from './components/ngx-gallery/ngx-gallery.compon
 import { ServicePageQuestionsComponent } from './components/service-page-questions/service-page-questions.component';
 import { ServicePageAboutOfferComponent } from './components/service-page-about-offer/service-page-about-offer.component';
 import { ServicePagePackagesComponent } from './components/service-page-packages/service-page-packages.component';
+import { ServicePageAnotherServicesComponent } from './components/service-page-another-services/service-page-another-services.component';
 // import { PackagesComponent } from './components/packages/packages.component';
-
+import {MatExpansionModule} from '@angular/material/expansion';
 
 const routes: Routes = [
   {
@@ -28,6 +29,7 @@ const routes: Routes = [
     ServicePageQuestionsComponent,
     ServicePageAboutOfferComponent,
     ServicePagePackagesComponent,
+    ServicePageAnotherServicesComponent,
     // PackagesComponent
   ],
   imports: [
@@ -36,7 +38,8 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     MainHeaderModule,
     CategoriesHeaderModule,
-    NgxGalleryModule
+    NgxGalleryModule,
+    MatExpansionModule
   ],
   exports: [
     ServicePageComponent,

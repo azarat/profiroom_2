@@ -3,9 +3,21 @@
     Часто задаваемые вопросы
   </h4>
   <div class="question-list">
-    <div class="question-item" [ngClass]="btnNumber === i? 'active': 'none'" *ngFor="let question of offerData.offer_faq; let i">
+    <!-- <div class="question-item" [ngClass]="btnNumber === i? 'active': 'none'" *ngFor="let question of offerData.offer_faq; let i = index">
       <h4 class="question-item__title" (click)="showfull(i)">{{question.question}}<div class="element-plus"></div></h4>
       <p class="question-item__text">{{question.answer}}</p>
-    </div>
+    </div> -->
+    <mat-accordion>
+      <mat-expansion-panel *ngFor="let question of offerData.offer_faq;">
+        <mat-expansion-panel-header>
+          <mat-panel-title class="question-item__title">
+            {{question.question}}
+            <div class="element-plus"></div>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p class="question-item__text">{{question.answer}}</p>
+      </mat-expansion-panel>
+    </mat-accordion>
   </div>
+
 </section>

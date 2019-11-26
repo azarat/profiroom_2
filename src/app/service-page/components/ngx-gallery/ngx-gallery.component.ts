@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {
   NgxGalleryOptions,
   NgxGalleryImage,
@@ -16,7 +16,7 @@ import * as $ from 'jquery';
   styleUrls: ['./ngx-gallery.component.scss']
 })
 export class NgxGalleryComponent implements OnInit {
-
+  @Input()offerData: OfferDataInterface;
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[] = [];
   // galleryImages: NgxGalleryImage[] = [{
@@ -51,16 +51,16 @@ export class NgxGalleryComponent implements OnInit {
   // },
   // ];
 
-  public offerData: OfferDataInterface;
+  // public offerData: OfferDataInterface;
 
   constructor(
     private servicePageService: ServicePageService
   ) {
-    this.servicePageService.offerDate$
-    .pipe(filter((res: any) => !!res))
-    .subscribe(data => {
-      this.offerData = data.userOffer;
-    });
+    // this.servicePageService.offerDate$
+    // .pipe(filter((res: any) => !!res))
+    // .subscribe(data => {
+    //   this.offerData = data.userOffer;
+    // });
   }
 
   ngOnInit() {
