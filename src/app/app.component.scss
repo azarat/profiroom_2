@@ -321,3 +321,11 @@ quill-editor {
   border-color: #DCE0E6 !important;
 }
 }
+
+
+// ----------------error field
+
+.field-required {
+  // border: 1px solid #f44336;
+  box-shadow: inset 0 0 0 1px #f44336;
+}

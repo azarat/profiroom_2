@@ -1,9 +1,9 @@
 <div class="step-wrapper">
-  <form #form="ngForm">
+  <form #form="ngForm" (ngSubmit)="nextStep(form)">
     <div class="form-title">
       <h3>3. Пакеты услуг и цены</h3>
       <div class="pckg-swap">
-        <input class="tgl tgl-swp" id="cb2" type="checkbox" name="change-pack-val" [(ngModel)]="userService.allPackages"/>
+        <input class="tgl tgl-swp" id="cb2" type="checkbox" name="change-pack-val" [(ngModel)]="userService.allPackages" />
         <label class="tgl-btn" for="cb2"></label>
         <span>3 пакета</span>
       </div>
@@ -48,27 +48,14 @@
           <p>Название услуги</p>
 
         </div>
-        <div class="packages-title">
+        <div class="packages-title" *ngFor="let package of packagesTypes; index as x" [ngClass]="{ 'field-required': title.invalid && submited }">
           <div class="textarea">
-            <textarea [(ngModel)]="userService.packagesTitle.basicTitle" name="basicTitle" rows="2"
-              maxlength="35"></textarea>
+            <textarea [(ngModel)]="userService.packagesTitle[package +'Title']"
+            name="title_{{ package }}" rows="2" [maxlength]="35" #title="ngModel"
+            [required]="(x == '0' && !userService.allPackages) || (userService.allPackages ) && submited"></textarea>
           </div>
-
         </div>
-        <div class="packages-title">
-          <div class="textarea">
-            <textarea name="advancedTitle" [(ngModel)]="userService.packagesTitle.advancedTitle"
-              [required]="userService.allPackages" rows="2" maxlength="35"></textarea>
-          </div>
 
-        </div>
-        <div class="packages-title">
-          <div class="textarea">
-            <textarea name=" premiumTitle" id="" [(ngModel)]="userService.packagesTitle.premiumTitle"
-              [required]="userService.allPackages" rows="2" maxlength="35"></textarea>
-          </div>
-
-        </div>
       </div>
       <!-------------------- Descriptions -------------------->
       <div class="packages-description line">
@@ -77,27 +64,10 @@
             Краткое описание
           </p>
         </div>
-        <div class="textarea-wrap">
-          <div class="textarea">
-            <textarea name="basicDescription" id="" [(ngModel)]="userService.packagesDescriptions.basicDescription"
-              maxlength="270"></textarea>
-          </div>
-
-        </div>
-        <div class="textarea-wrap">
-          <div class="textarea">
-            <textarea name="advancedDescription" id=""
-              [(ngModel)]="userService.packagesDescriptions.advancedDescription" [required]="userService.allPackages"
-              maxlength="270"></textarea>
-          </div>
-
-        </div>
-        <div class="textarea-wrap">
-          <div class="textarea">
-            <textarea name="premiumDescription" id="" [(ngModel)]="userService.packagesDescriptions.premiumDescription"
-              [required]="userService.allPackages" maxlength="270"></textarea>
-          </div>
-
+        <div class="textarea-wrap" *ngFor="let package of packagesTypes; let x = index">
+          <textarea name="{{package + 'Description'}}" id=""
+          [(ngModel)]="userService.packagesDescriptions[package + 'Description']"
+           [maxlength]="270" [required]="(x == '0' && !userService.allPackages) || (userService.allPackages )"></textarea>
         </div>
       </div>
       <!--------------------Time to Do -------------------->
@@ -107,26 +77,13 @@
             Сроки (дней)
           </p>
         </div>
-        <div>
-          <div class="input-wrap">
-            <input name="basicTerm" type="text" knifeOnlyNumbers maxlength="3"
-              [(ngModel)]="userService.packagesTerms.basicTerm">
-          </div>
 
-        </div>
-        <div>
+        <div *ngFor="let package of packagesTypes; let x = index">
           <div class="input-wrap">
-            <input name="advancedTerm" type="text" knifeOnlyNumbers maxlength="3" [required]="userService.allPackages"
-              [(ngModel)]="userService.packagesTerms.advancedTerm">
+            <input name="{{package + 'Term'}}" type="text" knifeOnlyNumbers
+            maxlength="3" [(ngModel)]="userService.packagesTerms[package + 'Term']"
+            [required]="(x == '0' && !userService.allPackages) || (userService.allPackages )">
           </div>
-
-        </div>
-        <div>
-          <div class="input-wrap">
-            <input name="premiumTerm" type="text" knifeOnlyNumbers maxlength="3"
-              [(ngModel)]="userService.packagesTerms.premiumTerm" [required]="userService.allPackages">
-          </div>
-
         </div>
       </div>
 
@@ -135,29 +92,12 @@
         <div class="packages-change title">
           <p>Кол-во правок</p>
         </div>
-        <div>
+
+        <div *ngFor="let package of packagesTypes; let x = index">
           <div class="select-wrap">
-            <mat-select [(ngModel)]="userService.packagesChanges.basicChanges" name="basicChange">
-              <mat-option *ngFor="let change of changesArrayCounter(); let i = index" [value]="change">
-                {{ change }}
-              </mat-option>
-            </mat-select>
-          </div>
-        </div>
-        <div>
-          <div class="select-wrap">
-            <mat-select [required]="userService.allPackages" [(ngModel)]="userService.packagesChanges.advancedChanges"
-              name="advancedChange">
-              <mat-option *ngFor="let change of changesArrayCounter(); let i = index" [value]="change">
-                {{ change }}
-              </mat-option>
-            </mat-select>
-          </div>
-        </div>
-        <div>
-          <div class="select-wrap">
-            <mat-select [required]="userService.allPackages" [(ngModel)]="userService.packagesChanges.premiumChanges"
-              name="premiumChange">
+            <mat-select [(ngModel)]="userService.packagesChanges[package + 'Changes']"
+            name="{{package + 'Changes'}}"
+            [required]="(x == '0' && !userService.allPackages) || (userService.allPackages )">
               <mat-option *ngFor="let change of changesArrayCounter(); let i = index" [value]="change">
                 {{ change }}
               </mat-option>
@@ -172,65 +112,40 @@
             Цена
           </p>
         </div>
-        <div>
-          <div class="input-wrap">
-            <input type="text" knifeOnlyNumbers maxlength="7" [(ngModel)]="userService.packagesPrices.basicPrice"
-              name="basicPrice">
-          </div>
 
-        </div>
-        <div>
+        <div *ngFor="let package of packagesTypes; let x = index">
           <div class="input-wrap">
-            <input type="text" knifeOnlyNumbers [(ngModel)]="userService.packagesPrices.advancedPrice"
-              [required]="userService.allPackages" name="advancedPrice">
+            <input type="text" knifeOnlyNumbers maxlength="7"
+            [required]="(x == '0' && !userService.allPackages) || (userService.allPackages )"
+            [(ngModel)]="userService.packagesPrices[package + 'Price']" name="{{package + 'Price'}}">
           </div>
-
-        </div>
-        <div>
-          <div class="input-wrap">
-            <input type="text" knifeOnlyNumbers [(ngModel)]="userService.packagesPrices.premiumPrice"
-              [required]="userService.allPackages" name="premiumPrice">
-          </div>
-
         </div>
       </div>
       <!--------------------add options -------------------->
-      <div class="package-options ">
+      <form #f="ngForm" class="package-options">
         <div class="added-option line" *ngFor="let arrayItem of userService.main_options; let i = index">
           <div class="option-title">
             <div class="input-wrap">
-              <input type="text" [(ngModel)]="userService.main_options[i].title" name="main-option-title"
-                placeholder="Название опции" maxlength="15">
+              <input type="text" [(ngModel)]="userService.main_options[i].title" required name="main_option_title_{{i}}" placeholder="Название опции" maxlength="15">
             </div>
             <i class="material-icons delete-pack" (click)="deleteMainOption(i)">delete</i>
             <!-- <span >delete</span> -->
           </div>
-          <div class="checkbox-wrap">
-            <input class="tgl tgl-classic" id="basic_{{ i }}" type="checkbox" name="main-option-basic"
-              [(ngModel)]="userService.main_options[i].basic">
-            <label for="basic_{{ i }}"></label>
-          </div>
-          <div class="checkbox-wrap">
-            <input class="tgl tgl-classic" id="standart_{{ i }}" type="checkbox" name="main-option-advanced"
-              [(ngModel)]="userService.main_options[i].advanced">
-            <label for="standart_{{ i }}"></label>
-          </div>
-          <div class="checkbox-wrap">
-            <input class="tgl tgl-classic" id="premium_{{ i }}" type="checkbox" name="main-option-premium"
-              [(ngModel)]="userService.main_options[i].premium">
-            <label for="premium_{{ i }}"></label>
+          <div class="checkbox-wrap" *ngFor="let package of packagesTypes">
+            <input class="tgl tgl-classic" id="{{ package }}_{{ i }}" type="checkbox" name="main-option-{{ package }}-{{i}}" [(ngModel)]="userService.main_options[i][package]">
+            <label for="{{ package }}_{{ i }}"></label>
           </div>
         </div>
         <div class="add-option " *ngIf=" !userService.main_options || userService.main_options.length < 10">
 
-          <button class="add btn-tetraty" (click)="addMainOptin()">
+          <button [disabled]="!f.valid" class="add btn-tetraty" (click)="addMainOptin()">
             <i class="material-icons">
               add_circle_outline
             </i>
             <span>Добавить опцию</span>
           </button>
         </div>
-      </div>
+      </form>
     </div>
     <!-------------------- Extra Options -------------------->
     <div class="extra-packages-wrap">
@@ -242,7 +157,7 @@
 
     <div class="form-butons">
       <button class="back">сохранить и выйти</button>
-      <button class="save" (click)="saveStep()">сохранить и продолжить</button>
+      <button class="save" type="submit">сохранить и продолжить</button>
     </div>
   </form>
 </div>

@@ -145,7 +145,7 @@
       background: rgba(255, 255, 255, 0.9);
       border-radius: 0px 0px 5px 0px;
       height: 100%;
-      width: 50%;
+      width: 49.9%;
       z-index: 5;
       display: flex;
       flex-direction: column;
@@ -699,7 +699,7 @@
         }
         &.extra-option-preview {
           border-top: none;
-          border-bottom: 1px solid #dce0e6;
+          // border-bottom: 1px solid #dce0e6;
           padding: 0 18px 0 38px;
           width: auto;
           .select-wrap-extra {
@@ -822,7 +822,7 @@
             border-bottom: 0;
           }
           }
-         
+
         }
 
         .option-creation {

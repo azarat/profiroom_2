@@ -1,9 +1,11 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, NgForm } from '@angular/forms';
 import { UserServiceModel } from 'src/app/models/user-service/user-service.model';
 
 import { filter } from 'rxjs/operators';
 import { UserOffersService } from '../../../services/user-offers.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { LocalizeRouterService } from 'localize-router';
 
 @Component({
   selector: 'app-second-step-creation',
@@ -17,12 +19,15 @@ export class SecondStepCreationComponent implements OnInit {
     [{ list: 'bullet' }] ]
   };
 
+  characterLength: number = null;
   descriptionForm: FormGroup;
-
+  translatedPath: any = this.localize.translateRoute('/dashboard/my-services');
 
   public editor;
   constructor(
     private userOffersService: UserOffersService,
+    private router: Router,
+    private localize: LocalizeRouterService,
   ) { }
 
   @Input() userService: UserServiceModel;
@@ -30,18 +35,25 @@ export class SecondStepCreationComponent implements OnInit {
 
   ngOnInit() { }
 
-  onEditorCreated(event) {
-
+  onEditorCreated = ( event: any ) => {
+    this.characterLength = event.editor.container.innerText.replace(/\s+/g, '').length;
     this.editor = event;
   }
-  onSubmit() {
-    console.log(this.userService);
+  nextStep = (form: NgForm) => {
+
+    if (!form.valid || this.characterLength < 100) {
+      return;
+    }
     this.userOffersService.updateService(this.userService)
     .pipe(filter((res: any) => !! res))
     .subscribe(res => {
       this.userService.step = res.step;
     } );
 
+  }
+
+  quite = () => {
+    this.router.navigate([this.translatedPath]);
   }
 
 }

@@ -152,9 +152,9 @@
 
   <!-- Add extra Option -->
   <form #addOptionForm="ngForm" class="secondary-extra-options">
-    <div class="secondary-extra-options-item" *ngFor=" let option of userService.extra_features; let j = index"
-      [ngClass]="{ rolled: expandedOption !== j+1 }">
-      <div class="display-option" *ngIf="userService.extra_features.length > 1 && expandedOption !== j+1 ">
+    <div class="secondary-extra-options-item" *ngFor="let option of userService.extra_features; let j = index"
+      [ngClass]="{ rolled: expandedOption !== j }">
+      <div class="display-option" *ngIf="userService.extra_features.length > 0 && expandedOption !== j + 1 ">
         <div class="display-title">
           <!-- extra option bar -->
           <div class="deffault-field extra-option-preview">
@@ -162,7 +162,7 @@
 
             <div class="option-wrap">
 
-                <i class="material-icons create" (click)="changeOption(j+1)">create</i>
+                <i class="material-icons create" (click)="changeOption(j)">create</i>
               <i class="material-icons delete-pack" (click)="deleteExtraOption(j)">delete</i>
               <div class="checkbox">
                     <input type="checkbox" name="publish-option" class="tgl-classic" id="publish-extra-option-{{ j }}"

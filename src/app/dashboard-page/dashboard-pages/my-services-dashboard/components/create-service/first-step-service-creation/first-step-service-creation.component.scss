@@ -55,28 +55,32 @@ form::ng-deep {
   //     padding: 0;
   //   }
   // }
-mat-form-field{
-  &:not(.example-chip-list ) {
+  mat-form-field {
+    &:not(.example-chip-list) {
+      .mat-form-field-infix {
+        border: none;
+        padding: 0;
+      }
+    }
     .mat-form-field-infix {
       border: none;
-      padding: 0;
     }
   }
-  .mat-form-field-infix {
-    border: none;
-  }
-}
-
 
   .mat-form-field-invalid .mat-input-element {
     caret-color: #323c47;
+  }
+  .mat-form-field-invalid {
+    .mat-form-field-outline-thick > div {
+      border-color: #FF647C;
+    }
   }
 
   .mat-form-field-outline:first-of-type {
     color: #dce0e6;
     background-color: #fff;
 
-    &+div div {
+    & + div div {
       color: #dce0e6;
       border-width: 1px;
     }
@@ -132,6 +136,9 @@ mat-form-field{
 
         color: #707683;
       }
+      &.tag {
+        top: 15px !important;
+      }
     }
 
     &.popover-select {
@@ -179,9 +186,9 @@ mat-form-field{
       width: 100%;
 
       // &.mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-outline-thick {
-      //   // color: #f44336;
+      //   color: #f44336;
       //   div {
-      //     // color: #f44336;
+      //     color: #f44336;
       //   }
       // }
       .mat-form-field-outline:first-of-type {
@@ -196,7 +203,7 @@ mat-form-field{
         background-color: #fff;
         div {
           border-width: 1px;
-          color: rgba(255,255,255);
+          color: rgba(255, 255, 255);
           box-shadow: 0px 10px 16px rgba(128, 152, 213, 0.1);
         }
       }
@@ -219,13 +226,9 @@ mat-form-field{
       }
 
       mat-select {
-        // border: 1px solid rgba(220, 224, 230, 0.1);
-        //
         border-radius: 3px;
         font-size: 16px;
         line-height: 21px;
-        /* identical to box height, or 131% */
-
         color: #323c47;
       }
     }
@@ -234,10 +237,25 @@ mat-form-field{
   .tags {
     mat-form-field {
       width: 100%;
+      .mat-form-field-wrapper {
+        padding: 0;
+        margin: 0;
+      }
+    }
+    span {
+      color: red;
+      font-family: Source Sans Pro, sans-serif;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 18px;
+      text-align: right;
+      color: #33596E;
+      opacity: 0.5;
+      display: inherit;
+      margin: 6px 0 26px;
     }
   }
-
-
 }
 
 ::ng-deep .cdk-overlay-container {
@@ -247,8 +265,6 @@ mat-form-field{
     font-weight: normal;
     font-size: 16px;
     line-height: 21px;
-    /* identical to box height, or 131% */
-
     color: #707683;
   }
 
@@ -258,9 +274,9 @@ mat-form-field{
     color: #fff;
   }
 
-  .mat-select-panel .mat-option.mat-selected:not(.mat-option-multiple) {
-    // bg selected
-  }
+  // .mat-select-panel .mat-option.mat-selected:not(.mat-option-multiple) {
+  //   // bg selected
+  // }
 
   .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
     color: #323c47;
@@ -273,7 +289,7 @@ mat-form-field{
   justify-content: space-between;
   margin: 23px 0;
 
-  &>div {
+  & > div {
     width: 46.6%;
   }
 
@@ -311,13 +327,13 @@ mat-form-field{
       padding: 0;
       cursor: pointer;
       outline: none;
-      &:before{
+      &:before {
         position: absolute;
-        content: '\e900';
+        content: "\e900";
         font-size: 18px;
-        font-family: 'icomoon';
+        font-family: "icomoon";
         transform: translate(-50%, -50%);
-        color:  red;
+        color: red;
       }
     }
     &:nth-child(3n + 3) {
@@ -325,14 +341,13 @@ mat-form-field{
     }
     &:before {
       position: absolute;
-      content: '';
+      content: "";
       width: 100%;
       height: 100%;
-      border: 2px dashed #DCE0E6;
-
+      border: 2px dashed #dce0e6;
     }
 
-    .main-photo{
+    .choose-as-main-photo {
       display: none;
       height: 44px;
       width: 100%;
@@ -351,31 +366,32 @@ mat-form-field{
       border: none;
       cursor: pointer;
       outline: none;
-      color: #4285F4;
+      color: #4285f4;
       &:hover {
-        color: #5695FD;
+        color: #5695fd;
       }
       &:active {
-        color: #1666EA;
+        color: #1666ea;
       }
     }
     &:hover {
-      .main-photo {
+      .choose-as-main-photo {
         display: block;
       }
     }
+
+    &.main-photo:before {
+      border-style: solid;
+    }
   }
   img {
-
     object-fit: contain;
-
   }
 
-  .img-item +.dr-dp {
+  .img-item + .dr-dp {
     width: 198px;
     height: 198px;
   }
-
 }
 
 .dr-dp {
@@ -394,18 +410,16 @@ mat-form-field{
     position: relative;
     height: 41px;
     margin-bottom: 19px;
-    &:before{
+    &:before {
       position: absolute;
-      content: '\e902';
+      content: "\e902";
       font-family: icoMoon;
-      color: #BFC5D1;
+      color: #bfc5d1;
       font-size: 40px;
       left: 50%;
       transform: translateX(-50%);
-
     }
   }
-
 
   span {
     display: block;
@@ -422,7 +436,6 @@ mat-form-field{
       font-weight: bold;
       font-size: 14px;
       line-height: 18px;
-      /* identical to box height */
       letter-spacing: -0.0841176px;
       margin-bottom: 7px;
     }
@@ -433,8 +446,6 @@ mat-form-field{
   img {
     width: 198px;
     height: 198px;
-
-
   }
 }
 
@@ -446,7 +457,7 @@ mat-form-field{
   position: absolute;
   z-index: -1;
 
-  &+label {
+  & + label {
     cursor: pointer;
     font-family: Source Sans Pro, sans-serif;
     font-style: normal;
@@ -456,9 +467,7 @@ mat-form-field{
     text-align: center;
     color: #3c7eea;
   }
-
 }
-
 
 // -----------------buttons ----------------------//
 
@@ -480,24 +489,25 @@ mat-form-field{
     text-transform: uppercase;
 
     &:first-of-type {
-      border: 1px solid #4285F4;
+      border: 1px solid #4285f4;
       background: #fff;
-      color: #4285F4;
+      color: #4285f4;
       box-shadow: none;
+      padding: 16px 72px;
       &:hover {
         color: #fff;
-        background: #3C7EEA;
+        background: #3c7eea;
         box-shadow: 0px 2px 4px rgba(60, 9, 179, 0.3);
       }
     }
 
     color: #fff;
-    background: #3C7EEA;
+    background: #3c7eea;
     box-shadow: 0px 2px 4px rgba(60, 9, 179, 0.3);
     &:hover {
-      border: 1px solid #4285F4;
+      border: 1px solid #4285f4;
       background: #fff;
-      color: #4285F4;
+      color: #4285f4;
       box-shadow: none;
     }
   }

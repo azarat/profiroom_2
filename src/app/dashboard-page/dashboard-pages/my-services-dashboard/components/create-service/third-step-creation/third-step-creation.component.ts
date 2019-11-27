@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter, HostListener } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, Validators, FormControl } from '@angular/forms';
 import { UserServiceModel } from 'src/app/models/user-service/user-service.model';
+import { NgForm } from '@angular/forms';
 
 import { trigger, state, style, animate, transition, } from '@angular/animations';
 import { UserOffersService } from '../../../services/user-offers.service';
@@ -14,6 +15,8 @@ import { filter } from 'rxjs/operators';
 export class ThirdStepCreationComponent implements OnInit {
 
   user;
+  public submited = false;
+  public packagesTypes = ['basic', 'advanced', 'premium']
   showPackages = false;
   optionsVisible = false;
   constructor(
@@ -39,31 +42,34 @@ export class ThirdStepCreationComponent implements OnInit {
     return this.userService.main_options;
   }
 
-  // ---------- Add option to main packages
+  // ------------------- Add option to main packages ---------------
   addMainOptin() {
-    // console.log(this.userService.main_options)
-    // if(!this.userService.main_options) {
-    //   console.log('test');
-    // }
+
     this.userService.main_options.push(
       {
         title: null,
         basic: false,
         advanced: false,
         premium: false
-    });
+      });
   }
 
   deleteMainOption(index) {
     this.userService.removeMainOption(index)
   }
 
-  saveStep() {
+  public nextStep(form: NgForm) {
+    this.submited = true;
+    if(form.invalid) {
+      console.log('invalid');
+      console.log(this.userService)
+      return
+    }
     this.userOffersService.updateService(this.userService)
-    .pipe(filter((res: any) => !! res))
-    .subscribe(res => {
-      this.userService.step = res.step;
-    } );
+      .pipe(filter((res: any) => !!res))
+      .subscribe(res => {
+        this.userService.step = res.step;
+      });
   }
 
   openAllPackages() {

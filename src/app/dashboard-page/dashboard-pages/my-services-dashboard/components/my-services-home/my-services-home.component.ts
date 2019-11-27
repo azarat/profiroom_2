@@ -17,7 +17,9 @@ export class MyServicesHomeComponent implements OnInit {
 
   public userService: UserServiceModel = null;
   activatedRoute: ActivatedRoute;
+
   translatedPath: any = this.localize.translateRoute('/dashboard/my-services/create');
+
   constructor(
     private router: Router,
     private localize: LocalizeRouterService,

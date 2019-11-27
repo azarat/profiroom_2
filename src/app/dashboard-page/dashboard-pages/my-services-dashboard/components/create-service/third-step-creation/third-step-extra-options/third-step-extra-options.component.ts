@@ -8,7 +8,7 @@ import { UserServiceModel } from 'src/app/models/user-service/user-service.model
 })
 export class ThirdStepExtraOptionsComponent implements OnInit {
 
-  expandedOption: number = 1;
+  expandedOption: any = 0;
   optionsVisible = false;
 
   constructor() { }
@@ -35,12 +35,12 @@ export class ThirdStepExtraOptionsComponent implements OnInit {
         optionPrice: null,
         optionCountDays: null
       });
-      if (this.userService.extra_features.length > 1) {
+      if (this.userService.extra_features.length > 0) {
         this.expandedOption = this.userService.extra_features.length;
       }
     }
 
-    deleteExtraOption(index) {
+    deleteExtraOption(index: number) {
       this.userService.removeExtraOption(index)
       if (this.expandedOption > index ) {
         this.expandedOption = this.expandedOption - 1;
@@ -48,7 +48,7 @@ export class ThirdStepExtraOptionsComponent implements OnInit {
 
     }
 
-    changeOption(index: number) {
+    changeOption(index) {
       this.expandedOption = index;
     }
 
