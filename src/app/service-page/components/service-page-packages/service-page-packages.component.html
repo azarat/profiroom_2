@@ -1,82 +1,39 @@
 <div class="tabs">
   <div class="tabs-top">
-    <div *ngFor="let tab of tabs; let i = index" class="tab" (click)="openTab(i+1)" [ngClass]="{'active': currentTab === i+1 }">
+    <div *ngFor="let tab of tabs; let i = index" class="tab" (click)="openTab(i)"
+      [ngClass]="{'active': currentTab === i }">
       {{ tab.name }}
     </div>
   </div>
   <div class="tabContentContainer">
-    <div class="tabContent" *ngIf="currentTab === 1">
-      <div class="main-info" *ngIf="offerData">
-        <div class="title-price">
-          <h4>{{offerData.basic.title }}</h4>
-          <span>{{ offerData.basic.price }}</span>
+
+    <ng-container *ngFor="let package of packages; let x = index">
+      <div class="tabContent" *ngIf="currentTab === x">
+        <div class="main-info" *ngIf="offerData">
+          <div class="title-price">
+            <h4>{{offerData[package].title }}</h4>
+            <span>{{ offerData[package].price }}</span>
+          </div>
+
+          <p>{{offerData[package].description }}</p>
+
+          <div class="changes-term">
+            <span>{{ offerData[package].changes }} правок</span>
+            <span>{{ offerData[package].term }} дней выполнения</span>
+          </div>
+
+          <ul class="option-list">
+            <ng-container *ngFor="let option of offerData.main_options">
+              <li [ngClass]="{'active': option[package]}">{{ option.title }}</li>
+            </ng-container>
+          </ul>
         </div>
-
-        <p>{{ offerData.basic.description }}</p>
-
-        <div class="changes-term">
-          <span>{{ offerData.basic.changes }} правок</span>
-          <span>{{ offerData.basic.term }} дней выполнения</span>
-        </div>
-
-        <ul class="option-list">
-          <ng-container *ngFor="let option of offerData.main_options">
-            <li [ngClass]="{'active': option.basic}">{{ option.title }}</li>
-          </ng-container>
-        </ul>
-      </div>
-      <div class="btn-order-service">
-        Заказать услугу <span>(за {{ offerData.basic.price }} ₴)</span>
-      </div>
-    </div>
-    <div class="tabContent" *ngIf="currentTab === 2">
-      <div class="main-info" *ngIf="offerData">
-        <div class="title-price">
-          <h4>{{offerData.advanced.title }}</h4>
-          <span>{{ offerData.advanced.price }}</span>
-        </div>
-
-        <p>{{ offerData.advanced.description }}</p>
-
-        <div class="changes-term">
-          <span>{{ offerData.advanced.changes }} правок</span>
-          <span>{{ offerData.advanced.term }} дней выполнения</span>
-        </div>
-
-        <ul class="option-list">
-          <ng-container *ngFor="let option of offerData.main_options">
-            <li [ngClass]="{'active': option.advanced}">{{ option.title }}</li>
-          </ng-container>
-        </ul>
         <div class="btn-order-service">
-          Заказать услугу <span>(за {{ offerData.advanced.price }} ₴)</span>
+          Заказать услугу <span>(за {{ offerData[package].price }} ₴)</span>
         </div>
       </div>
-    </div>
-    <div class="tabContent" *ngIf="currentTab === 3">
-      <div class="main-info" *ngIf="offerData">
-        <div class="title-price">
-          <h4>{{offerData.premium.title }}</h4>
-          <span>{{ offerData.premium.price }}</span>
-        </div>
+    </ng-container>
 
-        <p>{{ offerData.premium.description }}</p>
-
-        <div class="changes-term">
-          <span>{{ offerData.premium.changes }} правок</span>
-          <span>{{ offerData.premium.term }} дней выполнения</span>
-        </div>
-
-        <ul class="option-list">
-          <ng-container *ngFor="let option of offerData.main_options">
-            <li [ngClass]="{'active': option.premium}">{{ option.title }}</li>
-          </ng-container>
-        </ul>
-        <div class="btn-order-service">
-          Заказать услугу <span>(за {{ offerData.premium.price }} ₴)</span>
-        </div>
-      </div>
-    </div>
   </div>
   <div class="btn-options additional">
     <span>Дополнительные опции</span>

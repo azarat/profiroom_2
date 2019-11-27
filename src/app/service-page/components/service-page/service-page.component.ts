@@ -15,6 +15,7 @@ export class ServicePageComponent implements OnInit {
   public offerId: object = null;
   public offerData: OfferDataInterface;
   catalogSubscription: Subscription;
+  public comments_countF;
 
   constructor(
     // tslint:disable-next-line: variable-name
@@ -47,17 +48,24 @@ export class ServicePageComponent implements OnInit {
       .subscribe(offerData => {
         console.log(offerData);
         this.offerData = offerData.userOffer;
-      })
+
+        this.formateCommentCount();
+      });
+
+
     }
 
 
-    // if(this.offerId)
 
-    // this.offerDataService.loadOfferDate(offerId)
-    // this.offerId = this._router.url.split('&offerId=')[1];
-    // this.servicePageService.loadOfferDate(this.offerId);
-  // }
+  }
 
-
+  formateCommentCount() {
+    if (this.offerData.comments_count < 1000) {
+      this.comments_countF = this.offerData.comments_count;
+      console.log(this.comments_countF);
+    } else {
+      this.comments_countF = this.offerData.comments_count.toFixed(1);
+      console.log(this.comments_countF);
+    }
   }
 }

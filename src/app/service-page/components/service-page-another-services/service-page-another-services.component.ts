@@ -19,8 +19,6 @@ export class ServicePageAnotherServicesComponent implements OnInit {
     console.log(this.offerData);
   }
 
-  openOffer(){
-
-  }
+  openOffer() {}
 
 }

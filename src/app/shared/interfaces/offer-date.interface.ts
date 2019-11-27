@@ -4,6 +4,13 @@ export interface OfferDataInterface {
     avatar?: string;
     name?: string;
     surname?: string;
+    userOffers?: [{
+      title?: string;
+      raiting?: number;
+      comments_count?: number;
+      mainImage?: string;
+      minprice?: number;
+    }];
   };
   category: string;
   comments?: [{
@@ -21,7 +28,7 @@ export interface OfferDataInterface {
   profi?: {
     name?: string;
   };
-  filesDirectory?: string,
+  filesDirectory?: string;
   files?: [{
     small?: string;
     medium?: string;
@@ -94,12 +101,5 @@ export interface OfferDataInterface {
   offer_faq?: [{
     question?: string;
     answer?: string;
-  }];
-  userOffers?: [{
-    title?: string;
-    raiting?: number;
-    comments_count?: number;
-    mainImage?: string;
-    minprice?: number;
   }];
 }

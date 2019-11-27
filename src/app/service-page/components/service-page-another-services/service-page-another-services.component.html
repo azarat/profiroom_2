@@ -1,35 +1,34 @@
 <section class="about-offer">
   <h4 class="section-title">
-    О фрилансере
+    Другие услуги фрилансера
   </h4>
   <div class="cards-list" *ngIf="offerData">
-    <div class="card" *ngFor="let offer of offerData.userOffers">
+    <div class="card" *ngFor="let offer of offerData.user.userOffers">
       <div class="card-preview__bg">
-        <img class="card-preview" src="/assets/images/preview.png">
+        <img class="card-preview" [src]="'https://www.thecubetest.site/Backend/storage/app/' + offer.mainImage">
       </div>
       <div class="card-description">
 
-        <div class="card-description__top">
-          <div class="card-description__ava"><img *ngIf="offerData.user" [src]="'https://www.thecubetest.site/Backend/storage/app/' + offer.user.avatar" alt="avatar">
+        <!-- <div class="card-description__top">
+          <div class="card-description__ava"><img *ngIf="offerData.user" [src]="'https://www.thecubetest.site/Backend/storage/app/' + offerData.user.avatar" alt="avatar">
           </div>
           <div>
             <span class="card-description__name" (click)="openOffer(offer.user.id)">{{offerData.user.name}} {{offerData.user.surname}}</span>
-            <!-- <div class="card-description__skill">{{offerData.user.rank_id}}</div> -->
           </div>
-        </div>
+        </div> -->
 
-        <p class="card-description__about">{{offer.description}}</p>
+        <p class="card-description__about">{{offer.title}}</p>
         <div class="card-description__bottom">
-          <div class="card-description__level">{{offer.rating}}</div>
-          <div class="card-description__comments"><a>({{offer.comments_count}} отзывов)</a></div>
+          <div class="card-description__level">{{offerData.raiting}}</div>
+          <div class="card-description__comments"><a>({{offerData.comments_count}} отзывов)</a></div>
         </div>
 
       </div>
       <div class="card-bottom">
         <div class="card-bottom__like" [class.liked]="offer.liked"></div>
         <div class="card-bottom__price">
-          начиная от
-          <span>{{offer.minprice}}</span>
+          от
+          <span>{{offer.minPrice}}</span>
         </div>
       </div>
 

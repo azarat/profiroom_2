@@ -1,7 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { OfferDataInterface } from 'src/app/shared/interfaces/offer-date.interface';
-import { ServicePageService } from '../../services/service-page.service';
-import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-service-page-packages',
@@ -10,7 +8,7 @@ import { filter } from 'rxjs/operators';
 })
 export class ServicePagePackagesComponent implements OnInit {
 
-  public currentTab = 1;
+  public currentTab: any = 0;
   public tabs = [
     {
       name: 'базовый'
@@ -22,8 +20,14 @@ export class ServicePagePackagesComponent implements OnInit {
       name: 'премиум'
     }
   ];
+  public packages = [
+    'basic',
+    'advanced',
+    'premium'
+  ];
 
-  constructor(private servicePageService: ServicePageService) {}
+
+  constructor() {}
 
   @Input() offerData: OfferDataInterface;
 

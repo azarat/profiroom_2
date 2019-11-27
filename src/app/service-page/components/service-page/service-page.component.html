@@ -37,7 +37,7 @@
             <div class="user-raiting-wrapp">
               <span class="star-raiting">{{ offerData.raiting }}</span>
             </div>
-            <span class="user-comments">({{ offerData.comments_count }} +отзывов)</span>
+            <span class="user-comments">({{ comments_countF }} отзывов)</span>
           </div>
         </div>
         <div class="actions">
@@ -135,7 +135,7 @@
 
       <section class="comments_wrapper" *ngIf="offerData">
         <h4 class="section-title">
-          Отзывы <span>({{ offerData.comments_count }})</span>
+          Отзывы <span>({{ comments_countF }})</span>
         </h4>
         <div class="tabs-wrapp">
           <input id="tab1" type="radio" name="tabs" checked>

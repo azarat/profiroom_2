@@ -8,9 +8,9 @@
       <p class="question-item__text">{{question.answer}}</p>
     </div> -->
     <mat-accordion>
-      <mat-expansion-panel *ngFor="let question of offerData.offer_faq;">
-        <mat-expansion-panel-header>
-          <mat-panel-title class="question-item__title">
+      <mat-expansion-panel class="question-item" *ngFor="let question of offerData.offer_faq;" hideToggle>
+        <mat-expansion-panel-header class="question-item__title">
+          <mat-panel-title >
             {{question.question}}
             <div class="element-plus"></div>
           </mat-panel-title>
