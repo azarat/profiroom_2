@@ -1,3 +1,16 @@
+.questions{
+  margin-bottom: 75px;
+  position: relative;
+  &::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -40px;
+    height: 1px;
+    width: 100%;
+    background: #EBEEFF;
+  }
+}
 .section-title {
   margin: 30px 0 15px;
   font-style: normal;
@@ -9,7 +22,7 @@
 .question-list {
   width: auto;
   margin: 0 auto;
-  min-height: 440px;
+  // min-height: 440px;
   margin-bottom: 30px;
   border-radius: 6px;
   overflow: hidden;
@@ -17,7 +30,7 @@
 .question-item {
 
   width: 100%;
-  border-bottom: 1px solid #e1e1e1;
+  border-bottom: 1px solid #EBEEFF;
 
   background-color: #F4F7FC;
   // &.mat-expanded{
@@ -117,6 +130,9 @@
       transform: translate(-50%, -50%) rotate(0deg);
     }
   }
+}
+.mat-expansion-panel{
+  box-shadow: none!important;
 }
 .mat-expansion-panel-content{
   font-family: "Source Sans Pro", sans-serif;

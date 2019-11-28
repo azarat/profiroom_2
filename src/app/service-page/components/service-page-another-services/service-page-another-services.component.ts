@@ -16,7 +16,7 @@ export class ServicePageAnotherServicesComponent implements OnInit {
   constructor( ) {}
 
   ngOnInit() {
-    console.log(this.offerData);
+    // console.log(this.offerData);
   }
 
   openOffer() {}

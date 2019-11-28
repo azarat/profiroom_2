@@ -15,7 +15,6 @@
         position: relative;
         overflow: hidden;
         margin-right: 20px;
-        margin-top: 10px;
         img {
           position: absolute;
           top: 50%;
@@ -34,7 +33,7 @@
     .offer-name{
       width: 100%;
       margin-bottom: 6px;
-
+      display: block;
       font-style: normal;
       font-weight: 600;
       font-size: 18px;
@@ -63,8 +62,30 @@
         color: #99acb7;
       }
     }
+    .star-raiting{
+      margin: 10px 0 10px;
+    }
     .onlineStatus{
       color: #38CB8E;
+      font-weight: 600;
+      padding-left: 22px;
+      position: relative;
+      &::before{
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-35%);
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+      }
+      &.online::before{
+        background-color: #38CB8E;
+      }
+      &.ofline::before{
+        background-color: gray;
+      }
     }
   }
 }
@@ -192,5 +213,5 @@
   font-size: 18px;
   line-height: 23px;
   color: #4E5051;
-  margin-bottom: 45px;
+  margin-bottom: 15px;
 }

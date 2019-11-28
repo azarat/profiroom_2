@@ -12,6 +12,7 @@
     width: 41px;
     height: 100.2%;
     background-color: #fff;
+    z-index: 9;
     &.ngx-gallery-arrow-left{
       .ngx-gallery-icon::after{
         transform: translate(-30%, -50%) rotate(135deg);
@@ -35,6 +36,7 @@
       top: 0;
       left: 0;
       transform: translate(0);
+      z-index: 9;
       &::after{
         content: "";
         position: absolute;

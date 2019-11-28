@@ -14,6 +14,7 @@ import { ServicePagePackagesComponent } from './components/service-page-packages
 import { ServicePageAnotherServicesComponent } from './components/service-page-another-services/service-page-another-services.component';
 // import { PackagesComponent } from './components/packages/packages.component';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { ServicePageCompareTableComponent } from './components/service-page-compare-table/service-page-compare-table.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,7 @@ const routes: Routes = [
     ServicePageAboutOfferComponent,
     ServicePagePackagesComponent,
     ServicePageAnotherServicesComponent,
+    ServicePageCompareTableComponent,
     // PackagesComponent
   ],
   imports: [
