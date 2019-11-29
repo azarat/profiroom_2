@@ -3,11 +3,12 @@ import { GetOffersService } from '../../services/get-offers.service';
 import { OffersListInterface } from 'src/app/shared/interfaces/offers-list.interface';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
+import { LocalizeRouterService } from 'localize-router';
 
 @Component({
   selector: 'app-items',
-  templateUrl: './items.component.html',
-  styleUrls: ['./items.component.scss']
+  templateUrl: './catalog-items.component.html',
+  styleUrls: ['./catalog-items.component.scss']
 })
 export class ItemsComponent implements OnInit {
   public subcategory;
@@ -21,25 +22,26 @@ export class ItemsComponent implements OnInit {
     private GetOffersService: GetOffersService,
     // tslint:disable-next-line: variable-name
     private route: ActivatedRoute,
+    private localize: LocalizeRouterService,
     private router: Router,
   ) {
     this.GetOffersService.offersList.subscribe(data => {
       this.offersList = data;
-      // console.log( this.offersList);
     });
   }
 
   ngOnInit() {}
 
   openOffer(offerid) {
+    const translatedPath: any = this.localize.translateRoute('/service');
+
     this.id = {
       offerId: offerid
     };
-    // this.GetOffersService.showOffer(this.id);
-    this.router.navigate( ['/service'], {
+
+    this.router.navigate( [translatedPath], {
       relativeTo: this.route,
       queryParams: this.id,
-      queryParamsHandling: 'merge'
     });
   }
 }

@@ -7,8 +7,8 @@ import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-filter',
-  templateUrl: './filter.component.html',
-  styleUrls: ['./filter.component.scss']
+  templateUrl: './catalog-filter.component.html',
+  styleUrls: ['./catalog-filter.component.scss']
 })
 export class FilterComponent implements OnInit {
   [x: string]: any;
@@ -40,7 +40,7 @@ export class FilterComponent implements OnInit {
   }
 
   ngOnInit() {
-    // console.log(filterData);
+    this._getOffersService.setFilters(this.filterData);
   }
 
   onFilterChange() {

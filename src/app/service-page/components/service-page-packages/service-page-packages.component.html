@@ -1,0 +1,44 @@
+<div class="tabs">
+  <div class="tabs-top">
+    <div *ngFor="let tab of tabs; let i = index" class="tab" (click)="openTab(i)"
+      [ngClass]="{'active': currentTab === i }">
+      {{ tab.name }}
+    </div>
+  </div>
+  <div class="tabContentContainer">
+
+    <ng-container *ngFor="let package of packages; let x = index">
+      <div class="tabContent" *ngIf="currentTab === x">
+        <div class="main-info" *ngIf="offerData">
+          <div class="title-price">
+            <h4>{{offerData[package].title }}</h4>
+            <span>{{ offerData[package].price }}</span>
+          </div>
+
+          <p>{{offerData[package].description }}</p>
+
+          <div class="changes-term">
+            <span>{{ offerData[package].changes }} правок</span>
+            <span>{{ offerData[package].term }} дней выполнения</span>
+          </div>
+
+          <ul class="option-list">
+            <ng-container *ngFor="let option of offerData.main_options">
+              <li [ngClass]="{'active': option[package]}">{{ option.title }}</li>
+            </ng-container>
+          </ul>
+        </div>
+        <div class="btn-order-service">
+          Заказать услугу <span>(за {{ offerData[package].price }} ₴)</span>
+        </div>
+      </div>
+    </ng-container>
+
+  </div>
+  <div class="btn-options additional">
+    <span>Дополнительные опции</span>
+  </div>
+  <div class="btn-options compare">
+    <span>Cравнить пакеты услуг</span>
+  </div>
+</div>

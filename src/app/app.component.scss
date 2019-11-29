@@ -4,6 +4,11 @@ body {
 
 // -------- inputn classic
 input[type="checkbox"].tgl-classic + label {
+  background: #FFF;
+}
+
+// -------- inputn checbox classic
+input[type=checkbox].tgl-classic+label {
   display: block;
   margin: 0.2em;
   cursor: pointer;
@@ -330,3 +335,30 @@ quill-editor {
   // border: 1px solid #f44336;
   box-shadow: inset 0 0 0 1px #f44336;
 }
+
+// //  ---------- Star Raiting ----------
+
+.star-raiting {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+
+  position: relative;
+  padding-right: 5px;
+  padding-left: 26px;
+  box-sizing: border-box;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 57%;
+    left: 0;
+    height: 17px;
+    width: 17px;
+    transform: translateY(-50%);
+    background-image: url(/assets/images/icons/Star.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+}
+

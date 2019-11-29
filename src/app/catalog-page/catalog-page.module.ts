@@ -10,8 +10,8 @@ import { MainHeaderModule } from '../shared/modules/main-header/main-header.modu
 import { CategoriesHeaderModule } from '../shared/modules/categories-header/categories-header.module';
 
 import { CategorysResolver } from './resolves/categorys.resolve';
-import { FilterComponent } from './catalog/filter/filter.component';
-import { ItemsComponent } from './catalog/items/items.component';
+import { FilterComponent } from './catalog/catalog-filter/catalog-filter.component';
+import { ItemsComponent } from './catalog/catalog-items/catalog-items.component';
 import { GetOffersService } from './services/get-offers.service';
 import { GetCategorieItemsService } from './services/get-categorie-items.service';
 import { BaseInterceptor } from '../core/interceptors/base-interceptor';
@@ -21,6 +21,7 @@ import { HttpClient } from '@angular/common/http';
 import { OffersResolver } from './resolves/offers.resolve';
 import { FormsModule } from '@angular/forms';
 import { MatSelectModule, MatInputModule } from '@angular/material';
+import { CategorysListService } from '../core/services/categorys.service';
 
 
 
@@ -68,6 +69,7 @@ const routes: Routes = [
     CategorysResolver,
     OffersResolver,
     GetCategorieItemsService,
+    CategorysListService
   ]
 })
 export class CatalogPageModule { }
