@@ -1,51 +1,51 @@
 <div class="step-wrapper">
-  <form #form="ngForm">
+  <form #form="ngForm" (ngSubmit)="nextStep(form)">
     <h3>4. Часто задаваемые вопросы</h3>
-
     <div class="form-group">
-      <div class="faq-item" [ngClass]="{ hiddenItem: showedItem !== i+1 }"
-        *ngFor="let item of userService.offer_faq; let i = index">
-        <div class="item-question">
-          <h6>{{ i+1 }}. {{ userService.offer_faq[i].question }}</h6>
-          <div class="item-options">
-            <button class="change"><i class="material-icons create" (click)="changeFaqItem(i+1)">create</i></button>
-            <button class="delete"><i class="material-icons delete-pack" (click)="deleteFaqItem(i)">delete</i></button>
+      <div *ngFor="let item of userService.offer_faq; let i = index">
+        <div class="faq-item" [ngClass]="{ hiddenItem: showedItem !== i+1 }" [style.borderColor]="showedItem !== i+1  && (!question.valid || !answer.valid)? '#f44336': '#dce0e6'">
+          <div class="item-question">
+            <h6>{{ i+1 }}. <ng-container *ngIf="userService.offer_faq[i].question">
+                {{ userService.offer_faq[i].question.substr(0, 45) }}</ng-container>
+            </h6>
+            <div class="item-options">
+              <button type="button" class="change"><i class="material-icons create"
+                  (click)="changeFaqItem(i+1)">create</i></button>
+              <button type="button" class="delete"><i class="material-icons delete-pack"
+                  (click)="deleteFaqItem(i)">delete</i></button>
+            </div>
+            <div class="question-title" [ngClass]="{ 'field-required': !question.valid && submited }">
+              <input type="text" required placeholder="Напишите вопрос" #question="ngModel" name="question-{{ i }}"
+                maxlength="45" [(ngModel)]="userService.offer_faq[i].question">
+            </div>
           </div>
-
-
-
-          <div class="question-title">
-            <input type="text" required placeholder="Напишите вопрос" name="question-{{ i }}" maxlength="45"
-              [(ngModel)]="userService.offer_faq[i].question">
+          <div class="item-unswer" [ngClass]="{ 'field-error': !answer.valid && submited }">
+            <quill-editor required [modules]="config" #answer="ngModel" [(ngModel)]="userService.offer_faq[i].answer"
+              name="editor-{{i}}" placeholder="Ответьте на вышезаданный вопрос"
+              ngbPopover="Проявите оригинальность:  добавьте аргументы в свою пользу, дайте гарантии, предоставьте бонусы и т.Д. чтобы покупатель выбрал именно Вашу услугу."
+              triggers="mouseenter:mouseleave"
+              popoverTitle="Опишите услугу, которую вы предлагаете, как можно подробнее." placement="right"
+              popoverClass="popover" closeDelay="20000"></quill-editor>
           </div>
-
         </div>
-        <div class="item-unswer">
-          <quill-editor required [modules]="config" [(ngModel)]="userService.offer_faq[i].answer" name="editor"
-            placeholder="Ответьте на вышезаданный вопрос"
-            ngbPopover="Проявите оригинальность:  добавьте аргументы в свою пользу, дайте гарантии, предоставьте бонусы и т.Д. чтобы покупатель выбрал именно Вашу услугу."
-            triggers="mouseenter:mouseleave" popoverTitle="Опишите услугу, которую вы предлагаете, как можно подробнее."
-            placement="right" popoverClass="popover" closeDelay="20000"></quill-editor>
+        <div class="options" *ngIf="showedItem === i+1">
+          <button type="button" class="btn-sec" [disabled]="userService.offer_faq.length === 1" (click)="showedItem = null">отменить</button>
+          <button type="button" [disabled]="(question.invalid || answer.invalid)" class="btn"
+            (click)="hideItem()">Добавить</button>
         </div>
-      </div>
-      <div class="options">
-        <button class="btn-sec">отменить</button>
-        <button class="btn" (click)="hideItem()">Добавить</button>
       </div>
       <div class="add-item">
-        <button class="add btn-tetraty" [disabled]="form.invalid" (click)="addFaqItem()">
+        <button type="button" class="add btn-tetraty" [disabled]="form.invalid" (click)="addFaqItem()">
           <i class="material-icons">
             add_circle_outline
           </i>
           <span>Добавить опцию</span>
         </button>
       </div>
-
     </div>
-
     <div class="form-butons">
-      <button class="back">сохранить и выйти</button>
-      <button class="save" (click)="onSubmit()">сохранить и продолжить</button>
+      <button (click)="quite()" class="back">выйти</button>
+      <button class="save" type="submit">сохранить и продолжить</button>
     </div>
   </form>
 </div>

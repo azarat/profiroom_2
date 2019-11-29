@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LocalizeRouterService } from 'localize-router';
 import { UserServiceModel } from 'src/app/models/user-service/user-service.model';
@@ -11,19 +11,21 @@ import { UserOffersService } from '../../services/user-offers.service';
 @Component({
   selector: 'app-my-services-home',
   templateUrl: './my-services-home.component.html',
-  styleUrls: ['./my-services-home.component.scss']
+  styleUrls: ['./my-services-home.component.scss'],
+  // tslint:disable-next-line: no-host-metadata-property
 })
 export class MyServicesHomeComponent implements OnInit {
 
   public userService: UserServiceModel = null;
   activatedRoute: ActivatedRoute;
-
+  menuOpen = null;
   translatedPath: any = this.localize.translateRoute('/dashboard/my-services/create');
 
   constructor(
     private router: Router,
     private localize: LocalizeRouterService,
     private userOfferService: UserOffersService,
+    // tslint:disable-next-line: variable-name
   ) { }
 
   ngOnInit() {
@@ -65,4 +67,18 @@ export class MyServicesHomeComponent implements OnInit {
       }
     );
   }
+  showMenu(i: number) {
+    if(this.menuOpen !== i) {
+      this.menuOpen = i;
+    } else {
+      this.menuOpen = null;
+    }
+
+  }
+
+  onClickedOutside(e: Event) {
+    console.log('Clicked outside:');
+    // this.menuOpen = null;
+  }
+
 }

@@ -8,3 +8,140 @@ h3 {
   color: #323C47;
   padding-left: 18px;
 }
+
+section {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+.add-service {
+  width: 17.6%;
+  max-height: 243px;
+  background: #F4F7FC;
+border: 1px dashed #3C7EEA;
+  background: #FFFFFF;
+  border-radius: 3px;
+  margin: 0 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  i {
+    font-size: 20px;
+    margin-right: 5px;
+  }
+}
+.item {
+  width: 17.6%;
+  max-height: 243px;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+  border-radius: 3px;
+  margin: 0 15px 50px;
+  .service-photo {
+    width: 100%;
+    height: 182px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+    border-radius: 3px;
+  }
+  .offer-name {
+    padding: 11px 22px 8px 8px;
+    position: relative;
+    // overflow: hidden;
+    // text-overflow: ellipsis;
+    // white-space: nowrap;
+    // line-clamp: 2;
+    // -webkit-line-clamp: 2;
+    // --max-lines: 2;
+h6 {
+  margin: 0;
+  font-family: Source Sans Pro, sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    color: #323C47;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+
+}
+
+  }
+
+}
+
+.item-menu {
+  position: absolute;
+  top: 11px;
+  right: 0;
+
+  .show-menu {
+    background: transparent;
+    box-shadow: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    i {
+      font-size: 20px;
+    }
+    :hover {
+      color: #3C7EEA;;
+    }
+
+  }
+  .menu {
+    width: 160px;
+    height: 150px;
+    background: #fff;
+    position: absolute;
+    right: 0;
+    top: 35px;
+
+    &:before {
+      position: absolute;
+      content: '';
+      width: 16px;
+      height: 16px;
+      transform: rotate(45.25deg);
+      top: -6px;
+      right: 6px;
+      background: #fff;
+      border: 1px solid rgba(220, 224, 230, 0.1);
+    box-shadow: 0px 10px 16px rgba(128, 152, 213, 0.2);
+
+    }
+    ul{
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      background: #FFFFFF;
+      border: 1px solid rgba(220, 224, 230, 0.1);
+      box-shadow: 0px 10px 16px rgba(128, 152, 213, 0.2);
+      border-radius: 3px;
+      position: relative;
+      li {
+        // height: 50px;
+        padding: 15px 20px 15px 38px;
+        font-family: Source Sans Pro, sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 20px;
+        color: #707683;
+        cursor: pointer;
+        position: relative;
+        &:hover {
+          background: #3C7EEA;
+          color: #fff;
+        }
+        i {
+          position: absolute;
+          left: 10px;
+          font-size: 20px;
+        }
+      }
+    }
+  }
+}

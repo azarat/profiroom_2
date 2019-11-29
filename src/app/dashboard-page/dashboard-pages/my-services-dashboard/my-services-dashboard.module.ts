@@ -21,6 +21,7 @@ import { NgKnifeModule } from 'ng-knife';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { MyServicesHomeComponent } from './components/my-services-home/my-services-home.component';
 import { CreateServiceComponent } from './components/create-service/create-service.component';
+import { ClickOutsideModule } from 'ng-click-outside';
 // tslint:disable-next-line: max-line-length
 import { FirstStepServiceCreationComponent } from './components/create-service/first-step-service-creation/first-step-service-creation.component';
 import { SecondStepCreationComponent } from './components/create-service/second-step-creation/second-step-creation.component';
@@ -82,6 +83,7 @@ const servicesRoutes: Routes = [
     QuillModule.forRoot(),
     NgKnifeModule,
     NgxMaskModule.forRoot(options),
+    ClickOutsideModule,
 
     // -----matherials
     MatSlideToggleModule,

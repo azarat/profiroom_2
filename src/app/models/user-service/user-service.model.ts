@@ -129,6 +129,10 @@ export class UserServiceModel {
     this.offer_faq.splice(index, 1);
   }
 
+  public removeBreefItem(index: number) {
+    this.offerBreef.splice(index, 1);
+  }
+
 }
 
 

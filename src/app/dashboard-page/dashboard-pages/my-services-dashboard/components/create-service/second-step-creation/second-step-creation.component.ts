@@ -37,11 +37,11 @@ export class SecondStepCreationComponent implements OnInit {
 
   onEditorCreated = ( event: any ) => {
     this.characterLength = event.editor.container.innerText.replace(/\s+/g, '').length;
-    this.editor = event;
+    // this.editor = event;
   }
   nextStep = (form: NgForm) => {
 
-    if (!form.valid || this.characterLength < 100) {
+    if (!form.valid || this.characterLength < 100 || this.characterLength > 300) {
       return;
     }
     this.userOffersService.updateService(this.userService)

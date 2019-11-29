@@ -8,15 +8,13 @@ import { UserServiceModel } from 'src/app/models/user-service/user-service.model
 })
 export class ThirdStepExtraOptionsComponent implements OnInit {
 
-  expandedOption: any = 0;
-  optionsVisible = false;
-
+  public expandedOption: number = 1;
+  public optionsVisible = false;
   constructor() { }
 
   @Input() userService: UserServiceModel;
-  ngOnInit() {
-
-  }
+  @Input() submited: boolean;
+  ngOnInit() {}
 
   changesArrayCounter() {
     const changes = new Array();
@@ -29,13 +27,13 @@ export class ThirdStepExtraOptionsComponent implements OnInit {
 
     addExtraOptin() {
       this.userService.extra_features.push({
-        optionPublish: null,
+        optionPublish: true,
         optionTitle: null,
         optionDescription: null,
         optionPrice: null,
         optionCountDays: null
       });
-      if (this.userService.extra_features.length > 0) {
+      if (this.userService.extra_features.length > 1) {
         this.expandedOption = this.userService.extra_features.length;
       }
     }

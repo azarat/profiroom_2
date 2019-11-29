@@ -1,7 +1,49 @@
 <h3>Мои услуги</h3>
 
-<button (click)="createNewService()">Создать услугу</button><br><br>
+<section class="wrap">
+  <div class="add-service">
+    <button class="btn-tetraty" (click)="createNewService()">          <i class="material-icons">
+        add_circle_outline
+      </i>Создать услугу</button><br><br>
+  </div>
 
-<ng-container *ngIf="userService">
-  <button *ngFor="let userOffer of userService" (click)="openOffer(userOffer.id)">{{ userOffer.title }}</button>
-</ng-container>
+
+  <ng-container *ngIf="userService">
+
+    <div class="item" *ngFor="let userOffer of userService; let i = index" >
+      <div class="service-photo">
+        <img src="" alt="">
+      </div>
+      <div class="offer-name" (clickOutside)="onClickedOutside($event)">
+        <h6>
+          {{ userOffer.title }}
+        </h6>
+        <div class="item-menu"   >
+          <button class="show-menu"  (click)="showMenu(i)"><i class="material-icons">
+              more_vert
+            </i></button>
+            <div class="menu" *ngIf="menuOpen === i"  >
+              <ul >
+                <li (click)="openOffer(userOffer.id)"><i class="material-icons">
+                    create
+                    </i>Редактировать</li>
+                <li>
+
+                    <i class="material-icons">
+                        visibility_off
+                        </i>
+                    Скрыть услугу </li>
+                <li>
+                    <i class="material-icons">
+                        delete
+                        </i>
+                  Удалить</li>
+              </ul>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <button (click)="openOffer(userOffer.id)"></button> -->
+  </ng-container>
+</section>

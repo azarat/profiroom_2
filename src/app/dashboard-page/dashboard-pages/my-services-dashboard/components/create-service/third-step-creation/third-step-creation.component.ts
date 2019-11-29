@@ -6,6 +6,8 @@ import { NgForm } from '@angular/forms';
 import { trigger, state, style, animate, transition, } from '@angular/animations';
 import { UserOffersService } from '../../../services/user-offers.service';
 import { filter } from 'rxjs/operators';
+import { LocalizeRouterService } from 'localize-router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-third-step-creation',
@@ -13,14 +15,16 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['./third-step-creation.component.scss'],
 })
 export class ThirdStepCreationComponent implements OnInit {
-
+translatedPath: any = this.localize.translateRoute('/dashboard/my-services');
   user;
   public submited = false;
-  public packagesTypes = ['basic', 'advanced', 'premium']
+  public packagesTypes = ['basic', 'advanced', 'premium'];
   showPackages = false;
   optionsVisible = false;
   constructor(
     private userOffersService: UserOffersService,
+    private localize: LocalizeRouterService,
+    private router: Router,
   ) { }
 
   @Input() userService: UserServiceModel;
@@ -90,4 +94,9 @@ export class ThirdStepCreationComponent implements OnInit {
   showOptions() {
     this.optionsVisible = !this.optionsVisible;
   }
+
+  quite = () => {
+    this.router.navigate([this.translatedPath]);
+  }
+
 }

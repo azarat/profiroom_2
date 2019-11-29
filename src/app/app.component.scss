@@ -201,6 +201,7 @@ input[type="checkbox"].tgl-classic:checked:disabled + label:before {
   &:disabled {
     background: #c2cfe0;
     cursor: default;
+    box-shadow: none;
   }
 }
 

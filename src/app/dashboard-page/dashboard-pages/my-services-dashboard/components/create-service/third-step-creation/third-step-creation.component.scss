@@ -1,11 +1,13 @@
 :host ::ng-deep .step-wrapper {
 
 
-  form {
+  form{
     display: flex;
     flex-direction: column;
     width: 77%;
-
+    &.package-options{
+      width: 100%;
+    }
     .form-title {
       display: flex;
       justify-content: space-between;
@@ -162,6 +164,8 @@
         margin: 0;
         padding: 0;
         color: #323c47;
+        width: 220px;
+        padding-bottom: 20px;
       }
 
       p {

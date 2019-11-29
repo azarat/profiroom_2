@@ -50,9 +50,8 @@
         </div>
         <div class="packages-title" *ngFor="let package of packagesTypes; index as x" [ngClass]="{ 'field-required': title.invalid && submited }">
           <div class="textarea">
-            <textarea [(ngModel)]="userService.packagesTitle[package +'Title']"
-            name="title_{{ package }}" rows="2" [maxlength]="35" #title="ngModel"
-            [required]="(x == '0' && !userService.allPackages) || (userService.allPackages ) && submited"></textarea>
+            <textarea [(ngModel)]="userService.packagesTitle[package +'Title']" name="title_{{ package }}" rows="2" [maxlength]="35" #title="ngModel"
+              [required]="(x == '0' && !userService.allPackages) || (userService.allPackages ) && submited"></textarea>
           </div>
         </div>
 
@@ -65,9 +64,8 @@
           </p>
         </div>
         <div class="textarea-wrap" *ngFor="let package of packagesTypes; let x = index">
-          <textarea name="{{package + 'Description'}}" id=""
-          [(ngModel)]="userService.packagesDescriptions[package + 'Description']"
-           [maxlength]="270" [required]="(x == '0' && !userService.allPackages) || (userService.allPackages )"></textarea>
+          <textarea name="{{package + 'Description'}}" id="" [ngClass]="{ 'field-required': description.invalid && submited }" [(ngModel)]="userService.packagesDescriptions[package + 'Description']" #description="ngModel" [maxlength]="270"
+            [required]="(x == '0' && !userService.allPackages) || (userService.allPackages ) && submited"></textarea>
         </div>
       </div>
       <!--------------------Time to Do -------------------->
@@ -78,11 +76,10 @@
           </p>
         </div>
 
-        <div *ngFor="let package of packagesTypes; let x = index">
+        <div *ngFor="let package of packagesTypes; let x = index" [ngClass]="{ 'field-required': timeTodo.invalid && submited }">
           <div class="input-wrap">
-            <input name="{{package + 'Term'}}" type="text" knifeOnlyNumbers
-            maxlength="3" [(ngModel)]="userService.packagesTerms[package + 'Term']"
-            [required]="(x == '0' && !userService.allPackages) || (userService.allPackages )">
+            <input name="{{package + 'Term'}}" type="text" knifeOnlyNumbers maxlength="3" [(ngModel)]="userService.packagesTerms[package + 'Term']" #timeTodo="ngModel"
+              [required]="(x == '0' && !userService.allPackages) || (userService.allPackages ) && submited">
           </div>
         </div>
       </div>
@@ -93,11 +90,9 @@
           <p>Кол-во правок</p>
         </div>
 
-        <div *ngFor="let package of packagesTypes; let x = index">
+        <div *ngFor="let package of packagesTypes; let x = index" [ngClass]="{ 'field-required': changes.invalid && submited }">
           <div class="select-wrap">
-            <mat-select [(ngModel)]="userService.packagesChanges[package + 'Changes']"
-            name="{{package + 'Changes'}}"
-            [required]="(x == '0' && !userService.allPackages) || (userService.allPackages )">
+            <mat-select [(ngModel)]="userService.packagesChanges[package + 'Changes']" name="{{package + 'Changes'}}" #changes="ngModel" [required]="(x == '0' && !userService.allPackages) || (userService.allPackages )">
               <mat-option *ngFor="let change of changesArrayCounter(); let i = index" [value]="change">
                 {{ change }}
               </mat-option>
@@ -113,20 +108,19 @@
           </p>
         </div>
 
-        <div *ngFor="let package of packagesTypes; let x = index">
+        <div *ngFor="let package of packagesTypes; let x = index" [ngClass]="{ 'field-required': packagePrice.invalid && submited }">
           <div class="input-wrap">
-            <input type="text" knifeOnlyNumbers maxlength="7"
-            [required]="(x == '0' && !userService.allPackages) || (userService.allPackages )"
-            [(ngModel)]="userService.packagesPrices[package + 'Price']" name="{{package + 'Price'}}">
+            <input type="text" knifeOnlyNumbers maxlength="7" #packagePrice="ngModel" [required]="(x == '0' && !userService.allPackages) || (userService.allPackages ) && submited" [(ngModel)]="userService.packagesPrices[package + 'Price']"
+              name="{{package + 'Price'}}">
           </div>
         </div>
       </div>
       <!--------------------add options -------------------->
       <form #f="ngForm" class="package-options">
         <div class="added-option line" *ngFor="let arrayItem of userService.main_options; let i = index">
-          <div class="option-title">
+          <div class="option-title" [ngClass]="{ 'field-required': mainOptonTitle.invalid && submited }">
             <div class="input-wrap">
-              <input type="text" [(ngModel)]="userService.main_options[i].title" required name="main_option_title_{{i}}" placeholder="Название опции" maxlength="15">
+              <input type="text" [(ngModel)]="userService.main_options[i].title" required #mainOptonTitle="ngModel" name="main_option_title_{{i}}" placeholder="Название опции" maxlength="15">
             </div>
             <i class="material-icons delete-pack" (click)="deleteMainOption(i)">delete</i>
             <!-- <span >delete</span> -->
@@ -150,13 +144,13 @@
     <!-------------------- Extra Options -------------------->
     <div class="extra-packages-wrap">
 
-      <app-third-step-extra-options *ngIf="userService" [userService]="userService"></app-third-step-extra-options>
+      <app-third-step-extra-options *ngIf="userService" [userService]="userService" [submited]="submited"></app-third-step-extra-options>
 
 
     </div>
 
     <div class="form-butons">
-      <button class="back">сохранить и выйти</button>
+      <button (click)="quite()" class="back">выйти</button>
       <button class="save" type="submit">сохранить и продолжить</button>
     </div>
   </form>

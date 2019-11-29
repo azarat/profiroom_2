@@ -30,7 +30,7 @@
                 <li *ngIf="registrationForm.controls['password'].hasError('minLengthCharacters')">Пароль не меньше 8 символов</li>
               </ul>
             </div>
-            <button class="pass" mat-icon-button matSuffix (click)="hideF = !hideF" [attr.aria-label]="'Hide password'"
+            <button type="button" class="pass" mat-icon-button matSuffix (click)="hideF = !hideF" [attr.aria-label]="'Hide password'"
             [attr.aria-pressed]="hideF" [style.color]="hideF ? '#DBDBDB': '#000'">
             <mat-icon>{{hideF ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
@@ -41,7 +41,7 @@
         <mat-form-field>
           <mat-label>Повторно введите пароль</mat-label>
             <input matInput type="password" [type]="hideS ? 'password' : 'text'" formControlName="password_confirmation" required />
-            <button class="pass" mat-icon-button matSuffix (click)="hideS = !hideS" [attr.aria-label]="'Hide password'"
+            <button type="button" class="pass" mat-icon-button matSuffix (click)="hideS = !hideS" [attr.aria-label]="'Hide password'"
             [attr.aria-pressed]="hideS" [style.color]="hideS ? '#DBDBDB': '#000'">
             <mat-icon>{{hideS ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
