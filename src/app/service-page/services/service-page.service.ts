@@ -17,19 +17,24 @@ export class ServicePageService {
 
   constructor(
     private http: HttpClient
-  ) { }
+  ) {
+    this.offerDate$ = this._offerDate.asObservable();
+    this.viewedOffers$ = this._viewedOffers.asObservable();
+   }
 
   loadOfferDate(offerid: object) {
     return this.http.post('/showOffer', offerid);
   }
 
-  getViewedCars(vinsArr: []) {
-    const arrToString = vinsArr.filter(x => x).toString();
+  getViewedOffers(offersIdArr: []) {
 
-    this.http
-      .post('/getByVin', { Vin: arrToString })
-      .subscribe(res => {
-        this._viewedOffers.next(res[0]);
-      });
+    const arrToString = offersIdArr.filter(x => x);
+    return this.http.post('/visitedOffer', { VisitedOffer: arrToString })
+      // .subscribe(res => {
+      //   this._viewedOffers.next(res[0]);
+      //   console.log(1);
+      //   console.log('viwed', res);
+      // });
+
   }
 }

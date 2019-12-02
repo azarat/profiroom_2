@@ -1,8 +1,131 @@
-<section class="early-viewed">
+<!-- <section class="early-viewed">
   <h4 class="section-title">
     Похожие услуги создания сайтов
   </h4>
-  <div class="item-list">
+  <div class="item-list" *ngIf="offerData">
+    <div class="card" >
+      <div class="card-preview__bg">
+        <img class="card-preview"  [src]="'https://www.thecubetest.site/Backend/storage/app/' + offerData.mainImage">
+      </div>
+      <div class="card-description">
 
+        <div class="card-description__top">
+          <div class="card-description__ava"><img *ngIf="offerData.user.avatar" [src]="'https://www.thecubetest.site/Backend/storage/app/' + offerData.user.avatar" alt="avatar">
+          </div>
+          <div>
+            <span class="card-description__name" >{{offerData.user.name}} {{offerData.user.surname}}</span>
+            <div class="card-description__skill">{{offerData.user.rank_id}}</div>
+          </div>
+        </div>
+
+        <p class="card-description__about">{{offerData.description}}</p>
+        <div class="card-description__bottom">
+          <div class="card-description__level">{{offerData.rating}}</div>
+          <div class="card-description__comments"><a>({{offerData.comments_count}} отзывов)</a></div>
+        </div>
+
+      </div>
+      <div class="card-bottom">
+        <div class="card-bottom__like"></div>
+        <div class="card-bottom__price">
+          начиная от
+          <span>500 ₴ </span>
+        </div>
+      </div>
+
+    </div>
+    <div class="card" >
+      <div class="card-preview__bg">
+        <img class="card-preview"  [src]="'https://www.thecubetest.site/Backend/storage/app/' + offerData.mainImage">
+      </div>
+      <div class="card-description">
+
+        <div class="card-description__top">
+          <div class="card-description__ava"><img *ngIf="offerData.user.avatar" [src]="'https://www.thecubetest.site/Backend/storage/app/' + offerData.user.avatar" alt="avatar">
+          </div>
+          <div>
+            <span class="card-description__name" >{{offerData.user.name}} {{offerData.user.surname}}</span>
+            <div class="card-description__skill">{{offerData.user.rank_id}}</div>
+          </div>
+        </div>
+
+        <p class="card-description__about">{{offerData.description}}</p>
+        <div class="card-description__bottom">
+          <div class="card-description__level">{{offerData.rating}}</div>
+          <div class="card-description__comments"><a>({{offerData.comments_count}} отзывов)</a></div>
+        </div>
+
+      </div>
+      <div class="card-bottom">
+        <div class="card-bottom__like"></div>
+        <div class="card-bottom__price">
+          начиная от
+          <span>500 ₴ </span>
+        </div>
+      </div>
+
+    </div>
+    <div class="card" >
+      <div class="card-preview__bg">
+        <img class="card-preview"  [src]="'https://www.thecubetest.site/Backend/storage/app/' + offerData.mainImage">
+      </div>
+      <div class="card-description">
+
+        <div class="card-description__top">
+          <div class="card-description__ava"><img *ngIf="offerData.user.avatar" [src]="'https://www.thecubetest.site/Backend/storage/app/' + offerData.user.avatar" alt="avatar">
+          </div>
+          <div>
+            <span class="card-description__name" >{{offerData.user.name}} {{offerData.user.surname}}</span>
+            <div class="card-description__skill">{{offerData.user.rank_id}}</div>
+          </div>
+        </div>
+
+        <p class="card-description__about">{{offerData.description}}</p>
+        <div class="card-description__bottom">
+          <div class="card-description__level">{{offerData.rating}}</div>
+          <div class="card-description__comments"><a>({{offerData.comments_count}} отзывов)</a></div>
+        </div>
+
+      </div>
+      <div class="card-bottom">
+        <div class="card-bottom__like"></div>
+        <div class="card-bottom__price">
+          начиная от
+          <span>500 ₴ </span>
+        </div>
+      </div>
+
+    </div>
+    <div class="card" >
+      <div class="card-preview__bg">
+        <img class="card-preview"  [src]="'https://www.thecubetest.site/Backend/storage/app/' + offerData.mainImage">
+      </div>
+      <div class="card-description">
+
+        <div class="card-description__top">
+          <div class="card-description__ava"><img *ngIf="offerData.user.avatar" [src]="'https://www.thecubetest.site/Backend/storage/app/' + offerData.user.avatar" alt="avatar">
+          </div>
+          <div>
+            <span class="card-description__name" >{{offerData.user.name}} {{offerData.user.surname}}</span>
+            <div class="card-description__skill">{{offerData.user.rank_id}}</div>
+          </div>
+        </div>
+
+        <p class="card-description__about">{{offerData.description}}</p>
+        <div class="card-description__bottom">
+          <div class="card-description__level">{{offerData.rating}}</div>
+          <div class="card-description__comments"><a>({{offerData.comments_count}} отзывов)</a></div>
+        </div>
+
+      </div>
+      <div class="card-bottom">
+        <div class="card-bottom__like"></div>
+        <div class="card-bottom__price">
+          начиная от
+          <span>500 ₴ </span>
+        </div>
+      </div>
+
+    </div>
   </div>
-</section>
+</section> -->

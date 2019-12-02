@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { OfferDataInterface } from 'src/app/shared/interfaces/offer-date.interface';
-import { LocalStorageService } from 'src/app/core/services/local-storage.service';
+
 import { ServicePageService } from '../../services/service-page.service';
+import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 
 @Component({
   selector: 'app-service-page-earlier-viewed',
@@ -10,19 +11,20 @@ import { ServicePageService } from '../../services/service-page.service';
 })
 export class ServicePageEarlierViewedComponent implements OnInit {
 
-  viewedOffers: OfferDataInterface;
+  viewedOffers: OfferDataInterface = null;
 
   @Input() offerData: OfferDataInterface;
   constructor(
-    private sessionStorage: LocalStorageService,
+    private localStorageService: LocalStorageService,
     private servicePageService: ServicePageService,
   ) {
-    this.servicePageService.viewedOffers$.subscribe(res => {
-      this.viewedOffers = res;
-    });
+
   }
 
   ngOnInit() {
 
+    // console.log(this.localStorageService.getItem('visitedOffer').value)
+// this.localStorageService.ge
+    // this.servicePageService.getViewedOffers()
   }
 }

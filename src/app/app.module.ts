@@ -8,7 +8,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import 'reflect-metadata';
 import { FormsModule } from '@angular/forms';
-// import { NgxGalleryModule } from 'ngx-gallery';
 
 @NgModule({
   declarations: [
