@@ -26,6 +26,7 @@ import { ClickOutsideModule } from 'ng-click-outside';
 import { FirstStepServiceCreationComponent } from './components/create-service/first-step-service-creation/first-step-service-creation.component';
 import { SecondStepCreationComponent } from './components/create-service/second-step-creation/second-step-creation.component';
 import { ThirdStepCreationComponent } from './components/create-service/third-step-creation/third-step-creation.component';
+// tslint:disable-next-line: max-line-length
 import { ThirdStepExtraOptionsComponent } from './components/create-service/third-step-creation/third-step-extra-options/third-step-extra-options.component';
 import { FourthStepCreationComponent } from './components/create-service/fourth-step-creation/fourth-step-creation.component';
 import { FifthStepCreationComponent } from './components/create-service/fifth-step-creation/fifth-step-creation.component';
@@ -43,16 +44,6 @@ const servicesRoutes: Routes = [
   {
     path: 'create',
     component: CreateServiceComponent,
-  //   children: [
-  //     {
-  //       path: '',
-  //       component: FirstStepServiceCreationComponent
-  //     },
-  //     {
-  //       path: 'second-step',
-  //       component: SecondStepCreationComponent
-  //     }
-  // ]
   }
 ];
 

@@ -3,22 +3,14 @@
     <a [routerLink]="'/' | localize" class="logo">whocan</a>
     <div class="controls">
       <section class="notifications">
-          <mat-icon aria-hidden="false" matBadge="1" aria-label="Example home icon" matBadgeColor="warn">notifications</mat-icon>
+        <mat-icon aria-hidden="false" matBadge="1" aria-label="Example home icon" matBadgeColor="warn">notifications
+        </mat-icon>
       </section>
       <section class="type-section">
         <div class="switch">
-          <input
-            id="radio-a"
-            type="radio"
-            name="first-switch"
-            checked="checked"
-          /><label  for="radio-a">Фрилансер</label
-          ><input id="radio-b" type="radio" name="first-switch" /><label class="radio-b"
-            for="radio-b"
-            >Заказчик</label
-          ><span class="toggle-outside"
-            ><span class="toggle-inside"></span
-          ></span>
+          <input id="radio-a" type="radio" name="first-switch" checked="checked" /><label
+            for="radio-a">Фрилансер</label><input id="radio-b" type="radio" name="first-switch" /><label class="radio-b"
+            for="radio-b">Заказчик</label><span class="toggle-outside"><span class="toggle-inside"></span></span>
         </div>
       </section>
       <section class="exit">
@@ -34,9 +26,14 @@
       <div class="raiting"></div>
     </section>
     <section class="menu">
+
       <nav>
-        <a [routerLink]="'/dashboard' | localize">главная</a>
-        <a [routerLink]="'/dashboard/my-services' | localize" >услуги</a>
+        <a class="dashboard" [routerLink]="'/dashboard' | localize"><span>дашбоард</span></a>
+        <a class="projects" [routerLink]="''"><span>проекты</span> </a>
+        <a class="chat" [routerLink]="'/dashboard/chat-room' | localize"><span>чат</span> </a>
+        <a class="services" [routerLink]="'/dashboard/my-services' | localize"><span>мои услуги</span> </a>
+        <a class="finance" [routerLink]="''"><span>финансы</span> </a>
+        <a class="settings" [routerLink]="''"><span>настройки</span> </a>
       </nav>
     </section>
   </div>

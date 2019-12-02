@@ -1,6 +1,6 @@
-body {
+::ng-deep {
   background: #f1f2f4;
-}
+
 
 // -------- inputn classic
 input[type="checkbox"].tgl-classic + label {
@@ -362,3 +362,4 @@ quill-editor {
   }
 }
 
+}

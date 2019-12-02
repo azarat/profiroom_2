@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?ma6ebt');
-  src:  url('fonts/icomoon.eot?ma6ebt#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?ma6ebt') format('truetype'),
-    url('fonts/icomoon.woff?ma6ebt') format('woff'),
-    url('fonts/icomoon.svg?ma6ebt#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?1p9eby');
+  src:  url('fonts/icomoon.eot?1p9eby#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?1p9eby') format('truetype'),
+    url('fonts/icomoon.woff?1p9eby') format('woff'),
+    url('fonts/icomoon.svg?1p9eby#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,6 +25,70 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-Settings1:before {
+  content: "\e904";
+  color: #bfc5d1;
+}
+.icon-finance .path1:before {
+  content: "\e905";
+  color: rgb(191, 197, 209);
+}
+.icon-finance .path2:before {
+  content: "\e906";
+  margin-left: -1em;
+  color: rgb(191, 197, 209);
+}
+.icon-finance .path3:before {
+  content: "\e907";
+  margin-left: -1em;
+  color: rgb(191, 197, 209);
+}
+.icon-finance .path4:before {
+  content: "\e908";
+  margin-left: -1em;
+  color: rgb(191, 197, 209);
+}
+.icon-finance .path5:before {
+  content: "\e909";
+  margin-left: -1em;
+  color: rgb(191, 197, 209);
+}
+.icon-finance .path6:before {
+  content: "\e90a";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.icon-finance .path7:before {
+  content: "\e90b";
+  margin-left: -1em;
+  color: rgb(191, 197, 209);
+}
+.icon-finance .path8:before {
+  content: "\e90c";
+  margin-left: -1em;
+  color: rgb(191, 197, 209);
+}
+.icon-finance .path9:before {
+  content: "\e90d";
+  margin-left: -1em;
+  color: rgb(191, 197, 209);
+}
+.icon-message:before {
+  content: "\e90e";
+  color: #fff;
+}
+.icon-projects:before {
+  content: "\e90f";
+  color: #bfc5d1;
+}
+.icon-dashboard:before {
+  content: "\e903";
+  color: #fff;
+}
+.icon-Settings:before {
+  content: "\e914";
+  color: #bfc5d1;
+}
 .icon-upload:before {
   content: "\e902";
   color: #bfc5d1;

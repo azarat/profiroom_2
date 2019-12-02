@@ -38,8 +38,8 @@ export class MyServicesHomeComponent implements OnInit {
       });
   }
 
-  ngOnDestroy() {
-  }
+  // ngOnDestroy() {
+  // }
 
   createNewService() {
     this.userOfferService.serviceCreation()

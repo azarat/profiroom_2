@@ -80,7 +80,6 @@ export class FifthStepCreationComponent implements OnInit {
     }
   }
   removeAnswer(i: number, j:number) {
-    console.log(this.userService.offerBreef[i].breefAnswerVariants)
     this.userService.offerBreef[i].breefAnswerVariants.splice(j, 1);
   }
 
