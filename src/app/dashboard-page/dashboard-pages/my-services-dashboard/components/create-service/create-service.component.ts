@@ -17,6 +17,7 @@ export class CreateServiceComponent implements OnInit {
   public currentStep: number;
   public serviceCreationSteps = serviceCreationSteps;
   constructor(
+    // tslint:disable-next-line: variable-name
     private _route: ActivatedRoute,
     private userOffersService: UserOffersService,
 
@@ -46,7 +47,7 @@ export class CreateServiceComponent implements OnInit {
 
   }
 
-  setCurrentStep(step: number){
+  setCurrentStep(step: number) {
     console.log(step);
     this.currentStep = step;
   }

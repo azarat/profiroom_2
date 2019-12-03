@@ -132,6 +132,7 @@ export class FirstStepServiceCreationComponent implements OnInit {
     const formData: FormData = new FormData();
     formData.append('offerId', this.userService.id);
     this.files = [];
+    // tslint:disable-next-line: prefer-for-of
     for (let index = 0; index < event.length; index++) {
       this.files.push(event[index]);
     }
