@@ -198,7 +198,7 @@
     color: #ffffff;
     margin: 0;
   }
-  .menu {
+  .menu{
     padding: 64px 45px;
     nav {
       display: flex;
@@ -227,6 +227,14 @@
         left: 50%;
         font-size: 30px;
         transform: translate(-50%, -50%);
+      }
+      &:hover {
+        background-color: rgb(250, 249, 249);
+      }
+      &.active {
+        background: #3C7EEA;
+        box-shadow: 0px 10px 20px rgba(80, 123, 252, 0.5);
+        border-radius: 8px;
       }
       span {
         font-family: Source Sans Pro, sans-serif;
@@ -258,6 +266,8 @@
       &.settings:before {
         content: '\e914';
       }
+
+
     }
   }
 }

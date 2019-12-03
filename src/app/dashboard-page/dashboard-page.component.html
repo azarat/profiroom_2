@@ -28,12 +28,8 @@
     <section class="menu">
 
       <nav>
-        <a class="dashboard" [routerLink]="'/dashboard' | localize"><span>дашбоард</span></a>
-        <a class="projects" [routerLink]="''"><span>проекты</span> </a>
-        <a class="chat" [routerLink]="'/dashboard/chat-room' | localize"><span>чат</span> </a>
-        <a class="services" [routerLink]="'/dashboard/my-services' | localize"><span>мои услуги</span> </a>
-        <a class="finance" [routerLink]="''"><span>финансы</span> </a>
-        <a class="settings" [routerLink]="''"><span>настройки</span> </a>
+        <a class="{{el.class}}" *ngFor="let el of dashboardMenu" [routerLink]="el.link | localize" [routerLinkActive]="'active'"><span>{{ el.title }}</span></a>
+
       </nav>
     </section>
   </div>

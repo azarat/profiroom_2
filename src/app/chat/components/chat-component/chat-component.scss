@@ -1,9 +1,9 @@
 .wrapper::ng-deep {
-  padding: 25px 15px 0;
+  // padding: 25px 15px 0;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  height: 100vh;
+  height: 100%;
   overflow: hidden;
   & > section {
     height: 100%;
