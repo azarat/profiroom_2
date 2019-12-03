@@ -4,7 +4,8 @@ import { ServicePageService } from '../../services/service-page.service';
 import { Subscription } from 'rxjs';
 
 import { OfferDataInterface } from 'src/app/shared/interfaces/offer-date.interface';
-import { filter, first } from 'rxjs/operators';
+import { filter } from 'rxjs/operators';
+import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 
 
 @Component({
@@ -16,13 +17,14 @@ export class ServicePageComponent implements OnInit {
 
   @ViewChild('stickyMenu', {static: false}) menuElement: ElementRef;
 
-  public offerId: object = null;
-  public offerData: OfferDataInterface;
+  // public offerId: object = null;
+  public offerData: OfferDataInterface = null;
   catalogSubscription: Subscription;
+  // tslint:disable-next-line: variable-name
   public comments_countF;
+  viewedOffers: any = null;
 
-
-  sticky: boolean = false;
+  sticky = false;
   elementPosition: any;
 
   constructor(
@@ -30,39 +32,64 @@ export class ServicePageComponent implements OnInit {
     private _route: ActivatedRoute,
     // tslint:disable-next-line: variable-name
     private _router: Router,
-    private offerDataService: ServicePageService
+    private offerDataService: ServicePageService,
+    // tslint:disable-next-line: variable-name
+    // private localStorageService: LocalStorageService,
+    private localStorageService: LocalStorageService
   ) {
     this._route.queryParams
     .pipe(
       filter((res: any) => !! res),
-      first()
     )
     .subscribe(offerId => {
-      this.offerId = offerId;
+      this.getOfferData(offerId);
+      this.getViewedOffers();
     });
-    // this.servicePageService.offerDate$
-    // .pipe(filter((res: any) => !!res))
-    // .subscribe(data => {
-    //   this.offerData = data.userOffer;
-    //   console.log(this.offerData);
-    // });
   }
 
-  ngOnInit() {
-    if (this.offerId) {
-      this.offerDataService.loadOfferDate(this.offerId)
-      .pipe(filter((res: any) => !! res))
-      .subscribe(offerData => {
-        console.log(offerData);
-        this.offerData = offerData.userOffer;
+  ngOnInit() { }
 
-        this.formateCommentCount();
-      });
+  // ngOnDestroy() {
+  // }
+
+  getOfferData(offerId: {offerId: string}) {
+    this.offerDataService.loadOfferDate(offerId)
+    .pipe(filter((res: any) => !! res))
+    .subscribe(offerData => {
+      // console.log(offerData);
+      this.offerData = offerData.userOffer;
+      this.pushOfferIdToLocalStorage(offerId.offerId);
+      this.formateCommentCount();
+    });
+  }
+
+  pushOfferIdToLocalStorage(id: string) {
+    //
+    let offersArrey: any[] = [];
+
+    const storage = this.localStorageService.getItem('visitedOffer');
+
+    if (storage.value !== null) {
+
+      offersArrey = Object.values(this.localStorageService.getItem('visitedOffer').value);
+      if (offersArrey.includes(id)) {
+          return;
+      }
+
+      if (offersArrey.length < 4) {
+        offersArrey.push(id);
+        console.log(offersArrey.length);
+      } else {
+        offersArrey.push(id);
+        offersArrey.splice(0, 1);
+      }
+
+    } else if (storage.value === null) {
+      offersArrey.push(id);
     }
 
+    this.localStorageService.setItem('visitedOffer', offersArrey);
   }
-
-
 
   formateCommentCount() {
     if (this.offerData.comments_count < 1000) {
@@ -72,34 +99,34 @@ export class ServicePageComponent implements OnInit {
     }
   }
 
+  getViewedOffers() {
+    let x: string[];
+    if (this.localStorageService.getItem('visitedOffer').value !== null) {
+      x = Object.values(this.localStorageService.getItem('visitedOffer').value);
+    } else {
+      x = [];
+    }
+
+    this.offerDataService.getViewedOffers(x)
+    .subscribe((res: any) => {
+      this.viewedOffers = res.visitedOffers;
+    });
+  }
+
   // tslint:disable-next-line: use-lifecycle-interface
   ngAfterViewInit() {
     this.elementPosition = this.menuElement.nativeElement.offsetTop;
-    console.log(this.elementPosition);
-    // console.log(this.menuElement);
   }
 
   @HostListener('window:scroll', ['$event'])
-  // handleScroll() {
-    // const windowScroll = window.pageYOffset;
-    // if (windowScroll >= this.elementPosition) {
-    //   // console.log(this.elementPosition);
-    //   console.log(this.menuElement.nativeElement);
-    //   this.sticky = true;
-    //   console.log(this.sticky);
-    // } else {
-    //   this.sticky = false;
-    //   console.log(this.sticky);
-    // }
-  // }
 
-  handleScroll(event){
+  handleScroll() {
     const windowScroll = window.pageYOffset;
-    console.log(this.elementPosition);
     // if (windowScroll >= this.elementPosition){
-    if (windowScroll >= 113){
+    if (windowScroll >= 113) {
       this.sticky = true;
     } else {
-      this.sticky = false; }
+      this.sticky = false;
     }
+  }
 }

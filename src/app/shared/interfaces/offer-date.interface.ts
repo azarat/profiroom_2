@@ -1,9 +1,13 @@
 export interface OfferDataInterface {
+  id?: number;
   title?: string;
+  mainImage?: string;
+  rating?: string;
   user?: {
     avatar?: string;
     name?: string;
     surname?: string;
+    rank_id?: string;
     userOffers?: [{
       title?: string;
       raiting?: number;
@@ -101,5 +105,19 @@ export interface OfferDataInterface {
   offer_faq?: [{
     question?: string;
     answer?: string;
+  }];
+  // userOffer?: [{
+  //   title?: string;
+  //   raiting?: number;
+  //   comments_count?: number;
+  //   mainImage?: string;
+  //   minprice?: number;
+  // }];
+  visitedOffers?: [{
+    title?: string;
+    raiting?: number;
+    comments_count?: number;
+    mainImage?: string;
+    minprice?: number;
   }];
 }

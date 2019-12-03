@@ -4,20 +4,12 @@
   </h4>
   <div class="cards-list" *ngIf="offerData">
     <div class="card" *ngFor="let offer of offerData.user.userOffers">
-      <div class="card-preview__bg">
+      <div class="card-preview__bg" (click)="openOffer(offer.id)">
         <img class="card-preview" [src]="'https://www.thecubetest.site/Backend/storage/app/' + offer.mainImage">
       </div>
       <div class="card-description">
 
-        <!-- <div class="card-description__top">
-          <div class="card-description__ava"><img *ngIf="offerData.user" [src]="'https://www.thecubetest.site/Backend/storage/app/' + offerData.user.avatar" alt="avatar">
-          </div>
-          <div>
-            <span class="card-description__name" (click)="openOffer(offer.user.id)">{{offerData.user.name}} {{offerData.user.surname}}</span>
-          </div>
-        </div> -->
-
-        <p class="card-description__about">{{offer.title}}</p>
+        <p class="card-description__about" (click)="openOffer(offer.id)">{{offer.title}}</p>
         <div class="card-description__bottom">
           <div class="card-description__level">{{offerData.raiting}}</div>
           <div class="card-description__comments"><a>({{offerData.comments_count}} отзывов)</a></div>

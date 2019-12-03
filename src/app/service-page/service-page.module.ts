@@ -13,7 +13,7 @@ import { ServicePageAboutOfferComponent } from './components/service-page-about-
 import { ServicePagePackagesComponent } from './components/service-page-packages/service-page-packages.component';
 import { ServicePageAnotherServicesComponent } from './components/service-page-another-services/service-page-another-services.component';
 // import { PackagesComponent } from './components/packages/packages.component';
-import {MatExpansionModule} from '@angular/material/expansion';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { ServicePageCompareTableComponent } from './components/service-page-compare-table/service-page-compare-table.component';
 import { ServicePageEarlierViewedComponent } from './components/service-page-earlier-viewed/service-page-earlier-viewed.component';
 

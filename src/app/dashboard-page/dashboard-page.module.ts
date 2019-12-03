@@ -29,7 +29,13 @@ const routes: Routes = [
         path: 'chat-room',
         loadChildren: () => import('./dashboard-pages/chat-page/chat-page.module').then(m => m.ChatPageModule)
         // import('./dashboard-pages/my-services-dashboard/my-services-dashboard.module').then(m => m.MyServicesDashboardModule)
+      },
+      {
+        path: 'settings',
+        loadChildren: () =>import('./dashboard-pages/user-settings-dashboard/user-settings-dashboard.module')
+        .then(m => m.UserSettingsDashboardModule)
       }
+
     ]
   }
 ];
