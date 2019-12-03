@@ -22,9 +22,9 @@ export class ServicePageComponent implements OnInit {
   catalogSubscription: Subscription;
   // tslint:disable-next-line: variable-name
   public comments_countF;
+  viewedOffers: any = null;
 
-
-  sticky: boolean = false;
+  sticky = false;
   elementPosition: any;
 
   constructor(
@@ -43,33 +43,22 @@ export class ServicePageComponent implements OnInit {
     )
     .subscribe(offerId => {
       this.getOfferData(offerId);
-      // this.pushOfferIdToLocalStorage();
+      this.getViewedOffers();
     });
   }
 
-  ngOnInit(): void {
-  // this.getOfferData()
+  ngOnInit() { }
 
-    // const x = this.localStorageService.getItem('visitedOffer');
-    // x.subscribe((data) => {
-    //   console.log('start')
-    //   this.offerDataService.getViewedOffers(data);
-    // });
-
-  }
-
-  ngOnDestroy() {
-  }
+  // ngOnDestroy() {
+  // }
 
   getOfferData(offerId: {offerId: string}) {
     this.offerDataService.loadOfferDate(offerId)
     .pipe(filter((res: any) => !! res))
     .subscribe(offerData => {
-      console.log(offerData);
+      // console.log(offerData);
       this.offerData = offerData.userOffer;
-      // console.log('oferid', offerId)
       this.pushOfferIdToLocalStorage(offerId.offerId);
-      // this.localStorageService.setItem('visitedOffer', this.offerData.id);
       this.formateCommentCount();
     });
   }
@@ -89,7 +78,7 @@ export class ServicePageComponent implements OnInit {
 
       if (offersArrey.length < 4) {
         offersArrey.push(id);
-        console.log(offersArrey.length)
+        console.log(offersArrey.length);
       } else {
         offersArrey.push(id);
         offersArrey.splice(0, 1);
@@ -108,6 +97,20 @@ export class ServicePageComponent implements OnInit {
     } else {
       this.comments_countF = this.offerData.comments_count.toFixed(1);
     }
+  }
+
+  getViewedOffers() {
+    let x: string[];
+    if (this.localStorageService.getItem('visitedOffer').value !== null) {
+      x = Object.values(this.localStorageService.getItem('visitedOffer').value);
+    } else {
+      x = [];
+    }
+
+    this.offerDataService.getViewedOffers(x)
+    .subscribe((res: any) => {
+      this.viewedOffers = res.visitedOffers;
+    });
   }
 
   // tslint:disable-next-line: use-lifecycle-interface

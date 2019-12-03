@@ -26,15 +26,8 @@ export class ServicePageService {
     return this.http.post('/showOffer', offerid);
   }
 
-  getViewedOffers(offersIdArr: []) {
-
-    const arrToString = offersIdArr.filter(x => x);
-    return this.http.post('/visitedOffer', { VisitedOffer: arrToString })
-      // .subscribe(res => {
-      //   this._viewedOffers.next(res[0]);
-      //   console.log(1);
-      //   console.log('viwed', res);
-      // });
-
+  getViewedOffers(offersIdArr: string[]) {
+    console.log('post');
+    return this.http.post('/visitedOffer', { VisitedOffer: offersIdArr });
   }
 }

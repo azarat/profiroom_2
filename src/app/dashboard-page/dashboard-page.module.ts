@@ -23,7 +23,13 @@ const routes: Routes = [
         path: 'my-services',
         loadChildren: () =>
         import('./dashboard-pages/my-services-dashboard/my-services-dashboard.module').then(m => m.MyServicesDashboardModule)
+      },
+      {
+        path: 'settings',
+        loadChildren: () =>import('./dashboard-pages/user-settings-dashboard/user-settings-dashboard.module')
+        .then(m => m.UserSettingsDashboardModule)
       }
+
     ]
   }
 ];
