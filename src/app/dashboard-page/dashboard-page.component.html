@@ -28,7 +28,7 @@
     <section class="menu">
 
       <nav>
-        <a class="{{el.class}}" *ngFor="let el of dashboardMenu" [routerLink]="el.link | localize" [routerLinkActive]="'active'"><span>{{ el.title }}</span></a>
+        <a class="{{el.class}}" *ngFor="let el of dashboardMenu" [routerLinkActiveOptions]="{exact: true}" [routerLink]="el.link | localize" [routerLinkActive]="'active'"><span>{{ el.title }}</span></a>
 
       </nav>
     </section>
