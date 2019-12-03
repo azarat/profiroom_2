@@ -1,0 +1,119 @@
+.wrapper {
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.collocutors-wrap {
+  font-family: Source Sans Pro, sans-serif;
+  padding: 20px 0 0 20px;
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+
+.collocutors-serch {
+  display: flex;
+  justify-content: flex-end;
+  position: absolute;
+  height: 70px;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  div {
+    width: 100%;
+    padding-left: 32px;
+    border-bottom: 1px solid #c2cfe0;
+    margin: 20px;
+  }
+  input {
+    border: none;
+    width: 100%;
+    padding-bottom: 7px;
+    // padding-left: 40px;
+    outline: none;
+  }
+
+}
+
+.collocutors-list {
+  height: 100%;
+  overflow: auto;
+  padding-right: 20px;
+  margin-top: 50px;
+    &::-webkit-scrollbar-track
+    {
+      -webkit-box-shadow: none;
+      border-radius: 10px;
+      background-color: transparent;
+    }
+
+    &::-webkit-scrollbar
+    {
+      width: 6px;
+      background-color: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb
+    {
+      border-radius: 10px;
+      // -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+      background: #649AF3;
+    }
+}
+.collocutor {
+  margin-bottom: 40px;
+  cursor: pointer;
+}
+
+  .date {
+    text-align: right;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 13px;
+    line-height: 16px;
+    color: #707683;
+    padding: 0;
+    margin: 0;
+  }
+  .message-preview {
+    display: flex;
+    flex-direction: row;
+    p{
+      margin: 0;
+      padding: 0;
+    }
+    .photo {
+      margin-right: 20px;
+      img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+      }
+    }
+    .collocutor-name {
+      font-style: normal;
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 20px;
+      color: #323C47;
+    }
+    .collocutor-message {
+      font-style: normal;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 18px;
+      color: #323C47;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+  }
+}

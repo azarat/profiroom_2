@@ -198,14 +198,83 @@
     color: #ffffff;
     margin: 0;
   }
-  // .menu {
-  //   // height: 100%;
-  // }
+  .menu{
+    padding: 64px 45px;
+    nav {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    a {
+      width: 44%;
+      height: 95px;
+      display: block;
+      background: #FFFFFF;
+      border-radius: 8px;
+      margin-bottom: 32px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      text-decoration: none;
+      position: relative;
+      &:before {
+        position: absolute;
+        content: '';
+        font-family: icoMoon;
+        color: #BFC5D1;
+        top: 35%;
+        left: 50%;
+        font-size: 30px;
+        transform: translate(-50%, -50%);
+      }
+      &:hover {
+        background-color: rgb(250, 249, 249);
+      }
+      &.active {
+        background: #3C7EEA;
+        box-shadow: 0px 10px 20px rgba(80, 123, 252, 0.5);
+        border-radius: 8px;
+      }
+      span {
+        font-family: Source Sans Pro, sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 20px;
+        color: #728096;
+        margin-bottom: 17px;
+      }
+      &.dashboard:before {
+        content: '\e903';
+      }
+      &.projects:before {
+        content: '\e904';
+      }
+      &.chat:before {
+        content: '\e90e';
+        background: #BFC5D1;
+        color: #fff;
+      }
+      &.services:before {
+        content: '\e90f';
+      }
+      &.finance:before {
+        content: '\e905';
+
+      }
+      &.settings:before {
+        content: '\e914';
+      }
+
+
+    }
+  }
 }
 .content-part {
   width: 77%;
   height: 93.4%;
-  overflow-y: auto;
+  // overflow-y: auto;
   background: #fbfcfd;
   box-shadow: 0px 9px 21px rgba(128, 152, 213, 0.1);
   border-radius: 4px;

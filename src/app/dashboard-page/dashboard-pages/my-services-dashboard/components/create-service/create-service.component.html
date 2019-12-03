@@ -1,8 +1,8 @@
 <div class="wrapper">
   <div class="steps">
     <h3>Создание услуги</h3>
-    <div class="steps-wrap" >
-      <div class="step" *ngFor="let step of serviceCreationSteps, let i = index " (click)="goToStep(i+1)" [ngClass]="{dev: currentStep === i+1, done: currentStep > i+1 }">
+    <div class="steps-wrap" *ngIf="userService">
+      <div class="step" *ngFor="let step of serviceCreationSteps, let i = index " (click)="goToStep(i+1)" [ngClass]="{dev: userService.step === i+1, done: userService.step > i+1 }">
         <h5>{{ step.title }}</h5>
         <p>{{ step.description }}</p>
         <span class="step-order">{{ i+1 }}</span>
@@ -11,13 +11,11 @@
     </div>
   </div>
   <div class="step-detail">
-    <app-first-step-service-creation *ngIf="userService " [userService]="userService" (setCurrentStep)="setCurrentStep($event)"></app-first-step-service-creation>
-    <app-second-step-creation *ngIf="userService && userService.currentStep === 2" [userService]="userService" (setCurrentStep)="setCurrentStep($event)"></app-second-step-creation>
-
-    <app-third-step-creation *ngIf="userService" [userService]="userService"></app-third-step-creation>
-    <!--  <div>3</div>
-    <div>4</div>
-    <div>5</div>
-    <div>6</div> -->
+    <app-first-step-service-creation *ngIf="userService && userService.step === 1" [userService]="userService" (setCurrentStep)="setCurrentStep($event)"></app-first-step-service-creation>
+    <app-second-step-creation *ngIf="userService && userService.step === 2" [userService]="userService" (setCurrentStep)="setCurrentStep($event)"></app-second-step-creation>
+    <app-third-step-creation *ngIf="userService && userService.step === 3" [userService]="userService"></app-third-step-creation>
+     <app-fourth-step-creation *ngIf="userService && userService.step === 4" [userService]="userService"></app-fourth-step-creation>
+    <app-fifth-step-creation *ngIf="userService && userService.step === 5" [userService]="userService"></app-fifth-step-creation>
+    <app-last-step-creation class="last" *ngIf="userService && userService.step === 6" [userService]="userService"></app-last-step-creation>
   </div>
 </div>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthentificationService } from '../core/services/auth.service';
 import { User } from '../models/user/user.model';
 import { UserService } from '../core/services/user.service';
+import { dashboardMenuConst } from './consts/dashboard-menu.const';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -13,7 +14,7 @@ export class DashboardPageComponent implements OnInit {
   color = 'accent';
   checked = false;
   disabled = false;
-
+  dashboardMenu = dashboardMenuConst;
   user: User;
   constructor(
     private authService: AuthentificationService,
@@ -24,7 +25,7 @@ export class DashboardPageComponent implements OnInit {
   ngOnInit() {
     this.userService.getDashboardRes()
     .subscribe((res: any ) => {
-      
+
     });
 
   }

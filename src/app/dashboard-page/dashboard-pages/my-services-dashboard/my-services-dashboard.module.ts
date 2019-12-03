@@ -21,10 +21,16 @@ import { NgKnifeModule } from 'ng-knife';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { MyServicesHomeComponent } from './components/my-services-home/my-services-home.component';
 import { CreateServiceComponent } from './components/create-service/create-service.component';
+import { ClickOutsideModule } from 'ng-click-outside';
 // tslint:disable-next-line: max-line-length
 import { FirstStepServiceCreationComponent } from './components/create-service/first-step-service-creation/first-step-service-creation.component';
 import { SecondStepCreationComponent } from './components/create-service/second-step-creation/second-step-creation.component';
 import { ThirdStepCreationComponent } from './components/create-service/third-step-creation/third-step-creation.component';
+// tslint:disable-next-line: max-line-length
+import { ThirdStepExtraOptionsComponent } from './components/create-service/third-step-creation/third-step-extra-options/third-step-extra-options.component';
+import { FourthStepCreationComponent } from './components/create-service/fourth-step-creation/fourth-step-creation.component';
+import { FifthStepCreationComponent } from './components/create-service/fifth-step-creation/fifth-step-creation.component';
+import { LastStepCreationComponent } from './components/create-service/last-step-creation/last-step-creation.component';
 
 
 const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
@@ -38,16 +44,6 @@ const servicesRoutes: Routes = [
   {
     path: 'create',
     component: CreateServiceComponent,
-  //   children: [
-  //     {
-  //       path: '',
-  //       component: FirstStepServiceCreationComponent
-  //     },
-  //     {
-  //       path: 'second-step',
-  //       component: SecondStepCreationComponent
-  //     }
-  // ]
   }
 ];
 
@@ -58,7 +54,11 @@ const servicesRoutes: Routes = [
     FirstStepServiceCreationComponent,
     DragDropDirective,
     SecondStepCreationComponent,
-    ThirdStepCreationComponent
+    ThirdStepCreationComponent,
+    ThirdStepExtraOptionsComponent,
+    FourthStepCreationComponent,
+    FifthStepCreationComponent,
+    LastStepCreationComponent
   ],
   imports: [
     // ---- angular
@@ -74,6 +74,7 @@ const servicesRoutes: Routes = [
     QuillModule.forRoot(),
     NgKnifeModule,
     NgxMaskModule.forRoot(options),
+    ClickOutsideModule,
 
     // -----matherials
     MatSlideToggleModule,

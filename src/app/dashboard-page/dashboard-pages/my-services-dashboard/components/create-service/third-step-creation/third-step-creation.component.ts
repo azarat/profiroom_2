@@ -1,8 +1,13 @@
 import { Component, OnInit, Input, Output, EventEmitter, HostListener } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, Validators, FormControl } from '@angular/forms';
 import { UserServiceModel } from 'src/app/models/user-service/user-service.model';
+import { NgForm } from '@angular/forms';
 
 import { trigger, state, style, animate, transition, } from '@angular/animations';
+import { UserOffersService } from '../../../services/user-offers.service';
+import { filter } from 'rxjs/operators';
+import { LocalizeRouterService } from 'localize-router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-third-step-creation',
@@ -10,93 +15,22 @@ import { trigger, state, style, animate, transition, } from '@angular/animations
   styleUrls: ['./third-step-creation.component.scss'],
 })
 export class ThirdStepCreationComponent implements OnInit {
-  packagesForm: FormGroup;
-  user
+translatedPath: any = this.localize.translateRoute('/dashboard/my-services');
+  user;
+  public submited = false;
+  public packagesTypes = ['basic', 'advanced', 'premium'];
   showPackages = false;
   optionsVisible = false;
-  width = '300px'
   constructor(
-    private fb: FormBuilder
+    private userOffersService: UserOffersService,
+    private localize: LocalizeRouterService,
+    private router: Router,
   ) { }
 
   @Input() userService: UserServiceModel;
   @Output() public setCurrentStep = new EventEmitter();
 
-  ngOnInit() {
-    this.packagesForm = this.fb.group({
-      allPackages: false,
-      packagesTitle: new FormGroup({
-          basicTitle: new FormControl(null, Validators.required), // string
-          advancedTitle: new FormControl(null), // string
-          premiumTitle: new FormControl(null), // string
-        }),
-
-      packagesDescriptions: new FormGroup({
-          basicDescription: new FormControl(null, Validators.required), // string
-          advancedDescription: new FormControl(null), // string
-          premiumDescription: new FormControl(null), // string
-        }),
-
-      packagesDeadlines: new FormGroup({
-          basicDeadline: new FormControl(null, Validators.required), // number
-          advancedDeadline: new FormControl(null), // number
-          premiumDeadline: new FormControl(null), // number
-        }),
-
-      packagesChanges: new FormGroup({
-          basicChange: new FormControl(null, Validators.required), // number
-          advancedChange: new FormControl(null), // number
-          premiumChange: new FormControl(null), // number
-        }),
-
-      packagesPrices: new FormGroup({
-          basicPrice: new FormControl(null, [Validators.required, Validators.minLength(2)]), // number
-          advancedPrice: new FormControl(null, Validators.maxLength(7)), // number
-          premiumPrice: new FormControl(null, Validators.maxLength(7)), // number
-      }),
-      // -------------------- Added Options to Main FormBlock --------------------// 
-      mainOptions: this.fb.array([
-      ]),
-
-      // -------------------- Extra options -------------------- //
-
-      compressedDeadlines: new FormGroup({
-        useCompressedDeadlines: new FormControl(false), // boolean
-        basicCompressedDays: new FormControl(null, Validators.required), // number
-        basicCompressedPrice: new FormControl(null, Validators.required), // number
-        advancedCompressedDays: new FormControl(null, Validators.required), // number
-        advancedCompressedPrice: new FormControl(null, Validators.required), // number
-        premiumCompressedDays: new FormControl(null, Validators.required), // number
-        premiumCompressedPrice: new FormControl(null, Validators.required), // number
-      }),
-      extraOfferChanges: new FormGroup({
-        useExtraOfferChanges: new FormControl(false),
-        extraChangesDays: new FormControl(null, Validators.required), // number
-        extraChangesPrice: new FormControl(null, Validators.required), // number
-      }),
-      commercialOffer: new FormGroup({
-        useCommercialOffer: new FormControl(false), // boolean
-        priceForCommercialOffer: new FormControl(null) // number
-      }),
-
-      
-
-      basicCompressTime: null,
-      basicCompressPrice: null,
-
-      shortDeadlines: new FormGroup(
-        {
-          shortDeadlinesActivated: new FormControl(false),
-
-        }
-      ),
-
-      extraOptionsArray: this.fb.array([
-      ])
-    });
-
-
-  }
+  ngOnInit() { }
 
   changesArrayCounter() {
     const changes = new Array();
@@ -109,72 +43,60 @@ export class ThirdStepCreationComponent implements OnInit {
   // -------------------- Get main  optionsArray --------------------
 
   get mainOptionsArray() {
-    return this.packagesForm.get('mainOptions') as FormArray;
+    return this.userService.main_options;
   }
 
-  // ---------- Add option to main packages
+  // ------------------- Add option to main packages ---------------
   addMainOptin() {
-    this.mainOptionsArray.push(this.fb.group(
+
+    this.userService.main_options.push(
       {
-        title: [null, Validators.required],
+        title: null,
         basic: false,
-        standart: false,
+        advanced: false,
         premium: false
-      }
-    ));
+      });
   }
 
   deleteMainOption(index) {
-    this.mainOptionsArray.removeAt(index);
+    this.userService.removeMainOption(index)
   }
 
-  saveStep() {
-    if (this.packagesForm.invalid) {
-      return;
+  public nextStep(form: NgForm) {
+    this.submited = true;
+    if(form.invalid) {
+      console.log('invalid');
+      console.log(this.userService)
+      return
     }
-    console.log(this.packagesForm.value);
-    // console.log(this.packagesForm.value.optionsArray = this.mainOptionsArray);
-  }
-
-  get useAllPackages() {
-
-    return this.packagesForm.get('allPackages').value;
+    this.userOffersService.updateService(this.userService)
+      .pipe(filter((res: any) => !!res))
+      .subscribe(res => {
+        this.userService.step = res.step;
+      });
   }
 
   openAllPackages() {
-    this.packagesForm.controls['allPackages'].setValue(true);
+    this.userService.allPackages = true;
   }
 
   changePackageAmount(e: boolean) {
-    console.log(e)
+    console.log(e);
     this.showPackages = e;
   }
 
 
 
-  // *********************** Extra optins functions *******************//
 
-  // -------------------- Get extra optionsArray --------------------
-
-  get extraOptionsArray() {
-    return this.packagesForm.get('extraOptionsArray') as FormArray;
-  }
-
-  addExtraOptin() {
-    this.extraOptionsArray.push(this.fb.group(
-      {
-        optionTitle: null,
-        optionDescription: null,
-        optionPrice: null,
-        optionPerTime: null
-      }
-    ));
-    console.log(this.extraOptionsArray)
-  }
 
   // -------------------- Show options --------------------
 
   showOptions() {
     this.optionsVisible = !this.optionsVisible;
   }
+
+  quite = () => {
+    this.router.navigate([this.translatedPath]);
+  }
+
 }

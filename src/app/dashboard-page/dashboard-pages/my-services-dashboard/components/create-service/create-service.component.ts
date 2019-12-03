@@ -25,7 +25,7 @@ export class CreateServiceComponent implements OnInit {
 
   ngOnInit() {
     this.getUserService();
-    this.currentStep = 1;
+    // this.currentStep = 1;
   }
 
   //  ** load userServiceData from server
@@ -40,8 +40,8 @@ export class CreateServiceComponent implements OnInit {
         filter((response: any) => !!response)
       )
       .subscribe(response => {
-
-        this.userService = plainToClass(UserServiceModel, response.userOffer);
+        console.log(response)
+        this.userService = plainToClass(UserServiceModel, response.offer);
 
       });
 
@@ -56,5 +56,7 @@ export class CreateServiceComponent implements OnInit {
       this.currentStep = stepIndex;
     }
   }
+
+
 
 }

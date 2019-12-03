@@ -19,7 +19,7 @@
           <mat-form-field>
             <input matInput [type]="hide ? 'password' : 'text'" name="password" formControlName="password" required>
             <mat-label>Пароль</mat-label>
-            <button class="pass" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            <button type="button" class="pass" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
               [attr.aria-pressed]="hide" [style.color]="hide ? '#DBDBDB': '#000'">
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
@@ -43,7 +43,7 @@
         <section class="social-login">
             <span>или  войти с помощью </span>
               <div class="social">
-                  <button class="fb"></button><button class="gl"></button><button class="lin"></button>
+                  <button type="button" class="fb"></button><button type="button"class="gl"></button><button type="button" class="lin"></button>
               </div>
           </section>
       </div>

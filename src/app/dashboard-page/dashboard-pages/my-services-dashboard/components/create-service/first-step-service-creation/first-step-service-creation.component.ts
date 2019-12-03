@@ -1,19 +1,16 @@
 import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
 
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { CategoryInterface } from 'src/app/shared/interfaces/category.interface';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { UserServiceModel } from 'src/app/models/user-service/user-service.model';
-import { filter } from 'rxjs/operators';
-
-import { plainToClass, Expose } from 'class-transformer';
+import { filter, first } from 'rxjs/operators';
 import { untilDestroyed } from 'ngx-take-until-destroy';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { UserOffersService } from '../../../services/user-offers.service';
-// import { EventEmitter } from 'events';
+import { LocalizeRouterService } from 'localize-router';
 
 
 @Component({
@@ -24,21 +21,19 @@ import { UserOffersService } from '../../../services/user-offers.service';
 export class FirstStepServiceCreationComponent implements OnInit {
   public categoryList: CategoryInterface[] = [];
   public firstStepForm: FormGroup;
-
   public categories = [];
   // tslint:disable-next-line: variable-name
   public sub_categories = [];
 
   files: any = [];
   previewUrl: any;
-
   visible = true;
   selectable = true;
   removable = true;
   addOnBlur = true;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
-  tags = [];
-
+  tags: { tag: string }[] = [];
+  translatedPath: any = this.localize.translateRoute('/dashboard/my-services');
 
   constructor(
     private userOffersService: UserOffersService,
@@ -48,72 +43,51 @@ export class FirstStepServiceCreationComponent implements OnInit {
     // tslint:disable-next-line: variable-name
     private _route: ActivatedRoute,
     private activatedRoute: ActivatedRoute,
+    private localize: LocalizeRouterService,
   ) { }
 
   @Input() userService: UserServiceModel;
-  @Output() public setCurrentStep = new EventEmitter();
 
   ngOnInit() {
     this.userOffersService.getCategorys()
-      .pipe(filter((res: any) => !!res))
+      .pipe(
+        filter((res: any) => !!res),
+        first()
+      )
       .subscribe((res: any) => {
         this.categoryList = res.category;
-        this._loadSubcategoryFilter();
+        if (this.userService.category) {
+          this.loadSubcategoryFilter(this.userService.category)
+        }
       });
 
     if (this.userService.files) {
       this.previewUrl = this.userService.files;
     }
     this.tags = this.userService.tags;
-
-    this.firstStepForm = this.fb.group({
-      name: [null],
-      category: [null],
-      subCategory: [null, Validators.required],
-      tags: [null],
-      step: 1,
-      offerId: null
-    });
   }
-
-  // ** stop observables
   // tslint:disable-next-line: use-lifecycle-interface
-  ngOnDestroy() {
-  }
-
-
-  onFiltersChange() {
-    if (this.categoryList.length > 0) {
-      this._loadSubcategoryFilter();
-    }
-  }
+  ngOnDestroy() { }
 
   // tslint:disable-next-line: variable-name
-  private _loadSubcategoryFilter = () => {
-    if (!this.firstStepForm.value.category && !this.userService.subCategory) {
-      this.sub_categories = [];
-      // this.userService.subCategory = null;
-      return;
-    } else if (this.userService.subCategory && !this.firstStepForm.value.category) {
-      const x: any = this.categoryList.find((d: any) => d.link === this.userService.category);
-      this.sub_categories = x.sub_categories;
-      return;
-    } else {
-      const x: any = this.categoryList.find((d: any) => d.link === this.firstStepForm.value.category);
-      this.sub_categories = x.sub_categories;
-    }
+  public loadSubcategoryFilter = (category: string) => {
+    const x: any = this.categoryList.find((d: any) => d.link === category);
+    this.sub_categories = x.sub_categories;
+    return;
   }
 
-  registrate = () => {
-    this.firstStepForm.value.offerId = this.userService.id;
-    this.firstStepForm.value.tags = this.tags;
-    this.userOffersService.updateService(this.firstStepForm.value)
-    .pipe(filter((res: any) => !! res))
-    .subscribe(
-      (res) => {
-        this.setCurrentStep.emit(2);
-      }
-    );
+  public goNextStep = (form: NgForm) => {
+    this.userService.tags = this.tags;
+    if (!form.valid) {
+      return;
+    }
+    this.userOffersService.updateService(this.userService)
+      .pipe(filter((res: any) => !!res))
+      .subscribe(
+        (res) => {
+          this.userService.step = res.step;
+        }
+      );
   }
 
   // ------------- put offerId in params -----------//
@@ -126,13 +100,16 @@ export class FirstStepServiceCreationComponent implements OnInit {
     });
   }
 
-  //  --------------- file uploading ---------------
+  //  ----------  choose Main OfferPhoto  ----------
+  putAsMainPhoto = (link: string) => {
+    this.userService.offerMainImage = link;
+  }
 
+  //  --------------- file uploading ---------------
   fileProgress = (event: any) => {
     const formData: FormData = new FormData();
     formData.append('offerId', this.userService.id);
     this.files = [];
-    // tslint:disable-next-line: prefer-for-of
     for (let index = 0; index < event.length; index++) {
       this.files.push(event[index]);
     }
@@ -142,17 +119,14 @@ export class FirstStepServiceCreationComponent implements OnInit {
     });
 
     // ------- load Files -----
-
     this.userOffersService.uploadFiles(formData)
       .subscribe((res: []) => {
         this.previewUrl = res;
       });
   }
 
-
   // --------------- delete files -----------------//
-
-  deleteAttachment(index: number) {
+  deleteAttachment = (index: number) => {
     this.userOffersService.deleteFile({ id: index })
       .subscribe((res: any) => {
         if (res.status === 'ok') {
@@ -164,7 +138,7 @@ export class FirstStepServiceCreationComponent implements OnInit {
   }
 
   // ------------ tag-chips----------------------------//
-  add(event: MatChipInputEvent): void {
+  add = (event: MatChipInputEvent): void => {
     const input = event.input;
     const value = event.value;
 
@@ -179,12 +153,15 @@ export class FirstStepServiceCreationComponent implements OnInit {
     }
   }
 
-  remove(tag): void {
+  remove = (tag): void => {
     const index = this.tags.indexOf(tag);
 
     if (index >= 0) {
       this.tags.splice(index, 1);
     }
+  }
+  public quite = () => {
+    this.router.navigate([this.translatedPath]);
   }
 
 }
