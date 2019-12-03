@@ -14,9 +14,7 @@ export class DashboardPageComponent implements OnInit {
   color = 'accent';
   checked = false;
   disabled = false;
-
   dashboardMenu = dashboardMenuConst;
-
   user: User;
   constructor(
     private authService: AuthentificationService,
