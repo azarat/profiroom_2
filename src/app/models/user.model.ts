@@ -1,5 +1,5 @@
-import { UserServiceModel } from '../user-service/user-service.model';
-import { Expose } from 'class-transformer';
+import { UserServiceModel } from './user-service.model';
+import { Expose, Type } from 'class-transformer';
 
 export class User {
   @Expose() id: number;
@@ -21,6 +21,8 @@ export class User {
   @Expose() role_id: number;
   // tslint:disable-next-line: variable-name
   @Expose() updated_at: any;
-  userServices: UserServiceModel[];
+
+  @Type(() => UserServiceModel) userservice: UserServiceModel[];
+
 
 }

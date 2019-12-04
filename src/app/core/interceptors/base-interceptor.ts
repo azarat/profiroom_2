@@ -16,7 +16,7 @@ import {
 } from 'rxjs/operators';
 import {
   User
-} from 'src/app/models/user/user.model';
+} from 'src/app/models/user.model';
 import {
   AuthentificationService
 } from '../services/auth.service';

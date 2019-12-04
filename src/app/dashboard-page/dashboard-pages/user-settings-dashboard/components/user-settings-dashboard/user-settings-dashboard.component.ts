@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DashboardSettingsModel } from 'src/app/models/dashboard-settings.model';
 
 @Component({
   selector: 'app-user-settings-dashboard',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-settings-dashboard.component.scss']
 })
 export class UserSettingsDashboardComponent implements OnInit {
+
+  public dashboardSettingsModel: DashboardSettingsModel;
 
   constructor() { }
 

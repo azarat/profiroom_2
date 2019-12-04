@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, HostListener } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, Validators, FormControl } from '@angular/forms';
-import { UserServiceModel } from 'src/app/models/user-service/user-service.model';
+import { UserServiceModel } from 'src/app/models/user-service.model';
 import { NgForm } from '@angular/forms';
 
 import { trigger, state, style, animate, transition, } from '@angular/animations';
@@ -59,15 +59,15 @@ translatedPath: any = this.localize.translateRoute('/dashboard/my-services');
   }
 
   deleteMainOption(index) {
-    this.userService.removeMainOption(index)
+    this.userService.removeMainOption(index);
   }
 
   public nextStep(form: NgForm) {
     this.submited = true;
-    if(form.invalid) {
+    if (form.invalid) {
       console.log('invalid');
-      console.log(this.userService)
-      return
+      console.log(this.userService);
+      return;
     }
     this.userOffersService.updateService(this.userService)
       .pipe(filter((res: any) => !!res))

@@ -1,1 +1,12 @@
 <p>user-settings-dashboard works!</p>
+
+<mat-tab-group animationDuration="2000ms">
+  <mat-tab label="Общие">
+    <app-user-settings-dashboard-main [dashboardSettingsModel]="dashboardSettingsModel"></app-user-settings-dashboard-main>
+  </mat-tab>
+  <mat-tab label="Финансы"></mat-tab>
+  <mat-tab label="Уведомления"></mat-tab>
+  <mat-tab label="Безопасность"></mat-tab>
+</mat-tab-group>
+
+

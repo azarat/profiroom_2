@@ -12,7 +12,7 @@ import {
 } from '@angular/forms';
 import {
   User
-} from 'src/app/models/user/user.model';
+} from 'src/app/models/user.model';
 import {
   AuthentificationService
 } from 'src/app/core/services/auth.service';

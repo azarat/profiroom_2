@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LocalizeRouterService } from 'localize-router';
-import { UserServiceModel } from 'src/app/models/user-service/user-service.model';
+import { UserServiceModel } from 'src/app/models/user-service.model';
 
 import { map, filter } from 'rxjs/operators';
 import { plainToClass } from 'class-transformer';
@@ -31,7 +31,7 @@ export class MyServicesHomeComponent implements OnInit {
   ngOnInit() {
     this.userOfferService.showServices()
       .subscribe((res: any) => {
-        console.log(res)
+        console.log(res);
         if (res.userOffers.length > 0) {
           this.userService = plainToClass(UserServiceModel, res.userOffers.slice().reverse());
         }
@@ -68,7 +68,7 @@ export class MyServicesHomeComponent implements OnInit {
     );
   }
   showMenu(i: number) {
-    if(this.menuOpen !== i) {
+    if (this.menuOpen !== i) {
       this.menuOpen = i;
     } else {
       this.menuOpen = null;

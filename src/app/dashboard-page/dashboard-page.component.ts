@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthentificationService } from '../core/services/auth.service';
-import { User } from '../models/user/user.model';
+import { User } from '../models/user.model';
 import { UserService } from '../core/services/user.service';
 import { dashboardMenuConst } from './consts/dashboard-menu.const';
 
