@@ -17,12 +17,15 @@
           </mat-form-field>
 
           <mat-form-field>
-            <input matInput [type]="hide ? 'password' : 'text'" name="password" formControlName="password" required>
+            <input class="pass" matInput [type]="hide ? 'password' : 'text'" name="password" formControlName="password" required>
             <mat-label>Пароль</mat-label>
-            <button type="button" class="pass" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            <!-- <button type="button" class="pass" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
               [attr.aria-pressed]="hide" [style.color]="hide ? '#DBDBDB': '#000'">
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-            </button>
+            </button> -->
+            <span class="show-pass" (click)="hide = !hide" [style.color]="hide ? '#DBDBDB': '#000'">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </span>
             <mat-error *ngIf="loginForm.get('password').hasError('required')">{{ "Введите пароль" }}</mat-error>
           </mat-form-field>
           <section class="controls">
@@ -32,7 +35,7 @@
 
           <section  class="submit">
 
-            <button  mat-button  type="submit" mat-raised-button>
+            <button class="btn" type="submit"  [disabled]="loginForm.invalid || loginForm.untached">
                 Войти
             </button>
 
@@ -43,7 +46,7 @@
         <section class="social-login">
             <span>или  войти с помощью </span>
               <div class="social">
-                  <button type="button" class="fb"></button><button type="button"class="gl"></button><button type="button" class="lin"></button>
+                  <button  type="button" class="fb"></button><button type="button"class="gl"></button><button type="button" class="lin"></button>
               </div>
           </section>
       </div>

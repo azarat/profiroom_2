@@ -20,6 +20,7 @@ import { LoginPageComponent } from './authentification-page/login-page/login-pag
 import { RegistrationPageComponent } from './authentification-page/registration-page/registration-page.component';
 import { SetNewPassComponent } from './set-new-pass/set-new-pass.component';
 import { PassResetGuard } from '../core/guards/pass-reset.guard';
+import { EmailValidatorModule } from '../shared/directives/email-validator.module';
 
 
 const routes: Routes = [
@@ -63,7 +64,10 @@ const routes: Routes = [
     RegistrationPageComponent,
     ResetPasswordPageComponent,
     AuthentificationPageComponent,
-    SetNewPassComponent
+    SetNewPassComponent,
+
+    //directives
+ 
   ],
   imports: [
     CommonModule,
@@ -82,14 +86,17 @@ const routes: Routes = [
     // created
     LanguageModule,
     MainHeaderModule,
-    InformPopupModule
-
+    InformPopupModule,
+    
+    
+    
   ],
   exports: [
     ResetPasswordPageComponent,
     AuthentificationPageComponent
   ],
   providers: [
+    EmailValidatorModule,
     // {
     //   provide: AuthServiceConfig,
     //   useFactory: provideConfig

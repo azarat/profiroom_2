@@ -83,12 +83,13 @@ input {
       line-height: 20px;
   }
 }
-
-.pass.mat-icon-button.mat-button-base {
+.show-pass {
   position: absolute;
-  right: 0;
-  top: -37px;
+  cursor: pointer;
+  right: 8px;
+  top: 53%;
   font-size: 25px;
+  transform: translateY(-50%);
 }
 
 .controls {
@@ -122,13 +123,14 @@ input {
 .submit {
   text-align: center;
   font-family: "Source Sans Pro", sans-serif;
+  margin: auto;
   button{
   padding: 13px 73px;
   color: #ffffff;
   font-size: 16px;
   font-weight: 700;
-  background: #3C7EEA;
-  box-shadow: 0px 10px 20px rgba(80, 123, 252, 0.5);
+  // background: #3C7EEA;
+  // box-shadow: 0px 10px 20px rgba(80, 123, 252, 0.5);
   border-radius: 8px;
   }
 

@@ -27,7 +27,7 @@ export const dashboardMenuConst = [
   },
   {
     title: 'настройки',
-    link: '/dashboard',
+    link: '/dashboard/settings',
     class: 'settings'
   }
 ];

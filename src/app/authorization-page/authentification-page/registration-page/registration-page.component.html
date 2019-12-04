@@ -14,7 +14,7 @@
         </mat-form-field>
         <mat-form-field>
             <mat-label>Введите пароль</mat-label>
-            <input matInput type="password" [type]="hideF ? 'password' : 'text'" formControlName="password" required />
+            <input class="pass" matInput type="password" [type]="hideF ? 'password' : 'text'" formControlName="password" required />
             <div class="pass-erorrs">
               <span [ngClass]="registrationForm.controls['password'].hasError('required') || registrationForm.controls['password'].hasError('hasNumber') ? 'unvalidated': 'validated'"></span>
               <span [ngClass]="registrationForm.controls['password'].hasError('required') || registrationForm.controls['password'].hasError('hasCapitalCase') ? 'unvalidated': 'validated'"></span>
@@ -30,10 +30,13 @@
                 <li *ngIf="registrationForm.controls['password'].hasError('minLengthCharacters')">Пароль не меньше 8 символов</li>
               </ul>
             </div>
-            <button type="button" class="pass" mat-icon-button matSuffix (click)="hideF = !hideF" [attr.aria-label]="'Hide password'"
+            <!-- <button type="button" class="pass" mat-icon-button matSuffix (click)="hideF = !hideF" [attr.aria-label]="'Hide password'"
             [attr.aria-pressed]="hideF" [style.color]="hideF ? '#DBDBDB': '#000'">
             <mat-icon>{{hideF ? 'visibility_off' : 'visibility'}}</mat-icon>
-          </button>
+          </button> -->
+          <span class="show-pass" (click)="hideF = !hideF" [style.color]="hideF ? '#DBDBDB': '#000'">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </span>
             <mat-error *ngIf="registrationForm.get('password').hasError('required')">{{ "Введите пароль" }}</mat-error>
             <mat-error *ngIf="registrationForm.get('password').invalid && !registrationForm.get('password').hasError('required')">{{'Слабый пароль'
             }}</mat-error>
@@ -41,10 +44,14 @@
         <mat-form-field>
           <mat-label>Повторно введите пароль</mat-label>
             <input matInput type="password" [type]="hideS ? 'password' : 'text'" formControlName="password_confirmation" required />
-            <button type="button" class="pass" mat-icon-button matSuffix (click)="hideS = !hideS" [attr.aria-label]="'Hide password'"
+            <!-- <button type="button" class="pass" mat-icon-button matSuffix (click)="hideS = !hideS" [attr.aria-label]="'Hide password'"
             [attr.aria-pressed]="hideS" [style.color]="hideS ? '#DBDBDB': '#000'">
             <mat-icon>{{hideS ? 'visibility_off' : 'visibility'}}</mat-icon>
-          </button>
+          </button> -->
+
+          <span class="show-pass" (click)="hideS = !hideS" [style.color]="hideS ? '#DBDBDB': '#000'">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </span>
             <mat-error *ngIf="registrationForm.get('password_confirmation').hasError('required')">{{ "Введите пароль" }}</mat-error>
             <mat-error *ngIf="registrationForm.get('password_confirmation').hasError('NoPassswordMatch')">{{
               "Пароли не совпадают"
