@@ -19,10 +19,7 @@
           <mat-form-field>
             <input class="pass" matInput [type]="hide ? 'password' : 'text'" name="password" formControlName="password" required>
             <mat-label>Пароль</mat-label>
-            <!-- <button type="button" class="pass" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-              [attr.aria-pressed]="hide" [style.color]="hide ? '#DBDBDB': '#000'">
-              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-            </button> -->
+
             <span class="show-pass" (click)="hide = !hide" [style.color]="hide ? '#DBDBDB': '#000'">
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </span>
@@ -35,7 +32,7 @@
 
           <section  class="submit">
 
-            <button class="btn" type="submit"  [disabled]="loginForm.invalid || loginForm.untached">
+            <button class="btn" type="submit"  [disabled]="loginForm.invalid">
                 Войти
             </button>
 

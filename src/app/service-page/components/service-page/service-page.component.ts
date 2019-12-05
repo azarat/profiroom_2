@@ -14,9 +14,6 @@ import { LocalStorageService } from 'src/app/core/services/local-storage.service
   styleUrls: ['./service-page.component.scss']
 })
 export class ServicePageComponent implements OnInit {
-
-  @ViewChild('stickyMenu', {static: false}) menuElement: ElementRef;
-
   // public offerId: object = null;
   public offerData: OfferDataInterface = null;
   catalogSubscription: Subscription;
@@ -33,8 +30,6 @@ export class ServicePageComponent implements OnInit {
     // tslint:disable-next-line: variable-name
     private _router: Router,
     private offerDataService: ServicePageService,
-    // tslint:disable-next-line: variable-name
-    // private localStorageService: LocalStorageService,
     private localStorageService: LocalStorageService
   ) {
     this._route.queryParams
@@ -46,6 +41,9 @@ export class ServicePageComponent implements OnInit {
       this.getViewedOffers();
     });
   }
+
+  @ViewChild('stickyMenu', {static: false}) menuElement: ElementRef;
+  @HostListener('window:scroll', [])
 
   ngOnInit() { }
 
@@ -118,7 +116,7 @@ export class ServicePageComponent implements OnInit {
     this.elementPosition = this.menuElement.nativeElement.offsetTop;
   }
 
-  @HostListener('window:scroll', ['$event'])
+
 
   handleScroll() {
     const windowScroll = window.pageYOffset;

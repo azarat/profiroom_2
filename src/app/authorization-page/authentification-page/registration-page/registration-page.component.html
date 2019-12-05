@@ -35,7 +35,7 @@
             <mat-icon>{{hideF ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button> -->
           <span class="show-pass" (click)="hideF = !hideF" [style.color]="hideF ? '#DBDBDB': '#000'">
-            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <mat-icon>{{hideF ? 'visibility_off' : 'visibility'}}</mat-icon>
           </span>
             <mat-error *ngIf="registrationForm.get('password').hasError('required')">{{ "Введите пароль" }}</mat-error>
             <mat-error *ngIf="registrationForm.get('password').invalid && !registrationForm.get('password').hasError('required')">{{'Слабый пароль'
@@ -50,7 +50,7 @@
           </button> -->
 
           <span class="show-pass" (click)="hideS = !hideS" [style.color]="hideS ? '#DBDBDB': '#000'">
-            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <mat-icon>{{hideS ? 'visibility_off' : 'visibility'}}</mat-icon>
           </span>
             <mat-error *ngIf="registrationForm.get('password_confirmation').hasError('required')">{{ "Введите пароль" }}</mat-error>
             <mat-error *ngIf="registrationForm.get('password_confirmation').hasError('NoPassswordMatch')">{{

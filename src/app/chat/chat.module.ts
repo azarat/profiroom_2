@@ -6,10 +6,17 @@ import { MessagerToolsComponent } from './components/messager-tools/messager-too
 import { ChatComponent } from './components/chat-component/chat-component';
 
 
+//  socet module
+
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+const config: SocketIoConfig = { url: 'http://localhost:8988', options: {} }
+//
+
 @NgModule({
   declarations: [ChatComponent, MessagerToolsComponent, CollocutorsListComponent, MessagerComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    SocketIoModule.forRoot(config)
   ],
   exports: [ChatComponent]
 })
