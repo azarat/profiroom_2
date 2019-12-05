@@ -7,7 +7,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // tslint:disable-next-line: max-line-length
-import { UserSettingsDashboardMainComponent } from './components/user-settings-dashboard/user-settings-dashboard-main/user-settings-dashboard-main.component';
+import { GeneralUserSettingsComponent } from './components/user-settings-dashboard/general-user-settings/general-user-settings.component';
 
 const servicesRoutes: Routes = [
   {
@@ -18,7 +18,7 @@ const servicesRoutes: Routes = [
 ];
 
 @NgModule({
-  declarations: [UserSettingsDashboardComponent, UserSettingsDashboardMainComponent],
+  declarations: [UserSettingsDashboardComponent, GeneralUserSettingsComponent],
   imports: [
     CommonModule,
     LocalizeRouterModule.forChild(servicesRoutes),

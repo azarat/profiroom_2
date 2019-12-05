@@ -14,4 +14,7 @@ export class UserDashboardSettingsService {
   uploadFiles(files){
     return this.http.post('/loadAva', files);
   }
+  public getServiceData() {
+    return this.http.get('/getUserSettings');
+  }
 }

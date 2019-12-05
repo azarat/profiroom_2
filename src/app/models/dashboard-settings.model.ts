@@ -5,5 +5,9 @@ import {
 
 
 export class DashboardSettingsModel {
-  @Expose() file: any;
+  @Expose() avatar: string;
+  @Expose() name: string;
+  @Expose() surname: string;
+  @Expose() gender: number;
+  @Expose() description: number;
 }

@@ -1,8 +1,8 @@
-<p>user-settings-dashboard works!</p>
+<h1>Настройки</h1>
 
-<mat-tab-group animationDuration="2000ms">
+<mat-tab-group class="tabs" animationDuration="2000ms" mat-align-tabs="center" >
   <mat-tab label="Общие">
-    <app-user-settings-dashboard-main [dashboardSettingsModel]="dashboardSettingsModel"></app-user-settings-dashboard-main>
+    <app-general-user-settings *ngIf="dashboardSettings" [dashboardSettings]="dashboardSettings"></app-general-user-settings>
   </mat-tab>
   <mat-tab label="Финансы"></mat-tab>
   <mat-tab label="Уведомления"></mat-tab>
