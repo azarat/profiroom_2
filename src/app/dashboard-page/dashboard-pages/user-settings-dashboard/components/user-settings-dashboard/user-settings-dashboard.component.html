@@ -2,7 +2,7 @@
 
 <mat-tab-group class="tabs" animationDuration="2000ms" mat-align-tabs="center" >
   <mat-tab label="Общие">
-    <app-general-user-settings *ngIf="dashboardSettings" [dashboardSettings]="dashboardSettings"></app-general-user-settings>
+    <app-general-user-settings *ngIf="userSettingsModel" [userSettingsModel]="userSettingsModel"></app-general-user-settings>
   </mat-tab>
   <mat-tab label="Финансы"></mat-tab>
   <mat-tab label="Уведомления"></mat-tab>

@@ -1,0 +1,25 @@
+<div class="data">
+  <div class="day">
+    <select name="day"  [(ngModel)]="userSettingsModel.birthDay.day" (ngModelChange)="filterChanhe()">
+      <ng-container *ngFor="let day of days, let i = index">
+        <option [value]="day" *ngIf="(i+1) <=  maxDays">{{ day }}</option>
+
+
+      </ng-container>
+    </select>
+
+    {{maxDays}}
+  </div>
+  <div class="mounth">
+    <select name="month" id=""  [(ngModel)]="userSettingsModel.birthDay.month" (ngModelChange)="filterChanhe()">
+      <ng-container *ngFor="let month of mounth, let i = index">
+        <option [value]="month">{{ month }}</option>
+      </ng-container>
+    </select>
+  </div>
+  <div class="year" >
+    <select name="year" id="" [(ngModel)]="userSettingsModel.birthDay.year" (ngModelChange)="filterChanhe()" >
+      <option [value]="year" *ngFor="let year of createArrayYear()">{{ year }}</option>
+    </select>
+  </div>
+</div>

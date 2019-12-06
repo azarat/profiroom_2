@@ -1,0 +1,60 @@
+<div class="inform_section">
+  <div class="inform_section__title">
+    <h3>О себе</h3>
+  </div>
+  <div class="inform_section__fields">
+    <div class="top-block">
+      <div class="user-avatar" >
+        <h3 class="block-title">Аватар</h3>
+        <form #form="ngForm" >
+          <div>
+            <input type="file" id="file" class="input-file" #fileInput (change)="avatarUpload($event)" >
+            <label for="file" class="img-wrapper">
+              <div class="ava-block">
+                <div class="img-block">
+                    <img [src]="'https://www.thecubetest.site/Backend/storage/app/' + userSettingsModel.avatar" alt="">
+                  </div>
+                  <div class="sub-btn"></div>
+              </div>
+            </label>
+          </div>
+        </form>
+      </div>
+      <div class="full-name-block">
+        <div class="fields">
+          <h5 class="fields-title">Имя</h5>
+          <input class="fields-value" type="text" [(ngModel)]="userSettingsModel.name">
+        </div>
+        <div class="fields">
+          <h5 class="fields-title"> Фамилия</h5>
+          <input class="fields-value" type="text" [(ngModel)]="userSettingsModel.surname">
+        </div>
+      </div>
+    </div>
+    <div class="gender-block">
+      <h3 class="block-title">Пол</h3>
+      <input type="radio" id="male" class="radioButton"
+      name="gender" value="male" [(ngModel)]="userSettingsModel.gender">
+      <label for="male"></label>
+      <h5 class="radio-title">Мужской</h5>
+
+      <input type="radio" id="female" class="radioButton"
+      name="gender" value="female" [(ngModel)]="userSettingsModel.gender">
+      <label for="female"></label>
+      <h5 class="radio-title">Женский</h5>
+    </div>
+    <div class="birthday-block">
+      <div class="block-title">Дата рождения</div>
+      <!-- <input class="fields-value" type="text" [(ngModel)]="dashboardSettings.description"> -->
+      <app-birthday-user-settings *ngIf="userSettingsModel" [userSettingsModel]="userSettingsModel"></app-birthday-user-settings>
+    </div>
+    <div class="about_me-block">
+      <!-- <div class="block-title">Расскажите о  себе</div> -->
+      <h5 class="fields-title">Расскажите о  себе</h5>
+      <textarea class="fields-value" [(ngModel)]="userSettingsModel.description" cols="45"></textarea>
+    </div>
+  </div>
+</div>
+
+
+

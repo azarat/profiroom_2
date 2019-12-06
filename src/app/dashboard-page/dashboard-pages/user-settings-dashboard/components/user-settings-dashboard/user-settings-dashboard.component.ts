@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DashboardSettingsModel } from 'src/app/models/dashboard-settings.model';
+import { UserSettingsModel } from 'src/app/models/user-settings.model';
 import { ActivatedRoute } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { plainToClass } from 'class-transformer';
@@ -12,9 +12,10 @@ import { UserDashboardSettingsService } from '../../services/user-dashboard-sett
 })
 export class UserSettingsDashboardComponent implements OnInit {
 
-  public dashboardSettings: DashboardSettingsModel ;
+  public userSettingsModel: UserSettingsModel ;
 
   constructor(
+    // tslint:disable-next-line: variable-name
     private _route: ActivatedRoute,
     private userDashboardSettingsService: UserDashboardSettingsService,
   ) { }
@@ -35,8 +36,8 @@ export class UserSettingsDashboardComponent implements OnInit {
       )
       .subscribe(response => {
 
-        this.dashboardSettings = plainToClass(DashboardSettingsModel, response);
-        console.log(this.dashboardSettings)
+        this.userSettingsModel = plainToClass(UserSettingsModel, response);
+        // console.log(this.userSettingsModel)
       });
 
   }
