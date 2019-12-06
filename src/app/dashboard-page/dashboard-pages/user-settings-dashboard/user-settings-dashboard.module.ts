@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { UserSettingsDashboardComponent } from './components/user-settings-dashboard/user-settings-dashboard.component';
 import { Routes, RouterModule } from '@angular/router';
 import { LocalizeRouterModule } from 'localize-router';
-import { MatTabsModule } from '@angular/material/tabs';
+import { MatTabsModule, MatSelectModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // tslint:disable-next-line: max-line-length
@@ -29,7 +29,8 @@ const servicesRoutes: Routes = [
     ReactiveFormsModule,
 
     // -----matherials
-    MatTabsModule
+    MatTabsModule,
+    MatSelectModule
   ]
 })
 export class UserSettingsDashboardModule { }

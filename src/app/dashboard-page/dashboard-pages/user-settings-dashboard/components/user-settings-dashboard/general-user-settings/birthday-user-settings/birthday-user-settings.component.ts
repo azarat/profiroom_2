@@ -1,10 +1,10 @@
-import { Component, OnInit, Input } from "@angular/core";
-import { UserSettingsModel } from "src/app/models/user-settings.model";
+import { Component, OnInit, Input } from '@angular/core';
+import { UserSettingsModel } from 'src/app/models/user-settings.model';
 
 @Component({
-  selector: "app-birthday-user-settings",
-  templateUrl: "./birthday-user-settings.component.html",
-  styleUrls: ["./birthday-user-settings.component.scss"]
+  selector: 'app-birthday-user-settings',
+  templateUrl: './birthday-user-settings.component.html',
+  styleUrls: ['./birthday-user-settings.component.scss']
 })
 export class BirthdayUserSettingsComponent implements OnInit {
   days = [];
