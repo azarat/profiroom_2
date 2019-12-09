@@ -84,3 +84,13 @@ nav {
     text-decoration: none;
   }
 }
+
+.reset-pass {
+  display: flex;
+  align-items: center;
+  button {
+    margin-left: 30px;
+    padding: 0 10px;
+    height: 30px;
+  }
+}

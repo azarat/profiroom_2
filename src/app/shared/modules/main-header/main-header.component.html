@@ -18,7 +18,8 @@
       <a [routerLink]="'/auth' | localize" role="button">Зарегистрироваться</a>
     </div>
   </div>
-  <div *ngIf="pageName === 'authoriz'">
+  <div class="reset-pass" *ngIf="pageName === 'authoriz'">
     <app-language></app-language>
+    <button class="btn" (click)="routeToMain()">На главную</button>
   </div>
 </div>

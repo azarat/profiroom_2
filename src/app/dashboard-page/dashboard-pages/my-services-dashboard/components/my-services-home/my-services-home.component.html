@@ -8,9 +8,9 @@
   </div>
 
 
-  <ng-container *ngIf="userService">
+  <ng-container *ngIf="userServices">
 
-    <div class="item" *ngFor="let userOffer of userService; let i = index" >
+    <div class="item" *ngFor="let userOffer of userServices; let i = index" >
       <div class="service-photo">
         <img src="" alt="">
       </div>
@@ -33,7 +33,7 @@
                         visibility_off
                         </i>
                     Скрыть услугу </li>
-                <li>
+                <li (click)="deleteService(userOffer.id)">
                     <i class="material-icons">
                         delete
                         </i>

@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { LocalizeRouterService } from 'localize-router';
 import { UserServiceModel } from 'src/app/models/user-service/user-service.model';
 
-import { map, filter } from 'rxjs/operators';
+import { map, filter, first } from 'rxjs/operators';
 import { plainToClass } from 'class-transformer';
 import { untilDestroyed } from 'ngx-take-until-destroy';
 import { UserOffersService } from '../../services/user-offers.service';
@@ -16,7 +16,7 @@ import { UserOffersService } from '../../services/user-offers.service';
 })
 export class MyServicesHomeComponent implements OnInit {
 
-  public userService: UserServiceModel = null;
+  public userServices: UserServiceModel = null;
   activatedRoute: ActivatedRoute;
   menuOpen = null;
   translatedPath: any = this.localize.translateRoute('/dashboard/my-services/create');
@@ -29,17 +29,25 @@ export class MyServicesHomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.userOfferService.showServices()
-      .subscribe((res: any) => {
-        console.log(res)
-        if (res.userOffers.length > 0) {
-          this.userService = plainToClass(UserServiceModel, res.userOffers.slice().reverse());
-        }
-      });
+    this.getUserServices();
+
   }
 
   // ngOnDestroy() {
   // }
+
+  getUserServices() {
+    this.userOfferService.showServices()
+    .pipe(
+      filter((res: any) => !!res),
+      first()
+    )
+    .subscribe((res: any) => {
+      if (res.userOffers.length > 0) {
+        this.userServices = plainToClass(UserServiceModel, res.userOffers.slice().reverse());
+      }
+    });
+  }
 
   createNewService() {
     this.userOfferService.serviceCreation()
@@ -79,6 +87,17 @@ export class MyServicesHomeComponent implements OnInit {
   onClickedOutside(e: Event) {
     console.log('Clicked outside:');
     // this.menuOpen = null;
+  }
+  deleteService(id: string){
+    this.userOfferService.deleteService(id)
+    .pipe(filter((res: any) => !! res))
+    .subscribe((res: any) => {
+      this.getUserServices();
+    });
+  }
+
+  private _removeService(id: number) {
+
   }
 
 }

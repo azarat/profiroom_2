@@ -1,7 +1,8 @@
 import { UserServiceModel } from '../user-service/user-service.model';
 import { Expose } from 'class-transformer';
+import { HttpClient } from '@angular/common/http';
 
-export class User {
+export class UserModel {
   @Expose() id: number;
   @Expose() checked: number;
   @Expose() email: string;
@@ -23,4 +24,12 @@ export class User {
   @Expose() updated_at: any;
   userServices: UserServiceModel[];
 
+  constructor(
+    private http: HttpClient
+  ){
+
+  }
+  public deleteService(id) {
+    return this.http.delete('/deleteOffer?' + 'offerId=' + id);
+  }
 }

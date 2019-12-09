@@ -29,6 +29,9 @@ export class UserOffersService {
   public updateService( formData){
     return this.http.post<any>('/updateOffer', formData);
   }
+  public deleteService(id) {
+    return this.http.delete('/deleteOffer?' + 'offerId=' + id);
+  }
 
   public getServiceData(offerId) {
     return this.http.post('/getOffer', offerId);
