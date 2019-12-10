@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GeneralUserSettingsComponent } from './components/user-settings-dashboard/general-user-settings/general-user-settings.component';
 import { MainUserSettingsComponent } from './components/user-settings-dashboard/general-user-settings/main-user-settings/main-user-settings.component';
 import { BirthdayUserSettingsComponent } from './components/user-settings-dashboard/general-user-settings/birthday-user-settings/birthday-user-settings.component';
+import { LocationLanguageUserSettingsComponent } from './components/user-settings-dashboard/general-user-settings/location-language-user-settings/location-language-user-settings.component';
 
 const servicesRoutes: Routes = [
   {
@@ -20,7 +21,7 @@ const servicesRoutes: Routes = [
 ];
 
 @NgModule({
-  declarations: [UserSettingsDashboardComponent, GeneralUserSettingsComponent, MainUserSettingsComponent, BirthdayUserSettingsComponent],
+  declarations: [UserSettingsDashboardComponent, GeneralUserSettingsComponent, MainUserSettingsComponent, BirthdayUserSettingsComponent, LocationLanguageUserSettingsComponent],
   imports: [
     CommonModule,
     LocalizeRouterModule.forChild(servicesRoutes),

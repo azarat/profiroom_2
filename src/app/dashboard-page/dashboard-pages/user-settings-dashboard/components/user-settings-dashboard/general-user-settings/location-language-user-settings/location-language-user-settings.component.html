@@ -1,0 +1,50 @@
+<div class="inform_section">
+  <div class="inform_section__title">
+    <h3>Местоположение и языки</h3>
+  </div>
+  <div class="inform_section__fields">
+    <div class="inputs-wrapper">
+
+      <div class="field-block">
+        <h5 class="fields-title">Страна</h5>
+        <input class="fields-value" type="text">
+      </div>
+
+      <div class="field-block">
+        <h5 class="fields-title">Город</h5>
+        <input class="fields-value" type="text">
+      </div>
+
+      <div class="field-block-multiple">
+
+        <div class="single-lang-wrapper" *ngFor="let arrayItem of userSettings.languages; let i = index">
+          <div class="field-block">
+            <h5 class="fields-title">Языка</h5>
+            <input class="fields-value" type="text" [(ngModel)]="userSettings.languages[i].langName" maxlength="15">
+          </div>
+          <div class="field-block language-level">
+            <label class="block-title" for="langLevel">Уровень владения</label>
+            <mat-select name="langLevel" id="langLevel" [(ngModel)]="userSettings.languages[i].langLevel">
+              <ng-container *ngFor="let level of languagesLevel">
+                <mat-option [value]="level">{{ level }}</mat-option>
+              </ng-container>
+            </mat-select>
+          </div>
+        </div>
+
+        <div class="add-languahe">
+          <button class="add btn-tetraty">
+            <i class="material-icons">
+              add_circle_outline
+            </i>
+            <span>Добавить язык</span>
+          </button>
+        </div>
+        <div class="delete-languahe">
+            <i class="material-icons" >delete</i>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

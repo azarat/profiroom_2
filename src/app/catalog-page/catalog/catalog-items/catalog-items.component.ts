@@ -25,12 +25,14 @@ export class ItemsComponent implements OnInit {
     private localize: LocalizeRouterService,
     private router: Router,
   ) {
+
+  }
+
+  ngOnInit() {
     this.GetOffersService.offersList.subscribe(data => {
       this.offersList = data;
     });
   }
-
-  ngOnInit() {}
 
   openOffer(offerid) {
     const translatedPath: any = this.localize.translateRoute('/service');

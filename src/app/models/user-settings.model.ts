@@ -16,4 +16,12 @@ export class UserSettingsModel {
     month: number;
     day: number;
   }
+  @Type(() => Languages) languages: Languages[];
 }
+
+export class Languages {
+  @Expose() langName: string;
+  @Expose() langLevel: number;
+}
+
+

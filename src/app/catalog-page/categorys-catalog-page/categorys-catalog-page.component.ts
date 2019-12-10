@@ -16,12 +16,12 @@ export class CategorysCatalogPageComponent implements OnInit {
     // private route: Router,
     // tslint:disable-next-line: no-shadowed-variable
     private GetCategorieItemsService: GetCategorieItemsService
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     this.GetCategorieItemsService.categoriesList$.subscribe((res: any) => {
       this.subcategoriesList = res;
-      console.log(this.subcategoriesList);
     });
   }
 }

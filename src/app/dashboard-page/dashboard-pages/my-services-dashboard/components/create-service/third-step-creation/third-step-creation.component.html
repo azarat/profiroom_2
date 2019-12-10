@@ -51,7 +51,7 @@
         <div class="packages-title" *ngFor="let package of packagesTypes; index as x" [ngClass]="{ 'field-required': title.invalid && submited }">
           <div class="textarea">
             <textarea [(ngModel)]="userService.packagesTitle[package +'Title']" name="title_{{ package }}" rows="2" [maxlength]="35" #title="ngModel"
-              [required]="(x == '0' && !userService.allPackages) || (userService.allPackages ) && submited"></textarea>
+              [required]="(x == 0 && !userService.allPackages) || (userService.allPackages ) && submited"></textarea>
           </div>
         </div>
 
@@ -65,7 +65,7 @@
         </div>
         <div class="textarea-wrap" *ngFor="let package of packagesTypes; let x = index">
           <textarea name="{{package + 'Description'}}" id="" [ngClass]="{ 'field-required': description.invalid && submited }" [(ngModel)]="userService.packagesDescriptions[package + 'Description']" #description="ngModel" [maxlength]="270"
-            [required]="(x == '0' && !userService.allPackages) || (userService.allPackages ) && submited"></textarea>
+            [required]="(x == 0 && !userService.allPackages) || (userService.allPackages ) && submited"></textarea>
         </div>
       </div>
       <!--------------------Time to Do -------------------->
@@ -79,7 +79,7 @@
         <div *ngFor="let package of packagesTypes; let x = index" [ngClass]="{ 'field-required': timeTodo.invalid && submited }">
           <div class="input-wrap">
             <input name="{{package + 'Term'}}" type="text" knifeOnlyNumbers maxlength="3" [(ngModel)]="userService.packagesTerms[package + 'Term']" #timeTodo="ngModel"
-              [required]="(x == '0' && !userService.allPackages) || (userService.allPackages ) && submited">
+              [required]="(x == 0 && !userService.allPackages) || (userService.allPackages ) && submited">
           </div>
         </div>
       </div>
@@ -92,7 +92,7 @@
 
         <div *ngFor="let package of packagesTypes; let x = index" [ngClass]="{ 'field-required': changes.invalid && submited }">
           <div class="select-wrap">
-            <mat-select [(ngModel)]="userService.packagesChanges[package + 'Changes']" name="{{package + 'Changes'}}" #changes="ngModel" [required]="(x == '0' && !userService.allPackages) || (userService.allPackages )">
+            <mat-select [(ngModel)]="userService.packagesChanges[package + 'Changes']" name="{{package + 'Changes'}}" #changes="ngModel" [required]="(x == 0 && !userService.allPackages) || (userService.allPackages )">
               <mat-option *ngFor="let change of changesArrayCounter(); let i = index" [value]="change">
                 {{ change }}
               </mat-option>
@@ -110,7 +110,7 @@
 
         <div *ngFor="let package of packagesTypes; let x = index" [ngClass]="{ 'field-required': packagePrice.invalid && submited }">
           <div class="input-wrap">
-            <input type="text" knifeOnlyNumbers maxlength="7" #packagePrice="ngModel" [required]="(x == '0' && !userService.allPackages) || (userService.allPackages ) && submited" [(ngModel)]="userService.packagesPrices[package + 'Price']"
+            <input type="text" knifeOnlyNumbers maxlength="7" #packagePrice="ngModel" [required]="(x == 0 && !userService.allPackages) || (userService.allPackages ) && submited" [(ngModel)]="userService.packagesPrices[package + 'Price']"
               name="{{package + 'Price'}}">
           </div>
         </div>

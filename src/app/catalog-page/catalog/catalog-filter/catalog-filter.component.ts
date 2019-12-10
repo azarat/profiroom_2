@@ -16,7 +16,7 @@ export class FilterComponent implements OnInit {
   public fliterOpen = false;
   // tslint:disable-next-line: variable-name
   public filterData: FilterInterface = {};
-  public subcategory;
+  // public subcategory;
 
   // private filters = new BehaviorSubject(this._filterData);
   // public filterVaraibles: Observable<FilterInterface>;
@@ -28,19 +28,19 @@ export class FilterComponent implements OnInit {
     private _route: ActivatedRoute
   ) {
     this._getOffersService.subCategory$.subscribe(data => {
-      this.subcategory = data;
-      this.filterData.subCategory = this.subcategory;
+      // this.subcategory = data;
+      this.filterData.subCategory = data;
     });
-    this._route.queryParams.subscribe(p => {
-      // console.log(p);
-      this.filterData.minPrice = p.minPrice;
-      this.filterData.maxPrice = p.maxPrice;
-      this.filterData.maxTerm = p.maxTerm;
-    });
+    // this._route.queryParams.subscribe(p => {
+    //   // console.log(p);
+    //   this.filterData.minPrice = p.minPrice;
+    //   this.filterData.maxPrice = p.maxPrice;
+    //   this.filterData.maxTerm = p.maxTerm;
+    // });
   }
 
   ngOnInit() {
-    this._getOffersService.setFilters(this.filterData);
+    // this._getOffersService.setFilters(this.filterData);
   }
 
   onFilterChange() {
