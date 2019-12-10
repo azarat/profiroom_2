@@ -1,5 +1,6 @@
 .inform_section{
   display: flex;
+  border-bottom: 1px solid #EBEEFF;
   &__title{
     padding: 50px 30px;
     width: 25%;
@@ -59,6 +60,7 @@
   }
   .block-title{
     margin-bottom: 10px;
+    margin-top: 4px;
   }
   .img-wrapper{
     width: 115px;
@@ -96,7 +98,7 @@
       right: 0;
       background: #FFFFFF;
       box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.08);
-      background-image: url(/assets/images/svg/settings-dashboard/pancile.svg);
+      background-image: url(/assets/images/svg/settings/pancile.svg);
       background-repeat: no-repeat;
       background-position: center;
 
@@ -197,6 +199,9 @@
 .birthday-block{
   max-width: 630px;
   margin-bottom: 30px;
+  .block-title{
+    margin-bottom: 7px;
+  }
 }
 .about_me-block{
   max-width: 630px;
@@ -213,6 +218,7 @@
     line-height: 125%;
     color: #707683;
     padding: 15px;
+    box-sizing: border-box;
   }
 }
 
