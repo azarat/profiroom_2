@@ -37,7 +37,7 @@ export class UserSettingsDashboardComponent implements OnInit {
       .subscribe(response => {
 
         this.userSettingsModel = plainToClass(UserSettingsModel, response);
-        // console.log(this.userSettingsModel)
+        console.log(this.userSettingsModel)
       });
 
   }

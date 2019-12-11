@@ -16,12 +16,26 @@ export class UserSettingsModel {
     month: number;
     day: number;
   }
+
+  @Expose() country: string;
+  @Expose() city: string;
+
   @Type(() => Languages) languages: Languages[];
+  @Type(() => Education) education: Education[];
 }
 
 export class Languages {
   @Expose() langName: string;
   @Expose() langLevel: number;
+}
+
+export class Education {
+  @Expose() institution: string;
+  @Expose() academicDegree: number;
+  @Expose() specialty: string;
+  @Expose() startEducation: number;
+  @Expose() finishEducation: number;
+  @Expose() diplomaFiles: any;
 }
 
 

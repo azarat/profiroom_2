@@ -1,0 +1,53 @@
+<div class="inform_section">
+  <div class="inform_section__title">
+    <h3>Высшее Образование</h3>
+  </div>
+  <div class="inform_section__fields">
+    <div class="field-block-multiple">
+
+      <div class="single-education-block" *ngFor="let arrayItem of userSettings.education; let i = index" >
+
+        <div class="field-block">
+          <h5 class="fields-title">Учебное заведение</h5>
+          <input class="fields-value" type="text" [(ngModel)]="userSettings.education[i].institution">
+        </div>
+
+        <div class="academicBlock">
+          <div class="field-block academic-degrees service-selects">
+            <label class="block-title" for="academicDegree">Учёная степень</label>
+            <mat-select name="academicDegree" id="academicDegree" [(ngModel)]="userSettings.education[i].academicDegree">
+              <ng-container *ngFor="let academicDegree of academicDegrees">
+                <mat-option [value]="academicDegree">{{ academicDegree }}</mat-option>
+              </ng-container>
+            </mat-select>
+          </div>
+          <div class="field-block">
+            <h5 class="fields-title">Специальность</h5>
+            <input class="fields-value" type="text" [(ngModel)]="userSettings.education[i].specialty">
+          </div>
+        </div>
+
+        <div class="studyPeriod">
+          <div class="field-block service-selects">
+            <label class="block-title" for="startEducation">Год старта</label>
+            <mat-select name="startEducation" id="startEducation" [(ngModel)]="userSettings.education[i].startEducation">
+              <ng-container *ngFor="let startEducation of createYears()">
+                <mat-option [value]="startEducation">{{ startEducation }}</mat-option>
+              </ng-container>
+            </mat-select>
+          </div>
+          <div class="field-block service-selects">
+            <label class="block-title" for="startEducation">Год окончания</label>
+            <mat-select name="startEducation" id="startEducation" [(ngModel)]="userSettings.education[i].finishEducation">
+              <ng-container *ngFor="let finishEducation of createYears()">
+                <mat-option [value]="finishEducation">{{ finishEducation }}</mat-option>
+              </ng-container>
+            </mat-select>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>

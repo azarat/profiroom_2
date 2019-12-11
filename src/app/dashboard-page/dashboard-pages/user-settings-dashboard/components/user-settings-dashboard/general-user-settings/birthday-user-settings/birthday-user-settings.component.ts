@@ -75,7 +75,7 @@ export class BirthdayUserSettingsComponent implements OnInit {
     ) {
       return (this.maxDays = 28);
     } else {
-      console.log(this.userMonthBirdth);
+      // console.log(this.userMonthBirdth);
       return (this.maxDays = 31);
     }
   }

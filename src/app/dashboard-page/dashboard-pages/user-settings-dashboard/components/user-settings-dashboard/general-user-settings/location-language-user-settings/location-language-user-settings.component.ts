@@ -15,7 +15,7 @@ export class LocationLanguageUserSettingsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.userSettings.languages);
+    // console.log(this.userSettings.languages);
   }
 
 }
