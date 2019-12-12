@@ -5,56 +5,84 @@
   <div class="inform_section__fields">
     <div class="field-block-multiple">
 
-      <div class="single-additional-education-block">
+      <div class="single-additional-education-block"
+        *ngFor="let arrayItem of userSettings.additionalEducation; let i = index">
+
         <div class="field-block">
           <h5 class="fields-title">Учебное заведение</h5>
-          <input class="fields-value" type="text">
+          <input class="fields-value" type="text"
+            [(ngModel)]="userSettings.additionalEducation[i].additionalInstitution">
         </div>
         <div class="field-block">
           <h5 class="fields-title">Название курсов</h5>
-          <input class="fields-value" type="text">
-        </div>
-      </div>
-
-      <div class="studyPeriod">
-        <div class="period-wrapper">
-          <div class="field-block service-selects">
-            <label class="block-title" for="startEducation">Начало
-            </label>
-            <mat-select name="startEducation" id="startEducation">
-              <ng-container *ngFor="let startEducationMounth of mounth">
-                <mat-option [value]="startEducationMounth">{{ startEducationMounth }}</mat-option>
-              </ng-container>
-            </mat-select>
-          </div>
-          <div class="field-block service-selects">
-            <mat-select name="startEducation" id="startEducation">
-              <ng-container *ngFor="let startEducationYear of createYearArray()">
-                <mat-option [value]="startEducationYear">{{ startEducationYear }}</mat-option>
-              </ng-container>
-            </mat-select>
-          </div>
+          <input class="fields-value" type="text" [(ngModel)]="userSettings.additionalEducation[i].courseName">
         </div>
 
-        <div class="period-wrapper">
-          <div class="field-block service-selects">
-            <label class="block-title" for="startEducation">Окончание
-            </label>
-            <mat-select name="startEducation" id="startEducation">
-              <ng-container *ngFor="let startEducationMounth of mounth">
-                <mat-option [value]="startEducationMounth">{{ startEducationMounth }}</mat-option>
-              </ng-container>
-            </mat-select>
+
+        <div class="studyPeriod">
+          <div class="period-wrapper">
+            <div class="field-block service-selects mounthes">
+              <label class="block-title" for="startEducation">Начало
+              </label>
+              <mat-select name="startEducationMounth" id="startEducationMounth"
+                [(ngModel)]="userSettings.additionalEducation[i].startStudyMounth">
+                <ng-container *ngFor="let startEducationMounth of mounth">
+                  <mat-option [value]="startEducationMounth">{{ startEducationMounth }}</mat-option>
+                </ng-container>
+              </mat-select>
+            </div>
+            <div class="field-block service-selects">
+              <mat-select name="startEducationYear" id="startEducationYear"
+                [(ngModel)]="userSettings.additionalEducation[i].startStudyYear">
+                <ng-container *ngFor="let startYear of createYearArray()">
+                  <mat-option [value]="startYear">{{ startYear }}</mat-option>
+                </ng-container>
+              </mat-select>
+            </div>
           </div>
-          <div class="field-block service-selects">
-            <mat-select name="startEducation" id="startEducation">
-              <ng-container *ngFor="let startEducationYear of createYearArray()">
-                <mat-option [value]="startEducationYear">{{ startEducationYear }}</mat-option>
-              </ng-container>
-            </mat-select>
+
+          <div class="period-wrapper">
+            <div class="field-block service-selects mounthes">
+              <label class="block-title" for="startEducation">Окончание
+              </label>
+              <mat-select name="endEducationMounth" id="endEducationMounth"
+                [(ngModel)]="userSettings.additionalEducation[i].endStudyMounth">
+                <ng-container *ngFor="let endStudyMounth of mounth">
+                  <mat-option [value]="endStudyMounth">{{ endStudyMounth }}</mat-option>
+                </ng-container>
+              </mat-select>
+            </div>
+            <div class="field-block service-selects">
+              <mat-select name="endEducationYear" id="endEducationYear"
+                [(ngModel)]="userSettings.additionalEducation[i].endStudyYear">
+                <ng-container *ngFor="let endStudyYear of createYearArray()">
+                  <mat-option [value]="endStudyYear">{{ endStudyYear }}</mat-option>
+                </ng-container>
+              </mat-select>
+            </div>
           </div>
         </div>
+
+        <div class="add-photos">
+            <button class="add btn-tetraty">
+              <span>Загрузить файл/фото диплома</span>
+            </button>
+          </div>
+
+          <div class="add-education">
+            <button class="add btn-tetraty" (click)="addEducation()">
+              <i class="material-icons">
+                add_circle_outline
+              </i>
+              <span>Добавить образование</span>
+            </button>
+          </div>
+          <div class="delete-education">
+            <i class="material-icons" (click)="deleteEducation(i)">delete</i>
+          </div>
+
       </div>
+
     </div>
   </div>
 </div>

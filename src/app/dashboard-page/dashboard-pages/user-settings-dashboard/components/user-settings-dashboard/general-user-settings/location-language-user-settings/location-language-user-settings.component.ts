@@ -17,5 +17,15 @@ export class LocationLanguageUserSettingsComponent implements OnInit {
   ngOnInit() {
     // console.log(this.userSettings.languages);
   }
-
+  deleteMainOption(index: number) {
+    this.userSettings.removeLanguage(index);
+  }
+  addLanguage() {
+    this.userSettings.languages.push(
+      {
+        langName: null,
+        langLevel: null
+      }
+    );
+  }
 }

@@ -30,19 +30,20 @@
               </ng-container>
             </mat-select>
           </div>
+
+          <div class="add-languahe">
+            <button class="add btn-tetraty" (click)="addLanguage()" >
+              <i class="material-icons">
+                add_circle_outline
+              </i>
+              <span>Добавить язык</span>
+            </button>
+          </div>
+          <div class="delete-languahe">
+            <i class="material-icons" (click)="deleteMainOption(i)">delete</i>
+          </div>
         </div>
 
-        <div class="add-languahe">
-          <button class="add btn-tetraty">
-            <i class="material-icons">
-              add_circle_outline
-            </i>
-            <span>Добавить язык</span>
-          </button>
-        </div>
-        <div class="delete-languahe">
-            <i class="material-icons" >delete</i>
-        </div>
       </div>
 
     </div>

@@ -14,6 +14,8 @@ export class AdditionalEducationUserSettingsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.createMountArray();
+    // this.createYearArray();
   }
   createMountArray() {
     for (let i = 1; i <= 12; i++) {
@@ -22,9 +24,26 @@ export class AdditionalEducationUserSettingsComponent implements OnInit {
   }
   createYearArray() {
     const years = [];
-    for (let i = 1960; i <= 2019; i++) {
+    const currentYear = new Date().getFullYear();
+    for (let i = 1960; i <= currentYear + 5; i++) {
       years.push(i);
     }
     return years;
+  }
+
+  addEducation() {
+    this.userSettings.additionalEducation.push({
+      additionalInstitution: null,
+      courseName: null,
+      startStudyMounth: null,
+      startStudyYear: null,
+      endStudyMounth: null,
+      endStudyYear: null,
+      additionalDiplomaFiles: null
+    });
+  }
+
+  deleteEducation(index: number) {
+    this.userSettings.deleteAdditionalEducation(index);
   }
 }

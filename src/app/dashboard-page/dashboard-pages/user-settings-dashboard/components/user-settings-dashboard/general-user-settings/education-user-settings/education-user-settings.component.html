@@ -46,6 +46,24 @@
           </div>
         </div>
 
+        <div class="add-photos">
+          <button class="add btn-tetraty">
+            <span>Загрузить файл/фото диплома</span>
+          </button>
+        </div>
+
+        <div class="add-education">
+          <button class="add btn-tetraty" (click)="addEducation()" >
+            <i class="material-icons">
+              add_circle_outline
+            </i>
+            <span>Добавить образование</span>
+          </button>
+        </div>
+        <div class="delete-education">
+          <i class="material-icons" (click)="deleteEducation(i)">delete</i>
+        </div>
+
       </div>
 
     </div>

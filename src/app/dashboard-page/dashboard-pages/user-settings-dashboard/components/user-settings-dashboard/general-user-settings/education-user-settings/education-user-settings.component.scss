@@ -15,7 +15,7 @@
     }
   }
   &__fields{
-    padding: 50px 0;
+    padding: 50px 0 90px;
     width: 75%;
   }
 }
@@ -34,6 +34,7 @@
   font-size: 14px;
   line-height: 18px;
   color: #707683;
+  margin-bottom: 4px;
 }
 .fields-title{
   font-family: 'Source Sans Pro';
@@ -73,6 +74,7 @@
 }
 .field-block{
   margin-bottom: 25px;
+  width: 100%;
 }
 .field-block-multiple{
   max-width: 630px;
@@ -81,6 +83,7 @@
   display: flex;
   justify-content: space-between;
   // margin-bottom: 35px;
+  width: 100%;
   .academic-degrees{
     width: 100%;
     max-width: 160px;
@@ -95,9 +98,19 @@
   display: flex;
   justify-content: space-between;
   max-width: 260px;
-
+  width: 100%;
   .field-block{
     max-width: 106px;
+  }
+}
+.single-education-block{
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  &:last-child{
+    .add-education, .delete-education{
+      display: block;
+    }
   }
 }
 //--------------------------- selects styling -----------------------------
@@ -116,7 +129,7 @@
     border: none;
     width: 12px;
     height: 8px;
-    background-image: url(/assets/images/svg/settings/arrow-down.svg);
+    background-image: url(/assets/images/svg/settings-page/arrow-down.svg);
     background-repeat: no-repeat;
     background-position: center;
   }
@@ -159,3 +172,43 @@
   }
 }
 //---------------------------end selects styling -----------------------------
+
+.add-photos{
+  width: auto;
+  display: flex;
+  margin-bottom: 10px;
+  margin-left: 30px;
+  button {
+    padding-left: 30px;
+    position: relative;
+    &::before{
+      position: absolute;
+      content: "";
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      height: 18px;
+      width: 19px;
+      background-image: url(/assets/images/svg/settings-page/clip.svg);
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+  }
+}
+
+.add-education{
+  display: none;
+  position: absolute;
+  bottom: -50px;
+  left: 0;
+  span{
+    padding-left: 10px;
+  }
+}
+.delete-education{
+  display: none;
+  position: absolute;
+  top: 35px;
+  right: -50px;
+  cursor: pointer;
+}
