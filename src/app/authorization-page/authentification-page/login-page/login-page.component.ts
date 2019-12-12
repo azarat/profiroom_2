@@ -11,7 +11,7 @@ import {
   FormGroup
 } from '@angular/forms';
 import {
-  User
+  UserModel
 } from 'src/app/models/user/user.model';
 import {
   AuthentificationService
@@ -66,7 +66,7 @@ export class LoginPageComponent implements OnInit {
     }
     this.authentificationService.authenticate(this.loginForm.value)
       .subscribe(
-        (data: User) => {
+        (data: UserModel) => {
           if (data) {
             const translatedPath: any = this.localize.translateRoute('/dashboard');
             this.localStorageService.setItem('token', data.token);

@@ -84,9 +84,10 @@ export class Breef {
 
 
 export class UserServiceModel {
-  @Expose() offerId: number;
+  @Expose() offerId: string;
   @Expose() published: boolean;
   @Expose() id: any;
+  @Expose() canPublish: boolean;
   @Expose() title: string;
   @Expose() category: string;
   @Expose() subCategories: any;
@@ -94,7 +95,7 @@ export class UserServiceModel {
   @Expose() tags: {
     tag: string
   } [];
-  @Expose() offerMainImage: string;
+  @Expose() mainImage: string;
   @Expose() nextStep: number;
   @Expose() step: number;
   @Expose() files: any;

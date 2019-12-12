@@ -1,5 +1,7 @@
 :host ::ng-deep .step-wrapper {
-
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 100%;
 
   form{
     display: flex;

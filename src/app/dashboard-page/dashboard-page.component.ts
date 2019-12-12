@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthentificationService } from '../core/services/auth.service';
-import { User } from '../models/user/user.model';
+import { UserModel } from '../models/user/user.model';
 import { UserService } from '../core/services/user.service';
 import { dashboardMenuConst } from './consts/dashboard-menu.const';
+import { plainToClass } from 'class-transformer';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -15,7 +16,7 @@ export class DashboardPageComponent implements OnInit {
   checked = false;
   disabled = false;
   dashboardMenu = dashboardMenuConst;
-  user: User;
+  user: UserModel;
   constructor(
     private authService: AuthentificationService,
     private userService: UserService
@@ -25,7 +26,8 @@ export class DashboardPageComponent implements OnInit {
   ngOnInit() {
     this.userService.getDashboardRes()
     .subscribe((res: any ) => {
-
+      console.log(res);
+      this.user = plainToClass(UserModel, res[0]);
     });
 
   }

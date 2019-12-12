@@ -15,7 +15,7 @@ import {
   catchError
 } from 'rxjs/operators';
 import {
-  User
+  UserModel
 } from 'src/app/models/user/user.model';
 import {
   AuthentificationService

@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LocalizeRouterService } from 'localize-router';
 import { UserServiceModel } from 'src/app/models/user-service/user-service.model';
@@ -7,6 +7,7 @@ import { map, filter, first } from 'rxjs/operators';
 import { plainToClass } from 'class-transformer';
 import { untilDestroyed } from 'ngx-take-until-destroy';
 import { UserOffersService } from '../../services/user-offers.service';
+import { tabsConst } from '../../consts/tabs.const';
 
 @Component({
   selector: 'app-my-services-home',
@@ -16,10 +17,14 @@ import { UserOffersService } from '../../services/user-offers.service';
 })
 export class MyServicesHomeComponent implements OnInit {
 
-  public userServices: UserServiceModel = null;
+  public userServices: UserServiceModel[] = null;
   activatedRoute: ActivatedRoute;
   menuOpen = null;
   translatedPath: any = this.localize.translateRoute('/dashboard/my-services/create');
+  serviceToDeleteId: string = null;
+
+  currentTab: string = null;
+  tabs = tabsConst;
 
   constructor(
     private router: Router,
@@ -28,6 +33,8 @@ export class MyServicesHomeComponent implements OnInit {
     // tslint:disable-next-line: variable-name
   ) { }
 
+    @ViewChild('scrolledBlock', {static: false}) el: ElementRef;
+
   ngOnInit() {
     this.getUserServices();
 
@@ -35,18 +42,43 @@ export class MyServicesHomeComponent implements OnInit {
 
   // ngOnDestroy() {
   // }
+  setCurrentTab(tab: string) {
+    this.currentTab = tab;
+    // el.scroll(0,0);
+    this.el.nativeElement.scroll(0, 0)
+  }
+
 
   getUserServices() {
     this.userOfferService.showServices()
-    .pipe(
-      filter((res: any) => !!res),
-      first()
-    )
-    .subscribe((res: any) => {
-      if (res.userOffers.length > 0) {
-        this.userServices = plainToClass(UserServiceModel, res.userOffers.slice().reverse());
-      }
-    });
+      .pipe(
+        filter((res: any) => !!res),
+        first()
+      )
+      .subscribe((res: any) => {
+        console.log(res)
+        if (res.userOffers.length > 0) {
+          this.userServices = plainToClass(UserServiceModel, this.deleteEmptyService(res.userOffers).slice().reverse());
+        } else {
+          this.userServices = [];
+        }
+      });
+  }
+
+  deleteService(id: string) {
+    this.serviceToDeleteId = id;
+  }
+  cencel() {
+    this.serviceToDeleteId = null;
+  }
+
+  confirmDelete() {
+    this.userOfferService.deleteService(this.serviceToDeleteId)
+      .subscribe((res: any) => {
+        if (res.status === 'ok') {
+          this.userServices = this.userServices.filter(el => el.id !== this.serviceToDeleteId);
+        }
+      });
   }
 
   createNewService() {
@@ -60,8 +92,6 @@ export class MyServicesHomeComponent implements OnInit {
             queryParamsHandling: 'merge',
           });
       });
-
-
   }
 
   openOffer(id: number) {
@@ -75,8 +105,9 @@ export class MyServicesHomeComponent implements OnInit {
       }
     );
   }
+
   showMenu(i: number) {
-    if(this.menuOpen !== i) {
+    if (this.menuOpen !== i) {
       this.menuOpen = i;
     } else {
       this.menuOpen = null;
@@ -88,16 +119,29 @@ export class MyServicesHomeComponent implements OnInit {
     console.log('Clicked outside:');
     // this.menuOpen = null;
   }
-  deleteService(id: string){
-    this.userOfferService.deleteService(id)
-    .pipe(filter((res: any) => !! res))
-    .subscribe((res: any) => {
-      this.getUserServices();
+
+  // delete offer which has no name if user close offer creation process
+  deleteEmptyService(arr: UserServiceModel[]) {
+    arr.forEach(el => {
+      if (el.title === null) {
+        console.log('null');
+        this.userOfferService.deleteService(el.id)
+          .subscribe(res => {
+            return;
+          })
+      }
     });
+    return arr.filter(el => el.title !== null);
   }
 
-  private _removeService(id: number) {
+
+  hideMenu(i) {
+    if ( this.menuOpen === i ) {
+      this.menuOpen = null;
+    }
 
   }
+
+
 
 }
