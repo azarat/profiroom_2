@@ -9,6 +9,7 @@ import { UserDashboardSettingsService } from '../../../../services/user-dashboar
 })
 export class EducationUserSettingsComponent implements OnInit {
   @Input() userSettings: UserSettingsModel;
+  public openItem: number = null;
   files: any = [];
   previewUrl: any;
   // public academicDegrees = [
@@ -69,5 +70,9 @@ export class EducationUserSettingsComponent implements OnInit {
       .subscribe((res: []) => {
         this.previewUrl = res;
       });
+  }
+
+  chooseItem(i) {
+    this.openItem = i;
   }
 }

@@ -107,10 +107,30 @@
   display: flex;
   flex-wrap: wrap;
   position: relative;
+  margin-bottom: 25px;
+  .toggle_block{
+    height: auto;
+    margin-bottom: 5px;
+    &.hidden{
+      height: 0;
+      overflow: hidden;
+    }
+  }
+
   &:last-child{
     .add-education, .delete-education{
       display: block;
     }
+  }
+  &::after{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    height: 1px;
+    width: 130%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #F4F7FC;
   }
 }
 //--------------------------- selects styling -----------------------------
@@ -177,7 +197,7 @@
   width: auto;
   display: flex;
   margin-bottom: 10px;
-  margin-left: 30px;
+  // margin-left: 30px;
   button {
     padding-left: 30px;
     position: relative;
@@ -211,4 +231,29 @@
   top: 35px;
   right: -50px;
   cursor: pointer;
+}
+
+.change{
+  display: block;
+  position: absolute;
+  top: 40px;
+  right: -60px;
+}
+
+button {
+  border: none;
+  background: none;
+  margin-right: 22px;
+  color: #C2CFE0;
+  padding: 0;
+  cursor: pointer;
+  &>i {
+    font-size: 17px;
+  }
+  &.change:hover {
+    color: #3C7EEA;
+  }
+  &.delete:hover {
+    color: #FF647C;
+  }
 }

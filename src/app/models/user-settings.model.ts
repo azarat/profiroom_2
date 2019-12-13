@@ -2,7 +2,7 @@ import {
   Expose,
   Type
 } from 'class-transformer';
-import { type } from 'os';
+// import { type } from 'os';
 
 
 export class UserSettingsModel {
