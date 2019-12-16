@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { UserDashboardSettingsService } from '../../../../services/user-dashboard-settings.service';
+import { UserSettingsService } from '../../../../services/user-settings.service';
 import { FormGroup, NgForm } from '@angular/forms';
 // import { UserServiceModel } from 'src/app/models/user-service.model';
 import { UserSettingsModel } from 'src/app/models/user-settings.model';
@@ -19,7 +19,7 @@ export class MainUserSettingsComponent implements OnInit {
 
 
   constructor(
-    private userDashboardSettingsService: UserDashboardSettingsService,
+    private userSettingsService: UserSettingsService,
   ) { }
 
   @Input() userSettingsModel: UserSettingsModel;
@@ -37,7 +37,7 @@ export class MainUserSettingsComponent implements OnInit {
     formData.append('avatar', this.file);
 
     console.log(formData);
-    this.userDashboardSettingsService.uploadFiles(formData)
+    this.userSettingsService.uploadFiles(formData)
     .pipe(filter((res: any) => !!res))
     .subscribe((res) => {
       // console.log(res)

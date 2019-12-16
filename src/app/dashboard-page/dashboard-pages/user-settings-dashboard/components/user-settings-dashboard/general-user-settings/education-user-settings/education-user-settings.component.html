@@ -31,26 +31,42 @@
           <div class="studyPeriod">
             <div class="field-block service-selects">
               <label class="block-title" for="startEducation">Год старта</label>
-              <mat-select name="startEducation" id="startEducation" [(ngModel)]="userSettings.education[i].startEducation">
+              <mat-select name="startEducation" id="startEducation" [(ngModel)]="userSettings.education[i].startEducation" (ngModelChange)="setMaxYear(i)">
                 <ng-container *ngFor="let startEducation of createYears()">
-                  <mat-option [value]="startEducation">{{ startEducation }}</mat-option>
+                  <mat-option [value]="startEducation" *ngIf="startEducation < minYear">{{ startEducation }}</mat-option>
                 </ng-container>
               </mat-select>
             </div>
             <div class="field-block service-selects">
               <label class="block-title" for="startEducation">Год окончания</label>
-              <mat-select name="startEducation" id="startEducation" [(ngModel)]="userSettings.education[i].finishEducation">
+              <mat-select name="startEducation" id="startEducation" [(ngModel)]="userSettings.education[i].finishEducation" (ngModelChange)="setMinYear(i)">
                 <ng-container *ngFor="let finishEducation of createYears()">
-                  <mat-option [value]="finishEducation">{{ finishEducation }}</mat-option>
+                  <mat-option [value]="finishEducation" *ngIf="finishEducation > maxYear">{{ finishEducation }}</mat-option>
                 </ng-container>
               </mat-select>
             </div>
           </div>
 
+          <div class="items">
+            <ng-container *ngIf="previewUrl">
+              <div class="img-item" *ngFor="let imgUrl of previewUrl, let i = index">
+                <button class="delete-file" (click)="deleteAttachment(imgUrl.id)">
+
+                </button>
+                <img [src]="'https://www.thecubetest.site/Backend/storage/app/' + imgUrl.diploma" height="300" />
+              </div>
+
+            </ng-container>
+          </div>
+
           <div class="add-photos">
-            <button class="add btn-tetraty">
+            <input type="file" id="diplomaFiles" multiple="true" class="input-file" #fileInput
+            (change)="fileProgress($event.target.files)" />
+            <label for="diplomaFiles">Загрузить файл/фото диплома</label>
+
+            <!-- <button class="add btn-tetraty">
               <span>Загрузить файл/фото диплома</span>
-            </button>
+            </button> -->
           </div>
 
           <button type="button" class="change"><i class="material-icons create"
@@ -59,16 +75,16 @@
 
 
         <div class="add-education">
-          <button class="add btn-tetraty" (click)="addEducation()" >
+          <button class="add btn-tetraty" (click)="addEducation(i+1)" >
             <i class="material-icons">
               add_circle_outline
             </i>
             <span>Добавить образование</span>
           </button>
         </div>
-        <div class="delete-education">
+        <button type="button" class="delete-education">
           <i class="material-icons" (click)="deleteEducation(i)">delete</i>
-        </div>
+        </button>
 
       </div>
 

@@ -48,8 +48,9 @@
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
+    position: relative;
     &:last-child{
-      .add-languahe, .delete-languahe{
+      .add-languahe{
         display: block;
       }
     }
@@ -57,18 +58,27 @@
   .add-languahe{
     display: none;
     position: absolute;
-    bottom: -50px;
+    bottom: -60px;
     left: 0;
     span{
       padding-left: 10px;
     }
+    .material-icons{
+      font-size: 20px;
+    }
   }
-  .delete-languahe{
-    display: none;
+  .delete-language{
     position: absolute;
     bottom: 10px;
-    right: -40px;
+    right: -50px;
     cursor: pointer;
+    color: #C2CFE0;
+    & > i {
+      font-size: 22px;
+    }
+    &:hover{
+      color: #FF647C;
+    }
   }
   .block-title{
     margin-bottom: 4px;

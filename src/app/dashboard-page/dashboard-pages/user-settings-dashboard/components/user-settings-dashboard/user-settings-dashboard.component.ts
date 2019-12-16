@@ -3,7 +3,7 @@ import { UserSettingsModel } from 'src/app/models/user-settings.model';
 import { ActivatedRoute } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { plainToClass } from 'class-transformer';
-import { UserDashboardSettingsService } from '../../services/user-dashboard-settings.service';
+import { UserSettingsService } from '../../services/user-settings.service';
 
 @Component({
   selector: 'app-user-settings-dashboard',
@@ -17,7 +17,7 @@ export class UserSettingsDashboardComponent implements OnInit {
   constructor(
     // tslint:disable-next-line: variable-name
     private _route: ActivatedRoute,
-    private userDashboardSettingsService: UserDashboardSettingsService,
+    private userSettingsService: UserSettingsService,
   ) { }
 
   ngOnInit() {
@@ -30,14 +30,14 @@ export class UserSettingsDashboardComponent implements OnInit {
     if (this._route.snapshot.queryParams.offerId) {
       request = this._route.snapshot.queryParams;
     }
-    this.userDashboardSettingsService.getServiceData()
+    this.userSettingsService.getServiceData()
       .pipe(
         filter((response: any) => !!response)
       )
       .subscribe(response => {
 
         this.userSettingsModel = plainToClass(UserSettingsModel, response);
-        console.log(this.userSettingsModel)
+        console.log(this.userSettingsModel);
       });
 
   }

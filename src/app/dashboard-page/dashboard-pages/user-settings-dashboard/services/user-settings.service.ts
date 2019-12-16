@@ -5,16 +5,29 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class UserDashboardSettingsService {
+export class UserSettingsService {
 
   constructor(
     private http: HttpClient
   ) { }
 
-  uploadFiles(files){
+  uploadFiles(files) {
     return this.http.post('/loadAva', files);
   }
+
+  uploadDiplomaPhotos(files) {
+    return this.http.post('/loadDiplomaFiles', files);
+  }
+
+  uploadAdditionalDiplomaPhotos(files) {
+    return this.http.post('/loadAdditionalDiplomaFiles', files);
+  }
+
   public getServiceData() {
     return this.http.get('/getUserSettings');
+  }
+
+  deleteFile(id) {
+    return this.http.post('/deleteOfferFile', id);
   }
 }

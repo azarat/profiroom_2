@@ -12,6 +12,8 @@ export class UserSettingsModel {
   @Expose() gender: number;
   @Expose() description: number;
   @Expose() id: string;
+  @Expose() diploma: any;
+  @Expose() additionalDiplomaFiles: any;
 
   @Expose() birthDay: {
     year: number;
