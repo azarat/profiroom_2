@@ -1,0 +1,90 @@
+.inform_section{
+  display: flex;
+  border-bottom: 1px solid #EBEEFF;
+  &__title{
+    padding: 50px 30px;
+    width: 25%;
+    h3{
+      margin: 0;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 143%;
+      text-transform: uppercase;
+      color: #323C47;
+    }
+  }
+  &__fields{
+    padding: 50px 0;
+    width: 75%;
+  }
+}
+
+.inputs-wrapper{
+  max-width: 630px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.block-title{
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 18px;
+  color: #707683;
+}
+.fields-title{
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 20px;
+  color: #323C47;
+  margin: 0;
+  margin-bottom: 3px;
+}
+
+.fields{
+  margin-bottom: 15px;
+  &-title{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 20px;
+    color: #323C47;
+    margin: 0;
+    margin-bottom: 3px;
+  }
+  &-value{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 125%;
+    color: #707683;
+    padding: 15px;
+    box-sizing: border-box;
+    background: #F4F7FC;
+    border-radius: 5px;
+    border: none;
+    width: 100%;
+  }
+}
+.inputs-wrapper{
+  max-width: 630px;
+  position: relative;
+  .field-block{
+    margin-bottom: 25px;
+  }
+}
+
+.fields-text{
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 20px;
+  color: #707683;
+  margin: 0;
+}

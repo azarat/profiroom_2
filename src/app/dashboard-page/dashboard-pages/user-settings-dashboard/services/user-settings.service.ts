@@ -28,10 +28,11 @@ export class UserSettingsService {
   }
 
   deleteFile(id) {
-    return this.http.post('/deleteOfferFile', id);
+    return this.http.post('/deleteDiplomaFiles', id);
   }
 
   public updateService( formData){
+    console.log("update", formData);
     return this.http.post<any>('/updateUserSettings', formData);
   }
 }

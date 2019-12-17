@@ -39,9 +39,9 @@ export class MainUserSettingsComponent implements OnInit {
     console.log(formData);
     this.userSettingsService.uploadFiles(formData)
     .pipe(filter((res: any) => !!res))
-    .subscribe((res) => {
+    .subscribe((res: any) => {
       // console.log(res)
-      this.userSettingsModel.avatar = res;
+      this.userSettingsModel.avatar = res.avatar;
     });
   }
 

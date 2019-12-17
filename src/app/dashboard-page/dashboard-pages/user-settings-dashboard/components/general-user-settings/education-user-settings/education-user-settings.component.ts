@@ -33,6 +33,10 @@ export class EducationUserSettingsComponent implements OnInit {
 
   ngOnInit() {
     this.createYears();
+
+    if (this.userSettings.diplomaFiles) {
+      this.previewUrl = this.userSettings.diplomaFiles;
+    }
   }
 
   addEducation(i) {
@@ -69,18 +73,19 @@ export class EducationUserSettingsComponent implements OnInit {
 
     this.userSettingsService
       .uploadDiplomaPhotos(formData)
-      .subscribe((res: []) => {
-        this.previewUrl = res;
-        console.log(this.previewUrl);
+      .subscribe((res: any) => {
+        this.previewUrl = res.diploma;
+        console.log('images from server',this.previewUrl);
       });
   }
 
   // --------------- delete files -----------------//
-  deleteAttachment = (index: number) => {
-    this.userSettingsService.deleteFile({ id: index }).subscribe((res: any) => {
+  deleteAttachment = (imgUrl: string) => {
+    console.log(imgUrl);
+    this.userSettingsService.deleteFile({ link: imgUrl }).subscribe((res: any) => {
       if (res.status === 'ok') {
-        this.previewUrl = this.previewUrl.filter((obj: any) => {
-          return obj.id !== index;
+        this.previewUrl = this.previewUrl.filter((el: string) => {
+          return el !== imgUrl;
         });
       }
     });

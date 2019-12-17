@@ -21,7 +21,7 @@ export class LocationLanguageUserSettingsComponent implements OnInit {
     this.userSettings.removeLanguage(index);
   }
   addLanguage() {
-    this.userSettings.languages.push(
+    this.userSettings.language.push(
       {
         langName: null,
         langLevel: null

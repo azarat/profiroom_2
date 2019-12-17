@@ -9,10 +9,10 @@ export class UserSettingsModel {
   @Expose() avatar: string;
   @Expose() name: string;
   @Expose() surname: string;
-  @Expose() gender: number;
-  @Expose() description: number;
+  @Expose() gender: string;
+  @Expose() description: string;
   @Expose() id: string;
-  @Expose() diploma: any;
+
   @Expose() additionalDiplomaFiles: any;
 
   @Expose() birthDay: {
@@ -25,7 +25,7 @@ export class UserSettingsModel {
   @Expose() city: string;
 
   // tslint:disable-next-line: no-use-before-declare
-  @Type(() => Languages) languages: Languages[];
+  @Type(() => Language) language: Language[];
   // tslint:disable-next-line: no-use-before-declare
   @Type(() => Education) education: Education[];
   // tslint:disable-next-line: no-use-before-declare
@@ -33,7 +33,7 @@ export class UserSettingsModel {
 
   // -------delete option------
   public removeLanguage(index: number) {
-    this.languages.splice(index, 1);
+    this.language.splice(index, 1);
   }
 
   public deleteEducation(index: number) {
@@ -45,7 +45,7 @@ export class UserSettingsModel {
   }
 }
 
-export class Languages {
+export class Language {
   @Expose() langName: string;
   @Expose() langLevel: number;
 }

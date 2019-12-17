@@ -54,8 +54,8 @@
           <div class="items">
             <ng-container *ngIf="previewUrl">
               <div class="img-item" *ngFor="let imgUrl of previewUrl, let i = index">
-                <button class="delete-file" (click)="deleteAttachment(imgUrl.id)"></button>
-                <img [src]="'https://www.thecubetest.site/Backend/storage/app/' + imgUrl.diploma" height="300" />
+                <button class="delete-file" (click)="deleteAttachment(imgUrl)"></button>
+                <img [src]="'https://www.thecubetest.site/Backend/storage/app/' + imgUrl" height="300" />
               </div>
 
             </ng-container>

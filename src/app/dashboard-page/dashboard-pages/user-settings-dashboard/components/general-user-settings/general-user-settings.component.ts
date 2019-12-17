@@ -20,10 +20,20 @@ export class GeneralUserSettingsComponent implements OnInit {
 
   @Input() userSettingsModel: UserSettingsModel;
 
-  ngOnInit() {
-  }
+  ngOnInit(
 
+  ) {
+
+  }
   public updateSettings() {
+    console.log(this.userSettingsModel);
     this.userSettingsService.updateService(this.userSettingsModel)
+    .pipe(filter((res: any) => !!res))
+    .subscribe(
+      (res) => {
+        console.log(res);
+        this.userSettingsModel = res;
+      }
+    );
   }
 }

@@ -82,4 +82,6 @@ export class AdditionalEducationUserSettingsComponent implements OnInit {
         this.previewUrl = res;
       });
   }
+
+
 }

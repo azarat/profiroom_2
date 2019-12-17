@@ -13,6 +13,7 @@ import { BirthdayUserSettingsComponent } from './components/general-user-setting
 import { LocationLanguageUserSettingsComponent } from './components/general-user-settings/location-language-user-settings/location-language-user-settings.component';
 import { EducationUserSettingsComponent } from './components/general-user-settings/education-user-settings/education-user-settings.component';
 import { AdditionalEducationUserSettingsComponent } from './components/general-user-settings/additional-education-user-settings/additional-education-user-settings.component';
+import { NotificationsUserSettingsComponent } from './components/notifications-user-settings/notifications-user-settings.component';
 
 const servicesRoutes: Routes = [
   {
@@ -23,7 +24,7 @@ const servicesRoutes: Routes = [
 ];
 
 @NgModule({
-  declarations: [HomeUserSettingsComponent, GeneralUserSettingsComponent, MainUserSettingsComponent, BirthdayUserSettingsComponent, LocationLanguageUserSettingsComponent, EducationUserSettingsComponent, AdditionalEducationUserSettingsComponent],
+  declarations: [HomeUserSettingsComponent, GeneralUserSettingsComponent, MainUserSettingsComponent, BirthdayUserSettingsComponent, LocationLanguageUserSettingsComponent, EducationUserSettingsComponent, AdditionalEducationUserSettingsComponent, NotificationsUserSettingsComponent],
   imports: [
     CommonModule,
     LocalizeRouterModule.forChild(servicesRoutes),
