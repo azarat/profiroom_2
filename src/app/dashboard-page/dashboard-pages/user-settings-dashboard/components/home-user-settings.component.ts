@@ -3,14 +3,14 @@ import { UserSettingsModel } from 'src/app/models/user-settings.model';
 import { ActivatedRoute } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { plainToClass } from 'class-transformer';
-import { UserSettingsService } from '../../services/user-settings.service';
+import { UserSettingsService } from '../services/user-settings.service';
 
 @Component({
   selector: 'app-user-settings-dashboard',
-  templateUrl: './user-settings-dashboard.component.html',
-  styleUrls: ['./user-settings-dashboard.component.scss']
+  templateUrl: './home-user-settings.component.html',
+  styleUrls: ['./home-user-settings.component.scss']
 })
-export class UserSettingsDashboardComponent implements OnInit {
+export class HomeUserSettingsComponent implements OnInit {
 
   public userSettingsModel: UserSettingsModel ;
 

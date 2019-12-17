@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { UserSettingsModel } from 'src/app/models/user-settings.model';
-import { UserSettingsService } from '../../../../services/user-settings.service';
+import { UserSettingsService } from '../../../services/user-settings.service';
 
 @Component({
   selector: 'app-additional-education-user-settings',
