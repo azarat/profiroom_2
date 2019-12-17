@@ -12,8 +12,9 @@ export class EducationUserSettingsComponent implements OnInit {
   public openItem: number = 1;
   files: any = [];
   previewUrl: any;
-  public minYear = new Date().getFullYear();
-  public maxYear = 1960;
+
+  public yearsArr = [];
+  public yearsFiltered = [];
   // public academicDegrees = [
   //   'Молодший спеціаліст',
   //   'Бакалавр',
@@ -31,16 +32,7 @@ export class EducationUserSettingsComponent implements OnInit {
   constructor(private userSettingsService: UserSettingsService) {}
 
   ngOnInit() {
-    console.log(this.maxYear)
-    console.log(this.minYear)
-  }
-
-  createYears() {
-    const years = [];
-    for (let i = 1960; i <= 2019; i++) {
-      years.push(i);
-    }
-    return years;
+    this.createYears();
   }
 
   addEducation(i) {
@@ -70,7 +62,7 @@ export class EducationUserSettingsComponent implements OnInit {
     }
     // ------- put files in FormData -------//
     this.files.forEach((el: any) => {
-      formData.append('diploma', el, el.name);
+      formData.append(el, el.name);
       console.log(formData);
     });
     // ------- load Files -----
@@ -102,13 +94,16 @@ export class EducationUserSettingsComponent implements OnInit {
     }
   }
 
-
-
-  setMaxYear(i) {
-    this.maxYear = this.userSettings.education[i].startEducation;
+  createYears() {
+    for (let i = 1960; i <= 2019; i++) {
+      this.yearsArr.push(i);
+    }
   }
 
-  setMinYear(i) {
-    this.minYear = this.userSettings.education[i].finishEducation;
-  }
+  // setMinYear(x) {
+  //   console.log(x);
+  //   for (let i = 1960; i <= x; i++) {
+  //     this.yearsFiltered.push(i);
+  //   }
+  // }
 }

@@ -22,4 +22,8 @@ export class GeneralUserSettingsComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  public updateSettings() {
+    this.userSettingsService.updateService(this.userSettingsModel)
+  }
 }

@@ -1,6 +1,8 @@
 
+<form #form="ngForm" (ngSubmit)="updateSettings()">
 <app-main-user-settings *ngIf="userSettingsModel" [userSettingsModel]="userSettingsModel"></app-main-user-settings>
 <app-location-language-user-settings *ngIf="userSettingsModel" [userSettings]="userSettingsModel"></app-location-language-user-settings>
 <app-education-user-settings *ngIf="userSettingsModel" [userSettings]="userSettingsModel"></app-education-user-settings>
 <app-additional-education-user-settings *ngIf="userSettingsModel" [userSettings]="userSettingsModel"></app-additional-education-user-settings>
 <button type="submit" class="save-all">сохранить изменения</button>
+</form>

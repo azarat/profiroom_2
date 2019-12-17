@@ -30,4 +30,8 @@ export class UserSettingsService {
   deleteFile(id) {
     return this.http.post('/deleteOfferFile', id);
   }
+
+  public updateService( formData){
+    return this.http.post<any>('/updateUserSettings', formData);
+  }
 }
