@@ -17,6 +17,7 @@ export class EducationUserSettingsComponent implements OnInit {
   public openItem: number;
 
   files: any = [];
+  fileNames: any = [];
   previewUrl: any;
 
   public yearsArr = [];
@@ -54,25 +55,38 @@ export class EducationUserSettingsComponent implements OnInit {
   }
 
   //  --------------- file uploading ---------------
-  fileProgress = (event: any) => {
+  fileProgress = (event: any, i) => {
     const formData: FormData = new FormData();
     // formData.append('offerId', this.userSettings.id);
     this.files = [];
+    this.fileNames = [];
     for (let index = 0; index < event.length; index++) {
       this.files.push(event[index]);
     }
     // ------- put files in FormData -------//
     this.files.forEach((el: any) => {
       formData.append('diploma[]', el, el.name);
+      this.fileNames.push(el.name);
     });
     // ------- load Files -----
 
-    this.userSettingsService
-      .uploadDiplomaPhotos(formData)
-      .subscribe((res: any) => {
-        this.previewUrl = res.diploma;
-      });
+    // ------- get fileName
+
+
+    // this.userSettingsService
+    //   .uploadDiplomaPhotos(formData)
+    //   .subscribe((res: any) => {
+    //     console.log(res)
+    //     this.previewUrl = res.diploma;
+    //   });
   }
+
+  // fileProgress(event) {
+  //   if (event.target.files.length > 0) {
+  //     const file = event.target.files[0];
+  //     this.form.get('avatar').setValue(file);
+  //   }
+  // }
 
   // --------------- delete files -----------------//
   deleteAttachment = (imgUrl: string) => {
@@ -106,8 +120,6 @@ export class EducationUserSettingsComponent implements OnInit {
       console.log('invalid');
       return;
     }
-
-
     this.addEducation();
   }
 }

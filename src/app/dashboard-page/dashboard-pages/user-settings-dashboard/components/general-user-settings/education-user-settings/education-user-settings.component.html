@@ -81,17 +81,18 @@
             </div>
 
             <div class="items">
-              <ng-container *ngIf="previewUrl">
-                <div class="img-item" *ngFor="let imgUrl of previewUrl, let i = index">
+              <!-- <ng-container *ngIf="userSettings.education"> -->
+                <div class="img-item" *ngFor="let imgUrl of fileNames, let i = index">
                   <button class="delete-file" (click)="deleteAttachment(imgUrl)"></button>
-                  <img [src]="'https://www.thecubetest.site/Backend/storage/app/' + imgUrl" height="300" />
+                  <!-- <img [src]="'https://www.thecubetest.site/Backend/storage/app/' + imgUrl" height="300" /> -->
+                  {{ imgUrl }}
                 </div>
-              </ng-container>
+              <!-- </ng-container> -->
             </div>
 
             <div class="add-photos">
               <input type="file" id="diplomaFiles" multiple="true" class="input-file" #fileInput
-                (change)="fileProgress($event.target.files)" />
+                (change)="fileProgress($event.target.files, i)" />
               <label for="diplomaFiles">Загрузить файл/фото диплома</label>
             </div>
 

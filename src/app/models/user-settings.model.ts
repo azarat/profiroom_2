@@ -54,7 +54,7 @@ export class Education {
   @Expose() specialty: string;
   @Expose() startEducation: number;
   @Expose() finishEducation: number;
-  @Expose() diplomaFiles: any;
+  @Expose() diplomaFiles: [];
 }
 
 export class AdditionalEducation {
