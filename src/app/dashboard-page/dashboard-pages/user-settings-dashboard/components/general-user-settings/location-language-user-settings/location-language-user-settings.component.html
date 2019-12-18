@@ -18,10 +18,12 @@
       <div class="field-block-multiple">
 
         <div class="single-lang-wrapper" *ngFor="let arrayItem of userSettings.language; let i = index">
+
           <div class="field-block">
             <h5 class="fields-title">Языка</h5>
             <input class="fields-value" type="text" [(ngModel)]="userSettings.language[i].langName" maxlength="15">
           </div>
+
           <div class="field-block language-level">
             <label class="block-title" for="langLevel">Уровень владения</label>
             <mat-select name="langLevel" id="langLevel" [(ngModel)]="userSettings.language[i].langLevel">
@@ -31,17 +33,18 @@
             </mat-select>
           </div>
 
-          <div class="add-languahe">
-            <button class="add btn-tetraty" (click)="addLanguage()" >
-              <i class="material-icons">
-                add_circle_outline
-              </i>
-              <span>Добавить язык</span>
-            </button>
-          </div>
           <div class="delete-language">
             <i class="material-icons" (click)="deleteMainOption(i)">delete</i>
           </div>
+        </div>
+
+        <div class="add-languahe">
+          <button class="add btn-tetraty" (click)="addLanguage()" >
+            <i class="material-icons">
+              add_circle_outline
+            </i>
+            <span>Добавить язык</span>
+          </button>
         </div>
 
       </div>

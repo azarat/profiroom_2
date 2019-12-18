@@ -15,7 +15,7 @@
     }
   }
   &__fields{
-    padding: 50px 0 70px;
+    padding: 50px 0 50px;
     width: 75%;
   }
 }
@@ -70,11 +70,26 @@
     border-radius: 5px;
     border: none;
     width: 100%;
+    outline: none;
+    &.not_Valid{
+      border: 1px solid #FF647C;
+    }
   }
 }
 .field-block{
   margin-bottom: 25px;
   width: 100%;
+  .alert-danger{
+    position: absolute;
+    p{
+      font-size: 14px;
+      color: #FF647C;
+      font-family: 'Source Sans Pro';
+      font-style: normal;
+      font-weight: normal;
+      margin: 0;
+    }
+  }
 }
 .field-block-multiple{
   max-width: 630px;
@@ -198,10 +213,6 @@
 //---------------------------end selects styling -----------------------------
 
 .add-education{
-  display: none;
-  position: absolute;
-  bottom: -35px;
-  left: 0;
   button{
     color: #3C7EEA;
     &:hover{
@@ -231,11 +242,13 @@ button {
   &.change{
     top: 40px;
     right: -70px;
+    outline: none;
     &:hover {
       color: #3C7EEA;
     }
   }
   &.delete-education{
+    outline: none;
     top: 38px;
     right: -115px;
     &>i {

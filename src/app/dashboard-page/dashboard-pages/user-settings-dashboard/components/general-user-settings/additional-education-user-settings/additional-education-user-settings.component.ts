@@ -10,8 +10,9 @@ import { UserSettingsService } from '../../../services/user-settings.service';
 export class AdditionalEducationUserSettingsComponent implements OnInit {
 
   @Input() userSettings: UserSettingsModel;
+  public submited = false;
   public mounth = [];
-  public openItem: number = 0;
+  public openItem: number;
   files: any = [];
   previewUrl: any;
 
@@ -21,7 +22,7 @@ export class AdditionalEducationUserSettingsComponent implements OnInit {
 
   ngOnInit() {
     this.createMountArray();
-    // this.createYearArray();
+    this.openItem = this.userSettings.additionalEducation.length;
   }
   createMountArray() {
     for (let i = 1; i <= 12; i++) {
@@ -37,17 +38,17 @@ export class AdditionalEducationUserSettingsComponent implements OnInit {
     return years;
   }
 
-  addEducation(i) {
+  addEducation() {
     this.userSettings.additionalEducation.push({
-      additionalInstitution: null,
-      courseName: null,
-      startStudyMounth: null,
-      startStudyYear: null,
-      endStudyMounth: null,
-      endStudyYear: null,
+      additionalInstitution: '',
+      courseName: '',
+      startStudyMounth: 1,
+      startStudyYear: 1960,
+      endStudyMounth: 1,
+      endStudyYear: 1960,
       additionalDiplomaFiles: null
     });
-    this.openItem = i;
+    this.openItem = this.userSettings.additionalEducation.length;
   }
 
   deleteEducation(index: number) {
@@ -83,5 +84,15 @@ export class AdditionalEducationUserSettingsComponent implements OnInit {
       });
   }
 
+  onSubmit(form) {
+    this.submited = true;
+    if (form.invalid) {
+      console.log('invalid');
+      return;
+    }
+
+
+    this.addEducation();
+  }
 
 }

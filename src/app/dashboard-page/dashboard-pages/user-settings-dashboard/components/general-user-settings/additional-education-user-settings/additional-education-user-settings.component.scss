@@ -69,6 +69,9 @@
     border-radius: 5px;
     border: none;
     width: 100%;
+    &.not_Valid{
+      border: 1px solid #FF647C;
+    }
   }
 }
 .field-block-multiple{
@@ -76,6 +79,17 @@
   position: relative;
   .field-block{
     margin-bottom: 25px;
+    .alert-danger{
+      position: absolute;
+      p{
+        font-size: 14px;
+        color: #FF647C;
+        font-family: 'Source Sans Pro';
+        font-style: normal;
+        font-weight: normal;
+        margin: 0;
+      }
+    }
   }
 }
 
@@ -199,12 +213,7 @@
   }
 }
 .add-education{
-  display: none;
-  position: absolute;
-  bottom: -20px;
-  left: 0;
   color: #3C7EEA;
-  padding: 0;
   span{
     padding-left: 10px;
     white-space: nowrap;
@@ -266,6 +275,7 @@ button {
     font-size: 17px;
   }
   &.change{
+    outline: none;
     top: 40px;
     right: -70px;
     &:hover {
@@ -273,6 +283,7 @@ button {
     }
   }
   &.delete-education{
+    outline: none;
     top: 38px;
     right: -115px;
     &>i {

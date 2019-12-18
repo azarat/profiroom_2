@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { UserSettingsModel } from 'src/app/models/user-settings.model';
 import { UserSettingsService } from '../../../services/user-settings.service';
+// import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-education-user-settings',
@@ -8,47 +9,44 @@ import { UserSettingsService } from '../../../services/user-settings.service';
   styleUrls: ['./education-user-settings.component.scss']
 })
 export class EducationUserSettingsComponent implements OnInit {
+
   @Input() userSettings: UserSettingsModel;
-  public openItem: number = 1;
+
+  // public educationForm: FormGroup;
+  public submited = false;
+  public openItem: number;
+
   files: any = [];
   previewUrl: any;
 
   public yearsArr = [];
   public yearsFiltered = [];
-  // public academicDegrees = [
-  //   'Молодший спеціаліст',
-  //   'Бакалавр',
-  //   'Спеціаліст',
-  //   'Магістр'
-  // ];
-  // public previewUrl = [
-  //   {link: "offerFiles/medium/testfile4.png"},
-  //   {link: "offerFiles/medium/testfile2.png"},
-  //   {link: "offerFiles/medium/testfile3.jpeg"},
-  // ]
-
   public academicDegrees = [1, 2, 3, 4, 5];
 
-  constructor(private userSettingsService: UserSettingsService) {}
+  constructor(
+    private userSettingsService: UserSettingsService,
+  ) {}
 
   ngOnInit() {
     this.createYears();
+    this.openItem = this.userSettings.education.length;
 
-    if (this.userSettings.diplomaFiles) {
-      this.previewUrl = this.userSettings.diplomaFiles;
+    if (!this.userSettings.education.length) {
+      this.addEducation();
     }
   }
 
-  addEducation(i) {
+  addEducation() {
     this.userSettings.education.push({
-      institution: null,
-      academicDegree: null,
-      specialty: null,
-      startEducation: null,
-      finishEducation: null,
+      institution: '',
+      academicDegree: 1,
+      specialty: '',
+      startEducation: 1960,
+      finishEducation: 1960,
       diplomaFiles: null
     });
-    this.openItem = i;
+    // this.submited = false;
+    this.openItem = this.userSettings.education.length;
   }
 
   deleteEducation(index: number) {
@@ -62,12 +60,10 @@ export class EducationUserSettingsComponent implements OnInit {
     this.files = [];
     for (let index = 0; index < event.length; index++) {
       this.files.push(event[index]);
-      console.log(this.files);
     }
     // ------- put files in FormData -------//
     this.files.forEach((el: any) => {
       formData.append('diploma[]', el, el.name);
-      console.log(formData);
     });
     // ------- load Files -----
 
@@ -75,7 +71,6 @@ export class EducationUserSettingsComponent implements OnInit {
       .uploadDiplomaPhotos(formData)
       .subscribe((res: any) => {
         this.previewUrl = res.diploma;
-        console.log('images from server',this.previewUrl);
       });
   }
 
@@ -105,10 +100,14 @@ export class EducationUserSettingsComponent implements OnInit {
     }
   }
 
-  // setMinYear(x) {
-  //   console.log(x);
-  //   for (let i = 1960; i <= x; i++) {
-  //     this.yearsFiltered.push(i);
-  //   }
-  // }
+  onSubmit(form) {
+    this.submited = true;
+    if (form.invalid) {
+      console.log('invalid');
+      return;
+    }
+
+
+    this.addEducation();
+  }
 }

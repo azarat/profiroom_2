@@ -13,8 +13,6 @@ export class UserSettingsModel {
   @Expose() description: string;
   @Expose() id: string;
 
-  @Expose() additionalDiplomaFiles: any;
-
   @Expose() birthDay: {
     year: number;
     month: number;

@@ -24,8 +24,6 @@ export class BirthdayUserSettingsComponent implements OnInit {
     this.filterChanhe();
     this.createDayArray();
     this.createMountArray();
-
-    console.log(this.userSettingsModel.birthDay.day);
   }
 
   createDayArray() {
