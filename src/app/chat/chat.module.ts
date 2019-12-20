@@ -9,7 +9,8 @@ import { ChatComponent } from './components/chat-component/chat-component';
 //  socet module
 
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
-const config: SocketIoConfig = { url: 'http://localhost:8988', options: {} }
+import { ChatService } from './services/chat.service';
+const config: SocketIoConfig = { url: 'http://192.168.0.200:6001', options: {} }
 //
 
 @NgModule({
@@ -18,6 +19,9 @@ const config: SocketIoConfig = { url: 'http://localhost:8988', options: {} }
     CommonModule,
     SocketIoModule.forRoot(config)
   ],
-  exports: [ChatComponent]
+  exports: [ChatComponent],
+  providers: [
+    ChatService
+  ]
 })
 export class ChatModule { }

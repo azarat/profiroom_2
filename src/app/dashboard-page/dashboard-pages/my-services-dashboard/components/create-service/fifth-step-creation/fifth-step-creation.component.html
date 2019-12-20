@@ -84,7 +84,7 @@
             <div class="item-controls">
               <button class="btn-sec" type="button" [disabled]="userService.offerBreef.length === 1"
                 (click)="showedItem = null">отменить</button>
-              <button class="btn" type="button" [disabled]="breef.invalid" (click)="showedItem = null">Добавить</button>
+              <button class="btn" type="button" [disabled]="form.invalid" (click)="showedItem = null">Добавить</button>
             </div>
           </div>
         </div>
@@ -93,7 +93,7 @@
       </form>
     </div>
     <div class="add-breef">
-      <button class="add btn-tetraty" type="button" [disabled]="!breef.valid" (click)="addBreefItem()">
+      <button class="add btn-tetraty" type="button" [disabled]="!form.valid" (click)="addBreefItem()">
         <i class="material-icons">
           add_circle_outline
         </i>

@@ -44,7 +44,7 @@ export class MyServicesHomeComponent implements OnInit {
   // }
   setCurrentTab(tab: string) {
     this.currentTab = tab;
-    // el.scroll(0,0);
+
     this.el.nativeElement.scroll(0, 0)
   }
 

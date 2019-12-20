@@ -1,4 +1,4 @@
-import {Directive, ElementRef, Output, EventEmitter, HostListener} from '@angular/core';
+import {NgModule, Directive, ElementRef, Output, EventEmitter, HostListener} from '@angular/core';
 
 @Directive({
     // tslint:disable-next-line: directive-selector

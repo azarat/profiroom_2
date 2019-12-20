@@ -9,15 +9,18 @@ export class ChatService {
   constructor(
     private socket: Socket
   ) { }
+
   sentMessage(msg: string) {
-    this.socket.emit('message', msg);
+    this.socket.emit('message',  );
   }
 
   getMessage(){
     return this.socket
-    .fromEvent('message')
+    .fromEvent('laravel_database_presence-chat:message')
     .pipe(
-      map((data: any) => data.msg)
+      map((data: any) => {
+        return data;
+      })
     );
   }
 }

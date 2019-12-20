@@ -102,7 +102,7 @@ export class FirstStepServiceCreationComponent implements OnInit {
 
   //  ----------  choose Main OfferPhoto  ----------
   putAsMainPhoto = (link: string) => {
-    this.userService.mainImage = link;
+    this.userService.offerMainImage = link;
   }
 
   //  --------------- file uploading ---------------
