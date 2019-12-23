@@ -1,0 +1,58 @@
+<div class="inform_section">
+  <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+    <div class="inform_section__title">
+      <h3>Смена пароля</h3>
+    </div>
+    <div class="inform_section__fields">
+      <div class="inputs-wrapper">
+
+        <div class="fields">
+          <h5 class="fields-title">Старый пароль</h5>
+          <!-- [(ngModel)]="userSettings.oldPassword" -->
+          <input class="fields-value" type="text"  name="oldPassword" maxlength="25">
+        </div>
+
+        <div class="fields">
+          <h5 class="fields-title">Новый пароль (если необходимо изменить)</h5>
+          <!-- [(ngModel)]="userSettings.newPassword" -->
+          <input class="fields-value" type="text"  name="newPassword" maxlength="25">
+        </div>
+
+        <div class="fields">
+          <h5 class="fields-title">Повторите новый пароль</h5>
+          <!-- [(ngModel)]="userSettings.copyNewPassword" -->
+          <input class="fields-value" type="text"  name="copyNewPassword" maxlength="25">
+        </div>
+
+      </div>
+    </div>
+
+    <div class="inform_section__title">
+      <h3>Изменение E-mail адреса</h3>
+    </div>
+    <div class="inform_section__fields">
+      <div class="inputs-wrapper">
+
+        <div class="fields">
+          <h5 class="fields-title">Ваш текущий e-mail</h5>
+          <input class="fields-value" type="text" [(ngModel)]="userSettings.oldMail" name="oldMail" maxlength="15">
+        </div>
+
+        <div class="fields">
+          <h5 class="fields-title">Ваш новый e-mail</h5>
+          <input class="fields-value" type="text" [(ngModel)]="userSettings.newMail" name="newMail" maxlength="15">
+        </div>
+
+        <div class="fields">
+          <h5 class="fields-title">Введите текущий пароль</h5>
+          <input class="fields-value" type="text" [(ngModel)]="userSettings.copyNewMail" name="copyNewMail" maxlength="15">
+        </div>
+
+      </div>
+    </div>
+
+  <div class="form-butons">
+    <button class="save-all" type="submit">сохранить изменения</button>
+  </div>
+  </form>
+</div>

@@ -16,7 +16,7 @@
     }
   }
   &__fields{
-    padding: 50px 0;
+    padding: 40px 0 20px;
     width: 69%;
     border-bottom: 1px solid #EBEEFF;
   }
@@ -55,6 +55,7 @@
 
 .fields{
   margin-bottom: 15px;
+  width: 100%;
   &-title{
     font-style: normal;
     font-weight: normal;
@@ -71,7 +72,7 @@
     font-size: 16px;
     line-height: 125%;
     color: #707683;
-    padding: 15px;
+    padding: 12px;
     box-sizing: border-box;
     background: #F4F7FC;
     border-radius: 5px;
@@ -90,61 +91,6 @@
     justify-content: space-between;
     flex-direction: row;
     width: 100%;
-
-    &.basicNotification{
-      flex-direction: column;
-    }
-  }
-}
-
-.fields-text{
-  font-family: Source Sans Pro;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 20px;
-  color: #707683;
-  margin: 0;
-  max-width: 510px;
-}
-input[type=checkbox].tgl-classic + label{
-  background: #fbfcfd;
-}
-.pckg-swap {
-  display: flex;
-  min-width: 40px;
-  width: fit-content;
-  justify-content: space-between;
-
-  input[type="checkbox"]:checked+label+span {
-    color: #3c7eea;
-    font-weight: 600;
-  }
-
-  span {
-    // margin-left: 13px;
-    font-family: Source Sans Pro, sans-serif;
-
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 20px;
-    text-align: center;
-    color: #707683;
-  }
-}
-
-.checkbox{
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-  span{
-    font-family: Source Sans Pro;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 20px;
-    color: #707683;
-    padding-left: 15px;
   }
 }
 

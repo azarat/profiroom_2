@@ -205,6 +205,7 @@
 }
 .about_me-block{
   max-width: 630px;
+  width: 100%;
   .fields-value{
     background: #F4F7FC;
     border-radius: 5px;
@@ -220,6 +221,13 @@
     padding: 15px;
     box-sizing: border-box;
   }
+}
+
+.inform_section__fields::ng-deep {
+  .mat-form-field-appearance-legacy .mat-form-field-underline {
+  height: 0;
+  display: none;
+}
 }
 
 

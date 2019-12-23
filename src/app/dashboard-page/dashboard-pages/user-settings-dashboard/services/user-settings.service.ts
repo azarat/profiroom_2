@@ -35,4 +35,9 @@ export class UserSettingsService {
     console.log("update", formData);
     return this.http.post<any>('/updateUserSettings', formData);
   }
+
+  public updateUserNotifications( formData){
+    console.log("updateNotifications", formData);
+    return this.http.post<any>('/userNotifications', formData);
+  }
 }

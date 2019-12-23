@@ -48,11 +48,11 @@
       <!-- <input class="fields-value" type="text" [(ngModel)]="dashboardSettings.description"> -->
       <app-birthday-user-settings *ngIf="userSettingsModel" [userSettingsModel]="userSettingsModel"></app-birthday-user-settings>
     </div>
-    <div class="about_me-block">
-      <!-- <div class="block-title">Расскажите о  себе</div> -->
-      <h5 class="fields-title">Расскажите о  себе</h5>
-      <textarea class="fields-value" [(ngModel)]="userSettingsModel.description" cols="45"></textarea>
-    </div>
+    <h5 class="fields-title">Расскажите о  себе</h5>
+    <mat-form-field floatLabel="always" class="about_me-block" >
+      <textarea class="fields-value" #serviceDescription [(ngModel)]="userSettingsModel.description" cols="45" matInput maxlength="1200"></textarea>
+      <mat-hint align="end">{{ serviceDescription.value.length }} из 1200 максимально</mat-hint>
+    </mat-form-field>
   </div>
 </div>
 

@@ -1,15 +1,93 @@
 <div class="inform_section">
-  <div class="inform_section__title">
-    <h3>Все уведомления по электронной почте</h3>
-  </div>
-  <div class="inform_section__fields">
-    <div class="inputs-wrapper">
-
-      <div class="field-block">
-        <p class="fields-text">Подпишитесь на электронные письма, чтобы узнавать что происходит, когда вы находитесь вне
-          сети. Рассылку можно изменить в любое время.</p>
-      </div>
-
+  <form #form="ngForm" (ngSubmit)="updateSettings(form)">
+    <div class="inform_section__title">
+      <h3>Все уведомления по электронной почте</h3>
     </div>
+    <div class="inform_section__fields">
+      <div class="inputs-wrapper">
+
+        <div class="field-block">
+          <p class="fields-text">Подпишитесь на электронные письма, чтобы узнавать что происходит, когда вы находитесь вне
+            сети. Рассылку можно изменить в любое время.</p>
+          <div class="pckg-swap">
+            <input class="tgl tgl-swp" id="cb2" type="checkbox" name="notificationsAll" [(ngModel)]="userSettingsModel.userNotifications.notificationsAll" (change)="chouseAll()"/>
+            <label class="tgl-btn" for="cb2"></label>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="inform_section__title">
+      <h3>Базовые уведомления</h3>
+    </div>
+    <div class="inform_section__fields">
+      <div class="inputs-wrapper">
+
+        <div class="field-block basicNotification">
+
+          <div class="checkbox">
+            <input type="checkbox" name="privateMessages" class="tgl-classic" [(ngModel)]="userSettingsModel.userNotifications.privateMessages" id="private-messages">
+            <label for="private-messages"></label>
+            <span class="options-name">Новые личные сообщения</span>
+          </div>
+
+          <div class="checkbox">
+            <input type="checkbox" name="newOrders" class="tgl-classic" [(ngModel)]="userSettingsModel.userNotifications.newOrders" id="new-orders">
+            <label for="new-orders"></label>
+            <span class="options-name">Новые заказы</span>
+          </div>
+
+          <div class="checkbox">
+            <input type="checkbox" name="serviceNotifications" class="tgl-classic" [(ngModel)]="userSettingsModel.userNotifications.serviceNotifications" id="service-notifications">
+            <label for="service-notifications"></label>
+            <span class="options-name">Сервисные уведомления</span>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <div class="inform_section__title">
+      <h3>проектные уведомления</h3>
+    </div>
+    <div class="inform_section__fields">
+      <div class="inputs-wrapper">
+
+        <div class="field-block basicNotification">
+
+          <div class="checkbox">
+            <input type="checkbox" name="messagesActiveProject" class="tgl-classic" [(ngModel)]="userSettingsModel.userNotifications.messagesActiveProject" id="messages-active-project">
+            <label for="messages-active-project"></label>
+            <span class="options-name">Новые сообщения в активном проекте</span>
+          </div>
+
+          <div class="checkbox">
+            <input type="checkbox" name="reservationFinancial" class="tgl-classic" [(ngModel)]="userSettingsModel.userNotifications.reservationFinancial" id="reservation-financial">
+            <label for="reservation-financial"></label>
+            <span class="options-name">Резервирование  финансовых средств</span>
+          </div>
+
+          <div class="checkbox">
+            <input type="checkbox" name="deadlines" class="tgl-classic" [(ngModel)]="userSettingsModel.userNotifications.deadlines" id="deadlines">
+            <label for="deadlines"></label>
+            <span class="options-name">Вышедшие сроки</span>
+          </div>
+
+          <div class="checkbox">
+            <input type="checkbox" name="orderFeedback" class="tgl-classic" [(ngModel)]="userSettingsModel.userNotifications.orderFeedback" id="order-feedback">
+            <label for="order-feedback"></label>
+            <span class="options-name">Отзыв к заказу</span>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  <div class="form-butons">
+    <button class="save-all" type="submit">сохранить и продолжить</button>
   </div>
+  </form>
 </div>

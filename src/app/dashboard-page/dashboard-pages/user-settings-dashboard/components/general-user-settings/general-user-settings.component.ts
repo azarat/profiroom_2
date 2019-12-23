@@ -12,20 +12,21 @@ import { filter } from 'rxjs/operators';
 })
 export class GeneralUserSettingsComponent implements OnInit {
 
+  @Input() userSettingsModel: UserSettingsModel;
   public mainSettingsFrom: FormGroup;
 
   constructor(
     private userSettingsService: UserSettingsService,
   ) { }
 
-  @Input() userSettingsModel: UserSettingsModel;
+
 
   ngOnInit(
 
   ) {
 
   }
-  public updateSettings() {
+  updateSettings() {
     console.log(this.userSettingsModel);
     this.userSettingsService.updateService(this.userSettingsModel)
     .pipe(filter((res: any) => !!res))

@@ -37,6 +37,7 @@ export class EducationUserSettingsComponent implements OnInit {
     }
   }
 
+  // --------------- create education-item -----------------//
   addEducation() {
     this.userSettings.education.push({
       institution: '',
@@ -50,11 +51,12 @@ export class EducationUserSettingsComponent implements OnInit {
     this.openItem = this.userSettings.education.length;
   }
 
+  // --------------- delete education-item -----------------//
   deleteEducation(index: number) {
     this.userSettings.deleteEducation(index);
   }
 
-  //  --------------- file uploading ---------------
+  //  --------------- diploma photos uploading ---------------
   fileProgress = (event: any, i) => {
     const formData: FormData = new FormData();
     // formData.append('offerId', this.userSettings.id);
@@ -100,6 +102,7 @@ export class EducationUserSettingsComponent implements OnInit {
     });
   }
 
+  // --------------- open single item -----------------//
   chooseItem(i) {
     if (this.openItem === i) {
       this.openItem = null;
@@ -108,12 +111,14 @@ export class EducationUserSettingsComponent implements OnInit {
     }
   }
 
+  // --------------- create years array-----------------//
   createYears() {
     for (let i = 1960; i <= 2019; i++) {
       this.yearsArr.push(i);
     }
   }
 
+  // --------------- save changes -----------------//
   onSubmit(form) {
     this.submited = true;
     if (form.invalid) {

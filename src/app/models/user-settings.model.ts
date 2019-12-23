@@ -13,6 +13,23 @@ export class UserSettingsModel {
   @Expose() description: string;
   @Expose() id: string;
 
+  @Expose() cardName: string;
+  @Expose() cardSurname: string;
+  @Expose() cardPhone: string;
+  @Expose() cardNumber1: number;
+  @Expose() cardNumber2: number;
+  @Expose() cardNumber3: number;
+  @Expose() cardNumber4: number;
+  @Expose() expirationDate: number;
+  @Expose() cvv: number;
+
+  @Expose() oldPassword: string;
+  @Expose() newPassword: string;
+  @Expose() copyNewPassword: string;
+  @Expose() oldMail: string;
+  @Expose() newMail: string;
+  @Expose() copyNewMail: string;
+
   @Expose() birthDay: {
     year: number;
     month: number;
@@ -28,6 +45,8 @@ export class UserSettingsModel {
   @Type(() => Education) education: Education[];
   // tslint:disable-next-line: no-use-before-declare
   @Type(() => AdditionalEducation) additionalEducation: AdditionalEducation[];
+  // tslint:disable-next-line: no-use-before-declare
+  @Type(() => UserNotifications) userNotifications: UserNotifications;
 
   // -------delete option------
   public removeLanguage(index: number) {
@@ -66,4 +85,16 @@ export class AdditionalEducation {
   @Expose() endStudyYear: number;
   @Expose() additionalDiplomaFiles: any;
 }
+
+export class UserNotifications {
+  @Expose() notificationsAll: boolean;
+  @Expose() privateMessages: boolean;
+  @Expose() newOrders: boolean;
+  @Expose() serviceNotifications: boolean;
+  @Expose() messagesActiveProject: boolean;
+  @Expose() reservationFinancial: boolean;
+  @Expose() deadlines: boolean;
+  @Expose() orderFeedback: boolean;
+}
+
 
