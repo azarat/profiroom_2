@@ -22,7 +22,7 @@ export class NotificationsUserSettingsComponent implements OnInit {
   }
 
   updateSettings( form: NgForm ) {
-    console.log("formData", form.value);
+    console.log('formData', form.value);
     this.userSettingsService.updateUserNotifications(form.value)
     .pipe(filter((res: any) => !!res))
     .subscribe(
@@ -33,8 +33,9 @@ export class NotificationsUserSettingsComponent implements OnInit {
       }
     );
   }
+
   chouseAll() {
-    if (this.userSettingsModel.userNotifications.notificationsAll){
+    if (this.userSettingsModel.userNotifications.notificationsAll) {
       this.userSettingsModel.userNotifications.privateMessages = true;
       this.userSettingsModel.userNotifications.newOrders = true;
       this.userSettingsModel.userNotifications.serviceNotifications = true;
@@ -42,6 +43,14 @@ export class NotificationsUserSettingsComponent implements OnInit {
       this.userSettingsModel.userNotifications.reservationFinancial = true;
       this.userSettingsModel.userNotifications.deadlines = true;
       this.userSettingsModel.userNotifications.orderFeedback = true;
+    } else {
+      this.userSettingsModel.userNotifications.privateMessages = false;
+      this.userSettingsModel.userNotifications.newOrders = false;
+      this.userSettingsModel.userNotifications.serviceNotifications = false;
+      this.userSettingsModel.userNotifications.messagesActiveProject = false;
+      this.userSettingsModel.userNotifications.reservationFinancial = false;
+      this.userSettingsModel.userNotifications.deadlines = false;
+      this.userSettingsModel.userNotifications.orderFeedback = false;
     }
   }
 }

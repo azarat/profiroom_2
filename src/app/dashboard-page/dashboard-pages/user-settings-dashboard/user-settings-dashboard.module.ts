@@ -31,7 +31,18 @@ const servicesRoutes: Routes = [
 ];
 
 @NgModule({
-  declarations: [HomeUserSettingsComponent, GeneralUserSettingsComponent, MainUserSettingsComponent, BirthdayUserSettingsComponent, LocationLanguageUserSettingsComponent, EducationUserSettingsComponent, AdditionalEducationUserSettingsComponent, NotificationsUserSettingsComponent, FinanceUserSettingsComponent, SecurityUserSettingsComponent],
+  declarations: [
+    HomeUserSettingsComponent,
+    GeneralUserSettingsComponent,
+    MainUserSettingsComponent,
+    BirthdayUserSettingsComponent,
+    LocationLanguageUserSettingsComponent,
+    EducationUserSettingsComponent,
+    AdditionalEducationUserSettingsComponent,
+    NotificationsUserSettingsComponent,
+    FinanceUserSettingsComponent,
+    SecurityUserSettingsComponent
+  ],
   imports: [
     CommonModule,
     LocalizeRouterModule.forChild(servicesRoutes),
@@ -44,6 +55,7 @@ const servicesRoutes: Routes = [
     MatSelectModule,
     MatInputModule,
     NgxMaskModule.forRoot(options),
-  ]
+  ],
+  providers: [],
 })
 export class UserSettingsDashboardModule { }

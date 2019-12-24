@@ -34,37 +34,85 @@
   justify-content: space-between;
   input{
     outline: none;
-    border: 1px solid transparent;
-  }
-  .fields ::ng-deep {
-    .mat-form-field{
-      width: 100%;
-    }
-    .field-wrapper{
-      padding-bottom: 1.25em;
-    }
-    .mat-form-field-infix{
-      border: none;
-      padding: 0;
-    }
-    .mat-form-field-appearance-legacy .mat-form-field-underline {
-      height: 0;
-      display: none;
-    }
-    .mat-warn .mat-input-element, .mat-form-field-invalid .mat-input-element {
-      border: 1px solid #FF647C;
-    }
-  }
-  .error-message{
-    position: absolute;
-    bottom: -20px;
-    font-size: 12px;
-    color: #f44336;
-    font-weight: 400;
-    line-height: 1.125;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
   }
 }
+
+.new-passrord{
+  & + .pass-erorrs {
+    width: 100%;
+    margin-top: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 3;
+    padding: 2px 0 9px;
+    span {
+      width: 19%;
+      border-radius: 2px;
+      height: 5px;
+      &.unvalidated {
+        background: rgba(100, 154, 243, 0.4);
+        order: 1;
+      }
+
+      &.validated {
+        background: #649af3;
+      }
+    }
+    .description {
+      width: 100%;
+      order: 3;
+      padding-left: 0;
+      margin: 0;
+      position: absolute;
+      top: 15px;
+      box-shadow: 0px 15px 21px rgba(128, 152, 213, 0.25);
+      background: #fff;
+      border-radius: 0px 0px 8px 8px;
+
+      li {
+        list-style: none;
+        margin: 8px 0 0 15px;
+        font-family: "Source Sans Pro", sans-serif;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 13px;
+        line-height: 16px;
+        color: #4285f4;
+        padding: 0 15px;
+        position: relative;
+
+        &:last-of-type {
+          margin-bottom: 12px;
+        }
+
+        &:before {
+          position: absolute;
+          content: "";
+          left: 0;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 4px;
+          height: 4px;
+          border-radius: 50%;
+          -webkit-border-radius: 50%;
+          -moz-border-radius: 50%;
+          -ms-border-radius: 50%;
+          -o-border-radius: 50%;
+          background: #4285f4;
+          -webkit-transform: translateY(-50%);
+          -moz-transform: translateY(-50%);
+          -ms-transform: translateY(-50%);
+          -o-transform: translateY(-50%);
+        }
+      }
+    }
+  }
+
+}
+
 
 .block-title{
   font-family: 'Source Sans Pro';
@@ -111,6 +159,15 @@
     border: none;
     width: 100%;
   }
+  .error-message {
+    position: absolute;
+    bottom: -4px;
+    font-size: 12px;
+    color: #f44336;
+    font-weight: 400;
+    line-height: 1.125;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+  }
 }
 
 
@@ -148,5 +205,4 @@
   margin: 30px auto 20px;
   padding: 17px 35px 15px;
   text-transform: uppercase;
-
 }
