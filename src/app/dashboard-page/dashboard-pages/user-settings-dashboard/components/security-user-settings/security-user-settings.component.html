@@ -7,18 +7,22 @@
       <div class="inputs-wrapper">
 
         <div class="fields">
-          <h5 class="fields-title">Старый пароль</h5>
-
-          <input class="fields-value" type="password"  name="oldPassword" maxlength="25">
+          <div class="field-wrapper">
+            <h5 class="fields-title">Старый пароль</h5>
+            <input class="fields-value" type="password"  name="oldPassword" maxlength="25">
+          </div>
         </div>
 
         <div class="fields">
           <mat-form-field>
             <h5 class="fields-title">Новый пароль (если необходимо изменить)</h5>
-            <input class="fields-value" matInput  formControlName="password" required>
+            <input class="fields-value" matInput  formControlName="newPassword" minlength="5" required>
             <mat-error *ngIf="myForm.hasError('required', 'password')">
                 Please enter your new password
             </mat-error>
+            <div class="error-message" *ngIf="f.errors?.minlength">
+              Name must be at least 5 characters long.
+            </div>
           </mat-form-field>
         </div>
 

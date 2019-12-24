@@ -31,8 +31,8 @@ export class SecurityUserSettingsComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder) {
     this.myForm = this.formBuilder.group({
-      password: ['', [Validators.required]],
-      confirmPassword: ['']
+      newPassword: ['', [Validators.required, Validators.minLength(5)]],
+      confirmPassword: ['', Validators.minLength(5)]
     }, { validator: this.checkPasswords });
 
   }
@@ -40,8 +40,12 @@ export class SecurityUserSettingsComponent implements OnInit {
   ngOnInit() {
   }
 
+  get f() {
+    return this.myForm.get('newPassword');
+  }
+
   checkPasswords(group: FormGroup) { // here we have the 'passwords' group
-    let pass = group.controls.password.value;
+    let pass = group.controls.newPassword.value;
     let confirmPass = group.controls.confirmPassword.value;
 
     return pass === confirmPass ? null : { notSame: true }

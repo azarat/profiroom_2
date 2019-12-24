@@ -32,6 +32,38 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  input{
+    outline: none;
+    border: 1px solid transparent;
+  }
+  .fields ::ng-deep {
+    .mat-form-field{
+      width: 100%;
+    }
+    .field-wrapper{
+      padding-bottom: 1.25em;
+    }
+    .mat-form-field-infix{
+      border: none;
+      padding: 0;
+    }
+    .mat-form-field-appearance-legacy .mat-form-field-underline {
+      height: 0;
+      display: none;
+    }
+    .mat-warn .mat-input-element, .mat-form-field-invalid .mat-input-element {
+      border: 1px solid #FF647C;
+    }
+  }
+  .error-message{
+    position: absolute;
+    bottom: -20px;
+    font-size: 12px;
+    color: #f44336;
+    font-weight: 400;
+    line-height: 1.125;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+  }
 }
 
 .block-title{
