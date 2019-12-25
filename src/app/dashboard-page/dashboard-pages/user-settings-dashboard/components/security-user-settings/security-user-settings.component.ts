@@ -14,9 +14,14 @@ import { filter } from 'rxjs/operators';
 export class SecurityUserSettingsComponent implements OnInit {
 
   @Input() userSettings: UserSettingsModel;
-  public submited = false;
+  public submitedPassForm = false;
+  public changePasswordResult = null;
 
-  myForm: FormGroup;
+  public submitedMail = false;
+  public submitedMailResult = null;
+
+  passForm: FormGroup;
+  mailForm: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -25,11 +30,8 @@ export class SecurityUserSettingsComponent implements OnInit {
 
   ngOnInit() {
 
-    this.myForm = this.formBuilder.group({
+    this.passForm = this.formBuilder.group({
       oldPassword: ['', [Validators.required]],
-      oldMail: ['', [Validators.required]],
-      newMail: ['', [Validators.required]],
-      copyNewMail: ['', [Validators.required]],
       passwords: this.formBuilder.group({
         newPassword: ['' , Validators.compose([
           // 1. Password Field is Required
@@ -46,26 +48,68 @@ export class SecurityUserSettingsComponent implements OnInit {
           // 6.; Has; a; minimum; length; of; 8; characters;  (?=.{6,100})
           CustomValidators.patternValidator(/(?=.{8,100})/, { minLengthCharacters: true })]) ],
 
-        confirmPassword: ['', [Validators.required]]
+        newPassword_confirmation: ['', [Validators.required]]
       }, { validator: this.checkPasswords })
     });
 
-    // console.log(this.myForm.controls.passwords.controls.newPassword);
-    this.myForm.valueChanges.subscribe((value) => console.log(value));
-    this.myForm.statusChanges.subscribe((status) => {
+    // console.log(this.passForm.controls.passwords.controls.newPassword);
+    this.passForm.valueChanges.subscribe((value) => console.log(value));
+    this.passForm.statusChanges.subscribe((status) => {
       console.log(status);
+    });
+
+    this.mailForm = this.formBuilder.group({
+      oldMail: ['', [
+        Validators.required,
+        Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')
+      ]],
+      newMail: ['', [
+        Validators.required,
+        Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')
+      ]],
+      password: ['', [Validators.required]]
+    });
+
+    this.mailForm.valueChanges.subscribe((value) => console.log(value));
+    this.mailForm.statusChanges.subscribe((status) => {
+      console.log(this.mailForm.controls.oldMail.status);
+      console.log(this.mailForm);
+
     });
   }
 
   checkPasswords(group: FormGroup) { // here we have the 'passwords' group
     const pass = group.get('newPassword').value;
-    const confirmPass = group.get('confirmPassword').value;
+    const confirmPass = group.get('newPassword_confirmation').value;
     return pass === confirmPass ? null : { notSame: true };
   }
 
-  updateSettings(form: FormGroup ) {
+  updatePass(form: FormGroup ) {
+    console.log(this.passForm.status);
+    this.submitedPassForm = true;
+    if (this.passForm.status === "INVALID") {return; }
+
+    this.userSettingsService.updateUserPassAccess(form.value)
+      .pipe(filter((res: any) => !!res))
+      .subscribe(
+        (res) => {
+          console.log(res);
+          if (this.submitedPassForm && res.message === "succes") {
+            this.changePasswordResult = true;
+          } else {
+            this.changePasswordResult = false;
+            this.submitedPassForm = false;
+            console.log(this.changePasswordResult);
+          }
+        }
+      );
+    }
+
+
+  updateMail(form: FormGroup ) {
     console.log('formData', form.value);
-    this.userSettingsService.updateUserSecurityAccess(form.value)
+    this.submitedMail = true;
+    this.userSettingsService.updateUserMailAccess(form.value)
     .pipe(filter((res: any) => !!res))
     .subscribe(
       (res) => {
