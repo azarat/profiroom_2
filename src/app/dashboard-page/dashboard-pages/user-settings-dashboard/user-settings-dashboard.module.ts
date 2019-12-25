@@ -19,6 +19,7 @@ import { AdditionalEducationUserSettingsComponent } from './components/general-u
 import { NotificationsUserSettingsComponent } from './components/notifications-user-settings/notifications-user-settings.component';
 import { FinanceUserSettingsComponent } from './components/finance-user-settings/finance-user-settings.component';
 import { SecurityUserSettingsComponent } from './components/security-user-settings/security-user-settings.component';
+import { SecurityPassUserSettingsComponent } from './components/security-user-settings/security-pass-user-settings/security-pass-user-settings.component';
 
 const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
 
@@ -41,7 +42,8 @@ const servicesRoutes: Routes = [
     AdditionalEducationUserSettingsComponent,
     NotificationsUserSettingsComponent,
     FinanceUserSettingsComponent,
-    SecurityUserSettingsComponent
+    SecurityUserSettingsComponent,
+    SecurityPassUserSettingsComponent
   ],
   imports: [
     CommonModule,
