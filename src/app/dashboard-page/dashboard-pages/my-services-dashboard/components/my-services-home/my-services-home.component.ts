@@ -26,14 +26,14 @@ export class MyServicesHomeComponent implements OnInit {
   currentTab: string = null;
   tabs = tabsConst;
 
+  @ViewChild('scrolledBlock', {static: false}) el: ElementRef;
+
   constructor(
     private router: Router,
     private localize: LocalizeRouterService,
     private userOfferService: UserOffersService,
     // tslint:disable-next-line: variable-name
   ) { }
-
-    @ViewChild('scrolledBlock', {static: false}) el: ElementRef;
 
   ngOnInit() {
     this.getUserServices();

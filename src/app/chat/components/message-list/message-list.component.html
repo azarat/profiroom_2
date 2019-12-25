@@ -1,0 +1,17 @@
+<section class="message-wrap">
+  <div class="message-list">
+    <div>
+      <div *ngFor="let mess of messages">
+        <div class="message" [ngClass]="{ autor: mess.id === 2 }">
+
+          <div class="text">
+            {{mess.text}}
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+

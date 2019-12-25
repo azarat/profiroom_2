@@ -68,6 +68,7 @@ export class LoginPageComponent implements OnInit {
       .subscribe(
         (data: UserModel) => {
           if (data) {
+            console.log(data)
             const translatedPath: any = this.localize.translateRoute('/dashboard');
             this.localStorageService.setItem('token', data.token);
             this.router.navigate([translatedPath]);

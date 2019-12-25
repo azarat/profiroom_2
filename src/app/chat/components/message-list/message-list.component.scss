@@ -1,0 +1,30 @@
+.message-wrap {
+  box-sizing: border-box;
+  padding: 30px 0 30px 28px;
+  height: 100%;
+  overflow: hidden;
+  .message-list {
+    height: 100%;
+    overflow-y: auto;
+    &>div {
+      padding-right: 28px;
+    }
+  }
+}
+
+.message {
+  margin-bottom: 23px;
+  display: flex;
+  .text {
+    background-color: #e6e9ff;
+    padding: 14px 24px;
+
+  }
+
+  &.autor {
+    .text {
+      background-color: #EAE8ED;
+    }
+
+  }
+}

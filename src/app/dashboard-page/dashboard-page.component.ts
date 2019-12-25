@@ -28,6 +28,7 @@ export class DashboardPageComponent implements OnInit {
     .subscribe((res: any ) => {
       console.log(res);
       this.user = plainToClass(UserModel, res[0]);
+
     });
 
   }

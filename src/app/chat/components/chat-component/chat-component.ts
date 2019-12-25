@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ChatService } from '../../services/chat.service';
 
 @Component({
@@ -8,15 +8,18 @@ import { ChatService } from '../../services/chat.service';
 })
 export class ChatComponent implements OnInit {
 
+  @Input() chatType: string;
+
   constructor(
     private chatService: ChatService
   ) { }
 
   ngOnInit() {
-    this.chatService.getMessage()
-    .subscribe(res => {
-      console.log(res);
-    });
+    // console.log(this.chatType)
+    // this.chatService.getMessage()
+    // .subscribe(res => {
+    //   console.log(res);
+    // });
   }
 
 }

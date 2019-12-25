@@ -34,7 +34,7 @@ export class BaseInterceptor implements HttpInterceptor {
     req: HttpRequest < any > ,
     next: HttpHandler
   ): Observable < HttpEvent < any >> {
-    const url = 'https://www.thecubetest.site/Backend/api';
+    const url = 'http://192.168.0.200/Backend/api';
     const token = this.localStorageService.getItem('token').value;
     if (req.url.indexOf('http' || 'https') !== 0) {
 
@@ -53,7 +53,7 @@ export class BaseInterceptor implements HttpInterceptor {
     return next.handle(req).pipe(
       catchError(err => {
         const error = err.error.message || err.statusText;
-        // console.log(err.status)
+        console.log(err.status)
         if (err.status === 401) {
           this.authService.logOut();
         }
