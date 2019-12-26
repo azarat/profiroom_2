@@ -1,20 +1,17 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { OfferDataInterface } from 'src/app/shared/interfaces/offer-date.interface';
-import { ServicePageService } from '../../services/service-page.service';
-import { filter } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-service-page-about-offer',
-  templateUrl: './service-page-about-offer.component.html',
-  styleUrls: ['./service-page-about-offer.component.scss']
+  selector: 'app-service-page-comments',
+  templateUrl: './service-page-comments.component.html',
+  styleUrls: ['./service-page-comments.component.scss']
 })
-export class ServicePageAboutOfferComponent implements OnInit {
+export class ServicePageCommentsComponent implements OnInit {
+
   @Input() offerData: OfferDataInterface;
   public convertedNumberOfComments;
 
-  constructor(
-    private servicePageService: ServicePageService
-  ) { }
+  constructor() { }
 
   ngOnInit() {
     this.formateCommentCount();
@@ -27,4 +24,5 @@ export class ServicePageAboutOfferComponent implements OnInit {
       this.convertedNumberOfComments = this.offerData.comments_count.toFixed(1) + "k+";
     }
   }
+
 }

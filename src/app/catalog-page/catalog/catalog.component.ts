@@ -29,21 +29,13 @@ export class CatalogComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('start');
     this.GetOffersService.subCategory$.subscribe(data => {
       this.subcategory = data;
       console.log('subcategories', this.subcategory);
-
-
-
       const y = {
         subCategory : this.subcategory
-      }
-      this.GetOffersService.getOffers(y)
-
-
-
-
+      };
+      this.GetOffersService.getOffers(y);
 
     });
     this._route.queryParams
@@ -51,11 +43,11 @@ export class CatalogComponent implements OnInit {
       if ( p.subCategory === undefined) {
         const x = {
           subCategory : this.subcategory
-        }
+        };
         this.GetOffersService.getOffers(x);
-        return
+        return;
       }
-      console.log('test', p.subCategory)
+      console.log('test', p.subCategory);
       this.GetOffersService.getOffers(p);
     });
 

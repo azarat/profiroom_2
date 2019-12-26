@@ -18,6 +18,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AuthorisatedGuard } from './guards/authorisated.guard';
 import { CategorysListService } from './services/categorys.service';
 import { OffersService } from './services/offers.service';
+import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 
 export const url = new URL(location.href).origin;
 
@@ -55,7 +56,8 @@ const gConfig = {
       }
     }),
     AngularFireModule.initializeApp(gConfig),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    ScrollToModule.forRoot()
   ],
   providers: [
     OffersService,

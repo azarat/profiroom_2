@@ -21,7 +21,6 @@ export class ServicePageQuestionsComponent implements OnInit {
     } else {
       this.btnNumber = null;
     }
-    console.log(this.btnNumber);
   }
 
 }
