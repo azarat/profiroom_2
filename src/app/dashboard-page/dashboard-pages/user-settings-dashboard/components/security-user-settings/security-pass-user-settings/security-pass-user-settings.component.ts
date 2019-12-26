@@ -75,7 +75,7 @@ export class SecurityPassUserSettingsComponent implements OnInit {
   }
 
   updatePass(form: FormGroup) {
-    console.log(this.passForm.status);
+
     this.submitedPassForm = true;
     if (this.passForm.status === 'INVALID') {
       return;

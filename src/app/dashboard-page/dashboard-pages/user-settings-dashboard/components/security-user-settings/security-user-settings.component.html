@@ -1,48 +1,4 @@
 <div class="inform_section">
   <app-security-pass-user-settings *ngIf="userSettings" [userSettings]="userSettings"></app-security-pass-user-settings>
-
-  <form [formGroup]="mailForm" (ngSubmit)="updateMail(mailForm)">
-    <div class="inform_section__title">
-      <h3>Изменение E-mail адреса</h3>
-    </div>
-    <div class="inform_section__fields">
-      <div class="inputs-wrapper">
-
-        <div class="fields">
-          <h5 class="fields-title">Ваш текущий e-mail</h5>
-          <input class="fields-value" type="text" formControlName="oldMail" maxlength="25">
-          <div class="error-message" *ngIf="mailForm.controls.oldMail.status === 'INVALID' && mailForm.controls.oldMail.value">
-            Ответ отрицательный. У вас не валидное міло
-          </div>
-          <div class="error-message" *ngIf="submitedMail && !mailForm.controls.oldMail.value">
-            Ответ отрицательный. Это поле вообще-то обезательное
-          </div>
-        </div>
-
-        <div class="fields">
-          <h5 class="fields-title">Ваш новый e-mail</h5>
-          <input class="fields-value" type="text" formControlName="newMail" maxlength="25">
-          <div class="error-message" *ngIf="mailForm.controls.newMail.status === 'INVALID' && mailForm.controls.newMail.value">
-            Ответ отрицательный. У вас не валидное міло
-          </div>
-          <div class="error-message" *ngIf="submitedMail && !mailForm.controls.newMail.value">
-            Ответ отрицательный. Это поле вообще-то обезательное
-          </div>
-        </div>
-
-        <div class="fields">
-          <h5 class="fields-title">Введите текущий пароль</h5>
-          <input class="fields-value" type="text" formControlName="password" maxlength="15">
-          <div class="error-message" *ngIf="submitedMail && submitedMailResult">
-            Ответ отрицательный. Этот пароль не твой
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="form-butons">
-      <button class="save-all" type="submit">сохранить изменения</button>
-    </div>
-  </form>
+  <app-security-mail-user-settings *ngIf="userSettings" [userSettings]="userSettings"></app-security-mail-user-settings>
 </div>

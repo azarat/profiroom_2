@@ -47,8 +47,8 @@ export class UserSettingsService {
   }
 
   public updateUserMailAccess( formData) {
-    console.log('updateUserSecurityAccess', formData);
-    return this.http.post<any>('/updateUserSecurityAccess', formData);
+    console.log('updateUserEmail', formData);
+    return this.http.post<any>('/updateUserEmail', formData);
   }
 
 }

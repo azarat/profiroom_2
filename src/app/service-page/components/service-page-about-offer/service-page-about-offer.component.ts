@@ -14,6 +14,7 @@ export class ServicePageAboutOfferComponent implements OnInit {
   constructor(
     private servicePageService: ServicePageService
   ) {
+
     // this.servicePageService.offerDate$
     // .pipe(filter((res: any) => !!res))
     // .subscribe(data => {
@@ -24,6 +25,7 @@ export class ServicePageAboutOfferComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.offerData);
   }
 
 }
