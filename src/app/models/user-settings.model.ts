@@ -73,7 +73,7 @@ export class Education {
   @Expose() specialty: string;
   @Expose() startEducation: number;
   @Expose() finishEducation: number;
-  @Expose() diplomaFiles: [];
+  @Expose() diplomaFiles: FormData;
 }
 
 export class AdditionalEducation {

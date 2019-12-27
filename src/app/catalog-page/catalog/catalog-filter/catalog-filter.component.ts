@@ -3,6 +3,7 @@ import { FilterInterface } from 'src/app/shared/interfaces/filter.interface';
 
 import { GetOffersService } from '../../services/get-offers.service';
 import { ActivatedRoute } from '@angular/router';
+import {MDCSelect} from '@material/select';
 
 
 @Component({
@@ -12,6 +13,9 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class FilterComponent implements OnInit {
   [x: string]: any;
+
+
+
 
   public fliterOpen = false;
   // tslint:disable-next-line: variable-name
@@ -41,6 +45,11 @@ export class FilterComponent implements OnInit {
 
   ngOnInit() {
     // this._getOffersService.setFilters(this.filterData);
+    const select = new MDCSelect(document.querySelector('.mdc-select'));
+
+    select.listen('MDCSelect:change', () => {
+      alert(`Selected option at index ${select.selectedIndex} with value "${select.value}"`);
+    });
   }
 
   onFilterChange() {
@@ -54,5 +63,12 @@ export class FilterComponent implements OnInit {
       this.fliterOpen = !this.fliterOpen;
     }
   }
+
+
+
+
+
+
+
 
 }

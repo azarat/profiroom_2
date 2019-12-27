@@ -81,13 +81,10 @@
             </div>
 
             <div class="items">
-              <!-- <ng-container *ngIf="userSettings.education"> -->
-                <div class="img-item" *ngFor="let imgUrl of fileNames, let i = index">
-                  <button class="delete-file" (click)="deleteAttachment(imgUrl)"></button>
-                  <!-- <img [src]="'https://www.thecubetest.site/Backend/storage/app/' + imgUrl" height="300" /> -->
-                  {{ imgUrl }}
-                </div>
-              <!-- </ng-container> -->
+              <div class="img-item" *ngFor="let name of fileNames; let x = index">
+                <button class="delete-file" (click)="deleteImg(i, x)"></button>
+                {{ name }}
+              </div>
             </div>
 
             <div class="add-photos">

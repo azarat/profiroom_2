@@ -57,49 +57,34 @@ export class EducationUserSettingsComponent implements OnInit {
   }
 
   //  --------------- diploma photos uploading ---------------
-  fileProgress = (event: any, i) => {
+  fileProgress = (event: any, i: number) => {
+
     const formData: FormData = new FormData();
     // formData.append('offerId', this.userSettings.id);
     this.files = [];
     this.fileNames = [];
+
     for (let index = 0; index < event.length; index++) {
       this.files.push(event[index]);
     }
-    // ------- put files in FormData -------//
     this.files.forEach((el: any) => {
-      formData.append('diploma[]', el, el.name);
+      formData.append('filesname[]', el, el.name);
+
       this.fileNames.push(el.name);
+      // console.log(this.fileNames);
     });
-    // ------- load Files -----
-
-    // ------- get fileName
 
 
-    // this.userSettingsService
-    //   .uploadDiplomaPhotos(formData)
-    //   .subscribe((res: any) => {
-    //     console.log(res)
-    //     this.previewUrl = res.diploma;
-    //   });
+    this.userSettings.education[i].diplomaFiles = formData;
+    // console.log(this.userSettings.education[i]);
   }
 
-  // fileProgress(event) {
-  //   if (event.target.files.length > 0) {
-  //     const file = event.target.files[0];
-  //     this.form.get('avatar').setValue(file);
-  //   }
-  // }
+
 
   // --------------- delete files -----------------//
-  deleteAttachment = (imgUrl: string) => {
-    console.log(imgUrl);
-    this.userSettingsService.deleteFile({ link: imgUrl }).subscribe((res: any) => {
-      if (res.status === 'ok') {
-        this.previewUrl = this.previewUrl.filter((el: string) => {
-          return el !== imgUrl;
-        });
-      }
-    });
+  deleteImg = (indexEducationArr: number, indexImgArr: number) => {
+    // console.log(indexEducationArr);
+    // this.userSettings.education[indexEducationArr].diplomaFiles.splice(indexImgArr, 1);
   }
 
   // --------------- open single item -----------------//
@@ -120,6 +105,7 @@ export class EducationUserSettingsComponent implements OnInit {
 
   // --------------- save changes -----------------//
   onSubmit(form) {
+    console.log(form);
     this.submited = true;
     if (form.invalid) {
       console.log('invalid');
@@ -127,4 +113,5 @@ export class EducationUserSettingsComponent implements OnInit {
     }
     this.addEducation();
   }
+
 }
