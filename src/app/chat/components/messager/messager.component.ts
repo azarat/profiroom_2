@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ChatService } from '../../services/chat.service';
+import { messages } from '../consts/messages.const';
 
 declare var $: any;
 
@@ -11,9 +12,12 @@ declare var $: any;
 })
 export class MessagerComponent implements OnInit {
 
+  messages: any[] = messages;
+
   public isEmojiVisible = false;
   messageArray = [];
   public messageText;
+  @Input() chatRoom: string;
 
   constructor(
     private chatService: ChatService
@@ -31,9 +35,11 @@ export class MessagerComponent implements OnInit {
   public sendMessage(form: NgForm) {
     // console.log(message.value)
     // this.messageArray.push(this.textInput.value);
-    this.chatService.sentMessage(this.textInput.value).subscribe(res =>{
-      // console.log(res)
-    })
+    this.chatService.sentMessage(this.textInput.value, this.chatRoom).subscribe(res => {
+
+      this.messages.push(res);
+      console.log(this.messages)
+    });
     form.reset();
 
   }
@@ -68,10 +74,10 @@ export class MessagerComponent implements OnInit {
     // console.log(emoji.emoji.native);
   }
 
-  public showEmoji(){
+  public showEmoji() {
     this.isEmojiVisible = !this.isEmojiVisible;
   }
-  hideEmoji(){
+  hideEmoji() {
     this.isEmojiVisible = false;
   }
 

@@ -26,7 +26,7 @@
             <mat-error *ngIf="loginForm.get('password').hasError('required')">{{ "Введите пароль" }}</mat-error>
           </mat-form-field>
           <section class="controls">
-              <mat-checkbox  class="remember-me" formControlName="checked">Запомнить меня</mat-checkbox>
+              <mat-checkbox  class="remember-me" formControlName="foreignComp">Чужой комппьютер</mat-checkbox>
               <a [routerLink]="['/auth/reset-pass' | localize ]">Не помню пароль</a>
           </section>
 

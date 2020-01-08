@@ -2,6 +2,9 @@
   max-height: 100%;
   display: flex;
   flex-direction: column;
+  &.projects .collocutors-wrap {
+    padding: 0;
+  }
 }
 
 .collocutors-wrap {
@@ -116,4 +119,38 @@
       -webkit-box-orient: vertical;
     }
   }
+
+.filters {
+  min-height: 50px;
+  box-shadow: 0 10px 16px rgba(128, 152, 213, 0.2);
+  border-radius: 3px;
+  border: 1px solid rgba(220, 224, 230, 0.1);
+  background-color: #ffffff;
+  // margin-bottom: 20px;
 }
+.collocutors-list.projects {
+  margin-top: 0;
+  padding-right: 10px;
+  // margin-top: 20px;
+  .collocutor {
+    border-radius: 4px;
+    border: 1px solid #f4f7fc;
+    margin-bottom: 3px;
+    padding: 14px 15px 22px 21px;
+    position: relative;
+    .status {
+      height: 100%;
+      width: 3px;
+      position: absolute;
+      left: 0;
+      top: 0;
+      background: #7DDFC3;
+      box-shadow: -10px 9px 21px rgba(128, 152, 213, 0.15);
+      border-radius: 4px;
+    }
+  }
+}
+
+}
+
+

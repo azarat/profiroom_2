@@ -96,6 +96,8 @@ export class UserServiceModel {
     tag: string
   } [];
   @Expose() mainImage: string;
+  @Expose() offerMainImage: string;
+
   @Expose() nextStep: number;
   @Expose() step: number;
   @Expose() files: any;

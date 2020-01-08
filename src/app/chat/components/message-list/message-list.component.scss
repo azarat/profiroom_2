@@ -6,7 +6,7 @@
   .message-list {
     height: 100%;
     overflow-y: auto;
-    &>div {
+    & > div {
       padding-right: 28px;
     }
   }
@@ -15,16 +15,50 @@
 .message {
   margin-bottom: 23px;
   display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
   .text {
     background-color: #e6e9ff;
     padding: 14px 24px;
+    border-radius: 0px 15px 15px 15px;
+  }
+  .photo {
+    max-width: 40px;
+    min-width: 40px;
+    height: 40px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-right: 20px;
+    img {
+      width: 130%;
+      height: auto;
+      min-height: 40px;
+    }
+  }
 
+  .time {
+    display: block;
+    opacity: 0.5;
+    color: #33596e;
+    font-family: "Source Sans Pro";
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.1px;
+    margin: 0 50px 0 20px;
   }
 
   &.autor {
-    .text {
-      background-color: #EAE8ED;
+    flex-direction: row-reverse;
+    .photo {
+      margin-left: 20px;
+      margin-right: 0;
     }
-
+    .text {
+      background-color: #eae8ed;
+      border-radius: 15px 0px 15px 15px;
+    }
+    .time {
+      margin: 0 20px 0 50px;
+    }
   }
 }

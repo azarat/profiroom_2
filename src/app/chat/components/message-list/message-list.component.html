@@ -2,12 +2,18 @@
   <div class="message-list">
     <div>
       <div *ngFor="let mess of messages">
-        <div class="message" [ngClass]="{ autor: mess.id === 2 }">
-
-          <div class="text">
-            {{mess.text}}
+        <div class="message" [ngClass]="{ autor: mess.id === 2 }" (click)="open()">
+          <div class="photo">
+            <img src="/assets/images/images/ava.jpg" alt="">
           </div>
-
+          <!-- <div class="text">
+            {{mess.text}}
+          </div> -->
+          <div class="text">
+            {{mess.message}}
+          </div>
+          <div class="message-control" *ngIf="false"></div>
+          <span class="time">{{ mess.time }}</span>
         </div>
 
       </div>

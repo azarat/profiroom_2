@@ -45,26 +45,42 @@
       box-sizing: border-box;
       display: flex;
       flex-direction: row;
-      background: #F6F7FF;
+      background: #f6f7ff;
       padding: 0 33px 0 20px;
-      &>div:first-of-type {
+      & > div:first-of-type {
         display: flex;
         flex-direction: row;
-        &>div {
+        & > div {
           margin-right: 20px;
+        }
+      }
+      .emoji {
+        cursor: pointer;
+        &:before {
+          content: "\f118";
+          position: absolute;
+          font-size: 21px;
+          font-family: FontAwesome;
+          color: #bfc5d1;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+        &:hover:before {
+          color: #278df3;
         }
       }
       .emoji::ng-deep {
         width: 20px;
         height: 20px;
-        border: 1px solid #000;
-        border-radius: 50%;
+        // border: 1px solid #000;
+        // border-radius: 50%;
         position: relative;
 
-        emoji-mart  {
+        emoji-mart {
           position: absolute;
           // display: none;
-          top:-370px;
+          top: -370px;
           .emoji-mart {
             width: 315px !important;
           }
@@ -87,7 +103,7 @@
             font-family: icoMoon;
             font-size: 19px;
           }
-          &:hover{
+          &:hover {
             color: #278df3;
           }
         }
@@ -103,7 +119,6 @@
         outline: none;
         border: none;
         box-shadow: none;
-
       }
       button[type="submit"] {
         width: 30px;

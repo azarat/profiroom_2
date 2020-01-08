@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ChatService } from '../../services/chat.service';
 import { messages } from '../consts/messages.const';
 
@@ -9,19 +9,21 @@ import { messages } from '../consts/messages.const';
 })
 export class MessageListComponent implements OnInit {
 
-  messages: any[] = messages;
-
-
+ @Input() messages;
 
   constructor(
     private chatService: ChatService
   ) { }
 
   ngOnInit() {
-  //   this.chatService.getPreviousMessages()
-  //   .subscribe(res => {
-  //     console.log(res);
-  //   });
+    // this.chatService.getPreviousMessages()
+    // .subscribe(res => {
+    //   console.log(res);
+    // });
+  }
+
+  open() {
+    // this.chatService.openChat('kotik');
   }
 
 }

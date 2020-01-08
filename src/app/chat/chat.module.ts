@@ -16,8 +16,10 @@ import { StarRaitingModule } from '../shared/modules/star-raiting/star-raiting.m
 import { PickerModule } from 'node_modules/@ctrl/ngx-emoji-mart';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-const config: SocketIoConfig = { url: 'http://192.168.0.200:6001', options: {} }
-//
+// const jwtToken = (localStorage.token).replace('"', '');
+// const config: SocketIoConfig = { url: 'http://192.168.0.200:6001', options: {query: {token: jwtToken}},  };
+// console.log(jwtToken);
+
 
 @NgModule({
   declarations: [
@@ -30,7 +32,7 @@ const config: SocketIoConfig = { url: 'http://192.168.0.200:6001', options: {} }
   ],
   imports: [
     CommonModule,
-    SocketIoModule.forRoot(config),
+    // SocketIoModule.forRoot(config),
     StarRaitingModule,
     PickerModule,
     ClickOutsideModule,
@@ -42,4 +44,7 @@ const config: SocketIoConfig = { url: 'http://192.168.0.200:6001', options: {} }
     ChatService
   ]
 })
-export class ChatModule { }
+export class ChatModule {
+
+ }
+
