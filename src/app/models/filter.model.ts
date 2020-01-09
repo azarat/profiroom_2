@@ -4,7 +4,7 @@ import {
 } from 'class-transformer';
 // import { type } from 'os';
 
-export class CatalogFilterModel {
+export class CatalogFiltersModel {
   @Expose() filterBy?: string;
   @Expose() subCategory?: string;
   @Expose() minPrice?: number;

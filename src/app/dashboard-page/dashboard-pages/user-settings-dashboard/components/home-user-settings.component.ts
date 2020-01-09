@@ -12,7 +12,7 @@ import { UserSettingsService } from '../services/user-settings.service';
 })
 export class HomeUserSettingsComponent implements OnInit {
 
-  public userSettingsModel: UserSettingsModel ;
+  public userSettingsModel: UserSettingsModel;
 
   constructor(
     // tslint:disable-next-line: variable-name

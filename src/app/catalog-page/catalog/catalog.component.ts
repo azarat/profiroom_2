@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
+import { CatalogFiltersModel } from 'src/app/models/filter.model';
 import { GetOffersService } from '../services/get-offers.service';
 import { Subscription, pipe } from 'rxjs';
 import { first } from 'rxjs/operators';
@@ -12,10 +13,8 @@ import { first } from 'rxjs/operators';
 })
 export class CatalogComponent implements OnInit {
 
-  // offersList: OffersListInterface;
-  private currentFilters: string;
+  public catalogFiltersModel: CatalogFiltersModel;
   public subcategory;
-
 
   catalogSubscription: Subscription;
 
@@ -25,38 +24,25 @@ export class CatalogComponent implements OnInit {
     // tslint:disable-next-line: variable-name
     private _route: ActivatedRoute,
   ) {
-
-  }
-
-  ngOnInit() {
-    // this.GetOffersService.subCategory$.subscribe(data => {
-    //   this.subcategory = data;
-    //   console.log('subcategories', this.subcategory);
-    //   const y = {
-    //     subCategory : this.subcategory
-    //   };
-    //   console.log(y);
-    //   this.GetOffersService.getOffers(y);
-    //   // console.log("catalog component ngOnInit - from subCategory$.subscribe");
-    // });
+    this.catalogFiltersModel =  {
+      filterBy: '',
+      subCategory: '',
+      minPrice: null,
+      maxPrice: null,
+      maxTerm: '',
+      PSD: false,
+      PNG: false,
+      commercial: false,
+      confidentiality: false,
+      agreement: false
+    };
 
     this._route.params
     .subscribe(p => {
-      console.log(p);
       this.GetOffersService.getOffers(p);
-      // if ( p.subCategory === undefined) {
-      //   const x = {
-      //     subCategory : this.subcategory
-      //   };
-
-      //   this.GetOffersService.getOffers(x);
-      //   // console.log("catalog component ngOnInit - from query params");
-      //   // return;
-      // }
-
+      this.catalogFiltersModel.subCategory = p.subCategory;
     });
-
-
-
   }
+
+  ngOnInit() {}
 }

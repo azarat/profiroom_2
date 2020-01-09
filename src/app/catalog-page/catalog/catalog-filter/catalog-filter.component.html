@@ -1,5 +1,5 @@
 <div class="wrapper">
-  <div class="filters-list">
+  <form class="filters-list">
 
     <div class="filter">
       <div class="title" (click)="showFullFilter(0)">
@@ -8,8 +8,8 @@
       </div>
       <div class="filter-values f-types" [ngClass]="{open: fliterOpen === 0}">
         <section  class="filter-values-wrapper f-checkboxs">
-          <mat-checkbox class="filter-text" (ngModelChange)="onFilterChange()" [(ngModel)]="filterData.PSD">PSD</mat-checkbox>
-          <mat-checkbox class="filter-text" (ngModelChange)="onFilterChange()" [(ngModel)]="filterData.PNG">PNG</mat-checkbox>
+          <mat-checkbox class="filter-text" (ngModelChange)="onFilterChange()" [(ngModel)]="catalogFilters.PSD" name='PSD' #typePSD="ngModel">PSD</mat-checkbox>
+          <mat-checkbox class="filter-text" (ngModelChange)="onFilterChange()" [(ngModel)]="catalogFilters.PNG" name='PNG' #typePNG="ngModel">PNG</mat-checkbox>
         </section >
         <div class="filter-btns">
           <div class="f-btn" (click)="clearTypes()">Очистить</div>
@@ -31,11 +31,11 @@
             matInput
             number
             placeholder="UAH"
-            [(ngModel)]="filterData.minPrice"
+            [(ngModel)]="catalogFilters.minPrice"
             (ngModelChange)="onFilterChange()"
             type="text"
-            name="price-min"
-            id="price-mn">
+            name="minPrice"
+            #typeMinPrice="ngModel">
         </div>
         <div class="filter-section">
           <label class="filter-text" for="price-mx">До</label>
@@ -44,11 +44,11 @@
             matInput
             number
             placeholder="UAH"
-            [(ngModel)]="filterData.maxPrice"
+            [(ngModel)]="catalogFilters.maxPrice"
             (ngModelChange)="onFilterChange()"
             type="text"
-            name="price-max"
-            id="price-mx">
+            name="maxPrice"
+            #typeMaxPrice="ngModel">
         </div>
       </div>
     </div>
@@ -59,7 +59,7 @@
         <div class="btn-show-full" [ngClass]="{open: fliterOpen === 2}"></div>
       </div>
       <div class="filter-values f-term" [ngClass]="{open: fliterOpen === 2}">
-        <mat-radio-group class="filter-values-wrapper" [(ngModel)]="filterData.maxTerm" (ngModelChange)="onFilterChange()">
+        <mat-radio-group class="filter-values-wrapper" (ngModelChange)="onFilterChange()" [(ngModel)]="catalogFilters.maxTerm" name='maxTerm' #maxTerm="ngModel">
           <mat-radio-button class="filter-text" value="">None</mat-radio-button>
           <mat-radio-button class="filter-text" value="1">Экспресс за 24 часа</mat-radio-button>
           <mat-radio-button class="filter-text" value="3">До 3 дней</mat-radio-button>
@@ -81,9 +81,9 @@
       </div>
       <div class="filter-values f-includes" [ngClass]="{open: fliterOpen === 3}">
         <section  class="filter-values-wrapper f-checkboxs">
-          <mat-checkbox class="filter-text" (ngModelChange)="onFilterChange()" [(ngModel)]="filterData.commercial">Коммерческое использование</mat-checkbox>
-          <mat-checkbox class="filter-text" (ngModelChange)="onFilterChange()" [(ngModel)]="filterData.confidentiality">Конфиденциальность</mat-checkbox>
-          <mat-checkbox class="filter-text" (ngModelChange)="onFilterChange()" [(ngModel)]="filterData.agreement">Контракты и соглашения</mat-checkbox>
+          <mat-checkbox class="filter-text" (ngModelChange)="onFilterChange()" [(ngModel)]="catalogFilters.commercial" name='commercial' #commercial="ngModel">Коммерческое использование</mat-checkbox>
+          <mat-checkbox class="filter-text" (ngModelChange)="onFilterChange()" [(ngModel)]="catalogFilters.confidentiality" name='confidentiality' #confidentiality="ngModel">Конфиденциальность</mat-checkbox>
+          <mat-checkbox class="filter-text" (ngModelChange)="onFilterChange()" [(ngModel)]="catalogFilters.agreement" name='agreement' #agreement="ngModel">Контракты и соглашения</mat-checkbox>
         </section >
         <div class="filter-btns">
           <div class="f-btn" (click)="clearIncludes()">Очистить</div>
@@ -92,5 +92,5 @@
       </div>
     </div>
 
-  </div>
+  </form>
 </div>
