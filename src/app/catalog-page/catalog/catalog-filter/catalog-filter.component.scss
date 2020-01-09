@@ -9,7 +9,7 @@
   display: flex;
 }
 
-.filter-item{
+.filter{
   background: #FFFFFF;
   border: 1px solid rgba(220, 224, 230, 0.1);
   box-shadow: 0px 10px 16px rgba(128, 152, 213, 0.2);
@@ -18,22 +18,23 @@
   position: relative;
   width: 214px;
   margin-right: 40px;
-
-  // padding: 5px;
-  border: 1px solid black;
+  &.includes{
+    width: 286px;
+  }
+  // border: 1px solid black;
   .title{
     position: relative;
     cursor: pointer;
-    // p{
-    //  margin: 0;
-    //  padding: 22px 20px;
-    //  font-family: "Source Sans Pro";
-    //  font-style: normal;
-    //  font-weight: normal;
-    //  font-size: 16px;
-    //  line-height: 21px;
-    //  color: #323C47;
-    // }
+    p{
+     margin: 0;
+     padding: 16px;
+     font-family: "Source Sans Pro";
+     font-style: normal;
+     font-weight: normal;
+     font-size: 16px;
+     line-height: 21px;
+     color: #323C47;
+    }
     .btn-show-full{
       display: block;
       width: 12px;
@@ -50,7 +51,9 @@
       }
     }
   }
-  .filter{
+  .filter-values{
+    display: flex;
+    flex-direction: column;
     height: 1px;
     width: 100%;
     overflow: hidden;
@@ -62,25 +65,86 @@
     box-shadow: 0px 10px 16px rgba(128, 152, 213, 0.2);
     border-radius: 3px;
 
-    height: 90px;
-    padding-top: 10px;
     overflow: hidden;
     transition: all 0.5s;
     position: absolute;
     left: 0;
-
     bottom: 0;
     opacity: 0;
     z-index: -1;
-    &.open{
-      bottom: calc(-100% - 35px);
-      opacity: 1;
-      z-index: 9;
+    .filter-values-wrapper{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+      padding: 15px;
+    }
+    .filter-text{
+      font-family: "Source Sans Pro";
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 21px;
+      color: #707683;
+      display: block;
+    }
+    .filter-btns{
+      display: flex;
+      justify-content: space-between;
+      margin: 0 14px 13px;
+      padding-top: 10px;
+      border-top: 1px solid #F4F7FC;
+      .f-btn{
+        cursor: pointer;
+        font-family: Source Sans Pro;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 21px;
+        color: #99ACB7;
+      }
+    }
+    &.f-types{
+      height: 140px;
+      &.open{
+        bottom: calc(-100% - 100px);
+        opacity: 1;
+        z-index: 9;
+      }
+    }
+    &.f-price{
+      height: 110px;
+      &.open{
+        bottom: calc(-100% - 75px);
+        opacity: 1;
+        z-index: 9;
+      }
+    }
+    &.f-term{
+      height: 300px;
+      &.open{
+        bottom: calc(-100% - 260px);
+        opacity: 1;
+        z-index: 9;
+      }
+    }
+    &.f-includes{
+      height: 180px;
+      &.open{
+        bottom: calc(-100% - 140px);
+        opacity: 1;
+        z-index: 9;
+      }
     }
   }
-  .price{
+
+  // .f-types{
+
+  // }
+  .f-price{
     display: flex;
     justify-content: space-between;
+    flex-direction: row;
+    padding-top: 10px;
     .filter-section{
       width: 80px;
       padding: 0 10px;
@@ -97,15 +161,9 @@
         }
       }
     }
-    label{
-      font-family: "Source Sans Pro";
-      font-style: normal;
-      font-weight: normal;
-      font-size: 16px;
-      line-height: 21px;
-      color: #707683;
-      display: block;
+    .filter-text{
       margin-bottom: 7px;
+      margin-top: 14px;
     }
     .inputs{
       border: 1px solid #DCE0E6;
@@ -113,115 +171,54 @@
       border-radius: 2px;
       font-size: 14px;
       padding: 12px 5px;
+      width: 100%;
     }
   }
-
-/* select starting stylings ------------------------------*/
-.select {
-  font-family:
-    'Roboto','Helvetica','Arial',sans-serif;
-	position: relative;
-	width: 350px;
+  .f-term{
+    display: flex;
+    flex-direction: column;
+    ::ng-deep {
+      .mat-radio-container{
+        width: 16px;
+        height: 16px;
+      }
+      .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle{
+        border-color: #3C7EEA;
+      }
+      .mat-radio-button.mat-accent .mat-radio-inner-circle{
+        background-color: #3C7EEA;
+        height: 16px;
+        width: 16px;
+      }
+      .mat-radio-button.mat-accent .mat-radio-inner-circle, .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple), .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple, .mat-radio-button.mat-accent:active .mat-radio-persistent-ripple {
+        background-color: #649AF3;
+      }
+      .mat-radio-outer-circle{
+        height: 16px;
+        width: 16px;
+        border-radius: 50%;
+      }
+      .mat-radio-button .mat-radio-ripple {
+        position: absolute;
+        left: calc(50% - 16px);
+        top: calc(50% - 16px);
+        height: 32px;
+        width: 32px;
+        z-index: 1;
+        pointer-events: none;
+        border-radius: 50%;
+      }
+    }
+  }
 }
 
-.select-text {
-	position: relative;
-	font-family: inherit;
-	background-color: transparent;
-	width: 350px;
-	padding: 10px 10px 10px 0;
-	font-size: 18px;
-	border-radius: 0;
-	border: none;
-	border-bottom: 1px solid rgba(0,0,0, 0.12);
-}
-
-/* Remove focus */
-.select-text:focus {
-	outline: none;
-	border-bottom: 1px solid rgba(0,0,0, 0);
-}
-
-	/* Use custom arrow */
-.select .select-text {
-	appearance: none;
-	-webkit-appearance:none
-}
-
-.select:after {
-	position: absolute;
-	top: 18px;
-	right: 10px;
-	/* Styling the down arrow */
-	width: 0;
-	height: 0;
-	padding: 0;
-	content: '';
-	border-left: 6px solid transparent;
-	border-right: 6px solid transparent;
-	border-top: 6px solid rgba(0, 0, 0, 0.12);
-	pointer-events: none;
-}
-
-
-/* LABEL ======================================= */
-.select-label {
-	color: rgba(0,0,0, 0.26);
-	font-size: 18px;
-	font-weight: normal;
-	position: absolute;
-	pointer-events: none;
-	left: 0;
-	top: 10px;
-	transition: 0.2s ease all;
-}
-
-/* active state */
-.select-text:focus ~ .select-label, .select-text:valid ~ .select-label {
-	color: #2F80ED;
-	top: -20px;
-	transition: 0.2s ease all;
-	font-size: 14px;
-}
-
-/* BOTTOM BARS ================================= */
-.select-bar {
-	position: relative;
-	display: block;
-	width: 350px;
-}
-
-.select-bar:before, .select-bar:after {
-	content: '';
-	height: 2px;
-	width: 0;
-	bottom: 1px;
-	position: absolute;
-	background: #2F80ED;
-	transition: 0.2s ease all;
-}
-
-.select-bar:before {
-	left: 50%;
-}
-
-.select-bar:after {
-	right: 50%;
-}
-
-/* active state */
-.select-text:focus ~ .select-bar:before, .select-text:focus ~ .select-bar:after {
-	width: 50%;
-}
-
-/* HIGHLIGHTER ================================== */
-.select-highlight {
-	position: absolute;
-	height: 60%;
-	width: 100px;
-	top: 25%;
-	left: 0;
-	pointer-events: none;
-	opacity: 0.5;
-}
+.f-checkboxs{
+  ::ng-deep {
+    .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background, .mat-checkbox-checked.mat-accent .mat-checkbox-background{
+      background-color: #3C7EEA;
+    }
+    .mat-checkbox-checked:not(.mat-checkbox-disabled).mat-accent .mat-ripple-element, .mat-checkbox:active:not(.mat-checkbox-disabled).mat-accent .mat-ripple-element{
+      background-color: #3C7EEA;
+    }
+  }
 }

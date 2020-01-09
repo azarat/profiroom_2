@@ -1,13 +1,31 @@
 <div class="wrapper">
   <div class="filters-list">
-    <div class="filter-item f-price">
-      <div class="title" (click)="showFullFilter()">
-        <p>Бюджет</p>
-        <div class="btn-show-full" [ngClass]="fliterOpen? 'open': ''"></div>
+
+    <div class="filter">
+      <div class="title" (click)="showFullFilter(0)">
+        <p>Исходники работы</p>
+        <div class="btn-show-full" [ngClass]="{open: fliterOpen === 0}"></div>
       </div>
-      <div class="filter price" [ngClass]="fliterOpen? 'open': ''">
+      <div class="filter-values f-types" [ngClass]="{open: fliterOpen === 0}">
+        <section  class="filter-values-wrapper f-checkboxs">
+          <mat-checkbox class="filter-text" (ngModelChange)="onFilterChange()" [(ngModel)]="filterData.PSD">PSD</mat-checkbox>
+          <mat-checkbox class="filter-text" (ngModelChange)="onFilterChange()" [(ngModel)]="filterData.PNG">PNG</mat-checkbox>
+        </section >
+        <div class="filter-btns">
+          <div class="f-btn" (click)="clearTypes()">Очистить</div>
+          <div class="f-btn" (click)="showFullFilter(null)">Закрыть</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="filter">
+      <div class="title" (click)="showFullFilter(1)">
+        <p>Бюджет</p>
+        <div class="btn-show-full" [ngClass]="{open: fliterOpen === 1}"></div>
+      </div>
+      <div class="filter-values f-price" [ngClass]="{open: fliterOpen === 1}">
         <div class="filter-section">
-          <label for="price-mn">От</label>
+          <label class="filter-text" for="price-mn">От</label>
           <input
             class="inputs"
             matInput
@@ -17,11 +35,10 @@
             (ngModelChange)="onFilterChange()"
             type="text"
             name="price-min"
-            id="price-mn"
-          >
+            id="price-mn">
         </div>
         <div class="filter-section">
-          <label for="price-mx">До</label>
+          <label class="filter-text" for="price-mx">До</label>
           <input
             class="inputs"
             matInput
@@ -31,51 +48,49 @@
             (ngModelChange)="onFilterChange()"
             type="text"
             name="price-max"
-            id="price-mx"
-          >
+            id="price-mx">
         </div>
       </div>
     </div>
-    <div class="filter-item f-term">
 
-      <mat-form-field>
-        <mat-label>Срок выполнения</mat-label>
-        <mat-select [(ngModel)]="filterData.maxTerm" (ngModelChange)="onFilterChange()">
-          <mat-option value="">None</mat-option>
-          <mat-option value="1" >Экспресс за 24 часа</mat-option>
-          <mat-option value="3" >До 3 дней</mat-option>
-          <mat-option value="7" >До 7 дней</mat-option>
-          <mat-option value="30">До месяца</mat-option>
-          <mat-option value="99">Любое время</mat-option>
-        </mat-select>
-      </mat-form-field>
-
+    <div class="filter">
+      <div class="title" (click)="showFullFilter(2)">
+        <p>Срок выполнения</p>
+        <div class="btn-show-full" [ngClass]="{open: fliterOpen === 2}"></div>
+      </div>
+      <div class="filter-values f-term" [ngClass]="{open: fliterOpen === 2}">
+        <mat-radio-group class="filter-values-wrapper" [(ngModel)]="filterData.maxTerm" (ngModelChange)="onFilterChange()">
+          <mat-radio-button class="filter-text" value="">None</mat-radio-button>
+          <mat-radio-button class="filter-text" value="1">Экспресс за 24 часа</mat-radio-button>
+          <mat-radio-button class="filter-text" value="3">До 3 дней</mat-radio-button>
+          <mat-radio-button class="filter-text" value="7">До 7 дней</mat-radio-button>
+          <mat-radio-button class="filter-text" value="30">До месяца</mat-radio-button>
+          <mat-radio-button class="filter-text" value="99">Любое время</mat-radio-button>
+        </mat-radio-group>
+        <div class="filter-btns">
+          <div class="f-btn" (click)="clearTerms()">Очистить</div>
+          <div class="f-btn" (click)="showFullFilter(null)">Закрыть</div>
+        </div>
+      </div>
     </div>
 
-
-    <!-- <div class="mdc-select">
-      <div class="mdc-select__anchor demo-width-class">
-        <i class="mdc-select__dropdown-icon"></i>
-        <div class="mdc-select__selected-text"></div>
-        <span class="mdc-floating-label">Pick a Food Group</span>
-        <div class="mdc-line-ripple"></div>
+    <div class="filter includes">
+      <div class="title" (click)="showFullFilter(3)">
+        <p>Сервис включает</p>
+        <div class="btn-show-full" [ngClass]="{open: fliterOpen === 3}"></div>
       </div>
-
-      <div class="mdc-select__menu mdc-menu mdc-menu-surface demo-width-class">
-        <ul class="mdc-list">
-          <li class="mdc-list-item mdc-list-item--selected" data-value="" aria-selected="true"></li>
-          <li class="mdc-list-item" data-value="grains">
-            Bread, Cereal, Rice, and Pasta
-          </li>
-          <li class="mdc-list-item" data-value="vegetables">
-            Vegetables
-          </li>
-          <li class="mdc-list-item" data-value="fruit">
-            Fruit
-          </li>
-        </ul>
+      <div class="filter-values f-includes" [ngClass]="{open: fliterOpen === 3}">
+        <section  class="filter-values-wrapper f-checkboxs">
+          <mat-checkbox class="filter-text" (ngModelChange)="onFilterChange()" [(ngModel)]="filterData.commercial">Коммерческое использование</mat-checkbox>
+          <mat-checkbox class="filter-text" (ngModelChange)="onFilterChange()" [(ngModel)]="filterData.confidentiality">Конфиденциальность</mat-checkbox>
+          <mat-checkbox class="filter-text" (ngModelChange)="onFilterChange()" [(ngModel)]="filterData.agreement">Контракты и соглашения</mat-checkbox>
+        </section >
+        <div class="filter-btns">
+          <div class="f-btn" (click)="clearIncludes()">Очистить</div>
+          <div class="f-btn" (click)="showFullFilter(null)">Закрыть</div>
+        </div>
       </div>
-    </div> -->
+    </div>
 
   </div>
 </div>

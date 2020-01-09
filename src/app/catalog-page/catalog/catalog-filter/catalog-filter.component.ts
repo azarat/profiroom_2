@@ -14,16 +14,10 @@ import {MDCSelect} from '@material/select';
 export class FilterComponent implements OnInit {
   [x: string]: any;
 
-
-
-
   public fliterOpen = false;
   // tslint:disable-next-line: variable-name
   public filterData: FilterInterface = {};
   // public subcategory;
-
-  // private filters = new BehaviorSubject(this._filterData);
-  // public filterVaraibles: Observable<FilterInterface>;
 
   constructor(
     // tslint:disable-next-line: variable-name
@@ -43,24 +37,32 @@ export class FilterComponent implements OnInit {
     // });
   }
 
-  ngOnInit() {
-    // this._getOffersService.setFilters(this.filterData);
-    const select = new MDCSelect(document.querySelector('.mdc-select'));
-
-    select.listen('MDCSelect:change', () => {
-      alert(`Selected option at index ${select.selectedIndex} with value "${select.value}"`);
-    });
-  }
+  ngOnInit() { }
 
   onFilterChange() {
     this._getOffersService.setFilters(this.filterData);
   }
 
-  showFullFilter() {
-    if (this.fliterOpen === null) {
-      this.fliterOpen = true;
+  clearTerms() {
+    this.filterData.maxTerm = null;
+    this._getOffersService.setFilters(this.filterData);
+  }
+  clearTypes() {
+    this.filterData.PSD = null;
+    this.filterData.PNG = null;
+    this._getOffersService.setFilters(this.filterData);
+  }
+  clearIncludes() {
+    this.filterData.commercial = null;
+    this.filterData.confidentiality = null;
+    this.filterData.agreement = null;
+    this._getOffersService.setFilters(this.filterData);
+  }
+  showFullFilter(x) {
+    if(this.fliterOpen === x) {
+      this.fliterOpen = null;
     } else {
-      this.fliterOpen = !this.fliterOpen;
+      this.fliterOpen = x;
     }
   }
 

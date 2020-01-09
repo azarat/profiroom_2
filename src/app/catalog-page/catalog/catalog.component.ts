@@ -35,21 +35,25 @@ export class CatalogComponent implements OnInit {
       const y = {
         subCategory : this.subcategory
       };
+      console.log(y);
       this.GetOffersService.getOffers(y);
+      console.log("catalog component ngOnInit - from subCategory$.subscribe");
+    });
+    // this._route.queryParams
+    // .subscribe(p => {
 
-    });
-    this._route.queryParams
-    .subscribe(p => {
-      if ( p.subCategory === undefined) {
-        const x = {
-          subCategory : this.subcategory
-        };
-        this.GetOffersService.getOffers(x);
-        return;
-      }
-      console.log('test', p.subCategory);
-      this.GetOffersService.getOffers(p);
-    });
+    //   if ( p.subCategory === undefined) {
+    //     const x = {
+    //       subCategory : this.subcategory
+    //     };
+
+    //     this.GetOffersService.getOffers(x);
+    //     console.log("catalog component ngOnInit - from query params");
+    //     return;
+    //   }
+    //   console.log('test', p.subCategory);
+    //   this.GetOffersService.getOffers(p);
+    // });
 
 
 

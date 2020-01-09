@@ -141,59 +141,6 @@
   .block-title{
     margin-bottom: 25px;
   }
-  input[type=radio] {
-    display: none;
-  }
-  .radio-title{
-    font-family: 'Source Sans Pro';
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 20px;
-    color: #3C7EEA;
-    margin: 0;
-    margin-right: 70px;
-    display: inline-block;
-    position: relative;
-    bottom: 4px;
-  }
-  .radioButton {
-    position: absolute;
-    z-index: -1;
-    opacity: 0;
-    margin: 10px 0 0 7px;
-  }
-  .radioButton + label {
-    position: relative;
-    padding: 0 0 0 35px;
-    cursor: pointer;
-  }
-  .radioButton + label:before {
-    content: '';
-    position: absolute;
-    top: -3px;
-    left: 0;
-    width: 14px;
-    height: 14px;
-    border: 2px solid #3C7EEA;
-    border-radius: 50%;
-    background: #FFF;
-  }
-  .radioButton + label:after {
-    content: '';
-    position: absolute;
-    top: 1px;
-    left: 4px;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: #3C7EEA;
-    opacity: 0;
-    transition: .2s;
-  }
-  .radioButton:checked + label:after {
-    opacity: 1;
-  }
 }
 
 .birthday-block{
