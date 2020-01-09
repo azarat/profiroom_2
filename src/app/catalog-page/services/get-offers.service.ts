@@ -41,8 +41,9 @@ export class GetOffersService {
     // console.log('set.subval');
     this._subCategory.next(subcategory);
     // ??????????
-    this.subCategory$.subscribe(res => (this._filterValue.subCategory = res));
     console.log(this._filterValue.subCategory);
+    this.subCategory$.subscribe(res => (this._filterValue.subCategory = res));
+
   }
 
   // -------- main functions in catalog ----------------//
@@ -56,8 +57,11 @@ export class GetOffersService {
 
   // tslint:disable-next-line: variable-name
   setFilters(_filters: FilterInterface) {
+
     this._filterValue = _filters;
     this.filters.next(_filters);
+
+
 
     this.pushFilters(_filters);
   }
@@ -78,7 +82,8 @@ export class GetOffersService {
       queryParamsHandling: 'merge'
     });
 
-    console.log('getOffers from service - pushFilters()', getfilters);
+    // console.log('getOffers from service - pushFilters()', getfilters);
+    console.log(this.filters);
     this.getOffers(getfilters);
   }
 }

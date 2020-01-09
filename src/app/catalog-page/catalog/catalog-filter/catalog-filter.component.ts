@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, ɵConsole } from '@angular/core';
 import { FilterInterface } from 'src/app/shared/interfaces/filter.interface';
+import { CatalogFilterModel } from 'src/app/models/filter.model';
 
 import { GetOffersService } from '../../services/get-offers.service';
 import { ActivatedRoute } from '@angular/router';
@@ -27,13 +28,17 @@ export class FilterComponent implements OnInit {
   ) {
     this._getOffersService.subCategory$.subscribe(data => {
       // this.subcategory = data;
+
       this.filterData.subCategory = data;
+      console.log(data);
     });
-    // this._route.queryParams.subscribe(p => {
-    //   // console.log(p);
-    //   this.filterData.minPrice = p.minPrice;
-    //   this.filterData.maxPrice = p.maxPrice;
-    //   this.filterData.maxTerm = p.maxTerm;
+
+
+
+    // this._route.params.subscribe(p => {
+    //   // console.log(this.filterData);
+    //   this.filterData = p;
+    //   // console.log(this.filterData);
     // });
   }
 
