@@ -53,8 +53,8 @@ export class SocetService {
   };
 
   public openChat(roomId) {
-    this.socket.disconnect();
-    this.socket.connect();
+    // this.socket.disconnect();
+    // this.connect();
     const room = 'laravel_database_presence-' + roomId + ':message';
     console.log(room)
     return new Observable(observer => {

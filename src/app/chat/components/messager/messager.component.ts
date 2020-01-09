@@ -28,10 +28,10 @@ export class MessagerComponent implements OnInit {
   @ViewChild('textinput', {static: false}) textinput: ElementRef;
 
   ngOnInit() {
-    this.socetService.openChat(this.chatRoom)
-    .subscribe(res => {
-      console.log("socet", res);
-    })
+    // this.socetService.openChat(this.chatRoom)
+    // .subscribe(res => {
+    //   console.log("socet", res);
+    // })
   }
 
   private get textInput() {

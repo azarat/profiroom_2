@@ -3,7 +3,7 @@
     <app-collocutors-list [chatType]="chatType" (currentRoom)="getCurrentRoom($event)"></app-collocutors-list>
   </section>
   <section class="messager" *ngIf="chatRoom" >
-    <app-messager [chatRoom]="chatRoom"></app-messager>
+    <app-messager *ngIf="chatRoom" [chatRoom]="chatRoom"></app-messager>
   </section>
   <section class="collocutors-tools">
     <app-messager-tools *ngIf="chatType === 'projects'"></app-messager-tools>
