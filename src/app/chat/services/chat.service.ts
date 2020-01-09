@@ -9,7 +9,7 @@ import { LocalStorageService } from 'src/app/core/services/local-storage.service
 @Injectable()
 
 export class ChatService {
-  currentRoom;
+  currentRoom: string;
 
   private connection: string;
 
@@ -21,36 +21,29 @@ export class ChatService {
   ) { }
 
   sentMessage(msg: string, room) {
-    return this.http.post('/message', { roomId: room, autor: 2, message: msg });
+    const userId = this.localStorageService.getItem('userId').value;
+
+    return this.http.post('/message', { roomId: room, autor: userId, message: msg });
     // this.socket.emit('message');
   }
 
-  // getMessage() {
-  //   return this.socket
-  //   .fromEvent('laravel_database_presence-chat:message')
-  //   .pipe(
-  //     map((data: any) => {
-  //       return data;
-  //     })
-  //   );
-  // }
-  getPreviousMessages() {
-    return this.http.get('/chat');
+  getPreviousMessages(roomId: string) {
+    return this.http.get('/chat?roomId=' + roomId);
   }
 
   public getChatRooms() {
     return this.http.get('/getChatRooms');
   }
 
-  public openChat(room) {
-    const jwtToken = this.localStorageService.getItem('token').value;
-    const x = 'laravel_database_presence-' + room + ':message';
-    console.log('room', x);
-    this.currentRoom = room;
-    // this.socket.on(x, function(data) {
-    //   console.log(data);
-    //   // appendMessage(data);
-    this.connection = x;
+  // public openChat(room) {
+    // const jwtToken = this.localStorageService.getItem('token').value;
+    // const x = 'laravel_database_presence-' + room + ':message';
+    // console.log('room', x);
+    // this.currentRoom = room;
+    // // this.socket.on(x, function(data) {
+    // console.log(this.currentRoom);
+    // //   // appendMessage(data);
+    // this.connection = x;
 
     // this.socket.on('conection', ()=> {
     //   this.socket.emit('authenticate', {token: jwtToken});
@@ -76,7 +69,7 @@ export class ChatService {
     //   return error;
 
     // })
-  }
+  // }
 
   erorrCatch() {
     // return this.socket.on('error', (data)=> {

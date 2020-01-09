@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ChatService } from '../../services/chat.service';
 import { messages } from '../consts/messages.const';
+import { SocetService } from '../../services/socet.service';
 
 declare var $: any;
 
@@ -20,12 +21,17 @@ export class MessagerComponent implements OnInit {
   @Input() chatRoom: string;
 
   constructor(
-    private chatService: ChatService
+    private chatService: ChatService,
+    private socetService: SocetService
   ) { }
 
   @ViewChild('textinput', {static: false}) textinput: ElementRef;
 
   ngOnInit() {
+    this.socetService.openChat(this.chatRoom)
+    .subscribe(res => {
+      console.log("socet", res);
+    })
   }
 
   private get textInput() {
@@ -38,7 +44,7 @@ export class MessagerComponent implements OnInit {
     this.chatService.sentMessage(this.textInput.value, this.chatRoom).subscribe(res => {
 
       this.messages.push(res);
-      console.log(this.messages)
+      // console.log(this.messages)
     });
     form.reset();
 

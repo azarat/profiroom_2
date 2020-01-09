@@ -19,7 +19,8 @@ export class DashboardPageComponent implements OnInit {
   user: UserModel;
   constructor(
     private authService: AuthentificationService,
-    private userService: UserService
+    private userService: UserService,
+
   ) {
    }
 
@@ -28,6 +29,7 @@ export class DashboardPageComponent implements OnInit {
     .subscribe((res: any ) => {
       console.log(res);
       this.user = plainToClass(UserModel, res[0]);
+      this.authService.saveUserId(this.user.id);
 
     });
 

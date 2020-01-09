@@ -30,8 +30,14 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   }
 
-  getCurrentRoom(curentRoom) {
+  getCurrentRoom(curentRoom: string) {
+    this.chatRoom = null;
     this.chatRoom = curentRoom;
+
+    this.socetService.openChat(curentRoom)
+    .subscribe(res => {
+      console.log("socet", res);
+    })
   }
 
 }

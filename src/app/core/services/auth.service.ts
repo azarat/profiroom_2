@@ -63,4 +63,8 @@ export class AuthentificationService {
   verifyEmail(_id, _expires, _signature) {
     return this.http.post<any>('/email/verify', { id: _id, expires: _expires, signature: _signature });
   }
+
+  saveUserId(id) {
+    this.localStorageService.setItem('userId', id);
+  }
 }

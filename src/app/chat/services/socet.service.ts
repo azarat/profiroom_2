@@ -24,11 +24,14 @@ export class SocetService {
   public connect() {
     this.socket.on('connect', () => {
       this.http.get('/checkAuthirization')
-        .subscribe(res => {
-          console.log(res)
+        .subscribe((res: any) => {
+          if (!res.auth) {
+            io.disconnect(this.host);
+            return;
+          }
         });
 
-      console.log('[INFO] Connected to ws');
+      // console.log('[INFO] Connected to ws');
     });
 
     this.socket.on('disconnect', () => {
@@ -37,18 +40,30 @@ export class SocetService {
   }
 
   public on(event) {
+    // let room = 'laravel_database_presence-' + event + ':message';
+    // return new Observable(observer => {
 
+    //   this.socket.on(event, (data) => {
+    //     observer.next(data);
+    //   });
+
+    // return () => {
+    //   this.socket.disconnect();
+    // };
+  };
+
+  public openChat(roomId) {
+    this.socket.disconnect();
+    this.socket.connect();
+    const room = 'laravel_database_presence-' + roomId + ':message';
+    console.log(room)
     return new Observable(observer => {
-
-      this.socket.on(event, (data) => {
+      this.socket.on(room, (data) => {
+        console.log(data);
         observer.next(data);
       });
-
-      // return () => {
-      //   this.socket.disconnect();
-      // };
     });
-
   }
 
 }
+

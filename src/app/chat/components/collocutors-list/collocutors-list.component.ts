@@ -27,13 +27,13 @@ export class CollocutorsListComponent implements OnInit {
   }
 
   openChat(room) {
-    const x = 'laravel_database_presence-' + room + ':message';
-    this.currentRoom.emit(x);
-    this.socketService.on(x)
-    .subscribe(res => {
-      console.log(res)
+    // const x = 'laravel_database_presence-' + room + ':message';
+    this.currentRoom.emit(room);
+    // this.socketService.on(x)
+    // .subscribe(res => {
+    //   console.log(res)
 
-    })
+    // })
     // this.chatService.openChat(room);
   }
 
