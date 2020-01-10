@@ -8,7 +8,7 @@ import { SocetService } from '../../services/socet.service';
   styleUrls: ['./chat-component.scss']
 })
 export class ChatComponent implements OnInit, OnDestroy {
-  public chatRoom: string = null;
+  collocutorData;
   @Input() chatType: string;
 
   constructor(
@@ -22,19 +22,26 @@ export class ChatComponent implements OnInit, OnDestroy {
     // .subscribe(res => {
     //   console.log(res);
     // });
-    this.socetService.connect();
+
   }
   ngOnDestroy(): void {
-    console.log('destroyed')
-    this.chatService.removeListener();
+    // console.log('destroyed')
+    // this.chatService.removeListener();
 
   }
 
-  getCurrentRoom(curentRoom: string) {
-    this.chatRoom = null;
-    this.chatRoom = curentRoom;
-
+  getCurrentRoom(userInfo) {
+    console.log(userInfo);
+    this.collocutorData = false;
+    setTimeout(() => {
+      // this.chatRoom = userInfo.roomId;
+      this.collocutorData = userInfo;
+    }, 10);
 
   }
+
+  // getCollocutorImg(img: string) {
+  //   this.collocutorImg = img;
+  // }
 
 }

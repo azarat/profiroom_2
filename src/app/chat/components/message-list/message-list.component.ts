@@ -9,18 +9,18 @@ import { messages } from '../consts/messages.const';
 })
 export class MessageListComponent implements OnInit {
 
-  @Input() chatRoom;
-  messages: any[];
+  @Input() chatRoom: string;
+  // @Input() collocutorImg: string;
+  @Input() messagesList;
+
+  // public messagesList = null;
+
   constructor(
     private chatService: ChatService
   ) { }
 
   ngOnInit() {
-    this.chatService.getPreviousMessages(this.chatRoom)
-      .subscribe((res: any) => {
-        console.log(res);
-        this.messages = res;
-      });
+
   }
 
   open() {

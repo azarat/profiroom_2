@@ -35,6 +35,7 @@
     "angular2-click-outside": "^0.1.0",
     "angularx-social-login": "^1.2.7",
     "class-transformer": "^0.2.3",
+    "date-fns": "^2.9.0",
     "firebase": "^7.2.3",
     "font-awesome": "^4.7.0",
     "hammerjs": "^2.0.8",

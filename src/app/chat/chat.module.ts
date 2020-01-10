@@ -15,6 +15,7 @@ import { CollocutorInformationComponent } from './components/collocutor-informat
 import { StarRaitingModule } from '../shared/modules/star-raiting/star-raiting.module';
 import { PickerModule } from 'node_modules/@ctrl/ngx-emoji-mart';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DataFormatModule } from '../shared/pipes/data-format/data-format.module';
 
 // const jwtToken = (localStorage.token).replace('"', '');
 // const config: SocketIoConfig = { url: 'http://192.168.0.200:6001', options: {query: {token: jwtToken}},  };
@@ -38,6 +39,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ClickOutsideModule,
     FormsModule,
     ReactiveFormsModule,
+
+    DataFormatModule
   ],
   exports: [ChatComponent],
   providers: [

@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { ChatService } from '../../services/chat.service';
 import { messages } from '../consts/messages.const';
 import { SocetService } from '../../services/socet.service';
+import { CollocutorListModel } from 'src/app/models/chat/collocutors-list.model';
 
 declare var $: any;
 
@@ -18,20 +19,31 @@ export class MessagerComponent implements OnInit {
   public isEmojiVisible = false;
   messageArray = [];
   public messageText;
-  @Input() chatRoom: string;
+  @Input() collocutorData: CollocutorListModel;
+  // @Input() collocutorImg: string;
+  public messagesList = [];
+
 
   constructor(
     private chatService: ChatService,
     private socetService: SocetService
   ) { }
 
-  @ViewChild('textinput', {static: false}) textinput: ElementRef;
+  @ViewChild('textinput', { static: false }) textinput: ElementRef;
 
   ngOnInit() {
-    // this.socetService.openChat(this.chatRoom)
-    // .subscribe(res => {
-    //   console.log("socet", res);
-    // })
+    this.socetService.openChat(this.collocutorData.roomId)
+      .subscribe(res => {
+        console.log('socet', res);
+        this.messagesList.push(res);
+      });
+
+    this.chatService.getPreviousMessages(this.collocutorData.roomId)
+      .subscribe((res: any) => {
+
+        this.messagesList = res[0];
+        console.log(this.messagesList);
+      });
   }
 
   private get textInput() {
@@ -39,18 +51,13 @@ export class MessagerComponent implements OnInit {
   }
 
   public sendMessage(form: NgForm) {
-    // console.log(message.value)
-    // this.messageArray.push(this.textInput.value);
-    this.chatService.sentMessage(this.textInput.value, this.chatRoom).subscribe(res => {
 
-      this.messages.push(res);
-      // console.log(this.messages)
+    this.chatService.sentMessage(this.textInput.value, this.collocutorData.roomId).subscribe(res => {
     });
     form.reset();
-
   }
 
-  public triggerFunction(event: any) {
+  public triggerFunction(event: any, form: NgForm) {
     if (event.ctrlKey && event.key === 'Enter') {
       /*
         cannot make textarea produce a next line.
@@ -59,7 +66,7 @@ export class MessagerComponent implements OnInit {
       text.value += '\n';
     } else if (event.key === 'Enter') {
       event.preventDefault();
-      this.messageArray.push(this.textInput.value);
+      this.sendMessage(form);
     }
   }
 
@@ -86,7 +93,4 @@ export class MessagerComponent implements OnInit {
   hideEmoji() {
     this.isEmojiVisible = false;
   }
-
-
-
 }

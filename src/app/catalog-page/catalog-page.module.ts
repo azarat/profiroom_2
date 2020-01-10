@@ -37,7 +37,7 @@ const routes: Routes = [
     resolve: { items: CategorysResolver },
   },
   {
-    path: ':category/:subcategorie',
+    path: ':category?subCategory= //-//-//',
     component: CatalogComponent,
     resolve: { items: OffersResolver },
   }

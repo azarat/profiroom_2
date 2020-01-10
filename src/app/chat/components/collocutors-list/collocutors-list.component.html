@@ -1,4 +1,4 @@
-<div class="wrapper" *ngIf="chatRooms && chatType" [ngClass]="{ projects: chatType === 'projects' }">
+<div class="wrapper" *ngIf="collocutors && chatType" [ngClass]="{ projects: chatType === 'projects' }">
   <section class="line">
     Все сообщения <span>(1250)</span>
   </section>
@@ -13,19 +13,17 @@
 
     </div>
     <div class="collocutors-list" [ngClass]="{ projects: chatType === 'projects' }">
-      <div class="collocutor" *ngFor="let i of chatRooms" (click)="openChat(i.code)">
+      <div class="collocutor" *ngFor="let collocutor of collocutors, let i=index" (click)="openChat(collocutor)">
         <span *ngIf="chatType == 'projects'" class="status"></span>
-        <p class="date">Вчера 22:30</p>
+        <p class="date">{{ collocutors[i].lastMessage[0].dateTime | dateFormatPipe }}</p>
         <div class="message-preview">
           <div class="photo">
-            <img src="/assets/images/chat/collocutor-photo.jpg" alt="collocutor-photo">
+            <img [src]="'https://www.thecubetest.site/Backend/storage/app/' + collocutor.collocutorAva" alt="collocutor-photo" />
             <span class="status"></span>
           </div>
           <div class="message-information">
-            <p class="collocutor-name">Анна Маслова</p>
-            <p class="collocutor-message">Будем на связе и, пожалуйста,
-              не затягивайте долго с Будем на связе и, пожалуйста,
-              не затягивайте долго с...</p>
+            <p class="collocutor-name">{{ collocutor.collocutorName }} {{ collocutor.collocutorSurname }} </p>
+            <p class="collocutor-message">{{ collocutor.lastMessage[0].message }}</p>
           </div>
         </div>
       </div>

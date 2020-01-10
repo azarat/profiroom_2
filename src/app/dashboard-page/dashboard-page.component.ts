@@ -4,6 +4,7 @@ import { UserModel } from '../models/user/user.model';
 import { UserService } from '../core/services/user.service';
 import { dashboardMenuConst } from './consts/dashboard-menu.const';
 import { plainToClass } from 'class-transformer';
+import { SocetService } from '../chat/services/socet.service';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -20,6 +21,7 @@ export class DashboardPageComponent implements OnInit {
   constructor(
     private authService: AuthentificationService,
     private userService: UserService,
+    private socetService: SocetService
 
   ) {
    }
@@ -30,8 +32,9 @@ export class DashboardPageComponent implements OnInit {
       console.log(res);
       this.user = plainToClass(UserModel, res[0]);
       this.authService.saveUserId(this.user.id);
-
     });
+
+    this.socetService.connect();
 
   }
   userExit = () => {

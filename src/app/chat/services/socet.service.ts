@@ -25,6 +25,7 @@ export class SocetService {
     this.socket.on('connect', () => {
       this.http.get('/checkAuthirization')
         .subscribe((res: any) => {
+          console.log('check', res);
           if (!res.auth) {
             io.disconnect(this.host);
             return;
@@ -41,25 +42,24 @@ export class SocetService {
 
   public on(event) {
     // let room = 'laravel_database_presence-' + event + ':message';
-    // return new Observable(observer => {
+    return new Observable(observer => {
 
-    //   this.socket.on(event, (data) => {
-    //     observer.next(data);
-    //   });
+      this.socket.on(event, (data) => {
+        observer.next(data);
+      });
 
-    // return () => {
-    //   this.socket.disconnect();
-    // };
-  };
+      return () => {
+        this.socket.disconnect();
+      };
+    });
 
+  }
   public openChat(roomId) {
-    // this.socket.disconnect();
-    // this.connect();
+
     const room = 'laravel_database_presence-' + roomId + ':message';
-    console.log(room)
+    console.log(room);
     return new Observable(observer => {
       this.socket.on(room, (data) => {
-        console.log(data);
         observer.next(data);
       });
     });

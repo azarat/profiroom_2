@@ -1,7 +1,7 @@
 <div class="wrapper">
   <div class="line">
     <div class="collocutor">
-      Жанна Друкач <span>онлайн</span>
+      {{ collocutorData.collocutorName }} {{ collocutorData.collocutorSurname }} <span>онлайн</span>
     </div>
     <div class="messager-tools">
 
@@ -9,12 +9,12 @@
   </div>
   <div class="messager-wrap">
     <div class="previous-massages">
-      <app-message-list [chatRoom]="chatRoom" *ngIf="chatRoom" ></app-message-list>
+      <app-message-list [chatRoom]="collocutorData"  *ngIf="collocutorData" [messagesList]="messagesList"></app-message-list>
     </div>
     <form #message="ngForm" (ngSubmit)="sendMessage(message)" class="message-input">
       <div class="text-input">
         <textarea name="messageText" [ngModel]="messageText" #textinput  id="message" placeholder="Сообщение"
-          (keydown)="triggerFunction($event)" ></textarea>
+          (keydown)="triggerFunction($event, message)" ></textarea>
       </div>
       <div class="tools">
         <div>
@@ -30,7 +30,7 @@
             <input type="file" name="file-input" id="add-file">
           </div>
         </div>
-        <button type="submit"  class="submit"></button>
+        <button type="submit"  class="submit">x</button>
       </div>
     </form>
 

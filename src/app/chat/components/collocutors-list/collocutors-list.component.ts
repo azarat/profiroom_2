@@ -1,6 +1,12 @@
-import { Component, OnInit, Input, EventEmitter, Output,  } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, } from '@angular/core';
 import { ChatService } from '../../services/chat.service';
 import { SocetService } from '../../services/socet.service';
+import { plainToClass } from 'class-transformer';
+
+//  Chat time converter
+
+import { formatDataFunction } from 'src/app/shared/functions/format-data.function';
+import { CollocutorListModel } from 'src/app/models/chat/collocutors-list.model';
 
 @Component({
   selector: 'app-collocutors-list',
@@ -9,10 +15,12 @@ import { SocetService } from '../../services/socet.service';
 })
 export class CollocutorsListComponent implements OnInit {
 
-  chatRooms: any ;
-  @Input()chatType: string;
+  public collocutors: CollocutorListModel;
+  public lastMessageDate: string;
+  @Input() chatType: string;
   @Output() currentRoom = new EventEmitter();
 
+  // DateFormatPipe
   constructor(
     private chatService: ChatService,
     private socketService: SocetService
@@ -21,24 +29,15 @@ export class CollocutorsListComponent implements OnInit {
   ngOnInit() {
     this.chatService.getChatRooms()
       .subscribe(res => {
-        this.chatRooms = res;
         console.log(res);
+        this.collocutors = plainToClass(CollocutorListModel, res);
+        console.log(this.collocutors);
+
       });
   }
 
-  openChat(room) {
-    // const x = 'laravel_database_presence-' + room + ':message';
-    this.currentRoom.emit(room);
-    // this.socketService.on(x)
-    // .subscribe(res => {
-    //   console.log(res)
-
-    // })
-    // this.chatService.openChat(room);
-  }
-
-  catchEror(){
-    // this.chatService.erorrCatch()
+  public openChat(userinfo) {
+    this.currentRoom.emit(userinfo);
   }
 
 }
