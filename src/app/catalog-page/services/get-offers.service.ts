@@ -68,6 +68,6 @@ export class GetOffersService {
 
     // console.log('getOffers from service - pushFilters()', getfilters);
     // console.log(this.filters);
-    this.getOffers(getfilters);
+    // this.getOffers(getfilters);
   }
 }

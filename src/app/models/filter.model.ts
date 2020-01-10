@@ -6,6 +6,7 @@ import {
 
 export class CatalogFiltersModel {
   @Expose() filterBy?: string;
+  @Expose() current_page?: number;
   @Expose() subCategory?: string;
   @Expose() minPrice?: number;
   @Expose() maxPrice?: number;
@@ -15,4 +16,6 @@ export class CatalogFiltersModel {
   @Expose() commercial?: boolean;
   @Expose() confidentiality?: boolean;
   @Expose() agreement?: boolean;
+
+
 }

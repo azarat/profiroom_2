@@ -31,6 +31,9 @@ export class ItemsComponent implements OnInit {
   ngOnInit() {
     this.GetOffersService.offersList.subscribe(data => {
       this.offersList = data;
+
+      // console.log(data);
+      // console.log(this.offersList);
     });
   }
 

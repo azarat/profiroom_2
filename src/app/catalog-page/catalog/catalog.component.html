@@ -2,15 +2,38 @@
 <app-categories-header></app-categories-header>
 <div class="wrapper">
   <div class="bread-crumbs">
-    <ul *ngIf="subcategory">
+    <ul *ngIf="catalogFilters.subCategory">
       <li><a [routerLink]="['/'] | localize">Главная</a></li>
-      <li><a>ПЕРЕХОД НА КАТЕГОРИЮ + ССЫЛКА</a></li>
-      <li><a>{{ subcategory }}</a></li>
+      <li><a [routerLink]="['/' + 'catalog/' + category] | localize">{{ category }}</a></li>
+      <li><a>{{ catalogFilters.subCategory }}</a></li>
       <!-- <li><a [routerLink]="['/catalog', subcategoriesList.link] | localize">{{ subcategory }}</a></li> -->
     </ul>
   </div>
-  <h2 class="category-title" *ngIf="subcategory">{{ subcategory }}</h2>
-  <app-filter [catalogFilters]="catalogFiltersModel"></app-filter>
+  <h2 class="category-title" *ngIf="catalogFilters.subCategory">{{ catalogFilters.subCategory }}</h2>
+  <app-filter [catalogFilters]="catalogFilters"></app-filter>
   <app-items></app-items>
+
+  <div class="pagination-wrapper">
+
+    <ul  class="pagination" *ngIf="offersList">
+        <li [ngClass]="{disabled:offersList.current_page === 1}" class="page-item first-item">
+            <a [routerLink] = "[href]" [queryParams]="{ page: 1 }" class="page-link">First</a>
+        </li>
+        <li [ngClass]="{disabled:offersList.current_page === 1}" class="page-item previous-item">
+            <a routerLink [queryParams]="{ page: offersList.current_page - 1 }" class="page-link">Previous</a>
+        </li>
+        <!-- <li *ngFor="let page of offersList.total" [ngClass]="{active:offersList.current_page === page}" class="page-item number-item">
+            <a routerLink [queryParams]="{ page: page }" class="page-link">{{page}}</a>
+        </li> -->
+        <li [ngClass]="{disabled:offersList.current_page === offersList.totalPages}" class="page-item next-item">
+            <a routerLink [queryParams]="{ page: offersList.currentPage + 1 }" class="page-link">Next</a>
+        </li>
+        <li [ngClass]="{disabled:offersList.current_page === offersList.total}" class="page-item last-item">
+            <a routerLink [queryParams]="{ page: offersList.totalPages }" class="page-link">Last</a>
+        </li>
+    </ul>
+
+  </div>
+
 </div>
 

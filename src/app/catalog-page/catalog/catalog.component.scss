@@ -52,3 +52,19 @@
   color: #323C47;
   text-align: center;
 }
+
+.pagination{
+  display: flex;
+  list-style-type: none;
+
+
+  li{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 50px;
+    border: 1px solid black;
+  }
+}
+

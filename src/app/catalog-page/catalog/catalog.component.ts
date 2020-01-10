@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { CatalogFiltersModel } from 'src/app/models/filter.model';
 import { GetOffersService } from '../services/get-offers.service';
 import { Subscription, pipe } from 'rxjs';
-import { first } from 'rxjs/operators';
+import { OffersListInterface } from 'src/app/shared/interfaces/offers-list.interface';
 
 @Component({
   selector: 'app-catalog',
@@ -13,8 +13,11 @@ import { first } from 'rxjs/operators';
 })
 export class CatalogComponent implements OnInit {
 
-  public catalogFiltersModel: CatalogFiltersModel;
-  public subcategory;
+  public catalogFilters: CatalogFiltersModel = {};
+  public category;
+  public href;
+
+  offersList: OffersListInterface;
 
   catalogSubscription: Subscription;
 
@@ -23,26 +26,38 @@ export class CatalogComponent implements OnInit {
     private GetOffersService: GetOffersService,
     // tslint:disable-next-line: variable-name
     private _route: ActivatedRoute,
+    private router: Router
   ) {
-    this.catalogFiltersModel =  {
-      filterBy: '',
-      subCategory: '',
-      minPrice: null,
-      maxPrice: null,
-      maxTerm: '',
-      PSD: false,
-      PNG: false,
-      commercial: false,
-      confidentiality: false,
-      agreement: false
-    };
 
-    this._route.params
-    .subscribe(p => {
-      this.GetOffersService.getOffers(p);
-      this.catalogFiltersModel.subCategory = p.subCategory;
+    // --------------check url params value---------------
+    this._route.params.subscribe(Params => {
+      this.catalogFilters.subCategory = Params.subCategory;
+      this.GetOffersService.getOffers(this.catalogFilters);
+      // ------- value of category for breadcrumbs
+      this.category = Params.category;
     });
+
+    // --------------check queryParams value---------------
+    this._route.queryParams.subscribe(qParams => {
+      if (qParams && (Object.keys(qParams).length === 0)) {
+        console.log('queryParams is empty');
+      } else {
+        console.log("from query params");
+        this.GetOffersService.getOffers(qParams);
+      }
+    });
+    // console.log(this.offersList);
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+
+    this.GetOffersService.offersList.subscribe(data => {
+      this.offersList = data;
+      console.log(this.offersList);
+    });
+
+    this.href = this.router.url;
+
+    console.log(this.href);
+  }
 }
