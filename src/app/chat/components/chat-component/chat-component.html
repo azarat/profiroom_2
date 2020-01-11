@@ -1,11 +1,12 @@
 <section class="wrapper">
   <section class="collocutors">
-<app-collocutors-list></app-collocutors-list>
+    <app-collocutors-list [chatType]="chatType" (currentRoom)="getCurrentRoom($event)"></app-collocutors-list>
   </section>
-  <section class="messager">
-<app-messager></app-messager>
+  <section class="messager" *ngIf="collocutorData" >
+    <app-messager *ngIf="collocutorData" [collocutorData]="collocutorData"></app-messager>
   </section>
   <section class="collocutors-tools">
-<app-messager-tools></app-messager-tools>
+    <app-messager-tools *ngIf="chatType === 'projects'"></app-messager-tools>
+    <app-collocutor-information *ngIf="chatType === 'classic'"></app-collocutor-information>
   </section>
 </section>

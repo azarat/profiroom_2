@@ -41,7 +41,7 @@ export class SecondStepCreationComponent implements OnInit {
   }
   nextStep = (form: NgForm) => {
 
-    if (!form.valid || this.characterLength < 100 || this.characterLength > 300) {
+    if (!form.valid || this.characterLength < 100 || this.characterLength > 500) {
       return;
     }
     this.userOffersService.updateService(this.userService)

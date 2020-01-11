@@ -7,7 +7,7 @@ export const dashboardMenuConst = [
   },
   {
     title: 'проекты',
-    link: '',
+    link: '/dashboard/projects',
     class: 'projects'
   },
   {
@@ -22,7 +22,7 @@ export const dashboardMenuConst = [
   },
   {
     title: 'финансы',
-    link: '',
+    link: '/dashboard/finance',
     class: 'finance'
   },
   {

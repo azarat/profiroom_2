@@ -40,7 +40,6 @@ export class CreateServiceComponent implements OnInit {
         filter((response: any) => !!response)
       )
       .subscribe(response => {
-        console.log(response);
         this.userService = plainToClass(UserServiceModel, response.offer);
       });
 

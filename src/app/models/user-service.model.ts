@@ -84,9 +84,10 @@ export class Breef {
 
 
 export class UserServiceModel {
-  @Expose() offerId: number;
+  @Expose() offerId: string;
   @Expose() published: boolean;
   @Expose() id: any;
+  @Expose() canPublish: boolean;
   @Expose() title: string;
   @Expose() category: string;
   @Expose() subCategories: any;
@@ -94,7 +95,9 @@ export class UserServiceModel {
   @Expose() tags: {
     tag: string
   } [];
+  @Expose() mainImage: string;
   @Expose() offerMainImage: string;
+
   @Expose() nextStep: number;
   @Expose() step: number;
   @Expose() files: any;
@@ -134,46 +137,3 @@ export class UserServiceModel {
   }
 
 }
-
-
-// export class BreefAnswerWariants {
-//   @Expose() answerWariant: string;
-// }
-// export class Breef {
-//   @Expose() breefTitle: string;
-//   @Expose() breefAnswerType: string;
-//   @Expose() breefAnwerRequired: boolean;
-//   @Type(() => BreefAnswerWariants) breefAnwerRequired: BreefAnswerWariants[];
-//   @Expose() breefAnwerRequired: boolean;
-// }
-
-// offerBreef : [
-//   {
-//     breefTitle
-//     breefAnswerType
-//     breefAnwerRequired
-//     breefAnwerRequired: [
-//       {
-//         answerWariant
-//       },
-//       {
-//         answerWariant
-//       }
-//     ]
-//     breefAnwerRequired
-//   },
-//   {
-//     breefTitle
-//     breefAnswerType
-//     breefAnwerRequired
-//     breefAnwerRequired: [
-//       {
-//         answerWariant
-//       },
-//       {
-//         answerWariant
-//       }
-//     ]
-//     breefAnwerRequired
-//   }
-// ]

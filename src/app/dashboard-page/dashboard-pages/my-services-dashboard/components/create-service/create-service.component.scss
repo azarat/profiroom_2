@@ -2,6 +2,8 @@
   padding: 30px 17px;
   display: flex;
   flex-direction: row;
+  height: 100%;
+  box-sizing: border-box;
   .steps {
     width: 22%;
     h3 {
@@ -176,7 +178,9 @@
   .step-detail {
     width: 80%;
     padding-left: 90px;
-    padding-right: 38px;
+    // padding-right: 38px;
     padding-bottom: 72px;
+    padding-right: 0;
+    // overflow: auto;
   }
 }

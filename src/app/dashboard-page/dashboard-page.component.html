@@ -1,4 +1,4 @@
-<div class="wrapper">
+<div class="wrapper" *ngIf="user">
   <header>
     <a [routerLink]="'/' | localize" class="logo">whocan</a>
     <div class="controls">
@@ -21,14 +21,14 @@
   <div class="side-bar">
     <section class="avatar">
       <div class="lines"></div>
-      <img src="/assets//images/images/ava.jpg" alt="avatar" />
-      <p class="name">Анна Цветаева</p>
+      <img [src]="'https://www.thecubetest.site/Backend/storage/app/' + user.avatar" alt="avatar" />
+      <p class="name">{{ user.name }} {{ user.surname}}</p>
       <div class="raiting"></div>
     </section>
     <section class="menu">
 
       <nav>
-        <a class="{{el.class}}" *ngFor="let el of dashboardMenu" [routerLink]="el.link | localize" [routerLinkActive]="'active'"><span>{{ el.title }}</span></a>
+        <a class="{{el.class}}" *ngFor="let el of dashboardMenu" [routerLinkActiveOptions]="{exact: true}" [routerLink]="el.link | localize" [routerLinkActive]="'active'"><span>{{ el.title }}</span></a>
 
       </nav>
     </section>

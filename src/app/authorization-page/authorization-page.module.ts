@@ -63,7 +63,10 @@ const routes: Routes = [
     RegistrationPageComponent,
     ResetPasswordPageComponent,
     AuthentificationPageComponent,
-    SetNewPassComponent
+    SetNewPassComponent,
+
+    //directives
+
   ],
   imports: [
     CommonModule,
@@ -82,7 +85,9 @@ const routes: Routes = [
     // created
     LanguageModule,
     MainHeaderModule,
-    InformPopupModule
+    InformPopupModule,
+
+
 
   ],
   exports: [

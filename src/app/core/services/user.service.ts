@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { User } from 'src/app/models/user.model';
+import { UserModel } from 'src/app/models/user/user.model';
 import { Observable, BehaviorSubject } from 'rxjs';
 
 @Injectable()
@@ -9,7 +9,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 
 export class UserService {
   private user = new BehaviorSubject(null);
-  public user$: Observable<User>;
+  public user$: Observable<UserModel>;
 
     constructor(
         private http: HttpClient,

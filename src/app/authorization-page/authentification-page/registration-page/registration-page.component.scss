@@ -79,6 +79,14 @@ input {
   }
 }
 
+.show-pass {
+  position: absolute;
+  cursor: pointer;
+  right: 8px;
+  top: 17px;
+  font-size: 25px;
+}
+
 .social-login {
   margin: 50px 0 36px;
   text-align: center;
@@ -135,14 +143,15 @@ input {
 .submit {
   text-align: center;
   font-family: "Source Sans Pro", sans-serif;
-  margin-top: 24px;
+  margin: 24px auto 0;
+
   button {
     padding: 13px 73px;
     color: #ffffff;
     font-size: 16px;
     font-weight: 700;
-    background: #3C7EEA;
-    box-shadow: 0px 10px 20px rgba(80, 123, 252, 0.5);
+    // background: #3C7EEA;
+    // box-shadow: 0px 10px 20px rgba(80, 123, 252, 0.5);
     border-radius: 8px;
     font-family: "Source Sans Pro", sans-serif;
   }

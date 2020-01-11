@@ -15,9 +15,6 @@ import { ScrollToService, ScrollToConfigOptions } from '@nicky-lenaers/ngx-scrol
   styleUrls: ['./service-page.component.scss']
 })
 export class ServicePageComponent implements OnInit {
-
-  @ViewChild('stickyMenu', {static: false}) menuElement: ElementRef;
-
   // public offerId: object = null;
   public offerData: OfferDataInterface = null;
   catalogSubscription: Subscription;
@@ -46,6 +43,9 @@ export class ServicePageComponent implements OnInit {
       this.getViewedOffers();
     });
   }
+
+  @ViewChild('stickyMenu', {static: false}) menuElement: ElementRef;
+  @HostListener('window:scroll', [])
 
   ngOnInit() { }
 

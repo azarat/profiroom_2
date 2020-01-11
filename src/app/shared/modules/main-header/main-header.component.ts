@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { LocalizeRouterService } from 'localize-router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main-header',
@@ -9,9 +11,17 @@ export class MainHeaderComponent implements OnInit {
 
   @Input() pageName: string;
 
-  constructor() { }
+  routeMainPage: any = this.localize.translateRoute('');
+  constructor(
+    private localize: LocalizeRouterService,
+    private router: Router,
+  ) { }
 
   ngOnInit() {
+  }
+
+  routeToMain() {
+    this.router.navigate([this.routeMainPage]);
   }
 
 }
