@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { UserServiceModel } from 'src/app/models/user-services/user-service.model';
+import { UserServiceModel } from 'src/app/models/user-service.model';
 import { UserOffersService } from '../../../services/user-offers.service';
 import { filter } from 'rxjs/operators';
 import { pipe } from 'rxjs';

@@ -28,14 +28,16 @@ export class ServicePageComponent implements OnInit {
   sticky = false;
   elementPosition: any;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of 518409f... final
   constructor(
     // tslint:disable-next-line: variable-name
     private _route: ActivatedRoute,
     // tslint:disable-next-line: variable-name
     private _router: Router,
     private offerDataService: ServicePageService,
-    // tslint:disable-next-line: variable-name
     private _scrollToService: ScrollToService,
     private localStorageService: LocalStorageService
   ) {
@@ -48,7 +50,9 @@ export class ServicePageComponent implements OnInit {
       this.getViewedOffers();
     });
   }
-  // @HostListener('window:scroll', [])
+
+  @ViewChild('stickyMenu', {static: false}) menuElement: ElementRef;
+  @HostListener('window:scroll', [])
 
   ngOnInit() { }
 
@@ -95,7 +99,7 @@ export class ServicePageComponent implements OnInit {
     if (this.offerData.comments_count < 1000) {
       this.convertedNumberOfComments = this.offerData.comments_count;
     } else {
-      this.convertedNumberOfComments = this.offerData.comments_count.toFixed(1) + 'k+';
+      this.convertedNumberOfComments = this.offerData.comments_count.toFixed(1) + "k+";
     }
   }
 
@@ -129,8 +133,7 @@ export class ServicePageComponent implements OnInit {
 
     if (target === 'about-offer' ) {
       config.offset = -90;
-    } else if (target === 'rating' || target === 'compare-table' ||
-     target === 'description' || target === 'comments' || target === 'questions' ) {
+    } else if (target === 'rating' || target === "compare-table" || target === 'description' || target === 'comments' || target === 'questions' ) {
       config.offset = -80;
     } else if (target === 'portfolio'  ) {
       config.offset = -105;
