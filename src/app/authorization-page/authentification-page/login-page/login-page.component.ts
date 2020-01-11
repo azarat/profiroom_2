@@ -11,6 +11,9 @@ import {
   FormGroup
 } from '@angular/forms';
 import {
+  User
+} from 'src/app/models/user.model';
+import {
   AuthentificationService
 } from 'src/app/core/services/auth.service';
 import { AuthService } from 'angularx-social-login';
@@ -22,7 +25,6 @@ import { BehaviorSubject, Subscription, Observable } from 'rxjs';
 import { LocalizeRouterService } from 'localize-router';
 import { FacebookLoginProvider, GoogleLoginProvider } from 'angularx-social-login';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
-import { UserModel } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-login-page',
@@ -64,7 +66,7 @@ export class LoginPageComponent implements OnInit {
     }
     this.authentificationService.authenticate(this.loginForm.value)
       .subscribe(
-        (data: UserModel) => {
+        (data: User) => {
           if (data) {
             const translatedPath: any = this.localize.translateRoute('/dashboard');
             this.localStorageService.setItem('token', data.token);

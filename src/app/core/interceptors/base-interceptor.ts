@@ -15,6 +15,9 @@ import {
   catchError
 } from 'rxjs/operators';
 import {
+  User
+} from 'src/app/models/user.model';
+import {
   AuthentificationService
 } from '../services/auth.service';
 import { LocalStorageService } from '../services/local-storage.service';
