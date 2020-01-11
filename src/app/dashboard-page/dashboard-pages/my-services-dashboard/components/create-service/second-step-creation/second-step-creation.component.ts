@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, NgForm } from '@angular/forms';
-import { UserServiceModel } from 'src/app/models/user-service.model';
+import { UserServiceModel } from 'src/app/models/user-service/user-service.model';
 
 import { filter } from 'rxjs/operators';
 import { UserOffersService } from '../../../services/user-offers.service';

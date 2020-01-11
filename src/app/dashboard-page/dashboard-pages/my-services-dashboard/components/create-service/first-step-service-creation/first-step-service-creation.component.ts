@@ -4,7 +4,7 @@ import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { CategoryInterface } from 'src/app/shared/interfaces/category.interface';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { UserServiceModel } from 'src/app/models/user-service.model';
+import { UserServiceModel } from 'src/app/models/user-service/user-service.model';
 import { filter, first } from 'rxjs/operators';
 import { untilDestroyed } from 'ngx-take-until-destroy';
 import { MatChipInputEvent } from '@angular/material/chips';

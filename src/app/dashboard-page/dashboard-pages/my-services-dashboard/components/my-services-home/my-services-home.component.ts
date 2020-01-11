@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LocalizeRouterService } from 'localize-router';
-import { UserServiceModel } from 'src/app/models/user-service.model';
+import { UserServiceModel } from 'src/app/models/user-service/user-service.model';
 
 import { map, filter } from 'rxjs/operators';
 import { plainToClass } from 'class-transformer';

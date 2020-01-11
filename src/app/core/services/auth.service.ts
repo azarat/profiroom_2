@@ -2,15 +2,13 @@ import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { tap, map } from 'rxjs/operators';
-<<<<<<< HEAD
-=======
-import { UserModel } from 'src/app/models/user/user.model';
->>>>>>> parent of 518409f... final
+
 import { catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { LocalizeRouterService } from 'localize-router';
 import { LocalStorageService } from './local-storage.service';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { UserModel } from 'src/app/models/user.model';
 
 @Injectable()
 

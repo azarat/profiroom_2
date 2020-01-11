@@ -28,10 +28,6 @@ export class ServicePageComponent implements OnInit {
   sticky = false;
   elementPosition: any;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> parent of 518409f... final
   constructor(
     // tslint:disable-next-line: variable-name
     private _route: ActivatedRoute,
@@ -51,7 +47,6 @@ export class ServicePageComponent implements OnInit {
     });
   }
 
-  @ViewChild('stickyMenu', {static: false}) menuElement: ElementRef;
   @HostListener('window:scroll', [])
 
   ngOnInit() { }
