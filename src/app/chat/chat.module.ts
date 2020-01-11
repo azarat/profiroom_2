@@ -19,7 +19,7 @@ import { DataFormatModule } from '../shared/pipes/data-format/data-format.module
 
 // const jwtToken = (localStorage.token).replace('"', '');
 // const config: SocketIoConfig = { url: 'http://192.168.0.200:6001', options: {query: {token: jwtToken}},  };
-console.log('jwtToken');
+// console.log('jwtToken');
 
 
 @NgModule({
