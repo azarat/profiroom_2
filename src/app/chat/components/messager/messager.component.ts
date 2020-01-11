@@ -1,11 +1,13 @@
-import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input, } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ChatService } from '../../services/chat.service';
 import { messages } from '../consts/messages.const';
 import { SocetService } from '../../services/socet.service';
 import { CollocutorListModel } from 'src/app/models/chat/collocutors-list.model';
+import { MessageListComponent } from '../message-list/message-list.component';
 
-declare var $: any;
+
+// declare var $: any;
 
 @Component({
   selector: 'app-messager',
@@ -14,14 +16,13 @@ declare var $: any;
 })
 export class MessagerComponent implements OnInit {
 
-  messages: any[] = messages;
-
   public isEmojiVisible = false;
-  messageArray = [];
   public messageText;
   @Input() collocutorData: CollocutorListModel;
   // @Input() collocutorImg: string;
   public messagesList = [];
+
+
 
 
   constructor(
@@ -31,11 +32,13 @@ export class MessagerComponent implements OnInit {
 
   @ViewChild('textinput', { static: false }) textinput: ElementRef;
 
+
   ngOnInit() {
     this.socetService.openChat(this.collocutorData.roomId)
       .subscribe(res => {
         console.log('socet', res);
         this.messagesList.push(res);
+
       });
 
     this.chatService.getPreviousMessages(this.collocutorData.roomId)

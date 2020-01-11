@@ -16,6 +16,7 @@ import { StarRaitingModule } from '../shared/modules/star-raiting/star-raiting.m
 import { PickerModule } from 'node_modules/@ctrl/ngx-emoji-mart';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DataFormatModule } from '../shared/pipes/data-format/data-format.module';
+import { MessageScrollerService } from './services/message-scroller.service';
 
 // const jwtToken = (localStorage.token).replace('"', '');
 // const config: SocketIoConfig = { url: 'http://192.168.0.200:6001', options: {query: {token: jwtToken}},  };
@@ -44,7 +45,8 @@ import { DataFormatModule } from '../shared/pipes/data-format/data-format.module
   ],
   exports: [ChatComponent],
   providers: [
-    ChatService
+    ChatService,
+    MessageScrollerService
   ]
 })
 export class ChatModule {
