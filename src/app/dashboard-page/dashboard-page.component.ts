@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthentificationService } from '../core/services/auth.service';
-import { UserModel } from '../models/user/user.model';
+
 import { UserService } from '../core/services/user.service';
 import { dashboardMenuConst } from './consts/dashboard-menu.const';
 import { plainToClass } from 'class-transformer';
 import { SocetService } from '../chat/services/socet.service';
+import { UserModel } from '../models/user.model';
 
 @Component({
   selector: 'app-dashboard-page',

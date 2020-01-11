@@ -1,6 +1,6 @@
-import { UserServiceModel } from '../user-service/user-service.model';
-import { Expose } from 'class-transformer';
+import { Expose, Type } from 'class-transformer';
 import { HttpClient } from '@angular/common/http';
+import { UserServiceModel } from './user-services/user-service.model';
 
 export class UserModel {
   @Expose() id: number;
