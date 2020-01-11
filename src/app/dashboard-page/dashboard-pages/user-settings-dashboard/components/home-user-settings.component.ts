@@ -27,9 +27,11 @@ export class HomeUserSettingsComponent implements OnInit {
   //  ** load userServiceData from server
   getUserService() {
     let request: object;
+
     if (this._route.snapshot.queryParams.offerId) {
       request = this._route.snapshot.queryParams;
     }
+    console.log(request)
     this.userSettingsService.getServiceData()
       .pipe(
         filter((response: any) => !!response)
@@ -37,7 +39,7 @@ export class HomeUserSettingsComponent implements OnInit {
       .subscribe(response => {
 
         this.userSettingsModel = plainToClass(UserSettingsModel, response);
-        console.log(this.userSettingsModel);
+        console.log(response);
       });
 
   }

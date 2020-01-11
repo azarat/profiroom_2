@@ -1,10 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { UserServiceModel } from 'src/app/models/user-service.model';
+
 import { UserOffersService } from '../../../services/user-offers.service';
 import { filter } from 'rxjs/operators';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LocalizeRouterService } from 'localize-router';
+import { UserServiceModel } from 'src/app/models/user-services/user-service.model';
 
 @Component({
   selector: 'app-fifth-step-creation',

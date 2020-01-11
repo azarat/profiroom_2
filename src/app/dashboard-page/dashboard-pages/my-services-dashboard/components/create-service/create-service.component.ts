@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { filter } from 'rxjs/operators';
 import { plainToClass } from 'class-transformer';
-import { UserServiceModel } from 'src/app/models/user-service.model';
+import { UserServiceModel } from 'src/app/models/user-services/user-service.model';
 import { serviceCreationSteps } from '../../consts/steps.const';
 import { UserOffersService } from '../../services/user-offers.service';
 

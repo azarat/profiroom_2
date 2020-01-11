@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { tap, map } from 'rxjs/operators';
-import { User } from 'src/app/models/user.model';
 import { catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { LocalizeRouterService } from 'localize-router';
 import { LocalStorageService } from './local-storage.service';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { UserModel } from 'src/app/models/user.model';
 
 @Injectable()
 
@@ -17,7 +17,7 @@ export class AuthentificationService {
   // // tslint:disable-next-line: variable-name
   // auth_token: string;
   private currentUser = new BehaviorSubject(null);
-  public currentUser$: Observable<User>;
+  public currentUser$: Observable<UserModel>;
   private token = new BehaviorSubject(null);
   public token$: Observable<string>;
   user: any;
@@ -37,11 +37,11 @@ export class AuthentificationService {
   // }
 
 
-  registation = (userInputs: User): Observable<any> => {
+  registation = (userInputs: UserModel): Observable<any> => {
     return this.http.post<any>('/register', userInputs);
   }
 
-  authenticate = (userInputs: User): Observable<any> => {
+  authenticate = (userInputs: UserModel): Observable<any> => {
     return this.http.post<any>('/login', userInputs);
   }
 
@@ -51,11 +51,11 @@ export class AuthentificationService {
     this.router.navigate([translatedPath]);
   }
 
-  resetPass = (userInputs: User): Observable<any> => {
+  resetPass = (userInputs: UserModel): Observable<any> => {
      return this.http.post<any>('/password/email', userInputs);
   }
 
-  confirmNewPass = (userInputs: User) => {
+  confirmNewPass = (userInputs: UserModel) => {
     return this.http.post<any>('/password/reset', userInputs);
   }
 
