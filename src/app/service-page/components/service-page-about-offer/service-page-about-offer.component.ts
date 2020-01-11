@@ -10,20 +10,21 @@ import { filter } from 'rxjs/operators';
 })
 export class ServicePageAboutOfferComponent implements OnInit {
   @Input() offerData: OfferDataInterface;
+  public convertedNumberOfComments;
 
   constructor(
     private servicePageService: ServicePageService
-  ) {
-    // this.servicePageService.offerDate$
-    // .pipe(filter((res: any) => !!res))
-    // .subscribe(data => {
-    //   this.offerData = data.userOffer;
-    //   // console.log(this.offerData);
-    //   // console.log(this.offerData.positiveComments);
-    // });
-  }
+  ) { }
 
   ngOnInit() {
+    this.formateCommentCount();
   }
 
+  formateCommentCount() {
+    if (this.offerData.comments_count < 1000) {
+      this.convertedNumberOfComments = this.offerData.comments_count;
+    } else {
+      this.convertedNumberOfComments = this.offerData.comments_count.toFixed(1) + "k+";
+    }
+  }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { UserServiceModel } from 'src/app/models/user-service/user-service.model';
+import { UserServiceModel } from 'src/app/models/user-service.model';
 
 @Component({
   selector: 'app-third-step-extra-options',
@@ -8,7 +8,7 @@ import { UserServiceModel } from 'src/app/models/user-service/user-service.model
 })
 export class ThirdStepExtraOptionsComponent implements OnInit {
 
-  public expandedOption: number = 1;
+  public expandedOption = 1;
   public optionsVisible = false;
   constructor() { }
 
@@ -39,7 +39,7 @@ export class ThirdStepExtraOptionsComponent implements OnInit {
     }
 
     deleteExtraOption(index: number) {
-      this.userService.removeExtraOption(index)
+      this.userService.removeExtraOption(index);
       if (this.expandedOption > index ) {
         this.expandedOption = this.expandedOption - 1;
       }

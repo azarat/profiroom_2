@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { UserServiceModel } from 'src/app/models/user-service/user-service.model';
+import { UserServiceModel } from 'src/app/models/user-service.model';
 import { UserService } from 'src/app/core/services/user.service';
 import { UserOffersService } from '../../../services/user-offers.service';
 import { filter } from 'rxjs/operators';
@@ -17,7 +17,7 @@ export class FourthStepCreationComponent implements OnInit {
   submited = false;
   showedItem: number = null;
   config = {
-    toolbar: [['bold', 'italic', 'underline',],
+    toolbar: [['bold', 'italic', 'underline', ],
     [{ list: 'bullet' }]]
   };
 
@@ -43,7 +43,7 @@ export class FourthStepCreationComponent implements OnInit {
     this.userOffersService.updateService(this.userService)
       .pipe(filter((res: any) => !!res))
       .subscribe(res => {
-        console.log(res)
+        console.log(res);
         this.userService.step = res.step;
       });
   }

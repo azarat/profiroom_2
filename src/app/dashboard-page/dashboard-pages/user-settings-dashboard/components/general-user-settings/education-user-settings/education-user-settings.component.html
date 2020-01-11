@@ -1,0 +1,118 @@
+<div class="inform_section">
+  <div class="inform_section__title">
+    <h3>Высшее Образование</h3>
+  </div>
+  <div class="inform_section__fields">
+    <div class="field-block-multiple">
+
+      <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+        <div class="single-education-block" *ngFor="let arrayItem of userSettings.education; let i = index">
+
+         <div class="field-block">
+            <h5 class="fields-title">Учебное заведение</h5>
+            <input
+              class="fields-value"
+              type="text"
+              required
+              #institution="ngModel"
+              minlength="4"
+              name="institution-{{i}}"
+              [(ngModel)]="userSettings.education[i].institution"
+              [ngClass] = "{not_Valid: !institution.valid && submited}"
+            >
+
+            <div *ngIf="!institution.valid && submited" class="alert-danger">
+              <p>institution must be at least 4 characters long.</p>
+            </div>
+
+          </div>
+
+          <div class="toggle_block" [ngClass]="{ hidden: openItem !== i+ 1}">
+            <div class="academicBlock">
+              <div class="field-block academic-degrees service-selects">
+                <label class="block-title" for="academicDegree">Учёная степень</label>
+                <mat-select name="academicDegree" id="academicDegree"
+                  [(ngModel)]="userSettings.education[i].academicDegree">
+                  <ng-container *ngFor="let academicDegree of academicDegrees">
+                    <mat-option [value]="academicDegree">{{ academicDegree }}</mat-option>
+                  </ng-container>
+                </mat-select>
+              </div>
+
+              <div class="field-block">
+                <h5 class="fields-title">Специальность</h5>
+                <input
+                  class="fields-value"
+                  type="text"
+                  required
+                  #specialty="ngModel"
+                  minlength="4"
+                  name="specialty-{{i}}"
+                  [(ngModel)]="userSettings.education[i].specialty"
+                  [ngClass] = "{not_Valid: !specialty.valid && submited}"
+                  >
+                  <div *ngIf="!specialty.valid && submited" class="alert-danger">
+                    <p>specialty must be at least 4 characters long.</p>
+                  </div>
+              </div>
+
+            </div>
+
+            <div class="studyPeriod">
+              <div class="field-block service-selects">
+                <label class="block-title" for="startEducation">Год старта</label>
+                <mat-select name="startEducation" id="startEducation"
+                  [(ngModel)]="userSettings.education[i].startEducation">
+                  <ng-container *ngFor="let startEducation of yearsArr">
+                    <mat-option [value]="startEducation">{{ startEducation }}</mat-option>
+                  </ng-container>
+                </mat-select>
+              </div>
+              <div class="field-block service-selects">
+                <label class="block-title" for="startEducation">Год окончания</label>
+                <mat-select name="startEducation" id="startEducation"
+                  [(ngModel)]="userSettings.education[i].finishEducation">
+                  <ng-container *ngFor="let finishEducation of yearsArr">
+                    <mat-option [value]="finishEducation" *ngIf="finishEducation > yearsFiltered">{{ finishEducation }}
+                    </mat-option>
+                  </ng-container>
+                </mat-select>
+              </div>
+            </div>
+
+            <div class="items">
+              <div class="img-item" *ngFor="let name of fileNames; let x = index">
+                <button class="delete-file" (click)="deleteImg(i, x)"></button>
+                {{ name }}
+              </div>
+            </div>
+
+            <div class="add-photos">
+              <input type="file" id="diplomaFiles" multiple="true" class="input-file" #fileInput
+                (change)="fileProgress($event.target.files, i)" />
+              <label for="diplomaFiles">Загрузить файл/фото диплома</label>
+            </div>
+
+            <button type="button" class="change">
+              <i class="material-icons create" (click)="chooseItem(i+1)">create</i>
+            </button>
+          </div>
+
+          <button type="button" class="delete-education">
+            <i class="material-icons" (click)="deleteEducation(i)">delete</i>
+          </button>
+        </div>
+
+        <div class="add-education">
+          <button class="add btn-tetraty" type="submit">
+            <i class="material-icons">add_circle_outline</i>
+            <span>Добавить образование</span>
+          </button>
+        </div>
+
+      </form>
+
+
+    </div>
+  </div>
+</div>

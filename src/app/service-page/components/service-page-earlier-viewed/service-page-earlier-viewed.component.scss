@@ -72,6 +72,10 @@
       overflow: hidden;
       position: relative;
       margin-right: 14px;
+      img{
+        height: 130%;
+        width: auto;
+      }
     }
     &__name {
       font-weight: 600;

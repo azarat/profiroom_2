@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LocalizeRouterService } from 'localize-router';
-import { UserServiceModel } from 'src/app/models/user-service/user-service.model';
+import { UserServiceModel } from 'src/app/models/user-service.model';
 
 import { map, filter, first } from 'rxjs/operators';
 import { plainToClass } from 'class-transformer';
@@ -56,7 +56,7 @@ export class MyServicesHomeComponent implements OnInit {
         first()
       )
       .subscribe((res: any) => {
-        console.log(res)
+        console.log(res);
         if (res.userOffers.length > 0) {
           this.userServices = plainToClass(UserServiceModel, this.deleteEmptyService(res.userOffers).slice().reverse());
         } else {

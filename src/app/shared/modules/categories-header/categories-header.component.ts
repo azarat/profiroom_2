@@ -12,12 +12,14 @@ export class CategoriesHeaderComponent implements OnInit {
 
   constructor(
     private categorysListService: CategorysListService
-    ) {}
+    ) {
+      this.categorysListService.getCategorys()
+    }
 
   ngOnInit() {
     this.categorysListService.getCategorys()
     .subscribe(res => {
-      // console.log(res);
+      // console.log(this.categorysList);
       this.categorysList = res;
     });
     // this.categorysListService.sharedCatList(this.categorysList);

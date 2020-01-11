@@ -1,0 +1,224 @@
+.inform_section{
+  // border-bottom: 1px solid #EBEEFF;
+  &__title{
+    width: 31%;
+    box-sizing: border-box;
+    padding: 50px 30px;
+    h3{
+      margin: 0;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 143%;
+      text-transform: uppercase;
+      color: #323C47;
+    }
+  }
+  &__fields{
+    padding: 40px 0 20px;
+    width: 69%;
+  }
+  form{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+.form-change-mail{
+  display: flex;
+  flex-wrap: wrap;
+  &-confirm{
+    width: 100%;
+  }
+}
+
+.inputs-wrapper{
+  max-width: 630px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  input{
+    outline: none;
+  }
+}
+
+.new-passrord{
+  & + .pass-erorrs {
+    width: 100%;
+    margin-top: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 3;
+    padding: 2px 0 9px;
+    span {
+      width: 19%;
+      border-radius: 2px;
+      height: 5px;
+      &.unvalidated {
+        background: rgba(100, 154, 243, 0.4);
+        order: 1;
+      }
+
+      &.validated {
+        background: #649af3;
+      }
+    }
+    .description {
+      width: 100%;
+      order: 3;
+      padding-left: 0;
+      margin: 0;
+      position: absolute;
+      top: 15px;
+      box-shadow: 0px 15px 21px rgba(128, 152, 213, 0.25);
+      background: #fff;
+      border-radius: 0px 0px 8px 8px;
+
+      li {
+        list-style: none;
+        margin: 8px 0 0 15px;
+        font-family: "Source Sans Pro", sans-serif;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 13px;
+        line-height: 16px;
+        color: #4285f4;
+        padding: 0 15px;
+        position: relative;
+
+        &:last-of-type {
+          margin-bottom: 12px;
+        }
+
+        &:before {
+          position: absolute;
+          content: "";
+          left: 0;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 4px;
+          height: 4px;
+          border-radius: 50%;
+          -webkit-border-radius: 50%;
+          -moz-border-radius: 50%;
+          -ms-border-radius: 50%;
+          -o-border-radius: 50%;
+          background: #4285f4;
+          -webkit-transform: translateY(-50%);
+          -moz-transform: translateY(-50%);
+          -ms-transform: translateY(-50%);
+          -o-transform: translateY(-50%);
+        }
+      }
+    }
+  }
+
+}
+
+
+.block-title{
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 18px;
+  color: #707683;
+}
+.fields-title{
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 20px;
+  color: #323C47;
+  margin: 0;
+  margin-bottom: 3px;
+}
+
+.fields{
+  margin-bottom: 15px;
+  width: 100%;
+  position: relative;
+  &-title{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 20px;
+    color: #323C47;
+    margin: 0;
+    margin-bottom: 3px;
+
+  }
+  &-value{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 125%;
+    color: #707683;
+    padding: 12px;
+    box-sizing: border-box;
+    background: #F4F7FC;
+    border-radius: 5px;
+    border: none;
+    width: 100%;
+  }
+  .error-message {
+    position: absolute;
+    bottom: -16px;
+    font-size: 12px;
+    color: #f44336;
+    font-weight: 400;
+    line-height: 1.125;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+  }
+  .succes-message{
+    position: absolute;
+    bottom: -16px;
+    font-size: 12px;
+    color: green;
+    font-weight: 400;
+    line-height: 1.125;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+  }
+}
+
+
+.inputs-wrapper{
+  max-width: 630px;
+  position: relative;
+  .field-block{
+    margin-bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 100%;
+  }
+}
+
+.form-butons{
+  margin: 0 auto;
+}
+.save-all{
+  font-family: "Source Sans Pro", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 1px;
+
+  color: #FFFFFF;
+  background: #3C7EEA;
+  box-shadow: 0px 2px 4px rgba(60, 9, 179, 0.3);
+  border-radius: 4px;
+  border: none;
+  margin: 0 auto 20px;
+  padding: 17px 35px 15px;
+  text-transform: uppercase;
+}

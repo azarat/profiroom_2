@@ -27,7 +27,6 @@ export class ServicePageService {
   }
 
   getViewedOffers(offersIdArr: string[]) {
-    console.log('post');
     return this.http.post('/visitedOffer', { VisitedOffer: offersIdArr });
   }
 }

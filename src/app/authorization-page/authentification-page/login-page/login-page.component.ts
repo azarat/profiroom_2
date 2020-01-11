@@ -10,9 +10,7 @@ import {
   FormBuilder,
   FormGroup
 } from '@angular/forms';
-import {
-  UserModel
-} from 'src/app/models/user/user.model';
+
 import {
   AuthentificationService
 } from 'src/app/core/services/auth.service';
@@ -25,6 +23,7 @@ import { BehaviorSubject, Subscription, Observable } from 'rxjs';
 import { LocalizeRouterService } from 'localize-router';
 import { FacebookLoginProvider, GoogleLoginProvider } from 'angularx-social-login';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
+import { UserModel } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-login-page',

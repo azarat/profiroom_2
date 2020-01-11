@@ -1,0 +1,109 @@
+<div class="inform_section">
+  <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+    <div class="inform_section__title">
+      <h3>Платёжные реквизиты</h3>
+    </div>
+    <div class="inform_section__fields">
+      <div class="inputs-wrapper">
+
+        <div class="fields">
+          <h5 class="fields-title">Имя</h5>
+          <input class="fields-value" type="text" [(ngModel)]="userSettings.cardName" name="cardName" maxlength="15">
+        </div>
+
+        <div class="fields">
+          <h5 class="fields-title">Фамилия</h5>
+          <input class="fields-value" type="text" [(ngModel)]="userSettings.cardSurname" name="cardSurname" maxlength="15">
+        </div>
+
+        <div class="fields">
+          <h5 class="fields-title">Номер телефона</h5>
+          <input class="fields-value" type="text" [(ngModel)]="userSettings.cardPhone" name="cardPhone"  maxlength="15">
+        </div>
+
+        <div class="bank_data">
+
+          <div class="inputs-wrapper">
+            <div class="field-block card">
+              <h5 class="fields-title">№ кредитной карты</h5>
+              <div class="input-field card-number">
+                <input
+                class="fields-value"
+                type="text"
+                [(ngModel)]="userSettings.cardNumber1"
+                placeholder="xxxx"
+                name="cardNumber1"
+                mask="9999"
+                maxlength="4"
+                >
+
+                <!-- <input
+                class="fields-value"
+                type="text"
+                [(ngModel)]="userSettings.cardNumber2"
+                placeholder="xxxx"
+
+                mask="9999"
+                maxlength="4"
+                >
+
+                <input
+                class="fields-value"
+                type="text"
+                [(ngModel)]="userSettings.cardNumber3"
+                placeholder="xxxx"
+
+                mask="9999"
+                maxlength="4"
+                >
+
+                <input
+                class="fields-value"
+                type="text"
+                [(ngModel)]="userSettings.cardNumber4"
+                placeholder="xxxx"
+
+                mask="9999"
+                maxlength="4"
+                > -->
+              </div>
+
+            </div>
+
+            <div class="field-block data">
+              <h5 class="fields-title">срок годности</h5>
+              <input
+                class="fields-value"
+                type="text"
+                [(ngModel)]="userSettings.expirationDate"
+                placeholder="xx/xx"
+                mask="99/99"
+                maxlength="5"
+                name="expirationDate"
+                >
+            </div>
+
+            <div class="field-block cvv">
+              <h5 class="fields-title">CVV код</h5>
+              <input
+                class="fields-value"
+                type="text"
+                [(ngModel)]="userSettings.cvv"
+                placeholder="xxx"
+                mask="999"
+                maxlength="3"
+                name="cvv"
+                >
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  <div class="form-butons">
+    <button class="clear-card" type="submit">очистить</button>
+    <button class="save-all" type="submit">сохранить и продолжить</button>
+  </div>
+  </form>
+</div>

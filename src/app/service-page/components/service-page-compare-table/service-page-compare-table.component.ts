@@ -38,13 +38,7 @@ export class ServicePageCompareTableComponent implements OnInit {
       extraWord: " правок"
     }
   ];
-  // public services = [
-  //   'Название услуги',
-  //   'Краткое описание',
-  //   'Срок выполнения',
-  //   'Кол-во правок',
-  //   'Цена'
-  // ];
+
   public priceTitle = [
     {
       priceName: 'Цена',

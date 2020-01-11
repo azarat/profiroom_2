@@ -21,21 +21,9 @@ export class ServicePageEarlierViewedComponent implements OnInit {
     private route: ActivatedRoute,
     private localize: LocalizeRouterService,
     private router: Router,
-  ) {
-    // console.log(this.viewedOffers);
-    // const x: string[] = Object.values(this.localStorageService.getItem('visitedOffer').value);
-    // // console.log('start');
-    // this.servicePageService.getViewedOffers(x)
-    // .subscribe(res => {
-    //   console.log('cc')
-    //   this.viewedOffers = res;
-    //   console.log(this.viewedOffers);
-    // });
-  }
+  ) { }
 
-  ngOnInit() {
-    console.log(this.viewedOffers);
-  }
+  ngOnInit() { }
   openOffer(offerid) {
     const translatedPath: any = this.localize.translateRoute('/service');
 

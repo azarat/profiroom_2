@@ -22,7 +22,9 @@ export class UserModel {
   @Expose() role_id: number;
   // tslint:disable-next-line: variable-name
   @Expose() updated_at: any;
-  userServices: UserServiceModel[];
+
+  @Type(() => UserServiceModel) userservice: UserServiceModel[];
+
 
   constructor(
     private http: HttpClient

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { UserServiceModel } from 'src/app/models/user-service/user-service.model';
+import { UserServiceModel } from 'src/app/models/user-service.model';
 import { UserOffersService } from '../../../services/user-offers.service';
 import { filter } from 'rxjs/operators';
 import { NgForm } from '@angular/forms';
@@ -41,7 +41,7 @@ export class FifthStepCreationComponent implements OnInit {
 
   ngOnInit() {
     if (this.userService.offerBreef.length === 0) {
-      this.addBreefItem()
+      this.addBreefItem();
     } else {
       this.showedItem = this.userService.offerBreef.length;
     }
@@ -76,10 +76,10 @@ export class FifthStepCreationComponent implements OnInit {
     if (this.userService.offerBreef[i].breefAnswerType === 'radio') {
       this.userService.offerBreef[i].breefAnswerVariants.push({
         answerVariant: null
-      })
+      });
     }
   }
-  removeAnswer(i: number, j:number) {
+  removeAnswer(i: number, j: number) {
     this.userService.offerBreef[i].breefAnswerVariants.splice(j, 1);
   }
 
@@ -91,7 +91,7 @@ export class FifthStepCreationComponent implements OnInit {
     this.userOffersService.updateService(this.userService)
     .pipe(filter((res: any) => !! res))
     .subscribe(res => {
-      console.log(res)
+      console.log(res);
       this.userService.step = res.step;
     } );
   }

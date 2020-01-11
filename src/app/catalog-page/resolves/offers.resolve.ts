@@ -10,17 +10,15 @@ import { BehaviorSubject, Observable } from 'rxjs';
 @Injectable()
 
 export class OffersResolver implements Resolve<any> {
-  // offers: OffersList ;
 
   constructor(
     private getOffersService: GetOffersService
-   ) {
-
-  }
+   ) {}
   resolve(route: ActivatedRouteSnapshot) {
-    const subcategory: string = route.params.subcategorie.split('?' && '%')[0];
-    this.getOffersService.setSubcategoryValue(subcategory);
-    // console.log(subcategory);
+    // // console.log(route.params);
+    // const subcategory: string = route.params.subCategory.split('?' && '%')[0];
+    // this.getOffersService.setSubcategoryValue(subcategory);
+    // // console.log(subcategory);
   }
 }
 

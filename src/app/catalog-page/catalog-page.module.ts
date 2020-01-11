@@ -20,7 +20,7 @@ import { BaseInterceptor } from '../core/interceptors/base-interceptor';
 import { HttpClient } from '@angular/common/http';
 import { OffersResolver } from './resolves/offers.resolve';
 import { FormsModule } from '@angular/forms';
-import { MatSelectModule, MatInputModule } from '@angular/material';
+import { MatSelectModule, MatInputModule, MatCheckboxModule, MatRadioModule } from '@angular/material';
 import { CategorysListService } from '../core/services/categorys.service';
 
 
@@ -37,7 +37,7 @@ const routes: Routes = [
     resolve: { items: CategorysResolver },
   },
   {
-    path: ':category?subCategory= //-//-//',
+    path: ':category/:subCategory',
     component: CatalogComponent,
     resolve: { items: OffersResolver },
   }
@@ -59,7 +59,9 @@ const routes: Routes = [
     CategoriesHeaderModule,
     FormsModule,
     MatSelectModule,
-    MatInputModule
+    MatInputModule,
+    MatCheckboxModule,
+    MatRadioModule
   ],
   exports: [
     CatalogHomePageComponent

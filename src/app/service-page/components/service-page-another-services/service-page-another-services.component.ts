@@ -13,7 +13,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ServicePageAnotherServicesComponent implements OnInit {
   public id;
   @Input() offerData: OfferDataInterface;
-  // public offerData: OfferDataInterface;
 
   constructor(
     private route: ActivatedRoute,
@@ -21,9 +20,7 @@ export class ServicePageAnotherServicesComponent implements OnInit {
     private router: Router,
   ) {}
 
-  ngOnInit() {
-    // console.log(this.offerData);
-  }
+  ngOnInit() { }
 
   openOffer(offerid) {
     const translatedPath: any = this.localize.translateRoute('/service');

@@ -1,9 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output, ɵConsole } from '@angular/core';
-import { FilterInterface } from 'src/app/shared/interfaces/filter.interface';
-
+import { Component, EventEmitter, Input, OnInit } from '@angular/core';
+import { CatalogFiltersModel } from 'src/app/models/filter.model';
 import { GetOffersService } from '../../services/get-offers.service';
-import { ActivatedRoute } from '@angular/router';
-
 
 @Component({
   selector: 'app-filter',
@@ -11,48 +8,51 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./catalog-filter.component.scss']
 })
 export class FilterComponent implements OnInit {
-  [x: string]: any;
 
   public fliterOpen = false;
-  // tslint:disable-next-line: variable-name
-  public filterData: FilterInterface = {};
-  public subcategory;
 
-  // private filters = new BehaviorSubject(this._filterData);
-  // public filterVaraibles: Observable<FilterInterface>;
+  @Input() catalogFilters: CatalogFiltersModel;
 
   constructor(
     // tslint:disable-next-line: variable-name
     public _getOffersService: GetOffersService,
-    // tslint:disable-next-line: variable-name
-    private _route: ActivatedRoute
-  ) {
-    this._getOffersService.subCategory$.subscribe(data => {
-      this.subcategory = data;
-      this.filterData.subCategory = this.subcategory;
-    });
-    this._route.queryParams.subscribe(p => {
-      // console.log(p);
-      this.filterData.minPrice = p.minPrice;
-      this.filterData.maxPrice = p.maxPrice;
-      this.filterData.maxTerm = p.maxTerm;
-    });
-  }
+  ) {}
 
-  ngOnInit() {
-    this._getOffersService.setFilters(this.filterData);
-  }
+  ngOnInit() {}
 
   onFilterChange() {
-    this._getOffersService.setFilters(this.filterData);
+    console.log(this.catalogFilters);
+    this._getOffersService.setFilters(this.catalogFilters);
   }
 
-  showFullFilter() {
-    if (this.fliterOpen === null) {
-      this.fliterOpen = true;
+  clearTerms() {
+    this.catalogFilters.maxTerm = null;
+    this._getOffersService.setFilters(this.catalogFilters);
+  }
+  clearTypes() {
+    this.catalogFilters.PSD = null;
+    this.catalogFilters.PNG = null;
+    this._getOffersService.setFilters(this.catalogFilters);
+  }
+  clearIncludes() {
+    this.catalogFilters.commercial = null;
+    this.catalogFilters.confidentiality = null;
+    this.catalogFilters.agreement = null;
+    this._getOffersService.setFilters(this.catalogFilters);
+  }
+  showFullFilter(x) {
+    if (this.fliterOpen === x) {
+      this.fliterOpen = null;
     } else {
-      this.fliterOpen = !this.fliterOpen;
+      this.fliterOpen = x;
     }
   }
+
+
+
+
+
+
+
 
 }

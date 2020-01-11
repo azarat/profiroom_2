@@ -1,82 +1,96 @@
 <div class="wrapper">
-  <div class="filters-list">
-    <div class="filter-item f-price">
-      <div class="title" (click)="showFullFilter()">
+  <form class="filters-list">
+
+    <div class="filter">
+      <div class="title" (click)="showFullFilter(0)">
+        <p>Исходники работы</p>
+        <div class="btn-show-full" [ngClass]="{open: fliterOpen === 0}"></div>
+      </div>
+      <div class="filter-values f-types" [ngClass]="{open: fliterOpen === 0}">
+        <section  class="filter-values-wrapper f-checkboxs">
+          <mat-checkbox class="filter-text" [(ngModel)]="catalogFilters.PSD" (ngModelChange)="onFilterChange()"  name='PSD' #typePSD="ngModel">PSD</mat-checkbox>
+          <mat-checkbox class="filter-text" [(ngModel)]="catalogFilters.PNG" (ngModelChange)="onFilterChange()"  name='PNG' #typePNG="ngModel">PNG</mat-checkbox>
+        </section >
+        <div class="filter-btns">
+          <div class="f-btn" (click)="clearTypes()">Очистить</div>
+          <div class="f-btn" (click)="showFullFilter(null)">Закрыть</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="filter">
+      <div class="title" (click)="showFullFilter(1)">
         <p>Бюджет</p>
-        <div class="btn-show-full" [ngClass]="fliterOpen? 'open': ''"></div>
+        <div class="btn-show-full" [ngClass]="{open: fliterOpen === 1}"></div>
       </div>
-      <div class="filter price" [ngClass]="fliterOpen? 'open': ''">
+      <div class="filter-values f-price" [ngClass]="{open: fliterOpen === 1}">
         <div class="filter-section">
-          <label for="price-mn">От</label>
+          <label class="filter-text" for="price-mn">От</label>
           <input
             class="inputs"
             matInput
             number
             placeholder="UAH"
-            [(ngModel)]="filterData.minPrice"
+            [(ngModel)]="catalogFilters.minPrice"
             (ngModelChange)="onFilterChange()"
             type="text"
-            name="price-min"
-            id="price-mn"
-            >
+            name="minPrice"
+            #typeMinPrice="ngModel">
         </div>
         <div class="filter-section">
-          <label for="price-mx">До</label>
+          <label class="filter-text" for="price-mx">До</label>
           <input
             class="inputs"
             matInput
             number
             placeholder="UAH"
-            [(ngModel)]="filterData.maxPrice"
+            [(ngModel)]="catalogFilters.maxPrice"
             (ngModelChange)="onFilterChange()"
             type="text"
-            name="price-max"
-            id="price-mx"
-            >
+            name="maxPrice"
+            #typeMaxPrice="ngModel">
         </div>
       </div>
     </div>
-    <div class="filter-item f-term">
-      <div class="title">
-        <mat-form-field>
-          <mat-label>Срок выполнения</mat-label>
-          <mat-select [(ngModel)]="filterData.maxTerm" (ngModelChange)="onFilterChange()">
-            <mat-option value="">None</mat-option>
-            <mat-option value="1" >Экспресс за 24 часа</mat-option>
-            <mat-option value="3" >До 3 дней</mat-option>
-            <mat-option value="7" >До 7 дней</mat-option>
-            <mat-option value="30">До месяца</mat-option>
-            <mat-option value="99">Любое время</mat-option>
-          </mat-select>
-        </mat-form-field>
 
-        <!-- <select [(ngModel)]="selectedCity" (ngModelChange)="onChange($event)" >
-          <option *ngFor="let c of cities" [ngValue]="c"> {{c.name}} </option>
-        </select> -->
-
-        <!-- <select class="old-select">
-            <option value="html">HTML</option>
-            <option value="css">CSS</option>
-            <option value="sass">SASS</option>
-            <option value="javascript">Javascript</option>
-            <option value="jquery" selected>jQuery</option>
-        </select> -->
-
-        <!-- Bouton Select reconstruit -->
-        <div class="new-select">
-            <div class="selection">
-                <p>
-                    <span></span>
-                    <i></i>
-                </p>
-                <span></span>
-            </div>
-        </div>
-
+    <div class="filter">
+      <div class="title" (click)="showFullFilter(2)">
+        <p>Срок выполнения</p>
+        <div class="btn-show-full" [ngClass]="{open: fliterOpen === 2}"></div>
       </div>
-      <!-- <div class="filter term">
-
-      </div> -->
+      <div class="filter-values f-term" [ngClass]="{open: fliterOpen === 2}">
+        <mat-radio-group class="filter-values-wrapper" [(ngModel)]="catalogFilters.maxTerm" (ngModelChange)="onFilterChange()"  name='maxTerm' #maxTerm="ngModel">
+          <mat-radio-button class="filter-text" value="">None</mat-radio-button>
+          <mat-radio-button class="filter-text" value="1">Экспресс за 24 часа</mat-radio-button>
+          <mat-radio-button class="filter-text" value="3">До 3 дней</mat-radio-button>
+          <mat-radio-button class="filter-text" value="7">До 7 дней</mat-radio-button>
+          <mat-radio-button class="filter-text" value="30">До месяца</mat-radio-button>
+          <mat-radio-button class="filter-text" value="99">Любое время</mat-radio-button>
+        </mat-radio-group>
+        <div class="filter-btns">
+          <div class="f-btn" (click)="clearTerms()">Очистить</div>
+          <div class="f-btn" (click)="showFullFilter(null)">Закрыть</div>
+        </div>
+      </div>
     </div>
-  </div>
+
+    <div class="filter includes">
+      <div class="title" (click)="showFullFilter(3)">
+        <p>Сервис включает</p>
+        <div class="btn-show-full" [ngClass]="{open: fliterOpen === 3}"></div>
+      </div>
+      <div class="filter-values f-includes" [ngClass]="{open: fliterOpen === 3}">
+        <section  class="filter-values-wrapper f-checkboxs">
+          <mat-checkbox class="filter-text"  [(ngModel)]="catalogFilters.commercial" (ngModelChange)="onFilterChange()" name='commercial' #commercial="ngModel">Коммерческое использование</mat-checkbox>
+          <mat-checkbox class="filter-text"  [(ngModel)]="catalogFilters.confidentiality"  (ngModelChange)="onFilterChange()" name='confidentiality' #confidentiality="ngModel">Конфиденциальность</mat-checkbox>
+          <mat-checkbox class="filter-text"  [(ngModel)]="catalogFilters.agreement"  (ngModelChange)="onFilterChange()" name='agreement' #agreement="ngModel">Контракты и соглашения</mat-checkbox>
+        </section >
+        <div class="filter-btns">
+          <div class="f-btn" (click)="clearIncludes()">Очистить</div>
+          <div class="f-btn" (click)="showFullFilter(null)">Закрыть</div>
+        </div>
+      </div>
+    </div>
+
+  </form>
 </div>

@@ -14,9 +14,7 @@ import {
 import {
   catchError
 } from 'rxjs/operators';
-import {
-  UserModel
-} from 'src/app/models/user/user.model';
+
 import {
   AuthentificationService
 } from '../services/auth.service';

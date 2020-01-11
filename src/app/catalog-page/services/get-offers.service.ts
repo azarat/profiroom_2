@@ -1,27 +1,24 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
-// import { CategoryListInterface } from '../../shared/interfaces/categories-list.interface';
-// import { SubCategoryListInterface } from '../../shared/interfaces/subcategories-list.interface';
-import { FilterInterface } from '../../shared/interfaces/filter.interface';
+
+import { CatalogFiltersModel } from 'src/app/models/filter.model';
+
 import { OffersListInterface } from '../../shared/interfaces/offers-list.interface';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Injectable()
 export class GetOffersService {
-  // tslint:disable-next-line: variable-name
-  private _subCategory = new BehaviorSubject(null);
-  public subCategory$ = this._subCategory.asObservable();
 
   // tslint:disable-next-line: variable-name
   private _offersList = new BehaviorSubject(null);
   public offersList: Observable<OffersListInterface>;
 
   // tslint:disable-next-line: variable-name
-  private _filterValue: FilterInterface = {};
+  private _filterValue: CatalogFiltersModel = {};
 
   private filters = new BehaviorSubject(this._filterValue);
-  public filterVaraibles: Observable<FilterInterface>;
+  public filterVaraibles: Observable<CatalogFiltersModel>;
 
   private urlWithoutFilters = this._router.url;
 
@@ -36,40 +33,25 @@ export class GetOffersService {
     this.filterVaraibles = this.filters.asObservable();
   }
 
-  // -------- put subcategory value from resolver ----------------//
-  public setSubcategoryValue(subcategory: string) {
-    // console.log('set.subval');
-    this._subCategory.next(subcategory);
-    // ??????????
-    this.subCategory$.subscribe(res => (this._filterValue.subCategory = res));
-    // console.log(this._filterValue.subCategory);
-  }
-
   // -------- main functions in catalog ----------------//
 
-  getOffers(link: FilterInterface | any) {
-    if (typeof link === 'string') {
-      console.log(1);
-      return;
-    }
-
+  getOffers(filters: CatalogFiltersModel | any) {
     this._offersList.next(null);
-    this.http.post('/catalog', link).subscribe((res: OffersListInterface) => {
+    this.http.post('/catalog', filters).subscribe((res: CatalogFiltersModel) => {
       this._offersList.next(res);
     });
-
   }
 
   // tslint:disable-next-line: variable-name
-  setFilters(_filters: FilterInterface) {
+  setFilters(_filters: CatalogFiltersModel) {
+
     this._filterValue = _filters;
     this.filters.next(_filters);
 
     this.pushFilters(_filters);
   }
 
-  pushFilters(getfilters?: FilterInterface) {
-    this._filterValue = getfilters;
+  pushFilters(getfilters?: CatalogFiltersModel) {
 
     // --------------------delete empty filters -----------------------//
     Object.keys(this.filters.value).forEach(key => {
@@ -78,18 +60,14 @@ export class GetOffersService {
       }
     });
 
-    // tslint:disable-next-line: variable-name
-    const _filters = Object.keys(this.filters.value)
-      .map(key => key + '=' + this.filters.value[key])
-      .join('&');
-
     this._router.navigate([this._router.url.split('%' && '?')[0]], {
       relativeTo: this._route,
       queryParams: getfilters,
       queryParamsHandling: 'merge'
     });
 
-    // console.log("getOffers from service - pushFilters()")
-    this.getOffers(_filters);
+    // console.log('getOffers from service - pushFilters()', getfilters);
+    // console.log(this.filters);
+    // this.getOffers(getfilters);
   }
 }

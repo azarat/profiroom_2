@@ -25,4 +25,5 @@ export interface OffersListInterface {
   first_page_url?: string;
   last_page_url?: string;
   next_page_url?: string;
+  total?: number;
 }

@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { OfferDataInterface } from 'src/app/shared/interfaces/offer-date.interface';
 import { filter } from 'rxjs/operators';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
+import { ScrollToService, ScrollToConfigOptions } from '@nicky-lenaers/ngx-scroll-to';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class ServicePageComponent implements OnInit {
   public offerData: OfferDataInterface = null;
   catalogSubscription: Subscription;
   // tslint:disable-next-line: variable-name
-  public comments_countF;
+  public convertedNumberOfComments;
   viewedOffers: any = null;
 
   sticky = false;
@@ -30,6 +31,7 @@ export class ServicePageComponent implements OnInit {
     // tslint:disable-next-line: variable-name
     private _router: Router,
     private offerDataService: ServicePageService,
+    private _scrollToService: ScrollToService,
     private localStorageService: LocalStorageService
   ) {
     this._route.queryParams
@@ -46,9 +48,6 @@ export class ServicePageComponent implements OnInit {
   @HostListener('window:scroll', [])
 
   ngOnInit() { }
-
-  // ngOnDestroy() {
-  // }
 
   getOfferData(offerId: {offerId: string}) {
     this.offerDataService.loadOfferDate(offerId)
@@ -91,9 +90,9 @@ export class ServicePageComponent implements OnInit {
 
   formateCommentCount() {
     if (this.offerData.comments_count < 1000) {
-      this.comments_countF = this.offerData.comments_count;
+      this.convertedNumberOfComments = this.offerData.comments_count;
     } else {
-      this.comments_countF = this.offerData.comments_count.toFixed(1);
+      this.convertedNumberOfComments = this.offerData.comments_count.toFixed(1) + "k+";
     }
   }
 
@@ -116,7 +115,28 @@ export class ServicePageComponent implements OnInit {
     this.elementPosition = this.menuElement.nativeElement.offsetTop;
   }
 
+  // ** scroll to configuration
+  scrollTo(target: string) {
 
+
+    const config: ScrollToConfigOptions = {
+      target,
+      duration: 1000
+    };
+
+    if (target === 'about-offer' ) {
+      config.offset = -90;
+    } else if (target === 'rating' || target === "compare-table" || target === 'description' || target === 'comments' || target === 'questions' ) {
+      config.offset = -80;
+    } else if (target === 'portfolio'  ) {
+      config.offset = -105;
+    }
+    console.log(config);
+    this._scrollToService.scrollTo(config);
+  }
+
+  // ** navbar always in top of page
+  @HostListener('window:scroll', ['$event'])
 
   handleScroll() {
     const windowScroll = window.pageYOffset;
