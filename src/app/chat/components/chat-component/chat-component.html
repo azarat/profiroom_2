@@ -2,8 +2,8 @@
   <section class="collocutors">
 <app-collocutors-list></app-collocutors-list>
   </section>
-  <section class="messager">
-<app-messager></app-messager>
+  <section class="messager" *ngIf="collocutorData" >
+    <app-messager *ngIf="collocutorData" [collocutorData]="collocutorData"></app-messager>
   </section>
   <section class="collocutors-tools">
 <app-messager-tools></app-messager-tools>
