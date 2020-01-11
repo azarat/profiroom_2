@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, HostListener } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, Validators, FormControl } from '@angular/forms';
-import { UserServiceModel } from 'src/app/models/user-service/user-service.model';
+import { UserServiceModel } from 'src/app/models/user-services/user-service.model';
 import { NgForm } from '@angular/forms';
 
 import { trigger, state, style, animate, transition, } from '@angular/animations';

@@ -14,6 +14,7 @@ import { LocalizeRouterService } from 'localize-router';
 export class SetNewPassComponent implements OnInit {
   token: string = null;
   email: string = null;
+  routeAuthPage: any = this.localize.translateRoute('/auth');
   constructor(
     private fb: FormBuilder,
     private autServ: AuthentificationService,
@@ -24,7 +25,7 @@ export class SetNewPassComponent implements OnInit {
     private localize: LocalizeRouterService,
   ) {
     this._route.queryParams.subscribe(data => {
-      if (data.token !== undefined ) {
+      if (data.token !== undefined) {
         this.token = data.token;
         this.email = data.email;
       } else {
@@ -75,9 +76,13 @@ export class SetNewPassComponent implements OnInit {
 
         } else {
           this.message = {
-          title: 'Смена успешна',
-          description: 'Можете войти используя новый пароль'
-        };
+            title: 'Смена успешна',
+            description: 'Можете войти используя новый пароль'
+          };
+          setTimeout(() => {
+            this.router.navigate([this.routeAuthPage]);
+          }, 3000);
+
         }
       },
         erorr => {
@@ -104,10 +109,10 @@ export class SetNewPassComponent implements OnInit {
         CustomValidators.patternValidator(/[a-z]/, { hasSmallCase: true }),
         // // 5. check whether the entered password has a special character
         // tslint:disable-next-line: max-line-length
-        CustomValidators.patternValidator( /^(?=.*[!@#\$%\^&\*])/, { hasSpecialCharacters: true }),
+        CustomValidators.patternValidator(/^(?=.*[!@#\$%\^&\*])/, { hasSpecialCharacters: true }),
         // 6.; Has; a; minimum; length; of; 8; characters;  (?=.{6,100})
         CustomValidators.patternValidator(/(?=.{8,100})/, { minLengthCharacters: true })])
-  ],
+      ],
       password_confirmation: [null, Validators.required]
     }, {
       validator: RegistrationPageComponent.passwordMatchValidator
@@ -115,3 +120,7 @@ export class SetNewPassComponent implements OnInit {
   }
 
 }
+
+
+
+

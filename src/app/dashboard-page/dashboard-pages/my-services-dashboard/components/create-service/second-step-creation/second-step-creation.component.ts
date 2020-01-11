@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, NgForm } from '@angular/forms';
-import { UserServiceModel } from 'src/app/models/user-service/user-service.model';
+import { UserServiceModel } from 'src/app/models/user-services/user-service.model';
 
 import { filter } from 'rxjs/operators';
 import { UserOffersService } from '../../../services/user-offers.service';
@@ -41,7 +41,7 @@ export class SecondStepCreationComponent implements OnInit {
   }
   nextStep = (form: NgForm) => {
 
-    if (!form.valid || this.characterLength < 100 || this.characterLength > 300) {
+    if (!form.valid || this.characterLength < 100 || this.characterLength > 500) {
       return;
     }
     this.userOffersService.updateService(this.userService)

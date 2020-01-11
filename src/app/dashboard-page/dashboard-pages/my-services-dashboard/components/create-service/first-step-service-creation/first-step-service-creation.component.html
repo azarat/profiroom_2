@@ -67,11 +67,11 @@
         <ng-container *ngIf="previewUrl">
           <div class="img-item" *ngFor="let imgUrl of previewUrl, let i = index"
             [ngClass]="{ 'main-photo': userService.offerMainImage === imgUrl.link}">
-            <button class="delete-file" (click)="deleteAttachment(imgUrl.id)">
+            <div class="delete-file" (click)="deleteAttachment(imgUrl.id)">
 
-            </button>
+            </div>
             <img [src]="'https://www.thecubetest.site/Backend/storage/app/' + imgUrl.link" height="300" />
-            <button class="choose-as-main-photo" (click)="putAsMainPhoto(imgUrl.link)">сделать обложкой</button>
+            <div class="choose-as-main-photo" (click)="putAsMainPhoto(imgUrl.link)">сделать обложкой</div>
           </div>
 
         </ng-container>

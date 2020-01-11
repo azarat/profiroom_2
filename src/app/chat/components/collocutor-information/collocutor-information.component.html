@@ -1,0 +1,52 @@
+<section class="collocutor-wrap">
+  <div class=" line">
+    <div class="collocutor-photo">
+      <img src="/assets/images/images/opponent.jpg" alt="collocutor-photo">
+    </div>
+  </div>
+  <div class="information">
+    <p class="name">
+      <span>жанна</span>&nbsp;<span>друкач</span>
+    </p>
+    <div class="raiting">
+      <app-star-raiting [currentRaiting]="collocutorRaiting"></app-star-raiting>
+      <span>{{ collocutorRaiting }}</span> <span class="comments">({{ collocutorAllComments }} отзывов)</span>
+    </div>
+    <span class="line"></span>
+    <div class="collocutor-main-info">
+      <div>
+        <span>Страна</span>
+        <span>Украина</span>
+      </div>
+      <div>
+        <span>Среднее время ответа</span>
+        <span>1 час</span>
+      </div>
+      <div>
+        <span>Разговорный язык</span>
+        <span>русский</span>
+      </div>
+      <div>
+        <span>Выполнено заказов</span>
+        <span>3</span>
+      </div>
+      <div>
+        <span>Арбитраж</span>
+        <span>52</span>
+      </div>
+    </div>
+    <span class="line"></span>
+    <div class="collocutor-about" [ngClass]="{open: isInformWraped}">
+      <p>
+        Привет, друзья! Я графический дизайнер с большим опытом работы. Я всегда внимательно отношусь к...
+        Привет, друзья! Я графический дизайнер с большим опытом работы. Я всегда внимательно отношусь к...
+        Привет, друзья! Я графический дизайнер с большим опытом работы. Я всегда внимательно отношусь к...
+        Привет, друзья! Я графический дизайнер с большим опытом работы. Я всегда внимательно отношусь к...
+        Привет, друзья! Я графический дизайнер с большим опытом работы. Я всегда внимательно отношусь к...
+        Привет, друзья! Я графический дизайнер с большим опытом работы. Я всегда внимательно отношусь к...
+        Привет, друзья! Я графический дизайнер с большим опытом работы. Я всегда внимательно отношусь к...
+      </p>
+    </div>
+    <button class="btn-tetraty" (click)="showAllInfo()">{{ wrapButtonText }}</button>
+  </div>
+</section>

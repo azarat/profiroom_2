@@ -6,7 +6,7 @@ import {
 
 export class CatalogFiltersModel {
   @Expose() filterBy?: string;
-  @Expose() current_page?: number;
+  @Expose() current_page?: any;
   @Expose() subCategory?: string;
   @Expose() minPrice?: number;
   @Expose() maxPrice?: number;

@@ -1,8 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { UserServiceModel } from 'src/app/models/user-service/user-service.model';
+import { UserServiceModel } from 'src/app/models/user-services/user-service.model';
 import { UserOffersService } from '../../../services/user-offers.service';
 import { filter } from 'rxjs/operators';
 import { pipe } from 'rxjs';
+import { Router } from '@angular/router';
+import { LocalizeRouterService } from 'localize-router';
 
 @Component({
   selector: 'app-last-step-creation',
@@ -10,9 +12,12 @@ import { pipe } from 'rxjs';
   styleUrls: ['./last-step-creation.component.scss']
 })
 export class LastStepCreationComponent implements OnInit {
-
+  translatedPath: any = this.localize.translateRoute('/dashboard/my-services');
   constructor(
     private userOffersService: UserOffersService,
+
+    private router: Router,
+    private localize: LocalizeRouterService,
   ) { }
   @Input() userService: UserServiceModel;
   ngOnInit() {
@@ -22,7 +27,15 @@ export class LastStepCreationComponent implements OnInit {
     this.userService.published = true;
     this.userOffersService.updateService(this.userService)
       .pipe(filter((res: any) => !! res))
-      .subscribe( res => console.log(res));
+      .subscribe( res => {
+        if (res.status === 'ok') {
+          this.router.navigate([this.translatedPath]);
+        }
+      });
+  }
+
+  roureToServices() {
+    this.router.navigate([this.translatedPath]);
   }
 
 }

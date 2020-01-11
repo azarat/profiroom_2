@@ -17,6 +17,8 @@ export class CatalogComponent implements OnInit {
   public category;
   public href;
 
+  public pagesArr = [];
+
   offersList: OffersListInterface;
 
   catalogSubscription: Subscription;
@@ -54,10 +56,30 @@ export class CatalogComponent implements OnInit {
     this.GetOffersService.offersList.subscribe(data => {
       this.offersList = data;
       console.log(this.offersList);
+
+      if (this.offersList) {
+        this.pagesToShow();
+      }
     });
 
     this.href = this.router.url;
 
-    console.log(this.href);
+    // console.log(this.href);
+
+
+  }
+
+  pagesToShow() {
+    this.pagesArr = [];
+
+    //currentPages
+    let a = 5;
+    //pagesToShow
+    let b = a + 2;
+
+    for (let i = a - 1; i < b; i++ ) {
+      this.pagesArr.push(i);
+    }
+    console.log(this.pagesArr);
   }
 }
