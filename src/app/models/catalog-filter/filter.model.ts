@@ -5,6 +5,7 @@ import {
 // import { type } from 'os';
 
 export class CatalogFiltersModel {
+  @Expose() online?: boolean;
   @Expose() filterBy?: string;
   @Expose() current_page?: any;
   @Expose() subCategory?: string;
@@ -16,6 +17,8 @@ export class CatalogFiltersModel {
   @Expose() commercial?: boolean;
   @Expose() confidentiality?: boolean;
   @Expose() agreement?: boolean;
-
+  @Expose() LangUkr?: boolean;
+  @Expose() LangRus?: boolean;
+  @Expose() LangBr?: boolean;
 
 }

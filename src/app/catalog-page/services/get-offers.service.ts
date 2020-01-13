@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 
-import { CatalogFiltersModel } from 'src/app/models/filter.model';
+import { CatalogFiltersModel } from 'src/app/models/catalog-filter/filter.model';
 
 import { OffersListInterface } from '../../shared/interfaces/offers-list.interface';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -19,8 +19,6 @@ export class GetOffersService {
 
   private filters = new BehaviorSubject(this._filterValue);
   public filterVaraibles: Observable<CatalogFiltersModel>;
-
-  private urlWithoutFilters = this._router.url;
 
   constructor(
     private http: HttpClient,
@@ -53,21 +51,17 @@ export class GetOffersService {
 
   pushFilters(getfilters?: CatalogFiltersModel) {
 
-    // --------------------delete empty filters -----------------------//
-    Object.keys(this.filters.value).forEach(key => {
-      if (this.filters.value[key] == null) {
-        delete this.filters.value[key];
-      }
-    });
+    // // --------------------delete empty filters -----------------------//
+    // Object.keys(this.filters.value).forEach(key => {
+    //   if (this.filters.value[key] == null) {
+    //     delete this.filters.value[key];
+    //   }
+    // });
 
     this._router.navigate([this._router.url.split('%' && '?')[0]], {
       relativeTo: this._route,
       queryParams: getfilters,
       queryParamsHandling: 'merge'
     });
-
-    // console.log('getOffers from service - pushFilters()', getfilters);
-    // console.log(this.filters);
-    // this.getOffers(getfilters);
   }
 }

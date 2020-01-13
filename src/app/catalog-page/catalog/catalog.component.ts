@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { CatalogFiltersModel } from 'src/app/models/filter.model';
+import { CatalogFiltersModel } from 'src/app/models/catalog-filter/filter.model';
 import { GetOffersService } from '../services/get-offers.service';
 import { Subscription, pipe } from 'rxjs';
 import { OffersListInterface } from 'src/app/shared/interfaces/offers-list.interface';
@@ -72,7 +72,7 @@ export class CatalogComponent implements OnInit {
   pagesToShow() {
     this.pagesArr = [];
 
-    //currentPages
+    //currentPage
     let a = 5;
     //pagesToShow
     let b = a + 2;
