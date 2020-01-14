@@ -81,18 +81,12 @@
             </div>
 
             <div class="items" >
-              <ng-container *ngIf="userSettings.education[i].diplomaFiles">
-                <div class="img-item" *ngFor="let name of userSettings.education[i].diplomaFiles; let x = index">
+
+                <div  class="img-item" *ngFor="let diplomaPhoto of allDiplomaPhotos[i]; let x = index">
                   <button class="delete-file" (click)="deleteImg(i, x)"></button>
-                  {{ name }}
+                  {{ diplomaPhoto }}
                 </div>
-              </ng-container>
-              <ng-container *ngIf="!userSettings.education[i].diplomaFiles">
-                <div  class="img-item" *ngFor="let name of fileNames; let x = index">
-                  <button class="delete-file" (click)="deleteImg(i, x)"></button>
-                  {{ name }}
-                </div>
-              </ng-container>
+
             </div>
 
             <div class="add-photos">

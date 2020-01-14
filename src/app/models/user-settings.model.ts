@@ -30,6 +30,10 @@ export class UserSettingsModel {
   @Expose() newMail: string;
   @Expose() copyNewMail: string;
 
+
+  @Expose() allDiplomaPhotos: [];
+
+
   @Expose() birthDay: {
     year: number;
     month: number;

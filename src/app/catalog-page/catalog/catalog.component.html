@@ -13,11 +13,12 @@
   <app-filter [catalogFilters]="catalogFilters"></app-filter>
   <app-items></app-items>
 
-  <!-- <div class="pagination-wrapper">
+  <div class="pagination-wrapper">
 
     <ul  class="pagination" *ngIf="offersList">
       <li [ngClass]="{disabled:offersList.current_page === 1}" class="page-item previous-item">
-        <a routerLink [queryParams]="{ page: offersList.current_page - 1 }" class="page-link"><</a>
+        <a [routerLink] [queryParams]="{ current_page: offersList.current_page - 1 }" class="page-link"><</a>
+        <!-- <a (ngModelChange)="onPrevPage()" class="page-link"><</a> -->
       </li>
       <li [ngClass]="{disabled:offersList.current_page === 1}" class="page-item first-item">
         <a [routerLink] [queryParams]="{ page: 1 }" class="page-link">1</a>
@@ -39,7 +40,7 @@
       </li>
     </ul>
 
-  </div> -->
+  </div>
 
 </div>
 

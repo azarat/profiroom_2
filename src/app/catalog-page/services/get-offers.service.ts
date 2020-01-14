@@ -6,6 +6,7 @@ import { CatalogFiltersModel } from 'src/app/models/catalog-filter/filter.model'
 
 import { OffersListInterface } from '../../shared/interfaces/offers-list.interface';
 import { ActivatedRoute, Router } from '@angular/router';
+// import { queryPaginated, Page } from '../catalog/catalog.component';
 
 @Injectable()
 export class GetOffersService {
@@ -19,6 +20,8 @@ export class GetOffersService {
 
   private filters = new BehaviorSubject(this._filterValue);
   public filterVaraibles: Observable<CatalogFiltersModel>;
+
+  baseUrl = 'http://localhost:4200/ru/catalog/Programming/Javascript';
 
   constructor(
     private http: HttpClient,
@@ -64,4 +67,9 @@ export class GetOffersService {
       queryParamsHandling: 'merge'
     });
   }
+
+
+  // list(urlOrFilter?: string | object): Observable<Page<CatalogFiltersModel>> {
+  //   return queryPaginated<CatalogFiltersModel>(this.http, this.baseUrl, urlOrFilter);
+  // }
 }

@@ -14,7 +14,7 @@ export class FilterTypesModel {
 
 }
 
-export class CatalogFiltersModel extends FilterTypesModel {
+export class CatalogFiltersModel  {
   @Expose() online?: boolean;
   @Expose() filterBy?: string;
   @Expose() current_page?: any;

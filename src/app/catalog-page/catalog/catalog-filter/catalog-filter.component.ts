@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit } from '@angular/core';
 import { CatalogFiltersModel } from 'src/app/models/catalog-filter/filter.model';
-import { FilterTypesModel } from 'src/app/models/catalog-filter/types.model';
+
 import { GetOffersService } from '../../services/get-offers.service';
 
 @Component({
@@ -13,7 +13,7 @@ export class FilterComponent implements OnInit {
   public fliterOpen = null;
 
   @Input() catalogFilters: CatalogFiltersModel;
-  @Input() filterTypes: FilterTypesModel;
+
 
   constructor(
     // tslint:disable-next-line: variable-name
@@ -32,15 +32,15 @@ export class FilterComponent implements OnInit {
     this._getOffersService.setFilters(this.catalogFilters);
   }
   clearTypes() {
-    this.filterTypes.PSD = null;
-    this.filterTypes.PNG = null;
+    this.catalogFilters.PSD = null;
+    this.catalogFilters.PNG = null;
     this._getOffersService.setFilters(this.catalogFilters);
   }
   clearIncludes() {
-  //   this.catalogFilters.filterIncludesModel.commercial = null;
-  //   this.catalogFilters.filterIncludesModel.confidentiality = null;
-  //   this.catalogFilters.filterIncludesModel.agreement = null;
-  //   this._getOffersService.setFilters(this.catalogFilters);
+    this.catalogFilters.commercial = null;
+    this.catalogFilters.confidentiality = null;
+    this.catalogFilters.agreement = null;
+    this._getOffersService.setFilters(this.catalogFilters);
   }
   showFullFilter(x) {
     if (this.fliterOpen === x) {

@@ -15,8 +15,8 @@ export class UserSettingsService {
     return this.http.post('/loadAva', files);
   }
 
-  uploadDiplomaPhotos(files) {
-    return this.http.post('/loadDiplomaFiles', files);
+  uploadDiplomaPhotos(files, i) {
+    return this.http.post('/loadDiplomaFiles', [files, i]);
   }
 
   uploadAdditionalDiplomaPhotos(files) {
