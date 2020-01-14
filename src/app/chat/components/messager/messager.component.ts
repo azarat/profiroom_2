@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewChild, ElementRef, Input, } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input, ViewChildren, QueryList, } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ChatService } from '../../services/chat.service';
 import { messages } from '../consts/messages.const';
 import { SocetService } from '../../services/socet.service';
 import { CollocutorListModel } from 'src/app/models/chat/collocutors-list.model';
 import { MessageListComponent } from '../message-list/message-list.component';
+import { MessageScrollerService } from '../../services/message-scroller/message-scroller.service';
 
 
 // declare var $: any;
@@ -12,44 +13,44 @@ import { MessageListComponent } from '../message-list/message-list.component';
 @Component({
   selector: 'app-messager',
   templateUrl: './messager.component.html',
-  styleUrls: ['./messager.component.scss']
+  styleUrls: ['./messager.component.scss'],
+  // providers: [MessageScrollerService]
 })
 export class MessagerComponent implements OnInit {
 
-  public isEmojiVisible = false;
   public messageText;
-  @Input() collocutorData: CollocutorListModel;
-  // @Input() collocutorImg: string;
   public messagesList = [];
-
-
-
+  @Input() collocutorData: CollocutorListModel;
 
   constructor(
     private chatService: ChatService,
-    private socetService: SocetService
+    private socetService: SocetService,
+    private messageScrollerService: MessageScrollerService
   ) { }
 
   @ViewChild('textinput', { static: false }) textinput: ElementRef;
-
+  @ViewChildren(MessageListComponent) messagesWrap: QueryList<MessageListComponent>;
+  @ViewChildren(MessageListComponent) messages: QueryList<ElementRef>;
 
   ngOnInit() {
-    this.socetService.openChat(this.collocutorData.roomId)
-      .subscribe(res => {
-        console.log('socet', res);
-        this.messagesList.push(res);
-
-      });
-
     this.chatService.getPreviousMessages(this.collocutorData.roomId)
       .subscribe((res: any) => {
 
         this.messagesList = res[0];
         console.log(this.messagesList);
       });
+
+    this.socetService.openChat(this.collocutorData.roomId)
+      // .subscribe(newMessage => {
+      //   console.log(newMessage)
+      //   this.messagesList.push(newMessage);
+
+      // });
+
+
   }
 
-  private get textInput() {
+  public get textInput() {
     return this.textinput.nativeElement;
   }
 
@@ -58,6 +59,8 @@ export class MessagerComponent implements OnInit {
     this.chatService.sentMessage(this.textInput.value, this.collocutorData.roomId).subscribe(res => {
     });
     form.reset();
+
+    this.messageScrollerService.onMessageScrollBottom();
   }
 
   public triggerFunction(event: any, form: NgForm) {
@@ -71,29 +74,5 @@ export class MessagerComponent implements OnInit {
       event.preventDefault();
       this.sendMessage(form);
     }
-  }
-
-  addEmoji(emoji: any) {
-    // const textInput = this.textinput.nativeElement;
-    // declare cursor position
-    const cursorPointer = this.textInput.selectionEnd;
-    // set place after emoji start
-    const start = this.textInput.value.substring(0, this.textInput.selectionStart);
-    // set place after emoji end
-    const end = this.textInput.value.substring(this.textInput.selectionStart);
-    //  concatenate text with emoji
-    const text = start + emoji.emoji.native + end;
-    // put text in textarea
-    this.textInput.value = text;
-    // focus on textarea
-    this.textInput.focus();
-    // console.log(emoji.emoji.native);
-  }
-
-  public showEmoji() {
-    this.isEmojiVisible = !this.isEmojiVisible;
-  }
-  hideEmoji() {
-    this.isEmojiVisible = false;
   }
 }

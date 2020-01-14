@@ -1,45 +1,38 @@
-import { Component, OnInit, AfterViewChecked, Input, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewChecked, Input, ViewChild, ElementRef, AfterViewInit, ViewChildren, QueryList } from '@angular/core';
 import { ChatService } from '../../services/chat.service';
 import { messages } from '../consts/messages.const';
-import { MessageScrollerService } from '../../services/message-scroller.service';
+import { MessageScrollerService } from '../../services/message-scroller/message-scroller.service';
+
 
 @Component({
   selector: 'app-message-list',
   templateUrl: './message-list.component.html',
-  styleUrls: ['./message-list.component.scss']
+  styleUrls: ['./message-list.component.scss'],
+  // providers:  [ MessageScrollerService ]
 })
-export class MessageListComponent implements OnInit, AfterViewChecked, AfterViewInit  {
+export class MessageListComponent implements OnInit, AfterViewChecked {
 
   @Input() chatRoom: string;
-  // @Input() collocutorImg: string;
-  @Input() messagesList;
-
-
+  @Input() messagesList: any[];
 
   constructor(
     private chatService: ChatService,
-    private messageScrollService: MessageScrollerService
+    private messageScrollerService: MessageScrollerService
   ) { }
 
-  @ViewChild('messagesWrap', {static: false}) messages: ElementRef;
-
+  @ViewChild('messagesWrap', {static: false}) messagesWrap: ElementRef;
+  @ViewChildren('messagesWrap') messages: QueryList<ElementRef>;
 
   ngOnInit() {
-
-  }
-
-  ngAfterViewInit() {
-
+    this.messageScrollerService.onMessageScrollBottom();
   }
 
   ngAfterViewChecked() {
-    this.messageScrollService.scrollToBottom(this.messages);
+    this.messageScrollerService.scrollToBottom(this.messagesWrap);
   }
 
   public onScroll() {
-    this.messageScrollService.onScroll(this.messages);
+    this.messageScrollerService.onScroll(this.messagesWrap);
   }
-
 }
 
-// 150

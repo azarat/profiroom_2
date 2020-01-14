@@ -4,7 +4,7 @@
       {{ collocutorData.collocutorName }} {{ collocutorData.collocutorSurname }} <span>онлайн</span>
     </div>
     <div class="messager-tools">
-
+      <app-show-uploaded-files></app-show-uploaded-files>
     </div>
   </div>
   <div class="messager-wrap">
@@ -18,13 +18,7 @@
       </div>
       <div class="tools">
         <div>
-          <div class="emoji" (click)="showEmoji()" (clickOutside)="hideEmoji()">
-            <!-- isEmojiVisible -->
-            <!-- <div class="emoji-wrap"> -->
-            <emoji-mart *ngIf="isEmojiVisible" (emojiClick)="addEmoji($event)" [showPreview]="false" ></emoji-mart>
-
-
-          </div>
+          <app-emoji *ngIf="textinput"  [textinput]="textinput"></app-emoji>
           <div class="file">
             <label class="add-file" for="add-file"></label>
             <input type="file" name="file-input" id="add-file">
