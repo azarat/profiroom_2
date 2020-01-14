@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit } from '@angular/core';
-import { CatalogFiltersModel } from 'src/app/models/filter.model';
+import { CatalogFiltersModel } from 'src/app/models/catalog-filter/filter.model';
+
 import { GetOffersService } from '../../services/get-offers.service';
 
 @Component({
@@ -9,9 +10,10 @@ import { GetOffersService } from '../../services/get-offers.service';
 })
 export class FilterComponent implements OnInit {
 
-  public fliterOpen = false;
+  public fliterOpen = null;
 
   @Input() catalogFilters: CatalogFiltersModel;
+
 
   constructor(
     // tslint:disable-next-line: variable-name
@@ -47,12 +49,4 @@ export class FilterComponent implements OnInit {
       this.fliterOpen = x;
     }
   }
-
-
-
-
-
-
-
-
 }

@@ -67,16 +67,26 @@ export class EducationUserSettingsComponent implements OnInit {
     for (let index = 0; index < event.length; index++) {
       this.files.push(event[index]);
     }
+
     this.files.forEach((el: any) => {
       formData.append('filesname[]', el, el.name);
+      console.log(formData);
+      console.log(el);
+      console.log(el.name);
+      console.log(i);
 
       this.fileNames.push(el.name);
       // console.log(this.fileNames);
+
+
     });
 
-
-    this.userSettings.education[i].diplomaFiles = formData;
-    // console.log(this.userSettings.education[i]);
+    this.userSettingsService.uploadDiplomaPhotos(formData, i)
+    .subscribe((res: []) => {
+      this.previewUrl = res;
+    });
+    // this.userSettings.education[i].diplomaFiles = formData;
+    // console.log(this.userSettings.education[i].diplomaFiles);
   }
 
 

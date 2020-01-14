@@ -1,15 +1,15 @@
 // @import "@material/select/mdc-select";
 
-.wrapper{
+.wrapper {
   max-width: 1499px;
   margin: 0 auto;
 }
 
-.filters-list{
+.filters-list {
   display: flex;
 }
 
-.filter{
+.filter {
   background: #FFFFFF;
   border: 1px solid rgba(220, 224, 230, 0.1);
   box-shadow: 0px 10px 16px rgba(128, 152, 213, 0.2);
@@ -18,24 +18,28 @@
   position: relative;
   width: 214px;
   margin-right: 40px;
-  &.includes{
+  height: fit-content;
+
+  &.includes {
     width: 286px;
   }
-  // border: 1px solid black;
-  .title{
+
+  &-title {
     position: relative;
     cursor: pointer;
-    p{
-     margin: 0;
-     padding: 16px;
-     font-family: "Source Sans Pro";
-     font-style: normal;
-     font-weight: normal;
-     font-size: 16px;
-     line-height: 21px;
-     color: #323C47;
+
+    p {
+      margin: 0;
+      padding: 16px;
+      font-family: "Source Sans Pro";
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 21px;
+      color: #323C47;
     }
-    .btn-show-full{
+
+    .filter-title-arrow {
       display: block;
       width: 12px;
       height: 8px;
@@ -46,15 +50,17 @@
       background-image: url('/assets/images/icons/arrow.png');
       cursor: pointer;
       transition: transform .3s;
-      &.open{
+
+      &.open {
         transform: translateY(-50%) rotate(0);
       }
     }
   }
-  .filter-values{
+
+  .filter-values {
     display: flex;
     flex-direction: column;
-    height: 1px;
+    height: auto;
     width: 100%;
     overflow: hidden;
     transition: all .3s;
@@ -68,18 +74,22 @@
     overflow: hidden;
     transition: all 0.5s;
     position: absolute;
+    top: 0;
     left: 0;
-    bottom: 0;
     opacity: 0;
     z-index: -1;
-    .filter-values-wrapper{
+
+    .filter-values-wrapper {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       height: 100%;
+      width: 100%;
       padding: 15px;
+      box-sizing: border-box;
     }
-    .filter-text{
+
+    .filter-text {
       font-family: "Source Sans Pro";
       font-style: normal;
       font-weight: normal;
@@ -88,13 +98,15 @@
       color: #707683;
       display: block;
     }
-    .filter-btns{
+
+    .filter-btns {
       display: flex;
       justify-content: space-between;
       margin: 0 14px 13px;
       padding-top: 10px;
       border-top: 1px solid #F4F7FC;
-      .f-btn{
+
+      .f-btn {
         cursor: pointer;
         font-family: Source Sans Pro;
         font-weight: normal;
@@ -103,121 +115,169 @@
         color: #99ACB7;
       }
     }
-    &.f-types{
-      height: 140px;
-      &.open{
-        bottom: calc(-100% - 100px);
-        opacity: 1;
-        z-index: 9;
-      }
-    }
-    &.f-price{
-      height: 110px;
-      &.open{
-        bottom: calc(-100% - 75px);
-        opacity: 1;
-        z-index: 9;
-      }
-    }
-    &.f-term{
-      height: 300px;
-      &.open{
-        bottom: calc(-100% - 260px);
-        opacity: 1;
-        z-index: 9;
-      }
-    }
-    &.f-includes{
-      height: 180px;
-      &.open{
-        bottom: calc(-100% - 140px);
-        opacity: 1;
-        z-index: 9;
-      }
-    }
-  }
 
-  // .f-types{
+    h5 {
+      font-family: Source Sans Pro;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 21px;
+      color: #323C47;
+      padding: 15px;
+      margin: 0;
+    }
 
-  // }
-  .f-price{
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-    padding-top: 10px;
-    .filter-section{
-      width: 80px;
-      padding: 0 10px;
-      position: relative;
-      &:first-child{
-        &::before{
+    &.open {
+      top: 60px;
+      opacity: 1;
+      z-index: 9;
+    }
+    &.f-other {
+      width: 403px;
+    }
+
+    &.f-price {
+      .filter-values-wrapper {
+        flex-direction: row;
+        position: relative;
+        &::before {
           content: "";
           position: absolute;
-          top: 62%;
-          right: -10px;
+          top: 67%;
+          right: 46%;
+          transform: translate(-50%, -50%);
           height: 1px;
           width: 8px;
           background-color: #111;
         }
       }
+
+      .filter-section {
+        width: 80px;
+      }
+
+      .filter-text {
+        margin-bottom: 7px;
+      }
+
+      .inputs {
+        border: 1px solid #DCE0E6;
+        box-sizing: border-box;
+        border-radius: 2px;
+        font-size: 14px;
+        padding: 12px 5px;
+        width: 100%;
+      }
     }
-    .filter-text{
-      margin-bottom: 7px;
-      margin-top: 14px;
+
+    &.f-term {
+      display: flex;
+      flex-direction: column;
     }
-    .inputs{
-      border: 1px solid #DCE0E6;
-      box-sizing: border-box;
-      border-radius: 2px;
-      font-size: 14px;
-      padding: 12px 5px;
-      width: 100%;
+
+    &.f-other {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+
+      .f-other-wrapper {
+        width: 50%;
+
+        .filter-values-wrapper {
+          height: auto;
+        }
+      }
+
+      .filter-btns {
+        width: 100%;
+      }
     }
   }
-  .f-term{
+
+
+
+}
+.filter-switch {
+
+  .pckg-swap {
     display: flex;
-    flex-direction: column;
-    ::ng-deep {
-      .mat-radio-container{
-        width: 16px;
-        height: 16px;
-      }
-      .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle{
-        border-color: #3C7EEA;
-      }
-      .mat-radio-button.mat-accent .mat-radio-inner-circle{
-        background-color: #3C7EEA;
-        height: 16px;
-        width: 16px;
-      }
-      .mat-radio-button.mat-accent .mat-radio-inner-circle, .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple), .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple, .mat-radio-button.mat-accent:active .mat-radio-persistent-ripple {
-        background-color: #649AF3;
-      }
-      .mat-radio-outer-circle{
-        height: 16px;
-        width: 16px;
-        border-radius: 50%;
-      }
-      .mat-radio-button .mat-radio-ripple {
-        position: absolute;
-        left: calc(50% - 16px);
-        top: calc(50% - 16px);
-        height: 32px;
-        width: 32px;
-        z-index: 1;
-        pointer-events: none;
-        border-radius: 50%;
-      }
+    justify-content: center;
+    align-items: center;
+    .filter-title p{
+      white-space: nowrap;
+      color: #707683;
+    }
+  }
+  [ng-reflect-model=true] + .filter-title p {
+    color: red;
+  }
+}
+.f-radio {
+  .filter-text {
+    margin-bottom: 10px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  ::ng-deep {
+    .mat-radio-container {
+      width: 16px;
+      height: 16px;
+    }
+
+    .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+      border-color: #3C7EEA;
+    }
+
+    .mat-radio-button.mat-accent .mat-radio-inner-circle {
+      background-color: #3C7EEA;
+      height: 16px;
+      width: 16px;
+    }
+
+    .mat-radio-button.mat-accent .mat-radio-inner-circle,
+    .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple),
+    .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple,
+    .mat-radio-button.mat-accent:active .mat-radio-persistent-ripple {
+      background-color: #649AF3;
+    }
+
+    .mat-radio-outer-circle {
+      height: 16px;
+      width: 16px;
+      border-radius: 50%;
+    }
+
+    .mat-radio-button .mat-radio-ripple {
+      position: absolute;
+      left: calc(50% - 16px);
+      top: calc(50% - 16px);
+      height: 32px;
+      width: 32px;
+      z-index: 1;
+      pointer-events: none;
+      border-radius: 50%;
     }
   }
 }
+.f-checkboxs {
+  .filter-text {
+    margin-bottom: 10px;
 
-.f-checkboxs{
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
   ::ng-deep {
-    .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background, .mat-checkbox-checked.mat-accent .mat-checkbox-background{
+
+    .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background,
+    .mat-checkbox-checked.mat-accent .mat-checkbox-background {
       background-color: #3C7EEA;
     }
-    .mat-checkbox-checked:not(.mat-checkbox-disabled).mat-accent .mat-ripple-element, .mat-checkbox:active:not(.mat-checkbox-disabled).mat-accent .mat-ripple-element{
+
+    .mat-checkbox-checked:not(.mat-checkbox-disabled).mat-accent .mat-ripple-element,
+    .mat-checkbox:active:not(.mat-checkbox-disabled).mat-accent .mat-ripple-element {
       background-color: #3C7EEA;
     }
   }

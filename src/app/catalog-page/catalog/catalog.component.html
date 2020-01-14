@@ -16,21 +16,28 @@
   <div class="pagination-wrapper">
 
     <ul  class="pagination" *ngIf="offersList">
-        <li [ngClass]="{disabled:offersList.current_page === 1}" class="page-item first-item">
-            <a [routerLink] = "[href]" [queryParams]="{ page: 1 }" class="page-link">First</a>
-        </li>
-        <li [ngClass]="{disabled:offersList.current_page === 1}" class="page-item previous-item">
-            <a routerLink [queryParams]="{ page: offersList.current_page - 1 }" class="page-link">Previous</a>
-        </li>
-        <!-- <li *ngFor="let page of offersList.total" [ngClass]="{active:offersList.current_page === page}" class="page-item number-item">
-            <a routerLink [queryParams]="{ page: page }" class="page-link">{{page}}</a>
-        </li> -->
-        <li [ngClass]="{disabled:offersList.current_page === offersList.totalPages}" class="page-item next-item">
-            <a routerLink [queryParams]="{ page: offersList.currentPage + 1 }" class="page-link">Next</a>
-        </li>
-        <li [ngClass]="{disabled:offersList.current_page === offersList.total}" class="page-item last-item">
-            <a routerLink [queryParams]="{ page: offersList.totalPages }" class="page-link">Last</a>
-        </li>
+      <li [ngClass]="{disabled:offersList.current_page === 1}" class="page-item previous-item">
+        <a [routerLink] [queryParams]="{ current_page: offersList.current_page - 1 }" class="page-link"><</a>
+        <!-- <a (ngModelChange)="onPrevPage()" class="page-link"><</a> -->
+      </li>
+      <li [ngClass]="{disabled:offersList.current_page === 1}" class="page-item first-item">
+        <a [routerLink] [queryParams]="{ page: 1 }" class="page-link">1</a>
+      </li>
+
+      <div class="hidden-pages page-item" [ngClass]="{'hidden': offersList.current_page === 1 || offersList.current_page === 2}">...</div>
+
+      <li *ngFor="let page of pagesArr" [ngClass]="{active:offersList.current_page === page}" class="page-item number-item">
+        <a routerLink [queryParams]="{ page: page }" class="page-link">{{page}}</a>
+      </li>
+
+      <div class="hidden-pages page-item" [ngClass]="{hidden:offersList.current_page === offersList.last_page || offersList.current_page === offersList.last_page - 1}" >...</div>
+
+      <li [ngClass]="{disabled:offersList.current_page === offersList.total}" class="page-item last-item">
+        <a routerLink [queryParams]="{ page: offersList.totalPages }" class="page-link">27</a>
+      </li>
+      <li [ngClass]="{disabled:offersList.current_page === offersList.totalPages}" class="page-item next-item">
+        <a routerLink [queryParams]="{ page: offersList.currentPage + 1 }" class="page-link">></a>
+      </li>
     </ul>
 
   </div>

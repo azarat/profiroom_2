@@ -12,7 +12,7 @@ import { UserSettingsService } from '../services/user-settings.service';
 })
 export class HomeUserSettingsComponent implements OnInit {
 
-  public userSettingsModel: UserSettingsModel;
+  public userSettingsModel: UserSettingsModel = null;
 
   constructor(
     // tslint:disable-next-line: variable-name
@@ -27,11 +27,9 @@ export class HomeUserSettingsComponent implements OnInit {
   //  ** load userServiceData from server
   getUserService() {
     let request: object;
-
     if (this._route.snapshot.queryParams.offerId) {
       request = this._route.snapshot.queryParams;
     }
-    console.log(request)
     this.userSettingsService.getServiceData()
       .pipe(
         filter((response: any) => !!response)
@@ -39,7 +37,7 @@ export class HomeUserSettingsComponent implements OnInit {
       .subscribe(response => {
 
         this.userSettingsModel = plainToClass(UserSettingsModel, response);
-        console.log(response);
+        console.log(this.userSettingsModel);
       });
 
   }

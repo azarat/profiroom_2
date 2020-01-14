@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ɵConsole } from '@angular/core';
 import { UserSettingsModel } from 'src/app/models/user-settings.model';
 
 @Component({
@@ -39,7 +39,7 @@ export class BirthdayUserSettingsComponent implements OnInit {
 
   createArrayYear() {
     const years = [];
-    for (let i = 1980; i <= 2019; i++) {
+    for (let i = 1980; i <= 2020; i++) {
       years.push(i);
     }
     return years;
