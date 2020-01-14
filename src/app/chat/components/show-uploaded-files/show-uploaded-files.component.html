@@ -1,0 +1,22 @@
+
+<div class="files-folder">
+  <div class="folder-btn" (click)="showFiles()"></div>
+  <div class="files-list" >
+    <!-- *ngIf="isUploadFilesVisible" -->
+    <div class="title">
+      <span class="type">Тип</span>
+      <span class="name">Название</span>
+      <span class="date">Дата</span >
+      <span class="download">Скачать</span>
+    </div>
+    <div class="list" >
+      <div class="file" *ngFor="let file of files">
+      <span class="type"> <img src="/assets/images/icons/{{file.type}}.png" alt=""> </span>
+      <span class="name">{{ file.name }}.{{ file.type }}</span>
+      <span class="date">{{ file.date}}</span>
+      <span class="download"></span>
+      </div>
+
+    </div>
+  </div>
+</div>

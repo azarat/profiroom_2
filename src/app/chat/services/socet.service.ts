@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as io from 'socket.io-client';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 
@@ -13,8 +13,10 @@ export class SocetService {
   socket: any;
   private host = 'http://192.168.0.200:6001';
   // private socket: any = io.connect(this.host);
+  private socketId: string;
 
-
+  private notificationSubject = new Subject<any>();
+  private newMessageSubject = new Subject<any>();
   constructor(
     private http: HttpClient
   ) {
@@ -29,7 +31,12 @@ export class SocetService {
           if (!res.auth) {
             io.disconnect(this.host);
             return;
+          } else {
+            this.socketId = res.socketId;
+            this.checkNotifications()
+              .subscribe(res => console.log('notif', res))
           }
+          this.showNewMessage();
         });
 
       // console.log('[INFO] Connected to ws');
@@ -55,15 +62,37 @@ export class SocetService {
 
   }
   public openChat(roomId) {
-
-    const room = 'laravel_database_presence-' + roomId + ':message';
+    const room = 'laravel_database_presence-' + this.socketId + ':message_' + roomId;
     console.log(room);
     return new Observable(observer => {
       this.socket.on(room, (data) => {
         observer.next(data);
       });
     });
+    return;
   }
 
+  public checkNotifications() {
+    const room = 'laravel_database_presence-' + this.socketId + ':notify';
+    // return new Observable(observer => {
+    this.socket.on(room, (data) => {
+      this.notificationSubject.next(data);
+
+    });
+    // })
+    return this.notificationSubject.asObservable();
+  }
+
+  public showNewMessage() {
+    const room = 'laravel_database_presence-' + this.socketId + ':rooms';
+    this.socket.on(room, (data) => {
+
+      this.newMessageSubject.next(data);
+    });
+  }
+  subscribeOnMessages() {
+
+    return this.newMessageSubject.asObservable();
+  }
 }
 

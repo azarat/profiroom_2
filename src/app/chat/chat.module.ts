@@ -16,10 +16,11 @@ import { StarRaitingModule } from '../shared/modules/star-raiting/star-raiting.m
 import { PickerModule } from 'node_modules/@ctrl/ngx-emoji-mart';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DataFormatModule } from '../shared/pipes/data-format/data-format.module';
+import { MessageScrollerService } from './services/message-scroller/message-scroller.service';
+import { EmojiComponent } from './components/emoji/emoji.component';
+import { ShowUploadedFilesComponent } from './components/show-uploaded-files/show-uploaded-files.component';
 
-// const jwtToken = (localStorage.token).replace('"', '');
-// const config: SocketIoConfig = { url: 'http://192.168.0.200:6001', options: {query: {token: jwtToken}},  };
-console.log('jwtToken');
+
 
 
 @NgModule({
@@ -30,10 +31,14 @@ console.log('jwtToken');
     MessagerComponent,
     MessageListComponent,
     CollocutorInformationComponent,
+    EmojiComponent,
+    ShowUploadedFilesComponent,
+
+    // Directives
+
   ],
   imports: [
     CommonModule,
-    // SocketIoModule.forRoot(config),
     StarRaitingModule,
     PickerModule,
     ClickOutsideModule,
@@ -44,7 +49,8 @@ console.log('jwtToken');
   ],
   exports: [ChatComponent],
   providers: [
-    ChatService
+    ChatService,
+    MessageScrollerService
   ]
 })
 export class ChatModule {

@@ -37,6 +37,11 @@ export class DashboardPageComponent implements OnInit {
 
     this.socetService.connect();
 
+    // this.socetService.checkNotifications()
+    //   .subscribe(res => {
+    //     console.log('notifications', res);
+    //   });
+
   }
   userExit = () => {
     this.authService.logOut();
