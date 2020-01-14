@@ -76,7 +76,7 @@ export class EducationUserSettingsComponent implements OnInit {
 
 
     this.userSettings.education[i].diplomaFiles = formData;
-    // console.log(this.userSettings.education[i]);
+    console.log(this.userSettings.education[i].diplomaFiles);
   }
 
 

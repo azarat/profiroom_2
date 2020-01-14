@@ -15,7 +15,7 @@ export class GetOffersService {
   public offersList: Observable<OffersListInterface>;
 
   // tslint:disable-next-line: variable-name
-  private _filterValue: CatalogFiltersModel = {};
+  private _filterValue: CatalogFiltersModel;
 
   private filters = new BehaviorSubject(this._filterValue);
   public filterVaraibles: Observable<CatalogFiltersModel>;

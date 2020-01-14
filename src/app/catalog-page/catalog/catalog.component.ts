@@ -2,9 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { CatalogFiltersModel } from 'src/app/models/catalog-filter/filter.model';
+import { FilterTypesModel } from 'src/app/models/catalog-filter/types.model';
+import { FilterPriceModel } from 'src/app/models/catalog-filter/price.model';
+import { FilterIncludesModel } from 'src/app/models/catalog-filter/includes.model';
 import { GetOffersService } from '../services/get-offers.service';
 import { Subscription, pipe } from 'rxjs';
 import { OffersListInterface } from 'src/app/shared/interfaces/offers-list.interface';
+import { plainToClass } from 'class-transformer';
 
 @Component({
   selector: 'app-catalog',
@@ -13,7 +17,7 @@ import { OffersListInterface } from 'src/app/shared/interfaces/offers-list.inter
 })
 export class CatalogComponent implements OnInit {
 
-  public catalogFilters: CatalogFiltersModel = {};
+  public catalogFilters: CatalogFiltersModel;
   public category;
   public href;
 
@@ -30,10 +34,11 @@ export class CatalogComponent implements OnInit {
     private _route: ActivatedRoute,
     private router: Router
   ) {
-
     // --------------check url params value---------------
     this._route.params.subscribe(Params => {
-      this.catalogFilters.subCategory = Params.subCategory;
+      this.catalogFilters = plainToClass(CatalogFiltersModel, Params);
+      console.log('catalog filters', this.catalogFilters);
+      // this.catalogFilters.subCategory = Params.subCategory;
       this.GetOffersService.getOffers(this.catalogFilters);
       // ------- value of category for breadcrumbs
       this.category = Params.category;
@@ -44,7 +49,7 @@ export class CatalogComponent implements OnInit {
       if (qParams && (Object.keys(qParams).length === 0)) {
         console.log('queryParams is empty');
       } else {
-        console.log("from query params");
+        console.log('from query params');
         this.GetOffersService.getOffers(qParams);
       }
     });
@@ -72,10 +77,10 @@ export class CatalogComponent implements OnInit {
   pagesToShow() {
     this.pagesArr = [];
 
-    //currentPage
-    let a = 5;
-    //pagesToShow
-    let b = a + 2;
+    // currentPage
+    const a = 5;
+    // pagesToShow
+    const b = a + 2;
 
     for (let i = a - 1; i < b; i++ ) {
       this.pagesArr.push(i);

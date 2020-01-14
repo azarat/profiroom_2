@@ -10,7 +10,7 @@ import { GetOffersService } from '../../services/get-offers.service';
 })
 export class FilterComponent implements OnInit {
 
-  public fliterOpen = false;
+  public fliterOpen = null;
 
   @Input() catalogFilters: CatalogFiltersModel;
   @Input() filterTypes: FilterTypesModel;
@@ -34,13 +34,13 @@ export class FilterComponent implements OnInit {
   clearTypes() {
     this.filterTypes.PSD = null;
     this.filterTypes.PNG = null;
-    this._getOffersService.setFilters(this.filterTypes);
+    this._getOffersService.setFilters(this.catalogFilters);
   }
   clearIncludes() {
-    this.catalogFilters.commercial = null;
-    this.catalogFilters.confidentiality = null;
-    this.catalogFilters.agreement = null;
-    this._getOffersService.setFilters(this.catalogFilters);
+  //   this.catalogFilters.filterIncludesModel.commercial = null;
+  //   this.catalogFilters.filterIncludesModel.confidentiality = null;
+  //   this.catalogFilters.filterIncludesModel.agreement = null;
+  //   this._getOffersService.setFilters(this.catalogFilters);
   }
   showFullFilter(x) {
     if (this.fliterOpen === x) {

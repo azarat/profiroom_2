@@ -80,17 +80,25 @@
               </div>
             </div>
 
-            <div class="items">
-              <div class="img-item" *ngFor="let name of fileNames; let x = index">
-                <button class="delete-file" (click)="deleteImg(i, x)"></button>
-                {{ name }}
-              </div>
+            <div class="items" >
+              <ng-container *ngIf="userSettings.education[i].diplomaFiles">
+                <div class="img-item" *ngFor="let name of userSettings.education[i].diplomaFiles; let x = index">
+                  <button class="delete-file" (click)="deleteImg(i, x)"></button>
+                  {{ name }}
+                </div>
+              </ng-container>
+              <ng-container *ngIf="!userSettings.education[i].diplomaFiles">
+                <div  class="img-item" *ngFor="let name of fileNames; let x = index">
+                  <button class="delete-file" (click)="deleteImg(i, x)"></button>
+                  {{ name }}
+                </div>
+              </ng-container>
             </div>
 
             <div class="add-photos">
-              <input type="file" id="diplomaFiles" multiple="true" class="input-file" #fileInput
+              <input type="file" id="diplomaFiles-{{i}}" multiple="true" class="input-file" #fileInput
                 (change)="fileProgress($event.target.files, i)" />
-              <label for="diplomaFiles">Загрузить файл/фото диплома</label>
+              <label for="diplomaFiles-{{i}}">Загрузить файл/фото диплома</label>
             </div>
 
             <button type="button" class="change">
