@@ -18,7 +18,7 @@
         <p class="date" >{{ collocutors[i].lastMessage[0].dateTime | dateFormatPipe }}</p>
         <div class="message-preview">
           <div class="photo">
-            <img [src]="'https://www.thecubetest.site/Backend/storage/app/' + collocutor.collocutorAva" alt="collocutor-photo" />
+            <img [src]="collocutor.collocutorAva" alt="collocutor-photo" />
             <span class="status"></span>
           </div>
           <div class="message-information">

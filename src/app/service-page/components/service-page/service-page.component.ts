@@ -139,7 +139,7 @@ export class ServicePageComponent implements OnInit {
   }
 
   // ** navbar always in top of page
-  @HostListener('window:scroll', ['$event'])
+  // @HostListener('window:scroll', ['$event'])
 
   handleScroll() {
     const windowScroll = window.pageYOffset;

@@ -6,6 +6,7 @@ import { dashboardMenuConst } from './consts/dashboard-menu.const';
 import { plainToClass } from 'class-transformer';
 import { SocetService } from '../chat/services/socet.service';
 import { UserModel } from '../models/user.model';
+import { LocalStorageService } from '../core/services/local-storage.service';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -22,7 +23,8 @@ export class DashboardPageComponent implements OnInit {
   constructor(
     private authService: AuthentificationService,
     private userService: UserService,
-    private socetService: SocetService
+    private socetService: SocetService,
+    private localStorageService: LocalStorageService
 
   ) {
    }
@@ -33,6 +35,7 @@ export class DashboardPageComponent implements OnInit {
       console.log(res);
       this.user = plainToClass(UserModel, res[0]);
       this.authService.saveUserId(this.user.id);
+      this.localStorageService.setItem('userImage', this.user.avatar);
     });
 
     this.socetService.connect();

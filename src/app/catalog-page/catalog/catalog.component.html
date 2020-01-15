@@ -15,10 +15,10 @@
 
   <div class="pagination-wrapper">
 
-    <ul  class="pagination" *ngIf="offersList">
+    <!-- <ul  class="pagination" *ngIf="offersList">
       <li [ngClass]="{disabled:offersList.current_page === 1}" class="page-item previous-item">
         <a [routerLink] [queryParams]="{ current_page: offersList.current_page - 1 }" class="page-link"><</a>
-        <!-- <a (ngModelChange)="onPrevPage()" class="page-link"><</a> -->
+        <a (ngModelChange)="onPrevPage()" class="page-link"><</a>
       </li>
       <li [ngClass]="{disabled:offersList.current_page === 1}" class="page-item first-item">
         <a [routerLink] [queryParams]="{ page: 1 }" class="page-link">1</a>
@@ -38,7 +38,7 @@
       <li [ngClass]="{disabled:offersList.current_page === offersList.totalPages}" class="page-item next-item">
         <a routerLink [queryParams]="{ page: offersList.currentPage + 1 }" class="page-link">></a>
       </li>
-    </ul>
+    </ul> -->
 
   </div>
 
