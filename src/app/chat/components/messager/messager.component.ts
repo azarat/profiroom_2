@@ -41,11 +41,11 @@ export class MessagerComponent implements OnInit {
       });
 
     this.socetService.openChat(this.collocutorData.roomId)
-      // .subscribe(newMessage => {
-      //   console.log(newMessage)
-      //   this.messagesList.push(newMessage);
+      .subscribe(newMessage => {
+        console.log(newMessage)
+        this.messagesList.push(newMessage);
 
-      // });
+      });
 
 
   }

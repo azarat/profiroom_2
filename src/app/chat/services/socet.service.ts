@@ -62,8 +62,7 @@ export class SocetService {
 
   }
   public openChat(roomId) {
-    const room = 'laravel_database_presence-' + this.socketId + ':message_' + roomId;
-    console.log(room);
+    const room = 'gigroom_database_presence-' + this.socketId + ':message_' + roomId;
     return new Observable(observer => {
       this.socket.on(room, (data) => {
         observer.next(data);
@@ -73,7 +72,7 @@ export class SocetService {
   }
 
   public checkNotifications() {
-    const room = 'laravel_database_presence-' + this.socketId + ':notify';
+    const room = ('gigroom_database_presence-' + this.socketId + ':notify').toString();
     // return new Observable(observer => {
     this.socket.on(room, (data) => {
       this.notificationSubject.next(data);
@@ -84,7 +83,7 @@ export class SocetService {
   }
 
   public showNewMessage() {
-    const room = 'laravel_database_presence-' + this.socketId + ':rooms';
+    const room = ('gigroom_database_presence-' + this.socketId + ':rooms').toString();
     this.socket.on(room, (data) => {
 
       this.newMessageSubject.next(data);
