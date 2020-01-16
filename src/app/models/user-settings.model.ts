@@ -72,12 +72,13 @@ export class Language {
 }
 
 export class Education {
+  @Expose() id: number;
   @Expose() institution: string;
   @Expose() academicDegree: number;
   @Expose() specialty: string;
   @Expose() startEducation: number;
   @Expose() finishEducation: number;
-  @Expose() diplomaFiles: FormData;
+  @Expose() diploma: any[];
 }
 
 export class AdditionalEducation {

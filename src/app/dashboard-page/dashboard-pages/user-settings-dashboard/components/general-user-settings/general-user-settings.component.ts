@@ -32,9 +32,9 @@ export class GeneralUserSettingsComponent implements OnInit {
     .pipe(filter((res: any) => !!res))
     .subscribe(
       (res) => {
-        console.log(this.userSettingsModel);
+        // console.log(this.userSettingsModel);
         // this.userSettingsModel = res;
-        console.log(res);
+        // console.log(res);
       }
     );
   }

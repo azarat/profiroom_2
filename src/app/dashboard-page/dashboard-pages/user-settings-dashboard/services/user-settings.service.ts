@@ -15,8 +15,13 @@ export class UserSettingsService {
     return this.http.post('/loadAva', files);
   }
 
-  uploadDiplomaPhotos(files, i) {
-    return this.http.post('/loadDiplomaFiles', [files, i]);
+  uploadDiplomaPhotos(files) {
+    return this.http.post('/loadDiplomaFiles', files);
+  }
+
+  newEducationId() {
+    console.log('newEducation');
+    return this.http.post('/newEducation', '');
   }
 
   uploadAdditionalDiplomaPhotos(files) {

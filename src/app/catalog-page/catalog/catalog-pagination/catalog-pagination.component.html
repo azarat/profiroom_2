@@ -1,6 +1,6 @@
-<div class="pagination-wrapper" >
+<div class="pagination-wrapper" *ngIf='offersList'>
 
-  <ul  class="pagination" *ngIf='offersList'>
+  <ul  class="pagination" *ngIf='offersList.page.total > 1'>
     <li [ngClass]="{disabled:offersList.page.current_page === 1}" class="page-item previous-item">
       <!-- <a [routerLink] [queryParams]="{ current_page: catalogFilters.current_page - 1 }" class="page-link"><</a> -->
       <a (click)="onPrevPage()" class="page-link"><img src="assets/images/svg/catalog-page/arrow-white.svg" alt=""></a>

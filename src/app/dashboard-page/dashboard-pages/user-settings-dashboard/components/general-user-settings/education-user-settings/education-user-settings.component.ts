@@ -12,12 +12,12 @@ export class EducationUserSettingsComponent implements OnInit {
 
   @Input() userSettings: UserSettingsModel;
 
+  private educationId: number;
   // public educationForm: FormGroup;
   public submited = false;
   public openItem: number;
 
   files: any = [];
-  fileNames: any = [];
   previewUrl: any;
 
   public yearsArr = [];
@@ -35,19 +35,32 @@ export class EducationUserSettingsComponent implements OnInit {
     if (!this.userSettings.education.length) {
       this.addEducation();
     }
+    // console.log(this.userSettings);
   }
 
   // --------------- create education-item -----------------//
   addEducation() {
-    this.userSettings.education.push({
-      institution: '',
-      academicDegree: 1,
-      specialty: '',
-      startEducation: 1960,
-      finishEducation: 1960,
-      diplomaFiles: null
-    });
-    // this.submited = false;
+    this.userSettingsService.newEducationId().subscribe(
+      (res: any) => {
+        this.educationId = res.data[0].id;
+        // console.log(this.educationId);
+      }
+    );
+
+    if (this.educationId) {
+      console.log("create-new-aducation-id ", this.educationId);
+      this.userSettings.education.push({
+        id: this.educationId,
+        institution: '',
+        academicDegree: 1,
+        specialty: '',
+        startEducation: 1960,
+        finishEducation: 1960,
+        diploma: []
+      });
+    }
+
+    console.log("create-new-aducation ", this.userSettings.education);
     this.openItem = this.userSettings.education.length;
   }
 
@@ -57,12 +70,10 @@ export class EducationUserSettingsComponent implements OnInit {
   }
 
   //  --------------- diploma photos uploading ---------------
-  fileProgress = (event: any, i: number) => {
+  fileProgress = (event: any, id: any, i: number) => {
 
     const formData: FormData = new FormData();
-    // formData.append('offerId', this.userSettings.id);
     this.files = [];
-    this.fileNames = [];
 
     for (let index = 0; index < event.length; index++) {
       this.files.push(event[index]);
@@ -70,23 +81,17 @@ export class EducationUserSettingsComponent implements OnInit {
 
     this.files.forEach((el: any) => {
       formData.append('filesname[]', el, el.name);
-      console.log(formData);
-      console.log(el);
-      console.log(el.name);
-      console.log(i);
-
-      this.fileNames.push(el.name);
-      // console.log(this.fileNames);
-
-
     });
 
-    this.userSettingsService.uploadDiplomaPhotos(formData, i)
-    .subscribe((res: []) => {
-      this.previewUrl = res;
+    formData.append('educaionId', id);
+
+    this.userSettingsService.uploadDiplomaPhotos(formData)
+    .subscribe((res: any) => {
+      this.previewUrl = res.diploma[0].url;
+
+      console.log(this.previewUrl);
+      this.userSettings.education[i].diploma.push(this.previewUrl);
     });
-    // this.userSettings.education[i].diplomaFiles = formData;
-    // console.log(this.userSettings.education[i].diplomaFiles);
   }
 
 
@@ -115,7 +120,6 @@ export class EducationUserSettingsComponent implements OnInit {
 
   // --------------- save changes -----------------//
   onSubmit(form) {
-    console.log(form);
     this.submited = true;
     if (form.invalid) {
       console.log('invalid');
