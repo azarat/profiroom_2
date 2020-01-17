@@ -82,13 +82,14 @@ export class Education {
 }
 
 export class AdditionalEducation {
+  @Expose() id: number;
   @Expose() additionalInstitution: string;
   @Expose() courseName: string;
   @Expose() startStudyMounth: number;
   @Expose() startStudyYear: number;
   @Expose() endStudyMounth: number;
   @Expose() endStudyYear: number;
-  @Expose() additionalDiplomaFiles: any;
+  @Expose() additionalDiploma: any[];
 }
 
 export class UserNotifications {

@@ -1,0 +1,22 @@
+<app-main-header></app-main-header>
+<app-categories-header></app-categories-header>
+
+<nav class="navigation_page" #stickyMenu [class.sticky] = "sticky">
+  <div class="wrapper">
+    <ul>
+      <li (click)="scrollTo('about')">О фрилансере</li>
+      <li (click)="scrollTo('education')">Образование</li>
+      <li (click)="scrollTo('rating')">рейтинг</li>
+      <li (click)="scrollTo('description')">услуги</li>
+      <li (click)="scrollTo('comments')">отзывы</li>
+    </ul>
+  </div>
+</nav>
+
+<div class="wrapper">
+
+  <div class="back-to-list">
+    <span>Вернуться к списку фрилансеров</span>
+  </div>
+
+</div>

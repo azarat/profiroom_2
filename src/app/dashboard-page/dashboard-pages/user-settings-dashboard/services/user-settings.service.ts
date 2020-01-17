@@ -23,9 +23,19 @@ export class UserSettingsService {
     console.log('newEducation');
     return this.http.post('/newEducation', '');
   }
+  deleteEducatioon(id) {
+    // console.log('deleteEducation', i);
+    return this.http.post('/deleteEducation', id);
+  }
 
   uploadAdditionalDiplomaPhotos(files) {
+    console.log('/loadAdditionalDiplomaFiles');
     return this.http.post('/loadAdditionalDiplomaFiles', files);
+  }
+
+  newAdditioanlEducationId() {
+    console.log('newEducation');
+    return this.http.post('/newEducation', '');
   }
 
   public getServiceData() {

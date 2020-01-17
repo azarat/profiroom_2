@@ -23,6 +23,13 @@ export class EducationUserSettingsComponent implements OnInit {
   public yearsArr = [];
   public yearsFiltered = [];
   public academicDegrees = [1, 2, 3, 4, 5];
+  public academicDegreesTranslations = [
+    'Бакалавр',
+    'Магистр',
+    'Доцент',
+    'Профессор',
+    'Владыка ситхов'
+  ];
 
   constructor(
     private userSettingsService: UserSettingsService,
@@ -43,30 +50,43 @@ export class EducationUserSettingsComponent implements OnInit {
     this.userSettingsService.newEducationId().subscribe(
       (res: any) => {
         this.educationId = res.data[0].id;
-        // console.log(this.educationId);
+
+        if (this.educationId) {
+
+          console.log('create-new-aducation-id ', this.educationId);
+          this.userSettings.education.push({
+            id: this.educationId,
+            institution: 'Учебное заведение',
+            academicDegree: 1,
+            specialty: 'Специальность',
+            startEducation: 1960,
+            finishEducation: 1960,
+            diploma: []
+          });
+        }
       }
     );
 
-    if (this.educationId) {
-      console.log("create-new-aducation-id ", this.educationId);
-      this.userSettings.education.push({
-        id: this.educationId,
-        institution: '',
-        academicDegree: 1,
-        specialty: '',
-        startEducation: 1960,
-        finishEducation: 1960,
-        diploma: []
-      });
-    }
 
-    console.log("create-new-aducation ", this.userSettings.education);
-    this.openItem = this.userSettings.education.length;
+    // this.educationId.subscribe
+
+
+    console.log('create-new-aducation ', this.userSettings.education);
+    this.openItem = this.userSettings.education.length + 1;
   }
 
   // --------------- delete education-item -----------------//
-  deleteEducation(index: number) {
-    this.userSettings.deleteEducation(index);
+  deleteEducation(deletedEducation: number, i) {
+
+    const educationId = {
+      id: deletedEducation
+    };
+
+    this.userSettings.deleteEducation(i);
+    this.userSettingsService.deleteEducatioon(educationId).subscribe(
+      (res: any) => {
+        console.log(res);
+      });
   }
 
   //  --------------- diploma photos uploading ---------------
@@ -75,6 +95,7 @@ export class EducationUserSettingsComponent implements OnInit {
     const formData: FormData = new FormData();
     this.files = [];
 
+    // tslint:disable-next-line: prefer-for-of
     for (let index = 0; index < event.length; index++) {
       this.files.push(event[index]);
     }
@@ -83,23 +104,16 @@ export class EducationUserSettingsComponent implements OnInit {
       formData.append('filesname[]', el, el.name);
     });
 
-    formData.append('educaionId', id);
+    formData.append('id', id);
 
     this.userSettingsService.uploadDiplomaPhotos(formData)
     .subscribe((res: any) => {
       this.previewUrl = res.diploma[0].url;
 
-      console.log(this.previewUrl);
+
       this.userSettings.education[i].diploma.push(this.previewUrl);
     });
-  }
-
-
-
-  // --------------- delete files -----------------//
-  deleteImg = (indexEducationArr: number, indexImgArr: number) => {
-    // console.log(indexEducationArr);
-    // this.userSettings.education[indexEducationArr].diplomaFiles.splice(indexImgArr, 1);
+    console.log(this.userSettings);
   }
 
   // --------------- open single item -----------------//
@@ -126,6 +140,10 @@ export class EducationUserSettingsComponent implements OnInit {
       return;
     }
     this.addEducation();
+    this.submited = false;
+    // console.log(this.institution.valid);
+
+    console.log(this.submited);
   }
 
 }
