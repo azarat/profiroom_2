@@ -1,0 +1,14 @@
+<div class="user-menu" *ngIf="user" (click)="toggleMenu()">
+  <div>
+    <span>Привет, {{ user.name }}</span>
+    <div class="img">
+      <img [src]="user.avatar" alt="">
+    </div>
+  </div>
+  <div class="menu" [ngClass]="menuOpen? 'open': 'close'">
+    <ul>
+      <li> <a  [routerLink]="'/dashboard'| localize">Дашбоард</a> </li>
+      <li (click)="logOut()">Выйти</li>
+    </ul>
+  </div>
+</div>

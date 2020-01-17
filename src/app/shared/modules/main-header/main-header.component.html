@@ -1,25 +1,32 @@
 <div class="wrapper">
-  <div class="menu">
-    <div class="logo">
-      <!-- <a [routerLink]="'' | localize"> <img src="assets/images/logo.svg" alt=""></a> -->
-      <a [routerLink]="'' | localize"> Whocan</a>
+  <div class="container">
+    <div class="menu">
+      <div class="logo">
+        <!-- <a [routerLink]="'' | localize"> <img src="assets/images/logo.svg" alt=""></a> -->
+        <a [routerLink]="'' | localize"> Whocan</a>
+      </div>
+      <nav *ngIf="pageName !== 'authoriz'">
+        <a [routerLink]="''">{{'header.how_it_works' | translate}}</a>
+        <a [routerLink]="['/catalog'] | localize">Каталог</a>
+        <a [routerLink]="''">Проэкты</a>
+      </nav>
     </div>
-    <nav *ngIf="pageName !== 'authoriz'">
-      <a [routerLink]="''">{{'header.how_it_works' | translate}}</a>
-      <a [routerLink]="['/catalog'] | localize">Каталог</a>
-      <a [routerLink]="''">Проэкты</a>
-    </nav>
-  </div>
-  <div class="auth" *ngIf="pageName !== 'authoriz'">
-    <div class="login">
-      <a [routerLink]="'/auth' | localize" role="button">Вход</a>
+    <div class="auth" *ngIf="pageName !== 'authoriz'">
+      <app-user-header-menu *ngIf="userId" [(userId)]="userId"></app-user-header-menu>
+      <div *ngIf="!userId">
+        <div class="login">
+          <a [routerLink]="'/auth' | localize" role="button">Вход</a>
+        </div>
+        <div class="registrate">
+          <a [routerLink]="'/auth' | localize" role="button">Зарегистрироваться</a>
+        </div>
+      </div>
+
     </div>
-    <div class="registrate">
-      <a [routerLink]="'/auth' | localize" role="button">Зарегистрироваться</a>
+    <div class="reset-pass" *ngIf="pageName === 'authoriz'">
+      <app-language></app-language>
+      <button class="btn" (click)="routeToMain()">На главную</button>
     </div>
   </div>
-  <div class="reset-pass" *ngIf="pageName === 'authoriz'">
-    <app-language></app-language>
-    <button class="btn" (click)="routeToMain()">На главную</button>
-  </div>
+
 </div>

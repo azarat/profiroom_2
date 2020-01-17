@@ -21,7 +21,9 @@ export class AuthentificationService {
   public currentUser$: Observable<UserModel>;
   private token = new BehaviorSubject(null);
   public token$: Observable<string>;
+;
   user: any;
+
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -49,6 +51,7 @@ export class AuthentificationService {
   logOut = () => {
     const translatedPath: any = this.localize.translateRoute('/');
     this.localStorageService.removeItem('token');
+    this.localStorageService.setItem('userId', null);
     this.router.navigate([translatedPath]);
   }
 

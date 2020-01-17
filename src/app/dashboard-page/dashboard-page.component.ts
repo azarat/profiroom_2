@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { AuthentificationService } from '../core/services/auth.service';
 
 import { UserService } from '../core/services/user.service';
@@ -13,19 +13,19 @@ import { LocalStorageService } from '../core/services/local-storage.service';
   templateUrl: './dashboard-page.component.html',
   styleUrls: ['./dashboard-page.component.scss']
 })
-export class DashboardPageComponent implements OnInit {
+export class DashboardPageComponent implements OnInit, AfterViewInit {
 
   color = 'accent';
   checked = false;
   disabled = false;
   dashboardMenu = dashboardMenuConst;
   user: UserModel;
+  socket: string = null;
   constructor(
     private authService: AuthentificationService,
     private userService: UserService,
     private socetService: SocetService,
     private localStorageService: LocalStorageService
-
   ) {
    }
 
@@ -40,11 +40,22 @@ export class DashboardPageComponent implements OnInit {
 
     this.socetService.connect();
 
-    // this.socetService.checkNotifications()
-    //   .subscribe(res => {
-    //     console.log('notifications', res);
-    //   });
+    this.socetService.checkNotifications();
 
+    this.socetService.getNotifications()
+    .subscribe(res => {
+      console.log('notifications', res);
+    });
+
+    // this
+
+  }
+
+  ngAfterViewInit(){
+    this.socetService.getNotifications()
+    .subscribe(res => {
+      console.log('notifications', res);
+    });
   }
   userExit = () => {
     this.authService.logOut();

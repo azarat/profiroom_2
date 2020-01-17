@@ -23,7 +23,9 @@
           </div>
           <div class="message-information">
             <p class="collocutor-name">{{ collocutor.collocutorName }} {{ collocutor.collocutorSurname }} </p>
-            <p class="collocutor-message">{{ collocutor.lastMessage[0].message }}</p>
+            <p class="collocutor-message">
+              <span *ngIf="userId == collocutor.lastMessage[0].author">Вы: </span>
+              {{ collocutor.lastMessage[0].message }}</p>
           </div>
         </div>
       </div>
