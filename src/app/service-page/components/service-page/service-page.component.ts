@@ -142,7 +142,6 @@ export class ServicePageComponent implements OnInit {
   }
 
 
-
   handleScroll() {
     const windowScroll = window.pageYOffset;
     // if (windowScroll >= this.elementPosition){
