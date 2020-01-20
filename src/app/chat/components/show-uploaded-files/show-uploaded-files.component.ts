@@ -25,6 +25,16 @@ export class ShowUploadedFilesComponent implements OnInit {
       type: 'jpg',
       date: '15.02.2018'
     },
+    {
+      name: 'asdasdasdasdasdads',
+      type: 'pdf',
+      date: '15.02.2018'
+    },
+    {
+      name: 'asdasdasdasdasdads',
+      type: 'jpg',
+      date: '15.02.2018'
+    },
 
   ]
   constructor() { }

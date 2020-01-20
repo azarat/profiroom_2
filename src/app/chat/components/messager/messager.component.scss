@@ -54,38 +54,7 @@
           margin-right: 20px;
         }
       }
-      .emoji {
-        cursor: pointer;
-        &:before {
-          content: "\f118";
-          position: absolute;
-          font-size: 21px;
-          font-family: FontAwesome;
-          color: #bfc5d1;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-        }
-        &:hover:before {
-          color: #278df3;
-        }
-      }
-      .emoji::ng-deep {
-        width: 20px;
-        height: 20px;
-        // border: 1px solid #000;
-        // border-radius: 50%;
-        position: relative;
 
-        emoji-mart {
-          position: absolute;
-          // display: none;
-          top: -370px;
-          .emoji-mart {
-            width: 315px !important;
-          }
-        }
-      }
       .file {
         position: relative;
         height: 20px;

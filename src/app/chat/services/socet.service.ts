@@ -80,7 +80,7 @@ export class SocetService {
     const room = ('gigroom_database_presence-' + this.socketId + ':notify').toString();
     return new Observable(observer => {
       this.socket.on(room, (data) => {
-       observer.next(data);
+        observer.next(data);
 
       });
     })
@@ -101,6 +101,7 @@ export class SocetService {
       this.newMessageSubject.next(data);
     });
   }
+
 
   subscribeOnMessages() {
     return this.newMessageSubject.asObservable();
