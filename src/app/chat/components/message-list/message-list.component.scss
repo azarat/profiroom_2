@@ -1,6 +1,6 @@
 .message-wrap {
   box-sizing: border-box;
-  padding: 30px 0 0 28px;
+  padding: 30px 0 30px 28px;
   height: 100%;
   overflow: hidden;
   .message-list {
@@ -22,8 +22,6 @@
     padding: 14px 24px;
     border-radius: 0px 15px 15px 15px;
     white-space: pre-wrap;
-    word-wrap: break-word;
-    overflow: hidden;
   }
   .photo {
     max-width: 40px;

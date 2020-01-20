@@ -14,9 +14,9 @@ export class UserService {
     constructor(
         private http: HttpClient,
     ) {
-    // this.user$ = this.user.asObservable();
+    this.user$ = this.user.asObservable();
     }
-    getDashboardRes = (): Observable<any> => {
+    getDashboardRes = () => {
         return this.http.get('/dashboard');
     }
 }

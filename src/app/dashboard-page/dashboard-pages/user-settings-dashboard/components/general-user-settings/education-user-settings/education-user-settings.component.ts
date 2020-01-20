@@ -12,17 +12,24 @@ export class EducationUserSettingsComponent implements OnInit {
 
   @Input() userSettings: UserSettingsModel;
 
+  private educationId: number;
   // public educationForm: FormGroup;
   public submited = false;
   public openItem: number;
 
   files: any = [];
-  fileNames: any = [];
   previewUrl: any;
 
   public yearsArr = [];
   public yearsFiltered = [];
   public academicDegrees = [1, 2, 3, 4, 5];
+  public academicDegreesTranslations = [
+    'Бакалавр',
+    'Магистр',
+    'Доцент',
+    'Профессор',
+    'Владыка ситхов'
+  ];
 
   constructor(
     private userSettingsService: UserSettingsService,
@@ -35,66 +42,78 @@ export class EducationUserSettingsComponent implements OnInit {
     if (!this.userSettings.education.length) {
       this.addEducation();
     }
+    // console.log(this.userSettings);
   }
 
   // --------------- create education-item -----------------//
   addEducation() {
-    this.userSettings.education.push({
-      institution: '',
-      academicDegree: 1,
-      specialty: '',
-      startEducation: 1960,
-      finishEducation: 1960,
-      diplomaFiles: null
-    });
-    // this.submited = false;
-    this.openItem = this.userSettings.education.length;
+    this.userSettingsService.newEducationId().subscribe(
+      (res: any) => {
+        this.educationId = res.data[0].id;
+
+        if (this.educationId) {
+
+          console.log('create-new-aducation-id ', this.educationId);
+          this.userSettings.education.push({
+            id: this.educationId,
+            institution: 'Учебное заведение',
+            academicDegree: 1,
+            specialty: 'Специальность',
+            startEducation: 1960,
+            finishEducation: 1960,
+            diploma: []
+          });
+        }
+      }
+    );
+
+
+    // this.educationId.subscribe
+
+
+    console.log('create-new-aducation ', this.userSettings.education);
+    this.openItem = this.userSettings.education.length + 1;
   }
 
   // --------------- delete education-item -----------------//
-  deleteEducation(index: number) {
-    this.userSettings.deleteEducation(index);
+  deleteEducation(deletedEducation: number, i) {
+
+    const educationId = {
+      id: deletedEducation
+    };
+
+    this.userSettings.deleteEducation(i);
+    this.userSettingsService.deleteEducatioon(educationId).subscribe(
+      (res: any) => {
+        console.log(res);
+      });
   }
 
   //  --------------- diploma photos uploading ---------------
-  fileProgress = (event: any, i: number) => {
+  fileProgress = (event: any, id: any, i: number) => {
 
     const formData: FormData = new FormData();
-    // formData.append('offerId', this.userSettings.id);
     this.files = [];
-    this.fileNames = [];
 
+    // tslint:disable-next-line: prefer-for-of
     for (let index = 0; index < event.length; index++) {
       this.files.push(event[index]);
     }
 
     this.files.forEach((el: any) => {
       formData.append('filesname[]', el, el.name);
-      console.log(formData);
-      console.log(el);
-      console.log(el.name);
-      console.log(i);
-
-      this.fileNames.push(el.name);
-      // console.log(this.fileNames);
-
-
     });
 
-    this.userSettingsService.uploadDiplomaPhotos(formData, i)
-    .subscribe((res: []) => {
-      this.previewUrl = res;
+    formData.append('id', id);
+
+    this.userSettingsService.uploadDiplomaPhotos(formData)
+    .subscribe((res: any) => {
+      this.previewUrl = res.diploma[0].url;
+
+
+      this.userSettings.education[i].diploma.push(this.previewUrl);
     });
-    // this.userSettings.education[i].diplomaFiles = formData;
-    // console.log(this.userSettings.education[i].diplomaFiles);
-  }
-
-
-
-  // --------------- delete files -----------------//
-  deleteImg = (indexEducationArr: number, indexImgArr: number) => {
-    // console.log(indexEducationArr);
-    // this.userSettings.education[indexEducationArr].diplomaFiles.splice(indexImgArr, 1);
+    console.log(this.userSettings);
   }
 
   // --------------- open single item -----------------//
@@ -115,13 +134,16 @@ export class EducationUserSettingsComponent implements OnInit {
 
   // --------------- save changes -----------------//
   onSubmit(form) {
-    console.log(form);
     this.submited = true;
     if (form.invalid) {
       console.log('invalid');
       return;
     }
     this.addEducation();
+    this.submited = false;
+    // console.log(this.institution.valid);
+
+    console.log(this.submited);
   }
 
 }

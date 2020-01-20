@@ -1,20 +1,13 @@
 .wrapper {
   width: 100%;
-
-  // padding: 0 30px;
-
-  // align-items: center;
-
+  height: 50px;
+  padding: 0 30px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 24px;
   // border-bottom: 1px solid #FBFBFB;
-  .container {
-    // height: 50px;
-    box-sizing: border-box;
-    display: flex;
-    margin: auto;
-    justify-content: space-between;
-    padding-top: 24px;
-    max-width: 1493px;
-  }
 }
 .logo {
   height: 50px;
@@ -30,8 +23,9 @@
     font-size: 24px;
     line-height: 24px;
     font-weight: 800;
-    color: #3c7eea;
+    color: #3C7EEA;
     text-transform: lowercase;
+
   }
   img {
     margin-right: 13px;
@@ -60,10 +54,6 @@ nav {
 .auth {
   display: flex;
   align-items: center;
-  & > div {
-    display: flex;
-    align-items: center;
-  }
 }
 
 .login {
@@ -80,7 +70,7 @@ nav {
 }
 
 .registrate {
-  background: #3c7eea;
+  background: #540cfa;
   box-shadow: 0px 2px 4px rgba(60, 9, 179, 0.3);
   border-radius: 4px;
   padding: 4px 12px 6px;
@@ -92,12 +82,6 @@ nav {
     line-height: 18px;
     color: #ffffff;
     text-decoration: none;
-  }
-  &:hover {
-    background: #5695fd;
-  }
-  &:active {
-    background: #1666ea;
   }
 }
 

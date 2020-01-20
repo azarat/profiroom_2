@@ -1,11 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { LocalizeRouterService } from 'localize-router';
 import { Router } from '@angular/router';
-import { LocalStorageService } from 'src/app/core/services/local-storage.service';
-import { UserService } from 'src/app/core/services/user.service';
-import { plainToClass } from 'class-transformer';
-import { UserModel } from 'src/app/models/user.model';
-import { AuthentificationService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-main-header',
@@ -15,37 +10,18 @@ import { AuthentificationService } from 'src/app/core/services/auth.service';
 export class MainHeaderComponent implements OnInit {
 
   @Input() pageName: string;
-  userId: any;
-  currentUser: UserModel;
+
   routeMainPage: any = this.localize.translateRoute('');
   constructor(
     private localize: LocalizeRouterService,
     private router: Router,
-    private localStorageService: LocalStorageService,
-    private authService: AuthentificationService
-  ) {
-    this.getUserId();
-  }
+  ) { }
 
   ngOnInit() {
-
   }
 
   routeToMain() {
     this.router.navigate([this.routeMainPage]);
   }
-
-  getUserId() {
-    this.userId = this.localStorageService.getItem('userId').value;
-    console.log(this.userId)
-  }
-
-  // getUserInfo() {
-  //   this.userService.getDashboardRes()
-  //     .subscribe((res: any) => {
-  //       console.log(res);
-  //       this.currentUser = plainToClass(UserModel, res[0]);
-  //     });
-  // }
 
 }

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ShowUploadedFilesComponent } from './show-uploaded-files.component';
+import { CatalogPaginationComponent } from './catalog-pagination.component';
 
-describe('ShowUploadedFilesComponent', () => {
-  let component: ShowUploadedFilesComponent;
-  let fixture: ComponentFixture<ShowUploadedFilesComponent>;
+describe('CatalogPaginationComponent', () => {
+  let component: CatalogPaginationComponent;
+  let fixture: ComponentFixture<CatalogPaginationComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ShowUploadedFilesComponent ]
+      declarations: [ CatalogPaginationComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ShowUploadedFilesComponent);
+    fixture = TestBed.createComponent(CatalogPaginationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
