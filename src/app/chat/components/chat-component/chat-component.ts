@@ -10,6 +10,7 @@ import { SocetService } from '../../services/socet.service';
 export class ChatComponent implements OnInit, OnDestroy {
   collocutorData;
   @Input() chatType: string;
+  public isFileLoaderVisible: boolean = null;
 
   constructor(
     private chatService: ChatService,

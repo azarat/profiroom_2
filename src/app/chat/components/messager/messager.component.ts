@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, Input, ViewChildren, QueryList, } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input, ViewChildren, QueryList, Output, EventEmitter, } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ChatService } from '../../services/chat.service';
 import { messages } from '../consts/messages.const';
@@ -21,6 +21,8 @@ export class MessagerComponent implements OnInit {
   public messageText;
   public messagesList = [];
   @Input() collocutorData: CollocutorListModel;
+  @Input() isFileLoaderVisible: boolean;
+  @Output() isFileLoaderVisibleChange = new EventEmitter<boolean>();
 
   constructor(
     private chatService: ChatService,
@@ -47,6 +49,7 @@ export class MessagerComponent implements OnInit {
 
       });
 
+    console.log('loader visible', this.isFileLoaderVisible);
 
   }
 
@@ -74,5 +77,11 @@ export class MessagerComponent implements OnInit {
       event.preventDefault();
       this.sendMessage(form);
     }
+  }
+
+  // open file-uploader
+
+  openFilesUploader() {
+    this.isFileLoaderVisibleChange.emit(true);
   }
 }

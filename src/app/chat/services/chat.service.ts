@@ -35,7 +35,7 @@ export class ChatService {
   }
 
   public getCollocutorInformation(id) {
-    return this.http.get('/getUser?id=' + id);
+    return this.http.get('/getChatUser?id=' + id);
   }
 
 

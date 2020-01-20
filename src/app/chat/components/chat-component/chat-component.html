@@ -3,10 +3,15 @@
     <app-collocutors-list [chatType]="chatType" (currentRoom)="getCurrentRoom($event)"></app-collocutors-list>
   </section>
   <section class="messager" *ngIf="collocutorData" >
-    <app-messager *ngIf="collocutorData" [collocutorData]="collocutorData"></app-messager>
+    <app-messager *ngIf="collocutorData" [collocutorData]="collocutorData" [(isFileLoaderVisible)]="isFileLoaderVisible"></app-messager>
   </section>
   <section class="collocutors-tools" >
     <app-messager-tools *ngIf="chatType === 'projects'"></app-messager-tools>
     <app-collocutor-information *ngIf="chatType === 'classic' && collocutorData" [collocutorData]="collocutorData"></app-collocutor-information>
   </section>
+  <section class="file-loader" *ngIf="isFileLoaderVisible">
+    <app-upload-file [(isFileLoaderVisible)]="isFileLoaderVisible"></app-upload-file>
+  </section>
 </section>
+
+
