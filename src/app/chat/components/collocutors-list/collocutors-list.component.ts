@@ -7,10 +7,7 @@ import { plainToClass } from 'class-transformer';
 
 import { formatDataFunction } from 'src/app/shared/functions/format-data.function';
 import { CollocutorListModel } from 'src/app/models/chat/collocutors-list.model';
-<<<<<<< HEAD
-=======
 import { filter } from 'rxjs/operators';
->>>>>>> parent of ce0b5e5... socet works
 
 @Component({
   selector: 'app-collocutors-list',
@@ -35,9 +32,6 @@ export class CollocutorsListComponent implements OnInit {
       .subscribe(res => {
         console.log(res);
         this.collocutors = plainToClass(CollocutorListModel, res);
-<<<<<<< HEAD
-        console.log(this.collocutors);
-=======
         this.sortMessagesByTime(this.collocutors);
       });
 
@@ -50,17 +44,14 @@ export class CollocutorsListComponent implements OnInit {
   }
 
   ngAfterViewInit(): void {
->>>>>>> parent of ce0b5e5... socet works
 
-      });
-  }
+  };
+
 
   public openChat(userinfo) {
     this.currentRoom.emit(userinfo);
   }
 
-<<<<<<< HEAD
-=======
   pushNewMessage(arr, obj: any) {
 
     const foundIndex = arr.findIndex(x => x.roomId === obj.roomId);
@@ -78,5 +69,4 @@ export class CollocutorsListComponent implements OnInit {
     this.collocutors = x;
   }
 
->>>>>>> parent of ce0b5e5... socet works
 }

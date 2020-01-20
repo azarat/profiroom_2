@@ -1,10 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as io from 'socket.io-client';
-<<<<<<< HEAD
-import { Observable } from 'rxjs';
-=======
-import { Observable, Subject } from 'rxjs';
->>>>>>> parent of ce0b5e5... socet works
+import { Observable, Subject, BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 
@@ -17,15 +13,11 @@ export class SocetService {
   socket: any;
   private host = 'http://192.168.0.200:6001';
   // private socket: any = io.connect(this.host);
-<<<<<<< HEAD
-
-
-=======
-  private socketId: string;
+  private socketId: string = null;
 
   private notificationSubject = new Subject<any>();
   private newMessageSubject = new Subject<any>();
->>>>>>> parent of ce0b5e5... socet works
+
   constructor(
     private http: HttpClient
   ) {
@@ -40,19 +32,18 @@ export class SocetService {
           if (!res.auth) {
             io.disconnect(this.host);
             return;
-<<<<<<< HEAD
-          }
-=======
           } else {
+            console.log(res)
             this.socketId = res.socketId;
+            console.log('[INFO] Connected to ws21', this.socketId);
+            // return this.socketId;
             this.checkNotifications()
-              .subscribe(res => console.log('notif', res))
+            //   .subscribe(res => console.log('notif', res))
           }
-          this.showNewMessage();
->>>>>>> parent of ce0b5e5... socet works
+          // this.showNewMessage();
         });
 
-      // console.log('[INFO] Connected to ws');
+      console.log('[INFO] Connected to ws', this.socketId);
     });
 
     this.socket.on('disconnect', () => {
@@ -75,43 +66,43 @@ export class SocetService {
 
   }
   public openChat(roomId) {
-
-    const room = 'laravel_database_presence-' + roomId + ':message';
-    console.log(room);
+    const room = 'gigroom_database_presence-' + this.socketId + ':message_' + roomId;
     return new Observable(observer => {
       this.socket.on(room, (data) => {
         observer.next(data);
       });
     });
-<<<<<<< HEAD
-  }
-
-=======
     return;
   }
 
   public checkNotifications() {
+    let x = 'gigroom_database_presence-bJeQJsEAtcahaK8DDtm6:notify';
     const room = ('gigroom_database_presence-' + this.socketId + ':notify').toString();
-    // return new Observable(observer => {
-    this.socket.on(room, (data) => {
-      this.notificationSubject.next(data);
+    return new Observable(observer => {
+      this.socket.on(room, (data) => {
+       observer.next(data);
 
-    });
-    // })
+      });
+    })
+
+
+  }
+
+  getNotifications() {
     return this.notificationSubject.asObservable();
   }
 
+
   public showNewMessage() {
     const room = ('gigroom_database_presence-' + this.socketId + ':rooms').toString();
+    console.log('rommmmm', room)
     this.socket.on(room, (data) => {
 
       this.newMessageSubject.next(data);
     });
   }
-  subscribeOnMessages() {
 
+  subscribeOnMessages() {
     return this.newMessageSubject.asObservable();
   }
->>>>>>> parent of ce0b5e5... socet works
 }
-
