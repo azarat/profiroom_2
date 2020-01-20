@@ -36,7 +36,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       // this.chatRoom = userInfo.roomId;
       this.collocutorData = userInfo;
-    }, 100);
+    }, 10);
 
   }
 

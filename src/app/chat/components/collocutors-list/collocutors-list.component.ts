@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, Output, AfterViewInit, } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, } from '@angular/core';
 import { ChatService } from '../../services/chat.service';
 import { SocetService } from '../../services/socet.service';
 import { plainToClass } from 'class-transformer';
@@ -8,26 +8,23 @@ import { plainToClass } from 'class-transformer';
 import { formatDataFunction } from 'src/app/shared/functions/format-data.function';
 import { CollocutorListModel } from 'src/app/models/chat/collocutors-list.model';
 import { filter } from 'rxjs/operators';
-import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 
 @Component({
   selector: 'app-collocutors-list',
   templateUrl: './collocutors-list.component.html',
   styleUrls: ['./collocutors-list.component.scss']
 })
-export class CollocutorsListComponent implements OnInit, AfterViewInit {
-
+export class CollocutorsListComponent implements OnInit {
 
   public collocutors: CollocutorListModel;
   public lastMessageDate: string;
   @Input() chatType: string;
   @Output() currentRoom = new EventEmitter();
-  public userId;
+
   // DateFormatPipe
   constructor(
     private chatService: ChatService,
-    private socketService: SocetService,
-    private localStorageService: LocalStorageService
+    private socketService: SocetService
   ) { }
 
   ngOnInit() {
@@ -38,20 +35,18 @@ export class CollocutorsListComponent implements OnInit, AfterViewInit {
         this.sortMessagesByTime(this.collocutors);
       });
 
-    this.socketService.showNewMessage();
-    this.userId = this.localStorageService.getItem('userId').value;
-
     this.socketService.subscribeOnMessages()
-    .subscribe(res => {
-      console.log('new mess', res);
-      this.pushNewMessage(this.collocutors, res);
-      this.sortMessagesByTime(this.collocutors);
-    });
+      .subscribe(res => {
+        console.log('new mess', res);
+        this.pushNewMessage(this.collocutors, res);
+        this.sortMessagesByTime(this.collocutors);
+      });
   }
 
   ngAfterViewInit(): void {
 
-  }
+  };
+
 
   public openChat(userinfo) {
     this.currentRoom.emit(userinfo);
@@ -61,6 +56,10 @@ export class CollocutorsListComponent implements OnInit, AfterViewInit {
 
     const foundIndex = arr.findIndex(x => x.roomId === obj.roomId);
     this.collocutors[foundIndex].lastMessage[0] = obj.message;
+    // this.collocutors = arr.reduce((acc, value) => {
+    //   acc.push(value.roomId === obj.roomId ? obj.lastMessage[0] : value);
+    //   return acc;
+    // }, []);
   }
 
   sortMessagesByTime(arr) {

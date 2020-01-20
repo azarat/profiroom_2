@@ -1,18 +1,21 @@
-<section class="message-wrap" *ngIf="messagesList && collocutorData">
-  <div class="message-list" #messagesWrap (scroll)="onScroll()">
-    <!-- <div  #messagesHeight > -->
-    <div *ngFor="let message of messagesList, let i = index">
-      <div class="message" [ngClass]="{ 'autor': message.author === userId }">
-        <div class="photo">
-          <img *ngIf="message.author === userId" [src]="userAvatar" alt="avatar">
-          <img *ngIf="message.author !== userId" [src]="message.authorAva" alt="avatar">
+<section class="message-wrap">
+  <div class="message-list">
+    <div *ngIf="messagesList">
+      <div *ngFor="let message of messagesList, let i = index" >
+        <div class="message" (click)="open()">
+          <div class="photo">
+            <img src="/assets/images/images/ava.jpg" alt="">
+          </div>
+          <div class="text" >
+            {{message.message}}
+          </div>
+          <div class="message-control" *ngIf="false"></div>
+          <span class="time">{{ message.dateTime | dateFormatPipe }}</span>
         </div>
-        <div class="text">
-          {{message.message}}
-        </div>
-        <div class="message-control" *ngIf="false"></div>
-        <span class="time">{{ message.dateTime | dateFormatPipe }}</span>
+
       </div>
     </div>
   </div>
 </section>
+
+<!-- [ngClass]="{ autor: mess.id === 2 }"  -->

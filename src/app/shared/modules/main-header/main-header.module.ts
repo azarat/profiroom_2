@@ -5,7 +5,6 @@ import { LocalizeRouterModule } from 'localize-router';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { LanguageModule } from '../language/language.module';
-import { UserHeaderMenuModule } from '../user-header-menu/user-header-menu.module';
 
 
 
@@ -22,7 +21,6 @@ import { UserHeaderMenuModule } from '../user-header-menu/user-header-menu.modul
     LocalizeRouterModule,
     TranslateModule,
     LanguageModule,
-    UserHeaderMenuModule
   ]
 })
 export class MainHeaderModule { }
