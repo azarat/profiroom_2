@@ -49,9 +49,6 @@ export class ServicePageComponent implements OnInit {
   }
   // @HostListener('window:scroll', [])
 
-  // ** navbar always in top of page
-  @HostListener('window:scroll', ['$event'])
-
   ngOnInit() { }
 
   getOfferData(offerId: {offerId: string}) {
@@ -141,6 +138,8 @@ export class ServicePageComponent implements OnInit {
     this._scrollToService.scrollTo(config);
   }
 
+  // ** navbar always in top of page
+  // @HostListener('window:scroll', ['$event'])
 
   handleScroll() {
     const windowScroll = window.pageYOffset;

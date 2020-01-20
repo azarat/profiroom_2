@@ -15,7 +15,7 @@ export class ItemsComponent implements OnInit {
   public id;
   offersList: OffersListInterface;
 
-  // catalogSubscription: Subscription;
+  catalogSubscription: Subscription;
 
   constructor(
     // tslint:disable-next-line: no-shadowed-variable
@@ -31,6 +31,7 @@ export class ItemsComponent implements OnInit {
   ngOnInit() {
     this.GetOffersService.offersList.subscribe(data => {
       this.offersList = data;
+
       // console.log(data);
       // console.log(this.offersList);
     });

@@ -13,11 +13,8 @@ export class AdditionalEducationUserSettingsComponent implements OnInit {
   public submited = false;
   public mounth = [];
   public openItem: number;
-
   files: any = [];
   previewUrl: any;
-
-  private additionalEducationId: number;
 
   constructor(
     private userSettingsService: UserSettingsService,
@@ -41,42 +38,21 @@ export class AdditionalEducationUserSettingsComponent implements OnInit {
     return years;
   }
 
-  // --------------- create education-item -----------------//
   addEducation() {
-    this.userSettingsService.newAdditioanlEducationId().subscribe(
-      (res: any) => {
-        this.additionalEducationId = res.data[0].id;
-        if (this.additionalEducationId) {
-          console.log('create-new-aducation-id ', this.additionalEducationId);
-          this.userSettings.additionalEducation.push({
-            id: this.additionalEducationId,
-            additionalInstitution: 'Учебное заведение',
-            courseName: 'Название курсов',
-            startStudyMounth: 1,
-            startStudyYear: 1960,
-            endStudyMounth: 1,
-            endStudyYear: 1960,
-            additionalDiploma: []
-          });
-        }
-
-      }
-    );
-    this.openItem = this.userSettings.additionalEducation.length + 1;
+    this.userSettings.additionalEducation.push({
+      additionalInstitution: '',
+      courseName: '',
+      startStudyMounth: 1,
+      startStudyYear: 1960,
+      endStudyMounth: 1,
+      endStudyYear: 1960,
+      additionalDiplomaFiles: null
+    });
+    this.openItem = this.userSettings.additionalEducation.length;
   }
 
-  // --------------- delete education-item -----------------//
-  deleteEducation(deletedEducation: number, i) {
-    console.log(this.userSettings);
-    const educationId = {
-      id: deletedEducation
-    };
-
-    this.userSettings.deleteAdditionalEducation(i);
-    this.userSettingsService.deleteEducatioon(educationId).subscribe(
-      (res: any) => {
-        console.log(res);
-    });
+  deleteEducation(index: number) {
+    this.userSettings.deleteAdditionalEducation(index);
   }
 
   chooseItem(i) {
@@ -87,47 +63,36 @@ export class AdditionalEducationUserSettingsComponent implements OnInit {
     }
   }
 
-  //  --------------- diploma photos uploading ---------------
-  fileProgress = (event: any, id: any, i: number) => {
-
-    console.log('additioanl');
-
+  fileProgress = (event: any) => {
     const formData: FormData = new FormData();
+    formData.append('offerId', this.userSettings.id);
     this.files = [];
-
-    // tslint:disable-next-line: prefer-for-of
     for (let index = 0; index < event.length; index++) {
       this.files.push(event[index]);
+      console.log(this.files);
     }
-
+    // ------- put files in FormData -------//
     this.files.forEach((el: any) => {
       formData.append('filesname[]', el, el.name);
+      console.log(formData);
     });
-
-    formData.append('id', id);
+    // ------- load Files -----
 
     this.userSettingsService.uploadAdditionalDiplomaPhotos(formData)
-    .subscribe((res: any) => {
-      this.previewUrl = res.additionalDiploma[0].url;
-
-
-      this.userSettings.additionalEducation[i].additionalDiploma.push(this.previewUrl);
-    });
-    console.log(this.userSettings);
+      .subscribe((res: []) => {
+        this.previewUrl = res;
+      });
   }
 
-  // --------------- save changes -----------------//
   onSubmit(form) {
     this.submited = true;
     if (form.invalid) {
       console.log('invalid');
       return;
     }
-    this.addEducation();
-    this.submited = false;
-    // console.log(this.institution.valid);
 
-    console.log(this.submited);
+
+    this.addEducation();
   }
 
 }

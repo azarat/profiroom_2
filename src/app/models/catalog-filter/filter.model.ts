@@ -17,8 +17,7 @@ export class FilterTypesModel {
 export class CatalogFiltersModel  {
   @Expose() online?: boolean;
   @Expose() filterBy?: string;
-  @Expose() current_page?: number;
-  @Expose() page?: number;
+  @Expose() current_page?: any;
   @Expose() subCategory?: string;
   @Expose() minPrice?: number;
   @Expose() maxPrice?: number;

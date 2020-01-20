@@ -20,7 +20,7 @@
         <div class="single-lang-wrapper" *ngFor="let arrayItem of userSettings.language; let i = index">
 
           <div class="field-block">
-            <h5 class="fields-title">Язык</h5>
+            <h5 class="fields-title">Языка</h5>
             <input class="fields-value" type="text" [(ngModel)]="userSettings.language[i].langName" maxlength="15">
           </div>
 
@@ -28,7 +28,7 @@
             <label class="block-title" for="langLevel">Уровень владения</label>
             <mat-select name="langLevel" id="langLevel" [(ngModel)]="userSettings.language[i].langLevel">
               <ng-container *ngFor="let langLevel of languagesLevel">
-                <mat-option [value]="langLevel">{{ languageTranslates[langLevel-1] }}</mat-option>
+                <mat-option [value]="langLevel">{{ langLevel }}</mat-option>
               </ng-container>
             </mat-select>
           </div>
