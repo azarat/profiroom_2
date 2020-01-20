@@ -22,7 +22,12 @@ export class DashboardPageComponent implements OnInit {
   constructor(
     private authService: AuthentificationService,
     private userService: UserService,
+<<<<<<< HEAD
     private socetService: SocetService
+=======
+    private socetService: SocetService,
+    private localStorageService: LocalStorageService
+>>>>>>> parent of ce0b5e5... socet works
 
   ) {
    }
@@ -37,6 +42,14 @@ export class DashboardPageComponent implements OnInit {
 
     this.socetService.connect();
 
+<<<<<<< HEAD
+=======
+    // this.socetService.checkNotifications()
+    //   .subscribe(res => {
+    //     console.log('notifications', res);
+    //   });
+
+>>>>>>> parent of ce0b5e5... socet works
   }
   userExit = () => {
     this.authService.logOut();

@@ -1,0 +1,118 @@
+.folder-btn {
+  position: relative;
+  cursor: pointer;
+  &:after {
+    position: absolute;
+    // width: 22px;
+    // height: 18px;
+    content: "\e912";
+    font-family: icomoon;
+    font-size: 19px;
+    right: 0;
+    top: 50%;
+    color: #707683;
+  }
+  &:hover:after {
+    color: #1666ea;
+  }
+}
+
+.files-folder {
+  position: relative;
+
+}
+
+.files-list {
+  position: absolute;
+  left: -335px;
+  top: 28px;
+  width: 407px;
+  height: 213px;
+  background: #FFFFFF;
+  border: 1px solid rgba(128, 152, 213, 0.1);
+  box-sizing: border-box;
+  box-shadow: 0px 9px 21px rgba(128, 152, 213, 0.1);
+  border-radius: 8px;
+  z-index: 5;
+
+
+  &:before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    transform: rotate(45deg);
+    right: 5px;
+    top: -6px;
+  }
+
+  .title {
+    box-sizing: border-box;
+    padding: 10px 12px 8px 18px;
+    border-bottom: 1px solid #f4f7fc;
+    display: flex;
+    color: #99acb7;
+    font-family: "Source Sans Pro", sans-serif;
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 400;
+    display: flex;
+    justify-content: space-between;
+  }
+  .type {
+    width: 9.4%;
+  }
+  .name {
+    width: 53%;
+  }
+  .date {
+    width: 17%;
+  }
+  .download {
+    width: 13.4%;
+  }
+
+  .list {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    overflow-y: auto;
+    padding: 0 12px 0 18px;
+    .file {
+      display: flex;
+      justify-content: space-between;
+      padding: 14px 0 10px;
+      border-bottom: 1px solid #f4f7fc;
+      &:hover {
+        span {
+          color: #1666ea;
+          cursor: pointer;
+        }
+
+      }
+      span {
+        color: #323c47;
+        font-family: "Source Sans Pro";
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 18px;
+        display: block;
+      }
+      .download {
+        position: relative;
+        &:before {
+          position: absolute;
+          content: '\e913';
+          font-family: "icomoon";
+          left: 50%;
+          transform: translateX(-50%);
+        }
+        &:hover:before {
+          color: #1666ea;
+        }
+        cursor: pointer;
+      }
+    }
+  }
+}
