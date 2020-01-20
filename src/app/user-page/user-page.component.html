@@ -1,7 +1,7 @@
 <app-main-header></app-main-header>
 <app-categories-header></app-categories-header>
 
-<nav class="navigation_page" #stickyMenu [class.sticky] = "sticky">
+<nav class="navigation_page" #stickyMenu [class.sticky]="sticky">
   <div class="wrapper">
     <ul>
       <li (click)="scrollTo('about')">О фрилансере</li>
@@ -25,15 +25,52 @@
       <div class="general-information__wrapper">
         <div class="general-information__name"><span>{{userData.name}} {{userData.surname}}</span> </div>
         <!-- <div class="general-information__online"><span [ngClass]="{online: userData.online}">{{userData.online}}</span></div> -->
-        <div class="general-information__lvl">Уровень: </div>
+
+        <div class="general-information__online"><span>Oфлайн</span></div>
+
+        <div class="general-information__lvl">Уровень: <span class="value">{{userData.lvl}}</span></div>
       </div>
       <div class="general-information__wrapper">
-        <!-- <div class="general-information__available">Статус доступности: <span [ngClass]="{load: userData.load}">загружен(-а)</span></div> -->
-        <div class="general-information__inProces">Проектов в работе: <span>2</span></div>
-        <div class="general-information__awaiting">Проектов в очереди: <span>3</span></div>
+        <div class="general-information__available">Статус доступности: <span class="value"
+            [ngClass]="{load: userData.load}">загружен(-а)</span></div>
+        <div class="general-information__inProces">Проектов в работе: <span class="value">2</span></div>
+        <div class="general-information__awaiting">Проектов в очереди: <span class="value">3</span></div>
       </div>
-      <div class="general_iformations__actions">
+      <div class="general-information__actions">
 
+        <!-- <div class="action tooltip" data-title="Смотреть профиль">
+          <a href="">
+            <img src="assets/images/svg/service-page/shape.svg" alt="" class="default-img">
+            <img src="assets/images/svg/service-page/shape-hov.svg" alt="" class="hover-img">
+          </a>
+        </div> -->
+        <div class="action tooltip" data-title="Написать сообщение">
+          <a href="">
+            <img src="assets/images/svg/service-page/envelope.svg" alt="" class="default-img">
+            <img src="assets/images/svg/service-page/envelope-hov.svg" alt="" class="hover-img">
+          </a>
+        </div>
+        <div class="action tooltip" data-title="Добавить к избранным">
+          <a href="">
+            <img src="assets/images/svg/service-page/heart.svg" alt="" class="default-img">
+            <img src="assets/images/svg/service-page/heart-hov.svg" alt="" class="hover-img">
+          </a>
+        </div>
+        <div class="action tooltip" data-title="Пожаловаться">
+          <a href="">
+            <img src="assets/images/svg/service-page/auction.svg" alt="" class="default-img">
+            <img src="assets/images/svg/service-page/auction-hov.svg" alt="" class="hover-img">
+          </a>
+        </div>
+
+      </div>
+    </div>
+    <div class="view-profile">
+      <h3 class="section-title">Смотреть профиль</h3>
+      <div class="profiles-list">
+        <div class="profile btn">общий профиль</div>
+        <div class="profile btn">Графический дизайн</div>
+        <div class="profile btn">Ux/ui дизайн</div>
       </div>
     </div>
   </div>

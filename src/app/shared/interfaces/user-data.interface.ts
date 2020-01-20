@@ -4,6 +4,7 @@ export interface UserDataInterface {
   avatar?: string;
   name?: string;
   surname?: string;
+  lvl?: number;
 
   // title?: string;
   // mainImage?: string;
@@ -36,10 +37,5 @@ export interface UserDataInterface {
   // profi?: {
   //   name?: string;
   // };
-  // filesDirectory?: string;
-  // files?: [{
-  //   small?: string;
-  //   medium?: string;
-  //   big?: string;
-  // }];
+
 }

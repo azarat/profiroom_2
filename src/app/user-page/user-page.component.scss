@@ -2,6 +2,13 @@
   max-width: 1045px;
   margin: 0 auto;
   font-family: Source Sans Pro;
+  font-weight: normal;
+}
+.section-title{
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 23px;
+  color: #323C47;
 }
 .nav-wrapper {
   width: 100%;
@@ -53,6 +60,7 @@
 }
 .back-to-list {
   padding-top: 25px;
+  margin-bottom: 60px;
   a {
     font-weight: 600;
     font-size: 14px;
@@ -79,13 +87,21 @@
 }
 
 .general-information {
+  height: 90px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 50px;
+
+  font-size: 16px;
+  line-height: 18px;
+  color: #4e5051;
   &__avatar {
     width: 107px;
     height: 107px;
     border-radius: 50%;
     position: relative;
     overflow: hidden;
-    margin-right: 20px;
+    margin-right: 50px;
     img {
       position: absolute;
       top: 50%;
@@ -95,5 +111,170 @@
       height: 130%;
       border-radius: 50%;
     }
+  }
+  &__wrapper {
+    height: 85px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-right: 125px;
+    .value {
+      padding-left: 14px;
+    }
+  }
+  &__name {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 23px;
+    color: #323c47;
+    // margin-bottom: 2px;
+  }
+  &__online {
+    color: #ff647c;
+    font-weight: normal;
+    padding-left: 22px;
+    position: relative;
+    margin-bottom: 22px;
+    &::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-35%);
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: #ff647c;
+    }
+    &.online {
+      color: #38cb8e;
+      &::before {
+        background-color: #38cb8e;
+      }
+    }
+  }
+  &__lvl {
+  }
+  &__available {
+    font-size: 14px;
+    line-height: 18px;
+    text-transform: uppercase;
+    .value {
+      color: #ff647c;
+      font-weight: 600;
+      &.load {
+        color: #38cb8e;
+      }
+    }
+  }
+  &__inProces {
+    margin-top: 16px;
+  }
+  &__awaiting {
+  }
+  &__actions{
+    display: flex;
+    .action {
+      width: 40px;
+      height: 40px;
+      border: 1px solid #bfc5d1;
+      border-radius: 4px;
+      box-sizing: border-box;
+      margin-right: 17px;
+      position: relative;
+      cursor: pointer;
+      &.tooltip {
+        &:before {
+          display: block;
+          position: absolute;
+          bottom: 55px;
+          left: 50%;
+          transform: translateX(-50%);
+          padding: 9px 26px 8px;
+          white-space: nowrap;
+          width: fit-content;
+          text-align: center;
+          box-shadow: 0px 15px 21px rgba(128, 152, 213, 0.5);
+          border-radius: 8px;
+          content: attr(data-title);
+          box-sizing: border-box;
+          opacity: 0;
+          visibility: hidden;
+          transition: opacity 0.7s;
+          color: #323c47;
+          font-style: normal;
+          font-weight: normal;
+          font-size: 14px;
+          line-height: 18px;
+          background-color: #fff;
+        }
+        &:hover {
+          &:before {
+            opacity: 1;
+            visibility: visible;
+          }
+        }
+
+        &:after {
+          content: "";
+          display: block;
+          position: absolute;
+          opacity: 0;
+          visibility: hidden;
+          transition: opacity 0.7s;
+          bottom: 45px;
+          left: 50%;
+          transform: translateX(-50%);
+          border-top: 10px solid #fff;
+          border-left: 10px solid transparent;
+          border-right: 10px solid transparent;
+          box-shadow: 0px 15px 21px rgba(128, 152, 213, 0.5);
+        }
+        &:hover {
+          &:after {
+            opacity: 1;
+            visibility: visible;
+          }
+        }
+        &:last-child{
+          margin-right: 0;
+        }
+      }
+      img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        &.default-img {
+          display: block;
+        }
+        &.hover-img {
+          display: none;
+        }
+      }
+      &:hover {
+        border: 1px solid #3c7eea;
+        img {
+          &.default-img {
+            display: none;
+          }
+          &.hover-img {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+
+
+}
+
+.view-profile{
+  .profiles-list{
+    display: flex;
+    justify-content: flex-start;
+  }
+  .profile{
+    margin-right: 25px;
   }
 }
