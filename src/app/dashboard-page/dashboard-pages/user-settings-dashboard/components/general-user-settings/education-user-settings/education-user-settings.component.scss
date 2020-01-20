@@ -133,6 +133,9 @@
     &.hidden{
       height: 0;
       overflow: hidden;
+      .academicBlock{
+        display: none;
+      }
     }
   }
 
@@ -149,7 +152,7 @@
     width: 130%;
     left: 50%;
     transform: translateX(-50%);
-    background-color: #F4F7FC;
+    background-color: rgb(162, 166, 173);
   }
 }
 //--------------------------- selects styling -----------------------------
@@ -317,7 +320,7 @@ button {
   width: 100%;
   .img-item {
     width: 197px;
-    height: 45px;
+    height: 197px;
     margin-right: 3%;
     margin-bottom: 20px;
     position: relative;
@@ -363,3 +366,5 @@ button {
     padding: 2px;
   }
 }
+
+

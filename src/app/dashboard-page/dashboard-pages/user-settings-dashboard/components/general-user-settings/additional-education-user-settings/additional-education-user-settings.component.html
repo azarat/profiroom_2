@@ -87,14 +87,22 @@
               </div>
             </div>
 
+            <div class="items" >
+              <ng-container *ngFor="let diplomaPhoto of userSettings.additionalEducation[i].additionalDiploma; let x = index">
+                <div  class="img-item" *ngIf="diplomaPhoto != null" >
+                  <img  [src]="diplomaPhoto" height="300" />
+                </div>
+              </ng-container>
+            </div>
+
             <div class="add-photos">
-              <button class="add btn-tetraty">
-                <span>Загрузить файл/фото диплома</span>
-              </button>
+              <input type="file" id="additionalDiplomaFiles-{{i}}"  class="input-file" #file name="file"
+                (change)="fileProgress($event.target.files, userSettings.additionalEducation[i].id, i)" />
+              <label for="additionalDiplomaFiles-{{i}}">Загрузить файл/фото диплома</label>
             </div>
 
             <button type="button" class="delete-education">
-              <i class="material-icons" (click)="deleteEducation(i)">delete</i>
+              <i class="material-icons" (click)="deleteEducation(userSettings.additionalEducation[i].id, i)">delete</i>
             </button>
 
             <button type="button" class="change"><i class="material-icons create"

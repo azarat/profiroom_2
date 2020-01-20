@@ -34,6 +34,10 @@ export const routes: Routes = [
     canActivateChild: [UnauthorisatedGuard],
     loadChildren: () => import('./dashboard-page/dashboard-page.module').then(m => m.DashboardPageModule)
   },
+  {
+    path: 'user',
+    loadChildren: () => import('./user-page/user-page.module').then(m => m.UserPageModule)
+  },
   // {
   //   path: '**',
   //   redirectTo: '/404'
