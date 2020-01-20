@@ -35,7 +35,7 @@ export const routes: Routes = [
     loadChildren: () => import('./dashboard-page/dashboard-page.module').then(m => m.DashboardPageModule)
   },
   {
-    path: 'user',
+    path: 'user/:id',
     loadChildren: () => import('./user-page/user-page.module').then(m => m.UserPageModule)
   },
   // {

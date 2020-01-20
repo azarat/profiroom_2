@@ -13,10 +13,28 @@
   </div>
 </nav>
 
-<div class="wrapper">
+<div class="wrapper" *ngIf="userData">
+  <div class="content">
+    <div class="back-to-list">
+      <a>Вернуться к списку фрилансеров</a>
+    </div>
+    <div class="general-information">
+      <div class="general-information__avatar">
+        <img [src]="userData.avatar" alt="user avatar">
+      </div>
+      <div class="general-information__wrapper">
+        <div class="general-information__name"><span>{{userData.name}} {{userData.surname}}</span> </div>
+        <!-- <div class="general-information__online"><span [ngClass]="{online: userData.online}">{{userData.online}}</span></div> -->
+        <div class="general-information__lvl">Уровень: </div>
+      </div>
+      <div class="general-information__wrapper">
+        <!-- <div class="general-information__available">Статус доступности: <span [ngClass]="{load: userData.load}">загружен(-а)</span></div> -->
+        <div class="general-information__inProces">Проектов в работе: <span>2</span></div>
+        <div class="general-information__awaiting">Проектов в очереди: <span>3</span></div>
+      </div>
+      <div class="general_iformations__actions">
 
-  <div class="back-to-list">
-    <span>Вернуться к списку фрилансеров</span>
+      </div>
+    </div>
   </div>
-
 </div>

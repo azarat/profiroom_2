@@ -13,6 +13,7 @@ export interface OffersListInterface {
       name?: string;
       rating?: number;
       sub_category_id: number;
+      // user_id?: number;
       user?: [{
         avatar?: string;
         id?: number;

@@ -1,5 +1,10 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ScrollToService, ScrollToConfigOptions } from '@nicky-lenaers/ngx-scroll-to';
+import { UserDataInterface } from '../shared/interfaces/user-data.interface';
+import { UserDataService } from './service/user.service';
+import { filter } from 'rxjs/internal/operators/filter';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-user-page',
@@ -8,14 +13,35 @@ import { ScrollToService, ScrollToConfigOptions } from '@nicky-lenaers/ngx-scrol
 })
 export class UserPageComponent implements OnInit {
 
+  public userData: UserDataInterface;
   sticky = false;
   @ViewChild('stickyMenu', {static: false}) menuElement: ElementRef;
 
-  constructor(
-    private _scrollToService: ScrollToService,
-  ) { }
+  private id: any;
 
-  ngOnInit() {
+
+  constructor(
+    // tslint:disable-next-line: variable-name
+    private _scrollToService: ScrollToService,
+    private userService: UserDataService,
+    private route: ActivatedRoute,
+  ) {
+    this.route.params.subscribe(params=>
+      this.id = params);
+
+    console.log(this.id);
+    this.getUserData(this.id);
+  }
+
+  ngOnInit() {}
+
+  getUserData(id: {id: number}) {
+    this.userService.loadUserDate(id)
+    .pipe(filter((res: any) => !! res))
+    .subscribe(userData => {
+      console.log(userData);
+      this.userData = userData.user;
+    });
   }
 
   scrollTo(target: string) {

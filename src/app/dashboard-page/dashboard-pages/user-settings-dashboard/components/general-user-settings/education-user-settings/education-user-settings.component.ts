@@ -56,9 +56,9 @@ export class EducationUserSettingsComponent implements OnInit {
           console.log('create-new-aducation-id ', this.educationId);
           this.userSettings.education.push({
             id: this.educationId,
-            institution: 'Учебное заведение',
+            institution: '',
             academicDegree: 1,
-            specialty: 'Специальность',
+            specialty: '',
             startEducation: 1960,
             finishEducation: 1960,
             diploma: []
