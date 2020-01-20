@@ -27,7 +27,6 @@ export class ServicePageComponent implements OnInit {
 
   @ViewChild('stickyMenu', {static: false}) menuElement: ElementRef;
 
-
   constructor(
     // tslint:disable-next-line: variable-name
     private _route: ActivatedRoute,
@@ -47,7 +46,10 @@ export class ServicePageComponent implements OnInit {
       this.getViewedOffers();
     });
   }
-  // @HostListener('window:scroll', [])
+
+
+
+
 
   ngOnInit() { }
 
@@ -74,7 +76,6 @@ export class ServicePageComponent implements OnInit {
       if (offersArrey.includes(id)) {
           return;
       }
-
       if (offersArrey.length < 4) {
         offersArrey.push(id);
         console.log(offersArrey.length);
@@ -116,11 +117,20 @@ export class ServicePageComponent implements OnInit {
   ngAfterViewInit() {
     this.elementPosition = this.menuElement.nativeElement.offsetTop;
   }
+  // ** navbar always in top of page
+  @HostListener('window:scroll')
+  handleScroll() {
+    const windowScroll = window.pageYOffset;
+    // if (windowScroll >= this.elementPosition){
+    if (windowScroll >= 113) {
+      this.sticky = true;
+    } else {
+      this.sticky = false;
+    }
+  }
 
   // ** scroll to configuration
   scrollTo(target: string) {
-
-
     const config: ScrollToConfigOptions = {
       target,
       duration: 1000
@@ -141,13 +151,4 @@ export class ServicePageComponent implements OnInit {
   // ** navbar always in top of page
   // @HostListener('window:scroll', ['$event'])
 
-  handleScroll() {
-    const windowScroll = window.pageYOffset;
-    // if (windowScroll >= this.elementPosition){
-    if (windowScroll >= 113) {
-      this.sticky = true;
-    } else {
-      this.sticky = false;
-    }
-  }
 }
