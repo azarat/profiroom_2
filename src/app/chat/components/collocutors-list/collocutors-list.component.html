@@ -15,15 +15,17 @@
     <div class="collocutors-list" [ngClass]="{ projects: chatType === 'projects' }">
       <div class="collocutor" *ngFor="let collocutor of collocutors, let i=index" (click)="openChat(collocutor)">
         <span *ngIf="chatType == 'projects'" class="status"></span>
-        <p class="date">{{ collocutors[i].lastMessage[0].dateTime | dateFormatPipe }}</p>
+        <p class="date" >{{ collocutors[i].lastMessage[0].dateTime | dateFormatPipe }}</p>
         <div class="message-preview">
           <div class="photo">
-            <img [src]="'https://www.thecubetest.site/Backend/storage/app/' + collocutor.collocutorAva" alt="collocutor-photo" />
+            <img [src]="collocutor.collocutorAva" alt="collocutor-photo" />
             <span class="status"></span>
           </div>
           <div class="message-information">
             <p class="collocutor-name">{{ collocutor.collocutorName }} {{ collocutor.collocutorSurname }} </p>
-            <p class="collocutor-message">{{ collocutor.lastMessage[0].message }}</p>
+            <p class="collocutor-message">
+              <span *ngIf="userId == collocutor.lastMessage[0].author">Вы: </span>
+              {{ collocutor.lastMessage[0].message }}</p>
           </div>
         </div>
       </div>

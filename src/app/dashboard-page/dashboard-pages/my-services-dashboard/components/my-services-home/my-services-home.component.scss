@@ -1,9 +1,9 @@
 .wrap {
   position: relative;
   position: relative;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 h3 {
   font-family: "Source Sans Pro", sans-serif;
@@ -22,7 +22,7 @@ section:not(.wrap) {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
-  overflow: auto;
+  overflow: hidden;
   margin-right: 5px;
 }
 .tabs-wrap {
@@ -35,7 +35,7 @@ section:not(.wrap) {
     padding: 0;
     margin: 0 15px;
     list-style: none;
-    border-bottom: 1px solid #EBEFF2;
+    border-bottom: 1px solid #ebeff2;
     li {
       display: inline-block;
       font-family: Source Sans Pro;
@@ -51,29 +51,29 @@ section:not(.wrap) {
       &:before {
         width: 0;
         -webkit-transition: all 0.35s ease;
-          transition: all 0.35s ease;
+        transition: all 0.35s ease;
       }
       &.active {
-        color: #3C7EEA;
+        color: #3c7eea;
         &:before {
           position: absolute;
-          content: '';
+          content: "";
           width: 100%;
           height: 4px;
-          background: #3C7EEA;
+          background: #3c7eea;
           border-radius: 4px 4px 0px 0px;
           bottom: 0;
           left: 0;
         }
       }
     }
-
   }
 }
 
 .add-service {
   width: 17.6%;
   max-height: 243px;
+  min-height: 243px;
   background: #f4f7fc;
   border: 1px dashed #3c7eea;
   background: #ffffff;
@@ -90,6 +90,7 @@ section:not(.wrap) {
 .item {
   width: 17.6%;
   max-height: 243px;
+  min-height: 243px;
   background: #ffffff;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
   border-radius: 3px;
@@ -266,4 +267,52 @@ section:not(.wrap) {
       padding: 10px 50px;
     }
   }
+}
+
+mat-tab-group ::ng-deep {
+  width: 100%;
+  height: 100%;
+  font-family: Source Sans Pro, sans-serif !important;
+  .mat-tab-body-content {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .mat-ink-bar {
+    background: #3c7eea !important;
+    border-radius: 100px 100px 0px 0px;
+    height: 4px;
+  }
+  .mat-tab-header {
+    margin: 0 15px;
+  }
+  .mat-tab-body-wrapper {
+    margin-top: 27px;
+    height: 100%;
+    overflow: auto;
+  }
+
+  .mat-tab-body-content {
+    padding-right: 10px;
+  }
+  .mat-tab-label .mat-tab-label-content {
+    font-family: Source Sans Pro, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 20px;
+    /* identical to box height */
+
+    color: #707683;
+
+  }
+  .mat-tab-label-active {
+    .mat-tab-label-content {
+      color: #3C7EEA;
+      font-weight: 600;
+    }
+  }
+  .mat-tab-label{
+    opacity: 1;
+  }
+
 }

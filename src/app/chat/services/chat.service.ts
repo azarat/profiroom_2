@@ -34,6 +34,10 @@ export class ChatService {
     return this.http.get('/getChatRooms');
   }
 
+  public getCollocutorInformation(id) {
+    return this.http.get('/getChatUser?id=' + id);
+  }
+
 
 }
 

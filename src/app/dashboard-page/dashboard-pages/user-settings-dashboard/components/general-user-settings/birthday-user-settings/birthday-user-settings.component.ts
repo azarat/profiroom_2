@@ -38,10 +38,8 @@ export class BirthdayUserSettingsComponent implements OnInit {
   }
 
   createArrayYear() {
-    let today = new Date();
-    let year = today.getFullYear();
     const years = [];
-    for (let i = 1980; i <= year - 8; i++) {
+    for (let i = 1980; i <= 2020; i++) {
       years.push(i);
     }
     return years;

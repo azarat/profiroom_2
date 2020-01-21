@@ -4,7 +4,6 @@ import { FormGroup, NgForm } from '@angular/forms';
 // import { UserServiceModel } from 'src/app/models/user-service.model';
 import { UserSettingsModel } from 'src/app/models/user-settings.model';
 import { filter } from 'rxjs/operators';
-import { timer } from 'rxjs';
 
 @Component({
   selector: 'app-general-user-settings',
@@ -29,14 +28,11 @@ export class GeneralUserSettingsComponent implements OnInit {
   }
   updateSettings() {
     console.log(this.userSettingsModel);
-    // timer(200);
-
     this.userSettingsService.updateService(this.userSettingsModel)
     .pipe(filter((res: any) => !!res))
     .subscribe(
       (res) => {
-        // console.log(this.userSettingsModel);
-
+        console.log(this.userSettingsModel);
         // this.userSettingsModel = res;
         console.log(res);
       }

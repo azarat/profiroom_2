@@ -22,7 +22,6 @@ import { OffersResolver } from './resolves/offers.resolve';
 import { FormsModule } from '@angular/forms';
 import { MatSelectModule, MatInputModule, MatCheckboxModule, MatRadioModule } from '@angular/material';
 import { CategorysListService } from '../core/services/categorys.service';
-import { CatalogPaginationComponent } from './catalog/catalog-pagination/catalog-pagination.component';
 
 
 
@@ -51,7 +50,6 @@ const routes: Routes = [
     CatalogHomePageComponent,
     FilterComponent,
     ItemsComponent,
-    CatalogPaginationComponent,
   ],
   imports: [
     CommonModule,

@@ -42,7 +42,6 @@ export class ServicePageComponent implements OnInit {
       filter((res: any) => !! res),
     )
     .subscribe(offerId => {
-      console.log(offerId);
       this.getOfferData(offerId);
       this.getViewedOffers();
     });
@@ -149,5 +148,7 @@ export class ServicePageComponent implements OnInit {
     this._scrollToService.scrollTo(config);
   }
 
+  // ** navbar always in top of page
+  // @HostListener('window:scroll', ['$event'])
 
 }
