@@ -18,7 +18,7 @@ import { LocalStorageService } from 'src/app/core/services/local-storage.service
 export class CollocutorsListComponent implements OnInit, AfterViewInit {
 
 
-  public collocutors: CollocutorListModel;
+  public collocutors;
   public lastMessageDate: string;
   @Input() chatType: string;
   @Output() currentRoom = new EventEmitter();
@@ -33,28 +33,33 @@ export class CollocutorsListComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.chatService.getChatRooms()
       .subscribe(res => {
-        console.log(res);
-        this.collocutors = plainToClass(CollocutorListModel, res);
+
+        this.collocutors = res;
+        console.log(this.collocutors);
         this.sortMessagesByTime(this.collocutors);
       });
 
-    this.socketService.subscribeOnMessages()
+    // this.socketService.subscribeOnMessages()
+    //   .subscribe(res => {
+    //     console.log('new mess', res);
+    //     this.pushNewMessage(this.collocutors, res);
+    //     // this.sortMessagesByTime(this.collocutors);
+    //   });
+
+    this.socketService.showNewMessage()
       .subscribe(res => {
         console.log('new mess', res);
         this.pushNewMessage(this.collocutors, res);
-        this.sortMessagesByTime(this.collocutors);
-      });
-
-    this.socketService.showNewMessage();
-
+        // this.sortMessagesByTime(this.collocutors);
+      })
     this.userId = this.localStorageService.getItem('userId').value;
 
-    this.socketService.subscribeOnMessages()
-    .subscribe(res => {
-      console.log('new mess', res);
-      this.pushNewMessage(this.collocutors, res);
-      this.sortMessagesByTime(this.collocutors);
-    });
+    // this.socketService.subscribeOnMessages()
+    // .subscribe(res => {
+    //   console.log('new mess', res);
+    //   this.pushNewMessage(this.collocutors, res);
+    //   // this.sortMessagesByTime(this.collocutors);
+    // });
   }
 
   ngAfterViewInit(): void {
@@ -65,14 +70,50 @@ export class CollocutorsListComponent implements OnInit, AfterViewInit {
 
   public openChat(userinfo) {
     this.currentRoom.emit(userinfo);
-    console.log('openChat', userinfo.roomId)
     this.socketService.openChat(userinfo.roomId);
   }
 
   pushNewMessage(arr, obj: any) {
+    console.log(arr)
+    if (arr.length !== 0) {
+      const foundIndex = arr.findIndex(x => x.roomId === obj.roomId);
+      console.log('COLLLLOCUTOOOOORS', this.collocutors[foundIndex]);
+      this.collocutors[foundIndex].message[0] = obj.message[0];
+    } else {
+      this.collocutors.push(obj);
+    }
+    // if (this.collocutors.length !== 0) {
 
-    const foundIndex = arr.findIndex(x => x.roomId === obj.roomId);
-    this.collocutors[foundIndex].lastMessage[0] = obj.message;
+
+    //   return;
+    // }
+    // else if (this.collocutors.length === 0) {
+    //   this.collocutors.push(obj);
+    //   console.log('2', this.collocutors);
+    //   return;
+    // }
+    // else {
+    //   console.log(this.collocutors.length);
+    //   this.collocutors.push(obj.message);
+    //   console.log('1', this.collocutors);
+    //   return;
+    // }
+
+
+    // if (this.collocutors.length === 0) {
+    //   console.log(this.collocutors.length);
+    //   this.collocutors.push(obj.message);
+    //   console.log('1', this.collocutors);
+    //   return;
+    // } else if (this.collocutors[0].message.length === 0) {
+    //    this.collocutors[0].message[0] = obj.message;
+    //    console.log('2', this.collocutors);
+    //    return;
+    // } else if(this.collocutors[0].message.length === 0){
+    //   const foundIndex = arr.findIndex(x => x.roomId === obj.roomId);
+    //   this.collocutors[foundIndex].message[0] = obj.message;
+    // }
+    // console.log( this.collocutors);
     // this.collocutors = arr.reduce((acc, value) => {
     //   acc.push(value.roomId === obj.roomId ? obj.lastMessage[0] : value);
     //   return acc;
@@ -81,7 +122,7 @@ export class CollocutorsListComponent implements OnInit, AfterViewInit {
 
   sortMessagesByTime(arr) {
     const x = arr.sort((a, b) => {
-      return b.lastMessage[0].dateTime.localeCompare(a.lastMessage[0].dateTime);
+      return b.message[0].dateTime.localeCompare(a.message[0].dateTime);
     });
     this.collocutors = x;
   }

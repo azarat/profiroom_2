@@ -27,7 +27,7 @@ export class ChatService {
   }
 
   getPreviousMessages(roomId: string) {
-    return this.http.get('/chat?roomId=' + roomId);
+    return this.http.get('/getRoomMessages?roomId=' + roomId);
   }
 
   public getChatRooms() {

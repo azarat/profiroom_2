@@ -32,7 +32,6 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   getCurrentRoom(userInfo) {
-    console.log(userInfo);
     this.collocutorData = false;
     setTimeout(() => {
       // this.chatRoom = userInfo.roomId;

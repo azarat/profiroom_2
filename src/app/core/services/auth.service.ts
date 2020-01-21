@@ -7,7 +7,6 @@ import { catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { LocalizeRouterService } from 'localize-router';
 import { LocalStorageService } from './local-storage.service';
-import { AngularFireAuth } from '@angular/fire/auth';
 import { UserModel } from 'src/app/models/user.model';
 
 @Injectable()
@@ -29,7 +28,6 @@ export class AuthentificationService {
     private router: Router,
     private localize: LocalizeRouterService,
     private localStorageService: LocalStorageService,
-    public  afAuth: AngularFireAuth
 
   ) {
     // this.currentUser$ = this.currentUser.asObservable();

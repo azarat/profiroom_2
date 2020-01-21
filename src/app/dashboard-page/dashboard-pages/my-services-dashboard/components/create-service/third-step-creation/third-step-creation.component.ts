@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, FormArray, Validators, FormControl } from '@ang
 import { UserServiceModel } from 'src/app/models/user-services/user-service.model';
 import { NgForm } from '@angular/forms';
 
-import { trigger, state, style, animate, transition, } from '@angular/animations';
+
 import { UserOffersService } from '../../../services/user-offers.service';
 import { filter } from 'rxjs/operators';
 import { LocalizeRouterService } from 'localize-router';

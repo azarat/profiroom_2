@@ -82,6 +82,14 @@
   //   box-sizing: border-box;
   //   border-radius: 4px;
   // }
+  &.unread {
+    .collocutor-name {
+      color: #323C47;
+    }
+    .collocutor-message {
+        color: #323C47;
+    }
+  }
 }
 
   .date {
