@@ -22,6 +22,7 @@ export class CollocutorsListComponent implements OnInit, AfterViewInit {
   public lastMessageDate: string;
   @Input() chatType: string;
   @Output() currentRoom = new EventEmitter();
+  userIdString
   public userId;
   // DateFormatPipe
   constructor(
@@ -53,7 +54,8 @@ export class CollocutorsListComponent implements OnInit, AfterViewInit {
         // this.sortMessagesByTime(this.collocutors);
       })
     this.userId = this.localStorageService.getItem('userId').value;
-
+    this.userIdString = this.userId.toString();
+      console.log(this.userId)
     // this.socketService.subscribeOnMessages()
     // .subscribe(res => {
     //   console.log('new mess', res);
