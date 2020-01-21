@@ -16,23 +16,14 @@ export interface OffersListInterface {
       avatar?: string;
       id?: number;
       name?: string;
-      rating?: number;
-      sub_category_id: number;
-      // user_id?: number;
-      user?: [{
-        avatar?: string;
-        id?: number;
-        name?: string;
-        rank_id: number;
-        surname?: string;
-      }];
-      liked?: boolean;
-    }]
-    current_page?: number;
-    last_page?: number;
-    first_page_url?: string;
-    last_page_url?: string;
-    next_page_url?: string;
-    total?: number;
-  }];
+      rank_id: number;
+      surname?: string;
+    }];
+    liked?: boolean;
+  }]
+  current_page?: number;
+  first_page_url?: string;
+  last_page_url?: string;
+  next_page_url?: string;
+  total?: number;
 }

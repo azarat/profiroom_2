@@ -42,7 +42,6 @@ export class ServicePageComponent implements OnInit {
       filter((res: any) => !! res),
     )
     .subscribe(offerId => {
-      console.log(offerId);
       this.getOfferData(offerId);
       this.getViewedOffers();
     });
