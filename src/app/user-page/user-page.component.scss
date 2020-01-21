@@ -1,21 +1,24 @@
 .wrapper {
-  max-width: 1045px;
+  width: 100%;
   margin: 0 auto;
+  background: #f1f2f4;
   font-family: Source Sans Pro;
   font-weight: normal;
 }
-.section-title{
+.section-title {
   font-weight: 600;
   font-size: 18px;
   line-height: 23px;
-  color: #323C47;
+  color: #323c47;
 }
+
 .nav-wrapper {
   width: 100%;
   position: relative;
   height: 50px;
 }
-.navigation_page {
+
+.navigation-page {
   background: #fafbfc;
   box-shadow: 0px 4px 4px rgba(128, 152, 213, 0.1);
   position: absolute;
@@ -53,11 +56,19 @@
       color: #3c7eea;
     }
   }
+  &__wrapper {
+    max-width: 1045px;
+    margin: 0 auto;
+  }
 }
 
 .content {
-  padding-top: 50px;
+  max-width: 1045px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 50px 30px 0;
 }
+
 .back-to-list {
   padding-top: 25px;
   margin-bottom: 60px;
@@ -90,7 +101,7 @@
   height: 90px;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 50px;
+  margin-bottom: 60px;
 
   font-size: 16px;
   line-height: 18px;
@@ -172,7 +183,7 @@
   }
   &__awaiting {
   }
-  &__actions{
+  &__actions {
     display: flex;
     .action {
       width: 40px;
@@ -236,7 +247,7 @@
             visibility: visible;
           }
         }
-        &:last-child{
+        &:last-child {
           margin-right: 0;
         }
       }
@@ -265,16 +276,154 @@
       }
     }
   }
-
-
 }
 
-.view-profile{
-  .profiles-list{
+.about-user {
+  margin-bottom: 30px;
+  &__wrapper {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
   }
-  .profile{
-    margin-right: 25px;
+  &__info-block {
+    display: flex;
+    flex-direction: column;
+
+    color: #4e5051;
+    font-size: 16px;
+    line-height: 17px;
+  }
+  &__title {
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  &__value {
+    line-height: 21px;
+  }
+  &__description {
+    padding-bottom: 30px;
+    border-bottom: 1px solid #f1f2f4;
+
+    font-size: 18px;
+    line-height: 23px;
+    color: #4e5051;
+    p {
+      margin: 0;
+    }
+  }
+}
+
+.languages {
+  &__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    margin: 0;
+    padding-top: 12px;
+    padding-bottom: 29px;
+    border-bottom: 1px solid #f1f2f4;
+    margin-bottom: 40px;
+  }
+  &__info-block {
+    display: flex;
+    width: 31%;
+
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 17px;
+    color: #4e5051;
+
+    padding-left: 12px;
+    margin-bottom: 16px;
+    position: relative;
+    &::before {
+      content: "";
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background-color: #4e5051;
+      top: 56%;
+      left: 0;
+      transform: translateY(-50%);
+    }
+  }
+  &__name {
+  }
+  &__lvl {
+    font-weight: normal;
+  }
+}
+
+.aducation {
+  margin-bottom: 35px;
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-top: 35px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #f1f2f4;
+
+    font-size: 16px;
+    line-height: 17px;
+    color: #4e5051;
+  }
+  &__info-block {
+    margin-bottom: 22px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  &__institution {
+    font-weight: 600;
+    margin-bottom: 6px;
+    width: fit-content;
+  }
+  &__group {
+    display: flex;
+    width: fit-content;
+  }
+  &__specialty {
+    color: #707683;
+    margin-right: 30px;
+  }
+  &__years {
+    color: #99acb7;
+  }
+}
+
+.raiting {
+  &__wrapper{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    width: 410px;
+  }
+  &__info-block{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 16px;
+
+    font-size: 16px;
+    line-height: 17px;
+    &:nth-child(3) {
+      padding-bottom: 20px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #f1f2f4;
+    }
+  }
+  &__name{
+    width: 220px;
+    margin-right: 20px;
+
+    font-weight: 600;
+    color: #707683;
+  }
+  &__commnets{
+    font-weight: normal;
+    color: #99ACB7;
+    line-height: 20px;
   }
 }

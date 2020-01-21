@@ -5,7 +5,31 @@ export interface UserDataInterface {
   name?: string;
   surname?: string;
   lvl?: number;
-
+  country?: string;
+  city?: string;
+  endedWorks?: number;
+  arbitration?: number;
+  answerTime?: number;
+  description?: string;
+  language?: [{
+    langName?: string;
+    langLevel?: number;
+  }];
+  education?: [{
+    institution?: string;
+    specialty?: string;
+    startEducation?: number;
+    finishEducation?: number;
+  }];
+  additionalEducation?: [{
+    additionalInstitution?: string;
+    courseName?: string;
+    startStudyYear?: number;
+    endStudyYear?: number;
+  }];
+  // ?:;
+  // ?:;
+  // ?:;
   // title?: string;
   // mainImage?: string;
   // rating?: string;

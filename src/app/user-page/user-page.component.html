@@ -1,8 +1,8 @@
 <app-main-header></app-main-header>
 <app-categories-header></app-categories-header>
 
-<nav class="navigation_page" #stickyMenu [class.sticky]="sticky">
-  <div class="wrapper">
+<nav class="navigation-page" #stickyMenu [class.sticky]="sticky">
+  <div class="navigation-page__wrapper">
     <ul>
       <li (click)="scrollTo('about')">О фрилансере</li>
       <li (click)="scrollTo('education')">Образование</li>
@@ -65,13 +65,91 @@
 
       </div>
     </div>
-    <div class="view-profile">
-      <h3 class="section-title">Смотреть профиль</h3>
-      <div class="profiles-list">
-        <div class="profile btn">общий профиль</div>
-        <div class="profile btn">Графический дизайн</div>
-        <div class="profile btn">Ux/ui дизайн</div>
+    <div class="about-user">
+      <div class="about-user__wrapper">
+        <div class="about-user__info-block">
+          <div class="about-user__title">Страна, город</div>
+          <div class="about-user__value">{{userData.country}} <br> {{userData.city}}</div>
+        </div>
+        <div class="about-user__info-block">
+          <div class="about-user__title">На сайте с</div>
+          <!-- <div class="about-user__value">{{userData.}}</div> -->
+        </div>
+        <div class="about-user__info-block">
+          <div class="about-user__title">Исполненных проектов</div>
+          <div class="about-user__value">{{userData.endedWorks}}</div>
+        </div>
+        <div class="about-user__info-block">
+          <div class="about-user__title">Обращений в арбитраж</div>
+          <div class="about-user__value">{{userData.arbitration}}</div>
+        </div>
+        <div class="about-user__info-block">
+          <div class="about-user__title">Время ответа</div>
+          <div class="about-user__value">{{userData.answerTime}}</div>
+        </div>
+      </div>
+      <div class="about-user__description">
+        <p>{{userData.description}}</p>
       </div>
     </div>
+    <div class="languages">
+      <div class="section-title">Знание языков</div>
+      <ul class="languages__wrapper">
+        <li class="languages__info-block" *ngFor="let language of userData.language">
+          <div class="languages__name">{{ language.langName}} - </div>
+          <div class="languages__lvl">{{ language.langLevel}}</div>
+        </li>
+      </ul>
+    </div>
+    <div class="aducation">
+      <div class="section-title">Высшее образование</div>
+      <div class="aducation__wrapper">
+        <div class="aducation__info-block" *ngFor="let education of userData.education">
+          <div class="aducation__institution">{{ education.institution}}</div>
+          <div class="aducation__group">
+            <div class="aducation__specialty">{{ education.specialty}}</div>
+            <div class="aducation__years">{{ education.startEducation}} - {{ education.finishEducation}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="aducation">
+      <div class="section-title">Дополнительное образование</div>
+      <div class="aducation__wrapper">
+        <div class="aducation__info-block" *ngFor="let education of userData.additionalEducation">
+          <div class="aducation__institution">{{ education.additionalInstitution}}</div>
+          <div class="aducation__group">
+            <div class="aducation__specialty">{{ education.courseName}}</div>
+            <div class="aducation__years">{{ education.startStudyYear}} - {{ education.endStudyYear}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="raiting">
+      <div class="section-title">Общий рейтинг всех услуг:</div>
+      <div class="raiting__wrapper">
+        <div class="raiting__info-block">
+          <div class="raiting__name">Качество услуг</div>
+          <div class="star-raiting">5</div>
+          <div class="raiting__commnets">(1k+ отзывов)</div>
+        </div>
+        <div class="raiting__info-block">
+          <div class="raiting__name">Срок исполнения</div>
+          <div class="star-raiting">4</div>
+          <div class="raiting__commnets">(1k+ отзывов)</div>
+        </div>
+        <div class="raiting__info-block">
+          <div class="raiting__name">Вежливость фрилансера</div>
+          <div class="star-raiting">4</div>
+          <div class="raiting__commnets">(1k+ отзывов)</div>
+        </div>
+        <div class="raiting__info-block">
+          <div class="raiting__name">Средняя оценка</div>
+          <div class="star-raiting">4,5</div>
+          <div class="raiting__commnets">(1k+ отзывов)</div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
