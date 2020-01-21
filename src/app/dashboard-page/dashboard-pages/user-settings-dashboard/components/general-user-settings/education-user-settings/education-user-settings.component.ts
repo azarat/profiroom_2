@@ -23,6 +23,7 @@ export class EducationUserSettingsComponent implements OnInit {
   public yearsArr = [];
   public yearsFiltered = [];
   public academicDegrees = [1, 2, 3, 4, 5];
+  educationId: any;
 
   constructor(
     private userSettingsService: UserSettingsService,
@@ -39,16 +40,32 @@ export class EducationUserSettingsComponent implements OnInit {
 
   // --------------- create education-item -----------------//
   addEducation() {
-    this.userSettings.education.push({
-      institution: '',
-      academicDegree: 1,
-      specialty: '',
-      startEducation: 1960,
-      finishEducation: 1960,
-      diplomaFiles: null
-    });
-    // this.submited = false;
-    this.openItem = this.userSettings.education.length;
+    this.userSettingsService.newEducationId().subscribe(
+      (res: any) => {
+        this.educationId = res.data[0].id;
+
+        if (this.educationId) {
+
+          console.log('create-new-aducation-id ', this.educationId);
+          this.userSettings.education.push({
+            id: this.educationId,
+            institution: '',
+            academicDegree: 1,
+            specialty: '',
+            startEducation: 1960,
+            finishEducation: 1960,
+            diploma: []
+          });
+        }
+      }
+    );
+
+
+    // this.educationId.subscribe
+
+
+    console.log('create-new-aducation ', this.userSettings.education);
+    this.openItem = this.userSettings.education.length + 1;
   }
 
   // --------------- delete education-item -----------------//

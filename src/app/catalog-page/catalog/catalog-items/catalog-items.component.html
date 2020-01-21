@@ -11,7 +11,7 @@
           <div class="card-description__ava"><img *ngIf="offer.user.avatar" [src]="'https://www.thecubetest.site/Backend/storage/app/' + offer.user.avatar" alt="avatar">
           </div>
           <div>
-            <span class="card-description__name" (click)="openOffer(offer.id)">{{offer.user.name}} {{offer.user.surname}}</span>
+            <a [routerLink]="['/user', offer.user.id] | localize"><span class="card-description__name">{{offer.user.name}} {{offer.user.surname}}</span></a>
             <div class="card-description__skill">{{offer.user.rank_id}}</div>
           </div>
         </div>
