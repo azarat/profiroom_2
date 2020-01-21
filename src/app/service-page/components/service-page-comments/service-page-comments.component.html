@@ -16,7 +16,7 @@
         <div class="comment main">
           <div class="left-side">
             <div class="ava">
-              <img [src]="'https://www.thecubetest.site/Backend/storage/app/' + comment.user.avatar"
+              <img [src]="comment.user.avatar"
                 alt="user avatar">
             </div>
           </div>
@@ -35,7 +35,7 @@
           <div class="comment sub" *ngFor="let child of comment.childs">
               <div class="left-side">
                 <div class="ava">
-                  <img [src]="'https://www.thecubetest.site/Backend/storage/app/' + child.user.avatar"
+                  <img [src]="child.user.avatar"
                     alt="user avatar">
                 </div>
               </div>

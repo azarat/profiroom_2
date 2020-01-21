@@ -3,6 +3,7 @@ export interface OfferDataInterface {
   title?: string;
   mainImage?: string;
   rating?: string;
+  user_id?: number;
   user?: {
     avatar?: string;
     name?: string;

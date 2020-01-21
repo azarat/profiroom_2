@@ -32,11 +32,11 @@
 
       <div class="container">
         <div class="user" *ngIf="offerData">
-          <div class="user-avatar">
-            <img [src]="'https://www.thecubetest.site/Backend/storage/app/' + offerData.user.avatar" alt="user avatar">
-          </div>
+          <a class="user-avatar" [routerLink]="['/user', offerData.user_id] | localize">
+            <img [src]="offerData.user.avatar" alt="user avatar">
+          </a>
           <div class="user-text">
-            <span class="user-name">{{ offerData.user.name }} {{ offerData.user.surname }}</span>
+            <a [routerLink]="['/user', offerData.user_id] | localize" class="user-name">{{ offerData.user.name }} {{ offerData.user.surname }}</a>
             <div class="user-raiting-wrapp">
               <span class="star-raiting">{{ offerData.raiting }}</span>
             </div>

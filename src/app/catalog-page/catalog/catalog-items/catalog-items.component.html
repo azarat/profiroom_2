@@ -8,10 +8,10 @@
       <div class="card-description">
 
         <div class="card-description__top">
-          <div class="card-description__ava"><img *ngIf="offer.user.avatar" [src]="'https://www.thecubetest.site/Backend/storage/app/' + offer.user.avatar" alt="avatar">
+          <div class="card-description__ava"><img *ngIf="offer.user.avatar" [src]="offer.user.avatar" alt="avatar">
           </div>
           <div>
-            <a [routerLink]="['/user', offer.user.id] | localize"><span class="card-description__name">{{offer.user.name}} {{offer.user.surname}}</span></a>
+            <a class="card-description__name" [routerLink]="['/user', offer.user.id] | localize">{{offer.user.name}} {{offer.user.surname}}</a>
             <div class="card-description__skill">{{offer.user.rank_id}}</div>
           </div>
         </div>

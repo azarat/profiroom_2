@@ -15,6 +15,13 @@ export class UserPageComponent implements OnInit {
 
   public userData: UserDataInterface;
   sticky = false;
+  public academicDegreesTranslations = [
+    'Начальный ',
+    'Ниже среднего',
+    'Средний ',
+    'Выше среднего',
+    'Князь тьмы'
+  ];
   @ViewChild('stickyMenu', {static: false}) menuElement: ElementRef;
 
   private id: any;
