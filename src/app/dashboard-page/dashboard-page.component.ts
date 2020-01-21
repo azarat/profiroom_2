@@ -4,10 +4,9 @@ import { AuthentificationService } from '../core/services/auth.service';
 import { UserService } from '../core/services/user.service';
 import { dashboardMenuConst } from './consts/dashboard-menu.const';
 import { plainToClass } from 'class-transformer';
-
+import { SocetService } from '../chat/services/socet.service';
 import { UserModel } from '../models/user.model';
 import { LocalStorageService } from '../core/services/local-storage.service';
-import { SocketService } from '../chat/services/socket.service';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -25,7 +24,7 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
   constructor(
     private authService: AuthentificationService,
     private userService: UserService,
-    private socetService: SocketService,
+    private socetService: SocetService,
     private localStorageService: LocalStorageService
 
   ) {
@@ -42,19 +41,18 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
 
     this.socetService.connect();
 
-    // this.socetService.checkNotifications();
+    this.socetService.checkNotifications();
 
-    // this.socetService.getNotifications()
-    // .subscribe(res => {
-    //   console.log('notifications', res);
-    // });
+    this.socetService.getNotifications()
+    .subscribe(res => {
+      console.log('notifications', res);
+    });
 
     // this
 
   }
 
   ngAfterViewInit(){
-
     this.socetService.getNotifications()
     .subscribe(res => {
       console.log('notifications', res);

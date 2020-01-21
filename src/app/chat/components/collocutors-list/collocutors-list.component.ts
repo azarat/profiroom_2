@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output, AfterViewInit, } from '@angular/core';
 import { ChatService } from '../../services/chat.service';
-import { SocketService } from '../../services/socket.service';
+import { SocetService } from '../../services/socet.service';
 import { plainToClass } from 'class-transformer';
 
 //  Chat time converter
@@ -26,7 +26,7 @@ export class CollocutorsListComponent implements OnInit, AfterViewInit {
   // DateFormatPipe
   constructor(
     private chatService: ChatService,
-    private socketService: SocketService,
+    private socketService: SocetService,
     private localStorageService: LocalStorageService
   ) { }
 
@@ -46,7 +46,6 @@ export class CollocutorsListComponent implements OnInit, AfterViewInit {
       });
 
     this.socketService.showNewMessage();
-
     this.userId = this.localStorageService.getItem('userId').value;
 
     this.socketService.subscribeOnMessages()
@@ -65,8 +64,6 @@ export class CollocutorsListComponent implements OnInit, AfterViewInit {
 
   public openChat(userinfo) {
     this.currentRoom.emit(userinfo);
-    console.log('openChat', userinfo.roomId)
-    this.socketService.openChat(userinfo.roomId);
   }
 
   pushNewMessage(arr, obj: any) {

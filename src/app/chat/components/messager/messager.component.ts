@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef, Input, ViewChildren, QueryLis
 import { NgForm } from '@angular/forms';
 import { ChatService } from '../../services/chat.service';
 import { messages } from '../consts/messages.const';
-import { SocketService } from '../../services/socket.service';
+import { SocetService } from '../../services/socet.service';
 import { CollocutorListModel } from 'src/app/models/chat/collocutors-list.model';
 import { MessageListComponent } from '../message-list/message-list.component';
 import { MessageScrollerService } from '../../services/message-scroller/message-scroller.service';
@@ -26,7 +26,7 @@ export class MessagerComponent implements OnInit {
 
   constructor(
     private chatService: ChatService,
-    private socketService: SocketService,
+    private socetService: SocetService,
     private messageScrollerService: MessageScrollerService
   ) { }
 
@@ -42,14 +42,14 @@ export class MessagerComponent implements OnInit {
         console.log(this.messagesList);
       });
 
-    this.socketService.onMessage()
+    this.socetService.openChat(this.collocutorData.roomId)
       .subscribe(newMessage => {
-        console.log(newMessage);
+        console.log(newMessage)
         this.messagesList.push(newMessage);
 
       });
 
-    // console.log('loader visible', this.isFileLoaderVisible);
+    console.log('loader visible', this.isFileLoaderVisible);
 
   }
 

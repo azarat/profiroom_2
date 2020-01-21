@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { ChatService } from '../../services/chat.service';
-import { SocketService } from '../../services/socket.service';
+import { SocetService } from '../../services/socet.service';
 
 @Component({
   selector: 'app-chat',
@@ -14,7 +14,7 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   constructor(
     private chatService: ChatService,
-    private socketService: SocketService
+    private socetService: SocetService
   ) { }
 
   ngOnInit() {

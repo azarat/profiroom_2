@@ -8,7 +8,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import 'reflect-metadata';
 import { FormsModule } from '@angular/forms';
-import { SocketService } from './chat/services/socket.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +36,6 @@ import { SocketService } from './chat/services/socket.service';
   ],
   providers: [
     // CategoryResolver
-    SocketService
   ],
   bootstrap: [AppComponent]
 })
