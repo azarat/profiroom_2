@@ -6,6 +6,10 @@ import { LocalizeRouterModule } from 'localize-router';
 import { MainHeaderModule } from '../shared/modules/main-header/main-header.module';
 import { CategoriesHeaderModule } from '../shared/modules/categories-header/categories-header.module';
 
+import { UserDataService } from './service/user.service';
+import { UserPageServicesComponent } from './user-page-services/user-page-services.component';
+import { UserPageCommentsComponent } from './user-page-comments/user-page-comments.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -16,13 +20,17 @@ const routes: Routes = [
 
 
 @NgModule({
-  declarations: [UserPageComponent],
+
+  declarations: [UserPageComponent, UserPageServicesComponent, UserPageCommentsComponent],
   imports: [
     CommonModule,
     LocalizeRouterModule.forChild(routes),
     RouterModule.forChild(routes),
     MainHeaderModule,
     CategoriesHeaderModule,
+  ],
+  providers: [
+    UserDataService
   ]
 })
 export class UserPageModule { }

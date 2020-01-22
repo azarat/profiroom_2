@@ -1,4 +1,5 @@
 export interface UserDataInterface {
+  id: number|string;
   load?: number;
   online?: number;
   avatar?: string;
