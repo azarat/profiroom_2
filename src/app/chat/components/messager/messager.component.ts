@@ -44,7 +44,6 @@ export class MessagerComponent implements OnInit {
 
     this.socketService.onMessage()
       .subscribe(newMessage => {
-        console.log(newMessage);
         this.messagesList.push(newMessage);
 
       });

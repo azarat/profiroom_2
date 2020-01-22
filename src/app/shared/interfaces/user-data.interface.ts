@@ -1,4 +1,5 @@
 export interface UserDataInterface {
+  id: number|string;
   load?: number;
   online?: number;
   avatar?: string;
@@ -28,6 +29,7 @@ export interface UserDataInterface {
     endStudyYear?: number;
   }];
   comments_count?: number;
+
   // ?:;
   // ?:;
   // ?:;

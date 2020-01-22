@@ -16,7 +16,11 @@ export class UserService {
     ) {
     // this.user$ = this.user.asObservable();
     }
-    getDashboardRes = (): Observable<any> => {
+    public getDashboardRes = (): Observable<any> => {
         return this.http.get('/dashboard');
+    }
+
+    public wrightTo(collocutorId) {
+      return this.http.post('/newChatRoom', {id: collocutorId});
     }
 }

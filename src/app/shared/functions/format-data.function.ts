@@ -4,7 +4,6 @@ import { differenceInDays } from 'date-fns';
 
 
 export function formatDataFunction(date: string) {
-  // const mixedDate = null;
   const currentDate: Date = new Date();
   const messageDate = new Date(date);
   const deifferenceinDays = differenceInDays( currentDate, messageDate);

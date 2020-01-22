@@ -13,9 +13,9 @@
 
     </div>
     <div class="collocutors-list" [ngClass]="{ projects: chatType === 'projects' }">
-      <div class="collocutor" *ngFor="let collocutor of collocutors, let i=index" (click)="openChat(collocutor)">
+      <div class="collocutor" *ngFor="let collocutor of collocutors, let i=index" (click)="openChat(collocutor)" [ngClass]="{'unread': userIdString === collocutor.unread}">
         <span *ngIf="chatType == 'projects'" class="status"></span>
-        <p class="date" >{{ collocutors[i].lastMessage[0].dateTime | dateFormatPipe }}</p>
+        <p class="date" *ngIf="collocutor.message.length !== 0" >{{ collocutor.message[0].dateTime | dateFormatPipe }}</p>
         <div class="message-preview">
           <div class="photo">
             <img [src]="collocutor.collocutorAva" alt="collocutor-photo" />
@@ -23,9 +23,9 @@
           </div>
           <div class="message-information">
             <p class="collocutor-name">{{ collocutor.collocutorName }} {{ collocutor.collocutorSurname }} </p>
-            <p class="collocutor-message">
-              <span *ngIf="userId == collocutor.lastMessage[0].author">Вы: </span>
-              {{ collocutor.lastMessage[0].message }}</p>
+            <p class="collocutor-message" *ngIf="collocutors[i].message.length !== 0" >
+              <span *ngIf="userId == collocutor.message[0].author">Вы: </span>
+              {{ collocutor.message[0].message }}</p>
           </div>
         </div>
       </div>

@@ -12,9 +12,9 @@ import { AuthentificationService } from './services/auth.service';
 import { UserService } from './services/user.service';
 import { LocalStorageService } from './services/local-storage.service';
 import { UnauthorisatedGuard } from './guards/unauthorisated.guard';
-import { AngularFireModule } from '@angular/fire';
+
 import { config } from 'process';
-import { AngularFireAuthModule } from '@angular/fire/auth';
+
 import { AuthorisatedGuard } from './guards/authorisated.guard';
 import { CategorysListService } from './services/categorys.service';
 import { OffersService } from './services/offers.service';
@@ -55,8 +55,6 @@ const gConfig = {
         deps: [TranslateService, Location, LocalizeRouterSettings, HttpClient]
       }
     }),
-    AngularFireModule.initializeApp(gConfig),
-    AngularFireAuthModule,
     ScrollToModule.forRoot()
   ],
   providers: [
