@@ -15,12 +15,27 @@ export class UserSettingsService {
     return this.http.post('/loadAva', files);
   }
 
-  uploadDiplomaPhotos(files, i) {
-    return this.http.post('/loadDiplomaFiles', [files, i]);
+  uploadDiplomaPhotos(files) {
+    return this.http.post('/loadDiplomaFiles', files);
+  }
+
+  newEducationId() {
+    console.log('newEducation');
+    return this.http.post('/newEducation', '');
+  }
+  deleteEducatioon(id) {
+    // console.log('deleteEducation', i);
+    return this.http.post('/deleteEducation', id);
   }
 
   uploadAdditionalDiplomaPhotos(files) {
+    console.log('/loadAdditionalDiplomaFiles');
     return this.http.post('/loadAdditionalDiplomaFiles', files);
+  }
+
+  newAdditioanlEducationId() {
+    console.log('newEducation');
+    return this.http.post('/newEducation', '');
   }
 
   public getServiceData() {

@@ -28,6 +28,8 @@ export interface UserDataInterface {
     startStudyYear?: number;
     endStudyYear?: number;
   }];
+  comments_count?: number;
+
   // ?:;
   // ?:;
   // ?:;

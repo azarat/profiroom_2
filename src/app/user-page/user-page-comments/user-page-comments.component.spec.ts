@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EmojiComponent } from './emoji.component';
+import { UserPageCommentsComponent } from './user-page-comments.component';
 
-describe('EmojiComponent', () => {
-  let component: EmojiComponent;
-  let fixture: ComponentFixture<EmojiComponent>;
+describe('UserPageCommentsComponent', () => {
+  let component: UserPageCommentsComponent;
+  let fixture: ComponentFixture<UserPageCommentsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EmojiComponent ]
+      declarations: [ UserPageCommentsComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EmojiComponent);
+    fixture = TestBed.createComponent(UserPageCommentsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

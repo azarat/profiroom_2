@@ -23,7 +23,8 @@
   box-shadow: 0px 4px 4px rgba(128, 152, 213, 0.1);
   position: absolute;
   width: 100%;
-  top: 113px;
+  top: 137px;
+
   &.sticky {
     position: fixed;
     top: 0;
@@ -66,7 +67,8 @@
   max-width: 1045px;
   margin: 0 auto;
   background-color: #fff;
-  padding: 50px 30px 0;
+  padding: 50px 30px 100px;
+
 }
 
 .back-to-list {
@@ -164,8 +166,8 @@
       }
     }
   }
-  &__lvl {
-  }
+  // &__lvl {}
+
   &__available {
     font-size: 14px;
     line-height: 18px;
@@ -181,8 +183,8 @@
   &__inProces {
     margin-top: 16px;
   }
-  &__awaiting {
-  }
+
+  // &__awaiting {}
   &__actions {
     display: flex;
     .action {
@@ -350,6 +352,9 @@
     }
   }
   &__name {
+
+    margin-right: 3px;
+
   }
   &__lvl {
     font-weight: normal;
@@ -394,13 +399,17 @@
 }
 
 .raiting {
-  &__wrapper{
+
+  margin-bottom: 30px;
+  border-bottom: 1px solid #f1f2f4;
+  &__wrapper {
     display: flex;
     flex-direction: column;
     margin-top: 20px;
     width: 410px;
   }
-  &__info-block{
+
+  &__info-block {
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -414,16 +423,26 @@
       border-bottom: 1px solid #f1f2f4;
     }
   }
-  &__name{
+
+  &__name {
     width: 220px;
     margin-right: 20px;
 
     font-weight: 600;
     color: #707683;
   }
+
+  &__commnets {
+    font-weight: normal;
+    color: #99acb7;
+    line-height: 20px;
+  }
+}
+
   &__commnets{
     font-weight: normal;
     color: #99ACB7;
     line-height: 20px;
   }
 }
+

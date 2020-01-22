@@ -3,6 +3,7 @@ import { ScrollToService, ScrollToConfigOptions } from '@nicky-lenaers/ngx-scrol
 import { UserDataInterface } from '../shared/interfaces/user-data.interface';
 import { UserDataService } from './service/user.service';
 import { filter } from 'rxjs/internal/operators/filter';
+
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../core/services/user.service';
 import { LocalizeRouterService } from 'localize-router';
@@ -17,6 +18,15 @@ export class UserPageComponent implements OnInit {
 
   public userData: UserDataInterface;
   sticky = false;
+
+  public academicDegreesTranslations = [
+    'Начальный ',
+    'Ниже среднего',
+    'Средний ',
+    'Выше среднего',
+    'Князь тьмы'
+  ];
+
   @ViewChild('stickyMenu', {static: false}) menuElement: ElementRef;
 
   private id: any;
@@ -30,6 +40,7 @@ export class UserPageComponent implements OnInit {
     private currentUserService: UserService,
     private localize: LocalizeRouterService,
     private router: Router,
+
   ) {
     this.route.params.subscribe(params =>
       this.id = params);

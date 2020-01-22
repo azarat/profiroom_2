@@ -1,17 +1,17 @@
 
 <div class="wrapper">
   <div class="cards-list" *ngIf="offersList">
-    <div class="card" *ngFor="let offer of offersList.data">
+    <div class="card" *ngFor="let offer of offersList.page.data">
       <div class="card-preview__bg">
         <img class="card-preview" (click)="openOffer(offer.id)" src="/assets/images/preview.png" [src]="'https://www.thecubetest.site/Backend/storage/app/' + offer.mainImage">
       </div>
       <div class="card-description">
 
         <div class="card-description__top">
-          <div class="card-description__ava"><img *ngIf="offer.user.avatar" [src]="'https://www.thecubetest.site/Backend/storage/app/' + offer.user.avatar" alt="avatar">
+          <div class="card-description__ava"><img *ngIf="offer.user.avatar" [src]="offer.user.avatar" alt="avatar">
           </div>
           <div>
-            <span class="card-description__name" (click)="openOffer(offer.id)">{{offer.user.name}} {{offer.user.surname}}</span>
+            <a class="card-description__name" [routerLink]="['/user', offer.user.id] | localize">{{offer.user.name}} {{offer.user.surname}}</a>
             <div class="card-description__skill">{{offer.user.rank_id}}</div>
           </div>
         </div>

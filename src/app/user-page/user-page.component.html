@@ -18,7 +18,7 @@
     <div class="back-to-list">
       <a>Вернуться к списку фрилансеров</a>
     </div>
-    <div class="general-information">
+    <section class="general-information">
       <div class="general-information__avatar">
         <img [src]="userData.avatar" alt="user avatar">
       </div>
@@ -64,8 +64,8 @@
         </div>
 
       </div>
-    </div>
-    <div class="about-user">
+    </section>
+    <section class="about-user">
       <div class="about-user__wrapper">
         <div class="about-user__info-block">
           <div class="about-user__title">Страна, город</div>
@@ -91,17 +91,17 @@
       <div class="about-user__description">
         <p>{{userData.description}}</p>
       </div>
-    </div>
-    <div class="languages">
+    </section>
+    <section class="languages">
       <div class="section-title">Знание языков</div>
       <ul class="languages__wrapper">
         <li class="languages__info-block" *ngFor="let language of userData.language">
-          <div class="languages__name">{{ language.langName}} - </div>
-          <div class="languages__lvl">{{ language.langLevel}}</div>
+          <div class="languages__name">{{ language.langName}} </div>
+          <div class="languages__lvl"> - {{ academicDegreesTranslations[language.langLevel-1]}}</div>
         </li>
       </ul>
-    </div>
-    <div class="aducation">
+    </section>
+    <section class="aducation">
       <div class="section-title">Высшее образование</div>
       <div class="aducation__wrapper">
         <div class="aducation__info-block" *ngFor="let education of userData.education">
@@ -112,8 +112,8 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="aducation">
+    </section>
+    <section class="aducation">
       <div class="section-title">Дополнительное образование</div>
       <div class="aducation__wrapper">
         <div class="aducation__info-block" *ngFor="let education of userData.additionalEducation">
@@ -124,8 +124,8 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="raiting">
+    </section>
+    <section class="raiting">
       <div class="section-title">Общий рейтинг всех услуг:</div>
       <div class="raiting__wrapper">
         <div class="raiting__info-block">
@@ -146,13 +146,12 @@
         <div class="raiting__info-block">
           <div class="raiting__name">Средняя оценка</div>
           <div class="star-raiting">4,5</div>
-          <div class="raiting__commnets">(1k+ отзывов)</div>
+          <div class="raiting__commnets">( {{ userData.comments_count}} отзывов)</div>
         </div>
       </div>
-    </div>
-    <div class="user-services">
-      <div class="section-title">Услуги фрилансера</div>
-
-    </div>
+    </section>
+    <app-user-page-services *ngIf="userData" [userData] = userData></app-user-page-services>
+    <app-user-page-comments *ngIf="userData" [userData] = userData></app-user-page-comments>
   </div>
 </div>
+

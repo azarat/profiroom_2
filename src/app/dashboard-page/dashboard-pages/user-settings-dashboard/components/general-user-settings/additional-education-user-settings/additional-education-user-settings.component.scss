@@ -189,29 +189,52 @@
 .add-photos{
   width: auto;
   display: flex;
-  margin-bottom: 20px;
-  margin-top: 10px;
-  button {
-    padding-left: 30px;
-    position: relative;
-    color: #3C7EEA;
-    &::before{
-      position: absolute;
-      content: "";
-      top: 50%;
-      left: 0;
-      transform: translateY(-50%);
-      height: 18px;
-      width: 19px;
-      background-image: url(/assets/images/svg/settings-page/clip.svg);
-      background-repeat: no-repeat;
-      background-size: contain;
+  margin-bottom: 10px;
+  position: relative;
+  color: #3C7EEA;
+  &::before{
+    position: absolute;
+    content: "";
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    height: 18px;
+    width: 19px;
+    background-image: url(/assets/images/svg/settings-page/clip.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+  &:hover{
+    color: #5695fd;
+  }
+
+  .input-file {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+
+    & + label {
+      cursor: pointer;
+      font-family: Source Sans Pro, sans-serif;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 33px;
+      text-align: center;
+      color: #3c7eea;
+      padding-left: 30px;
     }
     &:hover{
-      color: #5695fd;
+      label {
+        color: #5695fd;
+      }
     }
   }
 }
+
 .add-education{
   color: #3C7EEA;
   span{
@@ -294,3 +317,58 @@ button {
     }
   }
 }
+
+// ---------------------------file upload form ---------------------------
+.items {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  .img-item {
+    width: 197px;
+    height: 197px;
+    margin-right: 3%;
+    margin-bottom: 20px;
+    position: relative;
+    button.delete-file {
+      position: absolute;
+      height: 24px;
+      width: 24px;
+      border-radius: 50%;
+      background-color: #fff;
+      border: none;
+      box-shadow: none;
+      right: 13px;
+      top: 13px;
+      outline: none;
+      padding: 0;
+      cursor: pointer;
+      outline: none;
+      margin-right: 0;
+      &:before {
+        position: absolute;
+        content: "\e900";
+        font-size: 18px;
+        font-family: "icomoon";
+        transform: translate(-50%, -50%);
+        color: red;
+      }
+    }
+    &:nth-child(3n + 3) {
+      margin-right: 0;
+    }
+    &:before {
+      position: absolute;
+      content: "";
+      width: 100%;
+      height: 100%;
+      border: 2px dashed #dce0e6;
+    }
+  }
+  img {
+    object-fit: contain;
+    width: 196px;
+    height: 196px;
+    padding: 2px;
+  }
+}
+
