@@ -20,7 +20,10 @@ export class FilterComponent implements OnInit {
     public _getOffersService: GetOffersService,
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.catalogFilters);
+  }
+
 
   onFilterChange() {
     console.log(this.catalogFilters);

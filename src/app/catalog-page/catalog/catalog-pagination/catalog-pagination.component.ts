@@ -25,7 +25,7 @@ export class CatalogPaginationComponent implements OnInit {
     this.getOffersService.offersList.subscribe(data => {
       if (data) {
         this.offersList = data;
-        console.log(this.offersList.page);
+        // console.log(this.offersList.page);
       }
 
       if (this.offersList) {

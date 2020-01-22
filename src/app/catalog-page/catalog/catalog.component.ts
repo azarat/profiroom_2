@@ -38,21 +38,21 @@ export class CatalogComponent implements OnInit {
     // --------------check url params value---------------
     this._route.params.subscribe(Params => {
       this.catalogFilters = plainToClass(CatalogFiltersModel, Params);
-      console.log('catalog filters', this.catalogFilters);
+      // console.log('catalog filters', this.catalogFilters);
       // this.catalogFilters.subCategory = Params.subCategory;
       this.GetOffersService.getOffers(this.catalogFilters);
       // ------- value of category for breadcrumbs
       this.category = Params.category;
-      console.log(this.category);
+      // console.log(this.category);
     });
 
     // --------------check queryParams value---------------
     this._route.queryParams.subscribe(qParams => {
       if (qParams && (Object.keys(qParams).length === 0)) {
-        console.log('queryParams is empty');
+        // console.log('queryParams is empty');
         this.catalogFilters.current_page = 1;
       } else {
-        console.log('from query params');
+        // console.log('from query params');
         this.GetOffersService.getOffers(qParams);
 
 
@@ -65,7 +65,7 @@ export class CatalogComponent implements OnInit {
 
     this.GetOffersService.offersList.subscribe(data => {
       this.offersList = data;
-      console.log(this.offersList);
+      // console.log(this.offersList);
 
       if (this.offersList) {
         this.pagesToShow();
@@ -90,7 +90,7 @@ export class CatalogComponent implements OnInit {
     for (let i = a - 1; i < b; i++ ) {
       this.pagesArr.push(i);
     }
-    console.log(this.pagesArr);
+    // console.log(this.pagesArr);
   }
 
 
