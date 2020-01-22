@@ -23,7 +23,7 @@ export class MyServicesHomeComponent implements OnInit {
   translatedPath: any = this.localize.translateRoute('/dashboard/my-services/create');
   serviceToDeleteId: string = null;
 
-  currentTab: string = null;
+  currentTab = 1;
   tabs = tabsConst;
 
   @ViewChild('scrolledBlock', {static: false}) el: ElementRef;
@@ -42,8 +42,8 @@ export class MyServicesHomeComponent implements OnInit {
 
   // ngOnDestroy() {
   // }
-  setCurrentTab(tab: string) {
-    this.currentTab = tab;
+  setCurrentTab(tab: any) {
+    this.currentTab = tab.index + 1;
 
     this.el.nativeElement.scroll(0, 0)
   }

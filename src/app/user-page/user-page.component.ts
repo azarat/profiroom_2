@@ -33,7 +33,7 @@ export class UserPageComponent implements OnInit {
     private userService: UserDataService,
     private route: ActivatedRoute,
   ) {
-    this.route.params.subscribe(params=>
+    this.route.params.subscribe(params =>
       this.id = params);
 
     console.log(this.id);

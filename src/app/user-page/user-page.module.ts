@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LocalizeRouterModule } from 'localize-router';
 import { MainHeaderModule } from '../shared/modules/main-header/main-header.module';
 import { CategoriesHeaderModule } from '../shared/modules/categories-header/categories-header.module';
+import { UserDataService } from './service/user.service';
 
 const routes: Routes = [
   {
@@ -23,6 +24,9 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     MainHeaderModule,
     CategoriesHeaderModule,
+  ],
+  providers: [
+    UserDataService
   ]
 })
 export class UserPageModule { }

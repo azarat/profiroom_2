@@ -1,51 +1,45 @@
-<section class="collocutor-wrap">
+<section class="collocutor-wrap" *ngIf="collocutor">
   <div class=" line">
     <div class="collocutor-photo">
-      <img src="/assets/images/images/opponent.jpg" alt="collocutor-photo">
+      <img [src]=collocutor.avatar alt="collocutor-photo">
     </div>
   </div>
   <div class="information">
     <p class="name">
-      <span>жанна</span>&nbsp;<span>друкач</span>
+      <span>{{ collocutorData.collocutorName }}</span>&nbsp;<span> {{ collocutorData.collocutorSurname }}</span>
     </p>
     <div class="raiting">
-      <app-star-raiting [currentRaiting]="collocutorRaiting"></app-star-raiting>
-      <span>{{ collocutorRaiting }}</span> <span class="comments">({{ collocutorAllComments }} отзывов)</span>
+      <app-star-raiting [currentRaiting]="collocutor.raiting"></app-star-raiting>
+      <span>{{ collocutor.raiting  }}</span> <span class="comments">({{ collocutorAllComments }} отзывов)</span>
     </div>
     <span class="line"></span>
     <div class="collocutor-main-info">
       <div>
         <span>Страна</span>
-        <span>Украина</span>
+        <span>{{ collocutor.country  }}</span>
       </div>
       <div>
         <span>Среднее время ответа</span>
-        <span>1 час</span>
+        <span>{{ collocutor.answerTime }} час</span>
       </div>
       <div>
         <span>Разговорный язык</span>
-        <span>русский</span>
+        <span>{{ collocutor.language }}</span>
       </div>
       <div>
         <span>Выполнено заказов</span>
-        <span>3</span>
+        <span>{{ collocutor.endedWorks }}</span>
       </div>
       <div>
         <span>Арбитраж</span>
-        <span>52</span>
+        <span>{{ collocutor.arbitration }}</span>
       </div>
     </div>
     <span class="line"></span>
     <div class="collocutor-about" [ngClass]="{open: isInformWraped}">
       <p>
-        Привет, друзья! Я графический дизайнер с большим опытом работы. Я всегда внимательно отношусь к...
-        Привет, друзья! Я графический дизайнер с большим опытом работы. Я всегда внимательно отношусь к...
-        Привет, друзья! Я графический дизайнер с большим опытом работы. Я всегда внимательно отношусь к...
-        Привет, друзья! Я графический дизайнер с большим опытом работы. Я всегда внимательно отношусь к...
-        Привет, друзья! Я графический дизайнер с большим опытом работы. Я всегда внимательно отношусь к...
-        Привет, друзья! Я графический дизайнер с большим опытом работы. Я всегда внимательно отношусь к...
-        Привет, друзья! Я графический дизайнер с большим опытом работы. Я всегда внимательно отношусь к...
-      </p>
+        {{ collocutor.description }}
+    </p>
     </div>
     <button class="btn-tetraty" (click)="showAllInfo()">{{ wrapButtonText }}</button>
   </div>

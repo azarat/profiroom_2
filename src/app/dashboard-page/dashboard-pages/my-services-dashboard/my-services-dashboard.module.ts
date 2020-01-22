@@ -9,7 +9,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule, MatAutocompleteModule, MatCheckboxModule,
   MatIconModule, MatTooltipModule, MatSelectModule, MatButtonModule,
-  MatInputModule, MatChipsModule, MatSlideToggleModule } from '@angular/material';
+  MatInputModule, MatChipsModule, MatSlideToggleModule, MatTabsModule } from '@angular/material';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { DragDropDirective } from './directives/drag-drop.directive';
 
@@ -86,6 +86,7 @@ const servicesRoutes: Routes = [
     MatButtonModule,
     MatTooltipModule,
     MatChipsModule,
+    MatTabsModule
   ],
   exports: [
 

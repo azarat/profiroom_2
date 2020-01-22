@@ -1,52 +1,59 @@
-import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input, ViewChildren, QueryList, Output, EventEmitter, } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ChatService } from '../../services/chat.service';
 import { messages } from '../consts/messages.const';
-import { SocetService } from '../../services/socet.service';
+import { SocketService } from '../../services/socket.service';
 import { CollocutorListModel } from 'src/app/models/chat/collocutors-list.model';
+import { MessageListComponent } from '../message-list/message-list.component';
+import { MessageScrollerService } from '../../services/message-scroller/message-scroller.service';
 
-declare var $: any;
+
+// declare var $: any;
 
 @Component({
   selector: 'app-messager',
   templateUrl: './messager.component.html',
-  styleUrls: ['./messager.component.scss']
+  styleUrls: ['./messager.component.scss'],
+  // providers: [MessageScrollerService]
 })
 export class MessagerComponent implements OnInit {
 
-  messages: any[] = messages;
-
-  public isEmojiVisible = false;
-  messageArray = [];
   public messageText;
-  @Input() collocutorData: CollocutorListModel;
-  // @Input() collocutorImg: string;
   public messagesList = [];
-
+  @Input() collocutorData: CollocutorListModel;
+  @Input() isFileLoaderVisible: boolean;
+  @Output() isFileLoaderVisibleChange = new EventEmitter<boolean>();
 
   constructor(
     private chatService: ChatService,
-    private socetService: SocetService
+    private socketService: SocketService,
+    private messageScrollerService: MessageScrollerService
   ) { }
 
   @ViewChild('textinput', { static: false }) textinput: ElementRef;
+  @ViewChildren(MessageListComponent) messagesWrap: QueryList<MessageListComponent>;
+  @ViewChildren(MessageListComponent) messages: QueryList<ElementRef>;
 
   ngOnInit() {
-    this.socetService.openChat(this.collocutorData.roomId)
-      .subscribe(res => {
-        console.log('socet', res);
-        this.messagesList.push(res);
-      });
-
     this.chatService.getPreviousMessages(this.collocutorData.roomId)
       .subscribe((res: any) => {
 
         this.messagesList = res[0];
         console.log(this.messagesList);
       });
+
+    this.socketService.onMessage()
+      .subscribe(newMessage => {
+        console.log(newMessage);
+        this.messagesList.push(newMessage);
+
+      });
+
+    // console.log('loader visible', this.isFileLoaderVisible);
+
   }
 
-  private get textInput() {
+  public get textInput() {
     return this.textinput.nativeElement;
   }
 
@@ -55,6 +62,8 @@ export class MessagerComponent implements OnInit {
     this.chatService.sentMessage(this.textInput.value, this.collocutorData.roomId).subscribe(res => {
     });
     form.reset();
+
+    this.messageScrollerService.onMessageScrollBottom();
   }
 
   public triggerFunction(event: any, form: NgForm) {
@@ -70,27 +79,9 @@ export class MessagerComponent implements OnInit {
     }
   }
 
-  addEmoji(emoji: any) {
-    // const textInput = this.textinput.nativeElement;
-    // declare cursor position
-    const cursorPointer = this.textInput.selectionEnd;
-    // set place after emoji start
-    const start = this.textInput.value.substring(0, this.textInput.selectionStart);
-    // set place after emoji end
-    const end = this.textInput.value.substring(this.textInput.selectionStart);
-    //  concatenate text with emoji
-    const text = start + emoji.emoji.native + end;
-    // put text in textarea
-    this.textInput.value = text;
-    // focus on textarea
-    this.textInput.focus();
-    // console.log(emoji.emoji.native);
-  }
+  // open file-uploader
 
-  public showEmoji() {
-    this.isEmojiVisible = !this.isEmojiVisible;
-  }
-  hideEmoji() {
-    this.isEmojiVisible = false;
+  openFilesUploader() {
+    this.isFileLoaderVisibleChange.emit(true);
   }
 }
