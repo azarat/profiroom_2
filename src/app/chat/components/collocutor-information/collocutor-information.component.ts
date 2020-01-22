@@ -33,7 +33,6 @@ export class CollocutorInformationComponent implements OnInit {
     .subscribe((res: any) => {
 
       this.collocutor = plainToClass(CollocutorInformationModel, res.user)
-      console.log('colocutor', res)
       this.collocutorAllComments = this.commentsCountTransformerService.transformCommentsVlalue(this.collocutor.comments_count);
     })
 

@@ -168,14 +168,20 @@ export class SocketService {
     //   this.newMessageSubject.next(data);
     // });
 
-    this.socket.on('collocutorsList', (data) => {
-      console.log(data);
-      this.newMessageSubject.next(data);
+    // this.socket.on('collocutorsList', (data) => {
+    //   console.log(data);
+    //   this.newMessageSubject.next(data);
+
+    // });
+    return new Observable(observer => {
+      this.socket.on('collocutorsList', (data) => {
+        observer.next(data);
+      });
     });
   }
 
 
-  subscribeOnMessages() {
-    return this.newMessageSubject.asObservable();
-  }
+  // subscribeOnMessages() {
+
+  // }
 }

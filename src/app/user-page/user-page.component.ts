@@ -3,7 +3,9 @@ import { ScrollToService, ScrollToConfigOptions } from '@nicky-lenaers/ngx-scrol
 import { UserDataInterface } from '../shared/interfaces/user-data.interface';
 import { UserDataService } from './service/user.service';
 import { filter } from 'rxjs/internal/operators/filter';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { UserService } from '../core/services/user.service';
+import { LocalizeRouterService } from 'localize-router';
 
 
 @Component({
@@ -32,6 +34,9 @@ export class UserPageComponent implements OnInit {
     private _scrollToService: ScrollToService,
     private userService: UserDataService,
     private route: ActivatedRoute,
+    private currentUserService: UserService,
+    private localize: LocalizeRouterService,
+    private router: Router,
   ) {
     this.route.params.subscribe(params =>
       this.id = params);
@@ -69,5 +74,16 @@ export class UserPageComponent implements OnInit {
     }
     console.log(config);
     this._scrollToService.scrollTo(config);
+  }
+
+// Open ChatRoom ws this collocutor
+  public openChat(userId) {
+    this.currentUserService.wrightTo(userId)
+    .subscribe(res => {
+      if (res === 'ok') {
+        const translatedPath: any = this.localize.translateRoute('/dashboard/chat-room');
+        this.router.navigate([translatedPath]);
+      }
+    });
   }
 }
