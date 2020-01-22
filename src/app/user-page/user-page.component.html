@@ -150,34 +150,8 @@
         </div>
       </div>
     </section>
-    <section class="user-services">
-      <div class="section-title">Услуги фрилансера</div>
-      <!-- <div class="cards-list">
-        <div class="card" *ngFor="let offer of userData.user.userOffers">
-          <div class="card-preview__bg" (click)="openOffer(offer.id)">
-            <img class="card-preview" [src]="offer.mainImage">
-          </div>
-          <div class="card-description">
-
-            <p class="card-description__about" (click)="openOffer(offer.id)">{{offer.title}}</p>
-            <div class="card-description__bottom">
-              <div class="card-description__level">{{userData.raiting}}</div>
-              <div class="card-description__comments"><a>({{userData.comments_count}} отзывов)</a></div>
-            </div>
-
-          </div>
-          <div class="card-bottom">
-            <div class="card-bottom__like" [class.liked]="offer.liked"></div>
-            <div class="card-bottom__price">
-              от
-              <span>{{offer.minPrice}}</span>
-            </div>
-          </div>
-
-        </div>
-      </div> -->
-    </section>
-
+    <app-user-page-services *ngIf="userData" [userData] = userData></app-user-page-services>
+    <app-user-page-comments *ngIf="userData" [userData] = userData></app-user-page-comments>
   </div>
 </div>
 
