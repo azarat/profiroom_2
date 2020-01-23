@@ -1,7 +1,10 @@
 
-<div class="wrapper">
-  <div class="cards-list" *ngIf="offersList">
-    <div class="card" *ngFor="let offer of offersList.page.data">
+<div class="wrapper" *ngIf="offersList">
+  <div class="total-result">
+      <span class="total-result__text">{{offersList.total}} найдено</span>
+  </div>
+  <div class="cards-list">
+    <div class="card" *ngFor="let offer of offersList.data">
       <div class="card-preview__bg">
         <img class="card-preview" (click)="openOffer(offer.id)" src="/assets/images/preview.png" [src]="'https://www.thecubetest.site/Backend/storage/app/' + offer.mainImage">
       </div>

@@ -10,10 +10,22 @@ import { GetOffersService } from '../../services/get-offers.service';
 })
 export class FilterComponent implements OnInit {
 
+  // private catalogFilters: CatalogFiltersModel
   public fliterOpen = null;
+  public filterTranslations = {
+    online: "Онлайн",
+    PSD: "PSD",
+    PNG: "PNG",
+    commercial: "Коммерческое использование",
+    confidentiality: "Конфиденциальность",
+    agreement: "Контракты и соглашения",
+    LangUkr: "Украинский",
+    LangRus: "Русский",
+    LangBr: "Беларусский",
+  };
 
   @Input() catalogFilters: CatalogFiltersModel;
-
+  // public catalogFilters: CatalogFiltersModel;
 
   constructor(
     // tslint:disable-next-line: variable-name
@@ -21,7 +33,13 @@ export class FilterComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log(this.catalogFilters);
+
+    // this._getOffersService.filterVaraibles.subscribe(data => {
+    //   this.catalogFilters = data;
+
+    //   console.log('FILTERS', this.catalogFilters);
+    // });
+    // console.log(this.catalogFilters);
   }
 
 
@@ -52,4 +70,17 @@ export class FilterComponent implements OnInit {
       this.fliterOpen = x;
     }
   }
+  clearFilter(y, x) {
+    Object.keys(this.catalogFilters).forEach(key => {
+      if (key === y) {
+        if (typeof x === 'boolean') {
+          this.catalogFilters[key] = false;
+        } else {
+          this.catalogFilters[key] = '';
+        }
+      }
+    });
+    this._getOffersService.setFilters(this.catalogFilters);
+  }
+
 }

@@ -39,8 +39,8 @@ export class CatalogComponent implements OnInit {
     this._route.params.subscribe(Params => {
       this.catalogFilters = plainToClass(CatalogFiltersModel, Params);
       // console.log('catalog filters', this.catalogFilters);
-      // this.catalogFilters.subCategory = Params.subCategory;
-      this.GetOffersService.getOffers(this.catalogFilters);
+      this.catalogFilters.subCategory = Params.subCategory;
+      // this.GetOffersService.getOffers(this.catalogFilters);
       // ------- value of category for breadcrumbs
       this.category = Params.category;
       // console.log(this.category);
@@ -51,10 +51,14 @@ export class CatalogComponent implements OnInit {
       if (qParams && (Object.keys(qParams).length === 0)) {
         // console.log('queryParams is empty');
         this.catalogFilters.current_page = 1;
+        console.log(this.catalogFilters);
+        this.GetOffersService.setFilters(this.catalogFilters);
+        this.GetOffersService.getOffers(this.catalogFilters);
       } else {
-        // console.log('from query params');
+        // console.log(qParams);
+        this.GetOffersService.setFilters(qParams);
         this.GetOffersService.getOffers(qParams);
-
+        // console.log(qParams);
 
       }
     });
@@ -93,45 +97,5 @@ export class CatalogComponent implements OnInit {
     // console.log(this.pagesArr);
   }
 
-
-
-
-
-
-
 }
 
-
-
-// export class Page<T> {
-//   count: number;      // total number of items
-//   next: string;       // URL of the next page
-//   previous: string;   // URL of the previous page
-//   results: Array<T>;  // items for the current page
-// }
-
-// export function queryPaginated<T>(http: HttpClient, baseUrl: string, urlOrFilter?: string | object): Observable<Page<T>> {
-//   let params = new HttpParams();
-//   let url = baseUrl;
-
-//   console.log("http ", http);
-//   console.log("baseUrl ", baseUrl);
-//   console.log("urlOrFilter ", urlOrFilter);
-
-//   if (typeof urlOrFilter === 'string') {
-//     // we were given a page URL, use it
-//     url = urlOrFilter;
-//   } else if (typeof urlOrFilter === 'object') {
-//     // we were given filtering criteria, build the query string
-//     Object.keys(urlOrFilter).sort().forEach(key => {
-//       const value = urlOrFilter[key];
-//       if (value !== null) {
-//         params = params.set(key, value.toString());
-//       }
-//     });
-//   }
-
-//   return http.get<Page<T>>(url, {
-//     params: params
-//   });
-// }
