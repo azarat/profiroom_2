@@ -113,7 +113,6 @@ export class FirstStepServiceCreationComponent implements OnInit {
     // tslint:disable-next-line: prefer-for-of
     for (let index = 0; index < event.length; index++) {
       this.files.push(event[index]);
-      console.log(this.files);
     }
     // ------- put files in FormData -------//
     this.files.forEach((el: any) => {

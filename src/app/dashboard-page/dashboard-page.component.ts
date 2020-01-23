@@ -22,6 +22,7 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
   dashboardMenu = dashboardMenuConst;
   user: UserModel;
   socket: string = null;
+  public newMessage: boolean = null;
   constructor(
     private authService: AuthentificationService,
     private userService: UserService,
@@ -42,7 +43,11 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
 
     this.socetService.connect();
 
-    // this.socetService.checkNotifications();
+    this.socetService.checkNotifications()
+    .subscribe(res =>{
+      console.log('new message', res)
+      this.newMessage = true;
+    });
 
     // this.socetService.getNotifications()
     // .subscribe(res => {
@@ -53,8 +58,7 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
 
   }
 
-  ngAfterViewInit(){
-
+  ngAfterViewInit() {
     this.socetService.getNotifications()
     .subscribe(res => {
       console.log('notifications', res);
@@ -62,6 +66,12 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
   }
   userExit = () => {
     this.authService.logOut();
+  }
+
+  public openChat(link) {
+    if (link === 'chat'){
+      this.newMessage = null;
+    }
   }
 
 }

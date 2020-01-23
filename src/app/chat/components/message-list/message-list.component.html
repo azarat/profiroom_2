@@ -1,14 +1,22 @@
-<section class="message-wrap" *ngIf="messagesList && collocutorData">
+<section class="message-wrap" *ngIf="messagesLists && collocutorData">
   <div class="message-list" #messagesWrap (scroll)="onScroll()">
     <!-- <div  #messagesHeight > -->
-    <div *ngFor="let message of messagesList, let i = index">
+    <div *ngFor="let message of messagesLists, let i = index">
       <div class="message"  [ngClass]="{ 'autor': message.author === userId }">
         <div class="photo">
           <img *ngIf="message.author === userId" [src]="userAvatar" alt="avatar">
           <img *ngIf="message.author !== userId" [src]="message.authorAva" alt="avatar">
         </div>
-        <div class="text">
+        <div class="text" *ngIf="message.type === 'string'">
           {{message.message}}
+        </div>
+        <div class="files" *ngIf="message.type === 'file'">
+          <div class="file" *ngFor="let file of message.message">
+            <span class="type"> <img src="/assets/images/icons/files-type/{{file.fileType | fileType}}.png" alt="file"> </span>
+            <span class="name">{{ file.fileName }}</span>
+
+            <a href=file.link><span class="download"></span></a>
+          </div>
         </div>
         <div class="message-control" *ngIf="false"></div>
         <span class="time">{{ message.dateTime | dateFormatPipe }}</span>

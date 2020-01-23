@@ -10,6 +10,7 @@ import 'reflect-metadata';
 import { FormsModule } from '@angular/forms';
 import { SocketService } from './chat/services/socket.service';
 
+
 @NgModule({
   declarations: [
     AppComponent,

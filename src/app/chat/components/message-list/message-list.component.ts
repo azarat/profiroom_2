@@ -19,7 +19,8 @@ export class MessageListComponent implements OnInit, AfterViewChecked {
   @Input() collocutorData: CollocutorListModel;
   userId: any;
   userAvatar: any;
-
+  messCheck = null;
+  messagesLists: any[] = null;
   constructor(
     private chatService: ChatService,
     private messageScrollerService: MessageScrollerService,
@@ -34,6 +35,8 @@ export class MessageListComponent implements OnInit, AfterViewChecked {
   @ViewChildren('messagesWrap') messages: QueryList<ElementRef>;
 
   ngOnInit() {
+    console.log(this.messagesList);
+    this.messagesLists = this.filterArrayOnMessTypes(this.messagesList);
     this.messageScrollerService.onMessageScrollBottom();
   }
 
@@ -43,6 +46,18 @@ export class MessageListComponent implements OnInit, AfterViewChecked {
 
   public onScroll() {
     this.messageScrollerService.onScroll(this.messagesWrap);
+  }
+
+  filterArrayOnMessTypes(arr: any) {
+    arr.forEach((el: any) => {
+      if( el.type === 'file') {
+        el.message = JSON.parse(el.message)
+        console.log(el.message);
+      }
+    });
+    console.log(arr);
+    return arr;
+
   }
 }
 

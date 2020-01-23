@@ -24,27 +24,35 @@ export class MessagerComponent implements OnInit {
   @Input() isFileLoaderVisible: boolean;
   @Output() isFileLoaderVisibleChange = new EventEmitter<boolean>();
 
+  @ViewChild('textarea', { static: false }) textinput: ElementRef;
+  @ViewChildren(MessageListComponent) messagesWrap: QueryList<MessageListComponent>;
+  @ViewChildren(MessageListComponent) messages: QueryList<ElementRef>;
+
   constructor(
     private chatService: ChatService,
     private socketService: SocketService,
     private messageScrollerService: MessageScrollerService
   ) { }
 
-  @ViewChild('textinput', { static: false }) textinput: ElementRef;
-  @ViewChildren(MessageListComponent) messagesWrap: QueryList<MessageListComponent>;
-  @ViewChildren(MessageListComponent) messages: QueryList<ElementRef>;
+
 
   ngOnInit() {
     this.chatService.getPreviousMessages(this.collocutorData.roomId)
       .subscribe((res: any) => {
-
+        console.log('mesages', res)
         this.messagesList = res[0];
-        console.log(this.messagesList);
       });
 
     this.socketService.onMessage()
-      .subscribe(newMessage => {
-        this.messagesList.push(newMessage);
+      .subscribe((newMessage: any) => {
+
+        if (newMessage.type === 'file') {
+          newMessage.message =  newMessage.message !== '' ? JSON.parse(newMessage.message) : {};
+          console.log(newMessage);
+          this.messagesList.push(newMessage);
+        } else {
+          this.messagesList.push(newMessage);
+        }
 
       });
 
@@ -58,7 +66,7 @@ export class MessagerComponent implements OnInit {
 
   public sendMessage(form: NgForm) {
 
-    this.chatService.sentMessage(this.textInput.value, this.collocutorData.roomId).subscribe(res => {
+    this.chatService.sentMessage(this.textInput.value, this.collocutorData.roomId, 'string').subscribe(res => {
     });
     form.reset();
 

@@ -9,7 +9,7 @@ import { formatDataFunction } from 'src/app/shared/functions/format-data.functio
 import { CollocutorListModel } from 'src/app/models/chat/collocutors-list.model';
 import { filter } from 'rxjs/operators';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
-import {Howl, Howler} from 'howler';
+import { Howl, Howler } from 'howler';
 
 
 
@@ -23,7 +23,7 @@ const sound = new Howl({
   templateUrl: './collocutors-list.component.html',
   styleUrls: ['./collocutors-list.component.scss']
 })
-export class CollocutorsListComponent implements OnInit, AfterViewInit {
+export class CollocutorsListComponent implements OnInit {
 
 
   public collocutors;
@@ -48,39 +48,16 @@ export class CollocutorsListComponent implements OnInit, AfterViewInit {
       .subscribe(res => {
 
         this.collocutors = res;
-        console.log(this.collocutors);
         this.sortMessagesByTime(this.collocutors);
       });
 
-    // this.socketService.subscribeOnMessages()
-    //   .subscribe(res => {
-    //     console.log('new mess', res);
-    //     this.pushNewMessage(this.collocutors, res);
-    //     // this.sortMessagesByTime(this.collocutors);
-    //   });
-
     this.socketService.showNewMessage()
       .subscribe(res => {
-        console.log('new mess', res);
         this.pushNewMessage(this.collocutors, res);
-        // this.sortMessagesByTime(this.collocutors);
-      })
+        this.sortMessagesByTime(this.collocutors);
+      });
     this.userId = this.localStorageService.getItem('userId').value;
-
-      console.log(this.userId)
-    // this.socketService.subscribeOnMessages()
-    // .subscribe(res => {
-    //   console.log('new mess', res);
-    //   this.pushNewMessage(this.collocutors, res);
-    //   // this.sortMessagesByTime(this.collocutors);
-    // });
   }
-
-  ngAfterViewInit(): void {
-
-  }
-
-
 
   public openChat(userinfo) {
     this.currentRoom.emit(userinfo);
@@ -89,16 +66,17 @@ export class CollocutorsListComponent implements OnInit, AfterViewInit {
 
   pushNewMessage(arr, obj: any) {
 
-    sound.play();
-
-
-    console.log(arr)
+    // sound.play();
     if (arr.length !== 0) {
       const foundIndex = arr.findIndex(x => x.roomId === obj.roomId);
-      console.log('COLLLLOCUTOOOOORS', this.collocutors[foundIndex]);
       this.collocutors[foundIndex] = obj;
     } else {
       this.collocutors.push(obj);
+    }
+    console.log( obj)
+    if ( obj.collocutorId !== this.userId && obj.unread !== 0) {
+      console.log(obj.collucutorId , this.userId)
+      sound.play();
     }
 
   }
