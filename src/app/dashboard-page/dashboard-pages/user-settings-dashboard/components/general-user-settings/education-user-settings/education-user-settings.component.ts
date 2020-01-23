@@ -39,9 +39,9 @@ export class EducationUserSettingsComponent implements OnInit {
     this.createYears();
     this.openItem = this.userSettings.education.length;
 
-    if (!this.userSettings.education.length) {
-      this.addEducation();
-    }
+    // if (!this.userSettings.education.length) {
+    //   this.addEducation();
+    // }
     // console.log(this.userSettings);
   }
 
@@ -73,6 +73,7 @@ export class EducationUserSettingsComponent implements OnInit {
 
     console.log('create-new-aducation ', this.userSettings.education);
     this.openItem = this.userSettings.education.length + 1;
+
   }
 
   // --------------- delete education-item -----------------//
@@ -87,6 +88,7 @@ export class EducationUserSettingsComponent implements OnInit {
       (res: any) => {
         console.log(res);
       });
+    console.log('create-new-aducation ', this.userSettings.education);
   }
 
   //  --------------- diploma photos uploading ---------------
@@ -142,8 +144,6 @@ export class EducationUserSettingsComponent implements OnInit {
     this.addEducation();
     this.submited = false;
     // console.log(this.institution.valid);
-
-    console.log(this.submited);
   }
 
 }

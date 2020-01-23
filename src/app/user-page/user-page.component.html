@@ -28,13 +28,13 @@
 
         <div class="general-information__online"><span>Oфлайн</span></div>
 
-        <div class="general-information__lvl">Уровень: <span class="value">{{userData.lvl}}</span></div>
+        <div class="general-information__lvl">Уровень: <span class="value">{{userData.rank_id}}</span></div>
       </div>
       <div class="general-information__wrapper">
         <div class="general-information__available">Статус доступности: <span class="value"
             [ngClass]="{load: userData.load}">загружен(-а)</span></div>
-        <div class="general-information__inProces">Проектов в работе: <span class="value">2</span></div>
-        <div class="general-information__awaiting">Проектов в очереди: <span class="value">3</span></div>
+        <div class="general-information__inProces">Проектов в работе: <span class="value">{{userData.inProgressOffers}}</span></div>
+        <div class="general-information__awaiting">Проектов в очереди: <span class="value">{{userData.queuedOffers}}</span></div>
       </div>
       <div class="general-information__actions">
 
@@ -73,7 +73,7 @@
         </div>
         <div class="about-user__info-block">
           <div class="about-user__title">На сайте с</div>
-          <!-- <div class="about-user__value">{{userData.}}</div> -->
+          <div class="about-user__value">{{userData.email_verified_at}}</div>
         </div>
         <div class="about-user__info-block">
           <div class="about-user__title">Исполненных проектов</div>
@@ -131,17 +131,17 @@
         <div class="raiting__info-block">
           <div class="raiting__name">Качество услуг</div>
           <div class="star-raiting">5</div>
-          <div class="raiting__commnets">(1k+ отзывов)</div>
+          <div class="raiting__commnets">(1k+ отзывов) неизвесно</div>
         </div>
         <div class="raiting__info-block">
           <div class="raiting__name">Срок исполнения</div>
           <div class="star-raiting">4</div>
-          <div class="raiting__commnets">(1k+ отзывов)</div>
+          <div class="raiting__commnets">(1k+ отзывов) неизвесно</div>
         </div>
         <div class="raiting__info-block">
           <div class="raiting__name">Вежливость фрилансера</div>
           <div class="star-raiting">4</div>
-          <div class="raiting__commnets">(1k+ отзывов)</div>
+          <div class="raiting__commnets">(1k+ отзывов) неизвесно</div>
         </div>
         <div class="raiting__info-block">
           <div class="raiting__name">Средняя оценка</div>

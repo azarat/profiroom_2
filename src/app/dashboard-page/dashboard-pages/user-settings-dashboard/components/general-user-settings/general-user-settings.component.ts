@@ -39,7 +39,9 @@ export class GeneralUserSettingsComponent implements OnInit {
 
         // this.userSettingsModel = res;
         console.log(res);
+        location.reload();
       }
     );
+
   }
 }

@@ -5,9 +5,12 @@ export interface UserDataInterface {
   avatar?: string;
   name?: string;
   surname?: string;
-  lvl?: number;
+  rank_id?: number;
   country?: string;
   city?: string;
+  email_verified_at?: string;
+  inProgressOffers?: number;
+  queuedOffers?: number;
   endedWorks?: number;
   arbitration?: number;
   answerTime?: number;
@@ -29,6 +32,13 @@ export interface UserDataInterface {
     endStudyYear?: number;
   }];
   comments_count?: number;
+  offers?: [{
+    id?: number;
+    mainImage?: string;
+    description?: string;
+    comments_count?: number;
+    minPrice?: number;
+  }];
   // ?:;
   // ?:;
   // ?:;
