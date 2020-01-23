@@ -13,7 +13,7 @@
 
     </div>
     <div class="collocutors-list" [ngClass]="{ projects: chatType === 'projects' }">
-      <div class="collocutor" *ngFor="let collocutor of collocutors, let i=index" (click)="openChat(collocutor)" [ngClass]="{'unread': userIdString === collocutor.unread}">
+      <div class="collocutor" *ngFor="let collocutor of collocutors, let i=index" (click)="openChat(collocutor)" [ngClass]="{'unread': userId === +collocutor.unread}">
         <span *ngIf="chatType == 'projects'" class="status"></span>
         <p class="date" *ngIf="collocutor.message.length !== 0" >{{ collocutor.message[0].dateTime | dateFormatPipe }}</p>
         <div class="message-preview">

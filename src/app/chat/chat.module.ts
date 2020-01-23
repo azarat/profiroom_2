@@ -47,7 +47,8 @@ import { UploadFileComponent } from './components/upload-file/upload-file.compon
     FormsModule,
     ReactiveFormsModule,
 
-    DataFormatModule
+    DataFormatModule,
+
   ],
   exports: [ChatComponent],
   providers: [
