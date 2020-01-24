@@ -1,11 +1,87 @@
-<section class="comments">
-  <div class="tabs">
+<section class="comments" *ngIf="userData">
+  <div class="comments__top">
+    <!-- <div class="section-title">Отзывы <span>({{ userData.comments_count }})</span></div> -->
+    <div class="section-title">Отзывы <span>( АНДРЕЙ !!!!)</span></div>
 
+    <div class="tabs">
+      <div class="tab" (click)="currentTab = 0" [ngClass]="{active: currentTab === 0}">Положительные (АНДРЕЙ !!!!)</div>
+      <div class="tab" (click)="currentTab = 1" [ngClass]="{active: currentTab === 1}">Отрицательные (АНДРЕЙ !!!!)</div>
+    </div>
   </div>
-  <div class="tabContent">
-
-  </div>
-  <div class="tabContent">
-
-  </div>
+  <ng-container >
+    <div class="tabContent" *ngIf="currentTab === 0">
+      <div class="comment" *ngFor="let comment of userData.positiveComments">
+        <h5 class="comment__service-name">
+          {{comment.offers.title}}
+        </h5>
+        <div class="comment__wrapp">
+          <div class="comment__img-wrapper">
+            <img [src]="comment.offers.mainImage" alt="">
+          </div>
+          <div class="comment__avatar">
+            <img [src]="comment.author.avatar" alt="">
+          </div>
+          <div class="comment__text-wrapper">
+            <div class="comment__top">
+              <div class="comment__name">{{comment.author.name}} {{comment.author.surname}}</div>
+              <div class="comment__date">09.01.2020</div>
+            </div>
+            <div class="comment__message">{{comment.offers.description}}</div>
+            <div class="comment__raiting">
+              <div class="comment__raiting-item">
+                <span>Качество</span>
+                <div class="star-raiting">{{comment.qualityMark}}</div>
+              </div>
+              <div class="comment__raiting-item">
+                <span>Срок</span>
+                <div class="star-raiting">{{comment.termMark}}</div>
+              </div>
+              <div class="comment__raiting-item">
+                <span>Вежливость</span>
+                <div class="star-raiting">{{comment.politenessMark}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container >
+    <div class="tabContent" *ngIf="currentTab === 1">
+      <div class="comment" *ngFor="let comment of userData.negativeComments">
+        <h5 class="comment__service-name">
+          {{comment.offers.title}}
+        </h5>
+        <div class="comment__wrapp">
+          <div class="comment__img-wrapper">
+            <img [src]="comment.offers.mainImage" alt="">
+          </div>
+          <div class="comment__avatar">
+            <img [src]="comment.author.avatar" alt="">
+          </div>
+          <div class="comment__text-wrapper">
+            <div class="comment__top">
+              <div class="comment__name">{{comment.author.name}} {{comment.author.surname}}</div>
+              <div class="comment__date">09.01.2020</div>
+            </div>
+            <div class="comment__message">{{comment.offers.description}}</div>
+            <div class="comment__raiting">
+              <div class="comment__raiting-item">
+                <span>Качество</span>
+                <div class="star-raiting">{{comment.qualityMark}}</div>
+              </div>
+              <div class="comment__raiting-item">
+                <span>Срок</span>
+                <div class="star-raiting">{{comment.termMark}}</div>
+              </div>
+              <div class="comment__raiting-item">
+                <span>Вежливость</span>
+                <div class="star-raiting">{{comment.politenessMark}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
 </section>

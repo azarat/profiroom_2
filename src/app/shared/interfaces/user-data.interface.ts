@@ -39,6 +39,54 @@ export interface UserDataInterface {
     comments_count?: number;
     minPrice?: number;
   }];
+  positiveComments?: [{
+    qualityMark?: number;
+    termMark?: number;
+    politenessMark?: number;
+
+    offers_id?: number;
+    commentator_id?: number;
+
+    commentText?: string;
+
+    author?: [{
+      id: 9
+      name?: string;
+      surname?: string;
+      avatar?: string;
+    }];
+    offers?: [{
+      id: 9
+      title?: string;
+      mainImage?: string;
+      description?: string;
+      raiting?: number;
+    }]
+  }];
+  negativeComments?: [{
+    qualityMark?: number;
+    termMark?: number;
+    politenessMark?: number;
+
+    offers_id?: number;
+    commentator_id?: number;
+
+    commentText?: string;
+
+    author?: [{
+      id: 9
+      name?: string;
+      surname?: string;
+      avatar?: string;
+    }];
+    offers?: [{
+      id: 9
+      title?: string;
+      mainImage?: string;
+      description?: string;
+      raiting?: number;
+    }]
+  }];
   // ?:;
   // ?:;
   // ?:;
