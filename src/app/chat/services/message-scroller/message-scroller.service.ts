@@ -6,7 +6,7 @@ import { Subject, Observable } from 'rxjs';
 export class MessageScrollerService {
 
   disableScrollDown = false;
-  isWrittenMessage$ = new Subject<any>();
+  // isWrittenMessage$ = new Subject<any>();
   isAuthorMessage = false;
 
   constructor() { }
@@ -46,7 +46,7 @@ export class MessageScrollerService {
     this.isAuthorMessage = true;
   }
 
-  getMessaglistProperty(): Observable<any> {
-    return this.isWrittenMessage$.asObservable();
-  }
+  // getMessaglistProperty(): Observable<any> {
+  //   return this.isWrittenMessage$.asObservable();
+  // }
 }

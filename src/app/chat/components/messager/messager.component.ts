@@ -6,6 +6,7 @@ import { SocketService } from '../../services/socket.service';
 import { CollocutorListModel } from 'src/app/models/chat/collocutors-list.model';
 import { MessageListComponent } from '../message-list/message-list.component';
 import { MessageScrollerService } from '../../services/message-scroller/message-scroller.service';
+import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 
 
 // declare var $: any;
@@ -20,6 +21,7 @@ export class MessagerComponent implements OnInit {
 
   public messageText;
   public messagesList = [];
+  private userId;
   @Input() collocutorData: CollocutorListModel;
   @Input() isFileLoaderVisible: boolean;
   @Output() isFileLoaderVisibleChange = new EventEmitter<boolean>();
@@ -31,16 +33,19 @@ export class MessagerComponent implements OnInit {
   constructor(
     private chatService: ChatService,
     private socketService: SocketService,
-    private messageScrollerService: MessageScrollerService
-  ) { }
+    private messageScrollerService: MessageScrollerService,
+    private localStorageService: LocalStorageService
+  ) {
+    this.userId = this.localStorageService.getItem('userId').value;
+  }
 
 
 
   ngOnInit() {
-    this.chatService.getPreviousMessages(this.collocutorData.roomId)
+    this.chatService.getPreviousMessages(this.collocutorData.roomId, 0)
       .subscribe((res: any) => {
-        console.log('mesages', res)
-        this.messagesList = res[0];
+        console.log(res)
+        this.messagesList = this.filterArrayOnMessTypes(res[0]);
       });
 
     this.socketService.onMessage()
@@ -48,11 +53,17 @@ export class MessagerComponent implements OnInit {
 
         if (newMessage.type === 'file') {
           newMessage.message =  newMessage.message !== '' ? JSON.parse(newMessage.message) : {};
-          console.log(newMessage);
-          this.messagesList.push(newMessage);
+          // return newMessage.message = JSON.parse(newMessage.message);
+          // this.messagesList.push(newMessage);
         } else {
-          this.messagesList.push(newMessage);
+          // this.messagesList.push(newMessage);
         }
+        console.log(newMessage)
+        this.messagesList.push(newMessage);
+
+        // if (newMessage.message[0].authot === this.userId) {
+        //   this.messageScrollerService.onMessageScrollBottom();
+        // }
 
       });
 
@@ -91,4 +102,19 @@ export class MessagerComponent implements OnInit {
   openFilesUploader() {
     this.isFileLoaderVisibleChange.emit(true);
   }
+
+
+  filterArrayOnMessTypes(arr: any) {
+    arr.forEach((el: any) => {
+      if (el.type === 'file') {
+        el.message = JSON.parse(el.message)
+      }
+      return el;
+    });
+    return arr;
+
+  }
+
+
+
 }

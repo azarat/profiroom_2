@@ -2,6 +2,7 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { FilesInterface } from '../../interfaces/files.interface';
 import { FileLoaderService } from '../../services/file-loader.service';
 import { ChatService } from '../../services/chat.service';
+import { MessageScrollerService } from '../../services/message-scroller/message-scroller.service';
 
 @Component({
   selector: 'app-upload-file',
@@ -19,7 +20,8 @@ export class UploadFileComponent implements OnInit {
 
   constructor(
     private fileLoaderService: FileLoaderService,
-    private chatService: ChatService
+    private chatService: ChatService,
+    private messageScrollerService: MessageScrollerService
   ) { }
 
   ngOnInit() {
@@ -84,6 +86,8 @@ export class UploadFileComponent implements OnInit {
     this.chatService.sentMessage(MessageString, this.collocutorData.roomId, 'file')
     .subscribe(res => console.log(res));
     this.isFileLoaderVisibleChange.emit(false);
+
+    this.messageScrollerService.onMessageScrollBottom();
   }
 
 }

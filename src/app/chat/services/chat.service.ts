@@ -26,8 +26,8 @@ export class ChatService {
     return this.http.post('/message', { roomId: room, author: userId, message: msg, type: messageType });
   }
 
-  getPreviousMessages(roomId: string) {
-    return this.http.get('/getRoomMessages?roomId=' + roomId);
+  getPreviousMessages(roomId: string, messCount: number) {
+    return this.http.get('/getRoomMessages?roomId=' + roomId + '&start=' + messCount);
   }
 
   public getChatRooms() {

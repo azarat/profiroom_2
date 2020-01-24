@@ -25,7 +25,9 @@
             <p class="collocutor-name">{{ collocutor.collocutorName }} {{ collocutor.collocutorSurname }} </p>
             <p class="collocutor-message" *ngIf="collocutors[i].message.length !== 0" >
               <span *ngIf="userId == collocutor.message[0].author">Вы: </span>
-              {{ collocutor.message[0].message }}</p>
+             <span *ngIf="collocutor.message[0].type === 'string'">{{ collocutor.message[0].message }}</span>
+             <span *ngIf="collocutor.message[0].type === 'file'">Файл</span>
+            </p>
           </div>
         </div>
       </div>
