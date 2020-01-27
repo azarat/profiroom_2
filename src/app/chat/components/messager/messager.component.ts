@@ -7,6 +7,7 @@ import { CollocutorListModel } from 'src/app/models/chat/collocutors-list.model'
 import { MessageListComponent } from '../message-list/message-list.component';
 import { MessageScrollerService } from '../../services/message-scroller/message-scroller.service';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
+import { filter, first } from 'rxjs/operators';
 
 
 // declare var $: any;
@@ -22,6 +23,9 @@ export class MessagerComponent implements OnInit {
   public messageText;
   public messagesList = [];
   private userId;
+  private typing: boolean = false;
+  private time: any;
+
   @Input() collocutorData: CollocutorListModel;
   @Input() isFileLoaderVisible: boolean;
   @Output() isFileLoaderVisibleChange = new EventEmitter<boolean>();
@@ -44,31 +48,19 @@ export class MessagerComponent implements OnInit {
   ngOnInit() {
     this.chatService.getPreviousMessages(this.collocutorData.roomId, 0)
       .subscribe((res: any) => {
-        console.log(res)
         this.messagesList = this.filterArrayOnMessTypes(res[0]);
       });
 
     this.socketService.onMessage()
       .subscribe((newMessage: any) => {
 
-        if (newMessage.type === 'file') {
-          newMessage.message =  newMessage.message !== '' ? JSON.parse(newMessage.message) : {};
-          // return newMessage.message = JSON.parse(newMessage.message);
-          // this.messagesList.push(newMessage);
-        } else {
-          // this.messagesList.push(newMessage);
+        if (newMessage.type === 'file' && typeof newMessage.message === 'string') {
+          console.log('file', newMessage.message);
+          newMessage.message = typeof newMessage.message === 'string' ? JSON.parse(newMessage.message) : [];
         }
-        console.log(newMessage)
+
         this.messagesList.push(newMessage);
-
-        // if (newMessage.message[0].authot === this.userId) {
-        //   this.messageScrollerService.onMessageScrollBottom();
-        // }
-
       });
-
-    // console.log('loader visible', this.isFileLoaderVisible);
-
   }
 
   public get textInput() {
@@ -95,19 +87,38 @@ export class MessagerComponent implements OnInit {
       event.preventDefault();
       this.sendMessage(form);
     }
+    // Typing Event
+    if (this.typing === false) {
+      console.log('event')
+      this.typing = true;
+      this.socketService.onTypingEvent('typing');
+      this.time = setTimeout(() => {
+        this.typingStopped();
+      }, 1000);
+    } else {
+      this.time = null;
+      this.time = setTimeout(()=>{
+        this.typingStopped();
+      }, 1000);
+    }
+  }
+  typingStopped() {
+    this.socketService.onTypingEvent('stopTyping');
+    this.typing = false;
   }
 
   // open file-uploader
 
-  openFilesUploader() {
+  public openFilesUploader() {
     this.isFileLoaderVisibleChange.emit(true);
   }
 
 
-  filterArrayOnMessTypes(arr: any) {
+  public filterArrayOnMessTypes(arr: any) {
     arr.forEach((el: any) => {
       if (el.type === 'file') {
-        el.message = JSON.parse(el.message)
+        el.message = el.message !== '' ? JSON.parse(el.message) : {};
+
       }
       return el;
     });

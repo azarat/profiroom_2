@@ -1,5 +1,5 @@
 <section class="message-wrap" *ngIf="messagesList && collocutorData">
-  <div class="more-messages" (click)="showMoreMessages()" ></div>
+  <div class="more-messages" *ngIf="isShowMoreMessagesBtn" (click)="showMoreMessages()" >Предыдущие сообщения</div>
   <div class="message-list" id="messages-wrap" #messagesWrap (scroll)="onScroll($event)">
     <!-- <div  #messagesHeight > -->
     <div *ngFor="let message of messagesList, let i = index">
@@ -12,11 +12,12 @@
           {{message.message}}
         </div>
         <div class="files" *ngIf="message.type === 'file'">
+
           <div class="file" *ngFor="let file of message.message">
             <img src="/assets/images/icons/files-type/{{file.fileType | fileType}}.png" alt="file">
             <span class="name">{{ file.fileName }}</span>
 
-            <a href={{file.link}} [download]><span class="download"></span></a>
+            <a href={{file.link}} [download] target="_blank"><span class="download"></span></a>
           </div>
         </div>
         <div class="message-control" *ngIf="false"></div>
@@ -28,3 +29,4 @@
 
   </div>
 </section>
+

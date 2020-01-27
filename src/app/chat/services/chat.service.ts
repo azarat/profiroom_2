@@ -38,6 +38,10 @@ export class ChatService {
     return this.http.get('/getChatUser?id=' + id);
   }
 
+  getUploadedFiles(_roomId) {
+    return this.http.post('/getChatFiles', {roomId: _roomId});
+  }
+
 
 }
 

@@ -79,18 +79,22 @@ export class SocketService {
     });
   }
 
-  getNotifications() {
-    return this.notificationSubject.asObservable();
-  }
-
-
   public showNewMessage() {
-
     return new Observable(observer => {
       this.socket.on('collocutorsList', (data) => {
         observer.next(data);
       });
     });
   }
+  // 'typing'
+  onTypingEvent(event: string) {
+    this.socket.emit(event , this.keyPath + this.chatRoomId);
+  }
+
+  // stopTyping() {
+  //   this.socket.emit('stopTyping', this.keyPath + this.chatRoomId);
+  // }
+
+
 
 }

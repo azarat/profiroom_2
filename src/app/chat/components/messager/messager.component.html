@@ -4,7 +4,7 @@
       {{ collocutorData.collocutorName }} {{ collocutorData.collocutorSurname }} <span>онлайн</span>
     </div>
     <div class="messager-tools">
-      <app-show-uploaded-files></app-show-uploaded-files>
+      <app-show-uploaded-files [chatRoom]="collocutorData.roomId"></app-show-uploaded-files>
     </div>
   </div>
   <div class="messager-wrap">
@@ -14,7 +14,7 @@
     <form #message="ngForm" (ngSubmit)="sendMessage(message)" class="message-input">
       <div class="text-input">
         <textarea name="messageText" [ngModel]="messageText" #textarea  id="message" placeholder="Сообщение"
-          (keydown)="triggerFunction($event, message)" ></textarea>
+          (keydown)="triggerFunction($event, message)"  ></textarea>
       </div>
       <div class="tools">
         <div >

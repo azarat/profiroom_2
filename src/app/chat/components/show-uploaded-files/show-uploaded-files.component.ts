@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { SocketService } from '../../services/socket.service';
+import { ChatService } from '../../services/chat.service';
+import { FilesInterface } from '../../interfaces/files.interface';
 
 @Component({
   selector: 'app-show-uploaded-files',
@@ -8,38 +11,18 @@ import { Component, OnInit } from '@angular/core';
 export class ShowUploadedFilesComponent implements OnInit {
 
   isUploadFilesVisible = null;
-
-  files = [
-    {
-      name: 'asdasdasdasdasdads',
-      type: 'zip',
-      date: '15.02.2018'
-    },
-    {
-      name: 'asdasdasdasdasdads',
-      type: 'pdf',
-      date: '15.02.2018'
-    },
-    {
-      name: 'asdasdasdasdasdads',
-      type: 'jpg',
-      date: '15.02.2018'
-    },
-    {
-      name: 'asdasdasdasdasdads',
-      type: 'pdf',
-      date: '15.02.2018'
-    },
-    {
-      name: 'asdasdasdasdasdads',
-      type: 'jpg',
-      date: '15.02.2018'
-    },
-
-  ]
-  constructor() { }
+  @Input() chatRoom;
+  files: FilesInterface[];
+  constructor(
+    private chatService: ChatService
+  ) { }
 
   ngOnInit() {
+    this.chatService.getUploadedFiles(this.chatRoom)
+    .subscribe((res: any) => {
+      console.log(res);
+      this.files = res;
+    });
   }
 
   showFiles() {

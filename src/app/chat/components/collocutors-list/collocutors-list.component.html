@@ -1,6 +1,6 @@
 <div class="wrapper" *ngIf="collocutors && chatType" [ngClass]="{ projects: chatType === 'projects' }">
   <section class="line">
-    Все сообщения <span>(1250)</span>
+    Все сообщения <span>({{ collocutors.length }})</span>
   </section>
   <section class="collocutors-wrap">
     <div class="collocutors-serch" *ngIf="chatType !== 'projects'">

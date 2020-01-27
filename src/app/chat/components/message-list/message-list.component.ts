@@ -69,28 +69,29 @@ export class MessageListComponent implements OnInit, AfterViewChecked {
   }
 
   showMoreMessages() {
-    this.chatService.getPreviousMessages(this.collocutorData.roomId, 25)
+    const firstMessage = $('.message:first');
+    // this.messagesWrap.nativeElement.scrollTop;
+    const cerOffset = firstMessage.offset().top - $('#messages-wrap').scrollTop() - 1;
+    this.chatService.getPreviousMessages(this.collocutorData.roomId, this.messagesList.length)
       .subscribe(res => {
-        let x = this.filterArrayOnMessTypes(res[0])
-        this.messagesList = x.comcat(this.messagesList);
-      })
+        // let x = this.filterArrayOnMessTypes(res[0]);
+        this.messagesList = this.filterArrayOnMessTypes(res[0]).concat(this.messagesList);
+        $('#messages-wrap').scrollTop(firstMessage.offset().top - cerOffset );
+      });
     }
 
 
   filterArrayOnMessTypes(arr: any) {
+    console.log('event')
     arr.forEach((el: any) => {
-      if (el.type === 'file') {
-        el.message = JSON.parse(el.message)
+      if (el.type === 'file' && typeof el.message === 'string') {
+        el.message =   el.message !== '' ? JSON.parse(el.message) : {};
+        // newMessage.message =  newMessage.message !== '' ? JSON.parse(newMessage.message) : {};
+        return el;
       }
-      return el;
     });
+    console.log(arr);
     return arr;
 
   }
 }
-
-// el.nativeElement.scrollHeight - el.nativeElement.scrollTop
-// scrollTop: 253
-// scrollLeft: 0
-// scrollWidth: 777
-// scrollHeight: 1166
