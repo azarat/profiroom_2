@@ -49,6 +49,7 @@ export class UserPageComponent implements OnDestroy  {
       console.log(params);
       this.id = params;
       this.getUserData(this.id);
+      window.scrollTo(0, 0);
     });
 
     

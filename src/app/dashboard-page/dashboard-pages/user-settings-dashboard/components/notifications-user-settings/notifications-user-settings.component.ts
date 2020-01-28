@@ -22,7 +22,6 @@ export class NotificationsUserSettingsComponent implements OnInit {
   }
 
   updateSettings(form: NgForm) {
-    console.log("formData", form.value);
     this.userSettingsService
       .updateUserNotifications(form.value)
       .pipe(filter((res: any) => !!res))

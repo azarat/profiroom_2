@@ -4,13 +4,13 @@
   </h4>
   <div class="top-section">
     <div class="photo">
-      <div class="offer-avatar">
+      <a class="offer-avatar" [routerLink]="['/user', offerData.user.id] | localize">
         <img [src]="offerData.user.avatar" alt="user avatar">
-      </div>
+      </a>
     </div>
     <div class="offer-info">
-      <span class="offer-name">{{ offerData.user.name }} {{ offerData.user.surname }}</span>
-      <div class="offer-status">Уровень: Опытный(-ая)</div>
+      <span class="offer-name" [routerLink]="['/user', offerData.user.id] | localize">{{ offerData.user.name }} {{ offerData.user.surname }}</span>
+      <div class="offer-status">Уровень: {{ offerData.user.rank_id }}</div>
       <div class="user-raiting-wrapp">
         <p class="star-raiting">{{ offerData.raiting }}<span class="user-comments">({{ convertedNumberOfComments }} отзывов)</span></p>
       </div>
@@ -46,26 +46,26 @@
   <div class="main-info">
     <div class="info-item">
       <p class="title">Страна</p>
-      <p class="text">Украина</p>
+      <p class="text">{{ offerData.user.country }}</p>
     </div>
-    <div class="info-item">
+    <div class="info-item" >
       <p class="title">На сайте с</p>
-      <p class="text">21.12.2018</p>
+      <p class="text" *ngIf="offerData.created_at">{{ offerData.created_at }}</p>
     </div>
     <div class="info-item">
       <p class="title">Время ответа</p>
-      <p class="text">около 3 часов </p>
+      <p class="text">{{ offerData.user.answerTime }} </p>
     </div>
     <div class="info-item">
       <p class="title">Обращений в арбитраж</p>
-      <p class="text">1</p>
+      <p class="text">{{ offerData.user.arbitration }}</p>
     </div>
     <div class="info-item">
       <p class="title">Проектов в работе</p>
-      <p class="text">2</p>
+      <p class="text">{{ offerData.user.inProgressOffers }}</p>
     </div>
   </div>
   <div class="about-offer">
-    Занимаюсь дизайном с 2010 года.  Мои профессиональные навыки создание дизайна сайтов, лоотипов, мобильных приложений и прочего. Занимаюсь дизайном с 2010 года.  Мои профессиональные навыки создание дизайна сайтов, лоотипов, мобильных приложений и прочего. Занимаюсь дизайном с 2010 года.  Мои профессиональные навыки создание дизайна сайтов, лоотипов, мобильных приложений и прочего. Занимаюсь дизайном с 2010 года.  Мои профессиональные навыки создание дизайна сайтов, лоотипов, мобильных приложений и прочего.
+    <p>{{ offerData.user.description }}</p>
   </div>
 </section>

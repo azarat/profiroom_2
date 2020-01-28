@@ -86,14 +86,18 @@
       padding-bottom: 3px;
       text-decoration: none;
       color: #323c47;
+      cursor: pointer;
       &:hover{
-        text-decoration: underline;
-        cursor: pointer;
+        color: #5695FD;
       }
     }
     &__about{
       max-height: 41px;
       overflow: hidden;
+      cursor: pointer;
+      &:hover{
+        color: #5695FD;
+      }
     }
     &__skill {
       font-size: 16px;
@@ -134,7 +138,6 @@
       line-height: 20px;
       color: #99acb7;
       margin-left: 14px;
-      cursor: pointer;
     }
   }
   &-bottom {

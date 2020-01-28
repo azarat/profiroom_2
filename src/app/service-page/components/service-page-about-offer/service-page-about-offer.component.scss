@@ -15,6 +15,7 @@
         position: relative;
         overflow: hidden;
         margin-right: 20px;
+        display: block;
         img {
           position: absolute;
           top: 50%;
@@ -31,7 +32,7 @@
     width: 100%;
     margin-bottom: 30px;
     .offer-name{
-      width: 100%;
+      width: fit-content;
       margin-bottom: 6px;
       display: block;
       font-style: normal;
@@ -39,6 +40,10 @@
       font-size: 18px;
       line-height: 18px;
       color: #323c47;
+      cursor: pointer;
+      &:hover{
+        color: #5695FD;
+      }
     }
     .offer-status{
       font-style: normal;
