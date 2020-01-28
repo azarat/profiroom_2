@@ -47,7 +47,6 @@ export class AdditionalEducationUserSettingsComponent implements OnInit {
       (res: any) => {
         this.additionalEducationId = res.data[0].id;
         if (this.additionalEducationId) {
-          console.log('create-new-aducation-id ', this.additionalEducationId);
           this.userSettings.additionalEducation.push({
             id: this.additionalEducationId,
             additionalInstitution: 'Учебное заведение',
@@ -67,16 +66,12 @@ export class AdditionalEducationUserSettingsComponent implements OnInit {
 
   // --------------- delete education-item -----------------//
   deleteEducation(deletedEducation: number, i) {
-    console.log(this.userSettings);
     const educationId = {
       id: deletedEducation
     };
 
     this.userSettings.deleteAdditionalEducation(i);
-    this.userSettingsService.deleteEducatioon(educationId).subscribe(
-      (res: any) => {
-        console.log(res);
-    });
+    this.userSettingsService.deleteEducatioon(educationId);
   }
 
   chooseItem(i) {
@@ -89,9 +84,6 @@ export class AdditionalEducationUserSettingsComponent implements OnInit {
 
   //  --------------- diploma photos uploading ---------------
   fileProgress = (event: any, id: any, i: number) => {
-
-    console.log('additioanl');
-
     const formData: FormData = new FormData();
     this.files = [];
 
@@ -113,21 +105,16 @@ export class AdditionalEducationUserSettingsComponent implements OnInit {
 
       this.userSettings.additionalEducation[i].additionalDiploma.push(this.previewUrl);
     });
-    console.log(this.userSettings);
   }
 
   // --------------- save changes -----------------//
   onSubmit(form) {
     this.submited = true;
     if (form.invalid) {
-      console.log('invalid');
       return;
     }
     this.addEducation();
     this.submited = false;
-    // console.log(this.institution.valid);
-
-    console.log(this.submited);
   }
 
 }

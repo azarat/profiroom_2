@@ -19,11 +19,9 @@ export class CatalogPaginationComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
     this.getOffersService.offersList.subscribe(data => {
       if (data) {
         this.offersList = data;
-        // console.log(this.offersList.page);
       }
       if (this.offersList) {
           this.pagesToShow();
@@ -33,20 +31,19 @@ export class CatalogPaginationComponent implements OnInit {
   }
 
   onPrevPage() {
-    this.catalogFilters.page = this.offersList.current_page - 1;
-    // console.log(this.catalogFilters.page);
+    this.catalogFilters.page = this.offersList.page.current_page - 1;
+
     this.getOffersService.setFilters(this.catalogFilters);
     this.pagesToShow();
   }
   onNextPage() {
-    this.catalogFilters.page = this.offersList.current_page + 1;
-    // console.log(this.catalogFilters.page);
+    this.catalogFilters.page = this.offersList.page.current_page + 1;
+
     this.getOffersService.setFilters(this.catalogFilters);
     this.pagesToShow();
   }
   onPage(x) {
     this.catalogFilters.page = x;
-    // console.log(this.catalogFilters.page);
     this.getOffersService.setFilters(this.catalogFilters);
     this.pagesToShow();
   }
@@ -78,7 +75,7 @@ export class CatalogPaginationComponent implements OnInit {
 
     // pagesToShow
     const b = a + 2;
-    // console.log(a);
+
     for (let i = a - 1; i < b; i++ ) {
       this.pagesArr.push(i);
     }

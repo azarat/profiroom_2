@@ -38,6 +38,12 @@ export class SecurityMailUserSettingsComponent implements OnInit {
       password: ['', [Validators.required]]
     });
 
+    this.mailForm.valueChanges.subscribe((value) => console.log(value));
+    this.mailForm.statusChanges.subscribe((status) => {
+      console.log(this.mailForm.status);
+
+    });
+
     this.currentMail = this.userSettings.oldMail;
   }
 

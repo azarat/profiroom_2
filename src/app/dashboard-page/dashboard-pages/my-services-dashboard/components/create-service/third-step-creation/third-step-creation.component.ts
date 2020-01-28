@@ -65,8 +65,6 @@ translatedPath: any = this.localize.translateRoute('/dashboard/my-services');
   public nextStep(form: NgForm) {
     this.submited = true;
     if (form.invalid) {
-      console.log('invalid');
-      console.log(this.userService);
       return;
     }
     this.userOffersService.updateService(this.userService)
@@ -81,7 +79,6 @@ translatedPath: any = this.localize.translateRoute('/dashboard/my-services');
   }
 
   changePackageAmount(e: boolean) {
-    console.log(e);
     this.showPackages = e;
   }
 

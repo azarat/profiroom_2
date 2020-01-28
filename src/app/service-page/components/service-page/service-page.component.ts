@@ -74,7 +74,9 @@ export class ServicePageComponent implements OnInit {
   getSimilarOffers(offerId: {offerId: string}) {
     this.offerDataService.similarOffers(offerId)
     .subscribe((res: any) => {
-      this.similarOffers = res.simularOffers;
+
+      this.similarOffers = res;
+      console.log(this.similarOffers);
     });
   }
 

@@ -13,10 +13,8 @@ import { filter } from 'rxjs/operators';
 export class MainUserSettingsComponent implements OnInit {
 
   public mainSettingsFrom: FormGroup;
-
   avaUrl: string;
   file: any;
-
 
   constructor(
     private userSettingsService: UserSettingsService,
@@ -24,9 +22,7 @@ export class MainUserSettingsComponent implements OnInit {
 
   @Input() userSettingsModel: UserSettingsModel;
 
-  ngOnInit() {
-
-  }
+  ngOnInit() { }
 
   avatarUpload = (event: any) => {
 
@@ -36,13 +32,11 @@ export class MainUserSettingsComponent implements OnInit {
     }
     formData.append('avatar', this.file);
 
-    console.log(formData);
     this.userSettingsService.uploadFiles(formData)
-    .pipe(filter((res: any) => !!res))
-    .subscribe((res: any) => {
-      // console.log(res)
-      this.userSettingsModel.avatar = res.avatar;
-    });
+      .pipe(filter((res: any) => !!res))
+      .subscribe((res: any) => {
+        this.userSettingsModel.avatar = res.avatar;
+      });
   }
 
 

@@ -18,11 +18,9 @@ export class AuthentificationPageComponent implements OnInit {
     private authService: AuthentificationService
   ) {
     this._route.queryParams.subscribe(data => {
-      // console.log(data)
       if (data.id) {
         this.authService.verifyEmail(data.id, data.expires, data.signature)
           .subscribe(data => {
-            console.log(data);
             if (data === 'Email verified!' ) {
               this.message = {
                 title: 'Email подтвержден',
@@ -35,11 +33,9 @@ export class AuthentificationPageComponent implements OnInit {
   }
   year = new Date().getFullYear();
   ngOnInit() {
-    console.log(this.auth);
   }
   swipeBtn() {
       this.auth = !this.auth;
-    console.log(this.auth);
   }
   // varifyEmail( expires, id, signature) {
 

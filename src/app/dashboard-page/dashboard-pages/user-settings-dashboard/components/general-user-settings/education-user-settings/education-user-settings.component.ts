@@ -52,8 +52,6 @@ export class EducationUserSettingsComponent implements OnInit {
         this.educationId = res.data[0].id;
 
         if (this.educationId) {
-
-          console.log('create-new-aducation-id ', this.educationId);
           this.userSettings.education.push({
             id: this.educationId,
             institution: '',
@@ -66,12 +64,6 @@ export class EducationUserSettingsComponent implements OnInit {
         }
       }
     );
-
-
-    // this.educationId.subscribe
-
-
-    console.log('create-new-aducation ', this.userSettings.education);
     this.openItem = this.userSettings.education.length + 1;
 
   }
@@ -84,11 +76,7 @@ export class EducationUserSettingsComponent implements OnInit {
     };
 
     this.userSettings.deleteEducation(i);
-    this.userSettingsService.deleteEducatioon(educationId).subscribe(
-      (res: any) => {
-        console.log(res);
-      });
-    console.log('create-new-aducation ', this.userSettings.education);
+    this.userSettingsService.deleteEducatioon(educationId);
   }
 
   //  --------------- diploma photos uploading ---------------
@@ -115,7 +103,6 @@ export class EducationUserSettingsComponent implements OnInit {
 
       this.userSettings.education[i].diploma.push(this.previewUrl);
     });
-    console.log(this.userSettings);
   }
 
   // --------------- open single item -----------------//
@@ -138,12 +125,10 @@ export class EducationUserSettingsComponent implements OnInit {
   onSubmit(form) {
     this.submited = true;
     if (form.invalid) {
-      console.log('invalid');
       return;
     }
     this.addEducation();
     this.submited = false;
-    // console.log(this.institution.valid);
   }
 
 }

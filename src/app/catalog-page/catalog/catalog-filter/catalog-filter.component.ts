@@ -44,7 +44,6 @@ export class FilterComponent implements OnInit {
 
 
   onFilterChange() {
-    console.log(this.catalogFilters);
     this._getOffersService.setFilters(this.catalogFilters);
   }
 

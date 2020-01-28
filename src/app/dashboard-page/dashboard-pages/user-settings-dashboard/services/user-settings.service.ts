@@ -20,21 +20,17 @@ export class UserSettingsService {
   }
 
   newEducationId() {
-    console.log('newEducation');
     return this.http.post('/newEducation', '');
   }
   deleteEducatioon(id) {
-    // console.log('deleteEducation', i);
     return this.http.post('/deleteEducation', id);
   }
 
   uploadAdditionalDiplomaPhotos(files) {
-    console.log('/loadAdditionalDiplomaFiles');
     return this.http.post('/loadAdditionalDiplomaFiles', files);
   }
 
   newAdditioanlEducationId() {
-    console.log('newEducation');
     return this.http.post('/newEducation', '');
   }
 
@@ -47,22 +43,18 @@ export class UserSettingsService {
   }
 
   public updateService( formData) {
-    console.log('update', formData);
     return this.http.post<any>('/updateUserSettings', formData);
   }
 
   public updateUserNotifications( formData) {
-    console.log('updateNotifications', formData);
     return this.http.post<any>('/userNotifications', formData);
   }
 
   public updateUserPassAccess( formData) {
-    console.log('password/updatePass', formData);
     return this.http.post<any>('/password/updatePass', formData);
   }
 
   public updateUserMailAccess( formData) {
-    console.log('updateUserEmail', formData);
     return this.http.post<any>('/updateUserEmail', formData);
   }
 

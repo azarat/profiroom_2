@@ -9,7 +9,7 @@
 
 .collocutors-wrap {
   font-family: Source Sans Pro, sans-serif;
-  padding: 20px 0 0 20px;
+  // padding: 20px 0 0 20px;
   position: relative;
   overflow: hidden;
   height: 100%;
@@ -48,7 +48,7 @@
 .collocutors-list {
   height: 100%;
   overflow: auto;
-  padding-right: 20px;
+  // padding-right: 20px;
   margin-top: 50px;
     &::-webkit-scrollbar-track
     {
@@ -71,11 +71,12 @@
     }
 }
 .collocutor {
-  // margin-bottom: 40px;
+  box-sizing: border-box;
+  padding: 20px 20px 40px;
   cursor: pointer;
   width: 100%;
   overflow: hidden;
-  padding: 0 0 40px;
+  padding: 20px 20px 40px;
   // &:hover {
   //   background: #F6F7FF;
   //   border: 1px solid #F4F7FC;
@@ -89,6 +90,9 @@
     .collocutor-message {
         color: #323C47;
     }
+  }
+  &:hover {
+    background: #F6F7FF;
   }
 }
 
@@ -153,7 +157,7 @@
 }
 .collocutors-list.projects {
   margin-top: 0;
-  padding-right: 10px;
+  // padding-right: 10px;
   // margin-top: 20px;
   .collocutor {
     border-radius: 4px;

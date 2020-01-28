@@ -85,13 +85,11 @@ export class SecurityPassUserSettingsComponent implements OnInit {
       .updateUserPassAccess(form.value)
       .pipe(filter((res: any) => !!res))
       .subscribe(res => {
-        console.log(res);
         if (this.submitedPassForm && res.message === 'succes') {
           this.changePasswordResult = true;
         } else {
           this.changePasswordResult = false;
           this.submitedPassForm = false;
-          console.log(this.changePasswordResult);
         }
       });
   }

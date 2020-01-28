@@ -23,18 +23,15 @@ export class FinanceUserSettingsComponent implements OnInit {
   onSubmit(form) {
     this.submited = true;
     if (form.invalid) {
-      console.log('invalid');
       return;
     }
   }
 
   updateSettings() {
-    console.log(this.userSettings);
     this.userSettingsService.updateService(this.userSettings)
     .pipe(filter((res: any) => !!res))
     .subscribe(
       (res) => {
-        console.log(res);
         this.userSettings = res;
       }
     );

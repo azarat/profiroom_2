@@ -27,7 +27,6 @@ export class UserHeaderMenuComponent implements OnInit {
   ngOnInit() {
     this.userService.getDashboardRes()
       .subscribe((res: any) => {
-        console.log(res);
         this.user = plainToClass(UserModel, res[0]);
       });
   }
