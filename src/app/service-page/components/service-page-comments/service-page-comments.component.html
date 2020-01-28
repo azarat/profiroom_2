@@ -16,12 +16,12 @@
         <div class="comment main">
           <div class="left-side">
             <div class="ava">
-              <img [src]="comment.user.avatar"
+              <img [src]="comment.author.avatar"
                 alt="user avatar">
             </div>
           </div>
           <div class="right-side">
-            <div class="user-name">{{ comment.user.name }} {{ comment.user.surname }}</div>
+            <div class="user-name">{{ comment.author.name }} {{ comment.author.surname }}</div>
             <div class="user-raiting-wrapp">
               <span class="star-raiting">{{ comment.mark }}</span>
             </div>
@@ -35,12 +35,12 @@
           <div class="comment sub" *ngFor="let child of comment.childs">
               <div class="left-side">
                 <div class="ava">
-                  <img [src]="child.user.avatar"
+                  <img [src]="child.author.avatar"
                     alt="user avatar">
                 </div>
               </div>
               <div class="right-side">
-                <div class="user-name">{{ child.user.name }} {{ child.user.surname }}</div>
+                <div class="user-name">{{ child.author.name }} {{ child.author.surname }}</div>
                 <div class="user-raiting-wrapp">
                   <span class="star-raiting">{{ child.mark }}</span>
                 </div>
@@ -62,12 +62,12 @@
         <div class="comment main">
           <div class="left-side">
             <div class="ava">
-              <img [src]="'https://www.thecubetest.site/Backend/storage/app/' + comment.user.avatar"
+              <img [src]="comment.author.avatar"
                 alt="user avatar">
             </div>
           </div>
           <div class="right-side">
-            <div class="user-name">{{ comment.user.name }} {{ comment.user.surname }}</div>
+            <div class="user-name">{{ comment.author.name }} {{ comment.author.surname }}</div>
             <div class="user-raiting-wrapp">
               <span class="star-raiting">{{ comment.mark }}</span>
             </div>
@@ -81,12 +81,12 @@
           <div class="comment sub" *ngFor="let child of comment.childs">
               <div class="left-side">
                 <div class="ava">
-                  <img [src]="'https://www.thecubetest.site/Backend/storage/app/' + child.user.avatar"
+                  <img [src]="child.author.avatar"
                     alt="user avatar">
                 </div>
               </div>
               <div class="right-side">
-                <div class="user-name">{{ child.user.name }} {{ child.user.surname }}</div>
+                <div class="user-name">{{ child.author.name }} {{ child.author.surname }}</div>
                 <div class="user-raiting-wrapp">
                   <span class="star-raiting">{{ child.mark }}</span>
                 </div>

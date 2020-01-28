@@ -23,6 +23,16 @@ export class GeneralUserSettingsComponent implements OnInit {
   ngOnInit( ) { }
 
   updateSettings() {
-    this.userSettingsService.updateService(this.userSettingsModel);
+    console.log(this.userSettingsModel);
+    // timer(200);
+
+    this.userSettingsService.updateService(this.userSettingsModel)
+    .pipe(filter((res: any) => !!res))
+    .subscribe(
+      (res) => {
+        location.reload();
+      }
+    );
+
   }
 }

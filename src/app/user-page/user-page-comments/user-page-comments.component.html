@@ -1,1 +1,148 @@
-<p>user-page-comments works!</p>
+<section class="comments" *ngIf="userData">
+  <div class="comments__top">
+    <div class="section-title">Отзывы <span>({{ userData.comments_count }})</span></div>
+
+    <div class="tabs">
+      <div class="tab" (click)="currentTab = 0" [ngClass]="{active: currentTab === 0}">Положительные ({{ userData.positive_comments_count }})</div>
+      <div class="tab" (click)="currentTab = 1" [ngClass]="{active: currentTab === 1}">Отрицательные ({{ userData.negative_comments_count }})</div>
+    </div>
+  </div>
+  <ng-container >
+    <div class="tabContent" *ngIf="currentTab === 0">
+      <div class="comment" *ngFor="let comment of userData.positiveComments">
+        <h5 class="comment__service-name" (click)="openOffer(comment.offers.id)">
+          {{comment.offers.title}}
+        </h5>
+        <div class="comment__wrapp">
+          <div class="comment__wrapp_parrent">
+            <div class="comment__img">
+              <div class="comment__img-wrapper">
+                <img [src]="comment.offers.mainImage" (click)="openOffer(comment.offers.id)" alt="service img">
+              </div>
+            </div>
+
+            <a class="comment__avatar" [routerLink]="['/user', comment.author.id] | localize">
+              <img [src]="comment.author.avatar" alt="user avatar">
+            </a>
+            <div class="comment__text-wrapper">
+              <div class="comment__top">
+                <a class="comment__name" [routerLink]="['/user', comment.author.id] | localize">{{comment.author.name}} {{comment.author.surname}}</a>
+                <div class="comment__date">{{comment.author.updated_at}}</div>
+              </div>
+              <div class="comment__message">{{comment.offers.description}}</div>
+              <div class="comment__raiting">
+                <div class="comment__raiting-item">
+                  <span>Качество</span>
+                  <div class="star-raiting">{{comment.qualityMark}}</div>
+                </div>
+                <div class="comment__raiting-item">
+                  <span>Срок</span>
+                  <div class="star-raiting">{{comment.termMark}}</div>
+                </div>
+                <div class="comment__raiting-item">
+                  <span>Вежливость</span>
+                  <div class="star-raiting">{{comment.politenessMark}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="comment__wrapp_child" *ngFor="let comment_child of comment.childs">
+            <div class="comment__avatar" [routerLink]="['/user', comment_child.author.id] | localize">
+              <img [src]="comment_child.author.avatar" alt="">
+            </div>
+            <div class="comment__text-wrapper">
+              <div class="comment__top">
+                <div class="comment__name" [routerLink]="['/user', comment_child.author.id] | localize">{{comment_child.author.name}} {{comment_child.author.surname}}</div>
+                <div class="comment__date">{{comment_child.author.updated_at}}</div>
+              </div>
+              <div class="comment__message">{{comment_child.commentText}}</div>
+              <div class="comment__raiting">
+                <div class="comment__raiting-item">
+                  <span>Качество</span>
+                  <div class="star-raiting">{{comment_child.qualityMark}}</div>
+                </div>
+                <div class="comment__raiting-item">
+                  <span>Срок</span>
+                  <div class="star-raiting">{{comment_child.termMark}}</div>
+                </div>
+                <div class="comment__raiting-item">
+                  <span>Вежливость</span>
+                  <div class="star-raiting">{{comment_child.politenessMark}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container >
+    <div class="tabContent" *ngIf="currentTab === 1">
+      <div class="comment" *ngFor="let comment of userData.negativeComments">
+        <h5 class="comment__service-name">
+          {{comment.offers.title}}
+        </h5>
+        <div class="comment__wrapp">
+          <div class="comment__wrapp_parrent">
+            <div class="comment__img">
+              <div class="comment__img-wrapper">
+                <img [src]="comment.offers.mainImage" (click)="openOffer(comment.offers.id)" alt="service img">
+              </div>
+            </div>
+
+            <a class="comment__avatar" [routerLink]="['/user', comment.author.id] | localize">
+              <img [src]="comment.author.avatar" alt="user avatar">
+            </a>
+            <div class="comment__text-wrapper">
+              <div class="comment__top">
+                <a class="comment__name" [routerLink]="['/user', comment.author.id] | localize">{{comment.author.name}} {{comment.author.surname}}</a>
+                <div class="comment__date">{{comment.author.updated_at}}</div>
+              </div>
+              <div class="comment__message">{{comment.offers.description}}</div>
+              <div class="comment__raiting">
+                <div class="comment__raiting-item">
+                  <span>Качество</span>
+                  <div class="star-raiting">{{comment.qualityMark}}</div>
+                </div>
+                <div class="comment__raiting-item">
+                  <span>Срок</span>
+                  <div class="star-raiting">{{comment.termMark}}</div>
+                </div>
+                <div class="comment__raiting-item">
+                  <span>Вежливость</span>
+                  <div class="star-raiting">{{comment.politenessMark}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="comment__wrapp_child" *ngFor="let comment_child of comment.childs">
+            <div class="comment__avatar" [routerLink]="['/user', comment_child.author.id] | localize">
+              <img [src]="comment_child.author.avatar" alt="">
+            </div>
+            <div class="comment__text-wrapper">
+              <div class="comment__top">
+                <div class="comment__name" [routerLink]="['/user', comment_child.author.id] | localize">{{comment_child.author.name}} {{comment_child.author.surname}}</div>
+                <div class="comment__date">{{comment_child.author.updated_at}}</div>
+              </div>
+              <div class="comment__message">{{comment_child.commentText}}</div>
+              <div class="comment__raiting">
+                <div class="comment__raiting-item">
+                  <span>Качество</span>
+                  <div class="star-raiting">{{comment_child.qualityMark}}</div>
+                </div>
+                <div class="comment__raiting-item">
+                  <span>Срок</span>
+                  <div class="star-raiting">{{comment_child.termMark}}</div>
+                </div>
+                <div class="comment__raiting-item">
+                  <span>Вежливость</span>
+                  <div class="star-raiting">{{comment_child.politenessMark}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</section>

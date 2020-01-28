@@ -10,6 +10,8 @@ import { UserDataService } from './service/user.service';
 import { UserPageServicesComponent } from './user-page-services/user-page-services.component';
 import { UserPageCommentsComponent } from './user-page-comments/user-page-comments.component';
 
+import { MatTabsModule} from '@angular/material';
+
 const routes: Routes = [
   {
     path: '',
@@ -28,6 +30,9 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     MainHeaderModule,
     CategoriesHeaderModule,
+
+    // -----matherials
+    MatTabsModule
   ],
   providers: [
     UserDataService

@@ -39,9 +39,10 @@ export class EducationUserSettingsComponent implements OnInit {
     this.createYears();
     this.openItem = this.userSettings.education.length;
 
-    if (!this.userSettings.education.length) {
-      this.addEducation();
-    }
+    // if (!this.userSettings.education.length) {
+    //   this.addEducation();
+    // }
+    // console.log(this.userSettings);
   }
 
   // --------------- create education-item -----------------//
@@ -64,6 +65,7 @@ export class EducationUserSettingsComponent implements OnInit {
       }
     );
     this.openItem = this.userSettings.education.length + 1;
+
   }
 
   // --------------- delete education-item -----------------//

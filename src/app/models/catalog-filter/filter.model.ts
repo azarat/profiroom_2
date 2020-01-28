@@ -20,8 +20,8 @@ export class CatalogFiltersModel  {
   @Expose() current_page?: number;
   @Expose() page?: number;
   @Expose() subCategory?: string;
-  @Expose() minPrice?: number;
   @Expose() maxPrice?: number;
+  @Expose() minPrice?: number;
   @Expose() maxTerm?: any;
   @Expose() PSD?: boolean;
   @Expose() PNG?: boolean;

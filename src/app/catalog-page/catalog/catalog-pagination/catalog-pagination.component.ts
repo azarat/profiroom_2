@@ -23,7 +23,6 @@ export class CatalogPaginationComponent implements OnInit {
       if (data) {
         this.offersList = data;
       }
-
       if (this.offersList) {
           this.pagesToShow();
         }
@@ -52,17 +51,27 @@ export class CatalogPaginationComponent implements OnInit {
   pagesToShow() {
     this.pagesArr = [];
 
-    let a = this.offersList.page.current_page;
+    let a = this.offersList.current_page;
+    // console.log("a - current_page", a);
 
-    if ( this.offersList.page.current_page === 1 ||
-         this.offersList.page.current_page === 2 ) {
-      a = 3;
-    } else if (this.offersList.page.current_page === this.offersList.page.last_page ||
-              this.offersList.page.current_page === this.offersList.page.last_page - 1 ) {
-      a = this.offersList.page.last_page - 2;
-    } else {
-      a = this.offersList.page.current_page;
+    if (this.offersList.last_page > 5) {
+      if ( this.offersList.current_page === 1 ||
+        this.offersList.current_page === 2 ) {
+         a = 3;
+       } else if (this.offersList.current_page === this.offersList.last_page ||
+                 this.offersList.current_page === this.offersList.last_page - 1 ) {
+         a = this.offersList.last_page - 2;
+       } else {
+         a = this.offersList.current_page;
+       }
+    } else if (this.offersList.last_page === 5) {
+      return this.pagesArr = [2, 3, 4];
+    } else if (this.offersList.last_page === 4) {
+      return this.pagesArr = [2, 3];
+    } else if (this.offersList.last_page === 3) {
+      return this.pagesArr = [2];
     }
+
 
     // pagesToShow
     const b = a + 2;

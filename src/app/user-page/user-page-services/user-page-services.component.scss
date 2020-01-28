@@ -6,15 +6,16 @@
 }
 .user-services {
   border-bottom: 1px solid #f1f2f4;
+  margin-bottom: 25px;
   .cards-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-    margin: 24px -30px 0;
+    margin: 24px -15px 0;
   }
   .card {
-    width: calc(29% - 60px);
-    margin: 0 30px 40px;
+    width: calc(33.3% - 30px);
+    margin: 0 15px 30px;
     box-sizing: border-box;
     font-family: "Source Sans Pro", sans-serif;
     color: #323c47;
@@ -24,7 +25,7 @@
     background-color: #fff;
     &-preview {
       &__bg {
-        height: 155px;
+        height: 200px;
         box-shadow: 0px 0px 4px rgba(199, 213, 255, 0.55);
         border-radius: 3px;
         position: relative;
@@ -87,6 +88,7 @@
         line-height: 20px;
         padding-left: 28px;
         position: relative;
+        cursor: default;
         &::before {
           content: "";
           position: absolute;
@@ -109,7 +111,7 @@
         line-height: 20px;
         color: #99acb7;
         margin-left: 14px;
-        cursor: pointer;
+        cursor: default;
       }
     }
     &-bottom {
@@ -149,6 +151,43 @@
           }
         }
       }
+    }
+  }
+}
+
+.show-offers{
+  margin: 0 auto 25px;
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  color: #3C7EEA;
+  cursor: pointer;
+  text-transform: uppercase;
+  width: fit-content;
+  position: relative;
+  padding-right: 20px;
+  &:hover {
+    color: #5695FD;
+  }
+  &:active{
+    color: #1666EA;
+  }
+  &::after{
+    content: '';
+    background-image: url(/assets/images/svg/user/blue-arrow-down.svg);
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 7px;
+  }
+  &.open{
+    &::after{
+      transform: translateY(-50%) rotate(180deg);
     }
   }
 }

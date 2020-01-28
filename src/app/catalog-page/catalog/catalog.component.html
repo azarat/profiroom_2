@@ -6,8 +6,9 @@
       <li><a [routerLink]="['/'] | localize">Главная</a></li>
       <li><a [routerLink]="['/' + 'catalog/' + category] | localize">{{ category }}</a></li>
       <li><a>{{ catalogFilters.subCategory }}</a></li>
-      <!-- <li><a [routerLink]="['/catalog', subcategoriesList.link] | localize">{{ subcategory }}</a></li> -->
+
     </ul>
+          <!-- <li><a [routerLink]="['/catalog', subcategoriesList.link] | localize">{{ subcategory }}</a></li> -->
   </div>
   <h2 class="category-title" *ngIf="catalogFilters.subCategory">{{ catalogFilters.subCategory }}</h2>
   <app-filter [catalogFilters]="catalogFilters"></app-filter>

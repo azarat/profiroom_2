@@ -7,9 +7,9 @@ import { OfferDataInterface } from 'src/app/shared/interfaces/offer-date.interfa
 @Injectable()
 export class ServicePageService {
 
-  // tslint:disable-next-line: variable-name
-  private _viewedOffers = new BehaviorSubject(null); // - regexSubj
-  public viewedOffers$: Observable<OfferDataInterface>; // - observable
+  // // tslint:disable-next-line: variable-name
+  // private _similarOffers = new BehaviorSubject(null); // - regexSubj
+  // public similarOffers$: Observable<OfferDataInterface>; // - observable
 
   // tslint:disable-next-line: variable-name
   public _offerDate = new BehaviorSubject(null);
@@ -19,7 +19,7 @@ export class ServicePageService {
     private http: HttpClient
   ) {
     this.offerDate$ = this._offerDate.asObservable();
-    this.viewedOffers$ = this._viewedOffers.asObservable();
+    // this.similarOffers$ = this._similarOffers.asObservable();
    }
 
   loadOfferDate(offerid: object) {
@@ -28,5 +28,9 @@ export class ServicePageService {
 
   getViewedOffers(offersIdArr: string[]) {
     return this.http.post('/visitedOffer', { VisitedOffer: offersIdArr });
+  }
+
+  similarOffers(offerid: object) {
+    return this.http.post('/simularOffers', offerid);
   }
 }

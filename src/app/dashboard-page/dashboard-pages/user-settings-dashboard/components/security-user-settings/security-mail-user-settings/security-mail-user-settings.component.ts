@@ -16,6 +16,7 @@ export class SecurityMailUserSettingsComponent implements OnInit {
 
   public submitedMailForm = false;
   public changeMailResult = null;
+  public currentMail: string;
 
   mailForm: FormGroup;
 
@@ -42,6 +43,8 @@ export class SecurityMailUserSettingsComponent implements OnInit {
       console.log(this.mailForm.status);
 
     });
+
+    this.currentMail = this.userSettings.oldMail;
   }
 
   updateMail(form: FormGroup ) {

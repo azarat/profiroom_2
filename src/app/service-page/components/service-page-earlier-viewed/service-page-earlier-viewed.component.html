@@ -2,11 +2,11 @@
   <h4 class="section-title">
     Похожие услуги создания сайтов
   </h4>
-  <div class="item-list" *ngIf="viewedOffers">
+  <div class="item-list" *ngIf="similarOffers">
 
-      <div class="card" *ngFor="let offer of viewedOffers">
+      <div class="card" *ngFor="let offer of simularOffers">
         <div class="card-preview__bg">
-          <img class="card-preview" [src]="'https://www.thecubetest.site/Backend/storage/app/' + offer.mainImage">
+          <img class="card-preview" [src]="offer.mainImage">
         </div>
         <div class="card-description">
 
