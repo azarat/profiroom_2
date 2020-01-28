@@ -15,20 +15,7 @@ export class CategorysListService {
   constructor(private http: HttpClient) {}
 
   getCategorys() {
-    // console.log('getCategorys');
     return this.http.get<CategoryListInterface >('/categories');
   }
-
-  // getSubCategorys(subcategories: string) {
-  //   // console.log('getSubCategorys');
-  //   this.http.get<SubCategoryListInterface >('/subcategories?catedory=' + subcategories)
-  //   .subscribe(res => {
-  //     console.log(res)
-  //     this._categoriesList.next(res);
-  //     // console.log(this._categoriesList);
-  //   });
-  // }
-
-
 }
 

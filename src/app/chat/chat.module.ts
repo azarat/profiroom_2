@@ -20,6 +20,8 @@ import { ShowUploadedFilesComponent } from './components/show-uploaded-files/sho
 import { MessageScrollerService } from './services/message-scroller/message-scroller.service';
 import { EmojiComponent } from './components/emoji/emoji.component';
 import { UploadFileComponent } from './components/upload-file/upload-file.component';
+import { FileSizeModule } from '../shared/pipes/file-size/file-size.module';
+import { FileTypeModule } from '../shared/pipes/file-type/file-type.module';
 
 
 
@@ -47,7 +49,10 @@ import { UploadFileComponent } from './components/upload-file/upload-file.compon
     FormsModule,
     ReactiveFormsModule,
 
-    DataFormatModule
+    DataFormatModule,
+    FileSizeModule,
+    FileTypeModule
+
   ],
   exports: [ChatComponent],
   providers: [

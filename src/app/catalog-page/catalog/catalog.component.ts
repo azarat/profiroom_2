@@ -38,12 +38,10 @@ export class CatalogComponent implements OnInit {
     // --------------check url params value---------------
     this._route.params.subscribe(Params => {
       this.catalogFilters = plainToClass(CatalogFiltersModel, Params);
-      // console.log('catalog filters', this.catalogFilters);
-      this.catalogFilters.subCategory = Params.subCategory;
-      // this.GetOffersService.getOffers(this.catalogFilters);
+      // this.catalogFilters.subCategory = Params.subCategory;
+      this.GetOffersService.getOffers(this.catalogFilters);
       // ------- value of category for breadcrumbs
       this.category = Params.category;
-      // console.log(this.category);
     });
 
     // --------------check queryParams value---------------
@@ -55,21 +53,17 @@ export class CatalogComponent implements OnInit {
         this.GetOffersService.setFilters(this.catalogFilters);
         this.GetOffersService.getOffers(this.catalogFilters);
       } else {
-        // console.log(qParams);
-        this.GetOffersService.setFilters(qParams);
         this.GetOffersService.getOffers(qParams);
         // console.log(qParams);
 
       }
     });
-    // console.log(this.offersList);
   }
 
   ngOnInit() {
 
     this.GetOffersService.offersList.subscribe(data => {
       this.offersList = data;
-      // console.log(this.offersList);
 
       if (this.offersList) {
         this.pagesToShow();
@@ -77,10 +71,6 @@ export class CatalogComponent implements OnInit {
     });
 
     this.href = this.router.url;
-
-    // console.log(this.href);
-
-
   }
 
   pagesToShow() {

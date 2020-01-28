@@ -51,19 +51,18 @@ export class UserPageComponent implements OnDestroy  {
       this.getUserData(this.id);
     });
 
-    
+
 
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
-  getUserData(id: {id: number}) {
+  getUserData(id: { id: number }) {
     this.userService.loadUserDate(id)
-    .pipe(filter((res: any) => !! res))
-    .subscribe(userData => {
-      console.log(userData);
-      this.userData = userData.user;
-    });
+      .pipe(filter((res: any) => !!res))
+      .subscribe(userData => {
+        this.userData = userData.user;
+      });
   }
 
   scrollTo(target: string) {
@@ -100,12 +99,12 @@ export class UserPageComponent implements OnDestroy  {
 // Open ChatRoom ws this collocutor
   public openChat(userId) {
     this.currentUserService.wrightTo(userId)
-    .subscribe(res => {
-      if (res === 'ok') {
-        const translatedPath: any = this.localize.translateRoute('/dashboard/chat-room');
-        this.router.navigate([translatedPath]);
-      }
-    });
+      .subscribe(res => {
+        if (res === 'ok') {
+          const translatedPath: any = this.localize.translateRoute('/dashboard/chat-room');
+          this.router.navigate([translatedPath]);
+        }
+      });
   }
 
   public ngOnDestroy(): void {

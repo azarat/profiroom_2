@@ -40,7 +40,6 @@ export class SecurityMailUserSettingsComponent implements OnInit {
 
     this.mailForm.valueChanges.subscribe((value) => console.log(value));
     this.mailForm.statusChanges.subscribe((status) => {
-      // console.log(this.mailForm.controls.oldMail.status);
       console.log(this.mailForm.status);
 
     });
@@ -49,7 +48,6 @@ export class SecurityMailUserSettingsComponent implements OnInit {
   }
 
   updateMail(form: FormGroup ) {
-    console.log('formData', form.value);
     this.submitedMailForm = true;
     if (this.mailForm.status === 'INVALID') {
       return;
@@ -59,13 +57,10 @@ export class SecurityMailUserSettingsComponent implements OnInit {
     .pipe(filter((res: any) => !!res))
     .subscribe(
       (res) => {
-        console.log(res);
         if (this.submitedMailForm && res.message === 'succes') {
           this.changeMailResult = true;
         } else {
           this.changeMailResult = false;
-          // this.submitedMailForm = false;
-          console.log(this.changeMailResult);
         }
       }
     );

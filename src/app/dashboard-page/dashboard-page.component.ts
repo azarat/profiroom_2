@@ -8,6 +8,7 @@ import { plainToClass } from 'class-transformer';
 import { UserModel } from '../models/user.model';
 import { LocalStorageService } from '../core/services/local-storage.service';
 import { SocketService } from '../chat/services/socket.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -22,46 +23,54 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
   dashboardMenu = dashboardMenuConst;
   user: UserModel;
   socket: string = null;
+  public newMessage: boolean = null;
   constructor(
     private authService: AuthentificationService,
     private userService: UserService,
     private socetService: SocketService,
-    private localStorageService: LocalStorageService
-
+    private localStorageService: LocalStorageService,
+    private router: Router
   ) {
-   }
+  }
 
   ngOnInit() {
+    this.notifyShow();
+
     this.userService.getDashboardRes()
-    .subscribe((res: any ) => {
-      console.log(res);
-      this.user = plainToClass(UserModel, res[0]);
-      this.authService.saveUserId(this.user.id);
-      this.localStorageService.setItem('userImage', this.user.avatar);
-    });
+      .subscribe((res: any) => {
+        this.user = plainToClass(UserModel, res[0]);
+        this.authService.saveUserId(this.user.id);
+        this.localStorageService.setItem('userImage', this.user.avatar);
+      });
 
     this.socetService.connect();
 
-    // this.socetService.checkNotifications();
-
-    // this.socetService.getNotifications()
-    // .subscribe(res => {
-    //   console.log('notifications', res);
-    // });
-
-    // this
+    this.socetService.checkNotifications()
+      .subscribe(res => {
+        this.newMessage = true;
+      });
 
   }
 
-  ngAfterViewInit(){
+  ngAfterViewInit() {
 
-    this.socetService.getNotifications()
-    .subscribe(res => {
-      console.log('notifications', res);
-    });
   }
+
   userExit = () => {
     this.authService.logOut();
+  }
+
+  public openChat(link) {
+    this.notifyShow(link);
+  }
+
+  notifyShow(link?: string) {
+    const url = this.router.url;
+    if (url.includes('chat-room')) {
+      this.newMessage = null;
+    } else if (link === 'chat') {
+      this.newMessage = null;
+    }
   }
 
 }

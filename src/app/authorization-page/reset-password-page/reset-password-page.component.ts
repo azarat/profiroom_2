@@ -31,7 +31,6 @@ export class ResetPasswordPageComponent implements OnInit {
     }
     this.authentificationService.resetPass(this.resetPass.value).subscribe(
       res => {
-      console.log(res);
       this.message = {
         title: 'Запрос одобрен!',
         description: 'На указанную Вами почту придёт письмо для создания нового пароля.'

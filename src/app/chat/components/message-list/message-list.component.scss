@@ -3,12 +3,83 @@
   padding: 30px 0 0 28px;
   height: 100%;
   overflow: hidden;
+  position: relative;
   .message-list {
     height: 100%;
     overflow-y: auto;
     & > div {
       padding-right: 28px;
     }
+  }
+  .scroll-down {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: transparent;
+    right: 50px;
+    bottom: 50px;
+    cursor: pointer;
+    &:before {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      content: "\e915";
+      font-family: icomoon;
+      color: #fff;
+      font-size: 10px;
+      top: 50%;
+      left: 50%;
+      background: #3c7eea;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      text-align: center;
+      line-height: 34px;
+      z-index: 10;
+    }
+    &:after {
+      position: absolute;
+      content: "";
+      width: 100%;
+      height: 100%;
+      background: #3c7eea;
+      opacity: 0.5;
+      z-index: -1;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      animation: btnAnimation 2.2s infinite;
+      z-index: 2;
+    }
+  }
+
+  .more-messages {
+    width: 200px;
+    height: 50px;
+    background-color: rgb(192, 191, 191);
+    border-radius: 61px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: pointer;
+    color: #fff;
+    text-align: center;
+    line-height: 50px;
+    font-size: 13px;
+    cursor: pointer;
+    &:hover {
+      background-color: rgb(158, 154, 154);
+    }
+  }
+}
+
+// Btn Animation
+@keyframes btnAnimation {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.4);
   }
 }
 
@@ -59,10 +130,132 @@
     .text {
       background-color: #eae8ed;
       border-radius: 15px 0px 15px 15px;
-
     }
     .time {
       margin: 0 20px 0 50px;
     }
+  }
+
+  .files {
+    background: #ffffff;
+    box-shadow: 0px 9px 21px rgba(128, 152, 213, 0.1);
+    border-radius: 8px;
+    display: flex;
+    padding: 14px 24px;
+    flex-direction: column;
+    box-sizing: border-box;
+    // justify-content: space-between;
+    // margin-bottom: 25px;
+
+    .file {
+      display: flex;
+      justify-content: space-between;
+      box-sizing: border-box;
+      align-items: center;
+      // min-width: 280px;
+      img {
+        width: 31px;
+        height: auto;
+        max-height: 35px;
+        margin-right: 10px;
+      }
+      &:not(:last-of-type) {
+        margin-bottom: 25px;
+      }
+      .name {
+        width: 100%;
+        font-family: Source Sans Pro, sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 18px;
+        color: #323c47;
+        margin-right: 16px;
+      }
+    }
+    &:hover {
+      span {
+        color: #1666ea;
+        cursor: pointer;
+      }
+    }
+    a {
+      text-decoration: none;
+      color: #bfc5d1;
+      width: 20px;
+      height: 20px;
+    }
+    .download {
+      position: relative;
+      width: 20px;
+      &:before {
+        position: absolute;
+        content: "\e913";
+        font-family: "icomoon";
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      &:hover:before {
+        color: #1666ea;
+      }
+      cursor: pointer;
+    }
+  }
+
+  &.typing .text {
+    position: relative;
+    // width: 95px;
+    // height: 48px;
+    span {
+
+      display: inline-block;
+      border-radius: 50%;
+      background: #278df3;
+      width: 4px;
+      height: 4px;
+      margin-right: 10px;
+
+      &:nth-child(1) {
+        animation: Typing-span-1 0.8s ease-in-out infinite alternate;
+      }
+      &:nth-child(2) {
+        transform: translateY(10px) scale(1);
+        animation: Typing-span-2 0.8s ease-in-out infinite alternate;
+        animation-delay: 0.2s;
+      }
+      &:nth-child(3) {
+        transform: translateY(-10px) scale(2);
+        animation: Typing-span-3 0.8s ease-in-out infinite alternate;
+        animation-delay: 0.4s;
+      }
+    }
+  }
+}
+
+// Typing animation
+@keyframes Typing-span-1 {
+  0% {
+    transform: translateY(-10px) scale(3.1);
+  }
+  100% {
+    transform: translateY(10px) scale(1.5);
+  }
+}
+
+@keyframes Typing-span-2 {
+  0% {
+    transform: translateY(10px) scale(1);
+  }
+  100% {
+    transform: translateY(-10px) scale(1.5);
+  }
+}
+
+@keyframes Typing-span-3 {
+  0% {
+    transform: translateY(-10px) scale(2);
+  }
+  100% {
+    transform: translateY(10px) scale(1.5);
   }
 }

@@ -9,8 +9,8 @@
     <app-messager-tools *ngIf="chatType === 'projects'"></app-messager-tools>
     <app-collocutor-information *ngIf="chatType === 'classic' && collocutorData" [collocutorData]="collocutorData"></app-collocutor-information>
   </section>
-  <section class="file-loader" *ngIf="isFileLoaderVisible">
-    <app-upload-file [(isFileLoaderVisible)]="isFileLoaderVisible"></app-upload-file>
+  <section class="file-loader" *ngIf="isFileLoaderVisible && collocutorData">
+    <app-upload-file [(isFileLoaderVisible)]="isFileLoaderVisible" [collocutorData]="collocutorData"></app-upload-file>
   </section>
 </section>
 

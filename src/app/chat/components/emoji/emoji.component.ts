@@ -33,7 +33,6 @@ export class EmojiComponent implements OnInit {
     this.textInput.value = text;
     // focus on textarea
     this.textInput.focus();
-    // console.log(emoji.emoji.native);
   }
 
   public showEmoji() {

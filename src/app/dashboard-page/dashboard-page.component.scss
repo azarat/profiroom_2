@@ -288,7 +288,21 @@
       &.settings:before {
         content: '\e914';
       }
+      // .newMessage:not(.active)
+      &.chat.newMessage:not(.active) {
+        &:after {
+          position: absolute;
+          content: '';
+          width: 8px;
+          height: 8px;
+          background: #5DDFAB;
+          border-radius: 50%;
+          left: 65%;
+          top: 6%;
+          transform: translate(50%, 50%);
 
+        }
+      }
 
     }
   }

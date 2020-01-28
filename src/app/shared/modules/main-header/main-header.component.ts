@@ -27,9 +27,7 @@ export class MainHeaderComponent implements OnInit {
     this.getUserId();
   }
 
-  ngOnInit() {
-
-  }
+  ngOnInit() { }
 
   routeToMain() {
     this.router.navigate([this.routeMainPage]);
@@ -37,15 +35,5 @@ export class MainHeaderComponent implements OnInit {
 
   getUserId() {
     this.userId = this.localStorageService.getItem('userId').value;
-    console.log(this.userId)
   }
-
-  // getUserInfo() {
-  //   this.userService.getDashboardRes()
-  //     .subscribe((res: any) => {
-  //       console.log(res);
-  //       this.currentUser = plainToClass(UserModel, res[0]);
-  //     });
-  // }
-
 }

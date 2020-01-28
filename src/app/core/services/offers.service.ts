@@ -33,15 +33,6 @@ export class OffersService {
     this.offersList = this._offersList.asObservable();
   }
 
-    // getOffers(offersList: string) {
-  //   this.http.post<OffersList>('/categories', offersList)
-  //   .subscribe(res => {
-  //     this._offersList.next(res);
-  //     console.log(this._offersList);
-  //   });
-  // }
-
-
   getOffers(link: string | boolean | object) {
     this._offersList.next(null);
     if (link === undefined) {
@@ -50,15 +41,10 @@ export class OffersService {
         subCategory: 'InterfaceDesign'
       };
     }
-    // else if (typeof link === 'string') {
-    //   this.sortParams(link);
-    // }
     this.filters.next(this._filterValue);
-    console.log(this._filterValue);
     return this.http.post('/catalog', this._filterValue).subscribe(
       (res: OffersListInterface) => {
         this._offersList.next(res);
-        console.log(this._offersList);
       });
   }
 }
