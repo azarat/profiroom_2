@@ -46,7 +46,6 @@ export class UserPageComponent implements OnDestroy  {
 
     this.route.params.pipe(takeUntil(this.destroy$))
     .subscribe((params: Params) => {
-      console.log(params);
       this.id = params;
       this.getUserData(this.id);
       window.scrollTo(0, 0);

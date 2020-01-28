@@ -31,13 +31,13 @@ export class CatalogPaginationComponent implements OnInit {
   }
 
   onPrevPage() {
-    this.catalogFilters.page = this.offersList.page.current_page - 1;
+    this.catalogFilters.page = this.offersList.current_page - 1;
 
     this.getOffersService.setFilters(this.catalogFilters);
     this.pagesToShow();
   }
   onNextPage() {
-    this.catalogFilters.page = this.offersList.page.current_page + 1;
+    this.catalogFilters.page = this.offersList.current_page + 1;
 
     this.getOffersService.setFilters(this.catalogFilters);
     this.pagesToShow();
