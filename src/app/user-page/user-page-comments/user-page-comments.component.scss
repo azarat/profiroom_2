@@ -6,6 +6,14 @@
 
   display: flex;
   align-items: center;
+
+  span {
+    font-family: Source Sans Pro;
+    font-weight: normal;
+
+    color: #979797;
+    padding-left: 10px;
+  }
 }
 .tabContent{
   background: #FFFFFF;
@@ -64,28 +72,57 @@
     font-size: 18px;
     line-height: 23px;
     color: #3C7EEA;
+    cursor: pointer;
+    width: fit-content;
+    &:hover{
+      color: #5695FD;
+    }
+    &:active{
+      color: #1666EA;
+    }
   }
   &__wrapp{
-    display: flex;
+    // display: flex;
+    &_parrent{
+      display: flex;
+      margin-bottom: 30px;
+    }
+    &_child{
+      display: flex;
+      padding-left: 190px;
+      margin-bottom: 25px;
+      
+    }
   }
-  &__img-wrapper{
+
+  &__img{
     position: relative;
-    padding-right: 32px;
-    margin-right: 22px;
+    margin-right: 54px;
     min-width: 77px;
     height: 48px;
     &::after{
       content: "";
       position: absolute;
       top: 0;
-      right: 0;
+      right: -40px;
       width: 24px;
       height: 24px;
       background-image: url(/assets/images/svg/user/arrow-curly.svg);
     }
+  }
+  &__img-wrapper{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
     img{
-      min-width: 77px;
-      height: 48px;
+      width: 100%;
+      height: auto;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
   }
   &__avatar {
@@ -117,8 +154,12 @@
     font-size: 18px;
     line-height: 23px;
     color: #4E5051;
-
+    cursor: pointer;
     margin-right: 60px;
+    text-decoration: none;
+    &:hover{
+      text-decoration: underline;
+    }
   }
   &__date{
     font-size: 16px;

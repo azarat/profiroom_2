@@ -6,7 +6,7 @@
   <div class="cards-list">
     <div class="card" *ngFor="let offer of offersList.data">
       <div class="card-preview__bg">
-        <img class="card-preview" (click)="openOffer(offer.id)" [src]="'https://www.thecubetest.site/Backend/storage/app/' + offer.mainImage">
+        <img class="card-preview" (click)="openOffer(offer.id)" [src]="offer.mainImage">
       </div>
       <div class="card-description">
 
@@ -19,7 +19,7 @@
           </div>
         </div>
 
-        <p class="card-description__about">{{offer.description}}</p>
+        <p class="card-description__about">{{offer.title}}</p>
         <div class="card-description__bottom">
           <div class="card-description__level">{{offer.rating}}</div>
           <div class="card-description__comments"><a>({{offer.comments_count}} отзывов)</a></div>

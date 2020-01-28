@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { UserDataInterface } from 'src/app/shared/interfaces/user-data.interface';
 
 import {style, state, animate, transition, trigger} from '@angular/animations';
+import { LocalizeRouterService } from 'localize-router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-page-comments',
@@ -18,18 +20,35 @@ import {style, state, animate, transition, trigger} from '@angular/animations';
         animate(1000, style({opacity: 0}))
       ])
     ])
-  ]
+  ] 
 })
 export class UserPageCommentsComponent implements OnInit {
 
   @Input() userData: UserDataInterface;
   public currentTab = 0;
+  public id;
 
-  constructor() { }
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private localize: LocalizeRouterService,
+  ) { }
 
   ngOnInit() {
   }
 
+  openOffer(offerid) {
+    const translatedPath: any = this.localize.translateRoute('/service');
+
+    this.id = {
+      offerId: offerid
+    };
+
+    this.router.navigate( [translatedPath], {
+      relativeTo: this.route,
+      queryParams: this.id,
+    });
+  }
 
 
 }

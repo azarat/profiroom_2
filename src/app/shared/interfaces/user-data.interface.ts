@@ -15,6 +15,10 @@ export interface UserDataInterface {
   arbitration?: number;
   answerTime?: number;
   description?: string;
+  comments_count?: number;
+  positive_comments_count?: number;
+  negative_comments_count?: number;
+  updated_at?: number;
   language?: [{
     langName?: string;
     langLevel?: number;
@@ -31,10 +35,10 @@ export interface UserDataInterface {
     startStudyYear?: number;
     endStudyYear?: number;
   }];
-  comments_count?: number;
   offers?: [{
     id?: number;
     mainImage?: string;
+    title?: string;
     description?: string;
     comments_count?: number;
     minPrice?: number;
@@ -46,22 +50,34 @@ export interface UserDataInterface {
 
     offers_id?: number;
     commentator_id?: number;
-
     commentText?: string;
 
     author?: [{
-      id: 9
+      id: number;
       name?: string;
       surname?: string;
       avatar?: string;
     }];
     offers?: [{
-      id: 9
+      id: number;
       title?: string;
       mainImage?: string;
       description?: string;
       raiting?: number;
-    }]
+    }];
+    childs?: [{
+      commentText?: string;
+      qualityMark?: number;
+      termMark?: number;
+      politenessMark?: number;
+      author?: [{
+        avatar?: string;
+        name?: string;
+        surname?: string;
+        updated_at?: number;
+        id?: number;
+      }];
+    }];
   }];
   negativeComments?: [{
     qualityMark?: number;
@@ -74,52 +90,31 @@ export interface UserDataInterface {
     commentText?: string;
 
     author?: [{
-      id: 9
+      id: number;
       name?: string;
       surname?: string;
       avatar?: string;
     }];
     offers?: [{
-      id: 9
+      id: number;
       title?: string;
       mainImage?: string;
       description?: string;
       raiting?: number;
-    }]
+    }];
+    childs?: [{
+      commentText?: string;
+      qualityMark?: number;
+      termMark?: number;
+      politenessMark?: number;
+      author?: [{
+        avatar?: string;
+        name?: string;
+        surname?: string;
+        updated_at?: number;
+        id?: number;
+      }];
+    }];
   }];
-  // ?:;
-  // ?:;
-  // ?:;
-  // title?: string;
-  // mainImage?: string;
-  // rating?: string;
-  // user?: {
-  //   avatar?: string;
-
-  //   rank_id?: string;
-  //   userOffers?: [{
-  //     title?: string;
-  //     raiting?: number;
-  //     comments_count?: number;
-  //     mainImage?: string;
-  //     minprice?: number;
-  //   }];
-  // };
-  // category: string;
-  // comments?: [{
-  //   mark?: number;
-  //   commentText?: string;
-  //   user?: {
-  //     name?: string;
-  //     surname?: string;
-  //     avatar?: string;
-  //   }
-  // }];
-  // description?: string;
-  // raiting?: number;
-  // comments_count?: number;
-  // profi?: {
-  //   name?: string;
-  // };
 
 }

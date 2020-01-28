@@ -7,6 +7,7 @@ export interface OffersListInterface {
     {
       category_id: number;
       comments_count?: number;
+      title?: string;
       description?: string;
       id?: number;
       minprice: number;

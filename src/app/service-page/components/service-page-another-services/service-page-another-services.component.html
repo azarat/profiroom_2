@@ -5,7 +5,7 @@
   <div class="cards-list" *ngIf="offerData">
     <div class="card" *ngFor="let offer of offerData.user.userOffers">
       <div class="card-preview__bg" (click)="openOffer(offer.id)">
-        <img class="card-preview" [src]="'https://www.thecubetest.site/Backend/storage/app/' + offer.mainImage">
+        <img class="card-preview" [src]="offer.mainImage">
       </div>
       <div class="card-description">
 

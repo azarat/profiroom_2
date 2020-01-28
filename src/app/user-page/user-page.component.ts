@@ -1,22 +1,25 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, HostListener, OnDestroy } from '@angular/core';
 import { ScrollToService, ScrollToConfigOptions } from '@nicky-lenaers/ngx-scroll-to';
 import { UserDataInterface } from '../shared/interfaces/user-data.interface';
 import { UserDataService } from './service/user.service';
 import { filter } from 'rxjs/internal/operators/filter';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, Params } from '@angular/router';
 import { UserService } from '../core/services/user.service';
 import { LocalizeRouterService } from 'localize-router';
-
+import {Location} from '@angular/common';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-user-page',
   templateUrl: './user-page.component.html',
   styleUrls: ['./user-page.component.scss']
 })
-export class UserPageComponent implements OnInit {
+export class UserPageComponent implements OnDestroy  {
 
   public userData: UserDataInterface;
   sticky = false;
+  elementPosition: any;
   public academicDegreesTranslations = [
     'Начальный ',
     'Ниже среднего',
@@ -26,7 +29,8 @@ export class UserPageComponent implements OnInit {
   ];
   @ViewChild('stickyMenu', {static: false}) menuElement: ElementRef;
 
-  private id: any;
+  private id: any = null;
+  private destroy$ = new Subject<undefined>();
 
 
   constructor(
@@ -37,12 +41,18 @@ export class UserPageComponent implements OnInit {
     private currentUserService: UserService,
     private localize: LocalizeRouterService,
     private router: Router,
+    private _location: Location
   ) {
-    this.route.params.subscribe(params =>
-      this.id = params);
 
-    console.log(this.id);
-    this.getUserData(this.id);
+    this.route.params.pipe(takeUntil(this.destroy$))
+    .subscribe((params: Params) => {
+      console.log(params);
+      this.id = params;
+      this.getUserData(this.id);
+    });
+
+    
+
   }
 
   ngOnInit() {}
@@ -57,23 +67,34 @@ export class UserPageComponent implements OnInit {
   }
 
   scrollTo(target: string) {
-
-
     const config: ScrollToConfigOptions = {
       target,
       duration: 1000
     };
-
-    if (target === 'about-offer' ) {
-      config.offset = -90;
-    } else if (target === 'rating' || target === 'compare-table' ||
-     target === 'description' || target === 'comments' || target === 'questions' ) {
-      config.offset = -80;
-    } else if (target === 'portfolio'  ) {
-      config.offset = -105;
+    if (target === 'about' || target === 'aducation' ||
+     target === 'rating' || target === 'comments' || target === 'services' ) {
+      config.offset = -70;
     }
-    console.log(config);
     this._scrollToService.scrollTo(config);
+  }
+
+  // tslint:disable-next-line: use-lifecycle-interface
+  ngAfterViewInit() {
+    this.elementPosition = this.menuElement.nativeElement.offsetTop;
+  }
+  @HostListener('window:scroll')
+  handleScroll() {
+    const windowScroll = window.pageYOffset;
+    // if (windowScroll >= this.elementPosition){
+    if (windowScroll >= 113) {
+      this.sticky = true;
+    } else {
+      this.sticky = false;
+    }
+  }
+
+  goBack() {
+    this._location.back();
   }
 
 // Open ChatRoom ws this collocutor
@@ -85,5 +106,10 @@ export class UserPageComponent implements OnInit {
         this.router.navigate([translatedPath]);
       }
     });
+  }
+
+  public ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

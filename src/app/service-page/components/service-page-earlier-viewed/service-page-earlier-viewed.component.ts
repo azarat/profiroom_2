@@ -14,7 +14,7 @@ import { LocalizeRouterService } from 'localize-router';
 export class ServicePageEarlierViewedComponent implements OnInit {
 
   public id;
-  @Input() viewedOffers;
+  @Input() similarOffers;
   constructor(
     private localStorageService: LocalStorageService,
     private servicePageService: ServicePageService,

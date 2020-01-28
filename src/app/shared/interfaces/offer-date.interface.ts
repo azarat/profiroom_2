@@ -42,7 +42,7 @@ export interface OfferDataInterface {
   positiveComments?: [{
     mark?: number;
     commentText?: string;
-    user?: {
+    author?: {
       name?: string;
       surname?: string;
       avatar?: string;
@@ -60,7 +60,7 @@ export interface OfferDataInterface {
   negativeComments?: [{
     mark?: number;
     commentText?: string;
-    user?: {
+    author?: {
       name?: string;
       surname?: string;
       avatar?: string;
