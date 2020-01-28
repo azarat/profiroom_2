@@ -1,9 +1,9 @@
 <section class="message-wrap" *ngIf="messagesList && collocutorData">
-  <div class="more-messages" *ngIf="isShowMoreMessagesBtn" (click)="showMoreMessages()" >Предыдущие сообщения</div>
+  <div class="more-messages" *ngIf="isShowMoreMessagesBtn" (click)="showMoreMessages()">Предыдущие сообщения</div>
   <div class="message-list" id="messages-wrap" #messagesWrap (scroll)="onScroll($event)">
     <!-- <div  #messagesHeight > -->
     <div *ngFor="let message of messagesList, let i = index">
-      <div class="message"  [ngClass]="{ 'autor': message.author === userId}">
+      <div class="message" [ngClass]="{ 'autor': message.author === userId}">
         <div class="photo">
           <img *ngIf="message.author === userId" [src]="userAvatar" alt="avatar">
           <img *ngIf="message.author !== userId" [src]="message.authorAva" alt="avatar">
@@ -24,9 +24,17 @@
         <span class="time">{{ message.dateTime | dateFormatPipe }}</span>
       </div>
     </div>
+    <div class="message typing" *ngIf="typing && typingUser !== +userId">
+      <div class="photo">
+        <img [src]="collocutorData.collocutorAva" alt="avatar">
+      </div>
+      <div class="text">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
   </div>
   <div *ngIf="isScrollDownBtn" class="scroll-down" (click)="scrollToStart()">
-
   </div>
 </section>
-

@@ -9,12 +9,12 @@
   </div>
   <div class="messager-wrap">
     <div class="previous-massages">
-      <app-message-list [chatRoom]="collocutorData"  *ngIf="collocutorData" [messagesList]="messagesList" [collocutorData]="collocutorData"></app-message-list>
+      <app-message-list [chatRoom]="collocutorData"  *ngIf="collocutorData && messagesList" [messagesList]="messagesList" [collocutorData]="collocutorData"></app-message-list>
     </div>
     <form #message="ngForm" (ngSubmit)="sendMessage(message)" class="message-input">
       <div class="text-input">
         <textarea name="messageText" [ngModel]="messageText" #textarea  id="message" placeholder="Сообщение"
-          (keydown)="triggerFunction($event, message)"  ></textarea>
+          (keydown)="keyDown($event, message)"  ></textarea>
       </div>
       <div class="tools">
         <div >

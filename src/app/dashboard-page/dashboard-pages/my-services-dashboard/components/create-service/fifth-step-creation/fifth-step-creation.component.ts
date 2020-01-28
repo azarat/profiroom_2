@@ -92,7 +92,6 @@ export class FifthStepCreationComponent implements OnInit {
     this.userOffersService.updateService(this.userService)
     .pipe(filter((res: any) => !! res))
     .subscribe(res => {
-      console.log(res);
       this.userService.step = res.step;
     } );
   }

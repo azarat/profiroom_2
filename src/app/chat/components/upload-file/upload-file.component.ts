@@ -25,15 +25,9 @@ export class UploadFileComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // console.log(this.collocutorData.roomId)
   }
 
   openFileLoader() {
-    // if (this.isFileLoaderVisible === null) {
-    //   this.isFileLoaderVisible = true;
-    // } else {
-    //   this.isFileLoaderVisible = !this.isFileLoaderVisible;
-    // }
   }
 
   closeWindow() {
@@ -63,7 +57,6 @@ export class UploadFileComponent implements OnInit {
         res.forEach(el => {
           this.files.push(el);
         });
-        console.log(res);
         this.disabled = true;
       });
   }
@@ -82,7 +75,6 @@ export class UploadFileComponent implements OnInit {
 
   sentMessage() {
     const MessageString = JSON.stringify(this.files);
-    console.log(MessageString)
     this.chatService.sentMessage(MessageString, this.collocutorData.roomId, 'file')
     .subscribe(res => console.log(res));
     this.isFileLoaderVisibleChange.emit(false);

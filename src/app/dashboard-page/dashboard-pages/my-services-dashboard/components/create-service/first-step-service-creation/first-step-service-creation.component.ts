@@ -117,7 +117,6 @@ export class FirstStepServiceCreationComponent implements OnInit {
     // ------- put files in FormData -------//
     this.files.forEach((el: any) => {
       formData.append('filesname[]', el, el.name);
-      console.log(formData);
     });
     // ------- load Files -----
 

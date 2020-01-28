@@ -20,7 +20,7 @@ export class ShowUploadedFilesComponent implements OnInit {
   ngOnInit() {
     this.chatService.getUploadedFiles(this.chatRoom)
     .subscribe((res: any) => {
-      console.log(res);
+      console.log(res)
       this.files = res;
     });
   }

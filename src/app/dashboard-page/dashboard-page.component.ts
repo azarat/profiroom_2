@@ -38,7 +38,6 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
 
     this.userService.getDashboardRes()
       .subscribe((res: any) => {
-        console.log(res);
         this.user = plainToClass(UserModel, res[0]);
         this.authService.saveUserId(this.user.id);
         this.localStorageService.setItem('userImage', this.user.avatar);
@@ -48,7 +47,6 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
 
     this.socetService.checkNotifications()
       .subscribe(res => {
-        console.log('new message', res)
         this.newMessage = true;
       });
 

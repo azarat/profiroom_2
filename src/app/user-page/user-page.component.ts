@@ -27,7 +27,7 @@ export class UserPageComponent implements OnInit {
     'Князь тьмы'
   ];
 
-  @ViewChild('stickyMenu', {static: false}) menuElement: ElementRef;
+  @ViewChild('stickyMenu', { static: false }) menuElement: ElementRef;
 
   private id: any;
 
@@ -44,20 +44,17 @@ export class UserPageComponent implements OnInit {
   ) {
     this.route.params.subscribe(params =>
       this.id = params);
-
-    console.log(this.id);
     this.getUserData(this.id);
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
-  getUserData(id: {id: number}) {
+  getUserData(id: { id: number }) {
     this.userService.loadUserDate(id)
-    .pipe(filter((res: any) => !! res))
-    .subscribe(userData => {
-      console.log(userData);
-      this.userData = userData.user;
-    });
+      .pipe(filter((res: any) => !!res))
+      .subscribe(userData => {
+        this.userData = userData.user;
+      });
   }
 
   scrollTo(target: string) {
@@ -68,26 +65,25 @@ export class UserPageComponent implements OnInit {
       duration: 1000
     };
 
-    if (target === 'about-offer' ) {
+    if (target === 'about-offer') {
       config.offset = -90;
     } else if (target === 'rating' || target === 'compare-table' ||
-     target === 'description' || target === 'comments' || target === 'questions' ) {
+      target === 'description' || target === 'comments' || target === 'questions') {
       config.offset = -80;
-    } else if (target === 'portfolio'  ) {
+    } else if (target === 'portfolio') {
       config.offset = -105;
     }
-    console.log(config);
     this._scrollToService.scrollTo(config);
   }
 
-// Open ChatRoom ws this collocutor
+  // Open ChatRoom ws this collocutor
   public openChat(userId) {
     this.currentUserService.wrightTo(userId)
-    .subscribe(res => {
-      if (res === 'ok') {
-        const translatedPath: any = this.localize.translateRoute('/dashboard/chat-room');
-        this.router.navigate([translatedPath]);
-      }
-    });
+      .subscribe(res => {
+        if (res === 'ok') {
+          const translatedPath: any = this.localize.translateRoute('/dashboard/chat-room');
+          this.router.navigate([translatedPath]);
+        }
+      });
   }
 }

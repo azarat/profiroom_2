@@ -48,7 +48,6 @@ export class CollocutorsListComponent implements OnInit {
       .subscribe(res => {
 
         this.collocutors = res;
-        console.log('collocutors', res)
         this.sortMessagesByTime(this.collocutors);
       });
 
@@ -66,8 +65,6 @@ export class CollocutorsListComponent implements OnInit {
   }
 
   pushNewMessage(arr, obj: any) {
-
-    console.log(obj)
     if (arr.length !== 0) {
       const foundIndex = arr.findIndex(x => x.roomId === obj.roomId);
       this.collocutors[foundIndex] = obj;
@@ -75,7 +72,6 @@ export class CollocutorsListComponent implements OnInit {
       this.collocutors.push(obj);
     }
     if ( +(obj.message[0].author) !== this.userId && obj.unread !== 0) {
-      console.log(obj.collocutorId , this.userId)
       sound.play();
     }
 

@@ -18,30 +18,17 @@ export class ChatComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    // console.log(this.chatType)
-    // this.chatService.getMessage()
-    // .subscribe(res => {
-    //   console.log(res);
-    // });
-
   }
   ngOnDestroy(): void {
-    // console.log('destroyed')
-    // this.chatService.removeListener();
 
   }
 
   getCurrentRoom(userInfo) {
     this.collocutorData = false;
     setTimeout(() => {
-      // this.chatRoom = userInfo.roomId;
       this.collocutorData = userInfo;
     }, 100);
 
   }
-
-  // getCollocutorImg(img: string) {
-  //   this.collocutorImg = img;
-  // }
 
 }

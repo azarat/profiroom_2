@@ -15,10 +15,6 @@ export class OffersResolver implements Resolve<any> {
     private getOffersService: GetOffersService
    ) {}
   resolve(route: ActivatedRouteSnapshot) {
-    // // console.log(route.params);
-    // const subcategory: string = route.params.subCategory.split('?' && '%')[0];
-    // this.getOffersService.setSubcategoryValue(subcategory);
-    // // console.log(subcategory);
   }
 }
 

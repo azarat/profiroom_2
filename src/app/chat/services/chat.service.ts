@@ -22,7 +22,6 @@ export class ChatService {
 
   sentMessage(msg: any, room: string | number, messageType: string) {
     const userId = this.localStorageService.getItem('userId').value;
-    console.log(msg);
     return this.http.post('/message', { roomId: room, author: userId, message: msg, type: messageType });
   }
 

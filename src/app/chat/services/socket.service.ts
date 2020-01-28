@@ -27,7 +27,6 @@ export class SocketService {
 
     this.http.get('/checkAuthirization')
       .subscribe((res: any) => {
-        console.log('check-autorization', res);
         if (!res.auth) {
           this.socket.disconnect(this.host);
         } else {
@@ -61,7 +60,6 @@ export class SocketService {
       return;
     } else {
       this.chatRoomId = this._resetChatRoom(_roomId);
-      console.log(this.chatRoomId, _roomId);
       this.socket.emit('join', this.keyPath + this.chatRoomId);
     }
   }
@@ -87,13 +85,25 @@ export class SocketService {
     });
   }
   // 'typing'
-  onTypingEvent(event: string) {
-    this.socket.emit(event , this.keyPath + this.chatRoomId);
+  onTypingEvent(event: string, userId) {
+    this.socket.emit(event , this.keyPath + this.chatRoomId, userId);
   }
 
-  // stopTyping() {
-  //   this.socket.emit('stopTyping', this.keyPath + this.chatRoomId);
-  // }
+  onTypingListener() {
+    return new Observable(observer => {
+      this.socket.on('typing', (data) => {
+        observer.next(data);
+      });
+    });
+  }
+
+  onStopTypingListener() {
+    return new Observable(observer => {
+      this.socket.on('stopTyping', (data) => {
+        observer.next(data);
+      });
+    });
+  }
 
 
 

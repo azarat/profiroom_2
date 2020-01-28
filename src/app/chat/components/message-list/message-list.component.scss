@@ -39,7 +39,7 @@
     }
     &:after {
       position: absolute;
-      content: '';
+      content: "";
       width: 100%;
       height: 100%;
       background: #3c7eea;
@@ -49,7 +49,6 @@
       transform: translate(-50%, -50%);
       animation: btnAnimation 2.2s infinite;
       z-index: 2;
-
     }
   }
 
@@ -75,7 +74,8 @@
 
 // Btn Animation
 @keyframes btnAnimation {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
   }
   50% {
@@ -201,40 +201,61 @@
       cursor: pointer;
     }
   }
+
+  &.typing .text {
+    position: relative;
+    // width: 95px;
+    // height: 48px;
+    span {
+
+      display: inline-block;
+      border-radius: 50%;
+      background: #278df3;
+      width: 4px;
+      height: 4px;
+      margin-right: 10px;
+
+      &:nth-child(1) {
+        animation: Typing-span-1 0.8s ease-in-out infinite alternate;
+      }
+      &:nth-child(2) {
+        transform: translateY(10px) scale(1);
+        animation: Typing-span-2 0.8s ease-in-out infinite alternate;
+        animation-delay: 0.2s;
+      }
+      &:nth-child(3) {
+        transform: translateY(-10px) scale(2);
+        animation: Typing-span-3 0.8s ease-in-out infinite alternate;
+        animation-delay: 0.4s;
+      }
+    }
+  }
 }
 
-// .file {
-//   display: flex;
-//   justify-content: space-between;
-//   margin-bottom: 25px;
-//   min-width: 280px;
-//   &:hover {
-//     span {
-//       color: #1666ea;
-//       cursor: pointer;
-//     }
+// Typing animation
+@keyframes Typing-span-1 {
+  0% {
+    transform: translateY(-10px) scale(3.1);
+  }
+  100% {
+    transform: translateY(10px) scale(1.5);
+  }
+}
 
-//   }
-//   span {
-//     color: #323c47;
-//     font-family: "Source Sans Pro";
-//     font-size: 14px;
-//     font-weight: 400;
-//     line-height: 18px;
-//     display: block;
-//   }
-//   .download {
-//     position: relative;
-//     &:before {
-//       position: absolute;
-//       content: '\e913';
-//       font-family: "icomoon";
-//       left: 50%;
-//       transform: translateX(-50%);
-//     }
-//     &:hover:before {
-//       color: #1666ea;
-//     }
-//     cursor: pointer;
-//   }
-// }
+@keyframes Typing-span-2 {
+  0% {
+    transform: translateY(10px) scale(1);
+  }
+  100% {
+    transform: translateY(-10px) scale(1.5);
+  }
+}
+
+@keyframes Typing-span-3 {
+  0% {
+    transform: translateY(-10px) scale(2);
+  }
+  100% {
+    transform: translateY(10px) scale(1.5);
+  }
+}

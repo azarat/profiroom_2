@@ -37,7 +37,6 @@ export class MessageScrollerService {
     try {
       el.nativeElement.scrollTop = el.nativeElement.scrollHeight + 210;
     } catch (err) {
-      console.log('err', err);
     }
   }
 
@@ -46,7 +45,12 @@ export class MessageScrollerService {
     this.isAuthorMessage = true;
   }
 
-  // getMessaglistProperty(): Observable<any> {
-  //   return this.isWrittenMessage$.asObservable();
-  // }
+  public checkIfOnBottom(el: ElementRef){
+    const atBottom = el.nativeElement.scrollHeight - el.nativeElement.scrollTop === el.nativeElement.clientHeight;
+    if (atBottom) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

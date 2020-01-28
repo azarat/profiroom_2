@@ -23,7 +23,6 @@ export class FilterComponent implements OnInit {
   ngOnInit() {}
 
   onFilterChange() {
-    console.log(this.catalogFilters);
     this._getOffersService.setFilters(this.catalogFilters);
   }
 

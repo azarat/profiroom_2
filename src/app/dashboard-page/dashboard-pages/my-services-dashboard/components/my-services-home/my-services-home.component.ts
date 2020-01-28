@@ -56,7 +56,6 @@ export class MyServicesHomeComponent implements OnInit {
         first()
       )
       .subscribe((res: any) => {
-        console.log(res);
         if (res.userOffers.length > 0) {
           this.userServices = plainToClass(UserServiceModel, this.deleteEmptyService(res.userOffers).slice().reverse());
         } else {
@@ -116,7 +115,6 @@ export class MyServicesHomeComponent implements OnInit {
   }
 
   onClickedOutside(e: Event) {
-    console.log('Clicked outside:');
     // this.menuOpen = null;
   }
 
@@ -124,7 +122,6 @@ export class MyServicesHomeComponent implements OnInit {
   deleteEmptyService(arr: UserServiceModel[]) {
     arr.forEach(el => {
       if (el.title === null) {
-        console.log('null');
         this.userOfferService.deleteService(el.id)
           .subscribe(res => {
             return;

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, Input, ViewChildren, QueryList, Output, EventEmitter, } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input, ViewChildren, QueryList, Output, EventEmitter, OnDestroy, } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ChatService } from '../../services/chat.service';
 import { messages } from '../consts/messages.const';
@@ -7,7 +7,8 @@ import { CollocutorListModel } from 'src/app/models/chat/collocutors-list.model'
 import { MessageListComponent } from '../message-list/message-list.component';
 import { MessageScrollerService } from '../../services/message-scroller/message-scroller.service';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
-import { filter, first } from 'rxjs/operators';
+import { filter, first, takeUntil, debounceTime } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 
 // declare var $: any;
@@ -18,13 +19,16 @@ import { filter, first } from 'rxjs/operators';
   styleUrls: ['./messager.component.scss'],
   // providers: [MessageScrollerService]
 })
-export class MessagerComponent implements OnInit {
+export class MessagerComponent implements OnInit, OnDestroy {
 
   public messageText;
   public messagesList = [];
   private userId;
   private typing: boolean = false;
   private time: any;
+
+  public keyword$ = new Subject();
+  protected _destroy$ = new Subject();
 
   @Input() collocutorData: CollocutorListModel;
   @Input() isFileLoaderVisible: boolean;
@@ -55,12 +59,26 @@ export class MessagerComponent implements OnInit {
       .subscribe((newMessage: any) => {
 
         if (newMessage.type === 'file' && typeof newMessage.message === 'string') {
-          console.log('file', newMessage.message);
           newMessage.message = typeof newMessage.message === 'string' ? JSON.parse(newMessage.message) : [];
         }
 
         this.messagesList.push(newMessage);
       });
+
+    this.keyword$
+      .pipe(
+        takeUntil(this._destroy$),
+        debounceTime(500)
+      )
+      .subscribe((event: any) => {
+        this.typing = false;
+        this.socketService.onTypingEvent('stopTyping', this.collocutorData.collocutorId);
+      });
+  }
+
+  public ngOnDestroy() {
+    this._destroy$.next();
+    this._destroy$.complete();
   }
 
   public get textInput() {
@@ -76,7 +94,9 @@ export class MessagerComponent implements OnInit {
     this.messageScrollerService.onMessageScrollBottom();
   }
 
-  public triggerFunction(event: any, form: NgForm) {
+  public keyDown(event: KeyboardEvent, form: NgForm) {
+    this.keyword$.next(event);
+
     if (event.ctrlKey && event.key === 'Enter') {
       /*
         cannot make textarea produce a next line.
@@ -89,23 +109,11 @@ export class MessagerComponent implements OnInit {
     }
     // Typing Event
     if (this.typing === false) {
-      console.log('event')
       this.typing = true;
-      this.socketService.onTypingEvent('typing');
-      this.time = setTimeout(() => {
-        this.typingStopped();
-      }, 1000);
-    } else {
-      this.time = null;
-      this.time = setTimeout(()=>{
-        this.typingStopped();
-      }, 1000);
+      this.socketService.onTypingEvent('typing', this.collocutorData.collocutorId);
     }
   }
-  typingStopped() {
-    this.socketService.onTypingEvent('stopTyping');
-    this.typing = false;
-  }
+
 
   // open file-uploader
 

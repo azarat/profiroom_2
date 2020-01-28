@@ -46,7 +46,6 @@ export class CreateServiceComponent implements OnInit {
   }
 
   setCurrentStep(step: number) {
-    console.log(step);
     this.currentStep = step;
   }
   goToStep(stepIndex) {

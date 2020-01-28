@@ -42,7 +42,6 @@ export class ServicePageComponent implements OnInit {
       filter((res: any) => !! res),
     )
     .subscribe(offerId => {
-      console.log(offerId);
       this.getOfferData(offerId);
       this.getViewedOffers();
     });
@@ -58,7 +57,6 @@ export class ServicePageComponent implements OnInit {
     this.offerDataService.loadOfferDate(offerId)
     .pipe(filter((res: any) => !! res))
     .subscribe(offerData => {
-      // console.log(offerData);
       this.offerData = offerData.userOffer;
       this.pushOfferIdToLocalStorage(offerId.offerId);
       this.formateCommentCount();
@@ -79,7 +77,6 @@ export class ServicePageComponent implements OnInit {
       }
       if (offersArrey.length < 4) {
         offersArrey.push(id);
-        console.log(offersArrey.length);
       } else {
         offersArrey.push(id);
         offersArrey.splice(0, 1);
@@ -145,7 +142,6 @@ export class ServicePageComponent implements OnInit {
     } else if (target === 'portfolio'  ) {
       config.offset = -105;
     }
-    console.log(config);
     this._scrollToService.scrollTo(config);
   }
 

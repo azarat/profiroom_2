@@ -26,30 +26,13 @@ export class CollocutorInformationComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
-    console.log(this.collocutorData);
-
     this.chatService.getCollocutorInformation(this.collocutorData.collocutorId)
     .subscribe((res: any) => {
 
       this.collocutor = plainToClass(CollocutorInformationModel, res.user)
       this.collocutorAllComments = this.commentsCountTransformerService.transformCommentsVlalue(this.collocutor.comments_count);
-    })
-
-
+    });
   }
-
-
-
-  // public transformCommentsVlalue(num: number) {
-  //   if (num < 1000) {
-  //     return num;
-  //   } else {
-  //     const exp = Math.floor(Math.log(num) / Math.log(1000));
-  //     const suffixes = ['k', 'M', 'G', 'T', 'P', 'E'];
-  //     return (num / Math.pow(1000, exp)).toFixed(1) + suffixes[exp - 1] + '+';
-  //   }
-  // }
 
   public showAllInfo() {
     this.isInformWraped = !this.isInformWraped;

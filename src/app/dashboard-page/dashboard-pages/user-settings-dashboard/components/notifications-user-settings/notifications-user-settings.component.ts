@@ -22,16 +22,7 @@ export class NotificationsUserSettingsComponent implements OnInit {
   }
 
   updateSettings( form: NgForm ) {
-    console.log('formData', form.value);
-    this.userSettingsService.updateUserNotifications(form.value)
-    .pipe(filter((res: any) => !!res))
-    .subscribe(
-      (res) => {
-        console.log(res);
-        // this.userSettingsModel = res;
-        // console.log(this.userSettingsModel);
-      }
-    );
+    this.userSettingsService.updateUserNotifications(form.value);
   }
 
   chouseAll() {
