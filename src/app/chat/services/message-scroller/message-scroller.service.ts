@@ -45,7 +45,7 @@ export class MessageScrollerService {
     this.isAuthorMessage = true;
   }
 
-  public checkIfOnBottom(el: ElementRef){
+  public checkIfOnBottom(el: ElementRef) {
     const atBottom = el.nativeElement.scrollHeight - el.nativeElement.scrollTop === el.nativeElement.clientHeight;
     if (atBottom) {
       return true;

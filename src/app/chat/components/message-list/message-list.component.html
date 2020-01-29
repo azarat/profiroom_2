@@ -24,7 +24,7 @@
         <span class="time">{{ message.dateTime | dateFormatPipe }}</span>
       </div>
     </div>
-    <div class="message typing" *ngIf="typing && typingUser !== +userId">
+    <div class="message typing" *ngIf="typing && typingUser === +userId">
       <div class="photo">
         <img [src]="collocutorData.collocutorAva" alt="avatar">
       </div>

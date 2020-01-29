@@ -24,6 +24,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/angular-calendar/css/angular-calendar.css",
               "src/custom-theme.scss",
               "src/assets/icoMoon/style.css",
               "./node_modules/quill/dist/quill.core.css",
@@ -35,7 +36,8 @@
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
-              "./node_modules/quill/dist/quill.min.js"]
+              "./node_modules/quill/dist/quill.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -93,6 +95,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/angular-calendar/css/angular-calendar.css",
               "src/styles.css",
               "src/assets/icoMoon/style.css",
               "./node_modules/quill/dist/quill.core.css",

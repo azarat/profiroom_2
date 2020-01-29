@@ -41,6 +41,7 @@ export class UserPageComponent implements OnDestroy  {
     private currentUserService: UserService,
     private localize: LocalizeRouterService,
     private router: Router,
+    // tslint:disable-next-line: variable-name
     private _location: Location
   ) {
 
@@ -50,12 +51,7 @@ export class UserPageComponent implements OnDestroy  {
       this.id = params;
       this.getUserData(this.id);
     });
-
-
-
   }
-
-  ngOnInit() { }
 
   getUserData(id: { id: number }) {
     this.userService.loadUserDate(id)

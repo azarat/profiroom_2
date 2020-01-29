@@ -24,10 +24,11 @@ export class MessagerComponent implements OnInit, OnDestroy {
   public messageText;
   public messagesList = [];
   private userId;
-  private typing: boolean = false;
+  private typing = false;
   private time: any;
 
   public keyword$ = new Subject();
+  // tslint:disable-next-line: variable-name
   protected _destroy$ = new Subject();
 
   @Input() collocutorData: CollocutorListModel;
