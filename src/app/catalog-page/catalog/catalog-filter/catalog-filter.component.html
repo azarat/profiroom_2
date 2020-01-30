@@ -160,7 +160,7 @@
 
   <div class="filter-chips" *ngIf="catalogFilters">
     <div class="filter-chips-list">
-      <ng-container *ngFor='let filter of catalogFilters | keyvalue'>
+      <!-- <ng-container *ngFor='let filter of catalogFilters | keyvalue'>
         <div class="filter-chips-val" *ngIf="
                           filter.value !== undefined &&
                           filter.value !== false &&
@@ -183,12 +183,11 @@
             до {{filter.value}} дней
           </ng-container>
 
-          <!-- :{{filter.value}} -->
           <button class="close" (click)="clearFilter(filter.key, filter.value)">
 
           </button>
         </div>
-      </ng-container>
+      </ng-container> -->
     </div>
 
   </div>
