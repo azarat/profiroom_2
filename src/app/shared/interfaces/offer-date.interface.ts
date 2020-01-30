@@ -4,7 +4,14 @@ export interface OfferDataInterface {
   mainImage?: string;
   rating?: string;
   user_id?: number;
+  created_at?: string;
   user?: {
+    id?: number;
+    country?: string;
+    answerTime?: number;
+    arbitration?: number;
+    inProgressOffers?: number;
+    description?: string;
     avatar?: string;
     name?: string;
     surname?: string;
