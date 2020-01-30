@@ -1,4 +1,4 @@
-const moment = require('moment');
+import * as moment from 'moment';
 
 export const monthConst = () => {
   const months = [];
@@ -7,7 +7,7 @@ export const monthConst = () => {
 
   while (dateEnd.diff(dateStart, 'months') >= 0) {
     months.push(dateStart.format('M'))
-    dateStart.add(1, 'month')
+    dateStart.add(1, 'month');
    }
   return months;
 

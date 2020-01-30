@@ -1,9 +1,9 @@
 <section class="chart-wrap">
   <div class="title">
-    <div>Год: <span>2019</span></div>
+    <div class="current-year">Год: <span>{{ showedYear }}</span></div>
     <div class="chart-year-btns">
-      <button class="prev"></button>
-      <button class="next">2021</button>
+      <button class="prev" *ngIf="showedYear >2020" (click)="prevYear()">{{ showedYear -1  }} год</button>
+      <button class="next" (click)="nextYear()">{{ showedYear + 1 }} год</button>
     </div>
   </div>
   <div class="chart">

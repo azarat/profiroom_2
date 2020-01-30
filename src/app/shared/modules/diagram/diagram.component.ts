@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { monthConst } from './consts/month.const';
-let moment = require('moment');
+import * as moment from 'moment';
+
 @Component({
   selector: 'app-diagram',
   templateUrl: './diagram.component.html',
@@ -8,6 +9,8 @@ let moment = require('moment');
 })
 export class DiagramComponent implements OnInit {
 
+  public currentYear = new Date().getFullYear() + 2;
+  public showedYear;
   public maxInput = 5000;
   public stepsCount: number[] = [0, 1, 2, 3, 4, 5];
   public maxStepCount = 6;
@@ -19,22 +22,8 @@ export class DiagramComponent implements OnInit {
 
   ngOnInit() {
     this.getMaxInput(this.yearsCash);
-
+    this.showedYear = this.currentYear;
   }
-
-
-
-  // getMonthArr() {
-  //   const months = [];
-  //   const dateStart = moment();
-  //   const dateEnd = moment().add(1, 'month');
-
-  //   while (dateEnd.diff(dateStart, 'months') >= 0) {
-  //     this.allMonths.push(dateStart.format('M'))
-  //     dateStart.add(1, 'month')
-  //   }
-  //   return this.allMonths;
-  // }
 
   getMaxInput(arr: any[]) {
     arr.forEach(element => {
@@ -58,4 +47,14 @@ export class DiagramComponent implements OnInit {
     }
   }
 
+  nextYear() {
+    if (this.showedYear !== this.currentYear){
+      this.showedYear = this.showedYear + 1;
+    }
+  }
+  prevYear() {
+    if (this.showedYear !== 2020) {
+        this.showedYear = this.showedYear - 1;
+    }
+  }
 }
