@@ -13,15 +13,15 @@ export class FilterComponent implements OnInit {
   // private catalogFilters: CatalogFiltersModel
   public fliterOpen = null;
   public filterTranslations = {
-    online: "Онлайн",
-    PSD: "PSD",
-    PNG: "PNG",
-    commercial: "Коммерческое использование",
-    confidentiality: "Конфиденциальность",
-    agreement: "Контракты и соглашения",
-    LangUkr: "Украинский",
-    LangRus: "Русский",
-    LangBr: "Беларусский",
+    online: 'Онлайн',
+    PSD: 'PSD',
+    PNG: 'PNG',
+    commercial: 'Коммерческое использование',
+    confidentiality: 'Конфиденциальность',
+    agreement: 'Контракты и соглашения',
+    LangUkr: 'Украинский',
+    LangRus: 'Русский',
+    LangBr: 'Беларусский',
   };
 
   @Input() catalogFilters: CatalogFiltersModel;

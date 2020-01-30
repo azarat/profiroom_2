@@ -28,6 +28,7 @@ export class CatalogComponent implements OnInit {
   catalogSubscription: Subscription;
 
   constructor(
+    // tslint:disable-next-line: variable-name
     public _getOffersService: GetOffersService,
     // tslint:disable-next-line: no-shadowed-variable
     private GetOffersService: GetOffersService,

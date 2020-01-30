@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 export class SocketService {
   // var socket = require('socket.io-client')('http://localhost');
   socket: any;
-  private host = 'http://192.168.0.200:6001';
+  private host = 'http://194.28.103.239:6001';
   // private socket: any = io.connect(this.host);
   public socketId: string = null;
   private keyPath = 'gigroom_database_private-';
@@ -48,11 +48,6 @@ export class SocketService {
         observer.next(data);
       });
     });
-    return;
-    this.socket.on('message', (data) => {
-
-    })
-
   }
   // tslint:disable-next-line: variable-name
   public openChat(_roomId: string) {
