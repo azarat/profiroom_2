@@ -2,7 +2,7 @@
   <h4 class="section-title">
     Отзывы <span>({{ convertedNumberOfComments }})</span>
   </h4>
-  <div class="tabs-wrapp">
+  <div class="tabs-wrapp" *ngIf="offerData.comments_count !== 0">
     <input id="tab1" type="radio" name="tabs" checked>
     <label for="tab1" title="Вкладка 1">Положительные ({{ offerData.positive_comments_count }})</label>
 
@@ -15,13 +15,13 @@
 
         <div class="comment main">
           <div class="left-side">
-            <div class="ava">
-              <img [src]="'https://www.thecubetest.site/Backend/storage/app/' + comment.user.avatar"
-                alt="user avatar">
-            </div>
+            <a class="ava" [routerLink]="['/user', comment.author.id] | localize">
+              <img [src]="comment.author.avatar" alt="user avatar">
+            </a>
           </div>
           <div class="right-side">
-            <div class="user-name">{{ comment.user.name }} {{ comment.user.surname }}</div>
+            <a class="user-name" [routerLink]="['/user', comment.author.id] | localize">{{ comment.author.name }}
+              {{ comment.author.surname }}</a>
             <div class="user-raiting-wrapp">
               <span class="star-raiting">{{ comment.mark }}</span>
             </div>
@@ -33,22 +33,19 @@
 
         <ng-container *ngIf="comment.childs">
           <div class="comment sub" *ngFor="let child of comment.childs">
-              <div class="left-side">
-                <div class="ava">
-                  <img [src]="'https://www.thecubetest.site/Backend/storage/app/' + child.user.avatar"
-                    alt="user avatar">
-                </div>
-              </div>
-              <div class="right-side">
-                <div class="user-name">{{ child.user.name }} {{ child.user.surname }}</div>
-                <div class="user-raiting-wrapp">
-                  <span class="star-raiting">{{ child.mark }}</span>
-                </div>
-                <p class="comment-text">
-                  {{ child.commentText }}
-                </p>
-              </div>
+            <div class="left-side">
+              <a class="ava" [routerLink]="['/user', child.author.id] | localize">
+                <img [src]="child.author.avatar" alt="user avatar">
+              </a>
             </div>
+            <div class="right-side">
+              <a class="user-name" [routerLink]="['/user', child.author.id] | localize">{{ child.author.name }}
+                {{ child.author.surname }}</a>
+              <p class="comment-text">
+                {{ child.commentText }}
+              </p>
+            </div>
+          </div>
         </ng-container>
 
 
@@ -61,13 +58,13 @@
 
         <div class="comment main">
           <div class="left-side">
-            <div class="ava">
-              <img [src]="'https://www.thecubetest.site/Backend/storage/app/' + comment.user.avatar"
-                alt="user avatar">
-            </div>
+            <a class="ava" [routerLink]="['/user', comment.author.id] | localize">
+              <img [src]="comment.author.avatar" alt="user avatar">
+            </a>
           </div>
           <div class="right-side">
-            <div class="user-name">{{ comment.user.name }} {{ comment.user.surname }}</div>
+            <a class="user-name" [routerLink]="['/user', comment.author.id] | localize">{{ comment.author.name }}
+              {{ comment.author.surname }}</a>
             <div class="user-raiting-wrapp">
               <span class="star-raiting">{{ comment.mark }}</span>
             </div>
@@ -79,22 +76,19 @@
 
         <ng-container *ngIf="comment.childs">
           <div class="comment sub" *ngFor="let child of comment.childs">
-              <div class="left-side">
-                <div class="ava">
-                  <img [src]="'https://www.thecubetest.site/Backend/storage/app/' + child.user.avatar"
-                    alt="user avatar">
-                </div>
-              </div>
-              <div class="right-side">
-                <div class="user-name">{{ child.user.name }} {{ child.user.surname }}</div>
-                <div class="user-raiting-wrapp">
-                  <span class="star-raiting">{{ child.mark }}</span>
-                </div>
-                <p class="comment-text">
-                  {{ child.commentText }}
-                </p>
-              </div>
+            <div class="left-side">
+              <a class="ava" [routerLink]="['/user', child.author.id] | localize">
+                <img [src]="child.author.avatar" alt="user avatar">
+              </a>
             </div>
+            <div class="right-side">
+              <a class="user-name" [routerLink]="['/user', child.author.id] | localize">{{ child.author.name }}
+                {{ child.author.surname }}</a>
+              <p class="comment-text">
+                {{ child.commentText }}
+              </p>
+            </div>
+          </div>
         </ng-container>
 
       </div>

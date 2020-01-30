@@ -16,9 +16,12 @@ import { StarRaitingModule } from '../shared/modules/star-raiting/star-raiting.m
 import { PickerModule } from 'node_modules/@ctrl/ngx-emoji-mart';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DataFormatModule } from '../shared/pipes/data-format/data-format.module';
+import { ShowUploadedFilesComponent } from './components/show-uploaded-files/show-uploaded-files.component';
 import { MessageScrollerService } from './services/message-scroller/message-scroller.service';
 import { EmojiComponent } from './components/emoji/emoji.component';
-import { ShowUploadedFilesComponent } from './components/show-uploaded-files/show-uploaded-files.component';
+import { UploadFileComponent } from './components/upload-file/upload-file.component';
+import { FileSizeModule } from '../shared/pipes/file-size/file-size.module';
+import { FileTypeModule } from '../shared/pipes/file-type/file-type.module';
 
 
 
@@ -31,8 +34,9 @@ import { ShowUploadedFilesComponent } from './components/show-uploaded-files/sho
     MessagerComponent,
     MessageListComponent,
     CollocutorInformationComponent,
-    EmojiComponent,
     ShowUploadedFilesComponent,
+    EmojiComponent,
+    UploadFileComponent,
 
     // Directives
 
@@ -45,7 +49,10 @@ import { ShowUploadedFilesComponent } from './components/show-uploaded-files/sho
     FormsModule,
     ReactiveFormsModule,
 
-    DataFormatModule
+    DataFormatModule,
+    FileSizeModule,
+    FileTypeModule
+
   ],
   exports: [ChatComponent],
   providers: [

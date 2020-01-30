@@ -35,6 +35,11 @@ const routes: Routes = [
         // import('./dashboard-pages/my-services-dashboard/my-services-dashboard.module').then(m => m.MyServicesDashboardModule)
       },
       {
+        path: 'finance',
+        loadChildren: () => import('./dashboard-pages/finace-page/finace-page.module').then(m => m.FinacePageModule)
+        // import('./dashboard-pages/my-services-dashboard/my-services-dashboard.module').then(m => m.MyServicesDashboardModule)
+      },
+      {
         path: 'settings',
         loadChildren: () =>import('./dashboard-pages/user-settings-dashboard/user-settings-dashboard.module')
         .then(m => m.UserSettingsDashboardModule)

@@ -15,7 +15,6 @@ export class PassResetGuard implements CanActivate {
     private _route: ActivatedRoute,
   ) {
     this._route.queryParams.subscribe(data => {
-      console.log(data);
       if (data.token !== undefined) {
         this.token = data.token;
       }

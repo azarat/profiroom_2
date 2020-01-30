@@ -1,8 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { OfferDataInterface } from 'src/app/shared/interfaces/offer-date.interface';
 import { LocalizeRouterService } from 'localize-router';
-import { ServicePageService } from '../../services/service-page.service';
-import { filter } from 'rxjs/operators';
+
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({

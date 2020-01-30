@@ -1,0 +1,34 @@
+<section class="user-services">
+  <div class="section-title">Услуги фрилансера</div>
+  <div class="cards-list">
+    <ng-container *ngFor="let offer of userData.offers; let i = index">
+      <div class="card" *ngIf="i <= offersShow">
+
+        <div class="card-preview__bg" (click)="openOffer(offer.id)">
+          <img class="card-preview" (click)="openOffer(offer.id)"
+            [src]="offer.mainImage">
+        </div>
+        <div class="card-description">
+
+          <p class="card-description__about" (click)="openOffer(offer.id)">{{offer.title}}
+          </p>
+          <div class="card-description__bottom">
+            <!-- <div class="card-description__level">{{userData.raiting}}</div> -->
+            <div class="card-description__level">{{offer.raiting}}</div>
+            <div class="card-description__comments">({{offer.comments_count}} отзывов)</div>
+          </div>
+
+        </div>
+        <div class="card-bottom">
+          <div class="card-bottom__like" [class.liked]="offer.liked"></div>
+          <div class="card-bottom__price">
+            от
+            <span>{{offer.minPrice}}</span>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+  </div>
+  <p class="show-offers" (click)=showAllOffers() [ngClass] = "{open: offersShowState}">показать больше</p>
+</section>

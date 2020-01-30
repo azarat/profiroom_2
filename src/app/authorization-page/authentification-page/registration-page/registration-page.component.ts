@@ -80,7 +80,6 @@ export class RegistrationPageComponent implements OnInit {
     if (this.registrationForm.invalid) {
       return;
     }
-    console.log(!this.registrationForm.invalid);
     this.submitted = true;
     this.autServ.registation(this.registrationForm.value)
       .subscribe(res => {

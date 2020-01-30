@@ -7,10 +7,12 @@
         <div class="filter-title-arrow" [ngClass]="{open: fliterOpen === 0}"></div>
       </div>
       <div class="filter-values f-types" [ngClass]="{open: fliterOpen === 0}">
-        <section  class="filter-values-wrapper f-checkboxs">
-          <mat-checkbox class="filter-text" [(ngModel)]="catalogFilters.PSD" (ngModelChange)="onFilterChange()"  name='PSD' #typePSD="ngModel">PSD</mat-checkbox>
-          <mat-checkbox class="filter-text" [(ngModel)]="catalogFilters.PNG" (ngModelChange)="onFilterChange()"  name='PNG' #typePNG="ngModel">PNG</mat-checkbox>
-        </section >
+        <section class="filter-values-wrapper f-checkboxs">
+          <mat-checkbox class="filter-text" [(ngModel)]="catalogFilters.PSD" (ngModelChange)="onFilterChange()"
+            name='PSD' #typePSD="ngModel">PSD</mat-checkbox>
+          <mat-checkbox class="filter-text" [(ngModel)]="catalogFilters.PNG" (ngModelChange)="onFilterChange()"
+            name='PNG' #typePNG="ngModel">PNG</mat-checkbox>
+        </section>
         <div class="filter-btns">
           <div class="f-btn" (click)="clearTypes()">Очистить</div>
           <div class="f-btn" (click)="showFullFilter(null)">Закрыть</div>
@@ -27,29 +29,13 @@
         <div class="filter-values-wrapper">
           <div class="filter-section">
             <label class="filter-text" for="price-mn">От</label>
-            <input
-              class="inputs"
-              matInput
-              number
-              placeholder="UAH"
-              [(ngModel)]="catalogFilters.minPrice"
-              (ngModelChange)="onFilterChange()"
-              type="text"
-              name="minPrice"
-              #typeMinPrice="ngModel">
+            <input class="inputs" matInput number placeholder="UAH" [(ngModel)]="catalogFilters.minPrice"
+              (ngModelChange)="onFilterChange()" type="text" name="minPrice" #typeMinPrice="ngModel">
           </div>
           <div class="filter-section">
             <label class="filter-text" for="price-mx">До</label>
-            <input
-              class="inputs"
-              matInput
-              number
-              placeholder="UAH"
-              [(ngModel)]="catalogFilters.maxPrice"
-              (ngModelChange)="onFilterChange()"
-              type="text"
-              name="maxPrice"
-              #typeMaxPrice="ngModel">
+            <input class="inputs" matInput number placeholder="UAH" [(ngModel)]="catalogFilters.maxPrice"
+              (ngModelChange)="onFilterChange()" type="text" name="maxPrice" #typeMaxPrice="ngModel">
           </div>
         </div>
 
@@ -62,7 +48,8 @@
         <div class="filter-title-arrow" [ngClass]="{open: fliterOpen === 2}"></div>
       </div>
       <div class="filter-values f-term" [ngClass]="{open: fliterOpen === 2}">
-        <mat-radio-group class="filter-values-wrapper f-radio" [(ngModel)]="catalogFilters.maxTerm" (ngModelChange)="onFilterChange()"  name='maxTerm' #maxTerm="ngModel">
+        <mat-radio-group class="filter-values-wrapper f-radio" [(ngModel)]="catalogFilters.maxTerm"
+          (ngModelChange)="onFilterChange()" name='maxTerm' #maxTerm="ngModel">
           <mat-radio-button class="filter-text" value="">None</mat-radio-button>
           <mat-radio-button class="filter-text" value="1">Экспресс за 24 часа</mat-radio-button>
           <mat-radio-button class="filter-text" value="3">До 3 дней</mat-radio-button>
@@ -83,11 +70,15 @@
         <div class="filter-title-arrow" [ngClass]="{open: fliterOpen === 3}"></div>
       </div>
       <div class="filter-values f-includes" [ngClass]="{open: fliterOpen === 3}">
-        <section  class="filter-values-wrapper f-checkboxs">
-          <mat-checkbox class="filter-text"  [(ngModel)]="catalogFilters.commercial" (ngModelChange)="onFilterChange()" name='commercial' #commercial="ngModel">Коммерческое использование</mat-checkbox>
-          <mat-checkbox class="filter-text"  [(ngModel)]="catalogFilters.confidentiality"  (ngModelChange)="onFilterChange()" name='confidentiality' #confidentiality="ngModel">Конфиденциальность</mat-checkbox>
-          <mat-checkbox class="filter-text"  [(ngModel)]="catalogFilters.agreement"  (ngModelChange)="onFilterChange()" name='agreement' #agreement="ngModel">Контракты и соглашения</mat-checkbox>
-        </section >
+        <section class="filter-values-wrapper f-checkboxs">
+          <mat-checkbox class="filter-text" [(ngModel)]="catalogFilters.commercial" (ngModelChange)="onFilterChange()"
+            name='commercial' #commercial="ngModel">Коммерческое использование</mat-checkbox>
+          <mat-checkbox class="filter-text" [(ngModel)]="catalogFilters.confidentiality"
+            (ngModelChange)="onFilterChange()" name='confidentiality' #confidentiality="ngModel">Конфиденциальность
+          </mat-checkbox>
+          <mat-checkbox class="filter-text" [(ngModel)]="catalogFilters.agreement" (ngModelChange)="onFilterChange()"
+            name='agreement' #agreement="ngModel">Контракты и соглашения</mat-checkbox>
+        </section>
         <div class="filter-btns">
           <div class="f-btn" (click)="clearIncludes()">Очистить</div>
           <div class="f-btn" (click)="showFullFilter(null)">Закрыть</div>
@@ -103,36 +94,48 @@
       <div class="filter-values f-other" [ngClass]="{open: fliterOpen === 4}">
         <div class="f-other-wrapper">
           <h5>Продавец говорит</h5>
-          <section  class="filter-values-wrapper f-checkboxs">
-            <mat-checkbox class="filter-text"  [(ngModel)]="catalogFilters.LangRus" (ngModelChange)="onFilterChange()" name='commercial' #commercial="ngModel">Русский</mat-checkbox>
-            <mat-checkbox class="filter-text"  [(ngModel)]="catalogFilters.LangUkr"  (ngModelChange)="onFilterChange()" name='confidentiality' #confidentiality="ngModel">Украинский</mat-checkbox>
-            <mat-checkbox class="filter-text"  [(ngModel)]="catalogFilters.LangBr"  (ngModelChange)="onFilterChange()" name='agreement' #agreement="ngModel">Беларусский</mat-checkbox>
-          </section >
+          <section class="filter-values-wrapper f-checkboxs">
+            <mat-checkbox class="filter-text" [(ngModel)]="catalogFilters.LangRus" (ngModelChange)="onFilterChange()"
+              name='commercial' #commercial="ngModel">Русский</mat-checkbox>
+            <mat-checkbox class="filter-text" [(ngModel)]="catalogFilters.LangUkr" (ngModelChange)="onFilterChange()"
+              name='confidentiality' #confidentiality="ngModel">Украинский</mat-checkbox>
+            <mat-checkbox class="filter-text" [(ngModel)]="catalogFilters.LangBr" (ngModelChange)="onFilterChange()"
+              name='agreement' #agreement="ngModel">Беларусский</mat-checkbox>
+          </section>
         </div>
 
         <div class="f-other-wrapper">
           <h5>Продавец говорит</h5>
-          <section  class="filter-values-wrapper f-checkboxs">
-            <mat-checkbox class="filter-text"  [(ngModel)]="catalogFilters.LangRus" (ngModelChange)="onFilterChange()" name='commercial' #commercial="ngModel">Русский</mat-checkbox>
-            <mat-checkbox class="filter-text"  [(ngModel)]="catalogFilters.LangUkr"  (ngModelChange)="onFilterChange()" name='confidentiality' #confidentiality="ngModel">Украинский</mat-checkbox>
-            <mat-checkbox class="filter-text"  [(ngModel)]="catalogFilters.LangBr"  (ngModelChange)="onFilterChange()" name='agreement' #agreement="ngModel">Беларусский</mat-checkbox>
-          </section >
+          <section class="filter-values-wrapper f-checkboxs">
+            <mat-checkbox class="filter-text" [(ngModel)]="catalogFilters.LangRus" (ngModelChange)="onFilterChange()"
+              name='commercial' #commercial="ngModel">Русский</mat-checkbox>
+            <mat-checkbox class="filter-text" [(ngModel)]="catalogFilters.LangUkr" (ngModelChange)="onFilterChange()"
+              name='confidentiality' #confidentiality="ngModel">Украинский</mat-checkbox>
+            <mat-checkbox class="filter-text" [(ngModel)]="catalogFilters.LangBr" (ngModelChange)="onFilterChange()"
+              name='agreement' #agreement="ngModel">Беларусский</mat-checkbox>
+          </section>
         </div>
         <div class="f-other-wrapper">
           <h5>Продавец говорит</h5>
-          <section  class="filter-values-wrapper f-checkboxs">
-            <mat-checkbox class="filter-text"  [(ngModel)]="catalogFilters.LangRus" (ngModelChange)="onFilterChange()" name='commercial' #commercial="ngModel">Русский</mat-checkbox>
-            <mat-checkbox class="filter-text"  [(ngModel)]="catalogFilters.LangUkr"  (ngModelChange)="onFilterChange()" name='confidentiality' #confidentiality="ngModel">Украинский</mat-checkbox>
-            <mat-checkbox class="filter-text"  [(ngModel)]="catalogFilters.LangBr"  (ngModelChange)="onFilterChange()" name='agreement' #agreement="ngModel">Беларусский</mat-checkbox>
-          </section >
+          <section class="filter-values-wrapper f-checkboxs">
+            <mat-checkbox class="filter-text" [(ngModel)]="catalogFilters.LangRus" (ngModelChange)="onFilterChange()"
+              name='commercial' #commercial="ngModel">Русский</mat-checkbox>
+            <mat-checkbox class="filter-text" [(ngModel)]="catalogFilters.LangUkr" (ngModelChange)="onFilterChange()"
+              name='confidentiality' #confidentiality="ngModel">Украинский</mat-checkbox>
+            <mat-checkbox class="filter-text" [(ngModel)]="catalogFilters.LangBr" (ngModelChange)="onFilterChange()"
+              name='agreement' #agreement="ngModel">Беларусский</mat-checkbox>
+          </section>
         </div>
         <div class="f-other-wrapper">
           <h5>Продавец говорит</h5>
-          <section  class="filter-values-wrapper f-checkboxs">
-            <mat-checkbox class="filter-text"  [(ngModel)]="catalogFilters.LangRus" (ngModelChange)="onFilterChange()" name='commercial' #commercial="ngModel">Русский</mat-checkbox>
-            <mat-checkbox class="filter-text"  [(ngModel)]="catalogFilters.LangUkr"  (ngModelChange)="onFilterChange()" name='confidentiality' #confidentiality="ngModel">Украинский</mat-checkbox>
-            <mat-checkbox class="filter-text"  [(ngModel)]="catalogFilters.LangBr"  (ngModelChange)="onFilterChange()" name='agreement' #agreement="ngModel">Беларусский</mat-checkbox>
-          </section >
+          <section class="filter-values-wrapper f-checkboxs">
+            <mat-checkbox class="filter-text" [(ngModel)]="catalogFilters.LangRus" (ngModelChange)="onFilterChange()"
+              name='commercial' #commercial="ngModel">Русский</mat-checkbox>
+            <mat-checkbox class="filter-text" [(ngModel)]="catalogFilters.LangUkr" (ngModelChange)="onFilterChange()"
+              name='confidentiality' #confidentiality="ngModel">Украинский</mat-checkbox>
+            <mat-checkbox class="filter-text" [(ngModel)]="catalogFilters.LangBr" (ngModelChange)="onFilterChange()"
+              name='agreement' #agreement="ngModel">Беларусский</mat-checkbox>
+          </section>
         </div>
         <div class="filter-btns">
           <div class="f-btn" (click)="clearIncludes()">Очистить</div>
@@ -143,7 +146,8 @@
 
     <div class="filter-switch f-required">
       <div class="pckg-swap ">
-        <input class="tgl tgl-swp" id="cb2" type="checkbox" [(ngModel)]="catalogFilters.online" (ngModelChange)="onFilterChange()" name="notificationsAll" #online="ngModel"/>
+        <input class="tgl tgl-swp" id="cb2" type="checkbox" [(ngModel)]="catalogFilters.online"
+          (ngModelChange)="onFilterChange()" name="notificationsAll" #online="ngModel" />
         <label class="tgl-btn" for="cb2"></label>
         <div class="filter-title">
           <p>Сейчас онлайн</p>
@@ -153,4 +157,39 @@
     </div>
 
   </form>
+
+  <div class="filter-chips" *ngIf="catalogFilters">
+    <div class="filter-chips-list">
+      <!-- <ng-container *ngFor='let filter of catalogFilters | keyvalue'>
+        <div class="filter-chips-val" *ngIf="
+                          filter.value !== undefined &&
+                          filter.value !== false &&
+                          filter.value !== null &&
+                          filter.value !== '' &&
+                          filter.key !== 'page' &&
+                          filter.key !== 'category' &&
+                          filter.key !== 'subCategory' &&
+                          filter.key !== 'current_page' ">
+          <ng-container *ngIf="filter.key !== 'minPrice' && filter.key !== 'maxPrice' && filter.key !== 'maxTerm'">
+            {{filterTranslations[filter.key]}}
+          </ng-container>
+          <ng-container *ngIf="filter.key === 'maxPrice'">
+            до ${{filter.value}}
+          </ng-container>
+          <ng-container *ngIf="filter.key === 'minPrice'">
+            от ${{filter.value}}
+          </ng-container>
+          <ng-container *ngIf="filter.key === 'maxTerm'">
+            до {{filter.value}} дней
+          </ng-container>
+
+          <button class="close" (click)="clearFilter(filter.key, filter.value)">
+
+          </button>
+        </div>
+      </ng-container> -->
+    </div>
+
+  </div>
+
 </div>

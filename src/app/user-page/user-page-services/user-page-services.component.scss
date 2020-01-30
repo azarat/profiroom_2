@@ -1,0 +1,194 @@
+.section-title {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 23px;
+  color: #323c47;
+}
+.user-services {
+  border-bottom: 1px solid #f1f2f4;
+  margin-bottom: 25px;
+  .cards-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin: 24px -15px 0;
+  }
+  .card {
+    width: calc(33.3% - 30px);
+    margin: 0 15px 30px;
+    box-sizing: border-box;
+    font-family: "Source Sans Pro", sans-serif;
+    color: #323c47;
+
+    box-shadow: 0px 0px 4px rgba(199, 213, 255, 0.55);
+    border-radius: 3px;
+    background-color: #fff;
+    &-preview {
+      &__bg {
+        height: 200px;
+        box-shadow: 0px 0px 4px rgba(199, 213, 255, 0.55);
+        border-radius: 3px;
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+        img {
+          width: 100%;
+          height: auto;
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+      }
+    }
+    &-description {
+      width: 100%;
+      padding: 12px 11px;
+      box-sizing: border-box;
+      height: 100px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      &__top {
+        display: flex;
+        align-items: center;
+        img {
+          height: 40px;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
+      &__about {
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 20px;
+        color: #323c47;
+
+        max-height: 41px;
+        overflow: hidden;
+        margin: 0;
+        cursor: pointer;
+        outline: none;
+        &:hover{
+          color: #5695FD;
+        }
+      }
+      &__skill {
+        font-size: 16px;
+        line-height: 20px;
+      }
+      &__bottom {
+        margin-top: auto;
+        display: flex;
+      }
+      &__level {
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 20px;
+        padding-left: 28px;
+        position: relative;
+        cursor: default;
+        &::before {
+          content: "";
+          position: absolute;
+          width: 20px;
+          height: 20px;
+          top: 50%;
+          left: 0;
+          transform: translateY(-58%);
+
+          height: 20px;
+          width: 20px;
+          background-image: url(/assets/images/icons/Star.png);
+          background-repeat: no-repeat;
+          background-size: contain;
+          background-position: center;
+        }
+      }
+      &__comments {
+        font-size: 16px;
+        line-height: 20px;
+        color: #99acb7;
+        margin-left: 14px;
+        cursor: default;
+      }
+    }
+    &-bottom {
+      border: 1px solid #f4f7fc;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 11px;
+      &__like {
+        width: 20px;
+        height: 18px;
+        background-image: url(/assets/images/icons/not_liked.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+        cursor: pointer;
+        &.liked {
+          background-image: url(/assets/images/icons/liked.png);
+        }
+      }
+      &__price {
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 18px;
+        span {
+          font-weight: bold;
+          font-size: 16px;
+          line-height: 20px;
+          padding-left: 13px;
+          position: relative;
+          &::before {
+            content: "$";
+            position: absolute;
+            left: 4px;
+            top: 50%;
+            transform: translateY(-50%);
+          }
+        }
+      }
+    }
+  }
+}
+
+.show-offers{
+  margin: 0 auto 25px;
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  color: #3C7EEA;
+  cursor: pointer;
+  text-transform: uppercase;
+  width: fit-content;
+  position: relative;
+  padding-right: 20px;
+  &:hover {
+    color: #5695FD;
+  }
+  &:active{
+    color: #1666EA;
+  }
+  &::after{
+    content: '';
+    background-image: url(/assets/images/svg/user/blue-arrow-down.svg);
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 7px;
+  }
+  &.open{
+    &::after{
+      transform: translateY(-50%) rotate(180deg);
+    }
+  }
+}

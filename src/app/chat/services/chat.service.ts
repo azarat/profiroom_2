@@ -20,18 +20,25 @@ export class ChatService {
     private localStorageService: LocalStorageService
   ) { }
 
-  sentMessage(msg: string, room) {
+  sentMessage(msg: any, room: string | number, messageType: string) {
     const userId = this.localStorageService.getItem('userId').value;
-    console.log(userId)
-    return this.http.post('/message', { roomId: room, author: userId, message: msg });
+    return this.http.post('/message', { roomId: room, author: userId, message: msg, type: messageType });
   }
 
-  getPreviousMessages(roomId: string) {
-    return this.http.get('/chat?roomId=' + roomId);
+  getPreviousMessages(roomId: string, messCount: number) {
+    return this.http.get('/getRoomMessages?roomId=' + roomId + '&start=' + messCount);
   }
 
   public getChatRooms() {
     return this.http.get('/getChatRooms');
+  }
+
+  public getCollocutorInformation(id) {
+    return this.http.get('/getChatUser?id=' + id);
+  }
+
+  getUploadedFiles(_roomId) {
+    return this.http.post('/getChatFiles', {roomId: _roomId});
   }
 
 

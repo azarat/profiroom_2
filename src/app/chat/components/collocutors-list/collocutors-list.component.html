@@ -1,6 +1,6 @@
 <div class="wrapper" *ngIf="collocutors && chatType" [ngClass]="{ projects: chatType === 'projects' }">
   <section class="line">
-    Все сообщения <span>(1250)</span>
+    Все сообщения <span>({{ collocutors.length }})</span>
   </section>
   <section class="collocutors-wrap">
     <div class="collocutors-serch" *ngIf="chatType !== 'projects'">
@@ -13,17 +13,21 @@
 
     </div>
     <div class="collocutors-list" [ngClass]="{ projects: chatType === 'projects' }">
-      <div class="collocutor" *ngFor="let collocutor of collocutors, let i=index" (click)="openChat(collocutor)">
+      <div class="collocutor" *ngFor="let collocutor of collocutors, let i=index" (click)="openChat(collocutor)" [ngClass]="{'unread': userId === +collocutor.unread}">
         <span *ngIf="chatType == 'projects'" class="status"></span>
-        <p class="date" >{{ collocutors[i].lastMessage[0].dateTime | dateFormatPipe }}</p>
+        <p class="date" *ngIf="collocutor.message.length !== 0" >{{ collocutor.message[0].dateTime | dateFormatPipe }}</p>
         <div class="message-preview">
           <div class="photo">
-            <img [src]="'https://www.thecubetest.site/Backend/storage/app/' + collocutor.collocutorAva" alt="collocutor-photo" />
+            <img [src]="collocutor.collocutorAva" alt="collocutor-photo" />
             <span class="status"></span>
           </div>
           <div class="message-information">
             <p class="collocutor-name">{{ collocutor.collocutorName }} {{ collocutor.collocutorSurname }} </p>
-            <p class="collocutor-message">{{ collocutor.lastMessage[0].message }}</p>
+            <p class="collocutor-message" *ngIf="collocutors[i].message.length !== 0" >
+              <span *ngIf="userId == collocutor.message[0].author">Вы: </span>
+             <span *ngIf="collocutor.message[0].type === 'string'">{{ collocutor.message[0].message }}</span>
+             <span *ngIf="collocutor.message[0].type === 'file'">Файл</span>
+            </p>
           </div>
         </div>
       </div>

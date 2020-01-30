@@ -108,10 +108,11 @@
       border-radius: 3px;
       background-color: #fff;
       cursor: pointer;
+      outline: none;
     }
     &-title{
       margin: 0;
-      width: 350px;
+      width: fit-content;
       a{
         font-family: "Source Sans Pro";
         font-weight: 600;

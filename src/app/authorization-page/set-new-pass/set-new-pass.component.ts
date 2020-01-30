@@ -67,7 +67,6 @@ export class SetNewPassComponent implements OnInit {
 
     this.autServ.confirmNewPass(this.registrationForm.value)
       .subscribe(res => {
-        console.log(res);
         if (res.message === 'This password reset token is invalid.') {
           this.message = {
             title: 'Ошибка',

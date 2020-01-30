@@ -32,11 +32,11 @@
 
       <div class="container">
         <div class="user" *ngIf="offerData">
-          <div class="user-avatar">
-            <img [src]="'https://www.thecubetest.site/Backend/storage/app/' + offerData.user.avatar" alt="user avatar">
-          </div>
+          <a class="user-avatar" [routerLink]="['/user', offerData.user_id] | localize">
+            <img [src]="offerData.user.avatar" alt="user avatar">
+          </a>
           <div class="user-text">
-            <span class="user-name">{{ offerData.user.name }} {{ offerData.user.surname }}</span>
+            <a [routerLink]="['/user', offerData.user_id] | localize" class="user-name">{{ offerData.user.name }} {{ offerData.user.surname }}</a>
             <div class="user-raiting-wrapp">
               <span class="star-raiting">{{ offerData.raiting }}</span>
             </div>
@@ -89,22 +89,19 @@
         <div class="raiting-type">
           <div class="raiting-type_name">Качество услуги</div>
           <div class="raiting-type_numeral">
-            <span class="raiting-type_number">{{ offerData.raiting }}</span>
-            <span class="raiting-type_comments">(1k+ отзывов)</span>
+            <span class="raiting-type_number">{{ offerData.user.qualityMark }}</span>
           </div>
         </div>
         <div class="raiting-type">
           <div class="raiting-type_name">Срок исполнения</div>
           <div class="raiting-type_numeral">
-            <span class="raiting-type_number">{{ offerData.raiting }}</span>
-            <span class="raiting-type_comments">(1k+ отзывов)</span>
+            <span class="raiting-type_number">{{ offerData.user.termMark }}</span>
           </div>
         </div>
         <div class="raiting-type">
           <div class="raiting-type_name">Вежливость фрилансера</div>
           <div class="raiting-type_numeral">
-            <span class="raiting-type_number">{{ offerData.raiting }}</span>
-            <span class="raiting-type_comments">(1k+ отзывов)</span>
+            <span class="raiting-type_number">{{ offerData.user.politenessMark }}</span>
           </div>
         </div>
       </section>
@@ -119,6 +116,6 @@
       </div>
     </div>
     <app-service-page-another-services [offerData]="offerData" *ngIf="offerData"></app-service-page-another-services>
-    <app-service-page-earlier-viewed [viewedOffers]="viewedOffers" *ngIf="viewedOffers"></app-service-page-earlier-viewed>
+    <app-service-page-earlier-viewed [similarOffers]="similarOffers" *ngIf="similarOffers"></app-service-page-earlier-viewed>
   </div>
 </div>

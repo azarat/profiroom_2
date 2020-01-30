@@ -12,7 +12,7 @@
   box-shadow: 0px 4px 4px rgba(128, 152, 213, 0.1);
   position: absolute;
   width: 100%;
-  top: 113px;
+  top: 137px;
   &.sticky {
     position: fixed;
     top: 0;
@@ -109,7 +109,6 @@
     line-height: 30px;
     color: #323c47;
     margin: 0;
-
     margin-bottom: 25px;
   }
 }
@@ -150,6 +149,10 @@
     font-size: 18px;
     line-height: 18px;
     color: #323c47;
+    text-decoration: none;
+    &:hover{
+      color: #5695FD;
+    }
   }
   &-raiting {
     &-wrapp {

@@ -72,22 +72,24 @@ export class Language {
 }
 
 export class Education {
+  @Expose() id: number;
   @Expose() institution: string;
   @Expose() academicDegree: number;
   @Expose() specialty: string;
   @Expose() startEducation: number;
   @Expose() finishEducation: number;
-  @Expose() diplomaFiles: FormData;
+  @Expose() diploma: any[];
 }
 
 export class AdditionalEducation {
+  @Expose() id: number;
   @Expose() additionalInstitution: string;
   @Expose() courseName: string;
   @Expose() startStudyMounth: number;
   @Expose() startStudyYear: number;
   @Expose() endStudyMounth: number;
   @Expose() endStudyYear: number;
-  @Expose() additionalDiplomaFiles: any;
+  @Expose() additionalDiploma: any[];
 }
 
 export class UserNotifications {

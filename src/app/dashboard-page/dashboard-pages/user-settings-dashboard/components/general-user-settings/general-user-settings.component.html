@@ -4,5 +4,5 @@
 <app-location-language-user-settings *ngIf="userSettingsModel" [userSettings]="userSettingsModel"></app-location-language-user-settings>
 <app-education-user-settings *ngIf="userSettingsModel" [userSettings]="userSettingsModel"></app-education-user-settings>
 <app-additional-education-user-settings *ngIf="userSettingsModel" [userSettings]="userSettingsModel"></app-additional-education-user-settings>
-<button type="submit" class="btn save-all" (click)="updateSettings()">сохранить изменения</button>
+<button type="submit" class="btn save-all" (click)="updateSettings()" *ngIf="userSettingsModel">сохранить изменения</button>
 

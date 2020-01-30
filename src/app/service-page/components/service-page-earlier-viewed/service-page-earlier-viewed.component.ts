@@ -1,10 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { OfferDataInterface } from 'src/app/shared/interfaces/offer-date.interface';
 
-import { ServicePageService } from '../../services/service-page.service';
-import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LocalizeRouterService } from 'localize-router';
+import { SimilarOffersInterface } from 'src/app/shared/interfaces/similar-offers.interface';
 
 @Component({
   selector: 'app-service-page-earlier-viewed',
@@ -14,16 +12,14 @@ import { LocalizeRouterService } from 'localize-router';
 export class ServicePageEarlierViewedComponent implements OnInit {
 
   public id;
-  @Input() viewedOffers;
+  @Input() similarOffers: SimilarOffersInterface;
   constructor(
-    private localStorageService: LocalStorageService,
-    private servicePageService: ServicePageService,
     private route: ActivatedRoute,
     private localize: LocalizeRouterService,
     private router: Router,
   ) { }
 
-  ngOnInit() { }
+  ngOnInit() {}
   openOffer(offerid) {
     const translatedPath: any = this.localize.translateRoute('/service');
 

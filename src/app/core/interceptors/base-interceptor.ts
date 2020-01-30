@@ -32,7 +32,9 @@ export class BaseInterceptor implements HttpInterceptor {
     req: HttpRequest < any > ,
     next: HttpHandler
   ): Observable < HttpEvent < any >> {
-    const url = 'http://192.168.0.200/Backend/api';
+    // http://194.28.103.239/
+    const url = 'http://194.28.103.239/Backend/api';
+    // const url = 'https://www.thecubetest.site/Backend/api';
     const token = this.localStorageService.getItem('token').value;
     if (req.url.indexOf('http' || 'https') !== 0) {
       req = req.clone({
@@ -50,11 +52,9 @@ export class BaseInterceptor implements HttpInterceptor {
     return next.handle(req).pipe(
       catchError(err => {
         const error = err.error.message || err.statusText;
-        console.log(err.status)
         if (err.status === 401) {
           this.authService.logOut();
         }
-
         return throwError(error);
       })
     );

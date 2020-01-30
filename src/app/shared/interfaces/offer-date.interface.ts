@@ -3,11 +3,22 @@ export interface OfferDataInterface {
   title?: string;
   mainImage?: string;
   rating?: string;
+  user_id?: number;
+  created_at?: string;
   user?: {
+    id?: number;
+    country?: string;
+    answerTime?: number;
+    arbitration?: number;
+    inProgressOffers?: number;
+    description?: string;
     avatar?: string;
     name?: string;
     surname?: string;
     rank_id?: string;
+    qualityMark?: number;
+    termMark?: number;
+    politenessMark?: number;
     userOffers?: [{
       title?: string;
       raiting?: number;
@@ -41,14 +52,16 @@ export interface OfferDataInterface {
   positiveComments?: [{
     mark?: number;
     commentText?: string;
-    user?: {
+    author?: {
+      id?: number;
       name?: string;
       surname?: string;
       avatar?: string;
     }
     child?: [{
       commentText?: string;
-      user?: {
+      author?: {
+        id?: number;
         name?: string;
         surname?: string;
         avatar?: string;
@@ -59,14 +72,16 @@ export interface OfferDataInterface {
   negativeComments?: [{
     mark?: number;
     commentText?: string;
-    user?: {
+    author?: {
+      id?: number;
       name?: string;
       surname?: string;
       avatar?: string;
     }
     child?: [{
       commentText?: string;
-      user?: {
+      author?: {
+        id?: number;
         name?: string;
         surname?: string;
         avatar?: string;

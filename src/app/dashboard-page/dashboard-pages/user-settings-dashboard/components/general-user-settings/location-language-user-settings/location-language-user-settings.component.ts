@@ -11,12 +11,18 @@ export class LocationLanguageUserSettingsComponent implements OnInit {
   @Input() userSettings: UserSettingsModel;
 
   public languagesLevel = [1, 2, 3, 4, 5];
+  public languageTranslates = [
+    'Начальный',
+    'Средний',
+    'Продвинутый',
+    'Свободно владею',
+    'Носитель'
+  ];
 
   constructor() { }
 
-  ngOnInit() {
-    // console.log(this.userSettings.languages);
-  }
+  ngOnInit() {}
+
   deleteMainOption(index: number) {
     this.userSettings.removeLanguage(index);
   }

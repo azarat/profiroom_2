@@ -1,37 +1,28 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { UserSettingsModel } from 'src/app/models/user-settings.model';
-import { UserSettingsService } from '../../services/user-settings.service';
-import { filter } from 'rxjs/operators';
-import { NgForm } from '@angular/forms';
+import { Component, OnInit, Input } from "@angular/core";
+import { UserSettingsModel } from "src/app/models/user-settings.model";
+import { UserSettingsService } from "../../services/user-settings.service";
+import { filter } from "rxjs/operators";
+import { NgForm } from "@angular/forms";
 
 @Component({
-  selector: 'app-notifications-user-settings',
-  templateUrl: './notifications-user-settings.component.html',
-  styleUrls: ['./notifications-user-settings.component.scss']
+  selector: "app-notifications-user-settings",
+  templateUrl: "./notifications-user-settings.component.html",
+  styleUrls: ["./notifications-user-settings.component.scss"]
 })
 export class NotificationsUserSettingsComponent implements OnInit {
-
   @Input() userSettingsModel: UserSettingsModel;
   public submited = false;
 
-  constructor(
-    private userSettingsService: UserSettingsService,
-  ) { }
+  constructor(private userSettingsService: UserSettingsService) {}
 
   ngOnInit() {
+    if (this.userSettingsModel.userNotifications.notificationsAll === null) {
+      this.userSettingsModel.userNotifications.notificationsAll = false;
+    }
   }
 
   updateSettings( form: NgForm ) {
-    console.log('formData', form.value);
-    this.userSettingsService.updateUserNotifications(form.value)
-    .pipe(filter((res: any) => !!res))
-    .subscribe(
-      (res) => {
-        console.log(res);
-        // this.userSettingsModel = res;
-        // console.log(this.userSettingsModel);
-      }
-    );
+    this.userSettingsService.updateUserNotifications(form.value);
   }
 
   chouseAll() {

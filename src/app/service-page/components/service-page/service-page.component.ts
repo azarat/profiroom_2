@@ -7,6 +7,7 @@ import { OfferDataInterface } from 'src/app/shared/interfaces/offer-date.interfa
 import { filter } from 'rxjs/operators';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 import { ScrollToService, ScrollToConfigOptions } from '@nicky-lenaers/ngx-scroll-to';
+import { SimilarOffersInterface } from 'src/app/shared/interfaces/similar-offers.interface';
 
 
 @Component({
@@ -20,13 +21,13 @@ export class ServicePageComponent implements OnInit {
   catalogSubscription: Subscription;
   // tslint:disable-next-line: variable-name
   public convertedNumberOfComments;
-  viewedOffers: any = null;
+  // viewedOffers: any = null;
+  public similarOffers: SimilarOffersInterface = null;
 
   sticky = false;
   elementPosition: any;
 
   @ViewChild('stickyMenu', {static: false}) menuElement: ElementRef;
-
 
   constructor(
     // tslint:disable-next-line: variable-name
@@ -44,10 +45,11 @@ export class ServicePageComponent implements OnInit {
     )
     .subscribe(offerId => {
       this.getOfferData(offerId);
-      this.getViewedOffers();
+      this.getSimilarOffers(offerId);
+      window.scrollTo(0, 0);
     });
   }
-  // @HostListener('window:scroll', [])
+
 
   ngOnInit() { }
 
@@ -55,39 +57,10 @@ export class ServicePageComponent implements OnInit {
     this.offerDataService.loadOfferDate(offerId)
     .pipe(filter((res: any) => !! res))
     .subscribe(offerData => {
-      // console.log(offerData);
       this.offerData = offerData.userOffer;
-      this.pushOfferIdToLocalStorage(offerId.offerId);
+      console.log(this.offerData);
       this.formateCommentCount();
     });
-  }
-
-  pushOfferIdToLocalStorage(id: string) {
-    //
-    let offersArrey: any[] = [];
-
-    const storage = this.localStorageService.getItem('visitedOffer');
-
-    if (storage.value !== null) {
-
-      offersArrey = Object.values(this.localStorageService.getItem('visitedOffer').value);
-      if (offersArrey.includes(id)) {
-          return;
-      }
-
-      if (offersArrey.length < 4) {
-        offersArrey.push(id);
-        console.log(offersArrey.length);
-      } else {
-        offersArrey.push(id);
-        offersArrey.splice(0, 1);
-      }
-
-    } else if (storage.value === null) {
-      offersArrey.push(id);
-    }
-
-    this.localStorageService.setItem('visitedOffer', offersArrey);
   }
 
   formateCommentCount() {
@@ -98,17 +71,12 @@ export class ServicePageComponent implements OnInit {
     }
   }
 
-  getViewedOffers() {
-    let x: string[];
-    if (this.localStorageService.getItem('visitedOffer').value !== null) {
-      x = Object.values(this.localStorageService.getItem('visitedOffer').value);
-    } else {
-      x = [];
-    }
-
-    this.offerDataService.getViewedOffers(x)
+  getSimilarOffers(offerId: {offerId: string}) {
+    this.offerDataService.similarOffers(offerId)
     .subscribe((res: any) => {
-      this.viewedOffers = res.visitedOffers;
+
+      this.similarOffers = res;
+      console.log(this.similarOffers);
     });
   }
 
@@ -116,11 +84,20 @@ export class ServicePageComponent implements OnInit {
   ngAfterViewInit() {
     this.elementPosition = this.menuElement.nativeElement.offsetTop;
   }
+  // ** navbar always in top of page
+  @HostListener('window:scroll')
+  handleScroll() {
+    const windowScroll = window.pageYOffset;
+    // if (windowScroll >= this.elementPosition){
+    if (windowScroll >= 113) {
+      this.sticky = true;
+    } else {
+      this.sticky = false;
+    }
+  }
 
   // ** scroll to configuration
   scrollTo(target: string) {
-
-
     const config: ScrollToConfigOptions = {
       target,
       duration: 1000
@@ -134,20 +111,8 @@ export class ServicePageComponent implements OnInit {
     } else if (target === 'portfolio'  ) {
       config.offset = -105;
     }
-    console.log(config);
     this._scrollToService.scrollTo(config);
   }
 
-  // ** navbar always in top of page
-  @HostListener('window:scroll', ['$event'])
 
-  handleScroll() {
-    const windowScroll = window.pageYOffset;
-    // if (windowScroll >= this.elementPosition){
-    if (windowScroll >= 113) {
-      this.sticky = true;
-    } else {
-      this.sticky = false;
-    }
-  }
 }

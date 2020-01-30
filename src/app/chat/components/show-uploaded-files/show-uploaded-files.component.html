@@ -1,22 +1,26 @@
-
 <div class="files-folder">
-  <div class="folder-btn" (click)="showFiles()"></div>
-  <div class="files-list" >
-    <!-- *ngIf="isUploadFilesVisible" -->
-    <div class="title">
+  <div class="folder-btn" (click)="showFiles()" [ngClass]="{ active: isUploadFilesVisible }"></div>
+  <div class="files-list" *ngIf="isUploadFilesVisible">
+
+    <!-- <div class="title">
       <span class="type">Тип</span>
       <span class="name">Название</span>
-      <span class="date">Дата</span >
+      <span class="date">Дата</span>
       <span class="download">Скачать</span>
-    </div>
-    <div class="list" >
-      <div class="file" *ngFor="let file of files">
-      <span class="type"> <img src="/assets/images/icons/{{file.type}}.png" alt=""> </span>
-      <span class="name">{{ file.name }}.{{ file.type }}</span>
-      <span class="date">{{ file.date}}</span>
-      <span class="download"></span>
+    </div> -->
+    <div class="list-wrap">
+      <p class="empty" *ngIf="files.length === 0">Нету загруженных файлов</p>
+      <div class="list">
+        <div class="file" *ngFor="let file of files">
+          <span class="type"> <img src="/assets/images/icons/files-type/{{file.fileType | fileType }}.png" alt=""> </span>
+          <div class="inform">
+           <span class="name">{{ file.filename }}</span>
+          <span class="date">{{ file.created_at | date:'dd.MM.yyyy &#8226; HH:MM' }} &#8226; {{ file.size | fileSize }} </span>
+          </div>
+         <a href={{file.link}} [download] target="_blank"><span class="download"></span></a>
+        </div>
       </div>
-
     </div>
+
   </div>
 </div>

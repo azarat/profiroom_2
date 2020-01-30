@@ -58,6 +58,7 @@
       overflow: hidden;
       margin-right: 20px;
       // margin-top: 10px;
+      cursor: pointer;
       img {
         position: absolute;
         top: 50%;
@@ -77,6 +78,12 @@
     .user-name {
       width: fit-content;
       margin-top: 2px;
+      cursor: pointer;
+      color: #4e5051;
+      text-decoration: none;
+      &:hover{
+        color: #5695FD;
+      }
     }
     .user-raiting-wrapp {
       margin-left: 20px;

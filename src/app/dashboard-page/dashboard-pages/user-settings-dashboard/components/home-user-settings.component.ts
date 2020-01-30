@@ -35,9 +35,7 @@ export class HomeUserSettingsComponent implements OnInit {
         filter((response: any) => !!response)
       )
       .subscribe(response => {
-
         this.userSettingsModel = plainToClass(UserSettingsModel, response);
-        console.log(this.userSettingsModel);
       });
 
   }

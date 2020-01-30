@@ -1,0 +1,156 @@
+<app-main-header></app-main-header>
+<app-categories-header></app-categories-header>
+
+<nav class="navigation-page" #stickyMenu [class.sticky]="sticky">
+  <div class="navigation-page__wrapper">
+    <ul>
+      <li (click)="scrollTo('about')">О фрилансере</li>
+      <li (click)="scrollTo('aducation')">Образование</li>
+      <li (click)="scrollTo('rating')">рейтинг</li>
+      <li (click)="scrollTo('services')">услуги</li>
+      <li (click)="scrollTo('comments')">отзывы</li>
+    </ul>
+  </div>
+</nav>
+
+<div class="wrapper" *ngIf="userData">
+  <div class="content">
+    <div class="back-to-list" >
+      <a (click)="goBack()">Вернуться к списку фрилансеров</a>
+    </div>
+    <section class="general-information" id="about"> 
+      <div class="general-information__avatar">
+        <img [src]="userData.avatar" alt="user avatar">
+      </div>
+      <div class="general-information__wrapper">
+        <div class="general-information__name"><span>{{userData.name}} {{userData.surname}}</span> </div>
+        <!-- <div class="general-information__online"><span [ngClass]="{online: userData.online}">{{userData.online}}</span></div> -->
+
+        <div class="general-information__online"><span>Oфлайн</span></div>
+
+        <div class="general-information__lvl">Уровень: <span class="value">{{userData.rank_id}}</span></div>
+      </div>
+      <div class="general-information__wrapper">
+        <div class="general-information__available">Статус доступности: <span class="value"
+            [ngClass]="{load: userData.load}">загружен(-а)</span></div>
+        <div class="general-information__inProces">Проектов в работе: <span class="value">{{userData.inProgressOffers}}</span></div>
+        <div class="general-information__awaiting">Проектов в очереди: <span class="value">{{userData.queuedOffers}}</span></div>
+      </div>
+      <div class="general-information__actions">
+
+        <!-- <div class="action tooltip" data-title="Смотреть профиль">
+          <a href="">
+            <img src="assets/images/svg/service-page/shape.svg" alt="" class="default-img">
+            <img src="assets/images/svg/service-page/shape-hov.svg" alt="" class="hover-img">
+          </a>
+        </div> -->
+        <div class="action tooltip" data-title="Написать сообщение" (click)="openChat(userData.id)">
+          <a >
+            <img src="assets/images/svg/service-page/envelope.svg" alt="" class="default-img">
+            <img src="assets/images/svg/service-page/envelope-hov.svg" alt="" class="hover-img">
+          </a>
+        </div>
+        <div class="action tooltip" data-title="Добавить к избранным">
+          <a href="">
+            <img src="assets/images/svg/service-page/heart.svg" alt="" class="default-img">
+            <img src="assets/images/svg/service-page/heart-hov.svg" alt="" class="hover-img">
+          </a>
+        </div>
+        <div class="action tooltip" data-title="Пожаловаться">
+          <a href="">
+            <img src="assets/images/svg/service-page/auction.svg" alt="" class="default-img">
+            <img src="assets/images/svg/service-page/auction-hov.svg" alt="" class="hover-img">
+          </a>
+        </div>
+
+      </div>
+    </section>
+    <section class="about-user">
+      <div class="about-user__wrapper">
+        <div class="about-user__info-block">
+          <div class="about-user__title">Страна, город</div>
+          <div class="about-user__value">{{userData.country}} <br> {{userData.city}}</div>
+        </div>
+        <div class="about-user__info-block">
+          <div class="about-user__title">На сайте с</div>
+          <div class="about-user__value">{{userData.email_verified_at}}</div>
+        </div>
+        <div class="about-user__info-block">
+          <div class="about-user__title">Исполненных проектов</div>
+          <div class="about-user__value">{{userData.endedWorks}}</div>
+        </div>
+        <div class="about-user__info-block">
+          <div class="about-user__title">Обращений в арбитраж</div>
+          <div class="about-user__value">{{userData.arbitration}}</div>
+        </div>
+        <div class="about-user__info-block">
+          <div class="about-user__title">Время ответа</div>
+          <div class="about-user__value">{{userData.answerTime}}</div>
+        </div>
+      </div>
+      <div class="about-user__description">
+        <p>{{userData.description}}</p>
+      </div>
+    </section>
+    <section class="languages">
+      <div class="section-title">Знание языков</div>
+      <ul class="languages__wrapper">
+        <li class="languages__info-block" *ngFor="let language of userData.language">
+          <div class="languages__name">{{ language.langName}} </div>
+          <div class="languages__lvl"> - {{ academicDegreesTranslations[language.langLevel-1]}}</div>
+        </li>
+      </ul>
+    </section>
+    <section class="aducation" id="aducation">
+      <div class="section-title">Высшее образование</div>
+      <div class="aducation__wrapper">
+        <div class="aducation__info-block" *ngFor="let education of userData.education">
+          <div class="aducation__institution">{{ education.institution}}</div>
+          <div class="aducation__group">
+            <div class="aducation__specialty">{{ education.specialty}}</div>
+            <div class="aducation__years">{{ education.startEducation}} - {{ education.finishEducation}}</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="aducation">
+      <div class="section-title">Дополнительное образование</div>
+      <div class="aducation__wrapper">
+        <div class="aducation__info-block" *ngFor="let education of userData.additionalEducation">
+          <div class="aducation__institution">{{ education.additionalInstitution}}</div>
+          <div class="aducation__group">
+            <div class="aducation__specialty">{{ education.courseName}}</div>
+            <div class="aducation__years">{{ education.startStudyYear}} - {{ education.endStudyYear}}</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="raiting" id="rating">
+      <div class="section-title">Общий рейтинг всех услуг <span>( {{ userData.comments_count}} отзывов):</span></div>
+      <div class="raiting__wrapper">
+        <div class="raiting__info-block">
+          <div class="raiting__name">Качество услуг</div>
+          <div class="star-raiting">5</div>
+        </div>
+        <div class="raiting__info-block">
+          <div class="raiting__name">Срок исполнения</div>
+          <div class="star-raiting">4</div>
+        </div>
+        <div class="raiting__info-block">
+          <div class="raiting__name">Вежливость фрилансера</div>
+          <div class="star-raiting">4</div>
+        </div>
+        <div class="raiting__info-block">
+          <div class="raiting__name">Средняя оценка</div>
+          <div class="star-raiting">4,5</div>
+        </div>
+      </div>
+    </section>
+    <app-user-page-services *ngIf="userData" [userData] = userData id="services"></app-user-page-services>
+    <app-user-page-comments *ngIf="userData" [userData] = userData id="comments"></app-user-page-comments>
+    <div class="back-to-list" >
+      <a (click)="goBack()">Вернуться к списку фрилансеров</a>
+    </div>
+  </div>
+</div>
+

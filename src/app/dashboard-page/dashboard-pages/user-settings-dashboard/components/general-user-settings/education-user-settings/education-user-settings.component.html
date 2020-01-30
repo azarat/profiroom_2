@@ -34,7 +34,7 @@
                 <mat-select name="academicDegree" id="academicDegree"
                   [(ngModel)]="userSettings.education[i].academicDegree">
                   <ng-container *ngFor="let academicDegree of academicDegrees">
-                    <mat-option [value]="academicDegree">{{ academicDegree }}</mat-option>
+                    <mat-option [value]="academicDegree">{{ academicDegreesTranslations[academicDegree-1] }}</mat-option>
                   </ng-container>
                 </mat-select>
               </div>
@@ -80,18 +80,17 @@
               </div>
             </div>
 
-            <div class="items" >
-
-                <div  class="img-item" *ngFor="let diplomaPhoto of allDiplomaPhotos[i]; let x = index">
-                  <button class="delete-file" (click)="deleteImg(i, x)"></button>
-                  {{ diplomaPhoto }}
+            <div class="items">
+              <ng-container *ngFor="let diplomaPhoto of userSettings.education[i].diploma; let x = index">
+                <div  class="img-item" *ngIf="diplomaPhoto != null" >
+                  <img  [src]="diplomaPhoto" height="300" />
                 </div>
-
+              </ng-container>
             </div>
 
             <div class="add-photos">
-              <input type="file" id="diplomaFiles-{{i}}" multiple="true" class="input-file" #fileInput
-                (change)="fileProgress($event.target.files, i)" />
+              <input type="file" id="diplomaFiles-{{i}}"  class="input-file" #file name="file"
+                (change)="fileProgress($event.target.files, userSettings.education[i].id, i)" />
               <label for="diplomaFiles-{{i}}">Загрузить файл/фото диплома</label>
             </div>
 
@@ -101,7 +100,7 @@
           </div>
 
           <button type="button" class="delete-education">
-            <i class="material-icons" (click)="deleteEducation(i)">delete</i>
+            <i class="material-icons" (click)="deleteEducation(userSettings.education[i].id, i)">delete</i>
           </button>
         </div>
 

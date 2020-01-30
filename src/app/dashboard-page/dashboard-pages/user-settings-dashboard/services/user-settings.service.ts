@@ -15,12 +15,23 @@ export class UserSettingsService {
     return this.http.post('/loadAva', files);
   }
 
-  uploadDiplomaPhotos(files, i) {
-    return this.http.post('/loadDiplomaFiles', [files, i]);
+  uploadDiplomaPhotos(files) {
+    return this.http.post('/loadDiplomaFiles', files);
+  }
+
+  newEducationId() {
+    return this.http.post('/newEducation', '');
+  }
+  deleteEducatioon(id) {
+    return this.http.post('/deleteEducation', id);
   }
 
   uploadAdditionalDiplomaPhotos(files) {
     return this.http.post('/loadAdditionalDiplomaFiles', files);
+  }
+
+  newAdditioanlEducationId() {
+    return this.http.post('/newEducation', '');
   }
 
   public getServiceData() {
@@ -32,22 +43,18 @@ export class UserSettingsService {
   }
 
   public updateService( formData) {
-    console.log('update', formData);
     return this.http.post<any>('/updateUserSettings', formData);
   }
 
   public updateUserNotifications( formData) {
-    console.log('updateNotifications', formData);
     return this.http.post<any>('/userNotifications', formData);
   }
 
   public updateUserPassAccess( formData) {
-    console.log('password/updatePass', formData);
     return this.http.post<any>('/password/updatePass', formData);
   }
 
   public updateUserMailAccess( formData) {
-    console.log('updateUserEmail', formData);
     return this.http.post<any>('/updateUserEmail', formData);
   }
 

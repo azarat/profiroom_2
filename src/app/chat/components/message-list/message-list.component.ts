@@ -2,7 +2,10 @@ import { Component, OnInit, AfterViewChecked, Input, ViewChild, ElementRef, Afte
 import { ChatService } from '../../services/chat.service';
 import { messages } from '../consts/messages.const';
 import { MessageScrollerService } from '../../services/message-scroller/message-scroller.service';
-
+import { LocalStorageService } from 'src/app/core/services/local-storage.service';
+import { CollocutorListModel } from 'src/app/models/chat/collocutors-list.model';
+import * as $ from 'jquery';
+import { SocketService } from '../../services/socket.service';
 
 @Component({
   selector: 'app-message-list',
@@ -13,26 +16,94 @@ import { MessageScrollerService } from '../../services/message-scroller/message-
 export class MessageListComponent implements OnInit, AfterViewChecked {
 
   @Input() chatRoom: string;
-  @Input() messagesList: any[];
-
+  @Input() messagesList: [];
+  @Input() collocutorData: CollocutorListModel;
+  userId: any;
+  userAvatar: any;
+  messCheck = null;
+  isScrollDownBtn: boolean = null;
+  isShowMoreMessagesBtn: boolean = null;
+  public typing: boolean = null;
+  public typingUser: number;
   constructor(
     private chatService: ChatService,
-    private messageScrollerService: MessageScrollerService
-  ) { }
+    private messageScrollerService: MessageScrollerService,
+    private localStorageService: LocalStorageService,
+    private socetService: SocketService
+  ) {
+    this.userId = (this.localStorageService.getItem('userId').value).toString();
+    this.userAvatar = this.localStorageService.getItem('userImage').value;
 
-  @ViewChild('messagesWrap', {static: false}) messagesWrap: ElementRef;
-  @ViewChildren('messagesWrap') messages: QueryList<ElementRef>;
+  }
+
+  @ViewChild('messagesWrap', { static: false }) messagesWrap: ElementRef;
 
   ngOnInit() {
     this.messageScrollerService.onMessageScrollBottom();
+    this.typingEventListener();
   }
 
   ngAfterViewChecked() {
     this.messageScrollerService.scrollToBottom(this.messagesWrap);
   }
 
-  public onScroll() {
+  public onScroll(event) {
+    const x = event.target.scrollHeight - event.target.scrollTop;
     this.messageScrollerService.onScroll(this.messagesWrap);
+    if (x > event.target.clientHeight + 300) {
+      this.isScrollDownBtn = true;
+    } else {
+      this.isScrollDownBtn = null;
+    }
+
+    if (event.target.scrollTop === 0) {
+      this.isShowMoreMessagesBtn = true;
+    } else {
+      this.isShowMoreMessagesBtn = null;
+    }
+
+  }
+
+  public scrollToStart() {
+    $('#messages-wrap').animate({
+      scrollTop: $('#messages-wrap').get(0).scrollHeight
+    }, 1000);
+  }
+
+  public showMoreMessages() {
+    const firstMessage = $('.message:first');
+    const cerOffset = firstMessage.offset().top - $('#messages-wrap').scrollTop() - 1;
+    this.chatService.getPreviousMessages(this.collocutorData.roomId, this.messagesList.length)
+      .subscribe(res => {
+        this.messagesList = this.filterArrayOnMessTypes(res[0]).concat(this.messagesList);
+        $('#messages-wrap').scrollTop(firstMessage.offset().top - cerOffset);
+      });
+  }
+
+
+  private filterArrayOnMessTypes(arr: any) {
+    arr.forEach((el: any) => {
+      if (el.type === 'file' && typeof el.message === 'string') {
+        el.message = el.message !== '' ? JSON.parse(el.message) : {};
+        return el;
+      }
+    });
+    return arr;
+  }
+
+  private typingEventListener() {
+    this.socetService.onTypingListener()
+      .subscribe((res: any) => {
+        this.typingUser = res;
+        this.typing = true;
+      });
+    this.typingStoppedEventListener();
+  }
+  private typingStoppedEventListener() {
+    this.socetService.onStopTypingListener()
+      .subscribe((res: any) => {
+        this.typingUser = res;
+        this.typing = null;
+      });
   }
 }
-

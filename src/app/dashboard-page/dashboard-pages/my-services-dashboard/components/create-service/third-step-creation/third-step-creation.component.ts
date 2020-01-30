@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, FormArray, Validators, FormControl } from '@ang
 import { UserServiceModel } from 'src/app/models/user-services/user-service.model';
 import { NgForm } from '@angular/forms';
 
-import { trigger, state, style, animate, transition, } from '@angular/animations';
+
 import { UserOffersService } from '../../../services/user-offers.service';
 import { filter } from 'rxjs/operators';
 import { LocalizeRouterService } from 'localize-router';
@@ -65,8 +65,6 @@ translatedPath: any = this.localize.translateRoute('/dashboard/my-services');
   public nextStep(form: NgForm) {
     this.submited = true;
     if (form.invalid) {
-      console.log('invalid');
-      console.log(this.userService);
       return;
     }
     this.userOffersService.updateService(this.userService)
@@ -81,7 +79,6 @@ translatedPath: any = this.localize.translateRoute('/dashboard/my-services');
   }
 
   changePackageAmount(e: boolean) {
-    console.log(e);
     this.showPackages = e;
   }
 

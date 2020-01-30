@@ -23,7 +23,7 @@ export class MyServicesHomeComponent implements OnInit {
   translatedPath: any = this.localize.translateRoute('/dashboard/my-services/create');
   serviceToDeleteId: string = null;
 
-  currentTab: string = null;
+  currentTab = 1;
   tabs = tabsConst;
 
   @ViewChild('scrolledBlock', {static: false}) el: ElementRef;
@@ -42,8 +42,8 @@ export class MyServicesHomeComponent implements OnInit {
 
   // ngOnDestroy() {
   // }
-  setCurrentTab(tab: string) {
-    this.currentTab = tab;
+  setCurrentTab(tab: any) {
+    this.currentTab = tab.index + 1;
 
     this.el.nativeElement.scroll(0, 0)
   }
@@ -56,7 +56,6 @@ export class MyServicesHomeComponent implements OnInit {
         first()
       )
       .subscribe((res: any) => {
-        console.log(res);
         if (res.userOffers.length > 0) {
           this.userServices = plainToClass(UserServiceModel, this.deleteEmptyService(res.userOffers).slice().reverse());
         } else {
@@ -116,7 +115,6 @@ export class MyServicesHomeComponent implements OnInit {
   }
 
   onClickedOutside(e: Event) {
-    console.log('Clicked outside:');
     // this.menuOpen = null;
   }
 
@@ -124,7 +122,6 @@ export class MyServicesHomeComponent implements OnInit {
   deleteEmptyService(arr: UserServiceModel[]) {
     arr.forEach(el => {
       if (el.title === null) {
-        console.log('null');
         this.userOfferService.deleteService(el.id)
           .subscribe(res => {
             return;

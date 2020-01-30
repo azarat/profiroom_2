@@ -12,7 +12,13 @@ export class CollocutorListModel {
   @Expose() lastMesageDate: string;
   @Expose() collocutorName: string;
   @Expose() collocutorSurname: string;
+  @Expose() unread: string;
   //  Last message model in chat collocutor list
-  @Type(() => CollocutorsLastMessageModel) lastMessage: CollocutorsLastMessageModel[];
+  @Type(() => CollocutorsLastMessageModel) message: CollocutorsLastMessageModel[];
+// {
+//   @Expose() author: number;
+//   @Expose() message: string;
+//   @Expose() time: string;
+// }
 
 }

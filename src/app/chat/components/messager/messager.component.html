@@ -4,24 +4,25 @@
       {{ collocutorData.collocutorName }} {{ collocutorData.collocutorSurname }} <span>онлайн</span>
     </div>
     <div class="messager-tools">
-      <app-show-uploaded-files></app-show-uploaded-files>
+      <app-show-uploaded-files [chatRoom]="collocutorData.roomId"></app-show-uploaded-files>
     </div>
   </div>
   <div class="messager-wrap">
     <div class="previous-massages">
-      <app-message-list [chatRoom]="collocutorData"  *ngIf="collocutorData" [messagesList]="messagesList"></app-message-list>
+      <app-message-list [chatRoom]="collocutorData"  *ngIf="collocutorData && messagesList" [messagesList]="messagesList" [collocutorData]="collocutorData"></app-message-list>
     </div>
     <form #message="ngForm" (ngSubmit)="sendMessage(message)" class="message-input">
       <div class="text-input">
-        <textarea name="messageText" [ngModel]="messageText" #textinput  id="message" placeholder="Сообщение"
-          (keydown)="triggerFunction($event, message)" ></textarea>
+        <textarea name="messageText" [ngModel]="messageText" #textarea  id="message" placeholder="Сообщение"
+          (keydown)="keyDown($event, message)"  ></textarea>
       </div>
       <div class="tools">
-        <div>
-          <app-emoji *ngIf="textinput"  [textinput]="textinput"></app-emoji>
-          <div class="file">
-            <label class="add-file" for="add-file"></label>
-            <input type="file" name="file-input" id="add-file">
+        <div >
+          <app-emoji [textinput]="textinput"></app-emoji>
+          <div class="file" (click)="openFilesUploader()">
+            <!-- <app-upload-file></app-upload-file> -->
+            <!-- <label class="add-file" for="add-file"></label>
+            <input type="file" name="file-input" id="add-file"> -->
           </div>
         </div>
         <button type="submit"  class="submit"></button>
