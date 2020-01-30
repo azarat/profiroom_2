@@ -40,7 +40,7 @@ export class MessageListComponent implements OnInit, AfterViewChecked {
 
   ngOnInit() {
     this.messageScrollerService.onMessageScrollBottom();
-    this.typingEventListener();
+    // this.typingEventListener();
   }
 
   ngAfterViewChecked() {
@@ -91,19 +91,19 @@ export class MessageListComponent implements OnInit, AfterViewChecked {
     return arr;
   }
 
-  private typingEventListener() {
-    this.socetService.onTypingListener()
-      .subscribe((res: any) => {
-        this.typingUser = res;
-        this.typing = true;
-      });
-    this.typingStoppedEventListener();
-  }
-  private typingStoppedEventListener() {
-    this.socetService.onStopTypingListener()
-      .subscribe((res: any) => {
-        this.typingUser = res;
-        this.typing = null;
-      });
-  }
+  // private typingEventListener() {
+  //   this.socetService.onTypingListener()
+  //     .subscribe((res: any) => {
+  //       this.typingUser = res;
+  //       this.typing = true;
+  //     });
+  //   this.typingStoppedEventListener();
+  // }
+  // private typingStoppedEventListener() {
+  //   this.socetService.onStopTypingListener()
+  //     .subscribe((res: any) => {
+  //       this.typingUser = res;
+  //       this.typing = null;
+  //     });
+  // }
 }

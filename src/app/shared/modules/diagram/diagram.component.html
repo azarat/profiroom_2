@@ -2,8 +2,8 @@
   <div class="title">
     <div class="current-year">Год: <span>{{ showedYear }}</span></div>
     <div class="chart-year-btns">
-      <button class="prev" *ngIf="showedYear >2020" (click)="prevYear()">{{ showedYear -1  }} год</button>
-      <button class="next" (click)="nextYear()">{{ showedYear + 1 }} год</button>
+      <button class="prev" *ngIf="showedYear >=2020" [disabled]="showedYear === 2020" (click)="prevYear()">{{ showedYear -1  }} год</button>
+      <button class="next" *ngIf="showedYear >= currentYear" [disabled]="showedYear === currentYear" (click)="nextYear()">{{ showedYear + 1 }} год</button>
     </div>
   </div>
   <div class="chart">

@@ -8,6 +8,14 @@ import { paymentsListConst } from './consts/payments-list.const';
   styleUrls: ['./finace-page.component.scss']
 })
 export class FinacePageComponent implements OnInit {
+  // transactionType: string;
+
+  transactions = {
+    transactionType: null,
+    cash: null,
+    password: null
+  };
+
   allStatisticInfo: any[] = compressedFinanceInfoConst;
 
   paymentsList = paymentsListConst;
@@ -15,6 +23,7 @@ export class FinacePageComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.transactions.transactionType = null;
   }
 
 }

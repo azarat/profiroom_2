@@ -105,7 +105,7 @@ export class MessagerComponent implements OnInit, OnDestroy {
       const text: any = document.getElementById('message');
       text.value += '\n';
     } else if (event.key === 'Enter') {
-      event.preventDefault();
+      // event.preventDefault();
       this.sendMessage(form);
     }
     // Typing Event
