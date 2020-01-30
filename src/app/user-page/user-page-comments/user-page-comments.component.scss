@@ -157,8 +157,9 @@
     cursor: pointer;
     margin-right: 60px;
     text-decoration: none;
+    outline: none;
     &:hover{
-      text-decoration: underline;
+      color: #5695FD;
     }
   }
   &__date{

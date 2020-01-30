@@ -11,15 +11,15 @@
       <div class="card-description">
 
         <div class="card-description__top">
-          <div class="card-description__ava"><img *ngIf="offer.user.avatar" [src]="offer.user.avatar" alt="avatar">
-          </div>
+          <a class="card-description__ava" [routerLink]="['/user', offer.user.id] | localize"><img *ngIf="offer.user.avatar" [src]="offer.user.avatar" alt="avatar">
+          </a>
           <div>
             <a class="card-description__name" [routerLink]="['/user', offer.user.id] | localize">{{offer.user.name}} {{offer.user.surname}}</a>
             <div class="card-description__skill">{{offer.user.rank_id}}</div>
           </div>
         </div>
 
-        <p class="card-description__about">{{offer.title}}</p>
+        <p class="card-description__about" (click)="openOffer(offer.id)">{{offer.title}}</p>
         <div class="card-description__bottom">
           <div class="card-description__level">{{offer.rating}}</div>
           <div class="card-description__comments"><a>({{offer.comments_count}} отзывов)</a></div>

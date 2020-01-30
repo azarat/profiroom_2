@@ -7,6 +7,7 @@ import { OfferDataInterface } from 'src/app/shared/interfaces/offer-date.interfa
 import { filter } from 'rxjs/operators';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 import { ScrollToService, ScrollToConfigOptions } from '@nicky-lenaers/ngx-scroll-to';
+import { SimilarOffersInterface } from 'src/app/shared/interfaces/similar-offers.interface';
 
 
 @Component({
@@ -21,7 +22,7 @@ export class ServicePageComponent implements OnInit {
   // tslint:disable-next-line: variable-name
   public convertedNumberOfComments;
   // viewedOffers: any = null;
-  public similarOffers: any = null;
+  public similarOffers: SimilarOffersInterface = null;
 
   sticky = false;
   elementPosition: any;
@@ -45,7 +46,7 @@ export class ServicePageComponent implements OnInit {
     .subscribe(offerId => {
       this.getOfferData(offerId);
       this.getSimilarOffers(offerId);
-      // this.getViewedOffers();
+      window.scrollTo(0, 0);
     });
   }
 
@@ -57,37 +58,10 @@ export class ServicePageComponent implements OnInit {
     .pipe(filter((res: any) => !! res))
     .subscribe(offerData => {
       this.offerData = offerData.userOffer;
-      // this.pushOfferIdToLocalStorage(offerId.offerId);
+      console.log(this.offerData);
       this.formateCommentCount();
     });
   }
-
-  // pushOfferIdToLocalStorage(id: string) {
-  //   //
-  //   let offersArrey: any[] = [];
-
-  //   const storage = this.localStorageService.getItem('visitedOffer');
-
-  //   if (storage.value !== null) {
-
-  //     offersArrey = Object.values(this.localStorageService.getItem('visitedOffer').value);
-  //     if (offersArrey.includes(id)) {
-  //         return;
-  //     }
-  //     if (offersArrey.length < 4) {
-  //       offersArrey.push(id);
-  //       console.log(offersArrey.length);
-  //     } else {
-  //       offersArrey.push(id);
-  //       offersArrey.splice(0, 1);
-  //     }
-
-  //   } else if (storage.value === null) {
-  //     offersArrey.push(id);
-  //   }
-
-  //   this.localStorageService.setItem('visitedOffer', offersArrey);
-  // }
 
   formateCommentCount() {
     if (this.offerData.comments_count < 1000) {
@@ -97,23 +71,7 @@ export class ServicePageComponent implements OnInit {
     }
   }
 
-  // getViewedOffers() {
-  //   let x: string[];
-  //   if (this.localStorageService.getItem('visitedOffer').value !== null) {
-  //     x = Object.values(this.localStorageService.getItem('visitedOffer').value);
-  //   } else {
-  //     x = [];
-  //   }
-
-  //   this.offerDataService.getViewedOffers(x)
-  //   .subscribe((res: any) => {
-  //     this.viewedOffers = res.visitedOffers;
-  //   });
-  // }
-
-
   getSimilarOffers(offerId: {offerId: string}) {
-    console.log('similar');
     this.offerDataService.similarOffers(offerId)
     .subscribe((res: any) => {
 

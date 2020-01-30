@@ -6,18 +6,18 @@
 
       <div class="card" *ngFor="let offer of similarOffers">
         <div class="card-preview__bg">
-          <img class="card-preview" [src]="offer.mainImage">
+          <img class="card-preview" [src]="offer.mainImage" (click)="openOffer(offer.id)">
         </div>
         <div class="card-description">
 
           <div class="card-description__top">
-            <div class="card-description__ava" (click)="openOffer(offer.id)"><img *ngIf="offer.user.avatar" [src]="offer.user.avatar" alt="avatar"></div>
+            <a class="card-description__ava" [routerLink]="['/user', offer.user.id] | localize"><img [src]="offer.user.avatar" alt="avatar"></a>
             <div>
-              <span class="card-description__name" >{{offer.user.name}} {{offer.user.surname}}</span>
+              <a class="card-description__name" [routerLink]="['/user', offer.user.id] | localize">{{offer.user.name}} {{offer.user.surname}}</a>
               <div class="card-description__skill">{{offer.user.rank_id}}</div>
             </div>
           </div>
-          <p class="card-description__about">{{offer.description}}</p>
+          <p class="card-description__about" (click)="openOffer(offer.id)">{{offer.title}}</p>
           <div class="card-description__bottom">
             <div class="card-description__level">{{offer.raiting}}</div>
             <div class="card-description__comments"><a>({{offer.comments_count}} отзывов)</a></div>

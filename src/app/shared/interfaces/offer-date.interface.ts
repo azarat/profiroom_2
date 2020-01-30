@@ -9,6 +9,9 @@ export interface OfferDataInterface {
     name?: string;
     surname?: string;
     rank_id?: string;
+    qualityMark?: number;
+    termMark?: number;
+    politenessMark?: number;
     userOffers?: [{
       title?: string;
       raiting?: number;
@@ -43,13 +46,15 @@ export interface OfferDataInterface {
     mark?: number;
     commentText?: string;
     author?: {
+      id?: number;
       name?: string;
       surname?: string;
       avatar?: string;
     }
     child?: [{
       commentText?: string;
-      user?: {
+      author?: {
+        id?: number;
         name?: string;
         surname?: string;
         avatar?: string;
@@ -61,13 +66,15 @@ export interface OfferDataInterface {
     mark?: number;
     commentText?: string;
     author?: {
+      id?: number;
       name?: string;
       surname?: string;
       avatar?: string;
     }
     child?: [{
       commentText?: string;
-      user?: {
+      author?: {
+        id?: number;
         name?: string;
         surname?: string;
         avatar?: string;
