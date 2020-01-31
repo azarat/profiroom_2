@@ -440,7 +440,15 @@
         }
       }
       button {
-        margin: 18px auto ;
+        margin: 18px auto 10px;
+      }
+      .w-p {
+        margin: auto;
+        width: 95px;
+        height: 27px;
+        background-image: url(/assets/images/images/logo/wayforpay.png);
+        background-repeat: no-repeat;
+        background-size: contain;
       }
     }
   }

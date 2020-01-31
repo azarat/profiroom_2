@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { compressedFinanceInfoConst } from './consts/compressed-finance-info.const';
 import { paymentsListConst } from './consts/payments-list.const';
+import { UserFinanceService } from './services/user-finance.service';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-finace-page',
@@ -20,10 +22,19 @@ export class FinacePageComponent implements OnInit {
 
   paymentsList = paymentsListConst;
 
-  constructor() { }
+  constructor(
+    private userFinanceService: UserFinanceService
+  ) { }
 
   ngOnInit() {
     this.transactions.transactionType = null;
+    this.getFinanceData()
+  }
+
+  getFinanceData(){
+    console.log('getting data')
+    this.userFinanceService.getUserFinanceData()
+    .subscribe(res => console.log(res));
   }
 
 }
