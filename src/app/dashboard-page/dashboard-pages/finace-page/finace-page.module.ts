@@ -5,6 +5,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { LocalizeRouterModule } from 'localize-router';
 import { CalendarSharedModule } from 'src/app/shared/modules/calendar/calendar.module';
 import { DiagramModule } from 'src/app/shared/modules/diagram/diagram.module';
+import {MatSelectModule} from '@angular/material/select';
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -21,7 +23,9 @@ const routes: Routes = [
     RouterModule.forChild(routes),
 
     CalendarSharedModule,
-    DiagramModule
+    DiagramModule,
+    FormsModule,
+    MatSelectModule
   ]
 })
 export class FinacePageModule { }

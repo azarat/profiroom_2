@@ -45,7 +45,9 @@
       outline: none;
       cursor: pointer;
       &:first-of-type {
-        margin-right: 40px;
+        &+div {
+          margin-left: 40px;
+        }
       }
       &:before {
         position: absolute;

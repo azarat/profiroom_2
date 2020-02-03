@@ -1,18 +1,18 @@
 export const compressedFinanceInfoConst = [
   {
-    name: 'состояние счёта',
+    name: 'кол-во выполненных заказов',
     type: 'current'
   },
   {
-    name: 'замороженные средства',
+    name: 'кол-во всех заказчиков',
     type: 'freezed'
   },
   {
-    name: 'выведенные средства',
+    name: 'замороженные средства',
     type: 'output'
   },
   {
-    name: 'кол-во выполненных заказов',
+    name: 'выведенные средства',
     type: 'services-compleated'
   }
 

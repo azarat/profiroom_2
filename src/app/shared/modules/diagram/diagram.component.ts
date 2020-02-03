@@ -9,7 +9,7 @@ import * as moment from 'moment';
 })
 export class DiagramComponent implements OnInit {
 
-  public currentYear = new Date().getFullYear() + 2;
+  public currentYear = new Date().getFullYear();
   public showedYear;
   public maxInput = 5000;
   public stepsCount: number[] = [0, 1, 2, 3, 4, 5];
