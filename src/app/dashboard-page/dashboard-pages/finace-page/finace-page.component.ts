@@ -3,6 +3,7 @@ import { compressedFinanceInfoConst } from './consts/compressed-finance-info.con
 import { paymentsListConst } from './consts/payments-list.const';
 import { UserFinanceService } from './services/user-finance.service';
 import { filter } from 'rxjs/operators';
+import { FinanceInterface } from './interfaces/finance.interface';
 
 @Component({
   selector: 'app-finace-page',
@@ -11,6 +12,7 @@ import { filter } from 'rxjs/operators';
 })
 export class FinacePageComponent implements OnInit {
   // transactionType: string;
+  userFinance: FinanceInterface = null;
 
   transactions = {
     transactionType: null,
@@ -28,13 +30,16 @@ export class FinacePageComponent implements OnInit {
 
   ngOnInit() {
     this.transactions.transactionType = null;
-    this.getFinanceData()
+    this.getFinanceData();
   }
 
-  getFinanceData(){
-    console.log('getting data')
+  getFinanceData() {
+    console.log('getting data');
     this.userFinanceService.getUserFinanceData()
-    .subscribe(res => console.log(res));
+    .subscribe((res: any) => {
+      console.log(res);
+      this.allStatisticInfo = res;
+    });
   }
 
 }

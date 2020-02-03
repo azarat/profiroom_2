@@ -30,7 +30,7 @@
             <ng-container *ngIf="currentTab === 0|| userService.published && currentTab === 1 || userService.canPublish && currentTab === 2 || !userService.canPublish && currentTab === 3 ">
               <div class="item">
                 <div class="service-photo">
-                  <img [src]="'https://www.thecubetest.site/Backend/storage/app/' + userService.mainImage" alt="offer-img">
+                  <img [src]="userService.mainImage" alt="offer-img">
                 </div>
                 <div class="offer-name">
                   <h6>
