@@ -2,7 +2,9 @@ import {
   Component,
   ChangeDetectionStrategy,
   ViewChild,
-  TemplateRef
+  TemplateRef,
+  Input,
+  OnInit
 } from '@angular/core';
 import {
   startOfDay,
@@ -23,7 +25,7 @@ import {
   CalendarView,
   CalendarDateFormatter
 } from 'angular-calendar';
-import { CustomDateFormatter } from './prividers/custtom-week-day-formatter.provider';
+import { CustomDateFormatter } from './providers/custtom-week-day-formatter.provider';
 
 const colors: any = {
   red: {
@@ -51,8 +53,9 @@ const colors: any = {
     },
   ]
 })
-export class CalendarComponent  {
+export class CalendarComponent implements OnInit {
   @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
+  @Input() userFinance;
 
   locale = 'uk';
 
@@ -62,111 +65,22 @@ export class CalendarComponent  {
 
   viewDate: Date = new Date();
 
-  modalData: {
-    action: string;
-    event: CalendarEvent;
-  };
+  // modalData: {
+  //   action: string;
+  //   event: CalendarEvent;
+  //   cssClass: string;
+  // };
 
-  // actions: CalendarEventAction[] = [
-  //   {
-  //     label: '<i class="fa fa-fw fa-pencil"></i>',
-  //     a11yLabel: 'Edit',
-  //     onClick: ({ event }: { event: CalendarEvent }): void => {
-  //       this.handleEvent('Edited', event);
-  //     }
-  //   },
-  //   {
-  //     label: '<i class="fa fa-fw fa-times"></i>',
-  //     a11yLabel: 'Delete',
-  //     onClick: ({ event }: { event: CalendarEvent }): void => {
-  //       this.events = this.events.filter(iEvent => iEvent !== event);
-  //       this.handleEvent('Deleted', event);
-  //     }
-  //   }
-  // ];
+  public events: CalendarEvent[];
 
-  // refresh: Subject<any> = new Subject();
+  activeDayIsOpen = true;
 
-  events: CalendarEvent[] = [
-    {
-      start: subDays(startOfDay(new Date()), 1),
-      // end: addDays(new Date(), 1),
-      title: '50000',
-      cssClass: 'input'
-    },
-    {
-      start: subDays(startOfDay(new Date()), 2),
-      // end: addDays(new Date(), 1),
-      title: '',
-      cssClass: 'output'
-    },
-    {
-      start: subDays(startOfDay(new Date()), 3),
-      // end: addDays(new Date(), 1),
-      title: '',
-      cssClass: 'output'
-    },
-    {
-      start: subDays(startOfDay(new Date()), 3),
-      // end: addDays(new Date(), 1),
-      title: '',
-      cssClass: 'input'
-    },
-    {
-      start: subDays(startOfDay(new Date()), 4),
-      // end: addDays(new Date(), 1),
-      title: '',
-      cssClass: 'input'
-    },
-    {
-      start: subDays(startOfDay(new Date()), 4),
-      // end: addDays(new Date(), 1),
-      title: '',
-      cssClass: 'output'
-    },
-  ];
+  constructor(private modal: NgbModal) {
 
-  activeDayIsOpen: boolean = true;
-
-  constructor(private modal: NgbModal) {}
-
-  dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
-    if (isSameMonth(date, this.viewDate)) {
-      if (
-        (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
-        events.length === 0
-      ) {
-        this.activeDayIsOpen = false;
-      } else {
-        this.activeDayIsOpen = true;
-      }
-      this.viewDate = date;
-    }
   }
-
-  // eventTimesChanged({
-  //   event,
-  //   newStart,
-  //   newEnd
-  // }: CalendarEventTimesChangedEvent): void {
-  //   this.events = this.events.map(iEvent => {
-  //     if (iEvent === event) {
-  //       return {
-  //         ...event,
-  //         start: newStart,
-  //         end: newEnd
-  //       };
-  //     }
-  //     return iEvent;
-  //   });
-  //   this.handleEvent('Dropped or resized', event);
-  // }
-
-  handleEvent(action: string, event: CalendarEvent): void {
-    this.modalData = { event, action };
-    this.modal.open(this.modalContent, { size: 'lg' });
+  ngOnInit() {
+    this.events = this.transformFinanceInputs()
   }
-
 
   setView(view: CalendarView) {
     this.view = view;
@@ -174,6 +88,24 @@ export class CalendarComponent  {
 
   closeOpenMonthViewDay() {
     this.activeDayIsOpen = false;
+  }
+
+  transformFinanceInputs() {
+    const eventsArr: any[] = [];
+
+    this.userFinance.forEach(element => {
+      let event: string;
+      let type = '';
+      if (element.income === 1) {
+        event = 'input';
+      } else {
+        event = 'output';
+        type = '- ';
+      }
+      eventsArr.push({ title: type + element.amount, start: new Date(element.created_at), cssClass: event });
+      return eventsArr;
+    });
+    return eventsArr;
   }
 
 }

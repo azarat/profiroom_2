@@ -190,9 +190,10 @@
         margin: 0 21px;
         background: #4285f4;
         border-radius: 100px 100px 0px 0px;
-        height: 50%;
         position: relative;
         cursor: pointer;
+        height: 0;
+        // transition: height 0.5s ease-in-out;
 
         span {
           position: absolute;

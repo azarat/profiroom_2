@@ -304,6 +304,9 @@
                 line-height: 23px;
                 text-align: right;
                 color: #29cc97;
+                &.output {
+                  color: #FD1F3A;
+                }
               }
             }
           }

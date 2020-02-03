@@ -4,6 +4,7 @@ import { DiagramComponent } from './diagram.component';
 import { ArrReverceModule } from '../../pipes/arr-reverse/arr-reverse.module';
 import { ThousandSeparatorModule } from '../../pipes/thousand-separator/thousand-separator.module';
 import { MonthPipeModule } from '../../pipes/month-pipe/month-pipe.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -13,7 +14,7 @@ import { MonthPipeModule } from '../../pipes/month-pipe/month-pipe.module';
     CommonModule,
     ArrReverceModule,
     ThousandSeparatorModule,
-    MonthPipeModule
+    MonthPipeModule,
   ],
   exports: [
     DiagramComponent,

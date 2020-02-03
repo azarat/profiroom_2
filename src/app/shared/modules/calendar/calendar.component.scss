@@ -106,7 +106,7 @@
       min-height: 30px;
       max-height: 30px;
       position: relative;
-      z-index: 15;
+      // z-index: 15;
       overflow: hidden;
     }
     .cal-day-cell {
@@ -167,6 +167,8 @@
       text-align: center;
       color: #707683;
       opacity: 1;
+      position: relative;
+      z-index: 15;
     }
   }
 }

@@ -4,14 +4,14 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class UserFinanceService {
+export class DiagramService {
 
   constructor(
     private http: HttpClient,
   ) { }
 
 
-  public getUserFinanceData() {
-    return this.http.get('/userFinance');
+  public getYearStatistic(_year: number ) {
+    return this.http.post('/userFinanceGraph', {year: _year});
   }
 }

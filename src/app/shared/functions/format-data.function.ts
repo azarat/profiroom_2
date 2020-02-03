@@ -3,7 +3,7 @@ import { ru, uk, enUS } from 'date-fns/locale';
 import { differenceInDays } from 'date-fns';
 
 
-export function formatDataFunction(date: string) {
+export function formatDataFunction(date: string, dataType: string) {
   const currentDate: Date = new Date();
   const messageDate = new Date(date);
   const deifferenceinDays = differenceInDays( currentDate, messageDate);
@@ -13,7 +13,6 @@ export function formatDataFunction(date: string) {
   } else if (deifferenceinDays === 1) {
     return  'Вчера ' +  format(new Date(messageDate), 'HH:mm');
   } else {
-    return format(new Date(messageDate), 'dd.MM HH:mm');
+    return format(new Date(messageDate), dataType);
   }
 }
-

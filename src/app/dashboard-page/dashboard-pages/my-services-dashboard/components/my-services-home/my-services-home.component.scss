@@ -251,6 +251,7 @@ section:not(.wrap) {
   align-items: center;
   background: rgba(224, 225, 249, 0.3);
   backdrop-filter: blur(4px);
+  z-index: 50;
   .msg {
     padding: 35px 70px;
     text-align: center;

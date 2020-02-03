@@ -1,10 +1,12 @@
-<div class="wrapper">
+<div class="wrapper" *ngIf="userFinance">
   <div class="statistic">
     <section class="compressed-statistic">
       <div *ngFor="let el of allStatisticInfo">
-        <div class="icon"><img src="/assets/images/icons/finance/{{el.type}}.png" alt=""></div>
+        <div class="icon">
+          <!-- <img src="/assets/images/icons/finance/{{el.type}}.png" alt=""> -->
+        </div>
         <div class="data">
-          <p class="value"><span>58 500</span> UAH</p>
+          <p class="value"><span>{{ userFinance.purse[el.type] | thousandSeparator  }}</span> UAH</p>
           <p class="title">&#32; {{ el.name }}</p>
         </div>
       </div>
@@ -15,7 +17,7 @@
         <app-diagram></app-diagram>
       </div>
       <div class="calendar">
-        <app-calendar></app-calendar>
+        <app-calendar [userFinance]="userFinance.history"></app-calendar>
         <div class="info">
           <div>
             <span>доход</span>
@@ -38,16 +40,16 @@
           <span class="cash">Сумма</span>
         </div>
         <div class="payment-items">
-          <div class="item" *ngFor="let payment of paymentsList">
+          <div class="item" *ngFor="let payment of userCashMoves">
             <div class="name">
               <div class="ava">
-                <img src="/assets/images/images/ava.jpg" alt="">
+                <img [src]="payment.user.avatar" alt="">
               </div>
-              <span> {{ payment.name }}</span>
+              <span> {{ payment.user.name + ' ' +   payment.user.surname }}</span>
             </div>
-            <div class="date">{{ payment.date }}</div>
-            <div class="service">{{ payment.service }}</div>
-            <div class="cash"><span>{{ payment.cash }}</span> UAH</div>
+            <div class="date">{{ payment.created_at | dateFormatPipe: 'dd.MM.yyyy' }}</div>
+            <div class="service">{{ payment.OffersTitle }}</div>
+            <div class="cash"><span [ngClass]="{ output: payment.income === 0 }"> <ng-container *ngIf="payment.income === 0">-</ng-container> {{ payment.amount }}</span> UAH</div>
           </div>
         </div>
       </div>
@@ -57,7 +59,7 @@
     <div class="balance">
       <div class="icon"><img src="/assets/images/icons/finance/current.png" alt=""></div>
       <div class="data">
-        <p class="value"><span>58 500</span> UAH</p>
+        <p class="value"><span>{{ userFinance.purse.summ | thousandSeparator   }}</span> UAH</p>
         <p class="title">&#32; состояние счета</p>
       </div>
     </div>
@@ -65,12 +67,12 @@
       <div class="title">ввод и вывод денег</div>
       <div class="form">
         <div class="operation-type">
-          <mat-select [(ngModel)]="transactions.transactionType">
-            <mat-option [value]="null" disabled selected >Выберите операцию</mat-option>
-            <mat-option [value]="'input'">
+          <mat-select [formControl]="deffaultSelect" >
+            <mat-option value=null disabled >Выберите операцию</mat-option>
+            <mat-option value="'input'">
               Ввести деньги
             </mat-option>
-            <mat-option [value]="'output'">
+            <mat-option value="'output'">
               Вывести деньги
             </mat-option>
           </mat-select>

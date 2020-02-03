@@ -8,8 +8,8 @@ import { formatDataFunction } from '../../functions/format-data.function';
 export class DateFormatPipe implements PipeTransform {
 
 
-  transform(value: string) {
-    return formatDataFunction(value);
+  transform(value: string, dataType: string) {
+    return formatDataFunction(value, dataType);
   }
 
 }

@@ -6,7 +6,9 @@ import { LocalizeRouterModule } from 'localize-router';
 import { CalendarSharedModule } from 'src/app/shared/modules/calendar/calendar.module';
 import { DiagramModule } from 'src/app/shared/modules/diagram/diagram.module';
 import {MatSelectModule} from '@angular/material/select';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DataFormatModule } from 'src/app/shared/pipes/data-format/data-format.module';
+import { ThousandSeparatorModule } from 'src/app/shared/pipes/thousand-separator/thousand-separator.module';
 
 const routes: Routes = [
   {
@@ -25,7 +27,12 @@ const routes: Routes = [
     CalendarSharedModule,
     DiagramModule,
     FormsModule,
-    MatSelectModule
+    ReactiveFormsModule,
+    MatSelectModule,
+
+    // Pipes
+    DataFormatModule,
+    ThousandSeparatorModule
   ]
 })
 export class FinacePageModule { }

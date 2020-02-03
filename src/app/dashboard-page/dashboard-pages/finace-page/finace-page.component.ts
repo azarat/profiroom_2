@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { compressedFinanceInfoConst } from './consts/compressed-finance-info.const';
-import { paymentsListConst } from './consts/payments-list.const';
 import { UserFinanceService } from './services/user-finance.service';
 import { filter } from 'rxjs/operators';
 import { FinanceInterface } from './interfaces/finance.interface';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-finace-page',
@@ -12,34 +12,44 @@ import { FinanceInterface } from './interfaces/finance.interface';
 })
 export class FinacePageComponent implements OnInit {
   // transactionType: string;
-  userFinance: FinanceInterface = null;
-
+  userFinance: FinanceInterface;
+  deffaultSelect = new FormControl('null');
   transactions = {
     transactionType: null,
     cash: null,
     password: null
   };
 
-  allStatisticInfo: any[] = compressedFinanceInfoConst;
+  userCashMoves: any[];
 
-  paymentsList = paymentsListConst;
+  allStatisticInfo: any[] = compressedFinanceInfoConst;
 
   constructor(
     private userFinanceService: UserFinanceService
   ) { }
 
   ngOnInit() {
-    this.transactions.transactionType = null;
+    // this.transactions.transactionType = null;
     this.getFinanceData();
   }
 
   getFinanceData() {
-    console.log('getting data');
+
     this.userFinanceService.getUserFinanceData()
     .subscribe((res: any) => {
-      console.log(res);
-      this.allStatisticInfo = res;
+      this.userFinance = res[0];
+      console.log(res[0]);
+      this.userCashMoves = this.sortcashByTime(this.userFinance.history)
     });
   }
+
+  sortcashByTime(arr) {
+    const x = arr.sort((a, b) => {
+      return b.created_at.localeCompare(a.created_at);
+    });
+    return x;
+  }
+
+
 
 }
