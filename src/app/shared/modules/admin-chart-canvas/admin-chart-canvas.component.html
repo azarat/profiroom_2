@@ -11,8 +11,9 @@
       <!-- <canvas id="adminChart" height='245px' baseChart #adminChart [chartType]="chartType" [datasets]="chartData"
         [colors]="chartColors"></canvas> -->
 
-      <canvas baseChart width="400" height="400" [datasets]="lineChartData" [labels]="lineChartLabels"
-        [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType"
+      <canvas baseChart [datasets]="lineChartData" width= '1045px'
+    height= '245px' [labels]="lineChartLabels" [options]="lineChartOptions"
+        [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType"
         [plugins]="lineChartPlugins"></canvas>
     </div>
   </div>
