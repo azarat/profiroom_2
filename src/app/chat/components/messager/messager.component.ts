@@ -22,7 +22,7 @@ import { Subject } from 'rxjs';
 export class MessagerComponent implements OnInit, OnDestroy {
 
   public messageText;
-  public messagesList = [];
+  public messagesList = null;
   private userId;
   private typing = false;
   private time: any;

@@ -8,9 +8,11 @@
       </section>
       <section class="type-section">
         <div class="switch">
-          <input id="radio-a" type="radio" name="first-switch" checked="checked" /><label
-            for="radio-a">Фрилансер</label><input id="radio-b" type="radio" name="first-switch" /><label class="radio-b"
-            for="radio-b">Заказчик</label><span class="toggle-outside"><span class="toggle-inside"></span></span>
+          <span (click)="changeUserType(1)" [ngClass]="{active: user.role_id === 1}">Фрилансер</span>
+          <div class="swp-btn" (click)="changeUserType()">
+            <span [ngClass]="{left: user.role_id === 1, right: user.role_id === 2 }"></span>
+          </div>
+          <span (click)="changeUserType(2)" [ngClass]="{active: user.role_id === 2}">Заказчик</span>
         </div>
       </section>
       <section class="exit">
@@ -23,17 +25,20 @@
       <div class="lines"></div>
       <img [src]="user.avatar" alt="avatar" />
       <p class="name">{{ user.name }} {{ user.surname}}</p>
-      <div class="raiting"></div>
+      <div class="raiting">
+        <app-star-raiting [currentRaiting]="user.raiting"></app-star-raiting>
+      </div>
     </section>
     <section class="menu">
 
       <nav>
-        <a class="{{el.class}}" *ngFor="let el of dashboardMenu"
-        [routerLinkActiveOptions]="{exact: true}"
-        [routerLink]="el.link | localize"
-        [routerLinkActive]="'active'"
-        (click)="openChat(el.class)"
-        [ngClass]="{ 'newMessage': newMessage }"><span>{{ el.title }}</span></a>
+        <ng-container *ngFor="let el of dashboardMenu">
+          <a class="{{el.class}}"
+            *ngIf="user.role_id === 1 && el.class !== 'catalog' || user.role_id === 2 && el.class !== 'dashboard' && el.class !== 'services'"
+            [routerLinkActiveOptions]="{exact: true}" [routerLink]="el.link | localize" [routerLinkActive]="'active'"
+            (click)="openChat(el.class)" [ngClass]="{ 'newMessage': newMessage }"><span>{{ el.title }}</span></a>
+        </ng-container>
+
 
       </nav>
     </section>

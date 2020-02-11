@@ -9,9 +9,7 @@
       </div>
 
     </div>
-    <div class="filters" *ngIf="chatType == 'projects'">
-
-    </div>
+    <app-projects-filter *ngIf="chatType == 'projects'"></app-projects-filter>
     <div class="collocutors-list" [ngClass]="{ projects: chatType === 'projects' }">
       <div class="collocutor" *ngFor="let collocutor of collocutors, let i=index" (click)="openChat(collocutor)" [ngClass]="{'unread': userId === +collocutor.unread}">
         <span *ngIf="chatType == 'projects'" class="status"></span>

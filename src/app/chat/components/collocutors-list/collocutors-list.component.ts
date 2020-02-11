@@ -10,12 +10,13 @@ import { CollocutorListModel } from 'src/app/models/chat/collocutors-list.model'
 import { filter } from 'rxjs/operators';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 import { Howl, Howler } from 'howler';
+import { CollucutorsListInterface } from '../../interfaces/collucotors-list.interface';
 
 
 
 
 const sound = new Howl({
-  src: ['/assets/sounds/notification.mp3']
+  src: ['/assets/sounds/chat-messages/message.mp3']
 });
 
 @Component({
@@ -25,18 +26,13 @@ const sound = new Howl({
 })
 export class CollocutorsListComponent implements OnInit {
 
-
-  public collocutors;
+  public collocutors: CollucutorsListInterface[];
   public lastMessageDate: string;
   @Input() chatType: string;
+  public userId;
+
   @Output() currentRoom = new EventEmitter();
 
-  public userId;
-  // DateFormatPipe
-
-  // sound = new Howl({
-  //   src: ['/assets/sounds/notification.mp3']
-  // });
   constructor(
     private chatService: ChatService,
     private socketService: SocketService,
@@ -44,19 +40,26 @@ export class CollocutorsListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.userId = this.localStorageService.getItem('userId').value;
+    this._getChatRooms();
+    this._subscribeNewMessages();
+  }
+
+  private _getChatRooms() {
     this.chatService.getChatRooms()
-      .subscribe(res => {
-
+      .subscribe((res: CollucutorsListInterface[]) => {
         this.collocutors = res;
-        this.sortMessagesByTime(this.collocutors);
+        console.log(res)
+        this._sortMessagesByTime(this.collocutors);
       });
+  }
 
+  private _subscribeNewMessages() {
     this.socketService.showNewMessage()
       .subscribe(res => {
-        this.pushNewMessage(this.collocutors, res);
-        this.sortMessagesByTime(this.collocutors);
+        this._pushNewMessage(this.collocutors, res);
+        this._sortMessagesByTime(this.collocutors);
       });
-    this.userId = this.localStorageService.getItem('userId').value;
   }
 
   public openChat(userinfo) {
@@ -64,20 +67,20 @@ export class CollocutorsListComponent implements OnInit {
     this.socketService.openChat(userinfo.roomId);
   }
 
-  pushNewMessage(arr, obj: any) {
+  private _pushNewMessage(arr, obj: any) {
     if (arr.length !== 0) {
       const foundIndex = arr.findIndex(x => x.roomId === obj.roomId);
       this.collocutors[foundIndex] = obj;
     } else {
       this.collocutors.push(obj);
     }
-    if ( +(obj.message[0].author) !== this.userId && obj.unread !== 0) {
+    if (+(obj.message[0].author) !== this.userId && obj.unread !== 0) {
       sound.play();
     }
 
   }
 
-  sortMessagesByTime(arr) {
+  private _sortMessagesByTime(arr) {
     const x = arr.sort((a, b) => {
       return b.message[0].dateTime.localeCompare(a.message[0].dateTime);
     });

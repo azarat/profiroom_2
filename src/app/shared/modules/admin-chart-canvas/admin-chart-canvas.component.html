@@ -1,0 +1,22 @@
+<div class="tools-bar">
+  <div class="items">
+    <div>финансовая статистика</div>
+    <div>декабрь декабрь декабрь</div>
+  </div>
+</div>
+<div class="wrapper">
+  <div class="chart">
+    <h6>2019 год</h6>
+    <div class="canvas" style="display: block;">
+      <!-- <canvas id="adminChart" height='245px' baseChart #adminChart [chartType]="chartType" [datasets]="chartData"
+        [colors]="chartColors"></canvas> -->
+
+      <canvas baseChart width="400" height="400" [datasets]="lineChartData" [labels]="lineChartLabels"
+        [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType"
+        [plugins]="lineChartPlugins"></canvas>
+    </div>
+  </div>
+  <div class="curent-statistic">
+    s
+  </div>
+</div>

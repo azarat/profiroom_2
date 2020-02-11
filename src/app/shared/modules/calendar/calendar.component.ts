@@ -1,27 +1,13 @@
 import {
   Component,
-  ChangeDetectionStrategy,
   ViewChild,
   TemplateRef,
   Input,
   OnInit
 } from '@angular/core';
-import {
-  startOfDay,
-  endOfDay,
-  subDays,
-  addDays,
-  endOfMonth,
-  isSameDay,
-  isSameMonth,
-  addHours
-} from 'date-fns';
-import { Subject } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {
   CalendarEvent,
-  CalendarEventAction,
-  CalendarEventTimesChangedEvent,
   CalendarView,
   CalendarDateFormatter
 } from 'angular-calendar';
@@ -79,7 +65,7 @@ export class CalendarComponent implements OnInit {
 
   }
   ngOnInit() {
-    this.events = this.transformFinanceInputs()
+    this.events = this.transformFinanceInputs();
   }
 
   setView(view: CalendarView) {

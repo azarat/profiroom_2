@@ -22,6 +22,9 @@ import { EmojiComponent } from './components/emoji/emoji.component';
 import { UploadFileComponent } from './components/upload-file/upload-file.component';
 import { FileSizeModule } from '../shared/pipes/file-size/file-size.module';
 import { FileTypeModule } from '../shared/pipes/file-type/file-type.module';
+import { ProjectsFilterComponent } from './components/collocutors-list/projects-filter/projects-filter.component';
+import { ProjectBreefFillingComponent } from './components/project-breef-filling/project-breef-filling.component';
+import { ChatErrorsComponent } from './components/chat-errors/chat-errors.component';
 
 
 
@@ -37,6 +40,9 @@ import { FileTypeModule } from '../shared/pipes/file-type/file-type.module';
     ShowUploadedFilesComponent,
     EmojiComponent,
     UploadFileComponent,
+    ProjectsFilterComponent,
+    ProjectBreefFillingComponent,
+    ChatErrorsComponent,
 
     // Directives
 

@@ -53,4 +53,8 @@ export class MessageScrollerService {
       return false;
     }
   }
+
+  public disableAutoScroll() {
+    this.disableScrollDown = true;
+  }
 }

@@ -1,0 +1,51 @@
+.tools-bar {
+  height: 66px;
+  background: #f4f7fc;
+  border-radius: 4px 4px 0px 0px;
+  box-sizing: border-box;
+  padding: 0 22px;
+}
+.items,
+.chart {
+  width: 72%;
+}
+.items {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.chart {
+  padding-left: 31px;
+  border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  h6 {
+    font-family: Source Sans Pro, sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 5px;
+    letter-spacing: 0.15px;
+    text-transform: uppercase;
+    color: #323c47;
+    margin: 20px 0 16px;
+  }
+}
+
+.curent-statistic {
+  width: 19%;
+  margin-right: 56px;
+  border: 1px solid red;
+}
+.canvas {
+  height: 245px;
+  box-sizing: border-box;
+  position: relative;
+}

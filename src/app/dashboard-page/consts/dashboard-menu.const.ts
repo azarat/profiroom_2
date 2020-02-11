@@ -6,27 +6,32 @@ export const dashboardMenuConst = [
     class: 'dashboard'
   },
   {
-    title: 'проекты',
+    title: 'Проекты',
     link: '/dashboard/projects',
     class: 'projects'
   },
   {
-    title: 'чат',
+    title: 'Чат',
     link: '/dashboard/chat-room',
     class: 'chat'
   },
   {
-    title: 'мои услуги',
+    title: 'Мои услуги',
     link: '/dashboard/my-services',
     class: 'services'
   },
   {
-    title: 'финансы',
+    title: 'Каталог',
+    link: '/catalog',
+    class: 'catalog'
+  },
+  {
+    title: 'Финансы',
     link: '/dashboard/finance',
     class: 'finance'
   },
   {
-    title: 'настройки',
+    title: 'Настройки',
     link: '/dashboard/settings',
     class: 'settings'
   }

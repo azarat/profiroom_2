@@ -13,10 +13,10 @@ import { SocketService } from '../../services/socket.service';
   styleUrls: ['./message-list.component.scss'],
   // providers:  [ MessageScrollerService ]
 })
-export class MessageListComponent implements OnInit, AfterViewChecked {
+export class MessageListComponent implements OnInit, AfterViewChecked, AfterViewInit {
 
   @Input() chatRoom: string;
-  @Input() messagesList: [];
+  @Input() messagesList: any[];
   @Input() collocutorData: CollocutorListModel;
   userId: any;
   userAvatar: any;
@@ -41,13 +41,21 @@ export class MessageListComponent implements OnInit, AfterViewChecked {
   ngOnInit() {
     this.messageScrollerService.onMessageScrollBottom();
     // this.typingEventListener();
+    console.log(this.messagesList);
+    console.log('dddd');
+  }
+  ngAfterViewInit(): void {
+    // this._checkOnUnreadedMessages();
   }
 
   ngAfterViewChecked() {
     this.messageScrollerService.scrollToBottom(this.messagesWrap);
+
   }
 
   public onScroll(event) {
+
+
     const x = event.target.scrollHeight - event.target.scrollTop;
     this.messageScrollerService.onScroll(this.messagesWrap);
     if (x > event.target.clientHeight + 300) {
@@ -61,7 +69,6 @@ export class MessageListComponent implements OnInit, AfterViewChecked {
     } else {
       this.isShowMoreMessagesBtn = null;
     }
-
   }
 
   public scrollToStart() {
@@ -91,19 +98,16 @@ export class MessageListComponent implements OnInit, AfterViewChecked {
     return arr;
   }
 
-  // private typingEventListener() {
-  //   this.socetService.onTypingListener()
-  //     .subscribe((res: any) => {
-  //       this.typingUser = res;
-  //       this.typing = true;
-  //     });
-  //   this.typingStoppedEventListener();
-  // }
-  // private typingStoppedEventListener() {
-  //   this.socetService.onStopTypingListener()
-  //     .subscribe((res: any) => {
-  //       this.typingUser = res;
-  //       this.typing = null;
-  //     });
+  // Scroll To first unreaded message -- need to be calculated better
+  // private _checkOnUnreadedMessages() {
+  //   if (this.collocutorData.unread.toString() === this.userId) {
+  //     const firstUnreadedMessageOffset = $('.message-anchor:last-of-type').offset().top;
+
+  //     // console.log(firstUnreadedMessage)
+  //     $('#messages-wrap').animate({
+  //       scrollTop: - firstUnreadedMessageOffset
+  //     }, 100);
+  //     this.messageScrollerService.disableAutoScroll();
+  //   }
   // }
 }
