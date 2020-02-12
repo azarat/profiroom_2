@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 import { HomeUserSettingsComponent } from './components/home-user-settings.component';
 import { Routes, RouterModule } from '@angular/router';
 import { LocalizeRouterModule } from 'localize-router';
-import { MatTabsModule,
-         MatSelectModule,
-         MatInputModule } from '@angular/material';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatTabsModule } from '@angular/material/tabs';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
 

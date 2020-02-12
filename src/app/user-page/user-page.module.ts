@@ -2,15 +2,18 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserPageComponent } from './user-page.component';
 import { Routes, RouterModule } from '@angular/router';
-import { LocalizeRouterModule } from 'localize-router';
+import { LocalizeRouterModule, LocalizeRouterPipe } from 'localize-router';
 import { MainHeaderModule } from '../shared/modules/main-header/main-header.module';
 import { CategoriesHeaderModule } from '../shared/modules/categories-header/categories-header.module';
 
 import { UserDataService } from './service/user.service';
 import { UserPageServicesComponent } from './user-page-services/user-page-services.component';
 import { UserPageCommentsComponent } from './user-page-comments/user-page-comments.component';
+import {
+  MatTabsModule
+} from '@angular/material/tabs';
 
-import { MatTabsModule} from '@angular/material';
+import { TranslateModule } from '@ngx-translate/core';
 
 const routes: Routes = [
   {
@@ -27,9 +30,11 @@ const routes: Routes = [
   imports: [
     CommonModule,
     LocalizeRouterModule.forChild(routes),
+    TranslateModule,
     RouterModule.forChild(routes),
     MainHeaderModule,
     CategoriesHeaderModule,
+    LocalizeRouterPipe,
 
     // -----matherials
     MatTabsModule

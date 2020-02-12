@@ -20,9 +20,13 @@ import { BaseInterceptor } from '../core/interceptors/base-interceptor';
 import { HttpClient } from '@angular/common/http';
 import { OffersResolver } from './resolves/offers.resolve';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatSelectModule, MatInputModule, MatCheckboxModule, MatRadioModule } from '@angular/material';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatInputModule } from '@angular/material/input';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
 import { CategorysListService } from '../core/services/categorys.service';
 import { CatalogPaginationComponent } from './catalog/catalog-pagination/catalog-pagination.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 
@@ -55,6 +59,7 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
+    TranslateModule,
     LocalizeRouterModule.forChild(routes),
     RouterModule.forChild(routes),
     MainHeaderModule,

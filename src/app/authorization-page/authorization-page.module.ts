@@ -5,8 +5,12 @@ import { LocalizeRouterModule } from 'localize-router';
 
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatFormFieldModule, MatAutocompleteModule, MatCheckboxModule, MatFormFieldControl, MatIconModule } from '@angular/material';
-import { MatInputModule, MatButtonModule } from '@angular/material';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatFormFieldModule, MatFormFieldControl } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
 import { MainHeaderComponent } from '../shared/modules/main-header/main-header.component';
 import { MainHeaderModule } from '../shared/modules/main-header/main-header.module';
 import { LanguageModule } from '../shared/modules/language/language.module';
@@ -73,6 +77,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     FormsModule,
     ReactiveFormsModule,
+
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
@@ -90,7 +95,13 @@ const routes: Routes = [
   ],
   exports: [
     ResetPasswordPageComponent,
-    AuthentificationPageComponent
+    AuthentificationPageComponent,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatAutocompleteModule,
+    MatCheckboxModule,
+    MatIconModule,
   ],
   providers: [
     // {
