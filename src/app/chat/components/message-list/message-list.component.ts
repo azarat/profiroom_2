@@ -36,7 +36,7 @@ export class MessageListComponent implements OnInit, AfterViewChecked, AfterView
 
   }
 
-  @ViewChild('messagesWrap') messagesWrap: ElementRef;
+  @ViewChild('messagesWrap', { static: false }) messagesWrap: ElementRef;
 
   ngOnInit() {
     this.messageScrollerService.onMessageScrollBottom();

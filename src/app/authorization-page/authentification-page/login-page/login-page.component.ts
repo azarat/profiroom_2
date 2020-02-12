@@ -14,12 +14,14 @@ import {
 import {
   AuthentificationService
 } from 'src/app/core/services/auth.service';
+import { AuthService } from 'angularx-social-login';
 import {
   Router
 } from '@angular/router';
 import { InfoMessageInterface } from 'src/app/shared/interfaces/info-message.interface';
 import { BehaviorSubject, Subscription, Observable } from 'rxjs';
 import { LocalizeRouterService } from 'localize-router';
+import { FacebookLoginProvider, GoogleLoginProvider } from 'angularx-social-login';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 import { UserModel } from 'src/app/models/user.model';
 

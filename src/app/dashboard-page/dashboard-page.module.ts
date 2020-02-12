@@ -7,7 +7,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatIconModule } from '@angular/material/icon';
 import { MatBadgeModule } from '@angular/material/badge';
 import { HomeDashboardComponent } from './dashboard-pages/home-dashboard-page/home-dashboard.component';
-import { MatSelectModule } from '@angular/material/select';
+import { MatSelectModule } from '@angular/material';
 import { StarRaitingModule } from '../shared/modules/star-raiting/star-raiting.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 

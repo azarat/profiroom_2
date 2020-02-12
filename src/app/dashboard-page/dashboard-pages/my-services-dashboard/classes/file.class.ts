@@ -1,5 +1,3 @@
-import { Injectable } from "@angular/core";
-@Injectable()
 export class FileClass {
   // formData: FormData();
   fromGroupToGroupData(formObject) {

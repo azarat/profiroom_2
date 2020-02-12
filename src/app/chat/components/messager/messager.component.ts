@@ -35,7 +35,7 @@ export class MessagerComponent implements OnInit, OnDestroy {
   @Input() isFileLoaderVisible: boolean;
   @Output() isFileLoaderVisibleChange = new EventEmitter<boolean>();
 
-  @ViewChild('textarea') textinput: ElementRef;
+  @ViewChild('textarea', { static: false }) textinput: ElementRef;
   @ViewChildren(MessageListComponent) messagesWrap: QueryList<MessageListComponent>;
   @ViewChildren(MessageListComponent) messages: QueryList<ElementRef>;
 

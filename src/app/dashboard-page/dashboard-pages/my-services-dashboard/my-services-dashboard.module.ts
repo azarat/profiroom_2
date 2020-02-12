@@ -1,24 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LocalizeRouterModule, LocalizeRouterPipe } from 'localize-router';
+import { LocalizeRouterModule } from 'localize-router';
 import { routes } from 'src/app/app-routing.module';
 import { RouterModule, Routes } from '@angular/router';
 
 
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatChipsModule } from '@angular/material/chips';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { MatTabsModule } from '@angular/material/tabs';
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatFormFieldModule, MatAutocompleteModule, MatCheckboxModule,
+  MatIconModule, MatTooltipModule, MatSelectModule, MatButtonModule,
+  MatInputModule, MatChipsModule, MatSlideToggleModule, MatTabsModule } from '@angular/material';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { DragDropDirective } from './directives/drag-drop.directive';
 
 import { FileClass } from './classes/file.class';
@@ -82,7 +74,6 @@ const servicesRoutes: Routes = [
     QuillModule.forRoot(),
     NgKnifeModule,
     NgxMaskModule.forRoot(options),
-    LocalizeRouterPipe,
 
     // -----matherials
     MatSlideToggleModule,
