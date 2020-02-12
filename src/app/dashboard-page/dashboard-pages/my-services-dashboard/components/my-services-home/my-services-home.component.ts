@@ -26,7 +26,7 @@ export class MyServicesHomeComponent implements OnInit {
   currentTab = 1;
   tabs = tabsConst;
 
-  @ViewChild('scrolledBlock', {static: false}) el: ElementRef;
+  @ViewChild('scrolledBlock') el: ElementRef;
 
   constructor(
     private router: Router,

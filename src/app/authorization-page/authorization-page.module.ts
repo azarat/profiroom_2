@@ -12,8 +12,7 @@ import { MainHeaderModule } from '../shared/modules/main-header/main-header.modu
 import { LanguageModule } from '../shared/modules/language/language.module';
 import { InformPopupModule } from '../shared/modules/inform-popup/inform-popup.module';
 
-import { SocialLoginModule, AuthServiceConfig } from 'angularx-social-login';
-import { GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-login';
+
 import { ResetPasswordPageComponent } from './reset-password-page/reset-password-page.component';
 import { AuthentificationPageComponent } from './authentification-page/authentification-page.component';
 import { LoginPageComponent } from './authentification-page/login-page/login-page.component';
@@ -80,7 +79,6 @@ const routes: Routes = [
     MatAutocompleteModule,
     MatCheckboxModule,
     MatIconModule,
-    SocialLoginModule,
 
     // created
     LanguageModule,

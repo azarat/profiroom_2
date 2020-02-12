@@ -27,7 +27,7 @@ export class UserPageComponent implements OnDestroy  {
     'Выше среднего',
     'Князь тьмы'
   ];
-  @ViewChild('stickyMenu', {static: false}) menuElement: ElementRef;
+  @ViewChild('stickyMenu') menuElement: ElementRef;
 
   private id: any = null;
   private destroy$ = new Subject<undefined>();

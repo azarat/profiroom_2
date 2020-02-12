@@ -19,7 +19,7 @@ import { BaseInterceptor } from '../core/interceptors/base-interceptor';
 
 import { HttpClient } from '@angular/common/http';
 import { OffersResolver } from './resolves/offers.resolve';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule, MatInputModule, MatCheckboxModule, MatRadioModule } from '@angular/material';
 import { CategorysListService } from '../core/services/categorys.service';
 import { CatalogPaginationComponent } from './catalog/catalog-pagination/catalog-pagination.component';
@@ -60,6 +60,7 @@ const routes: Routes = [
     MainHeaderModule,
     CategoriesHeaderModule,
     FormsModule,
+    ReactiveFormsModule,
     MatSelectModule,
     MatInputModule,
     MatCheckboxModule,

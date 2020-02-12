@@ -27,7 +27,7 @@ export class ServicePageComponent implements OnInit {
   sticky = false;
   elementPosition: any;
 
-  @ViewChild('stickyMenu', {static: false}) menuElement: ElementRef;
+  @ViewChild('stickyMenu') menuElement: ElementRef;
 
   constructor(
     // tslint:disable-next-line: variable-name
