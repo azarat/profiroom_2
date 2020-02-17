@@ -16,6 +16,7 @@ export class SocketService {
   private notificationSubject = new Subject<any>();
 
   private chatRoomId: string = null;
+  private typeOfChat: string = null;
 
   constructor(
     private http: HttpClient
@@ -49,6 +50,7 @@ export class SocketService {
       });
     });
   }
+
   // tslint:disable-next-line: variable-name
   public openChat(_roomId: string) {
     if (_roomId === this.chatRoomId) {
@@ -59,8 +61,9 @@ export class SocketService {
     }
   }
 
+  // open new chat
   private _resetChatRoom(newRoom) {
-    this.socket.emit('leave', this.keyPath + this.chatRoomId)
+    this.socket.emit('leave', this.keyPath + this.chatRoomId);
     return newRoom;
   }
 
@@ -72,6 +75,23 @@ export class SocketService {
     });
   }
 
+  //  user List subscrubing
+  public subscribeOnListOfCollucutors(_chatType: string) {
+    if (_chatType === this.typeOfChat) {
+      return;
+    } else {
+      this.typeOfChat = this._resetChatRoom(_chatType);
+      this.socket.emit('join', this.keyPath + this.typeOfChat + this.socketId);
+    }
+  }
+
+  public closeCollocutorSocket(_chatType: string) {
+    this.socket.emit('leave', this.keyPath + this.chatRoomId + this.socketId);
+    return _chatType;
+  }
+
+
+
   public showNewMessage() {
     return new Observable(observer => {
       this.socket.on('collocutorsList', (data) => {
@@ -79,9 +99,14 @@ export class SocketService {
       });
     });
   }
+
+
+
+
+
   // 'typing'
   onTypingEvent(event: string, userId) {
-    this.socket.emit(event , this.keyPath + this.chatRoomId, userId);
+    this.socket.emit(event, this.keyPath + this.chatRoomId, userId);
   }
 
   onTypingListener() {

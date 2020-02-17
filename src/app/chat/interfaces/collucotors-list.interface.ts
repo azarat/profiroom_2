@@ -10,6 +10,8 @@ export interface CollucutorsListInterface {
   collocutorAva?: string;
   collocutorName?: string;
   collocutorSurname?: string;
+  offers_title?: string;
+  breef?: number;
   message: {
     author?: number | string;
     message?: string;

@@ -55,7 +55,7 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
     this.userService.getDashboardRes()
       .subscribe((res: any) => {
         this.user = plainToClass(UserModel, res[0]);
-        console.log(this.user);
+        this.userStatseService.changeUserState(this.user.role_id);
         this.authService.saveUserId(this.user.id);
         this.localStorageService.setItem('userImage', this.user.avatar);
       });

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { OfferDataInterface } from 'src/app/shared/interfaces/offer-date.interface';
+import { ServicePageService } from '../../services/service-page.service';
 
 @Component({
   selector: 'app-service-page-packages',
@@ -9,6 +10,8 @@ import { OfferDataInterface } from 'src/app/shared/interfaces/offer-date.interfa
 export class ServicePagePackagesComponent implements OnInit {
 
   @Input() offerData: OfferDataInterface;
+  @Input() offerId;
+
   public currentTab: any = 0;
   public tabs = [
     {
@@ -28,11 +31,17 @@ export class ServicePagePackagesComponent implements OnInit {
   ];
 
 
-  constructor() {}
+  constructor(
+    private servicePackageService: ServicePageService
+  ) { }
 
   ngOnInit() { }
 
   openTab = (i: number) => {
     this.currentTab = i;
+  }
+
+  public orderService(_package: string) {
+    this.servicePackageService.createDeal(this.offerId, _package);
   }
 }

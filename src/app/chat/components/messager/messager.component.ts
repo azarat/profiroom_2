@@ -31,6 +31,7 @@ export class MessagerComponent implements OnInit, OnDestroy {
   // tslint:disable-next-line: variable-name
   protected _destroy$ = new Subject();
 
+  @Input() chatType: string;
   @Input() collocutorData: CollocutorListModel;
   @Input() isFileLoaderVisible: boolean;
   @Output() isFileLoaderVisibleChange = new EventEmitter<boolean>();
@@ -88,7 +89,7 @@ export class MessagerComponent implements OnInit, OnDestroy {
 
   public sendMessage(form: NgForm) {
 
-    this.chatService.sentMessage(this.textInput.value, this.collocutorData.roomId, 'string').subscribe(res => {
+    this.chatService.sentMessage(this.textInput.value, this.collocutorData.roomId, 'string', this.chatType).subscribe(res => {
     });
     form.reset();
 

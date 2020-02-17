@@ -2,19 +2,19 @@
   <section class="collocutors">
     <app-collocutors-list [chatType]="chatType" (currentRoom)="getCurrentRoom($event)"></app-collocutors-list>
   </section>
-  <section class="messager" *ngIf="collocutorData">
-    <app-messager *ngIf="collocutorData" [collocutorData]="collocutorData"
-      [(isFileLoaderVisible)]="isFileLoaderVisible"></app-messager>
-    <!-- <app-project-breef-filling></app-project-breef-filling> -->
+  <section class="messager" *ngIf="collocutorData || newDealId">
+    <app-messager *ngIf="collocutorData && (!newDealId || collocutorData.breef == 1)" [collocutorData]="collocutorData"
+      [chatType]="chatType" [(isFileLoaderVisible)]="isFileLoaderVisible"></app-messager>
+    <app-project-breef-filling *ngIf="(newDealId || collocutorData.breef == 0) && chatType === 'work'"
+      [dealId]="newDealId" [collocutorData]="collocutorData">
+    </app-project-breef-filling>
   </section>
   <section class="collocutors-tools">
-    <app-messager-tools *ngIf="chatType === 'projects'"></app-messager-tools>
+    <app-messager-tools *ngIf="chatType === 'work'"></app-messager-tools>
     <app-collocutor-information *ngIf="chatType === 'classic' && collocutorData" [collocutorData]="collocutorData">
     </app-collocutor-information>
   </section>
   <section class="file-loader" *ngIf="isFileLoaderVisible && collocutorData">
     <app-upload-file [(isFileLoaderVisible)]="isFileLoaderVisible" [collocutorData]="collocutorData"></app-upload-file>
   </section>
-
-
 </section>

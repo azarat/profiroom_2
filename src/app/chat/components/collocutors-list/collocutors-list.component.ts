@@ -11,6 +11,8 @@ import { filter } from 'rxjs/operators';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 import { Howl, Howler } from 'howler';
 import { CollucutorsListInterface } from '../../interfaces/collucotors-list.interface';
+import { UserStateService } from 'src/app/dashboard-page/services/user-state.service';
+import { ActivatedRoute } from '@angular/router';
 
 
 
@@ -36,23 +38,45 @@ export class CollocutorsListComponent implements OnInit {
   constructor(
     private chatService: ChatService,
     private socketService: SocketService,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private userStateService: UserStateService,
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit() {
     this.userId = this.localStorageService.getItem('userId').value;
-    this._getChatRooms();
+
     this._subscribeNewMessages();
+    this.checkUserState();
+    // this.openNewDeal();
+  }
+
+  private checkUserState() {
+    this.userStateService.userState$
+      .subscribe(res => {
+        this._getChatRooms();
+      });
   }
 
   private _getChatRooms() {
-    this.chatService.getChatRooms()
+    this.chatService.getChatRooms(this.chatType)
       .subscribe((res: CollucutorsListInterface[]) => {
         this.collocutors = res;
         console.log(res)
         this._sortMessagesByTime(this.collocutors);
       });
   }
+
+  // open dealChat if is new
+  // private openNewDeal() {
+  //   this.route.queryParams
+  //     .pipe(
+  //       filter((res: any) => !!res),
+  //     )
+  //     .subscribe(res => {
+  //       this.openChat(+res.dealRoom);
+  //     });
+  // }
 
   private _subscribeNewMessages() {
     this.socketService.showNewMessage()

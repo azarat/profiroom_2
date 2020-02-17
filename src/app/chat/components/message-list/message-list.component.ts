@@ -42,7 +42,6 @@ export class MessageListComponent implements OnInit, AfterViewChecked, AfterView
     this.messageScrollerService.onMessageScrollBottom();
     // this.typingEventListener();
     console.log(this.messagesList);
-    console.log('dddd');
   }
   ngAfterViewInit(): void {
     // this._checkOnUnreadedMessages();
