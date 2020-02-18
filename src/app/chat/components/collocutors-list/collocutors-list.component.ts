@@ -12,7 +12,8 @@ import { LocalStorageService } from 'src/app/core/services/local-storage.service
 import { Howl, Howler } from 'howler';
 import { CollucutorsListInterface } from '../../interfaces/collucotors-list.interface';
 import { UserStateService } from 'src/app/dashboard-page/services/user-state.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { LocalizeRouterService } from 'localize-router';
 
 
 
@@ -41,6 +42,8 @@ export class CollocutorsListComponent implements OnInit {
     private localStorageService: LocalStorageService,
     private userStateService: UserStateService,
     private route: ActivatedRoute,
+    private router: Router,
+    private localize: LocalizeRouterService,
   ) { }
 
   ngOnInit() {
@@ -89,6 +92,14 @@ export class CollocutorsListComponent implements OnInit {
   public openChat(userinfo) {
     this.currentRoom.emit(userinfo);
     this.socketService.openChat(userinfo.roomId);
+
+    // clear router from params if click on anther deal
+    const translatedPath: any = this.localize.translateRoute('/dashboard/projects');
+    console.log('event')
+    this.router.navigate([translatedPath], {
+      relativeTo: this.route,
+      queryParams: {},
+    });
   }
 
   private _pushNewMessage(arr, obj: any) {

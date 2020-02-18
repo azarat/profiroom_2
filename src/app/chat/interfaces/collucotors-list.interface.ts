@@ -12,6 +12,8 @@ export interface CollucutorsListInterface {
   collocutorSurname?: string;
   offers_title?: string;
   breef?: number;
+  offers_id?: number;
+  offer_id?: number;
   message: {
     author?: number | string;
     message?: string;

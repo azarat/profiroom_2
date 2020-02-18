@@ -19,6 +19,10 @@ const routes: Routes = [
     children: [
       {
         path: '',
+        redirectTo: 'home'
+      },
+      {
+        path: 'home',
         loadChildren: () => import('./dashboard-pages/home-dashboard-page/home-dashboard.module').then(m => m.HomeDashboardPageModule)
         // component: HomeDashboardComponent
       },

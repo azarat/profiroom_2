@@ -35,8 +35,8 @@
         <ng-container *ngFor="let el of dashboardMenu">
           <a class="{{el.class}}"
             *ngIf="user.role_id === 1 && el.class !== 'catalog' || user.role_id === 2 && el.class !== 'dashboard' && el.class !== 'services'"
-            [routerLinkActiveOptions]="{exact: true}" [routerLink]="el.link | localize" [routerLinkActive]="'active'"
-            (click)="openChat(el.class)" [ngClass]="{ 'newMessage': newMessage }"><span>{{ el.title }}</span></a>
+            [routerLink]="el.link | localize" [routerLinkActive]="'active'" (click)="openChat(el.class)"
+            [ngClass]="{ 'newMessage': newMessage }"><span>{{ el.title }}</span></a>
         </ng-container>
 
 

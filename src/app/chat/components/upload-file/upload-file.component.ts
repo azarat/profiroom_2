@@ -11,9 +11,13 @@ import { MessageScrollerService } from '../../services/message-scroller/message-
 })
 export class UploadFileComponent implements OnInit {
 
+
   @Input() collocutorData;
+  @Input() chatType: string;
   @Input() isFileLoaderVisible: boolean;
   @Output() isFileLoaderVisibleChange = new EventEmitter<boolean>();
+
+
   public disabled = false;
   public files: FilesInterface[] = [];
   private filesCount: number = null;
@@ -42,7 +46,7 @@ export class UploadFileComponent implements OnInit {
     const formData: FormData = new FormData();
     formData.append('roomId', this.collocutorData.roomId);
 
-    for(let index = 0; index < event.length; index++) {
+    for (let index = 0; index < event.length; index++) {
       filesToUpload.push(event[index]);
     }
     // // ------- put files in FormData -------//
@@ -75,11 +79,14 @@ export class UploadFileComponent implements OnInit {
 
   sentMessage() {
     const MessageString = JSON.stringify(this.files);
-    this.chatService.sentMessage(MessageString, this.collocutorData.roomId, 'file')
-    .subscribe(res => console.log(res));
+    this.chatService.sentMessage(MessageString, this.collocutorData.roomId, 'file', this.chatType)
+      .subscribe(res => console.log(res));
     this.isFileLoaderVisibleChange.emit(false);
-
     this.messageScrollerService.onMessageScrollBottom();
+  }
+
+  public saveBreefFile() {
+
   }
 
 }

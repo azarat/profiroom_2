@@ -61,7 +61,15 @@ export class FifthStepCreationComponent implements OnInit {
   }
 
   onFiltersChange(e: string, i: number) {
-    if (this.userService.offerBreef[i].breefAnswerVariants.length === 0) {
+    if (this.userService.offerBreef[i].breefAnswerType === 'radio' && this.userService.offerBreef[i].breefAnswerVariants === undefined) {
+      this.userService.offerBreef[i].breefAnswerVariants = [
+        {
+          answerVariant: null
+        },
+        {
+          answerVariant: null
+        }];
+    } else if (this.userService.offerBreef[i].breefAnswerVariants.length === 0) {
       this.userService.offerBreef[i].breefAnswerVariants.push(
         {
           answerVariant: null
@@ -90,10 +98,10 @@ export class FifthStepCreationComponent implements OnInit {
       return;
     }
     this.userOffersService.updateService(this.userService)
-    .pipe(filter((res: any) => !! res))
-    .subscribe(res => {
-      this.userService.step = res.step;
-    } );
+      .pipe(filter((res: any) => !!res))
+      .subscribe(res => {
+        this.userService.step = res.step;
+      });
   }
 
   changeBreefItem(index: number) {

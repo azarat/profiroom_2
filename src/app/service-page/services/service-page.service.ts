@@ -56,7 +56,7 @@ export class ServicePageService {
     console.log('event')
     this.router.navigate([translatedPath], {
       relativeTo: this.route,
-      queryParams: { dealRoom: dealRoomId, offerId: _offerId },
+      queryParams: { id: dealRoomId, offers_id: _offerId, breef: 0 },
     });
   }
 }

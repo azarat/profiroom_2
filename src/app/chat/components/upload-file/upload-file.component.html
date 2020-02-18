@@ -3,8 +3,8 @@
   <div class="inform">
     <div class="img"></div>
     <div>
-       <h6>Загрузите файлы</h6>
-    <p>Перетащите сюда файл</p>
+      <h6>Загрузите файлы</h6>
+      <p>Перетащите сюда файл</p>
     </div>
 
   </div>
@@ -32,6 +32,7 @@
   </div>
   <div class="files-btn">
     <button class="btn-sec"><span>Отмена</span></button>
-    <button class="btn" (click)="sentMessage()"> <span>Загрузить</span></button>
+    <button class="btn" *ngIf="collocutorData.breef !== 0" (click)="sentMessage()"> <span>Загрузить</span></button>
+    <button class="btn" *ngIf="collocutorData.breef == 0" (click)="sentMessage()"> <span>Загрузить1</span></button>
   </div>
 </div>

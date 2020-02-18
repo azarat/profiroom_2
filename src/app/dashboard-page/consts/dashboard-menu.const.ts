@@ -2,7 +2,7 @@
 export const dashboardMenuConst = [
   {
     title: 'Дашбоард',
-    link: '/dashboard',
+    link: '/dashboard/home',
     class: 'dashboard'
   },
   {

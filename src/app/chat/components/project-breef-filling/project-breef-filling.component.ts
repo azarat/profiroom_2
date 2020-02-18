@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CollucutorsListInterface } from '../../interfaces/collucotors-list.interface';
 import { ChatService } from '../../services/chat.service';
 
@@ -9,25 +9,28 @@ import { ChatService } from '../../services/chat.service';
 })
 export class ProjectBreefFillingComponent implements OnInit {
 
-  @Input() dealId: {
-    dealRoom: number,
-    offerId: number
-  };
   @Input() collocutorData: CollucutorsListInterface;
+  @Input() isFileLoaderVisible: boolean;
+  @Output() isFileLoaderVisibleChange = new EventEmitter<boolean>();
 
   constructor(
     private chatSerrvice: ChatService
   ) { }
 
   ngOnInit() {
-    console.log(this.dealId);
+    console.log(this.collocutorData);
     this.getOffer();
   }
 
   getOffer() {
-    this.chatSerrvice.getBreef(this.dealId.offerId)
+    this.chatSerrvice.getBreef(+this.collocutorData.offers_id)
       .subscribe(res => {
         console.log(res);
       });
+  }
+
+  // open file uploader
+  public openFilesUploader() {
+    this.isFileLoaderVisibleChange.emit(true);
   }
 }

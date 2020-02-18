@@ -16,10 +16,7 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   public collocutorData: CollucutorsListInterface;
   public isFileLoaderVisible: boolean = null;
-  public newDealId: {
-    dealRoom: number,
-    offerId: number
-  };
+
   constructor(
     private chatService: ChatService,
     private socketService: SocketService,
@@ -39,6 +36,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.collocutorData = null;
     setTimeout(() => {
       this.collocutorData = userInfo;
+      // this.newDealId = userInfo;
     }, 100);
   }
 
@@ -52,8 +50,12 @@ export class ChatComponent implements OnInit, OnDestroy {
       .pipe(
         filter((res: any) => !!res),
       )
-      .subscribe(res => {
-        this.newDealId = res;
+      .subscribe((res) => {
+        if (res.hasOwnProperty('offers_id')) {
+          this.collocutorData = res;
+          console.log(this.collocutorData);
+        }
+
       });
   }
 
