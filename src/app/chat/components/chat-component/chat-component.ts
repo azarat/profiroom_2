@@ -13,6 +13,7 @@ import { CollucutorsListInterface } from '../../interfaces/collucotors-list.inte
 export class ChatComponent implements OnInit, OnDestroy {
 
   @Input() chatType: string;
+  uploadedBreefFiles: any;
 
   public collocutorData: CollucutorsListInterface;
   public isFileLoaderVisible: boolean = null;

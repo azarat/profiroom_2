@@ -93,13 +93,16 @@ export class CollocutorsListComponent implements OnInit {
     this.currentRoom.emit(userinfo);
     this.socketService.openChat(userinfo.roomId);
 
-    // clear router from params if click on anther deal
+    if (this.chatType === 'work') {
+       // clear router from params if click on anther deal
     const translatedPath: any = this.localize.translateRoute('/dashboard/projects');
     console.log('event')
     this.router.navigate([translatedPath], {
       relativeTo: this.route,
       queryParams: {},
     });
+    }
+
   }
 
   private _pushNewMessage(arr, obj: any) {

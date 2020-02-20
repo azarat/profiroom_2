@@ -10,6 +10,7 @@
   <div class="messager-wrap">
     <div class="previous-massages">
       <app-message-list [chatRoom]="collocutorData" *ngIf="collocutorData && messagesList" [messagesList]="messagesList"
+      [chatType]="chatType"
         [collocutorData]="collocutorData"></app-message-list>
     </div>
     <form #message="ngForm" (ngSubmit)="sendMessage(message)" class="message-input">

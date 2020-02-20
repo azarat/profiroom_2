@@ -1,4 +1,4 @@
-<div class="wrapper">
+<div class="wrapper" *ngIf="offerBreef">
   <section class="title">
     Брииф
   </section>
@@ -7,100 +7,35 @@
       <a href="/">Дизайн веб-сайтов с мобильным адаптивом</a>
     </h3>
 
-    <div class="questions">
-      <div class="question-item text">
+    <form class="questions" [formGroup]="brefForm" >
+      <div class="question-item {{ breefItem.breefAnswerType }}" *ngFor="let breefItem of offerBreef, let i = index"  >
         <p class="question-title">
-          1. Какая сфера деятельности Вашей компании?
+          {{i+1}}. {{ breefItem.breefTitle }}.
         </p>
-        <div class="answer">
-          <textarea name="answer"></textarea>
-        </div>
+        <div class="answer {{ breefItem.breefAnswerType }}"
+          [ngClass]="{ 'check-box': breefItem.breefAnswerType === 'radio' && breefItem.breefMultiAnswers === 1, 'radio-btns': breefItem.breefAnswerType === 'radio' && breefItem.breefMultiAnswers === 0  }">
 
-      </div>
-      <div class="question-item radio">
-        <p class="question-title">
-          2. Тип подачи информации.
-        </p>
-        <div class="answer radio  radio-btns">
-          <ul>
-            <li>
-              <input class="radioButton" name="radio" value="1" id="one" type="radio">
-              <label for="one">корпоративный стиль </label></li>
-            <li>
-              <input class="radioButton" name="radio" value="2" id="two" type="radio">
-              <label for="two">развлекательный стиль</label>
-            </li>
-            <li>
-              <input class="radioButton" name="radio" value="3" id="three" type="radio">
-              <label for="three">строгий стиль</label>
-            </li>
-            <li>
-              <input class="radioButton" name="radio" value="4" id="four" type="radio">
-              <label for="four">комплексное решение</label>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="question-item check-box">
-        <p class="question-title">
-          3. Цель сайта.
-        </p>
-        <div class="answer check-box">
-          <ul>
-            <li>
-              <input class="tgl tgl-classic" name="checkbox-1" value="1" id="one-o" type="checkbox">
-              <label for="one-o">корпоративный стиль </label></li>
-            <li>
-              <input class="tgl tgl-classic" name="checkbox-2" value="2" id="two-o" type="checkbox">
-              <label for="two-o">развлекательный стиль</label>
-            </li>
-            <li>
-              <input class="tgl tgl-classic" name="checkbox-3" value="3" id="three-o" type="checkbox">
-              <label for="three-o">строгий стиль</label>
-            </li>
-            <li>
-              <input class="tgl tgl-classic" name="checkbox-4" value="4" id="four-o" type="checkbox">
-              <label for="four-o">комплексное решение</label>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="question-item check-box">
-        <p class="question-title">
-          3. Цель сайта.
-        </p>
-        <div class="answer check-box">
-          <ul>
-            <li>
-              <input class="tgl tgl-classic" name="checkbox-1" value="1" id="one-o" type="checkbox">
-              <label for="one-o">корпоративный стиль </label></li>
-            <li>
-              <input class="tgl tgl-classic" name="checkbox-2" value="2" id="two-o" type="checkbox">
-              <label for="two-o">развлекательный стиль</label>
-            </li>
-            <li>
-              <input class="tgl tgl-classic" name="checkbox-3" value="3" id="three-o" type="checkbox">
-              <label for="three-o">строгий стиль</label>
-            </li>
-            <li>
-              <input class="tgl tgl-classic" name="checkbox-4" value="4" id="four-o" type="checkbox">
-              <label for="four-o">комплексное решение</label>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="question-item file">
-        <p class="question-title">
-          4. Какой у Вас корпоративный стиль?
-        </p>
-        <div class="answer file" (click)="openFilesUploader()">
-          прикрепите файл
+          <!--text Answer -->
+          <textarea *ngIf="breefItem.breefAnswerType === 'text'" name="answer" [formControlName]="breefItem.breefTitle" ></textarea>
+
+
+          <!-- different types -->
+          <ul *ngIf="breefItem.breefAnswerType === 'radio'">
+            <li *ngFor="let variant of breefItem.breefAnswerVariants, let j = index">
+              <input [ngClass]="breefItem.breefMultiAnswers === 0? 'radioButton ': 'tgl tgl-classic'"
+              name="radio" value="{{variant.answerVariant }}" id="{{ i + '-' + j }}"
+              (change)="onCheckChange($event, breefItem.breefTitle)"
+              [type]="breefItem.breefMultiAnswers === 0? 'radio': 'checkbox'">
+
+             <label for="{{i + '-' + j}}">{{ variant.answerVariant }}</label>
+              </li>
+            </ul>
         </div>
       </div>
       <div class="btns">
         <button class="btn-sec">отменить</button>
-        <button class="btn">отправить</button>
+        <button class="btn" (click)="sendBreef()">отправить</button>
       </div>
-    </div>
+    </form>
   </section>
 </div>

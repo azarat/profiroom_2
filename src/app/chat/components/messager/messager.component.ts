@@ -52,7 +52,7 @@ export class MessagerComponent implements OnInit, OnDestroy {
 
 
   ngOnInit() {
-    this.chatService.getPreviousMessages(this.collocutorData.roomId, 0)
+    this.chatService.getPreviousMessages(this.collocutorData.roomId, 0, this.chatType)
       .subscribe((res: any) => {
         this.messagesList = this.filterArrayOnMessTypes(res[0]);
       });

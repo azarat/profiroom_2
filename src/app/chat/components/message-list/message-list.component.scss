@@ -207,7 +207,6 @@
     // width: 95px;
     // height: 48px;
     span {
-
       display: inline-block;
       border-radius: 50%;
       background: #278df3;
@@ -229,6 +228,28 @@
         animation-delay: 0.4s;
       }
     }
+  }
+}
+
+.breef {
+  display: flex;
+  box-sizing: border-box;
+  .time {
+    font-family: Source Sans Pro, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: 0.103125px;
+    color: #33596e;
+    opacity: 0.5;
+    margin-right: 12px;
+  }
+  &>div {
+    box-sizing: border-box;
+    padding: 28px 28px 15px;
+    background: #F4F7FC;
+    border-radius: 20px 0px 20px 20px;
   }
 }
 

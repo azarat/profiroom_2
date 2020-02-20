@@ -3,7 +3,7 @@
     <app-collocutors-list [chatType]="chatType" (currentRoom)="getCurrentRoom($event)"></app-collocutors-list>
   </section>
   <section class="messager" *ngIf="collocutorData">
-    <app-messager *ngIf="collocutorData && collocutorData.breef == 1" [collocutorData]="collocutorData"
+    <app-messager *ngIf="collocutorData && chatType === 'classic'  ||collocutorData && collocutorData.breef == 1" [collocutorData]="collocutorData"
       [chatType]="chatType" [(isFileLoaderVisible)]="isFileLoaderVisible"></app-messager>
     <app-project-breef-filling *ngIf="collocutorData && collocutorData.breef == 0 && chatType === 'work'"
       [collocutorData]="collocutorData" [(isFileLoaderVisible)]="isFileLoaderVisible">
@@ -16,6 +16,7 @@
   </section>
   <section class="file-loader" *ngIf="isFileLoaderVisible && collocutorData">
     <app-upload-file [(isFileLoaderVisible)]="isFileLoaderVisible" [collocutorData]="collocutorData"
+    (uploadedBreefFiles)="uploadedBreefFiles"
       [chatType]="chatType"></app-upload-file>
   </section>
 </section>

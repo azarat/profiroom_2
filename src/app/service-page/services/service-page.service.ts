@@ -47,16 +47,17 @@ export class ServicePageService {
   public createDeal(offerId: number, dealtype) {
     this.http.post('/makeDeal', { offer_id: offerId, package: dealtype })
       .subscribe((res: any) => {
-        this.routeToWorkChat(res.dealId, offerId);
+        console.log(res);
+        this.routeToWorkChat(res.dealId, offerId, res.roomId);
       });
   }
   // Navigate to work chat vs querry params to open this deal as active
-  private routeToWorkChat(dealRoomId: number, _offerId: number) {
+  private routeToWorkChat(dealRoomId: number, _offerId: number, _roomId: string) {
     const translatedPath: any = this.localize.translateRoute('/dashboard/projects');
     console.log('event')
     this.router.navigate([translatedPath], {
       relativeTo: this.route,
-      queryParams: { id: dealRoomId, offers_id: _offerId, breef: 0 },
+      queryParams: { id: dealRoomId, offers_id: _offerId, breef: 0, roomId: _roomId },
     });
   }
 }

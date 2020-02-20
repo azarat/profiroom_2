@@ -3,6 +3,7 @@ import { FilesInterface } from '../../interfaces/files.interface';
 import { FileLoaderService } from '../../services/file-loader.service';
 import { ChatService } from '../../services/chat.service';
 import { MessageScrollerService } from '../../services/message-scroller/message-scroller.service';
+import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 
 @Component({
   selector: 'app-upload-file',
@@ -16,7 +17,7 @@ export class UploadFileComponent implements OnInit {
   @Input() chatType: string;
   @Input() isFileLoaderVisible: boolean;
   @Output() isFileLoaderVisibleChange = new EventEmitter<boolean>();
-
+  @Output() uploadedBreefFiles = new EventEmitter<any>();
 
   public disabled = false;
   public files: FilesInterface[] = [];
@@ -25,10 +26,12 @@ export class UploadFileComponent implements OnInit {
   constructor(
     private fileLoaderService: FileLoaderService,
     private chatService: ChatService,
-    private messageScrollerService: MessageScrollerService
+    private messageScrollerService: MessageScrollerService,
+    private localStorageService: LocalStorageService
   ) { }
 
   ngOnInit() {
+    console.log(this.collocutorData);
   }
 
   openFileLoader() {
@@ -55,7 +58,6 @@ export class UploadFileComponent implements OnInit {
     });
 
     // // ------- load Files -----
-
     this.fileLoaderService.uploadFiles(formData)
       .subscribe((res: []) => {
         res.forEach(el => {
@@ -63,6 +65,9 @@ export class UploadFileComponent implements OnInit {
         });
         this.disabled = true;
       });
+
+
+
   }
 
   // --------------- delete files -----------------//
@@ -84,9 +89,4 @@ export class UploadFileComponent implements OnInit {
     this.isFileLoaderVisibleChange.emit(false);
     this.messageScrollerService.onMessageScrollBottom();
   }
-
-  public saveBreefFile() {
-
-  }
-
 }

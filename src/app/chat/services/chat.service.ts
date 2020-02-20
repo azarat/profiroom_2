@@ -20,13 +20,13 @@ export class ChatService {
     private localStorageService: LocalStorageService
   ) { }
 
-  sentMessage(msg: any, room: string | number, messageType: string, chatType: string) {
+  sentMessage(msg: any, room: string | number, messageType: string, _chatType: string) {
     const userId = this.localStorageService.getItem('userId').value;
-    return this.http.post('/message', { roomId: room, author: userId, message: msg, type: messageType, chatType });
+    return this.http.post('/message', { roomId: room, author: userId, message: msg, type: messageType, chatType: _chatType });
   }
 
-  getPreviousMessages(roomId: string, messCount: number) {
-    return this.http.get('/getRoomMessages?roomId=' + roomId + '&start=' + messCount);
+  getPreviousMessages(roomId: string, messCount: number, chatType: string) {
+    return this.http.get('/getRoomMessages?roomId=' + roomId + '&start=' + messCount + '&chatType=' + chatType);
   }
   // work_
   public getChatRooms(chatType: string) {
@@ -44,6 +44,12 @@ export class ChatService {
 
   public getBreef(_offerId) {
     return this.http.post('/getOfferBreef', { offer_id: _offerId });
+  }
+
+  // tslint:disable-next-line: variable-name
+  public sendBreef(_deal_id: number, _answer: any) {
+
+    return this.http.post('/setDealBreefAnswers', { deal_id: _deal_id, answers: JSON.stringify(_answer) });
   }
 
 

@@ -3,9 +3,16 @@
   <div class="message-list" id="messages-wrap" #messagesWrap (scroll)="onScroll($event)">
     <!-- <div  #messagesHeight > -->
     <div *ngFor="let message of messagesList, let i = index">
-      <div class="message" [ngClass]="{ 'autor': message.author === userId, 'message-anchor': i === 0 || messagesList[i].author !== messagesList[i-1].author}">
+    <div *ngIf="message.type === 'breef'" class="breef">
+      <span class="time">{{ message.dateTime | dateFormatPipe: 'dd.MM HH:mm' }}</span>
+      <div>asdasd</div>
+      </div>
+      <div class="message"
+      *ngIf="message.type !== 'breef'"
+        [ngClass]="{ 'autor': message.author === userId, 'message-anchor': i === 0 || messagesList[i].author !== messagesList[i-1].author}">
         <div class="photo">
-          <ng-container *ngIf="i === 0 || i== messagesList.length-1 || messagesList[i].author !== messagesList[i+1].author">
+          <ng-container
+            *ngIf="i === 0 || i== messagesList.length-1 || messagesList[i].author !== messagesList[i+1].author">
             <img *ngIf="message.author === userId" [src]="userAvatar" alt="avatar">
             <img *ngIf="message.author !== userId" [src]="message.authorAva" alt="avatar">
           </ng-container>

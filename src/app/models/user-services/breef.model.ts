@@ -9,4 +9,5 @@ export class Breef {
   @Expose() breefAnwerRequired: boolean;
   @Type(() => BreefAnswerVariants) breefAnswerVariants: BreefAnswerVariants[];
   @Expose() breefMultiAnswers: boolean;
+  @Expose() breefAnswer: any;
 }

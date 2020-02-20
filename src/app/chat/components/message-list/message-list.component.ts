@@ -15,6 +15,7 @@ import { SocketService } from '../../services/socket.service';
 })
 export class MessageListComponent implements OnInit, AfterViewChecked, AfterViewInit {
 
+  @Input() chatType: string;
   @Input() chatRoom: string;
   @Input() messagesList: any[];
   @Input() collocutorData: CollocutorListModel;
@@ -79,7 +80,7 @@ export class MessageListComponent implements OnInit, AfterViewChecked, AfterView
   public showMoreMessages() {
     const firstMessage = $('.message:first');
     const cerOffset = firstMessage.offset().top - $('#messages-wrap').scrollTop() - 1;
-    this.chatService.getPreviousMessages(this.collocutorData.roomId, this.messagesList.length)
+    this.chatService.getPreviousMessages(this.collocutorData.roomId, this.messagesList.length, this.chatType)
       .subscribe(res => {
         this.messagesList = this.filterArrayOnMessTypes(res[0]).concat(this.messagesList);
         $('#messages-wrap').scrollTop(firstMessage.offset().top - cerOffset);
