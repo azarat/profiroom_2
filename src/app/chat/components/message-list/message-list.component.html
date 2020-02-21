@@ -4,8 +4,13 @@
     <!-- <div  #messagesHeight > -->
     <div *ngFor="let message of messagesList, let i = index">
     <div *ngIf="message.type === 'breef'" class="breef">
-      <span class="time">{{ message.dateTime | dateFormatPipe: 'dd.MM HH:mm' }}</span>
-      <div>asdasd</div>
+      <div class="deal-start">
+        {{ message.dateTime |  date: 'dd.MM yyyy' }}
+        </div>
+      <span class="time">{{ message.dateTime | dateFormatPipe: 'dd.MMMM HH:mm' }}</span>
+      <div>
+        <app-breef-message-showing [breefMessage]="message.breef" [offerTitle]="collocutorData.offers_title"></app-breef-message-showing>
+        </div>
       </div>
       <div class="message"
       *ngIf="message.type !== 'breef'"

@@ -25,6 +25,8 @@ import { FileTypeModule } from '../shared/pipes/file-type/file-type.module';
 import { ProjectsFilterComponent } from './components/collocutors-list/projects-filter/projects-filter.component';
 import { ProjectBreefFillingComponent } from './components/project-breef-filling/project-breef-filling.component';
 import { ChatErrorsComponent } from './components/chat-errors/chat-errors.component';
+import { BreefMessageShowingComponent } from './components/breef-message-showing/breef-message-showing.component';
+import { ThousandSeparatorModule } from '../shared/pipes/thousand-separator/thousand-separator.module';
 
 
 
@@ -43,6 +45,7 @@ import { ChatErrorsComponent } from './components/chat-errors/chat-errors.compon
     ProjectsFilterComponent,
     ProjectBreefFillingComponent,
     ChatErrorsComponent,
+    BreefMessageShowingComponent,
 
     // Directives
 
@@ -57,7 +60,10 @@ import { ChatErrorsComponent } from './components/chat-errors/chat-errors.compon
 
     DataFormatModule,
     FileSizeModule,
-    FileTypeModule
+    FileTypeModule,
+
+    // pipes
+    ThousandSeparatorModule
 
   ],
   exports: [ChatComponent],

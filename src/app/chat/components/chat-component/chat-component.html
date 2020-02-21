@@ -10,7 +10,7 @@
     </app-project-breef-filling>
   </section>
   <section class="collocutors-tools">
-    <app-messager-tools *ngIf="chatType === 'work'"></app-messager-tools>
+    <app-messager-tools *ngIf="chatType === 'work' && collocutorData" [collocutorData]="collocutorData"></app-messager-tools>
     <app-collocutor-information *ngIf="chatType === 'classic' && collocutorData" [collocutorData]="collocutorData">
     </app-collocutor-information>
   </section>

@@ -233,7 +233,14 @@
 
 .breef {
   display: flex;
+  flex-wrap: wrap;
   box-sizing: border-box;
+  margin-bottom: 23px;
+  .deal-start {
+    width: 100%;
+    overflow: hidden;
+    text-align: center;
+  }
   .time {
     font-family: Source Sans Pro, sans-serif;
     font-style: normal;
@@ -244,12 +251,6 @@
     color: #33596e;
     opacity: 0.5;
     margin-right: 12px;
-  }
-  &>div {
-    box-sizing: border-box;
-    padding: 28px 28px 15px;
-    background: #F4F7FC;
-    border-radius: 20px 0px 20px 20px;
   }
 }
 

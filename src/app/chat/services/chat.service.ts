@@ -52,6 +52,10 @@ export class ChatService {
     return this.http.post('/setDealBreefAnswers', { deal_id: _deal_id, answers: JSON.stringify(_answer) });
   }
 
+  public getDealData(_deal_id) {
+    return this.http.post('/getDeal', {deal_id: _deal_id  });
+  }
+
 
 }
 

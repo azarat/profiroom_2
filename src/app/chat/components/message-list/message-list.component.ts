@@ -24,6 +24,7 @@ export class MessageListComponent implements OnInit, AfterViewChecked, AfterView
   messCheck = null;
   isScrollDownBtn: boolean = null;
   isShowMoreMessagesBtn: boolean = null;
+
   public typing: boolean = null;
   public typingUser: number;
   constructor(
@@ -43,6 +44,7 @@ export class MessageListComponent implements OnInit, AfterViewChecked, AfterView
     this.messageScrollerService.onMessageScrollBottom();
     // this.typingEventListener();
     console.log(this.messagesList);
+    console.log(this.collocutorData);
   }
   ngAfterViewInit(): void {
     // this._checkOnUnreadedMessages();
@@ -55,6 +57,9 @@ export class MessageListComponent implements OnInit, AfterViewChecked, AfterView
 
   public onScroll(event) {
 
+    // if (this.messagesList[1].hasOwnProperty('breef')) {
+    //   return this.isShowMoreMessagesBtn = null;
+    // }
 
     const x = event.target.scrollHeight - event.target.scrollTop;
     this.messageScrollerService.onScroll(this.messagesWrap);
@@ -63,8 +68,9 @@ export class MessageListComponent implements OnInit, AfterViewChecked, AfterView
     } else {
       this.isScrollDownBtn = null;
     }
-
-    if (event.target.scrollTop === 0) {
+    const isbreefVisible = this.messagesList[0].hasOwnProperty('breef');
+    console.log(isbreefVisible)
+    if (event.target.scrollTop === 0 && isbreefVisible !== true ) {
       this.isShowMoreMessagesBtn = true;
     } else {
       this.isShowMoreMessagesBtn = null;

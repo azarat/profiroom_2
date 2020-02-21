@@ -1,17 +1,15 @@
 <div class="inform">
-  <div class="tools">
+  <div class="tools" *ngIf="2===1">
     <h6>Действия</h6>
-    <button>Создать индивидуальное
-      предложение</button>
+
     <button>отменить работу</button>
     <button>обратиться в арбитраж</button>
-    <button>Блокировать</button>
   </div>
-  <div class="package">
+<div class="package {{ collocutorData.package }}" >
     <h6 class="title">Пакет премиум</h6>
-    <p class="price">55 000 UAH</p>
+    <p class="price">{{packagePrice}} UAH</p>
 
-    <p class="subtitle">Дизайн веб-сайтов с мобильным дизайном</p>
+<p class="subtitle">{{  collocutorData.offers_title }}</p>
     <div class="main-info">
       <p><span>Кол-во правок: </span><span>10</span></p>
       <p><span>Срок исполнения: </span><span>45 дней</span></p>
@@ -20,7 +18,7 @@
       <p>Коммерческое использование</p>
     </div>
   </div>
-  <div class="timer">
+  <div class="timer" class="tools" *ngIf="2===1">
     <h6>Кол-во дней до завершения заказа</h6>
     <div class="clock">
       <div> <span>0</span> </div>
