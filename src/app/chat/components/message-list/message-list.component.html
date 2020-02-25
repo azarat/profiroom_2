@@ -3,19 +3,23 @@
   <div class="message-list" id="messages-wrap" #messagesWrap (scroll)="onScroll($event)">
     <!-- <div  #messagesHeight > -->
     <div *ngFor="let message of messagesList, let i = index">
+    <!-- breef -->
     <div *ngIf="message.type === 'breef'" class="breef">
       <div class="deal-start">
         {{ message.dateTime |  date: 'dd.MM yyyy' }}
         </div>
       <span class="time">{{ message.dateTime | dateFormatPipe: 'dd.MMMM HH:mm' }}</span>
       <div>
-        <app-breef-message-showing [breefMessage]="message.breef" [offerTitle]="collocutorData.offers_title"></app-breef-message-showing>
+        <app-breef-message-showing [breefMessage]="message.breef" [collocutorData]="collocutorData"></app-breef-message-showing>
         </div>
       </div>
+
+      <!-- /breef -->
+      <!-- message -->
       <div class="message"
       *ngIf="message.type !== 'breef'"
         [ngClass]="{ 'autor': message.author === userId, 'message-anchor': i === 0 || messagesList[i].author !== messagesList[i-1].author}">
-        <div class="photo">
+        <div class="photo" *ngIf="message.type !== 'systemMessage'">
           <ng-container
             *ngIf="i === 0 || i== messagesList.length-1 || messagesList[i].author !== messagesList[i+1].author">
             <img *ngIf="message.author === userId" [src]="userAvatar" alt="avatar">
@@ -26,8 +30,8 @@
         <div class="text" *ngIf="message.type === 'string'">
           {{message.message}}
         </div>
+        <!-- file in chat -->
         <div class="files" *ngIf="message.type === 'file'">
-
           <div class="file" *ngFor="let file of message.message">
             <img src="/assets/images/icons/files-type/{{file.fileType | fileType}}.png" alt="file">
             <span class="name">{{ file.fileName }}</span>
@@ -35,9 +39,15 @@
             <a href={{file.link}} [download] target="_blank"><span class="download"></span></a>
           </div>
         </div>
-        <div class="message-control" *ngIf="false"></div>
+
+      <!-- system messages in deal -->
+      <app-system-messages-in-deals *ngIf="message.type == 'systemMessage'" [systemMessage]="message" [collocutorData]="collocutorData"></app-system-messages-in-deals>
+      <!-- /system messages in deal -->
+        <!-- <div class="message-control" *ngIf="false"></div> -->
         <span class="time">{{ message.dateTime | dateFormatPipe: 'dd.MM HH:mm' }}</span>
       </div>
+      <!--/ message -->
+
     </div>
     <div class="message typing" *ngIf="typing && typingUser === +userId">
       <div class="photo">

@@ -1,22 +1,33 @@
-<section class="wrapper">
+<section class="wrapper" [ngClass]="{'attention': exitFromBreefPopUpVisible}" *ngIf="isChat">
   <section class="collocutors">
     <app-collocutors-list [chatType]="chatType" (currentRoom)="getCurrentRoom($event)"></app-collocutors-list>
   </section>
   <section class="messager" *ngIf="collocutorData">
-    <app-messager *ngIf="collocutorData && chatType === 'classic'  ||collocutorData && collocutorData.breef == 1" [collocutorData]="collocutorData"
-      [chatType]="chatType" [(isFileLoaderVisible)]="isFileLoaderVisible"></app-messager>
-    <app-project-breef-filling *ngIf="collocutorData && collocutorData.breef == 0 && chatType === 'work'"
-      [collocutorData]="collocutorData" [(isFileLoaderVisible)]="isFileLoaderVisible">
+    <!-- messager -->
+    <app-messager *ngIf="collocutorData && chatType === 'classic'  || collocutorData && collocutorData.breef == 1 && chatType === 'work'" [collocutorData]="collocutorData"
+      [chatType]="chatType" [(isFileLoaderVisible)]="isFileLoaderVisible"    ></app-messager>
+<!-- breef -->
+    <app-project-breef-filling
+    *ngIf="(collocutorData && collocutorData.breef == 0) && chatType === 'work'"
+      [collocutorData]="collocutorData"
+      [(exitFromBreefPopUpVisible)]="exitFromBreefPopUpVisible"
+      (resetChat)="resetChat($event)"
+      >
     </app-project-breef-filling>
   </section>
   <section class="collocutors-tools">
+    <!-- right chat bar -->
     <app-messager-tools *ngIf="chatType === 'work' && collocutorData" [collocutorData]="collocutorData"></app-messager-tools>
     <app-collocutor-information *ngIf="chatType === 'classic' && collocutorData" [collocutorData]="collocutorData">
     </app-collocutor-information>
+
   </section>
+  <!-- file loader -->
   <section class="file-loader" *ngIf="isFileLoaderVisible && collocutorData">
     <app-upload-file [(isFileLoaderVisible)]="isFileLoaderVisible" [collocutorData]="collocutorData"
     (uploadedBreefFiles)="uploadedBreefFiles"
       [chatType]="chatType"></app-upload-file>
   </section>
+
+
 </section>

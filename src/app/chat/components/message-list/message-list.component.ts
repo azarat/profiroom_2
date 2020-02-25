@@ -69,7 +69,7 @@ export class MessageListComponent implements OnInit, AfterViewChecked, AfterView
       this.isScrollDownBtn = null;
     }
     const isbreefVisible = this.messagesList[0].hasOwnProperty('breef');
-    console.log(isbreefVisible)
+
     if (event.target.scrollTop === 0 && isbreefVisible !== true ) {
       this.isShowMoreMessagesBtn = true;
     } else {

@@ -96,6 +96,7 @@ export class SocketService {
     return new Observable(observer => {
       this.socket.on('collocutorsList', (data) => {
         observer.next(data);
+        console.log('CollocutorsListData', data)
       });
     });
   }

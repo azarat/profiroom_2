@@ -17,6 +17,10 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   public collocutorData: CollucutorsListInterface;
   public isFileLoaderVisible: boolean = null;
+  // var if exit from unwritten breef
+  public exitFromBreefPopUpVisible: boolean = null;
+  public isChat: boolean = null;
+
 
   constructor(
     private chatService: ChatService,
@@ -27,6 +31,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscribeColucutors();
     this.openNewDeal();
+    this.isChat = true;
   }
   ngOnDestroy(): void {
     this.socketService.closeCollocutorSocket(this.chatType);
@@ -54,10 +59,19 @@ export class ChatComponent implements OnInit, OnDestroy {
       .subscribe((res) => {
         if (res.hasOwnProperty('offers_id')) {
           this.collocutorData = res;
-          console.log(this.collocutorData);
         }
 
       });
+  }
+
+  public resetChat(event) {
+    this.isChat = null;
+    console.log(event)
+    setTimeout(() => {
+      this.isChat = true;
+      this.collocutorData = null;
+
+    }, 100);
   }
 
 }

@@ -27,6 +27,11 @@ import { ProjectBreefFillingComponent } from './components/project-breef-filling
 import { ChatErrorsComponent } from './components/chat-errors/chat-errors.component';
 import { BreefMessageShowingComponent } from './components/breef-message-showing/breef-message-showing.component';
 import { ThousandSeparatorModule } from '../shared/pipes/thousand-separator/thousand-separator.module';
+import { SystemMessagesInDealsComponent } from './components/system-messages-in-deals/system-messages-in-deals.component';
+import { LocalizeRouterModule } from 'localize-router';
+
+import { RouterModule } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 
@@ -46,6 +51,7 @@ import { ThousandSeparatorModule } from '../shared/pipes/thousand-separator/thou
     ProjectBreefFillingComponent,
     ChatErrorsComponent,
     BreefMessageShowingComponent,
+    SystemMessagesInDealsComponent,
 
     // Directives
 
@@ -63,7 +69,11 @@ import { ThousandSeparatorModule } from '../shared/pipes/thousand-separator/thou
     FileTypeModule,
 
     // pipes
-    ThousandSeparatorModule
+    ThousandSeparatorModule,
+
+    // localize
+    LocalizeRouterModule,
+    TranslateModule
 
   ],
   exports: [ChatComponent],

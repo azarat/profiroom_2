@@ -48,10 +48,11 @@ export class CollocutorsListComponent implements OnInit {
 
   ngOnInit() {
     this.userId = this.localStorageService.getItem('userId').value;
-
+    console.log(this.userId);
     this._subscribeNewMessages();
     this.checkUserState();
     // this.openNewDeal();
+
   }
 
   private checkUserState() {
@@ -67,6 +68,7 @@ export class CollocutorsListComponent implements OnInit {
         this.collocutors = res;
         console.log(res)
         this._sortMessagesByTime(this.collocutors);
+        this.openDealAfterBreefSubmit();
       });
   }
 
@@ -90,8 +92,7 @@ export class CollocutorsListComponent implements OnInit {
   }
 
   public openChat(userinfo) {
-    this.currentRoom.emit(userinfo);
-    this.socketService.openChat(userinfo.roomId);
+    this._openChat(userinfo);
 
     if (this.chatType === 'work') {
        // clear router from params if click on anther deal
@@ -102,7 +103,11 @@ export class CollocutorsListComponent implements OnInit {
       queryParams: {},
     });
     }
-
+  }
+//  separate function to connect chatRoom
+  private _openChat(userinfo) {
+    this.currentRoom.emit(userinfo);
+    this.socketService.openChat(userinfo.roomId);
   }
 
   private _pushNewMessage(arr, obj: any) {
@@ -120,9 +125,32 @@ export class CollocutorsListComponent implements OnInit {
 
   private _sortMessagesByTime(arr) {
     const x = arr.sort((a, b) => {
-      return b.message[0].dateTime.localeCompare(a.message[0].dateTime);
+      if (b.message.length === 0) {
+        b.created_at.localeCompare(a.message[0].dateTime);
+      } else if (a.message.length === 0) {
+        b.message[0].dateTime.localeCompare(a.created_at);
+      } else {
+        return b.message[0].dateTime.localeCompare(a.message[0].dateTime);
+      }
+
     });
     this.collocutors = x;
   }
 
+  //  open deal After breef submitting
+
+  private openDealAfterBreefSubmit() {
+    this.route.queryParams
+      .pipe(
+        filter((res: any) => !!res),
+      )
+      .subscribe((res: any) => {
+        if (res.hasOwnProperty('dealId')) {
+          // let dealId = Number(res.dealId);
+         const activeDeal = this.collocutors.find(collocutor => collocutor.id === +res.dealId);
+         this._openChat(activeDeal);
+        }
+
+      });
+  }
 }

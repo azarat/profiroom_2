@@ -4,7 +4,7 @@
       <div class="breef-icon"></div>
       <div>
         <h4>Бриф</h4>
-        <p>{{ offerTitle }}</p>
+        <p>{{ collocutorData.offers_title }}</p>
       </div>
     </div>
   </div>
@@ -21,8 +21,8 @@
 
     </div>
   </div>
-  <div class="breef-decisions-options" *ngIf="userState === 2">
-    <button class="btn-sec">ОТКЛОНИТЬ</button>
-    <button class="btn">ПРИНЯТЬ ЗАЯВКУ</button>
+  <div class="breef-decisions-options" *ngIf="userState === 1 && collocutorData.status == 'sentBreef'">
+    <button class="btn-sec" (click)="refuseBreef()" >ОТКЛОНИТЬ</button>
+    <button class="btn" (click)="approveBreef()">ПРИНЯТЬ ЗАЯВКУ</button>
     </div>
 </div>

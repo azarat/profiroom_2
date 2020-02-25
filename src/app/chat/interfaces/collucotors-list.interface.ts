@@ -6,10 +6,13 @@ export interface CollucutorsListInterface {
   status?: number | string;
   unread?: number | string;
   collocutorId?: number;
+  freelanser_id?: number;
+  customer_id?: number;
   projectStage: number;
   collocutorAva?: string;
   collocutorName?: string;
   collocutorSurname?: string;
+  created_at?: Date;
   package?: string;
   offers_title?: string;
   breef?: number;

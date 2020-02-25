@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { UserStateService } from 'src/app/dashboard-page/services/user-state.service';
+import { ChatService } from '../../services/chat.service';
+import { CollocutorListModel } from 'src/app/models/chat/collocutors-list.model';
 
 @Component({
   selector: 'app-breef-message-showing',
@@ -9,8 +11,8 @@ import { UserStateService } from 'src/app/dashboard-page/services/user-state.ser
 export class BreefMessageShowingComponent implements OnInit {
 
   @Input() breefMessage: {};
-  @Input() offerTitle: string;
-  public userState
+  @Input() collocutorData: CollocutorListModel;
+  public userState;
 
   BreefItems: {
     title: string;
@@ -19,7 +21,8 @@ export class BreefMessageShowingComponent implements OnInit {
   }[] = null;
 
   constructor(
-    private userStateService: UserStateService
+    private userStateService: UserStateService,
+    private chatService: ChatService
   ) { }
 
   ngOnInit() {
@@ -48,4 +51,17 @@ export class BreefMessageShowingComponent implements OnInit {
     console.log(this.BreefItems)
   }
 
+  public approveBreef() {
+    this.chatService.approveBreef(this.collocutorData.id)
+    .subscribe(res => {
+      console.log(res);
+    })
+  }
+
+  public refuseBreef() {
+    this.chatService.refuseBreef(this.collocutorData.id)
+    .subscribe(res => {
+      console.log('refuse', res);
+    })
+  }
 }

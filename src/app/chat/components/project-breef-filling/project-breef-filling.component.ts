@@ -15,10 +15,13 @@ import { LocalizeRouterService } from 'localize-router';
 export class ProjectBreefFillingComponent implements OnInit {
 
   @Input() collocutorData: CollucutorsListInterface;
-  @Input() isFileLoaderVisible: boolean;
-  @Output() isFileLoaderVisibleChange = new EventEmitter<boolean>();
+  @Input() exitFromBreefPopUpVisible: boolean;
+
+  @Output() exitFromBreefPopUpVisibleChange = new EventEmitter<boolean>();
+  @Output() resetChat = new EventEmitter<boolean>();
   public brefForm: FormGroup;
   config: any[] = [];
+
 
 
   offerBreef: any;
@@ -55,7 +58,7 @@ export class ProjectBreefFillingComponent implements OnInit {
       }
 
     });
-    console.log(this.brefForm);
+    console.log(this.collocutorData);
   }
 
   sendBreef() {
@@ -63,12 +66,10 @@ export class ProjectBreefFillingComponent implements OnInit {
 
     this.chatSerrvice.sendBreef(this.collocutorData.id, this.brefForm.value)
     .subscribe(res => {
-      console.log(res);
 
-      console.log('event')
       this.router.navigate([translatedPath], {
         relativeTo: this.route,
-        queryParams: {},
+        queryParams: {dealId: this.collocutorData.id},
       });
     })
   }
@@ -92,5 +93,32 @@ export class ProjectBreefFillingComponent implements OnInit {
         i++;
       });
     }
+  }
+
+  // open Attention Breef PopUp
+  public deleteBreef() {
+    this.exitFromBreefPopUpVisible = true;
+    this.exitFromBreefPopUpVisibleChange.emit(this.exitFromBreefPopUpVisible);
+  }
+
+  public returnToBreef() {
+    this.exitFromBreefPopUpVisible = null;
+    this.exitFromBreefPopUpVisibleChange.emit(this.exitFromBreefPopUpVisible);
+  }
+
+  public confirmDeleteBreef() {
+  this.chatSerrvice.deleteDeal(this.collocutorData.id)
+  .subscribe(res => {
+    console.log(res);
+    if (res === 'ok') {
+      this.returnToBreef();
+      const translatedPath: any = this.localize.translateRoute('/dashboard/projects');
+      this.router.navigate([translatedPath], {
+        relativeTo: this.route,
+        queryParams: {},
+      });
+      this.resetChat.emit(true);
+    }
+  });
   }
 }

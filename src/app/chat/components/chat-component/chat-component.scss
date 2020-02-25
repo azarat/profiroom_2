@@ -93,8 +93,23 @@
     width: 19%;
     background: #ffffff;
   }
+
+
 }
 
+.attention {
+  &:before {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    background: rgba(224, 225, 249, 0.4);
+    backdrop-filter: blur(8px);
+    z-index: 1;
+    top: 0;
+    left: 0;
+  }
+}
 // File Loader
 
 .file-loader {

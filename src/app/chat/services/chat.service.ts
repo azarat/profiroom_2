@@ -48,12 +48,30 @@ export class ChatService {
 
   // tslint:disable-next-line: variable-name
   public sendBreef(_deal_id: number, _answer: any) {
-
     return this.http.post('/setDealBreefAnswers', { deal_id: _deal_id, answers: JSON.stringify(_answer) });
   }
 
-  public getDealData(_deal_id) {
-    return this.http.post('/getDeal', {deal_id: _deal_id  });
+  public deleteDeal(_deal_id: number, ) {
+    return this.http.post('/deleteDeal', { deal_id: _deal_id });
+  }
+
+
+  public getDealData(dealId: number) {
+    return this.http.post('/getDeal', {deal_id: dealId  });
+  }
+
+  public approveBreef(dealId: number) {
+    return this.http.post('/approveBreef', {deal_id: dealId });
+  }
+
+  public refuseBreef(dealId: number) {
+    return this.http.post('/refuseBreef', {deal_id: dealId });
+  }
+
+  // hold money on deal
+
+  public holdMoney(dealId: number) {
+    return this.http.post('/holdmoney', {deal_id: dealId });
   }
 
 

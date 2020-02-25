@@ -191,3 +191,103 @@
     }
   }
 }
+
+.error-popup {
+  width: 440px;
+  height: 316px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #ffffff;
+  box-shadow: 0px 15px 30px rgba(16, 27, 79, 0.15);
+  border-radius: 10px;
+  z-index: 5;
+
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 26px 34px;
+  .hide {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    right: 18px;
+    top: 18px;
+    cursor: pointer;
+    &:before {
+      content: "\e900";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      font-family: icomoon;
+      font-size: 18px;
+      color: #bfc5d1;
+    }
+  }
+
+  .icon {
+    width: 50px;
+    height: 38px;
+    margin-bottom: 11px;
+    background-image: url(/assets/images/icons/attention.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin: 0 auto;
+  }
+  .title {
+    font-family: Source Sans Pro, sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 31px;
+    text-align: center;
+    color: #f1a153;
+    margin: 8px 0 11px;
+  }
+  p.description {
+    font-family: Source Sans Pro, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 25px;
+    text-align: center;
+    color: #707683;
+    margin: 0 0 35px;
+  }
+  button {
+    cursor: pointer;
+    height: 42px;
+    width: 160px;
+    span {
+      font-family: Source Sans Pro, sans-serif;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 16px;
+      letter-spacing: 1px;
+      font-variant: small-caps;
+      margin: auto;
+    }
+  }
+  .exit-brteef {
+    color: #f1a153;
+    margin-right: 50px;
+    background: #fff;
+    border-radius: 4px;
+    border: 1px solid #f1a153;
+
+  }
+  .return-to-breef {
+    color: #ffffff;
+    background: #f1a153;
+    box-shadow: 0px 5px 8px rgba(241, 161, 83, 0.35);
+    border-radius: 4px;
+    box-shadow: none;
+    border: none;
+  }
+  .controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+}
