@@ -23,11 +23,11 @@ export class ServicePageComponent implements OnInit {
   public convertedNumberOfComments;
   // viewedOffers: any = null;
   public similarOffers: SimilarOffersInterface = null;
-
+  public offerId;
   sticky = false;
   elementPosition: any;
 
-  @ViewChild('stickyMenu', {static: false}) menuElement: ElementRef;
+  @ViewChild('stickyMenu', { static: false }) menuElement: ElementRef;
 
   constructor(
     // tslint:disable-next-line: variable-name
@@ -37,30 +37,31 @@ export class ServicePageComponent implements OnInit {
     private offerDataService: ServicePageService,
     // tslint:disable-next-line: variable-name
     private _scrollToService: ScrollToService,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+
   ) {
     this._route.queryParams
-    .pipe(
-      filter((res: any) => !! res),
-    )
-    .subscribe(offerId => {
-      this.getOfferData(offerId);
-      this.getSimilarOffers(offerId);
-      window.scrollTo(0, 0);
-    });
+      .pipe(
+        filter((res: any) => !!res),
+      )
+      .subscribe(_offerId => {
+        this.getOfferData(_offerId);
+        this.getSimilarOffers(_offerId);
+        window.scrollTo(0, 0);
+        this.offerId = +_offerId.offerId;
+      });
   }
 
 
   ngOnInit() { }
 
-  getOfferData(offerId: {offerId: string}) {
+  getOfferData(offerId: { offerId: string }) {
     this.offerDataService.loadOfferDate(offerId)
-    .pipe(filter((res: any) => !! res))
-    .subscribe(offerData => {
-      this.offerData = offerData.userOffer;
-      console.log(this.offerData);
-      this.formateCommentCount();
-    });
+      .pipe(filter((res: any) => !!res))
+      .subscribe(offerData => {
+        this.offerData = offerData.userOffer;
+        this.formateCommentCount();
+      });
   }
 
   formateCommentCount() {
@@ -71,13 +72,13 @@ export class ServicePageComponent implements OnInit {
     }
   }
 
-  getSimilarOffers(offerId: {offerId: string}) {
+  getSimilarOffers(offerId: { offerId: string }) {
     this.offerDataService.similarOffers(offerId)
-    .subscribe((res: any) => {
+      .subscribe((res: any) => {
 
-      this.similarOffers = res;
-      console.log(this.similarOffers);
-    });
+        this.similarOffers = res;
+        console.log(this.similarOffers);
+      });
   }
 
   // tslint:disable-next-line: use-lifecycle-interface
@@ -103,12 +104,12 @@ export class ServicePageComponent implements OnInit {
       duration: 1000
     };
 
-    if (target === 'about-offer' ) {
+    if (target === 'about-offer') {
       config.offset = -90;
     } else if (target === 'rating' || target === 'compare-table' ||
-     target === 'description' || target === 'comments' || target === 'questions' ) {
+      target === 'description' || target === 'comments' || target === 'questions') {
       config.offset = -80;
-    } else if (target === 'portfolio'  ) {
+    } else if (target === 'portfolio') {
       config.offset = -105;
     }
     this._scrollToService.scrollTo(config);

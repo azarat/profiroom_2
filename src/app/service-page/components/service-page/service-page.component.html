@@ -1,20 +1,20 @@
 <app-main-header></app-main-header>
 <app-categories-header></app-categories-header>
 
-  <nav class="navigation_page" #stickyMenu [class.sticky] = "sticky">
+<nav class="navigation_page" #stickyMenu [class.sticky]="sticky">
   <!-- <nav class="navigation_page" #stickyMenu [ngClass] = "{'sticky': sticky}"> -->
-    <div class="wrapper">
-      <ul>
-        <li (click)="scrollTo('portfolio')">Портфолио</li>
-        <li (click)="scrollTo('compare-table')">пакеты и услуги</li>
-        <li (click)="scrollTo('description')">описание</li>
-        <li (click)="scrollTo('rating')">рейтинг</li>
-        <li (click)="scrollTo('comments')">отзывы</li>
-        <li (click)="scrollTo('questions')">Вопросы и ответы</li>
-        <li (click)="scrollTo('about-offer')">О фрилансере</li>
-      </ul>
-    </div>
-  </nav>
+  <div class="wrapper">
+    <ul>
+      <li (click)="scrollTo('portfolio')">Портфолио</li>
+      <li (click)="scrollTo('compare-table')">пакеты и услуги</li>
+      <li (click)="scrollTo('description')">описание</li>
+      <li (click)="scrollTo('rating')">рейтинг</li>
+      <li (click)="scrollTo('comments')">отзывы</li>
+      <li (click)="scrollTo('questions')">Вопросы и ответы</li>
+      <li (click)="scrollTo('about-offer')">О фрилансере</li>
+    </ul>
+  </div>
+</nav>
 
 <div class="wrapper">
 
@@ -36,7 +36,8 @@
             <img [src]="offerData.user.avatar" alt="user avatar">
           </a>
           <div class="user-text">
-            <a [routerLink]="['/user', offerData.user_id] | localize" class="user-name">{{ offerData.user.name }} {{ offerData.user.surname }}</a>
+            <a [routerLink]="['/user', offerData.user_id] | localize" class="user-name">{{ offerData.user.name }}
+              {{ offerData.user.surname }}</a>
             <div class="user-raiting-wrapp">
               <span class="star-raiting">{{ offerData.raiting }}</span>
             </div>
@@ -80,7 +81,8 @@
         <p>{{ offerData.description }}</p>
       </div>
 
-      <app-service-page-compare-table [offerData]="offerData" *ngIf="offerData" id="compare-table"></app-service-page-compare-table>
+      <app-service-page-compare-table [offerData]="offerData" *ngIf="offerData" id="compare-table">
+      </app-service-page-compare-table>
 
       <section class="offer-raiting" id="rating">
         <h4 class="section-title">
@@ -108,14 +110,17 @@
 
       <app-service-page-comments [offerData]="offerData" *ngIf="offerData" id="comments"></app-service-page-comments>
       <app-service-page-questions [offerData]="offerData" *ngIf="offerData" id="questions"></app-service-page-questions>
-      <app-service-page-about-offer [offerData]="offerData" *ngIf="offerData" id="about-offer"></app-service-page-about-offer>
+      <app-service-page-about-offer [offerData]="offerData" *ngIf="offerData" id="about-offer">
+      </app-service-page-about-offer>
     </div>
     <div class="choose-packet">
       <div class="runing-block">
-        <app-service-page-packages [offerData]="offerData" *ngIf="offerData"></app-service-page-packages>
+        <app-service-page-packages [offerData]="offerData" *ngIf="offerData" [offerId]="offerId">
+        </app-service-page-packages>
       </div>
     </div>
     <app-service-page-another-services [offerData]="offerData" *ngIf="offerData"></app-service-page-another-services>
-    <app-service-page-earlier-viewed [similarOffers]="similarOffers" *ngIf="similarOffers"></app-service-page-earlier-viewed>
+    <app-service-page-earlier-viewed [similarOffers]="similarOffers" *ngIf="similarOffers">
+    </app-service-page-earlier-viewed>
   </div>
 </div>

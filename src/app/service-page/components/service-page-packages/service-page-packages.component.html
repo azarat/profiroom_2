@@ -28,7 +28,7 @@
             </ng-container>
           </ul>
         </div>
-        <div class="btn-order-service">
+        <div class="btn-order-service" (click)="orderService(package)">
           Заказать услугу <span>(за {{ offerData[package].price }} ₴)</span>
         </div>
       </div>

@@ -65,6 +65,7 @@ export class MyServicesHomeComponent implements OnInit {
   }
 
   deleteService(id: string) {
+    this.menuOpen = null;
     this.serviceToDeleteId = id;
   }
   cencel() {
@@ -76,6 +77,7 @@ export class MyServicesHomeComponent implements OnInit {
       .subscribe((res: any) => {
         if (res.status === 'ok') {
           this.userServices = this.userServices.filter(el => el.id !== this.serviceToDeleteId);
+          this.serviceToDeleteId = null;
         }
       });
   }
@@ -125,7 +127,7 @@ export class MyServicesHomeComponent implements OnInit {
         this.userOfferService.deleteService(el.id)
           .subscribe(res => {
             return;
-          })
+          });
       }
     });
     return arr.filter(el => el.title !== null);

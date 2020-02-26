@@ -1,0 +1,113 @@
+.wrapper {
+  box-sizing: border-box;
+  padding: 28px 28px 15px;
+  background: #f4f7fc;
+  border-radius: 20px 0px 20px 20px;
+  width: 620px;
+}
+.title {
+  padding-right: 20px;
+  & > div {
+    display: flex;
+    box-sizing: border-box;
+  }
+  .breef-icon {
+    width: 56px;
+    min-width: 56px;
+    height: 56px;
+    background: rgba(108, 171, 172, 0.2);
+    border-radius: 10px;
+    margin-right: 20px;
+    position: relative;
+    &:after {
+      position: absolute;
+      content: "";
+      width: 26px;
+      height: 26px;
+      background-image: url(/assets/images/icons/deals-icons/breef.png);
+      background-size: contain;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    & + div {
+      width: 100%;
+    }
+  }
+  h4 {
+    padding: 0 0 8px;
+    margin: 0;
+    font-family: Source Sans Pro, sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 23px;
+    color: #6cabac;
+    border-bottom: 1px solid #d9e8ec;
+  }
+  p {
+    font-family: Source Sans Pro, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 23px;
+    color: #323c47;
+    margin: 8px 0 20px;
+  }
+}
+.breef {
+  background: #ffffff;
+  border: 1px solid #dce0e6;
+  box-sizing: border-box;
+  border-radius: 2px;
+  padding: 20px 26px 30px;
+
+  h5 {
+    font-family: Source Sans Pro, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 20px;
+    color: #252c35;
+    padding: 0;
+    margin: 0 0 8px;
+  }
+  .item {
+    p {
+      font-family: Source Sans Pro, sans-serif;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 20px;
+      color: #707683;
+      margin: 0 0 8px;
+      padding: 0;
+      &:last-of-type {
+
+        margin-bottom: 18px;
+      }
+    }
+  }
+
+}
+.breef-wrap-btn {
+  margin-left: auto;
+  padding-left: 20px;
+  max-width: 105px;
+  margin-bottom: 10px;
+}
+
+.breef-decisions-options {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 36px 0;
+  button {
+    padding: 10px 20px;
+    &:first-of-type {
+      margin-right: 50px;
+      padding: 10px 40px;
+    }
+  }
+}

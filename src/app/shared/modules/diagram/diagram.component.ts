@@ -1,11 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { monthConst } from './consts/month.const';
-import * as moment from 'moment';
+import { DiagramService } from './services/diagram.service';
+import { chartGrowAnimation } from './animations/chart-grow.animation';
+
 
 @Component({
   selector: 'app-diagram',
   templateUrl: './diagram.component.html',
-  styleUrls: ['./diagram.component.scss']
+  styleUrls: ['./diagram.component.scss'],
+  animations: [
+    chartGrowAnimation
+  ]
+
+
 })
 export class DiagramComponent implements OnInit {
 
@@ -15,46 +21,62 @@ export class DiagramComponent implements OnInit {
   public stepsCount: number[] = [0, 1, 2, 3, 4, 5];
   public maxStepCount = 6;
   public allMonths: string[] = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
+  public heightValue;
+  public yearsCash: { up: number, down: number }[];
 
-  yearsCash = [{ value: 2500 }, { value: 5600 }, { value: 2500 }, { value: 350 },
-  { value: 2500 }, { value: 11200 }, { value: 7500 }, { value: 2500 }, { value: 2500 }, { value: 4850 }, { value: 4850 }, { value: 4850 }];
-  constructor() { }
+  constructor(
+    private diagramService: DiagramService
+  ) { }
 
   ngOnInit() {
-    this.getMaxInput(this.yearsCash);
     this.showedYear = this.currentYear;
+    this.getStatistic(this.showedYear);
   }
 
   getMaxInput(arr: any[]) {
     arr.forEach(element => {
-      if (element.value > this.maxInput) {
-        this.maxInput = element.value + 5000;
-      }
-      // console.log(this.maxInput);
-      return this.maxInput;
+      return this.maxInput = Math.max(element.up, element.down, this.maxInput);
     });
 
-    if (this.maxInput < 10000) {
-      return this.maxInput + 5000;
-    } else if (this.maxInput < 20000) {
-      return this.maxInput + 10000;
-    } else if (this.maxInput < 50000) {
-      return this.maxInput + 20000;
-    } else if (this.maxInput < 75000) {
-      return this.maxInput + 25000;
-    } else if (this.maxInput < 100000) {
-      return this.maxInput + 50000;
+    if (this.maxInput >= 100000) {
+      return this.maxInput = this.maxInput + 50000;
+    } else if (this.maxInput >= 75000) {
+      return this.maxInput = this.maxInput + 25000;
+    } else if (this.maxInput >= 50000) {
+      return this.maxInput = this.maxInput + 20000;
+    } else if (this.maxInput >= 20000) {
+      return this.maxInput = this.maxInput + 10000;
+    } else {
+      return this.maxInput = this.maxInput + 5000;
     }
+
   }
 
   nextYear() {
-    if (this.showedYear !== this.currentYear){
+    this.maxInput = 0;
+    if (this.showedYear !== this.currentYear) {
       this.showedYear = this.showedYear + 1;
     }
+    this.getStatistic(this.showedYear);
   }
   prevYear() {
-    if (this.showedYear !== 2020) {
-        this.showedYear = this.showedYear - 1;
+    this.maxInput = 0;
+    if (this.showedYear !== 2018) {
+      this.showedYear = this.showedYear - 1;
     }
+    this.getStatistic(this.showedYear);
+  }
+
+  private getStatistic(year: number) {
+    this.yearsCash = null;
+    this.heightValue = 'in';
+    this.diagramService.getYearStatistic(year)
+      .subscribe((res: any) => {
+        console.log(res);
+        this.yearsCash = res[0].graph;
+        this.getMaxInput(this.yearsCash);
+        this.heightValue = 'out';
+        console.log(this.maxInput);
+      });
   }
 }

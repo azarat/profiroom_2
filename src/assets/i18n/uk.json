@@ -1,4 +1,8 @@
 {
+	"chat.work_chat.system_messages.approveBreefDescriptionDealer": "Для того, чтобы фрилансер начал работу Вам необходимо зарезирвировать оплату. ",
+	"chat.work_chat.system_messages.approveBreefDescriptionFreelancer": "Пожалуйста, не начинайте работу пока оплата не будет зарезеривирована на сервисе. Дожидайтесь уведомления об оплате. ",
+	"chat.work_chat.system_messages.approveBreefTitleDealer": "Ваша заявка принята! Теперь Ваши условия на сотрудничество взаимны.",
+	"chat.work_chat.system_messages.approveBreefTitleFreelancer": "Вы приняли заявку! Теперь Ваши условия на сотрудничество взаимны! ",
 	"header.catalog": "Каталог",
 	"header.how_it_works": "Як це працює"
 }

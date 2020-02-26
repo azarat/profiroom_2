@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProjectsPageComponent implements OnInit {
 
-  public chatType = 'projects';
+  public chatType = 'work';
   constructor() { }
 
   ngOnInit() {

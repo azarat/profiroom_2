@@ -16,6 +16,7 @@ form ::ng-deep {
 
   form {
     width: 100%;
+
     .el {
       background: #f4f7fc;
       border-radius: 3px 3px 0px 0px;
@@ -23,6 +24,7 @@ form ::ng-deep {
     }
 
   }
+
   h3 {
     font-family: Source Sans Pro, sans-serif;
     font-style: normal;
@@ -58,8 +60,10 @@ form ::ng-deep {
 
   &.hiddenItem {
     margin-bottom: 30px;
+
     .item-options {
       display: block;
+
       button {
         border: none;
         background: none;
@@ -67,22 +71,27 @@ form ::ng-deep {
         color: #c2cfe0;
         padding: 0;
         cursor: pointer;
-        & > i {
+
+        &>i {
           font-size: 17px;
         }
+
         &.change:hover {
           color: #3c7eea;
         }
+
         &.delete:hover {
           color: #ff647c;
         }
       }
     }
+
     .question-title {
       height: 0;
       padding: 0;
       margin: 0;
     }
+
     .fields {
       height: 0;
       overflow: hidden;
@@ -105,6 +114,7 @@ form ::ng-deep {
     // padding: 0 11px 0 11px;
     margin-bottom: 25px;
     position: relative;
+
     .item-count {
       font-family: Source Sans Pro, sans-serif;
       font-size: 14px;
@@ -113,6 +123,7 @@ form ::ng-deep {
       padding: 0;
       margin: 0 0 12px;
     }
+
     .title {
       border-radius: 4px;
       height: 100px;
@@ -121,6 +132,7 @@ form ::ng-deep {
       background-color: #ffffff;
       margin-bottom: 25px;
       position: relative;
+
       textarea {
         width: 100%;
         height: 100%;
@@ -131,13 +143,16 @@ form ::ng-deep {
         line-height: 20px;
         color: #33596e;
         border: none;
+
         &::placeholder {
           opacity: 0.5;
         }
+
         &::-ms-input-placeholder {
           opacity: 0.5;
         }
       }
+
       span {
         position: absolute;
         right: 0;
@@ -150,11 +165,13 @@ form ::ng-deep {
         opacity: 0.5;
       }
     }
+
     .options {
       display: flex;
       flex-direction: row;
       align-items: center;
       margin-bottom: 14px;
+
       span {
         font-family: Source Sans Pro, sans-serif;
         font-size: 16px;
@@ -162,6 +179,7 @@ form ::ng-deep {
         color: #707683;
       }
     }
+
     label {
       font-family: Source Sans Pro, sans-serif;
       font-style: normal;
@@ -169,23 +187,28 @@ form ::ng-deep {
       font-size: 16px;
       line-height: 17px;
       color: #707683;
+      padding: 0;
+      background: transparent;
       // &:first-of-type {
       //   margin-right: 14px;
       // }
     }
+
     .options {
       label {
         margin-right: 14px;
       }
     }
+
     mat-form-field {
-      & > div {
+      &>div {
         border: none;
         padding: 0;
       }
-      .mat-form-field-infix {
-      }
+
+      .mat-form-field-infix {}
     }
+
     mat-form-field {
       &:not(.example-chip-list) {
         .mat-form-field-infix {
@@ -193,13 +216,16 @@ form ::ng-deep {
           padding: 0;
         }
       }
+
       .mat-form-field-infix {
         border: none;
       }
     }
+
     .mat-form-field-infix {
       border-top: none;
     }
+
     //   ------------- selects ----------------//
 
     .service-selects {
@@ -216,6 +242,7 @@ form ::ng-deep {
       .mat-form-field {
         width: 170px;
         margin-right: 23px;
+
         &.mat-form-field-appearance-outline .mat-select-arrow-wrapper {
           transform: none;
         }
@@ -237,15 +264,19 @@ form ::ng-deep {
             transform: rotate(-45deg) translateY(50%);
           }
         }
+
         .mat-form-field-outline:first-of-type {
           box-shadow: 0px 10px 16px rgba(128, 152, 213, 0.1);
           background-color: #fff;
+
           div {
             border-color: rgba(220, 224, 230, 0.1);
           }
         }
+
         .mat-form-field-outline-thick {
           background-color: #fff;
+
           div {
             border-width: 1px;
             color: rgba(255, 255, 255);
@@ -276,14 +307,16 @@ form ::ng-deep {
           line-height: 21px;
           color: #323c47;
         }
-        &.mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid
-          .mat-form-field-outline-thick {
+
+        &.mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-outline-thick {
           color: #f44336 !important;
+
           div {
             color: #f44336 !important;
           }
         }
       }
+
       //     mat-form-field .mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid::ng-deep .mat-form-field-outline-thick {
       //       div {
       //  color: #f44336 !important;
@@ -300,13 +333,16 @@ form ::ng-deep {
           padding: 0;
         }
       }
+
       .mat-form-field-infix {
         border: none;
       }
+
       &.mat-form-field-invalid {
         .mat-input-element {
           // caret-color: #323c47;
         }
+
         // .mat-form-field-outline-thick {
         //   border-color: #f44336 !important;
         // }
@@ -317,11 +353,12 @@ form ::ng-deep {
       color: #dce0e6;
       background-color: #fff;
 
-      & + div div {
+      &+div div {
         color: #dce0e6;
         border-width: 1px;
       }
     }
+
     .breef-question-item {
       height: 43px;
       margin-bottom: 15px;
@@ -331,6 +368,7 @@ form ::ng-deep {
       border-radius: 4px;
       background: #fff;
       position: relative;
+
       input {
         width: 100%;
         height: 100%;
@@ -345,19 +383,23 @@ form ::ng-deep {
           /* Chrome/Opera/Safari */
           opacity: 0.5;
         }
+
         &::-moz-placeholder {
           /* Firefox 19+ */
           opacity: 0.5;
         }
+
         &:-ms-input-placeholder {
           /* IE 10+ */
           opacity: 0.5;
         }
+
         &:-moz-placeholder {
           /* Firefox 18- */
           opacity: 0.5;
         }
       }
+
       .clear {
         right: -40px;
         position: absolute;
@@ -370,9 +412,11 @@ form ::ng-deep {
         cursor: pointer;
       }
     }
+
     .multi {
       padding-right: 40px;
     }
+
     .add-question {
       button {
         padding: 0;
@@ -381,18 +425,23 @@ form ::ng-deep {
         text-transform: none;
         font-size: 16px;
         line-height: 20px;
+
         i {
           font-size: 16px;
           margin-right: 16px;
         }
+
         margin-bottom: 18px;
       }
+
       label {
         margin: 0 0;
         padding: 0;
       }
+
       .comment {
         display: flex;
+
         p {
           margin: 0 0 0 15px;
           padding: 0;
@@ -402,6 +451,7 @@ form ::ng-deep {
           font-size: 16px;
           line-height: 21px;
           color: #707683;
+
           span {
             display: block;
             font-size: 13px;
@@ -410,11 +460,13 @@ form ::ng-deep {
         }
       }
     }
+
     .item-controls {
       display: flex;
       justify-content: flex-end;
       margin-top: 14px;
       margin-bottom: 25px;
+
       button {
         font-weight: 600;
         font-size: 14px;
@@ -434,11 +486,13 @@ form ::ng-deep {
       // border-radius: 3px 3px 0px 0px;
       border: none;
     }
+
     .ql-container {
       border: none;
       padding: 20px 24px;
+
       // border-radius: 0px 0px 3px 3px;
-      & > * {
+      &>* {
         font-family: Source Sans Pro, sans-serif;
         font-style: normal;
         font-weight: normal;
@@ -448,6 +502,7 @@ form ::ng-deep {
         padding: 0;
       }
     }
+
     .ql-editor.ql-blank::before {
       font-family: Source Sans Pro, sans-serif;
       font-style: normal;
@@ -464,6 +519,7 @@ form ::ng-deep {
 
   .add-breef {
     margin-top: 25px;
+
     button {
       padding: 0;
       display: flex;
@@ -471,18 +527,23 @@ form ::ng-deep {
       text-transform: none;
       font-size: 16px;
       line-height: 20px;
+
       i {
         font-size: 16px;
         margin-right: 16px;
       }
+
       margin-bottom: 18px;
     }
+
     label {
       margin: 0 0;
       padding: 0;
     }
+
     .comment {
       display: flex;
+
       p {
         margin: 0 0 0 15px;
         padding: 0;
@@ -492,6 +553,7 @@ form ::ng-deep {
         font-size: 16px;
         line-height: 21px;
         color: #707683;
+
         span {
           display: block;
           font-size: 13px;
@@ -505,6 +567,7 @@ form ::ng-deep {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+
     button {
       font-family: Source Sans Pro, sans-serif;
       border: none;
@@ -516,12 +579,14 @@ form ::ng-deep {
       padding: 15px 24px;
       cursor: pointer;
       text-transform: uppercase;
+
       &:first-of-type {
         border: 1px solid #4285f4;
         background: #fff;
         color: #4285f4;
         box-shadow: none;
         padding: 15px 72px;
+
         &:hover {
           color: #fff;
           background: #3c7eea;
@@ -532,6 +597,7 @@ form ::ng-deep {
       color: #fff;
       background: #3c7eea;
       box-shadow: 0px 2px 4px rgba(60, 9, 179, 0.3);
+
       &:hover {
         border: 1px solid #4285f4;
         background: #fff;

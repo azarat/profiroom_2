@@ -1,5 +1,6 @@
 export interface UserDataInterface {
-  id: number|string;
+  id: number | string;
+  role_id?: number | string;
   load?: number;
   online?: number;
   avatar?: string;
@@ -83,12 +84,9 @@ export interface UserDataInterface {
     qualityMark?: number;
     termMark?: number;
     politenessMark?: number;
-
     offers_id?: number;
     commentator_id?: number;
-
     commentText?: string;
-
     author?: [{
       id: number;
       name?: string;

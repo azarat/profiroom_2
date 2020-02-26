@@ -1,0 +1,29 @@
+<div class="tools-bar">
+  <div class="items">
+    <div>
+      <h5>финансовая статистика</h5>
+      <div class="chart-type">
+        <div class="cerrent" (click)="openTypesList()">год</div>
+        <ul class="list" [ngClass]="{ show: listOpen && listOpen === true, hide: !listOpen && listOpen === false }">
+          <li>год</li>
+          <li>месяц</li>
+          <li>день</li>
+        </ul>
+      </div>
+    </div>
+    <div>декабрь декабрь декабрь</div>
+  </div>
+</div>
+<div class="wrapper">
+  <div class="chart">
+    <h6>2019 год</h6>
+    <div class="canvas" style="display: block;">
+      <canvas baseChart [datasets]="lineChartData" width='1045px' height='245px' [labels]="lineChartLabels"
+        [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType"
+        [plugins]="lineChartPlugins"></canvas>
+    </div>
+  </div>
+  <div class="curent-statistic">
+    s
+  </div>
+</div>

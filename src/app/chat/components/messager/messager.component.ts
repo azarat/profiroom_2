@@ -22,7 +22,7 @@ import { Subject } from 'rxjs';
 export class MessagerComponent implements OnInit, OnDestroy {
 
   public messageText;
-  public messagesList = [];
+  public messagesList = null;
   private userId;
   private typing = false;
   private time: any;
@@ -31,6 +31,7 @@ export class MessagerComponent implements OnInit, OnDestroy {
   // tslint:disable-next-line: variable-name
   protected _destroy$ = new Subject();
 
+  @Input() chatType: string;
   @Input() collocutorData: CollocutorListModel;
   @Input() isFileLoaderVisible: boolean;
   @Output() isFileLoaderVisibleChange = new EventEmitter<boolean>();
@@ -51,7 +52,7 @@ export class MessagerComponent implements OnInit, OnDestroy {
 
 
   ngOnInit() {
-    this.chatService.getPreviousMessages(this.collocutorData.roomId, 0)
+    this.chatService.getPreviousMessages(this.collocutorData.roomId, 0, this.chatType)
       .subscribe((res: any) => {
         this.messagesList = this.filterArrayOnMessTypes(res[0]);
       });
@@ -64,6 +65,7 @@ export class MessagerComponent implements OnInit, OnDestroy {
         }
 
         this.messagesList.push(newMessage);
+        console.log(this.messagesList)
       });
 
     this.keyword$
@@ -88,7 +90,7 @@ export class MessagerComponent implements OnInit, OnDestroy {
 
   public sendMessage(form: NgForm) {
 
-    this.chatService.sentMessage(this.textInput.value, this.collocutorData.roomId, 'string').subscribe(res => {
+    this.chatService.sentMessage(this.textInput.value, this.collocutorData.roomId, 'string', this.chatType).subscribe(res => {
     });
     form.reset();
 

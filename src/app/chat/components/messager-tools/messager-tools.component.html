@@ -1,22 +1,33 @@
 <div class="inform">
-    <div class="tools">
-      <h6>Действия</h6>
-      <button>Создать индивидуальное
-        предложение</button>
-      <button>отменить работу</button>
-      <button>обратиться в арбитраж</button>
-      <button>Блокировать</button>
+  <div class="tools" >
+    <h6>Действия</h6>
+
+    <button>отменить работу</button>
+    <button>обратиться в арбитраж</button>
+  </div>
+<div class="package {{ collocutorData.package }}" >
+    <h6 class="title">Пакет премиум</h6>
+    <p class="price">{{packagePrice}} UAH</p>
+
+<p class="subtitle">{{  collocutorData.offers_title }}</p>
+    <div class="main-info">
+      <p><span>Кол-во правок: </span><span>10</span></p>
+      <p><span>Срок исполнения: </span><span>45 дней</span></p>
     </div>
-    <div class="timer">
-      <h6>Кол-во дней до завершения заказа</h6>
-      <div class="clock">
-        <div> <span>0</span> </div>
-        <div> <span>0</span> </div>
-        <div> <span>0</span> </div>
-        <div> <span>3</span> </div>
-      </div>
-    </div>
-    <div class="history">
-      <h6>История</h6>
+    <div class="extra-features">
+      <p>Коммерческое использование</p>
     </div>
   </div>
+  <div class="timer" class="tools" >
+    <h6>Кол-во дней до завершения заказа</h6>
+    <div class="clock">
+      <div> <span>0</span> </div>
+      <div> <span>0</span> </div>
+      <div> <span>0</span> </div>
+      <div> <span>3</span> </div>
+    </div>
+  </div>
+  <div class="history">
+    <h6>История</h6>
+  </div>
+</div>

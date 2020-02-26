@@ -2,16 +2,21 @@
   <div class="title">
     <div class="current-year">Год: <span>{{ showedYear }}</span></div>
     <div class="chart-year-btns">
-      <button class="prev" *ngIf="showedYear >=2020" [disabled]="showedYear === 2020" (click)="prevYear()">{{ showedYear -1  }} год</button>
-      <button class="next" *ngIf="showedYear >= currentYear" [disabled]="showedYear === currentYear" (click)="nextYear()">{{ showedYear + 1 }} год</button>
+      <button class="prev" *ngIf="showedYear >2017" [disabled]="showedYear === 2018"
+        (click)="prevYear()">{{ showedYear -1  }} год</button>
+      <button class="next" *ngIf="showedYear < currentYear" [disabled]="showedYear === currentYear"
+        (click)="nextYear()">{{ showedYear + 1 }} год</button>
     </div>
   </div>
   <div class="chart">
     <div class="score">
+      <!-- <ng-container *ngIf="maxInput"> -->
       <div>{{ maxInput | thousandSeparator }}</div>
       <div *ngFor="let el of stepsCount | reverse">{{ maxInput/maxStepCount * el | thousandSeparator }}</div>
       <div>
       </div>
+      <!-- </ng-container> -->
+
     </div>
     <div class="charts-items">
       <div class="charts-data">
@@ -25,14 +30,22 @@
           <span></span>
         </div>
         <div class="chart-items">
-          <div class="chart-item" *ngFor="let line of yearsCash" [style.height.%]="line.value / maxInput*100" >
-            <span>{{ line.value }}</span>
+          <div class="chart-mounth" *ngFor="let line of yearsCash">
+            <div class="chart-item incoms"
+              [@chartGrowAnimation]="{ value: heightValue, params: { outHeight: line.up / maxInput*100, time:'500ms' } }">
+              <span>{{ line.up }}</span>
+            </div>
+            <div class="chart-item outcomes"
+              [@chartGrowAnimation]="{ value: heightValue, params: { outHeight: line.down / maxInput*100, time:'500ms' } }">
+              <span>{{ line.down }}</span>
+            </div>
           </div>
+
         </div>
       </div>
-      <div class="months" >
+      <div class="months">
         <span *ngFor="let month of allMonths">{{ month | monthPipe: 'MMMM' }}</span>
-        </div>
+      </div>
     </div>
   </div>
 </section>

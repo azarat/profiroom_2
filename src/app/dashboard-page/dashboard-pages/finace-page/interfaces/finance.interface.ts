@@ -10,6 +10,7 @@ export interface FinanceInterface {
     arbitration_count?: number;
     deals_count?: number;
     withdrawn?: number;
+    dealers_count: number;
   };
   history?:
     {
@@ -18,8 +19,9 @@ export interface FinanceInterface {
       purse_id: number;
       dealer_id: number;
       offers_id: number;
-      income: boolean;
+      income: number;
       created_at: string;
+      OffersTitle?: string;
       user: {
         avatar: string;
         name: string;

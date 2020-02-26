@@ -207,7 +207,6 @@
     // width: 95px;
     // height: 48px;
     span {
-
       display: inline-block;
       border-radius: 50%;
       background: #278df3;
@@ -229,6 +228,29 @@
         animation-delay: 0.4s;
       }
     }
+  }
+}
+
+.breef {
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  margin-bottom: 23px;
+  .deal-start {
+    width: 100%;
+    overflow: hidden;
+    text-align: center;
+  }
+  .time {
+    font-family: Source Sans Pro, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: 0.103125px;
+    color: #33596e;
+    opacity: 0.5;
+    margin-right: 12px;
   }
 }
 
