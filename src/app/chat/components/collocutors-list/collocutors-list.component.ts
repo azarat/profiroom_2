@@ -97,7 +97,7 @@ export class CollocutorsListComponent implements OnInit {
     if (this.chatType === 'work') {
        // clear router from params if click on anther deal
     const translatedPath: any = this.localize.translateRoute('/dashboard/projects');
-    console.log('event')
+
     this.router.navigate([translatedPath], {
       relativeTo: this.route,
       queryParams: {},
