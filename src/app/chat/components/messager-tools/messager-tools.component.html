@@ -1,24 +1,24 @@
-<div class="inform">
-  <div class="tools" >
+<div class="inform" *ngIf="deal">
+  <div class="tools" *ngIf="collocutorData.breef !==0">
     <h6>Действия</h6>
 
     <button>отменить работу</button>
     <button>обратиться в арбитраж</button>
   </div>
 <div class="package {{ collocutorData.package }}" >
-    <h6 class="title">Пакет премиум</h6>
+    <h6 class="title">{{ 'chat.work_chat.deal_info.packageType_' + collocutorData.package  | translate }}</h6>
     <p class="price">{{packagePrice}} UAH</p>
 
 <p class="subtitle">{{  collocutorData.offers_title }}</p>
     <div class="main-info">
-      <p><span>Кол-во правок: </span><span>10</span></p>
-      <p><span>Срок исполнения: </span><span>45 дней</span></p>
+      <p><span>Кол-во правок: </span><span>{{ deal.changes}}</span></p>
+      <p><span>Срок исполнения: </span><span>{{ deal.term }} дней</span></p>
     </div>
     <div class="extra-features">
       <p>Коммерческое использование</p>
     </div>
   </div>
-  <div class="timer" class="tools" >
+  <div class="timer" class="tools" *ngIf="deal.term === 0" >
     <h6>Кол-во дней до завершения заказа</h6>
     <div class="clock">
       <div> <span>0</span> </div>

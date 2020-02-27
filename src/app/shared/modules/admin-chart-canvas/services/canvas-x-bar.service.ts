@@ -1,5 +1,9 @@
-import { Injectable } from '@angular/core';
+import {
+  Injectable
+} from '@angular/core';
 import * as moment from 'moment';
+import { monthArrConst } from '../consts/monts-arr.const';
+
 
 @Injectable({
   providedIn: 'root'
@@ -8,10 +12,10 @@ export class CanvasXbarService {
 
   public getMontDaysCount(month: number, year: number) {
     const maxDays: number = new Date(year, month, 0).getDate();
-    return this.daysArrGenerator(maxDays);
+    return this._daysArrGenerator(maxDays);
   }
 
-  private daysArrGenerator(maxDays: number) {
+  private _daysArrGenerator(maxDays: number) {
     const daysArr = [];
     for (let i = 1; i <= maxDays; i++) {
       daysArr.push(i);
@@ -22,7 +26,7 @@ export class CanvasXbarService {
   public getHoursCount() {
     const hoursPerDay = 24;
     const time = [];
-    for (let i = 1; i < hoursPerDay; i++) { // fill in all of the hours
+    for (let i = 0; i <= hoursPerDay; i++) { // fill in all of the hours
       if (i < 10) {
         time.push('0' + i);
       } else {
@@ -31,6 +35,17 @@ export class CanvasXbarService {
     }
     return time;
   }
+
+  public selectXtarXBar(type) {
+    if (type.name === 'year') {
+      return monthArrConst;
+    } else if (type.name === 'month') {
+      // this.yearBar = this.canvasXbarService.getMontDaysCount();
+    } else {
+      return this.getHoursCount()
+    }
+  }
+
 
 
 }

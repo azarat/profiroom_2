@@ -45,7 +45,6 @@ export class GetOffersService {
 
   // tslint:disable-next-line: variable-name
   setFilters(_filters: CatalogFiltersModel) {
-    console.log(_filters);
     this._filterValue = _filters;
     this.filters.next(_filters);
 

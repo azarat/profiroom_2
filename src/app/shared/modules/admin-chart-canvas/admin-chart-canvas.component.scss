@@ -65,16 +65,24 @@
       }
     }
     .list {
-      // display: none;
-      padding: 0;
+      height: 0;
+      padding: 0 10px;
       display: flex;
       flex-direction: column;
       background: #fff;
       position: absolute;
       width: 100%;
+      overflow: hidden;
       li {
         list-style: none;
         cursor: pointer;
+      }
+
+      &.hide {
+        height: 0;
+      }
+      &.show {
+        height: 60px;
       }
     }
   }
@@ -95,7 +103,6 @@
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
-    line-height: 5px;
     letter-spacing: 0.15px;
     text-transform: uppercase;
     color: #323c47;

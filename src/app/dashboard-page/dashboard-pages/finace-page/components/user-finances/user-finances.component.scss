@@ -2,6 +2,10 @@
   box-sizing: border-box;
   font-family: Source Sans Pro, sans-serif;
 }
+.user {
+  display: flex;
+  justify-content: space-between;
+}
 .statistic {
   width: 77.5%;
   margin-left: 18px;

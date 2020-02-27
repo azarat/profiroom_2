@@ -66,7 +66,6 @@ export class CollocutorsListComponent implements OnInit {
     this.chatService.getChatRooms(this.chatType)
       .subscribe((res: CollucutorsListInterface[]) => {
         this.collocutors = res;
-        console.log(res)
         this._sortMessagesByTime(this.collocutors);
         this.openDealAfterBreefSubmit();
       });

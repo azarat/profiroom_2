@@ -4,6 +4,7 @@ import { SocketService } from '../../services/socket.service';
 import { ActivatedRoute } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { CollucutorsListInterface } from '../../interfaces/collucotors-list.interface';
+import { UserStateService } from 'src/app/dashboard-page/services/user-state.service';
 
 @Component({
   selector: 'app-chat',
@@ -26,11 +27,13 @@ export class ChatComponent implements OnInit, OnDestroy {
     private chatService: ChatService,
     private socketService: SocketService,
     private route: ActivatedRoute,
+    private userStateService: UserStateService,
   ) { }
 
   ngOnInit() {
     this.subscribeColucutors();
     this.openNewDeal();
+    this._subscribeUserStateChanges();
     this.isChat = true;
   }
   ngOnDestroy(): void {
@@ -65,13 +68,24 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   public resetChat(event) {
+    this._resetChat()
+  }
+  
+  private _subscribeUserStateChanges() {
+    this.userStateService.userState$
+    .subscribe(
+      res => {
+        this._resetChat()
+      }
+    );
+
+  }
+
+  private _resetChat(){
     this.isChat = null;
-    console.log(event)
     setTimeout(() => {
       this.isChat = true;
       this.collocutorData = null;
-
     }, 100);
   }
-
 }

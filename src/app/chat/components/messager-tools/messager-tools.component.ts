@@ -12,6 +12,7 @@ export class MessagerToolsComponent implements OnInit {
 
   @Input() collocutorData: CollucutorsListInterface;
   packagePrice: string;
+  deal = null;
   constructor(
     private chatService: ChatService
   ) { }
@@ -29,7 +30,8 @@ export class MessagerToolsComponent implements OnInit {
   getDeal() {
     this.chatService.getDealData(this.collocutorData.id)
     .subscribe(res => {
-      console.log(res);
+      this.deal = res;
+      console.log('Deal',res);
     })
   }
 }

@@ -29,7 +29,6 @@ export class BreefMessageShowingComponent implements OnInit {
     this.convertObjToArr();
     this.userStateService.userState$.subscribe(res => {
       this.userState = res;
-      console.log(this.userState)
     })
   }
 
@@ -47,8 +46,6 @@ export class BreefMessageShowingComponent implements OnInit {
         el.isanswerArr = true;
       }
     });
-
-    console.log(this.BreefItems)
   }
 
   public approveBreef() {

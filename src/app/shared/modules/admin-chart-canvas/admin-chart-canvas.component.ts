@@ -1,11 +1,31 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { Color, BaseChartDirective, Label } from 'ng2-charts';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ElementRef
+} from '@angular/core';
+import {
+  Color,
+  BaseChartDirective,
+  Label
+} from 'ng2-charts';
 import * as pluginAnnotations from 'chartjs-plugin-annotation';
-import { ChartDataSets, ChartOptions } from 'chart.js';
-import { monthArrayConvert } from '../../functions/month-array-convert.function';
-import { monthArrConst } from './consts/monts-arr.const';
-import { weekendArrConst } from './consts/weekend-arr.const';
-import { CanvasXbarService } from './services/canvas-x-bar.service';
+import {
+  ChartDataSets,
+  ChartOptions
+} from 'chart.js';
+import {
+  monthArrayConvert
+} from '../../functions/month-array-convert.function';
+import {
+  monthArrConst
+} from './consts/monts-arr.const';
+import {
+  weekendArrConst
+} from './consts/weekend-arr.const';
+import {
+  CanvasXbarService
+} from './services/canvas-x-bar.service';
 
 @Component({
   selector: 'app-admin-chart-canvas',
@@ -15,10 +35,42 @@ import { CanvasXbarService } from './services/canvas-x-bar.service';
 export class AdminChartCanvasComponent implements OnInit {
 
   public listOpen: boolean = null;
-  public curerntType;
-  public lineChartData: ChartDataSets[] = [
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'Доход', lineTension: 0, maxBarThickness: 6, barThickness: 6, },
-    { data: [28, 48, 40, 19, 86, 27, 90], label: '', lineTension: 0, maxBarThickness: 6, barThickness: 6, },
+  chartTypes = [{
+      name: 'год',
+      value: 'year'
+    },
+    {
+      name: 'месяц',
+      value: 'month'
+    },
+    {
+      name: 'день',
+      value: 'day'
+    }
+  ];
+
+  public curerntType: {
+    name: string,
+    value: string
+  } = {
+    name: 'год',
+    value: 'year'
+  }
+
+  public lineChartData: ChartDataSets[] = [{
+      data: [65, 59, 80, 81, 56, 55, 40],
+      label: 'Доход',
+      lineTension: 0,
+      maxBarThickness: 6,
+      barThickness: 6,
+    },
+    {
+      data: [28, 48, 40, 19, 86, 27, 90],
+      label: '',
+      lineTension: 0,
+      maxBarThickness: 6,
+      barThickness: 6,
+    },
     // { data: [180, 480, 770, 90, 1000, 270, 400], label: 'Series C', yAxisID: 'y-axis-1' }
   ];
 
@@ -26,7 +78,9 @@ export class AdminChartCanvasComponent implements OnInit {
 
   public lineChartLabels: Label[];
 
-  public lineChartOptions: (ChartOptions & { annotation: any }) = {
+  public lineChartOptions: (ChartOptions & {
+    annotation: any
+  }) = {
     responsive: false,
     scales: {
       // We use this empty structure as a placeholder for dynamic theming.
@@ -35,26 +89,22 @@ export class AdminChartCanvasComponent implements OnInit {
           display: false
         }
       }],
-      yAxes: [
-        {
-          offset: false,
-          gridLines: {
-            color: '#ECEDF4',
-            offsetGridLines: false,
-          }
+      yAxes: [{
+        offset: false,
+        gridLines: {
+          color: '#ECEDF4',
+          offsetGridLines: false,
         }
-      ]
+      }]
     },
-    annotation: {
-    },
+    annotation: {},
     legend: {
       display: false,
     }
 
 
   };
-  public lineChartColors: Color[] = [
-    { // grey
+  public lineChartColors: Color[] = [{ // grey
       backgroundColor: 'rgba(255,255,255, 0)',
       borderColor: 'rgba(41,204,151,1)',
       borderWidth: 2,
@@ -80,24 +130,38 @@ export class AdminChartCanvasComponent implements OnInit {
   public lineChartType = 'line';
   public lineChartPlugins = [pluginAnnotations];
 
-  @ViewChild(BaseChartDirective, { static: true }) chart: BaseChartDirective;
+  @ViewChild(BaseChartDirective, {
+    static: true
+  }) chart: BaseChartDirective;
 
   constructor(
     private canvasXbarService: CanvasXbarService
-  ) { }
+  ) {}
 
   ngOnInit() {
-    this.setYearChartBar();
+    this.selectChartType(this.curerntType);
   }
 
 
-  private setYearChartBar() {
+  private setDayChartBar() {
     this.yearBar = this.canvasXbarService.getHoursCount();
     this.lineChartLabels = this.yearBar;
   }
 
-  changeChartType(type: string) {
+// private _selectXtarXBar() {
+//   if (this.curerntType.value === 'year') {
+//     this.lineChartLabels = monthArrConst;
+//   } else if (this.curerntType.value === 'month') {
+//     // this.yearBar = this.canvasXbarService.getMontDaysCount();
+//     this.lineChartLabels = this.yearBar;
+//   } else {
+//     this.setDayChartBar()
+//   }
+// }
+  public selectChartType(type) {
     this.curerntType = type;
+    this.listOpen = false;
+    this.canvasXbarService.selectXtarXBar(type)
   }
 
   openTypesList() {

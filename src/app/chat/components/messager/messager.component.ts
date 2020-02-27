@@ -65,7 +65,7 @@ export class MessagerComponent implements OnInit, OnDestroy {
         }
 
         this.messagesList.push(newMessage);
-        console.log(this.messagesList)
+
       });
 
     this.keyword$

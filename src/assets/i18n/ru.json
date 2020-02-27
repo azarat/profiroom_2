@@ -3,6 +3,13 @@
 	"chat.work_chat.system_messages.approveBreefDescriptionFreelancer": "Пожалуйста, не начинайте работу пока оплата не будет зарезеривирована на сервисе. Дожидайтесь уведомления об оплате. ",
 	"chat.work_chat.system_messages.approveBreefTitleDealer": "Ваша заявка принята! Теперь Ваши условия на сотрудничество взаимны.",
 	"chat.work_chat.system_messages.approveBreefTitleFreelancer": "Вы приняли заявку! Теперь Ваши условия на сотрудничество взаимны! ",
+	"chat.work_chat.system_messages.holdMoneyDescriptionDealer": "Теперь вы смело можете ожидать от фрилансера начала работы.",
+	"chat.work_chat.system_messages.holdMoneyDescriptionFreelancer": "Теперь вы смело можете приступать к рабо",
+	"chat.work_chat.system_messages.holdMoneyTitleDealer": "Средства зарезирвированы",
+	"chat.work_chat.system_messages.holdMoneyTitleFreelancer": "Средства зарезирвированы ",
+	"chat.work_chat.deal_info.packageType_basic": "Пакет базовый",
+	"chat.work_chat.deal_info.packageType_advanced": "Пакет стандартный",
+	"chat.work_chat.deal_info.packageType_premium": "Пакет премиум",
 	"header.catalog": "Каталог",
-	"header.how_it_works": "Как это работает"
+	"header.how_it_works": "Как это работает" 
 }

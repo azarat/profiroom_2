@@ -12,7 +12,9 @@ export class SystemMessagesInDealsComponent implements OnInit {
   @Input() systemMessage;
   @Input() collocutorData;
   messageBreef = null;
+  messageMoneyHolded
   isUserFreelancer: boolean = null;
+  messageClass: string;
 
   constructor(
     private localStorageService: LocalStorageService,
@@ -27,7 +29,9 @@ export class SystemMessagesInDealsComponent implements OnInit {
 
   private _CheckMessage() {
     if (this.systemMessage.message.name === 'approveBreef') {
-      this.messageBreef = true;
+      this.messageClass = 'breef'
+    } else if(this.systemMessage.message.name === 'holdMoney') {
+      this.messageClass = 'hold-money'
     }
   }
 
