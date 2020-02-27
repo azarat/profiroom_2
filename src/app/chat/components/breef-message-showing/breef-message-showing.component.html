@@ -1,6 +1,6 @@
 <div class="wrapper">
   <div class="title">
-    <div >
+    <div>
       <div class="breef-icon"></div>
       <div>
         <h4>Бриф</h4>
@@ -8,21 +8,25 @@
       </div>
     </div>
   </div>
-  <button class="btn-tetraty breef-wrap-btn"> развернуть</button>
-  <div class="breef" *ngIf="BreefItems">
-    <div class="item" *ngFor="let breef of BreefItems, let i = index">
-      <h5>{{i+1}}. {{ breef.title }}</h5>
-      <p *ngIf="breef.isanswerArr !== true">{{ breef.answer }}</p>
-      <ng-container *ngIf="breef.isanswerArr === true">
-        <p *ngFor="let el of breef.answer">
-          {{ el }}
-        </p>
-      </ng-container>
+  <button class="btn-tetraty breef-wrap-btn" (click)="showHideBreef()"> развернуть</button>
+  <div class="breef" *ngIf="BreefItems"
+    [ngClass]="{ 'show': isBreefElVisible && isBreefElVisible === true, 'hidden': !isBreefElVisible && isBreefElVisible === false }">
+    <div>
+      <div class="item" *ngFor="let breef of BreefItems, let i = index">
+        <h5>{{i+1}}. {{ breef.title }}</h5>
+        <p *ngIf="breef.isanswerArr !== true">{{ breef.answer }}</p>
+        <ng-container *ngIf="breef.isanswerArr === true">
+          <p *ngFor="let el of breef.answer">
+            {{ el }}
+          </p>
+        </ng-container>
 
+      </div>
     </div>
+
   </div>
-  <div class="breef-decisions-options" *ngIf="userState === 1 && collocutorData.status == 'sentBreef'">
-    <button class="btn-sec" (click)="refuseBreef()" >ОТКЛОНИТЬ</button>
+  <div class="breef-decisions-options" *ngIf="collocutorData.freelanser_id === userId && collocutorData.status == 'sentBreef'">
+    <button class="btn-sec" (click)="refuseBreef()">ОТКЛОНИТЬ</button>
     <button class="btn" (click)="approveBreef()">ПРИНЯТЬ ЗАЯВКУ</button>
-    </div>
+  </div>
 </div>

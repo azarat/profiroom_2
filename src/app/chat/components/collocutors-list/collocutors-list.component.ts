@@ -51,8 +51,7 @@ export class CollocutorsListComponent implements OnInit {
     console.log(this.userId);
     this._subscribeNewMessages();
     this.checkUserState();
-    // this.openNewDeal();
-
+    this._getChatRooms();
   }
 
   private checkUserState() {
@@ -71,21 +70,11 @@ export class CollocutorsListComponent implements OnInit {
       });
   }
 
-  // open dealChat if is new
-  // private openNewDeal() {
-  //   this.route.queryParams
-  //     .pipe(
-  //       filter((res: any) => !!res),
-  //     )
-  //     .subscribe(res => {
-  //       this.openChat(+res.dealRoom);
-  //     });
-  // }
-
   private _subscribeNewMessages() {
     this.socketService.showNewMessage()
       .subscribe(res => {
         this._pushNewMessage(this.collocutors, res);
+        console.log('collocutor list', this.collocutors);
         this._sortMessagesByTime(this.collocutors);
       });
   }

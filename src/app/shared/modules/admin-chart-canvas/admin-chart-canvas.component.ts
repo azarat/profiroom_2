@@ -148,20 +148,19 @@ export class AdminChartCanvasComponent implements OnInit {
     this.lineChartLabels = this.yearBar;
   }
 
-// private _selectXtarXBar() {
-//   if (this.curerntType.value === 'year') {
-//     this.lineChartLabels = monthArrConst;
-//   } else if (this.curerntType.value === 'month') {
-//     // this.yearBar = this.canvasXbarService.getMontDaysCount();
-//     this.lineChartLabels = this.yearBar;
-//   } else {
-//     this.setDayChartBar()
-//   }
-// }
+private _selectXtarXBar() {
+  if (this.curerntType.value === 'year') {
+    this.lineChartLabels = monthArrConst;
+  } else if (this.curerntType.value === 'month') {
+    // this.yearBar = this.canvasXbarService.getMontDaysCount();
+    this.lineChartLabels = this.yearBar;
+  } else {
+    this.setDayChartBar()
+  }
+}
   public selectChartType(type) {
     this.curerntType = type;
-    this.listOpen = false;
-    this.canvasXbarService.selectXtarXBar(type)
+    this._selectXtarXBar();
   }
 
   openTypesList() {
