@@ -1,4 +1,7 @@
 {
+	"chat.work_chat.deal_info.packageType_advanced": "Пакет стандартный",
+	"chat.work_chat.deal_info.packageType_basic": "Пакет базовый",
+	"chat.work_chat.deal_info.packageType_premium": "Пакет премиум",
 	"chat.work_chat.system_messages.approveBreefDescriptionDealer": "Для того, чтобы фрилансер начал работу Вам необходимо зарезирвировать оплату. ",
 	"chat.work_chat.system_messages.approveBreefDescriptionFreelancer": "Пожалуйста, не начинайте работу пока оплата не будет зарезеривирована на сервисе. Дожидайтесь уведомления об оплате. ",
 	"chat.work_chat.system_messages.approveBreefTitleDealer": "Ваша заявка принята! Теперь Ваши условия на сотрудничество взаимны.",
@@ -7,9 +10,10 @@
 	"chat.work_chat.system_messages.holdMoneyDescriptionFreelancer": "Теперь вы смело можете приступать к рабо",
 	"chat.work_chat.system_messages.holdMoneyTitleDealer": "Средства зарезирвированы",
 	"chat.work_chat.system_messages.holdMoneyTitleFreelancer": "Средства зарезирвированы ",
-	"chat.work_chat.deal_info.packageType_basic": "Пакет базовый",
-	"chat.work_chat.deal_info.packageType_advanced": "Пакет стандартный",
-	"chat.work_chat.deal_info.packageType_premium": "Пакет премиум",
+	"chat.work_chat.system_messages.workStartedDescriptionDealer": "Фрилансер приступил к работе. Следите за счетчиком срока исполнения работы.",
+	"chat.work_chat.system_messages.workStartedDescriptionFreelancer": "Вы уведомили заказчика о том, что приступили к проекту. Счетчик срока исполнения работы запустился.",
+	"chat.work_chat.system_messages.workStartedTitleDealer": "Работа начата",
+	"chat.work_chat.system_messages.workStartedTitleFreelancer": "Работа начата",
 	"header.catalog": "Каталог",
-	"header.how_it_works": "Как это работает" 
+	"header.how_it_works": "Как это работает"
 }

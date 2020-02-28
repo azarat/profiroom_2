@@ -133,6 +133,9 @@ export class AdminChartCanvasComponent implements OnInit {
   @ViewChild(BaseChartDirective, {
     static: true
   }) chart: BaseChartDirective;
+  // year
+  public currentYear = new Date().getFullYear();
+  public showedDate;
 
   constructor(
     private canvasXbarService: CanvasXbarService
@@ -140,6 +143,7 @@ export class AdminChartCanvasComponent implements OnInit {
 
   ngOnInit() {
     this.selectChartType(this.curerntType);
+    this.showedDate = this.currentYear;
   }
 
 
@@ -161,6 +165,7 @@ private _selectXtarXBar() {
   public selectChartType(type) {
     this.curerntType = type;
     this._selectXtarXBar();
+    this.listOpen = false;
   }
 
   openTypesList() {
@@ -168,6 +173,20 @@ private _selectXtarXBar() {
       this.listOpen = true;
     } else {
       this.listOpen = !this.listOpen;
+    }
+  }
+
+
+  // year chart
+
+  nextYear() {
+    if (this.showedDate !== this.currentYear) {
+      this.showedDate = this.showedDate + 1;
+    }
+  }
+  prevYear() {
+    if (this.showedDate !== 2018) {
+      this.showedDate = this.showedDate - 1;
     }
   }
 }

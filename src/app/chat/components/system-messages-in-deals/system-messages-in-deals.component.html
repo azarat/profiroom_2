@@ -18,9 +18,9 @@
     </div>
   </div>
   <div class="actions">
-    <button *ngIf="!isUserFreelancer && messageClass === 'breef'" class="btn" (click)="holdMoneynDeal()">Зарезирвировать оплату</button>
+    <button *ngIf="!isUserFreelancer && messageClass === 'breef' && collocutorData.moneyHolded !== 1" class="btn" (click)="holdMoneynDeal()">Зарезирвировать оплату</button>
 
-    <button *ngIf="isUserFreelancer && messageClass === 'hold-money'" class="btn">уведометь о начале работы</button>
+    <button *ngIf="isUserFreelancer && messageClass === 'hold-money'" class="btn" (click)="goToWork()">уведометь о начале работы</button>
   </div>
 </div>
 

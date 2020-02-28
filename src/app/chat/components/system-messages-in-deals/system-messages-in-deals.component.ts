@@ -49,6 +49,13 @@ export class SystemMessagesInDealsComponent implements OnInit {
     })
   }
 
+  public goToWork() {
+    this.chatService.startWork(this.collocutorData.id)
+    .subscribe(res => {
+      console.log(res);
+    });
+  }
+
 
 
 }

@@ -6,6 +6,7 @@ import { MonthPipeModule } from '../../pipes/month-pipe/month-pipe.module';
 import { AdminChartCanvasComponent } from './admin-chart-canvas.component';
 
 import { ChartsModule } from 'ng2-charts';
+import { CalendarSharedModule } from '../calendar/calendar.module';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { ChartsModule } from 'ng2-charts';
     ArrReverceModule,
     ThousandSeparatorModule,
     MonthPipeModule,
-    ChartsModule
+    ChartsModule,
+    CalendarSharedModule
   ],
   exports: [
     AdminChartCanvasComponent,

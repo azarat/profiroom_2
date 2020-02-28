@@ -74,6 +74,10 @@ export class ChatService {
     return this.http.post('/holdmoney', {deal_id: dealId });
   }
 
+  public startWork(dealId: number) {
+    return this.http.post('/startWork', {deal_id: dealId });
+  }
+
 
 }
 
