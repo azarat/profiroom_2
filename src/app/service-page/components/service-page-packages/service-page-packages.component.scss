@@ -45,6 +45,14 @@
       color: #fff;
       transition: all 0.3s;
     }
+    &.disabled{
+      cursor: default;
+      background-color: #C2CFE0;
+      color: #fff;
+      &:hover {
+        top: 0;
+      }
+    }
   }
   .tabContent {
     background: #ffffff;
