@@ -136,4 +136,35 @@ export interface OfferDataInterface {
     mainImage?: string;
     minprice?: number;
   }];
+  extra_terms?: [{
+    id?: number;
+    offers_id?: number;
+    package?: string;
+    coonditions?: number;
+    count_days?: number;
+    price?: number;
+    published?: number;
+  }];
+  extra_commercial?: {
+    id?: number;
+    offers_id?: number;
+    price?: number;
+    published?: number;
+  };
+  extra_changes?: {
+    id?: number;
+    offers_id?: number;
+    count?: number;
+    price?: number;
+    published?: number;
+  };
+  extra_features?: {
+    id?: number;
+    offers_id?: number;
+    title?: string;
+    description?: string;
+    count_days?: number;
+    price?: number;
+    published?: number;
+  };
 }

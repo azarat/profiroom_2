@@ -37,6 +37,44 @@
             </ng-container>
           </ul>
         </div>
+        <form class="extra-features">
+          <div class="show-extra-features" (click)="showFeatures()" [ngClass]="{open: openFeatures}">выбрать Дополнительные опции</div>
+          <ul class="extra-features__list"  [ngClass]="{open: openFeatures}">
+            <ng-container *ngFor="let extra_term of offerData.extra_terms">
+              <div class="extra-features__item" *ngIf="extra_term.package == package">
+                <mat-checkbox class="extra-features__checkbox"></mat-checkbox>
+                <div class="extra-features__text">
+                  <span class="extra-features__title">Сжатые сроки</span>
+                  <span class="extra-features__price">{{extra_term.price}} UAH</span>
+                </div>
+              </div>
+           </ng-container>
+           <div class="extra-features__item" *ngIf="offerData.extra_changes">
+              <mat-checkbox class="extra-features__checkbox"></mat-checkbox>
+              <div class="extra-features__text">
+                <span class="extra-features__title">Дополнительные правки</span>
+                <span class="extra-features__price">{{offerData.extra_changes.price}} UAH</span>
+              </div>
+            </div>
+           <div class="extra-features__item" *ngIf="offerData.extra_commercial">
+              <mat-checkbox class="extra-features__checkbox"></mat-checkbox>
+              <div class="extra-features__text">
+                <span class="extra-features__title">Коммерческое использование</span>
+                <span class="extra-features__price">{{offerData.extra_commercial.price}} UAH</span>
+              </div>
+            </div>
+            <ng-container *ngFor="let extra_feature of offerData.extra_features">
+              <div class="extra-features__item" *ngIf="extra_feature.published">
+                <mat-checkbox class="extra-features__checkbox"></mat-checkbox>
+                <div class="extra-features__text">
+                  <span class="extra-features__title">{{extra_feature.title}}</span>
+                  <span class="extra-features__price">{{extra_feature.price}} UAH</span>
+                </div>
+              </div>
+            </ng-container>
+
+          </ul>
+        </form>
         <div class="btn-order-service">
           Заказать услугу <span>(за {{ offerData[package].price }} ₴)</span>
         </div>
@@ -68,16 +106,39 @@
             </ng-container>
           </ul>
         </div>
+        <form class="extra-features">
+          <div class="show-extra-features" (click)="showFeatures()" [ngClass]="{open: openFeatures}">выбрать Дополнительные опции</div>
+          <ul class="extra-features__list"  [ngClass]="{open: openFeatures}">
+            <div class="extra-features__item" *ngFor="let extra_feature of offerData.extra_features">
+              <mat-checkbox class="extra-features__checkbox"></mat-checkbox>
+              <div class="extra-features__text">
+                <span class="extra-features__title">{{extra_feature.title}}</span>
+                <span class="extra-features__price">{{extra_feature.price}} UAH</span>
+              </div>
+            </div>
+            <ng-container *ngFor="let extra_feature of offerData.extra_features">
+              <div class="extra-features__item" *ngIf="extra_feature.published">
+                <mat-checkbox class="extra-features__checkbox"></mat-checkbox>
+                <div class="extra-features__text">
+                  <span class="extra-features__title">{{extra_feature.title}}</span>
+                  <span class="extra-features__price">{{extra_feature.price}} UAH</span>
+                </div>
+              </div>
+            </ng-container>
+
+
+          </ul>
+        </form>
         <div class="btn-order-service">
-          <!-- Заказать услугу <span>(за {{ offerData[packages[0]].price }} ₴)</span> -->
+          Заказать услугу <span>(за {{ offerData[packages[0]].price }} ₴)</span>
         </div>
       </div>
     </ng-container>
 
   </div>
-  <div class="btn-options additional">
+  <!-- <div class="btn-options additional">
     <span>Дополнительные опции</span>
-  </div>
+  </div> -->
   <div class="btn-options compare">
     <span>Cравнить пакеты услуг</span>
   </div>

@@ -17,6 +17,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { ServicePageCompareTableComponent } from './components/service-page-compare-table/service-page-compare-table.component';
 import { ServicePageEarlierViewedComponent } from './components/service-page-earlier-viewed/service-page-earlier-viewed.component';
 import { ServicePageCommentsComponent } from './components/service-page-comments/service-page-comments.component';
+import { MatCheckboxModule } from '@angular/material';
 
 const routes: Routes = [
   {
@@ -45,7 +46,8 @@ const routes: Routes = [
     MainHeaderModule,
     CategoriesHeaderModule,
     NgxGalleryModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatCheckboxModule,
   ],
   exports: [
     ServicePageComponent,

@@ -58,7 +58,7 @@ export class ServicePageComponent implements OnInit {
     .pipe(filter((res: any) => !! res))
     .subscribe(offerData => {
       this.offerData = offerData.userOffer;
-      console.log(this.offerData);
+      // console.log(this.offerData);
       this.formateCommentCount();
     });
   }
@@ -76,7 +76,7 @@ export class ServicePageComponent implements OnInit {
     .subscribe((res: any) => {
 
       this.similarOffers = res;
-      console.log(this.similarOffers);
+      // console.log(this.similarOffers);
     });
   }
 

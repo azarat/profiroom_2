@@ -8,6 +8,8 @@ import { OfferDataInterface } from 'src/app/shared/interfaces/offer-date.interfa
 })
 export class ServicePagePackagesComponent implements OnInit {
 
+  public openFeatures = false;
+
   @Input() offerData: OfferDataInterface;
   public currentTab: any = 0;
   public tabs = [
@@ -30,9 +32,15 @@ export class ServicePagePackagesComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit() { }
+  ngOnInit() {
+    console.log(this.offerData.extra_terms)
+  }
 
   openTab = (i: number) => {
     this.currentTab = i;
+  }
+
+  showFeatures() {
+    this.openFeatures = !this.openFeatures;
   }
 }

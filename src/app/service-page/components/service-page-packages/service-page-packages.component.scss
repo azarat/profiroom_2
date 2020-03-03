@@ -174,6 +174,98 @@
         }
       }
     }
+    .extra-features{
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 15px;
+      .show-extra-features{
+        font-family: "Source Sans Pro";
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 117%;
+        color: #3C7EEA;
+        text-transform: uppercase;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        width: fit-content;
+        margin: 0 auto;
+        position: relative;
+        &::before{
+          content: '';
+          background-image: url(/assets/images/svg/user/blue-arrow-down.svg);
+          position: absolute;
+          top: 50%;
+          right: -20px;
+          transform: translateY(-50%);
+          width: 12px;
+          height: 7px;
+          transition: all .5s;
+        }
+        &.open{
+          &::before{
+            transform: translateY(-50%) rotate(180deg);
+            transition: all .5s;
+          }
+        }
+      }
+
+      &__list{
+        padding: 0 15px 0;
+        margin: 0 -15px;
+        display: flex;
+        flex-direction: column;
+        max-height: 0;
+        overflow-y: hidden;
+        transition: max-height .4s, padding .6s;
+        label{
+          width: 100%;
+        }
+        &.open{
+          transition: max-height .6s, padding .6s;
+          max-height: 700px;
+          padding: 15px 15px 0;
+          margin: 0 -15px;
+        }
+      }
+      &__item{
+        display: flex;
+        margin-bottom: 10px;
+        ::ng-deep {
+
+          .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background,
+          .mat-checkbox-checked.mat-accent .mat-checkbox-background {
+            background-color: #3C7EEA;
+          }
+
+          .mat-checkbox-checked:not(.mat-checkbox-disabled).mat-accent .mat-ripple-element,
+          .mat-checkbox:active:not(.mat-checkbox-disabled).mat-accent .mat-ripple-element {
+            background-color: #3C7EEA;
+          }
+        }
+      }
+      &__text{
+        width: 100%;
+        margin-left: 16px;
+        display: flex;
+        justify-content: space-between;
+      }
+      &__title{
+        font-family: "Source Sans Pro";
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 117%;
+        color: #707683;
+      }
+      &__price{
+        font-family: "Source Sans Pro";
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 150%;
+        color: #323C47;
+      }
+
+    }
   }
   // .hide {
   //   display: none;

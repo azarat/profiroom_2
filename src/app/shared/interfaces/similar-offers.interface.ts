@@ -6,7 +6,7 @@ export interface SimilarOffersInterface {
     category_id: number;
     comments_count?: number;
     mainImage?: string;
-    
+
     minprice: number;
     name?: string;
     rating?: number;
@@ -19,10 +19,7 @@ export interface SimilarOffersInterface {
         name?: string;
         surname?: string;
         rank_id: number;
-        
         }
     ];
     liked?: boolean;
 }
-
-  
