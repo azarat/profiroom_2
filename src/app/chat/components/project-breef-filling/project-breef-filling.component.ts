@@ -107,7 +107,6 @@ export class ProjectBreefFillingComponent implements OnInit {
   public confirmDeleteBreef() {
   this.chatSerrvice.deleteDeal(this.collocutorData.id)
   .subscribe(res => {
-    console.log(res);
     if (res === 'ok') {
       this.returnToBreef();
       const translatedPath: any = this.localize.translateRoute('/dashboard/projects');

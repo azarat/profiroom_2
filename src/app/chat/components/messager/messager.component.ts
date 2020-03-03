@@ -63,8 +63,17 @@ export class MessagerComponent implements OnInit, OnDestroy {
         if (newMessage.type === 'file' && typeof newMessage.message === 'string') {
           newMessage.message = typeof newMessage.message === 'string' ? JSON.parse(newMessage.message) : [];
         }
+        if (newMessage.type === 'systemMessage') {
+          console.log('SYSTEMMESSAGE', this.collocutorData)
+          this.chatService.getDealData(this.collocutorData.id)
+          .subscribe(res => {
+            this.chatService.resetDealInfo(res);
+          });
+        }
 
         this.messagesList.push(newMessage);
+
+
 
       });
 
@@ -77,6 +86,7 @@ export class MessagerComponent implements OnInit, OnDestroy {
         this.typing = false;
         this.socketService.onTypingEvent('stopTyping', this.collocutorData.collocutorId);
       });
+    // console.log(this.collocutorData);
   }
 
   public ngOnDestroy() {

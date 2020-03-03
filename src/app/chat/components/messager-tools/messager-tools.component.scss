@@ -168,5 +168,51 @@
   .history {
     padding: 25px 20px;
     height: 100%;
+    overflow: auto;
+    .history-title {
+      font-family: Source Sans Pro, sans-serif;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 5px;
+      letter-spacing: 0.15px;
+      text-transform: uppercase;
+      color: #323c47;
+    }
+    .logo-icon {
+      width: 33px;
+      height: 33px;
+      img {
+        width: inherit;
+        height: inherit;
+      }
+    }
+    .history-item {
+      display: flex;
+      align-items: center;
+      &:not(:last-of-type) {
+        margin-bottom: 26px;
+      }
+      .logo-icon {
+        margin-right: 12px;
+      }
+      .time {
+        font-family: Source Sans Pro, sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 18px;
+        color: #707683;
+        margin-bottom: 4px;
+      }
+      .description {
+        font-family: Source Sans Pro, sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 20px;
+        color: #323c47;
+      }
+    }
   }
 }

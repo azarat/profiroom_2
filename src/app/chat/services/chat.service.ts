@@ -3,17 +3,23 @@ import { Injectable } from '@angular/core';
 import { map, filter } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
+import { BehaviorSubject } from 'rxjs';
 
 // const config: SocketIoConfig = { url: 'http://192.168.0.200:6001', options: {} }
 
 @Injectable()
 
 export class ChatService {
-  currentRoom: string;
+  // currentRoom: string;
 
-  private connection: string;
+  // private connection: string;
 
-  messagesArray: any[];
+  // messagesArray: any[];
+
+  // tslint:disable-next-line: variable-name
+  private _dealInfo = new BehaviorSubject(null);
+  public dealInfo$ = this._dealInfo.asObservable();
+
   constructor(
     // private socket: Socket,
     private http: HttpClient,
@@ -76,6 +82,33 @@ export class ChatService {
 
   public startWork(dealId: number) {
     return this.http.post('/startWork', {deal_id: dealId });
+  }
+
+  public cencelWork(dealId: number) {
+    return this.http.post('/cancelationDeal', {deal_id: dealId });
+  }
+  public submitDealCancel(dealId: number) {
+    return this.http.post('/submitDealCancel', {deal_id: dealId });
+  }
+
+  public finishDeal(dealId: number) {
+    return this.http.post('/finishDeal', {deal_id: dealId });
+  }
+  public submitFinishDeal(dealId: number) {
+    return this.http.post('/submitDealFinish', {deal_id: dealId });
+  }
+  public cancelFinishDeal(dealId: number) {
+    return this.http.post('/cancelFinishDeal', {deal_id: dealId });
+  }
+
+
+  public resetDealInfo(dealData) {
+    this._dealInfo.next(null)
+    setTimeout(() =>{
+      this._dealInfo.next(dealData)
+    }, 1000);
+      this._dealInfo.next(dealData);
+
   }
 
 

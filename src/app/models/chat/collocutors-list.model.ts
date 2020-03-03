@@ -18,7 +18,9 @@ export class CollocutorListModel {
   @Expose() created_at: Date;
   @Expose() package: Date;
   @Expose() amount: Date;
-  @Expose() breef: number;
+  @Expose() breef: any;
+  @Expose() moneyHolded: number;
+
   //  Last message model in chat collocutor list
   @Type(() => CollocutorsLastMessageModel) message: CollocutorsLastMessageModel[];
 // {

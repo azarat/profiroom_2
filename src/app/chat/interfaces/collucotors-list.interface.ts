@@ -19,6 +19,7 @@ export interface CollucutorsListInterface {
   offers_id?: number;
   offer_id?: number;
   amount?: number;
+  moneyHolded?: number;
   message: {
     author?: number | string;
     message?: string;

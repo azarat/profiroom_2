@@ -58,6 +58,7 @@ import { TranslateModule } from '@ngx-translate/core';
   ],
   imports: [
     CommonModule,
+    RouterModule,
     StarRaitingModule,
     PickerModule,
     ClickOutsideModule,

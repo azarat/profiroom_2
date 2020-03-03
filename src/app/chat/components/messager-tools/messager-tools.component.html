@@ -1,15 +1,25 @@
 <div class="inform" *ngIf="deal">
-  <div class="tools" *ngIf="collocutorData.breef !==0">
+  <div class="tools" *ngIf="deal.moneyHolded !==0 && deal.moneyHolded !== undefined">
     <h6>Действия</h6>
 
-    <button>отменить работу</button>
+    <button (click)="cencelWork()">отменить работу</button>
     <button>обратиться в арбитраж</button>
+    <button *ngIf="isUserFreelancer" (click)="finishWork()">Завершить работу</button>
   </div>
-<div class="package {{ collocutorData.package }}" >
-    <h6 class="title">{{ 'chat.work_chat.deal_info.packageType_' + collocutorData.package  | translate }}</h6>
+  <div class="timer" *ngIf="deal.workStarted === 1 && deal.moneyHolded !==0">
+    <h6>Кол-во дней до завершения заказа</h6>
+    <div class="clock">
+      <div> <span>{{ thsnd }}</span> </div>
+      <div> <span>{{ hundr }}</span> </div>
+      <div> <span>{{ tens }}</span> </div>
+      <div> <span>{{ singlNum }}</span> </div>
+    </div>
+  </div>
+  <div class="package {{ deal.package }}">
+    <h6 class="title">{{ 'chat.work_chat.deal_info.packageType_' + deal.package  | translate }}</h6>
     <p class="price">{{packagePrice}} UAH</p>
 
-<p class="subtitle">{{  collocutorData.offers_title }}</p>
+    <p class="subtitle">{{  deal.offers_title }}</p>
     <div class="main-info">
       <p><span>Кол-во правок: </span><span>{{ deal.changes}}</span></p>
       <p><span>Срок исполнения: </span><span>{{ deal.term }} дней</span></p>
@@ -18,16 +28,21 @@
       <p>Коммерческое использование</p>
     </div>
   </div>
-  <div class="timer" class="tools" *ngIf="deal.term === 0" >
-    <h6>Кол-во дней до завершения заказа</h6>
-    <div class="clock">
-      <div> <span>0</span> </div>
-      <div> <span>0</span> </div>
-      <div> <span>0</span> </div>
-      <div> <span>3</span> </div>
+
+  <div class="history" *ngIf="deal.breef !== 0 && deal.breef !== '0'">
+    <h6 class="history-title">История</h6>
+    <div class="history-items">
+      <div class="history-item" *ngFor="let el of deal.history" >
+        <div class="logo-icon">
+          <img [src]="'/assets/images/icons/deals-icons/' + el.answer + '.png'" alt="system-icon">
+        </div>
+        <div>
+          <div class="time">{{ el.created_at | date: 'dd.MM.yyyy HH:mm' }}</div>
+          <div class="description">{{ 'chat.work_chat.history.' +  el.answer | translate  }}</div>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="history">
-    <h6>История</h6>
-  </div>
 </div>
+
+<!-- 'chat.work_chat.histroy.' -->

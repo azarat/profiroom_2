@@ -48,7 +48,6 @@ export class CollocutorsListComponent implements OnInit {
 
   ngOnInit() {
     this.userId = this.localStorageService.getItem('userId').value;
-    console.log(this.userId);
     this._subscribeNewMessages();
     this.checkUserState();
     this._getChatRooms();
@@ -74,7 +73,6 @@ export class CollocutorsListComponent implements OnInit {
     this.socketService.showNewMessage()
       .subscribe(res => {
         this._pushNewMessage(this.collocutors, res);
-        console.log('collocutor list', this.collocutors);
         this._sortMessagesByTime(this.collocutors);
       });
   }
@@ -140,5 +138,9 @@ export class CollocutorsListComponent implements OnInit {
         }
 
       });
+  }
+
+  public setCurrentType(event: any) {
+    console.log(event)
   }
 }
