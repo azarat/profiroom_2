@@ -1,0 +1,96 @@
+.system-message {
+  box-sizing: border-box;
+  background: #f4f7fc;
+  border-radius: 20px 20px 20px 20px;
+  padding: 24px;
+  min-width: 620px;
+  display: flex;
+  flex-direction: column;
+  & > div:first-of-type {
+    display: flex;
+    flex-direction: row;
+  }
+  .icon {
+    min-width: 56px;
+    height: 56px;
+    margin-right: 20px;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .description {
+    width: 100%;
+  }
+  h5 {
+    font-family: Source Sans Pro, sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 23px;
+    margin: 0;
+    padding: 0 0 8px;
+    border-bottom: 1px solid;
+  }
+
+  p {
+    font-family: Source Sans Pro, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 20px;
+    color: #323c47;
+    opacity: 0.5;
+    margin: 8px 0 0;
+  }
+  .actions {
+    display: flex;
+    justify-content: flex-end;
+    &.btwn {
+      justify-content: space-between;
+    }
+    button {
+      margin-top: 20px;
+      padding: 9px 20px;
+    }
+  }
+
+  &.breef {
+    h5 {
+      color: #67b7d4;
+      border-color: #9de5ff;
+    }
+  }
+
+  &.hold-money {
+    h5 {
+      color: #919CDD;
+      border-color: #D4DAFF;
+    }
+  }
+  &.workStarted{
+    h5 {
+      color: #F1A153;
+      border-color: #FFE8C9;
+    }
+  }
+  &.deal-cencel{
+    h5 {
+      color: #FF9090;
+      border-color: #FFDADA;
+    }
+  }
+  &.DealFinishedByFreelancer{
+    h5 {
+      color: #FF9E67;
+      border-color: #FFCFCF;
+    }
+  }
+  &.DealFinished{
+    h5 {
+      color: #34C28D;
+      border-color: #C4EAE0;
+    }
+  }
+}

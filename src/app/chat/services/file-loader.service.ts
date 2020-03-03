@@ -14,7 +14,7 @@ export class FileLoaderService {
 
   }
 
-  uploadFiles(filesData) {
+  public uploadFiles(filesData) {
     return this.http.post('/sendFile', filesData);
   }
 

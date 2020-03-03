@@ -52,7 +52,6 @@ export class CatalogPaginationComponent implements OnInit {
     this.pagesArr = [];
 
     let a = this.offersList.current_page;
-    // console.log("a - current_page", a);
 
     if (this.offersList.last_page > 5) {
       if ( this.offersList.current_page === 1 ||

@@ -13,7 +13,7 @@ import { MonthPipeModule } from '../../pipes/month-pipe/month-pipe.module';
     CommonModule,
     ArrReverceModule,
     ThousandSeparatorModule,
-    MonthPipeModule
+    MonthPipeModule,
   ],
   exports: [
     DiagramComponent,

@@ -55,8 +55,10 @@
 
 //  --------------------------- togle btn ------------------------
 .switch {
-  position: relative;
-  label {
+  display: flex;
+  flex-direction: row;
+
+  & > span {
     cursor: pointer;
     font-family: "Source Sans Pro", sans-serif;
     font-style: normal;
@@ -69,65 +71,57 @@
     transition: opacity 0.25s ease;
     width: 50%;
     height: 100%;
-    &:first-of-type {
-      margin-right: 62px;
+    &.active {
+      opacity: 1;
+      cursor: default;
     }
   }
-  input {
-    position: absolute;
-    top: 0;
-    z-index: 2;
-    opacity: 0;
-    width: 50%;
-    height: 100%;
-    cursor: pointer;
-    &:checked {
-      z-index: 1;
-      & + label {
-        opacity: 1;
-        cursor: default;
-      }
-    }
-    &:not(:checked) + label {
-      opacity: 0.6;
-      &:hover {
-        opacity: 0.8;
-      }
-    }
-  }
-  .toggle-outside {
-    width: 34px;
-    height: 20px;
+  .swp-btn {
+    background: #ffffff;
     box-shadow: 0px 7px 20px rgba(0, 0, 0, 0.07);
     border-radius: 16px;
-    overflow: hidden;
-    transition: 0.25s ease all;
-    background: #fff;
-    position: absolute;
-    left: 52%;
-    transform: translateX(-50%);
-  }
-  .toggle-inside {
-    border-radius: 50%;
-    width: 16px;
-    height: 16px;
-    background: #3c7eea;
-    position: absolute;
-    transition: 0.25s ease all;
-    top: 2px;
-  }
-  input {
-    width: 50%;
-    height: 100%;
-    margin: 0 auto;
-  }
-  input:checked ~ .toggle-outside .toggle-inside {
-    left: 2px;
-  }
-  input ~ input:checked ~ .toggle-outside .toggle-inside {
-    left: 16px;
+    width: 44px;
+    height: 20px;
+    position: relative;
+    margin: 0px 14px;
+    cursor: pointer;
+    span {
+      display: block;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #3C7EEA;
+      position: absolute;
+      // left: 2px;
+      top: 50%;
+      transform: translateY(-50%);
+      &.left {
+        left: 5%;
+        // animation: toggleAnimation 0.2s ease-in-out reverse;
+        // right: 0;
+      }
+      &.right {
+        left: 45%;
+        // animation: toggleAnimation 0.5s ease-in-out ;
+      }
+    }
   }
 }
+
+@keyframes toggleAnimation {
+  0% {
+    left: 5%;
+  }
+  50%{
+
+    width: 19px;
+    left: 25%;
+  }
+  100% {
+    left: 45%;
+  }
+}
+
 .notifications {
   margin-right: 30px;
   mat-icon {
@@ -144,6 +138,7 @@
 }
 .controls {
   display: flex;
+  align-items: center;
   .exit {
     button {
       border: none;
@@ -166,7 +161,10 @@
 .side-bar {
   width: 20%;
   height: 93.4%;
+  display: flex;
+  flex-direction: column;
   .avatar {
+    min-height: 260px;
     height: 260px;
     display: flex;
     justify-content: center;
@@ -197,10 +195,13 @@
     font-size: 17px;
     line-height: 24px;
     color: #ffffff;
-    margin: 0;
+    margin: 0 auto 8px;
   }
-  .menu{
+  .menu {
     padding: 64px 45px;
+    background: #FAFBFC;
+    box-sizing: border-box;
+    height: 100%;
     nav {
       display: flex;
       flex-direction: row;
@@ -211,7 +212,7 @@
       width: 44%;
       height: 95px;
       display: block;
-      background: #FFFFFF;
+      background: #ffffff;
       border-radius: 8px;
       margin-bottom: 32px;
       display: flex;
@@ -221,9 +222,9 @@
       position: relative;
       &:before {
         position: absolute;
-        content: '';
+        content: "";
         font-family: icoMoon;
-        color: #BFC5D1;
+        color: #bfc5d1;
         top: 35%;
         left: 50%;
         font-size: 30px;
@@ -233,12 +234,12 @@
         background-color: rgb(250, 249, 249);
       }
       &.active.chat {
-        background: #3C7EEA;
+        background: #3c7eea;
         box-shadow: 0px 10px 20px rgba(80, 123, 252, 0.5);
         border-radius: 8px;
         color: #fff;
         &:before {
-          color: #3C7EEA;
+          color: #3c7eea;
           background-color: #fff;
         }
         span {
@@ -246,12 +247,12 @@
         }
       }
       &.active {
-        background: #3C7EEA;
+        background: #3c7eea;
         box-shadow: 0px 10px 20px rgba(80, 123, 252, 0.5);
         border-radius: 8px;
         color: #fff;
         &:before {
-          background-color: #3C7EEA;
+          background-color: #3c7eea;
           color: #fff;
         }
         span {
@@ -268,42 +269,39 @@
         margin-bottom: 17px;
       }
       &.dashboard:before {
-        content: '\e903';
+        content: "\e903";
       }
       &.projects:before {
-        content: '\e904';
+        content: "\e905";
       }
       &.chat:before {
-        content: '\e90e';
-        background: #BFC5D1;
+        content: "\e90e";
+        background: #bfc5d1;
         color: #fff;
       }
-      &.services:before {
-        content: '\e90f';
+      &.services:before, &.catalog:before {
+        content: "\e90a";
       }
       &.finance:before {
-        content: '\e905';
-
+        content: "\e90c";
       }
       &.settings:before {
-        content: '\e914';
+        content: "\e914";
       }
       // .newMessage:not(.active)
       &.chat.newMessage:not(.active) {
         &:after {
           position: absolute;
-          content: '';
+          content: "";
           width: 8px;
           height: 8px;
-          background: #5DDFAB;
+          background: #5ddfab;
           border-radius: 50%;
           left: 65%;
           top: 6%;
           transform: translate(50%, 50%);
-
         }
       }
-
     }
   }
 }

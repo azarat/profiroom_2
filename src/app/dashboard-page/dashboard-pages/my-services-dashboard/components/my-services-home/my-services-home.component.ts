@@ -23,7 +23,7 @@ export class MyServicesHomeComponent implements OnInit {
   translatedPath: any = this.localize.translateRoute('/dashboard/my-services/create');
   serviceToDeleteId: string = null;
 
-  currentTab = 1;
+  currentTab = 0;
   tabs = tabsConst;
 
   @ViewChild('scrolledBlock', {static: false}) el: ElementRef;
@@ -43,7 +43,7 @@ export class MyServicesHomeComponent implements OnInit {
   // ngOnDestroy() {
   // }
   setCurrentTab(tab: any) {
-    this.currentTab = tab.index + 1;
+    this.currentTab = tab.index;
 
     this.el.nativeElement.scroll(0, 0)
   }
@@ -58,6 +58,7 @@ export class MyServicesHomeComponent implements OnInit {
       .subscribe((res: any) => {
         if (res.userOffers.length > 0) {
           this.userServices = plainToClass(UserServiceModel, this.deleteEmptyService(res.userOffers).slice().reverse());
+          // console.log( this.userServices);
         } else {
           this.userServices = [];
         }
@@ -65,6 +66,7 @@ export class MyServicesHomeComponent implements OnInit {
   }
 
   deleteService(id: string) {
+    this.menuOpen = null;
     this.serviceToDeleteId = id;
   }
   cencel() {
@@ -76,6 +78,7 @@ export class MyServicesHomeComponent implements OnInit {
       .subscribe((res: any) => {
         if (res.status === 'ok') {
           this.userServices = this.userServices.filter(el => el.id !== this.serviceToDeleteId);
+          this.serviceToDeleteId = null;
         }
       });
   }
@@ -125,17 +128,18 @@ export class MyServicesHomeComponent implements OnInit {
         this.userOfferService.deleteService(el.id)
           .subscribe(res => {
             return;
-          })
+          });
       }
     });
     return arr.filter(el => el.title !== null);
   }
 
 
-  hideMenu(i) {
-    if ( this.menuOpen === i ) {
-      this.menuOpen = null;
-    }
+  hideMenu(e: Event, i) {
+    console.log('event', e);
+    // if ( this.menuOpen === i ) {
+    //   this.menuOpen = null;
+    // }
 
   }
 

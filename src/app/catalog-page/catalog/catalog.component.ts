@@ -48,14 +48,11 @@ export class CatalogComponent implements OnInit {
     // --------------check queryParams value---------------
     this._route.queryParams.subscribe(qParams => {
       if (qParams && (Object.keys(qParams).length === 0)) {
-        // console.log('queryParams is empty');
         this.catalogFilters.current_page = 1;
-        console.log(this.catalogFilters);
         this.GetOffersService.setFilters(this.catalogFilters);
         this.GetOffersService.getOffers(this.catalogFilters);
       } else {
         this.GetOffersService.getOffers(qParams);
-        // console.log(qParams);
 
       }
     });
@@ -85,7 +82,6 @@ export class CatalogComponent implements OnInit {
     for (let i = a - 1; i < b; i++ ) {
       this.pagesArr.push(i);
     }
-    // console.log(this.pagesArr);
   }
 
 }

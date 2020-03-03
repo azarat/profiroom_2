@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?33wkh3');
-  src:  url('fonts/icomoon.eot?33wkh3#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?33wkh3') format('truetype'),
-    url('fonts/icomoon.woff?33wkh3') format('woff'),
-    url('fonts/icomoon.svg?33wkh3#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?4uislh');
+  src:  url('fonts/icomoon.eot?4uislh#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?4uislh') format('truetype'),
+    url('fonts/icomoon.woff?4uislh') format('woff'),
+    url('fonts/icomoon.svg?4uislh#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,6 +25,26 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-projects1:before {
+  content: "\e905";
+  color: #bfc5d1;
+}
+.icon-my-services:before {
+  content: "\e90a";
+  color: #fff;
+}
+.icon-finance:before {
+  content: "\e90c";
+  color: #fff;
+}
+.icon-arbitr:before {
+  content: "\e909";
+  color: #fff;
+}
+.icon-users:before {
+  content: "\e90b";
+  color: #fff;
+}
 .icon-Mask:before {
   content: "\e915";
 }
@@ -48,57 +68,9 @@
   content: "\e904";
   color: #bfc5d1;
 }
-.icon-finance .path1:before {
-  content: "\e905";
-  color: rgb(191, 197, 209);
-}
-.icon-finance .path2:before {
-  content: "\e906";
-  margin-left: -1em;
-  color: rgb(191, 197, 209);
-}
-.icon-finance .path3:before {
-  content: "\e907";
-  margin-left: -1em;
-  color: rgb(191, 197, 209);
-}
-.icon-finance .path4:before {
-  content: "\e908";
-  margin-left: -1em;
-  color: rgb(191, 197, 209);
-}
-.icon-finance .path5:before {
-  content: "\e909";
-  margin-left: -1em;
-  color: rgb(191, 197, 209);
-}
-.icon-finance .path6:before {
-  content: "\e90a";
-  margin-left: -1em;
-  color: rgb(255, 255, 255);
-}
-.icon-finance .path7:before {
-  content: "\e90b";
-  margin-left: -1em;
-  color: rgb(191, 197, 209);
-}
-.icon-finance .path8:before {
-  content: "\e90c";
-  margin-left: -1em;
-  color: rgb(191, 197, 209);
-}
-.icon-finance .path9:before {
-  content: "\e90d";
-  margin-left: -1em;
-  color: rgb(191, 197, 209);
-}
 .icon-message:before {
   content: "\e90e";
   color: #fff;
-}
-.icon-projects:before {
-  content: "\e90f";
-  color: #bfc5d1;
 }
 .icon-dashboard:before {
   content: "\e903";
@@ -111,6 +83,10 @@
 .icon-upload:before {
   content: "\e902";
   color: #bfc5d1;
+}
+.icon-compleated:before {
+  content: "\e906";
+  color: #fff;
 }
 .icon-done:before {
   content: "\e901";

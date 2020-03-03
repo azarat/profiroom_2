@@ -22,6 +22,16 @@ import { EmojiComponent } from './components/emoji/emoji.component';
 import { UploadFileComponent } from './components/upload-file/upload-file.component';
 import { FileSizeModule } from '../shared/pipes/file-size/file-size.module';
 import { FileTypeModule } from '../shared/pipes/file-type/file-type.module';
+import { ProjectsFilterComponent } from './components/collocutors-list/projects-filter/projects-filter.component';
+import { ProjectBreefFillingComponent } from './components/project-breef-filling/project-breef-filling.component';
+import { ChatErrorsComponent } from './components/chat-errors/chat-errors.component';
+import { BreefMessageShowingComponent } from './components/breef-message-showing/breef-message-showing.component';
+import { ThousandSeparatorModule } from '../shared/pipes/thousand-separator/thousand-separator.module';
+import { SystemMessagesInDealsComponent } from './components/system-messages-in-deals/system-messages-in-deals.component';
+import { LocalizeRouterModule } from 'localize-router';
+
+import { RouterModule } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 
@@ -37,12 +47,18 @@ import { FileTypeModule } from '../shared/pipes/file-type/file-type.module';
     ShowUploadedFilesComponent,
     EmojiComponent,
     UploadFileComponent,
+    ProjectsFilterComponent,
+    ProjectBreefFillingComponent,
+    ChatErrorsComponent,
+    BreefMessageShowingComponent,
+    SystemMessagesInDealsComponent,
 
     // Directives
 
   ],
   imports: [
     CommonModule,
+    RouterModule,
     StarRaitingModule,
     PickerModule,
     ClickOutsideModule,
@@ -51,7 +67,14 @@ import { FileTypeModule } from '../shared/pipes/file-type/file-type.module';
 
     DataFormatModule,
     FileSizeModule,
-    FileTypeModule
+    FileTypeModule,
+
+    // pipes
+    ThousandSeparatorModule,
+
+    // localize
+    LocalizeRouterModule,
+    TranslateModule
 
   ],
   exports: [ChatComponent],

@@ -27,22 +27,22 @@
               </i>Создать услугу</button><br><br>
           </div>
           <ng-container *ngFor="let userService of userServices; let i = index">
-            <ng-container *ngIf="currentTab === 0|| userService.published && currentTab === 1 || userService.canPublish && currentTab === 2 || !userService.canPublish && currentTab === 3 ">
-              <div class="item">
-                <div class="service-photo">
-                  <img [src]="'https://www.thecubetest.site/Backend/storage/app/' + userService.mainImage" alt="offer-img">
+            <ng-container *ngIf="currentTab === 0 || userService.published && currentTab === 1 || userService.canPublish && currentTab === 2 || !userService.canPublish && currentTab === 3 ">
+              <div class="item" >
+                <div class="service-photo" >
+                  <img [src]="userService.mainImage" alt="offer-img">
                 </div>
                 <div class="offer-name">
                   <h6>
                     {{ userService.title }}
                   </h6>
                   <div class="item-menu" >
-                    <button class="show-menu" (clickOutside)="hideMenu(i)" (click)="showMenu(i)"><i class="material-icons">
+                    <button class="show-menu"  (click)="showMenu(i)"><i class="material-icons">
                         more_vert
                       </i></button>
                     <div class="menu" *ngIf="menuOpen === i">
-                      <ul>
-                        <li (click)="openOffer(userService.id)"><i class="material-icons">
+                      <ul >
+                        <li (click)="openOffer(userService.id)" (clickOutside)="hideMenu($event, i)"><i class="material-icons">
                             create
                           </i>Редактировать</li>
                         <li>

@@ -9,6 +9,7 @@ import { UserModel } from '../models/user.model';
 import { LocalStorageService } from '../core/services/local-storage.service';
 import { SocketService } from '../chat/services/socket.service';
 import { Router } from '@angular/router';
+import { UserStateService } from './services/user-state.service';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -29,22 +30,16 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
     private userService: UserService,
     private socetService: SocketService,
     private localStorageService: LocalStorageService,
-    private router: Router
+    private router: Router,
+    private userStatseService: UserStateService
   ) {
+
   }
 
   ngOnInit() {
     this.notifyShow();
-
-    this.userService.getDashboardRes()
-      .subscribe((res: any) => {
-        this.user = plainToClass(UserModel, res[0]);
-        this.authService.saveUserId(this.user.id);
-        this.localStorageService.setItem('userImage', this.user.avatar);
-      });
-
+    this.defineCurrentUser();
     this.socetService.connect();
-
     this.socetService.checkNotifications()
       .subscribe(res => {
         this.newMessage = true;
@@ -54,6 +49,16 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
 
+  }
+
+  private defineCurrentUser() {
+    this.userService.getDashboardRes()
+      .subscribe((res: any) => {
+        this.user = plainToClass(UserModel, res[0]);
+        this.userStatseService.setUserState(this.user.role_id);
+        this.authService.saveUserId(this.user.id);
+        this.localStorageService.setItem('userImage', this.user.avatar);
+      });
   }
 
   userExit = () => {
@@ -70,6 +75,17 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
       this.newMessage = null;
     } else if (link === 'chat') {
       this.newMessage = null;
+    }
+  }
+
+  // tslint:disable-next-line: variable-name
+  public changeUserType(_userType?: number) {
+    if (this.user.role_id !== _userType) {
+      this.userStatseService.toggleUserState()
+        .subscribe((res: any) => {
+          this.user.role_id = res.newRole;
+          this.userStatseService.setUserState(res.newRole);
+        });
     }
   }
 

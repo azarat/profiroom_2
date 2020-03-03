@@ -1,36 +1,49 @@
-<div class="wrapper" *ngIf="collocutors && chatType" [ngClass]="{ projects: chatType === 'projects' }">
+<div class="wrapper" *ngIf="collocutors && chatType" [ngClass]="{ projects: chatType === 'work' }">
   <section class="line">
     Все сообщения <span>({{ collocutors.length }})</span>
   </section>
   <section class="collocutors-wrap">
-    <div class="collocutors-serch" *ngIf="chatType !== 'projects'">
+    <!-- Serch n classic chat -->
+    <!-- <div class="collocutors-serch" *ngIf="chatType !== 'work'">
       <div class="search">
         <input type="text" name="" id="" placeholder="Найти">
       </div>
 
-    </div>
-    <div class="filters" *ngIf="chatType == 'projects'">
+    </div> -->
+    <!-- Filters component for work chat -->
+    <app-projects-filter *ngIf="chatType == 'work'" (setCurrentType)="setCurrentType($event)"></app-projects-filter>
+    <!-- List of ollocutors  -->
+    <div class="collocutors-list" [ngClass]="{ projects: chatType === 'work' }">
+      <ng-container *ngFor="let collocutor of collocutors, let i=index">
+        <div class="collocutor" *ngIf="!(collocutor.freelanser_id == userId && collocutor.breef == 0)"
+          (click)="openChat(collocutor)" [ngClass]="{'unread': userId === +collocutor.unread}">
+          <span *ngIf="chatType == 'work'" class="status"></span>
+           <p class="date" *ngIf="collocutor.message.length !== 0">
+          {{ collocutor.message[0].dateTime | dateFormatPipe: 'dd.MM HH:mm' }}
+          </p>
 
-    </div>
-    <div class="collocutors-list" [ngClass]="{ projects: chatType === 'projects' }">
-      <div class="collocutor" *ngFor="let collocutor of collocutors, let i=index" (click)="openChat(collocutor)" [ngClass]="{'unread': userId === +collocutor.unread}">
-        <span *ngIf="chatType == 'projects'" class="status"></span>
-        <p class="date" *ngIf="collocutor.message.length !== 0" >{{ collocutor.message[0].dateTime | dateFormatPipe }}</p>
-        <div class="message-preview">
-          <div class="photo">
-            <img [src]="collocutor.collocutorAva" alt="collocutor-photo" />
-            <span class="status"></span>
-          </div>
-          <div class="message-information">
-            <p class="collocutor-name">{{ collocutor.collocutorName }} {{ collocutor.collocutorSurname }} </p>
-            <p class="collocutor-message" *ngIf="collocutors[i].message.length !== 0" >
-              <span *ngIf="userId == collocutor.message[0].author">Вы: </span>
-             <span *ngIf="collocutor.message[0].type === 'string'">{{ collocutor.message[0].message }}</span>
-             <span *ngIf="collocutor.message[0].type === 'file'">Файл</span>
-            </p>
+
+          <p class="date" *ngIf="collocutor.message.length === 0">
+          {{ collocutor.created_at | dateFormatPipe: 'dd.MM HH:mm' }}
+          </p>
+
+          <div class="message-preview">
+            <div class="photo">
+              <img [src]="collocutor.collocutorAva" alt="collocutor-photo" />
+              <span class="status"></span>
+            </div>
+            <div class="message-information">
+              <p class="collocutor-name">{{ collocutor.collocutorName }} {{ collocutor.collocutorSurname }} </p>
+              <p class="collocutor-message" *ngIf="collocutors[i].message.length !== 0 && chatType !== 'work'">
+                <span *ngIf="userId == collocutor.message[0].author">Вы: </span>
+                <span *ngIf="collocutor.message[0].type === 'string'">{{ collocutor.message[0].message }}</span>
+                <span *ngIf="collocutor.message[0].type === 'file'">Файл</span>
+              </p>
+              <p *ngIf="chatType == 'work'"> {{ collocutor.offers_title }}</p>
+            </div>
           </div>
         </div>
-      </div>
+      </ng-container>
     </div>
   </section>
 </div>

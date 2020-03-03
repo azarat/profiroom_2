@@ -33,13 +33,6 @@ export class FilterComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-
-    // this._getOffersService.filterVaraibles.subscribe(data => {
-    //   this.catalogFilters = data;
-
-    //   console.log('FILTERS', this.catalogFilters);
-    // });
-    // console.log(this.catalogFilters);
   }
 
 

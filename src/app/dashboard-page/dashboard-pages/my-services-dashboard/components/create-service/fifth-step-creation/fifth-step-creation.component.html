@@ -8,8 +8,6 @@
       [ngClass]="{ hiddenItem: showedItem !== i+1 }">
       <form #breef="ngForm">
         <div class="el">
-
-
           <h6>{{ i+1 }}. <ng-container *ngIf="userService.offerBreef[i].breefTitle">
               {{ userService.offerBreef[i].breefTitle.substr(0, 55) }}</ng-container> <span
               *ngIf="userService.offerBreef[i].breefTitle && userService.offerBreef[i].breefTitle.length > 54">...</span>
@@ -35,14 +33,14 @@
             <div class="options service-selects">
               <label for="answer-type">Тип ответа</label>
               <mat-form-field appearance="outline">
-                <mat-select id="answer-type-{{i}}" (ngModelChange)="onFiltersChange($event, i)" name="breefAnswerType{{i))" required
-            [(ngModel)]="userService.offerBreef[i].breefAnswerType">
+                <mat-select id="answer-type-{{i}}" name="breefAnswerType{{i))" required
+            [(ngModel)]="userService.offerBreef[i].breefAnswerType" (ngModelChange)="onFiltersChange($event, i)">
             <mat-option [value]="type.value" *ngFor="let type of answerTypes"> {{ type.name }}</mat-option>
-          </mat-select>
-        </mat-form-field>
+                </mat-select>
+              </mat-form-field>
 
-        <input type=" checkbox" [(ngModel)]="userService.offerBreef[i].breefAnwerRequired" class="tgl tgl-classic"
-                  name="requered-{{i}}" checkbox="" id="required-{{i}}">
+              <input type="checkbox" [(ngModel)]="userService.offerBreef[i].breefAnwerRequired"
+                  class="tgl tgl-classic" name="requered-{{i}}" id="required-{{i}}">
                   <label for="required-{{i}}"></label>
                   <span>Ответ обязательный</span>
             </div>
@@ -88,7 +86,6 @@
             </div>
           </div>
         </div>
-        <!--  -->
 
       </form>
     </div>
