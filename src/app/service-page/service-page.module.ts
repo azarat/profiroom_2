@@ -18,6 +18,8 @@ import { ServicePageCompareTableComponent } from './components/service-page-comp
 import { ServicePageEarlierViewedComponent } from './components/service-page-earlier-viewed/service-page-earlier-viewed.component';
 import { ServicePageCommentsComponent } from './components/service-page-comments/service-page-comments.component';
 import { MatCheckboxModule } from '@angular/material';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ServicePageCheckoutComponent } from './components/service-page-checkout/service-page-checkout.component';
 
 const routes: Routes = [
   {
@@ -37,6 +39,7 @@ const routes: Routes = [
     ServicePageCompareTableComponent,
     ServicePageEarlierViewedComponent,
     ServicePageCommentsComponent,
+    ServicePageCheckoutComponent,
     // PackagesComponent
   ],
   imports: [
@@ -48,6 +51,8 @@ const routes: Routes = [
     NgxGalleryModule,
     MatExpansionModule,
     MatCheckboxModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     ServicePageComponent,

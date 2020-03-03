@@ -158,7 +158,7 @@ export interface OfferDataInterface {
     price?: number;
     published?: number;
   };
-  extra_features?: {
+  extra_features?: [{
     id?: number;
     offers_id?: number;
     title?: string;
@@ -166,5 +166,5 @@ export interface OfferDataInterface {
     count_days?: number;
     price?: number;
     published?: number;
-  };
+  }];
 }

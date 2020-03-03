@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { OfferDataInterface } from 'src/app/shared/interfaces/offer-date.interface';
 import { ServicePageService } from '../../services/service-page.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { ExtraFeaturesList } from 'src/app/models/service-page/service-page.model';
 
 @Component({
   selector: 'app-service-page-packages',
@@ -10,6 +12,8 @@ import { ServicePageService } from '../../services/service-page.service';
 export class ServicePagePackagesComponent implements OnInit {
 
   public openFeatures = false;
+  public extraFeaturesForm: FormGroup;
+  extraFeatures: any;
 
   @Input() offerData: OfferDataInterface;
   @Input() offerId;
@@ -34,11 +38,25 @@ export class ServicePagePackagesComponent implements OnInit {
 
 
   constructor(
-    private servicePackageService: ServicePageService
+    private servicePackageService: ServicePageService,
+    private fb: FormBuilder
   ) { }
 
   ngOnInit() {
-    console.log(this.offerData.extra_terms)
+    // console.log(this.offerData.extra_terms);
+    this.initForm();
+  }
+
+  initForm() {
+    this.extraFeaturesForm = this.fb.group({
+      extraTerms: [''],
+      extraСhanges: [''],
+      extraCommercial: [''],
+    });
+    this.offerData.extra_features.forEach((el: any) => {
+      this.extraFeaturesForm.addControl(el.title, this.fb.control(null));
+      console.log(this.extraFeaturesForm);
+    });
   }
 
   openTab = (i: number) => {
@@ -49,6 +67,7 @@ export class ServicePagePackagesComponent implements OnInit {
     this.openFeatures = !this.openFeatures;
   }
 
+  // tslint:disable-next-line: variable-name
   public orderService(_package: string) {
     this.servicePackageService.createDeal(this.offerId, _package);
   }

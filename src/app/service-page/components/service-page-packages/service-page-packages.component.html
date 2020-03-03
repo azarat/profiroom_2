@@ -1,14 +1,13 @@
 <div class="tabs">
   <div class="tabs-top">
-    <ng-container  *ngIf="offerData.allPackages">
+    <ng-container *ngIf="offerData.allPackages">
       <div *ngFor="let tab of tabs; let i = index" class="tab" (click)="openTab(i)"
         [ngClass]="{'active': currentTab === i}">
         {{ tab.name }}
       </div>
     </ng-container>
-    <ng-container  *ngIf="!offerData.allPackages">
-      <div *ngFor="let tab of tabs; let i = index" class="tab"
-        [ngClass]="{'active': i === 0, 'disabled': i !== 0}">
+    <ng-container *ngIf="!offerData.allPackages">
+      <div *ngFor="let tab of tabs; let i = index" class="tab" [ngClass]="{'active': i === 0, 'disabled': i !== 0}">
         {{ tab.name }}
       </div>
     </ng-container>
@@ -37,27 +36,31 @@
             </ng-container>
           </ul>
         </div>
-        <form class="extra-features">
-          <div class="show-extra-features" (click)="showFeatures()" [ngClass]="{open: openFeatures}">выбрать Дополнительные опции</div>
-          <ul class="extra-features__list"  [ngClass]="{open: openFeatures}">
+        <form class="extra-features" [formGroup]="extraFeaturesForm">
+          <div class="show-extra-features" (click)="showFeatures()" [ngClass]="{open: openFeatures}">выбрать
+            Дополнительные опции</div>
+          <ul class="extra-features__list" [ngClass]="{open: openFeatures}">
             <ng-container *ngFor="let extra_term of offerData.extra_terms">
               <div class="extra-features__item" *ngIf="extra_term.package == package">
-                <mat-checkbox class="extra-features__checkbox"></mat-checkbox>
+                <mat-checkbox class="extra-features__checkbox" formControlName="extraTerms">
+                </mat-checkbox>
                 <div class="extra-features__text">
                   <span class="extra-features__title">Сжатые сроки</span>
                   <span class="extra-features__price">{{extra_term.price}} UAH</span>
                 </div>
               </div>
-           </ng-container>
-           <div class="extra-features__item" *ngIf="offerData.extra_changes">
-              <mat-checkbox class="extra-features__checkbox"></mat-checkbox>
+            </ng-container>
+            <div class="extra-features__item" *ngIf="offerData.extra_changes">
+              <mat-checkbox class="extra-features__checkbox" formControlName="extraСhanges">
+              </mat-checkbox>
               <div class="extra-features__text">
                 <span class="extra-features__title">Дополнительные правки</span>
                 <span class="extra-features__price">{{offerData.extra_changes.price}} UAH</span>
               </div>
             </div>
-           <div class="extra-features__item" *ngIf="offerData.extra_commercial">
-              <mat-checkbox class="extra-features__checkbox"></mat-checkbox>
+            <div class="extra-features__item" *ngIf="offerData.extra_commercial">
+              <mat-checkbox class="extra-features__checkbox" formControlName="extraCommercial">
+              </mat-checkbox>
               <div class="extra-features__text">
                 <span class="extra-features__title">Коммерческое использование</span>
                 <span class="extra-features__price">{{offerData.extra_commercial.price}} UAH</span>
@@ -65,7 +68,8 @@
             </div>
             <ng-container *ngFor="let extra_feature of offerData.extra_features">
               <div class="extra-features__item" *ngIf="extra_feature.published">
-                <mat-checkbox class="extra-features__checkbox"></mat-checkbox>
+                <mat-checkbox class="extra-features__checkbox" [formControlName]="extra_feature.title">
+                </mat-checkbox>
                 <div class="extra-features__text">
                   <span class="extra-features__title">{{extra_feature.title}}</span>
                   <span class="extra-features__price">{{extra_feature.price}} UAH</span>
@@ -83,14 +87,14 @@
 
   </div>
 
-  <div class="tabContentContainer" *ngIf="!offerData.allPackages">
+  <!-- <div class="tabContentContainer" *ngIf="!offerData.allPackages">
 
-    <ng-container >
+    <ng-container>
       <div class="tabContent">
         <div class="main-info" *ngIf="offerData">
           <div class="title-price">
             <h4>{{offerData[packages[0]].title }}</h4>
-            <!-- <span>{{ offerData[packages[0]].price }}</span> -->
+            <span>{{ offerData[packages[0]].price }}</span>
           </div>
 
           <p>{{offerData[packages[0]].description }}</p>
@@ -106,9 +110,10 @@
             </ng-container>
           </ul>
         </div>
-        <form class="extra-features">
-          <div class="show-extra-features" (click)="showFeatures()" [ngClass]="{open: openFeatures}">выбрать Дополнительные опции</div>
-          <ul class="extra-features__list"  [ngClass]="{open: openFeatures}">
+        <form class="extra-features" [formGroup]="extraFeaturesForm">
+          <div class="show-extra-features" (click)="showFeatures()" [ngClass]="{open: openFeatures}">выбрать
+            Дополнительные опции</div>
+          <ul class="extra-features__list" [ngClass]="{open: openFeatures}">
             <div class="extra-features__item" *ngFor="let extra_feature of offerData.extra_features">
               <mat-checkbox class="extra-features__checkbox"></mat-checkbox>
               <div class="extra-features__text">
@@ -135,10 +140,8 @@
       </div>
     </ng-container>
 
-  </div>
-  <!-- <div class="btn-options additional">
-    <span>Дополнительные опции</span>
   </div> -->
+
   <div class="btn-options compare">
     <span>Cравнить пакеты услуг</span>
   </div>
