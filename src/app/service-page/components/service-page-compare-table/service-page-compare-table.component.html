@@ -2,30 +2,32 @@
   <h4 class="section-title">
     Сравните и выберите вариант пакета услуг
   </h4>
-  <div class="table">
+  <div class="table" *ngIf="offerData">
     <div class="table-titles">
       <div class="table-cell"></div>
-      <div class="table-cell">Базовый</div>
-      <div class="table-cell">Cандарт</div>
-      <div class="table-cell">Премиум</div>
+      <div class="table-cell" >Базовый</div>
+      <div class="table-cell" *ngIf="offerData.allPackages">Cандарт</div>
+      <div class="table-cell" *ngIf="offerData.allPackages">Премиум</div>
     </div>
-    <div class="table-item" *ngFor="let service of services">
-      <div class="table-cell title-cell">{{service.serviceName}}</div>
-      <ng-container *ngFor="let package of packages">
-        <div class="table-cell" [ngClass] = "{'centerMode extra-options': service.centerMode}">{{ offerData[package][service.serviceValue] }}{{ service.extraWord}}</div>
-      </ng-container>
 
-    </div>
-    <div class="table-item" *ngFor="let option of offerData.main_options">
-      <div class="table-cell title-cell extra-options">{{option.title}}</div>
-      <ng-container *ngFor="let package of packages">
-        <div class="table-cell extra-options">
-          <span class="check-icon activeOption" *ngIf="option[package]"></span>
-          <span class="check-icon inactiveOption" *ngIf="!option[package]"></span>
-        </div>
-      </ng-container>
-    </div>
-    <div class="table-item">
+
+    <ng-container *ngIf="offerData.allPackages">
+      <div class="table-item" *ngFor="let service of services">
+        <div class="table-cell title-cell">{{service.serviceName}}</div>
+        <ng-container *ngFor="let package of packages">
+          <div class="table-cell" [ngClass] = "{'centerMode extra-options': service.centerMode}">{{ offerData[package][service.serviceValue] }}{{ service.extraWord}}</div>
+        </ng-container>
+      </div>
+      <div class="table-item" *ngFor="let option of offerData.main_options">
+        <div class="table-cell title-cell extra-options">{{option.title}}</div>
+        <ng-container *ngFor="let package of packages">
+          <div class="table-cell extra-options">
+            <span class="check-icon activeOption" *ngIf="option[package]"></span>
+            <span class="check-icon inactiveOption" *ngIf="!option[package]"></span>
+          </div>
+        </ng-container>
+      </div>
+      <div class="table-item">
         <div class="table-cell title-cell">{{priceTitle[0].priceName}}</div>
         <ng-container *ngFor="let package of packages">
           <div class="table-cell centerMode">
@@ -34,22 +36,34 @@
           </div>
         </ng-container>
       </div>
-    <!-- <div class="table-item">
-      <div class="table-cell title-cell">Название услуги</div>
-      <div class="table-cell">Дизайн сайта</div>
-      <div class="table-cell">Дизайн сайта + адапт</div>
-      <div class="table-cell">Логотип+ дизайн сайта
-        + адапт</div>
-    </div> -->
-    <!-- <div class="table-item">
-      <div class="table-cell title-cell">Краткое описание</div>
-      <div class="table-cell">Сайты содержат различную статику, которая как и HTML-файл не генерируется на лету.
-        Чаще всего это картинки, CSS-файлы, JS-скрипты, но могут быть и любые другие файлы: mp3, mov, csv, pdf.
+    </ng-container>
+
+    <ng-container *ngIf="!offerData.allPackages">
+      <div class="table-item" *ngFor="let service of services">
+        <div class="table-cell title-cell">{{service.serviceName}}</div>
+        <ng-container>
+          <div class="table-cell" [ngClass] = "{'centerMode extra-options': service.centerMode}">{{ offerData.basic[service.serviceValue] }}{{ service.extraWord}}</div>
+        </ng-container>
       </div>
-      <div class="table-cell">Сайты содержат различную статику, которая как и HTML-файл не генерируется на лету.
-        Чаще всего это картинки, CSS-файлы.</div>
-      <div class="table-cell">Сайты содержат различную статику, которая как и HTML-файл не генерируется на лету.
+      <div class="table-item" *ngFor="let option of offerData.main_options">
+        <div class="table-cell title-cell extra-options">{{option.title}}</div>
+        <ng-container>
+          <div class="table-cell extra-options">
+            <span class="check-icon activeOption" *ngIf="option.basic"></span>
+            <span class="check-icon inactiveOption" *ngIf="!option.basic"></span>
+          </div>
+        </ng-container>
       </div>
-    </div> -->
+      <div class="table-item">
+        <div class="table-cell title-cell">{{priceTitle[0].priceName}}</div>
+        <ng-container>
+          <div class="table-cell centerMode">
+            {{ offerData.basic.price }} ₴
+            <div class="btn-buy-package">выбрать</div>
+          </div>
+        </ng-container>
+      </div>
+    </ng-container>
+
   </div>
 </section>

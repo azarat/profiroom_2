@@ -5,6 +5,7 @@ export interface OfferDataInterface {
   rating?: string;
   user_id?: number;
   created_at?: string;
+  allPackages?: number;
   user?: {
     id?: number;
     country?: string;
@@ -89,27 +90,27 @@ export interface OfferDataInterface {
     }];
   }];
   negative_comments_count?: number;
-  basic?: [{
+  basic?: {
     title?: string;
     term?: number;
     price?: number;
     description?: string;
     changes?: number;
-  }];
-  advanced?: [{
+  };
+  advanced?: {
     title?: string;
     term?: number;
     price?: number;
     description?: string;
     changes?: number;
-  }];
-  premium?: [{
+  };
+  premium?: {
     title?: string;
     term?: number;
     price?: number;
     description?: string;
     changes?: number;
-  }];
+  };
   main_options?: [{
     offers_id?: number;
     basic?: number;
