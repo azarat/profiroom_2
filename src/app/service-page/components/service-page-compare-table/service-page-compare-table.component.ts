@@ -48,6 +48,8 @@ export class ServicePageCompareTableComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log("start");
+    console.log(this.offerData.main_options);
   }
 
 }
