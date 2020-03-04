@@ -26,6 +26,8 @@ export class ServicePageComponent implements OnInit {
   public offerId;
   sticky = false;
   elementPosition: any;
+  public step2 = false;
+  public chousenPackage: string;
 
   @ViewChild('stickyMenu', { static: false }) menuElement: ElementRef;
 
@@ -44,6 +46,7 @@ export class ServicePageComponent implements OnInit {
       .pipe(
         filter((res: any) => !!res),
       )
+      // tslint:disable-next-line: variable-name
       .subscribe(_offerId => {
         this.getOfferData(_offerId);
         this.getSimilarOffers(_offerId);
@@ -116,5 +119,10 @@ export class ServicePageComponent implements OnInit {
     this._scrollToService.scrollTo(config);
   }
 
+  openCheckout(packageForm) {
+    console.log(packageForm);
+    // this.chousenPackage = packageType;
+    this.step2 = true;
+  }
 
 }

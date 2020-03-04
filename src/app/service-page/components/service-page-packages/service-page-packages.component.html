@@ -66,6 +66,7 @@
                 <span class="extra-features__price">{{offerData.extra_commercial.price}} UAH</span>
               </div>
             </div>
+
             <ng-container *ngFor="let extra_feature of offerData.extra_features">
               <div class="extra-features__item" *ngIf="extra_feature.published">
                 <mat-checkbox class="extra-features__checkbox" [formControlName]="extra_feature.title">
@@ -79,7 +80,7 @@
 
           </ul>
         </form>
-        <div class="btn-order-service">
+        <div class="btn-order-service 2" (click)="goCheckout(package)">
           Заказать услугу <span>(за {{ offerData[package].price }} ₴)</span>
         </div>
       </div>

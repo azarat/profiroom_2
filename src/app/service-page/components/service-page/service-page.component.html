@@ -1,7 +1,7 @@
 <app-main-header></app-main-header>
 <app-categories-header></app-categories-header>
 
-<nav class="navigation_page" #stickyMenu [class.sticky]="sticky">
+<nav class="navigation_page" #stickyMenu [class.sticky]="sticky" *ngIf='!step2'>
   <!-- <nav class="navigation_page" #stickyMenu [ngClass] = "{'sticky': sticky}"> -->
   <div class="wrapper">
     <ul>
@@ -18,7 +18,7 @@
 
 <div class="wrapper">
 
-  <div class="bread-crumbs">
+  <div class="bread-crumbs" *ngIf='!step2'>
     <ul *ngIf="offerData">
       <li><a [routerLink]="['/'] | localize">Главная</a></li>
       <li><a [routerLink]="['/catalog', offerData.category] | localize">{{ offerData.category }}</a></li>
@@ -26,7 +26,7 @@
     </ul>
   </div>
 
-  <div class="main-block">
+  <div class="main-block" *ngIf='!step2'>
     <div class="description" *ngIf="offerData">
       <h2 class="description-name">{{ offerData.title }}</h2>
 
@@ -115,13 +115,14 @@
     </div>
     <div class="choose-packet">
       <div class="runing-block">
-        <app-service-page-packages [offerData]="offerData" *ngIf="offerData" [offerId]="offerId">
+        <app-service-page-packages [offerData]="offerData" [offerId]="offerId" *ngIf="offerData" (checkoutState)="openCheckout($event)">
         </app-service-page-packages>
       </div>
     </div>
     <app-service-page-another-services [offerData]="offerData" *ngIf="offerData"></app-service-page-another-services>
     <!-- <app-service-page-earlier-viewed [similarOffers]="similarOffers" *ngIf="similarOffers"></app-service-page-earlier-viewed> -->
-
-    <app-service-page-checkout></app-service-page-checkout>
+  </div>
+  <div class="checkout-block" *ngIf='step2'>
+    <app-service-page-checkout [offerData]="offerData" [chousenPackage]="chousenPackage"></app-service-page-checkout>
   </div>
 </div>

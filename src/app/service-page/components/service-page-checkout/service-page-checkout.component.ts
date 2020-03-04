@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { OfferDataInterface } from 'src/app/shared/interfaces/offer-date.interface';
 
 @Component({
   selector: 'app-service-page-checkout',
@@ -6,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./service-page-checkout.component.scss']
 })
 export class ServicePageCheckoutComponent implements OnInit {
-
+  @Input() offerData: OfferDataInterface;
+  @Input() chousenPackage: string;
   constructor() { }
 
   ngOnInit() {
