@@ -19,12 +19,14 @@ import { UserStateService } from './services/user-state.service';
 export class DashboardPageComponent implements OnInit, AfterViewInit {
 
   color = 'accent';
-  checked = false;
-  disabled = false;
-  dashboardMenu = dashboardMenuConst;
-  user: UserModel;
-  socket: string = null;
+  // public checked = false;
+  // public disabled = false;
+  public dashboardMenu = dashboardMenuConst;
+  public user: UserModel;
+  private socket: string = null;
   public newMessage: boolean = null;
+  public newWorkMessage: boolean = null;
+
   constructor(
     private authService: AuthentificationService,
     private userService: UserService,
@@ -40,10 +42,7 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
     this.notifyShow();
     this.defineCurrentUser();
     this.socetService.connect();
-    this.socetService.checkNotifications()
-      .subscribe(res => {
-        this.newMessage = true;
-      });
+    this.checkNotifications();
 
   }
 
@@ -58,6 +57,7 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
         this.userStatseService.setUserState(this.user.role_id);
         this.authService.saveUserId(this.user.id);
         this.localStorageService.setItem('userImage', this.user.avatar);
+        this.localStorageService.setItem('userRole', this.user.role_id);
       });
   }
 
@@ -71,11 +71,25 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
 
   notifyShow(link?: string) {
     const url = this.router.url;
-    if (url.includes('chat-room')) {
+
+
+
+    if (url.includes('chat-room') || link === 'chat') {
       this.newMessage = null;
-    } else if (link === 'chat') {
-      this.newMessage = null;
+    } else if (url.includes('projects') || link === 'projects') {
+      this.newWorkMessage = null;
     }
+  }
+  private checkNotifications() {
+    this.socetService.checkNotifications()
+      .subscribe((res: any) => {
+        console.log(res);
+        if (res.chatType === 'work') {
+          this.newWorkMessage = true;
+        } else if (res.chatType === 'classic') {
+          this.newMessage = true;
+        }
+      });
   }
 
   // tslint:disable-next-line: variable-name
@@ -84,6 +98,7 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
       this.userStatseService.toggleUserState()
         .subscribe((res: any) => {
           this.user.role_id = res.newRole;
+          this.localStorageService.setItem('userRole', res.newRole);
           this.userStatseService.setUserState(res.newRole);
         });
     }

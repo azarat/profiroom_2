@@ -169,6 +169,21 @@
       background: #7DDFC3;
       box-shadow: -10px 9px 21px rgba(128, 152, 213, 0.15);
       border-radius: 4px;
+      &.arbitr {
+        background: #ff9090;
+      }
+      &.archived {
+        background: #bec8da;
+      }
+      &.inProgress {
+        background: #a5affb;
+      }
+      &.sentBreef {
+        background: #7ddfc3;
+      }
+      &.new {
+        background: #fb9c6e;
+      }
     }
   }
 }

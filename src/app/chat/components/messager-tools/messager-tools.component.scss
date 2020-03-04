@@ -168,16 +168,18 @@
   .history {
     padding: 25px 20px;
     height: 100%;
-    overflow: auto;
+    box-sizing: border-box;
+    overflow: hidden;
+
     .history-title {
       font-family: Source Sans Pro, sans-serif;
       font-style: normal;
       font-weight: normal;
       font-size: 14px;
-      line-height: 5px;
       letter-spacing: 0.15px;
       text-transform: uppercase;
       color: #323c47;
+      margin: 0 0 36px;
     }
     .logo-icon {
       width: 33px;
@@ -187,6 +189,10 @@
         height: inherit;
       }
     }
+    .history-items {
+      overflow: auto;
+      height: 100%;
+     }
     .history-item {
       display: flex;
       align-items: center;

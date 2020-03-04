@@ -263,10 +263,11 @@
         font-family: Source Sans Pro, sans-serif;
         font-style: normal;
         font-weight: normal;
-        font-size: 16px;
+        font-size: 14px;
         line-height: 20px;
         color: #728096;
         margin-bottom: 17px;
+        text-transform: uppercase;
       }
       &.dashboard:before {
         content: "\e903";
@@ -289,7 +290,20 @@
         content: "\e914";
       }
       // .newMessage:not(.active)
-      &.chat.newMessage:not(.active) {
+      &.chat.new-message:not(.active) {
+        &:after {
+          position: absolute;
+          content: "";
+          width: 8px;
+          height: 8px;
+          background: #5ddfab;
+          border-radius: 50%;
+          left: 65%;
+          top: 6%;
+          transform: translate(50%, 50%);
+        }
+      }
+      &.projects.new-work-message:not(.active) {
         &:after {
           position: absolute;
           content: "";

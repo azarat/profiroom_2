@@ -3,6 +3,9 @@ import { CollocutorListModel } from 'src/app/models/chat/collocutors-list.model'
 import { ChatService } from '../../services/chat.service';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 import * as moment from 'moment';
+import { DealService } from '../../services/deal.service';
+import { SocketService } from '../../services/socket.service';
+import { CollucutorsListInterface } from '../../interfaces/collucotors-list.interface';
 
 @Component({
   selector: 'app-messager-tools',
@@ -12,8 +15,9 @@ import * as moment from 'moment';
 export class MessagerToolsComponent implements OnInit {
 
   @Input() collocutorData: CollocutorListModel;
+  @Input() deal: CollucutorsListInterface;
+
   packagePrice: string;
-  deal = null;
   isUserFreelancer: boolean = null;
   thsnd: number = 0;
   hundr: number = 0;
@@ -22,13 +26,18 @@ export class MessagerToolsComponent implements OnInit {
 
   constructor(
     private chatService: ChatService,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private dealService: DealService,
+    private socketService: SocketService
   ) { }
 
   ngOnInit() {
-    this.subscribeDealData();
     this.getDeal();
+    this.socketService.subscribeDeal();
+    this.getDealData();
+    // this._dealUpdating();
     this.checkIsUserFreelancer();
+    console.log(this.deal)
   }
 
 
@@ -45,33 +54,34 @@ export class MessagerToolsComponent implements OnInit {
 
   getDeal() {
     this.chatService.getDealData(this.collocutorData.id)
-    .subscribe(res => {
-      this.chatService.resetDealInfo(res);
+    .subscribe((res: any) => {
+      this.dealService.setDealInfo(res);
     });
   }
 
   public cencelWork() {
     this.chatService.cencelWork(this.collocutorData.id)
-    .subscribe(res => {
-      // this.chatService.resetDealInfo(this.collocutorData.id);
-    });
+      .subscribe(res => {
+        // this.chatService.resetDealInfo(this.collocutorData.id);
+      });
   }
 
   public finishWork() {
     this.chatService.finishDeal(this.collocutorData.id)
-    .subscribe(res => {
-      // this.chatService.resetDealInfo(this.collocutorData.id)
-    });
+      .subscribe(res => {
+        // this.chatService.resetDealInfo(this.collocutorData.id)
+      });
   }
 
-  private subscribeDealData() {
-    this.chatService.dealInfo$
+  private getDealData() {
+    this.dealService.dealData$
     .subscribe(res => {
       this.deal = res;
-      console.log('DEalData', res);
-      if(this.deal) {
+      if (this.deal) {
         this.convertPackagePrice();
-        this.setTimer();
+        if(this.deal.workStarted === 1) {
+          this.setTimer();
+        }
       }
     });
   }
@@ -80,14 +90,16 @@ export class MessagerToolsComponent implements OnInit {
   //  Timer
 
   private setTimer() {
+    if (this.deal.workStarted === 1) {
+      const dealStartedAt = this.deal.history.filter(el => el.answer === 'workStarted')[0].created_at;
+      // const finisherAt = moment(dealStartedAt).add('days', this.deal.amount);
+      const finisherAt = moment(moment(new Date(dealStartedAt)).add(this.deal.term, 'days').toDate(), 'M/D/YYYY');
+      const curentTime = moment(new Date(), 'M/D/YYYY');
+      let daysLeft = finisherAt.diff(curentTime, 'days')
 
-    const dealStartedAt = this.deal.history.filter(el => el.answer === 'workStarted')[0].created_at;
-    // const finisherAt = moment(dealStartedAt).add('days', this.deal.amount);
-    const finisherAt = moment(moment(new Date(dealStartedAt)).add(this.deal.term, 'days').toDate(), 'M/D/YYYY');
-    const curentTime = moment(new Date(), 'M/D/YYYY');
-    let daysLeft = finisherAt.diff(curentTime, 'days')
+      this.getDaysCount(daysLeft);
+    }
 
-    this.getDaysCount(daysLeft);
   }
 
 
@@ -104,6 +116,8 @@ export class MessagerToolsComponent implements OnInit {
 
     this.singlNum = x;
   }
+
+
 
 
 }

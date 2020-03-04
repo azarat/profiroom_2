@@ -4,8 +4,8 @@
   </section>
   <section class="messager" *ngIf="collocutorData">
     <!-- messager -->
-    <app-messager *ngIf="collocutorData && chatType === 'classic'  || collocutorData && collocutorData.breef == 1 && chatType === 'work'" [collocutorData]="collocutorData"
-      [chatType]="chatType" [(isFileLoaderVisible)]="isFileLoaderVisible"    ></app-messager>
+    <app-messager *ngIf="collocutorData && chatType === 'classic'  || collocutorData && deal && collocutorData.breef == 1 && chatType === 'work'" [collocutorData]="collocutorData"
+      [chatType]="chatType" [(isFileLoaderVisible)]="isFileLoaderVisible"  ></app-messager>
 <!-- breef -->
     <app-project-breef-filling
     *ngIf="(collocutorData && collocutorData.breef == 0) && chatType === 'work'"

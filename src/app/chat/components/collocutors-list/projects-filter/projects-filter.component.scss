@@ -38,13 +38,13 @@
   &.arbitr:before {
     background: #ff9090;
   }
-  &.archive:before {
+  &.archived:before {
     background: #bec8da;
   }
   &.inProgress:before {
     background: #a5affb;
   }
-  &.new:before {
+  &.approveBreef:before {
     background: #7ddfc3;
   }
   &.breef:before {
@@ -88,6 +88,7 @@
   &.open {
     ul {
       height: 296px;
+      // height: 243px;
       z-index: 15;
       border: 1px solid rgba(220, 224, 230, 0.1);
     }
@@ -134,16 +135,16 @@
       &.arbitr:before {
         background: #ff9090;
       }
-      &.archive:before {
+      &.archived:before {
         background: #bec8da;
       }
       &.inProgress:before {
         background: #a5affb;
       }
-      &.new:before {
+      &.sentBreef:before {
         background: #7ddfc3;
       }
-      &.breef:before {
+      &.new:before {
         background: #fb9c6e;
       }
 

@@ -1,9 +1,9 @@
 <div class="inform" *ngIf="deal">
-  <div class="tools" *ngIf="deal.moneyHolded !==0 && deal.moneyHolded !== undefined">
+  <div class="tools" *ngIf="deal.moneyHolded !==0 && deal.moneyHolded !== undefined ">
     <h6>Действия</h6>
 
     <button (click)="cencelWork()">отменить работу</button>
-    <button>обратиться в арбитраж</button>
+    <!-- <button>обратиться в арбитраж</button> -->
     <button *ngIf="isUserFreelancer" (click)="finishWork()">Завершить работу</button>
   </div>
   <div class="timer" *ngIf="deal.workStarted === 1 && deal.moneyHolded !==0">

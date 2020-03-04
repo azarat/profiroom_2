@@ -54,9 +54,7 @@ export class ProjectBreefFillingComponent implements OnInit {
       } else {
         this.brefForm.addControl(el.breefTitle, this.fb.control(null));
       }
-
     });
-    console.log(this.collocutorData);
   }
 
   sendBreef() {

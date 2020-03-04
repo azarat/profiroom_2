@@ -9,6 +9,7 @@ import { MessageScrollerService } from '../../services/message-scroller/message-
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 import { filter, first, takeUntil, debounceTime } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { CollucutorsListInterface } from '../../interfaces/collucotors-list.interface';
 
 
 // declare var $: any;
@@ -30,8 +31,10 @@ export class MessagerComponent implements OnInit, OnDestroy {
   public keyword$ = new Subject();
   // tslint:disable-next-line: variable-name
   protected _destroy$ = new Subject();
+  public chatHided: boolean = null;
 
   @Input() chatType: string;
+  @Input() deal: CollucutorsListInterface;
   @Input() collocutorData: CollocutorListModel;
   @Input() isFileLoaderVisible: boolean;
   @Output() isFileLoaderVisibleChange = new EventEmitter<boolean>();
@@ -63,13 +66,6 @@ export class MessagerComponent implements OnInit, OnDestroy {
         if (newMessage.type === 'file' && typeof newMessage.message === 'string') {
           newMessage.message = typeof newMessage.message === 'string' ? JSON.parse(newMessage.message) : [];
         }
-        if (newMessage.type === 'systemMessage') {
-          console.log('SYSTEMMESSAGE', this.collocutorData)
-          this.chatService.getDealData(this.collocutorData.id)
-          .subscribe(res => {
-            this.chatService.resetDealInfo(res);
-          });
-        }
 
         this.messagesList.push(newMessage);
 
@@ -87,6 +83,7 @@ export class MessagerComponent implements OnInit, OnDestroy {
         this.socketService.onTypingEvent('stopTyping', this.collocutorData.collocutorId);
       });
     // console.log(this.collocutorData);
+    this._isChatHidden();
   }
 
   public ngOnDestroy() {
@@ -147,6 +144,10 @@ export class MessagerComponent implements OnInit, OnDestroy {
 
   }
 
-
+  // Close chat if deal is done
+ private _isChatHidden() {
+   this.deal.workEnded === 1 || this.deal.dealDone === 1 ? this.chatHided = true : this.chatHided = null;
+   console.log('is this deal???',this.chatHided )
+ }
 
 }

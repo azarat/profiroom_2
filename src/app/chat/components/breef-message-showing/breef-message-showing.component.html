@@ -8,7 +8,7 @@
       </div>
     </div>
   </div>
-  <button class="btn-tetraty breef-wrap-btn" (click)="showHideBreef()"> развернуть</button>
+
   <div class="breef" *ngIf="BreefItems"
     [ngClass]="{ 'show': isBreefElVisible && isBreefElVisible === true, 'hidden': !isBreefElVisible && isBreefElVisible === false }">
     <div>
@@ -23,9 +23,10 @@
 
       </div>
     </div>
-
   </div>
-  <div class="breef-decisions-options" *ngIf="collocutorData.freelanser_id === userId && collocutorData.status == 'sentBreef'">
+  <button class="btn-tetraty breef-wrap-btn" (click)="showHideBreef()" [ngClass]="isBreefElVisible? 'up': 'down'"> {{ buttonText }}</button>
+  <div class="breef-decisions-options"
+    *ngIf="collocutorData.freelanser_id === userId && collocutorData.status == 'sentBreef' && !dealApproved">
     <button class="btn-sec" (click)="refuseBreef()">ОТКЛОНИТЬ</button>
     <button class="btn" (click)="approveBreef()">ПРИНЯТЬ ЗАЯВКУ</button>
   </div>

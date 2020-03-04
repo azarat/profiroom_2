@@ -33,6 +33,7 @@ export class CollocutorsListComponent implements OnInit {
   public lastMessageDate: string;
   @Input() chatType: string;
   public userId;
+  currentFilterType: string = 'all';
 
   @Output() currentRoom = new EventEmitter();
 
@@ -64,6 +65,7 @@ export class CollocutorsListComponent implements OnInit {
     this.chatService.getChatRooms(this.chatType)
       .subscribe((res: CollucutorsListInterface[]) => {
         this.collocutors = res;
+        console.log(this.collocutors)
         this._sortMessagesByTime(this.collocutors);
         this.openDealAfterBreefSubmit();
       });
@@ -81,16 +83,16 @@ export class CollocutorsListComponent implements OnInit {
     this._openChat(userinfo);
 
     if (this.chatType === 'work') {
-       // clear router from params if click on anther deal
-    const translatedPath: any = this.localize.translateRoute('/dashboard/projects');
+      // clear router from params if click on anther deal
+      const translatedPath: any = this.localize.translateRoute('/dashboard/projects');
 
-    this.router.navigate([translatedPath], {
-      relativeTo: this.route,
-      queryParams: {},
-    });
+      this.router.navigate([translatedPath], {
+        relativeTo: this.route,
+        queryParams: {},
+      });
     }
   }
-//  separate function to connect chatRoom
+  //  separate function to connect chatRoom
   private _openChat(userinfo) {
     this.currentRoom.emit(userinfo);
     this.socketService.openChat(userinfo.roomId);
@@ -111,14 +113,9 @@ export class CollocutorsListComponent implements OnInit {
 
   private _sortMessagesByTime(arr) {
     const x = arr.sort((a, b) => {
-      if (b.message.length === 0) {
-        b.created_at.localeCompare(a.message[0].dateTime);
-      } else if (a.message.length === 0) {
-        b.message[0].dateTime.localeCompare(a.created_at);
-      } else {
-        return b.message[0].dateTime.localeCompare(a.message[0].dateTime);
-      }
-
+      const filedAOrder = a.message.length === 0 ? a.created_at : a.message[0].dateTime;
+      const filedBOrder = b.message.length === 0 ? b.created_at : b.message[0].dateTime;
+      return filedBOrder.localeCompare(filedAOrder);
     });
     this.collocutors = x;
   }
@@ -133,8 +130,8 @@ export class CollocutorsListComponent implements OnInit {
       .subscribe((res: any) => {
         if (res.hasOwnProperty('dealId')) {
           // let dealId = Number(res.dealId);
-         const activeDeal = this.collocutors.find(collocutor => collocutor.id === +res.dealId);
-         this._openChat(activeDeal);
+          const activeDeal = this.collocutors.find(collocutor => collocutor.id === +res.dealId);
+          this._openChat(activeDeal);
         }
 
       });
@@ -142,5 +139,10 @@ export class CollocutorsListComponent implements OnInit {
 
   public setCurrentType(event: any) {
     console.log(event)
+    this.currentFilterType = event;
+  }
+
+  private checkIsDealNew() {
+
   }
 }
