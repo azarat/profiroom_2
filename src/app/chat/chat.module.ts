@@ -32,6 +32,7 @@ import { LocalizeRouterModule } from 'localize-router';
 
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
+import { ReaitDealComponent } from './components/reait-deal/reait-deal.component';
 
 
 
@@ -52,6 +53,7 @@ import { TranslateModule } from '@ngx-translate/core';
     ChatErrorsComponent,
     BreefMessageShowingComponent,
     SystemMessagesInDealsComponent,
+    ReaitDealComponent,
 
     // Directives
 
