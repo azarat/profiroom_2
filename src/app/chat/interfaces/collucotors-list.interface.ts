@@ -15,10 +15,11 @@ export interface CollucutorsListInterface {
   created_at?: Date;
   package?: string;
   offers_title?: string;
-  breef?: number;
+  breef?: any;
   offers_id?: number;
   offer_id?: number;
   amount?: number;
+  moneyHolded?: number;
   message: {
     author?: number | string;
     message?: string;

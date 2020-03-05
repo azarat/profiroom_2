@@ -19,11 +19,9 @@ export class ProjectBreefFillingComponent implements OnInit {
 
   @Output() exitFromBreefPopUpVisibleChange = new EventEmitter<boolean>();
   @Output() resetChat = new EventEmitter<boolean>();
+
   public brefForm: FormGroup;
   config: any[] = [];
-
-
-
   offerBreef: any;
 
   constructor(
@@ -43,7 +41,7 @@ export class ProjectBreefFillingComponent implements OnInit {
     this.chatSerrvice.getBreef(+this.collocutorData.offers_id)
       .subscribe((res: any) => {
         this.offerBreef = res.offerBreef;
-        console.log(this.offerBreef);
+        console.log('offer bref',this.offerBreef);
         this.createFormGroup();
       });
   }
@@ -109,7 +107,6 @@ export class ProjectBreefFillingComponent implements OnInit {
   public confirmDeleteBreef() {
   this.chatSerrvice.deleteDeal(this.collocutorData.id)
   .subscribe(res => {
-    console.log(res);
     if (res === 'ok') {
       this.returnToBreef();
       const translatedPath: any = this.localize.translateRoute('/dashboard/projects');

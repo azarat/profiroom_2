@@ -94,4 +94,8 @@ export class CalendarComponent implements OnInit {
     return eventsArr;
   }
 
+  eventClicked({ event }: { event: CalendarEvent }): void {
+    console.log( event);
+  }
+
 }

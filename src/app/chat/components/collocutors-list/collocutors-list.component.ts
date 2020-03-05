@@ -48,11 +48,9 @@ export class CollocutorsListComponent implements OnInit {
 
   ngOnInit() {
     this.userId = this.localStorageService.getItem('userId').value;
-    console.log(this.userId);
     this._subscribeNewMessages();
     this.checkUserState();
-    // this.openNewDeal();
-
+    this._getChatRooms();
   }
 
   private checkUserState() {
@@ -70,17 +68,6 @@ export class CollocutorsListComponent implements OnInit {
         this.openDealAfterBreefSubmit();
       });
   }
-
-  // open dealChat if is new
-  // private openNewDeal() {
-  //   this.route.queryParams
-  //     .pipe(
-  //       filter((res: any) => !!res),
-  //     )
-  //     .subscribe(res => {
-  //       this.openChat(+res.dealRoom);
-  //     });
-  // }
 
   private _subscribeNewMessages() {
     this.socketService.showNewMessage()
@@ -151,5 +138,9 @@ export class CollocutorsListComponent implements OnInit {
         }
 
       });
+  }
+
+  public setCurrentType(event: any) {
+    console.log(event)
   }
 }

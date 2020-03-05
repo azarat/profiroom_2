@@ -127,3 +127,61 @@
   //   height: 245px;
   // }
 }
+
+// years
+
+.chart-year-btns {
+  padding-right: 20px;
+  button {
+    border: none;
+    box-shadow: none;
+    font-family: Source Sans Pro, sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    color: #99acb7;
+    position: relative;
+    background: transparent;
+    outline: none;
+    cursor: pointer;
+    &:first-of-type {
+      & + div {
+        margin-left: 40px;
+      }
+    }
+    &:before {
+      position: absolute;
+      content: "";
+      width: 5px;
+      height: 5px;
+      border-bottom: 1px solid #979797;
+      border-left: 1px solid #979797;
+      opacity: 0.8;
+    }
+    &.prev {
+      &:before {
+        top: 50%;
+        left: -6px;
+        transform: translateY(-50%) rotate(45deg);
+      }
+    }
+    &.next {
+      &:before {
+        top: 50%;
+        right: -6px;
+        transform: translateY(-50%) rotate(-135deg);
+      }
+    }
+    &:hover {
+      color: #3c7eea;
+      &:before {
+        border-color: #3c7eea;
+      }
+    }
+    &:disabled {
+      opacity: 0.5;
+      cursor: default;
+    }
+  }
+}

@@ -20,7 +20,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   public isFileLoaderVisible: boolean = null;
   // var if exit from unwritten breef
   public exitFromBreefPopUpVisible: boolean = null;
-  public isChat: boolean = null;
+  public isChat = true;
 
 
   constructor(
@@ -31,10 +31,12 @@ export class ChatComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.subscribeColucutors();
-    this.openNewDeal();
     this._subscribeUserStateChanges();
     this.isChat = true;
+
+    this.subscribeColucutors();
+    this.openNewDeal();
+
   }
   ngOnDestroy(): void {
     this.socketService.closeCollocutorSocket(this.chatType);
@@ -53,7 +55,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.socketService.subscribeOnListOfCollucutors(this.chatType);
   }
 
-  // open dealChat if is new
+  // open breef feeling if is new and chat after sending breef
   private openNewDeal() {
     this.route.queryParams
       .pipe(
@@ -62,20 +64,21 @@ export class ChatComponent implements OnInit, OnDestroy {
       .subscribe((res) => {
         if (res.hasOwnProperty('offers_id')) {
           this.collocutorData = res;
+        } else if (res.hasOwnProperty('dealId')) {
+          this._resetChat();
         }
-
       });
   }
 
   public resetChat(event) {
-    this._resetChat()
+    this._resetChat();
   }
-  
+
   private _subscribeUserStateChanges() {
     this.userStateService.userState$
     .subscribe(
       res => {
-        this._resetChat()
+        this._resetChat();
       }
     );
 

@@ -1,7 +1,8 @@
 <div class="wrapper">
   <div class="line">
     <div class="collocutor">
-      {{ collocutorData.collocutorName }} {{ collocutorData.collocutorSurname }} <span>онлайн</span>
+      <a [routerLink]="'/user/' + collocutorData.collocutorId | localize" >
+      {{ collocutorData.collocutorName }} {{ collocutorData.collocutorSurname }} </a><span>онлайн</span>
     </div>
     <div class="messager-tools">
       <app-show-uploaded-files [chatRoom]="collocutorData.roomId"></app-show-uploaded-files>

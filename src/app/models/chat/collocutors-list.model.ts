@@ -9,6 +9,7 @@ export class CollocutorListModel {
   @Expose() roomId: string;
   @Expose() offers_title: string;
   @Expose() collocutorId: number;
+  @Expose() freelanser_id: number;
   @Expose() collocutorAva: string;
   @Expose() lastMesageDate: string;
   @Expose() collocutorName: string;
@@ -17,6 +18,9 @@ export class CollocutorListModel {
   @Expose() created_at: Date;
   @Expose() package: Date;
   @Expose() amount: Date;
+  @Expose() breef: any;
+  @Expose() moneyHolded: number;
+
   //  Last message model in chat collocutor list
   @Type(() => CollocutorsLastMessageModel) message: CollocutorsLastMessageModel[];
 // {

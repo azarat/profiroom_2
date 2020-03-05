@@ -20,6 +20,9 @@
     }
   }
 
+  .description {
+    width: 100%;
+  }
   h5 {
     font-family: Source Sans Pro, sans-serif;
     font-style: normal;
@@ -44,6 +47,9 @@
   .actions {
     display: flex;
     justify-content: flex-end;
+    &.btwn {
+      justify-content: space-between;
+    }
     button {
       margin-top: 20px;
       padding: 9px 20px;
@@ -61,6 +67,30 @@
     h5 {
       color: #919CDD;
       border-color: #D4DAFF;
+    }
+  }
+  &.workStarted{
+    h5 {
+      color: #F1A153;
+      border-color: #FFE8C9;
+    }
+  }
+  &.deal-cencel{
+    h5 {
+      color: #FF9090;
+      border-color: #FFDADA;
+    }
+  }
+  &.DealFinishedByFreelancer{
+    h5 {
+      color: #FF9E67;
+      border-color: #FFCFCF;
+    }
+  }
+  &.DealFinished{
+    h5 {
+      color: #34C28D;
+      border-color: #C4EAE0;
     }
   }
 }

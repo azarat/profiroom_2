@@ -40,6 +40,7 @@
 </div>
 <div [ngSwitch]="view">
   <mwl-calendar-month-view *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate" [locale]="locale" [events]="events"
+  (eventClicked)="eventClicked($event)"
     [weekStartsOn]="1">
   </mwl-calendar-month-view>
 </div>

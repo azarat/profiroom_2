@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 export class UserStateService {
 
   // tslint:disable-next-line: variable-name
-  private _userState = new BehaviorSubject(null);
+  private _userState = new Subject<any>();
   public userState$ = this._userState.asObservable();
 
   constructor(
@@ -19,7 +19,7 @@ export class UserStateService {
 
   }
 
-  public changeUserState(state: number) {
+  public setUserState(state: number) {
     this._userState.next(state);
   }
 

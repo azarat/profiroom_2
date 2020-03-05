@@ -10,12 +10,20 @@
         </ul>
       </div>
     </div>
-    <div>декабрь декабрь декабрь</div>
+    <div>
+      <div class="chart-year-btns" *ngIf="curerntType.value === 'year'">
+        <!-- year  -->
+        <button class="prev" *ngIf="showedDate >2017" [disabled]="showedDate === 2018"
+          (click)="prevYear()">{{ showedDate -1  }} год</button>
+        <button class="next" *ngIf="showedDate < currentYear" [disabled]="showedDate === currentYear"
+          (click)="nextYear()">{{ showedDate + 1 }} год</button>
+      </div>
+    </div>
   </div>
 </div>
 <div class="wrapper">
   <div class="chart">
-    <h6>2019 год</h6>
+    <h6>{{showedDate}} <span *ngIf="curerntType.value === 'year'">год</span></h6>
     <div class="canvas" style="display: block;">
       <canvas baseChart [datasets]="lineChartData" width='1045px' height='245px' [labels]="lineChartLabels"
         [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType"
@@ -23,6 +31,6 @@
     </div>
   </div>
   <div class="curent-statistic">
-    s
+    <app-calendar *ngIf="curerntType.value === 'day'"></app-calendar>
   </div>
 </div>

@@ -55,7 +55,7 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
     this.userService.getDashboardRes()
       .subscribe((res: any) => {
         this.user = plainToClass(UserModel, res[0]);
-        this.userStatseService.changeUserState(this.user.role_id);
+        this.userStatseService.setUserState(this.user.role_id);
         this.authService.saveUserId(this.user.id);
         this.localStorageService.setItem('userImage', this.user.avatar);
       });
@@ -84,7 +84,7 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
       this.userStatseService.toggleUserState()
         .subscribe((res: any) => {
           this.user.role_id = res.newRole;
-          this.userStatseService.changeUserState(res.newRole);
+          this.userStatseService.setUserState(res.newRole);
         });
     }
   }

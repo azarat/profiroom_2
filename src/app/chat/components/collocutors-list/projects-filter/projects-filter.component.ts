@@ -1,6 +1,5 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { projectTypesConst } from './consts/prohects-types.const';
-import { EventEmitter } from 'events';
 
 @Component({
   selector: 'app-projects-filter',
@@ -13,6 +12,7 @@ export class ProjectsFilterComponent implements OnInit {
   public currentType: string = 'all';
   public currentTypeName: string = 'Все';
   public isListVisible: boolean = null;
+
   @Output() setCurrentType = new EventEmitter();
 
   constructor() { }
