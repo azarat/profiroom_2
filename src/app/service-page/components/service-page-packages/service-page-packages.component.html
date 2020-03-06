@@ -1,19 +1,14 @@
 <div class="tabs">
   <div class="tabs-top">
-    <ng-container *ngIf="offerData.allPackages">
-      <div *ngFor="let tab of tabs; let i = index" class="tab" (click)="openTab(i)"
-        [ngClass]="{'active': currentTab === i}">
-        {{ tab.name }}
-      </div>
-    </ng-container>
-    <ng-container *ngIf="!offerData.allPackages">
-      <div *ngFor="let tab of tabs; let i = index" class="tab" [ngClass]="{'active': i === 0, 'disabled': i !== 0}">
+    <ng-container *ngFor="let tab of tabs; let i = index"  >
+      <div class="tab" (click)="openTab(i)"
+
+        [ngClass]="{'active': currentTab === i, 'disabled': !offerData.allPackages && i !== 0 }">
         {{ tab.name }}
       </div>
     </ng-container>
   </div>
-
-  <div class="tabContentContainer" *ngIf="offerData.allPackages">
+  <div class="tabContentContainer" >
 
     <ng-container *ngFor="let package of packages; let x = index">
       <div class="tabContent" *ngIf="currentTab === x">
@@ -82,62 +77,6 @@
         </form>
         <div class="btn-order-service 2" (click)="goCheckout(package)">
           Заказать услугу <span>(за {{ offerData[package].price }} ₴)</span>
-        </div>
-      </div>
-    </ng-container>
-
-  </div>
-
-  <div class="tabContentContainer" *ngIf="!offerData.allPackages">
-
-    <ng-container>
-      <div class="tabContent">
-        <div class="main-info" *ngIf="offerData">
-
-          <div class="title-price">
-            <h4>{{offerData[packages[0]].title }}</h4>
-            <span>{{ offerData[packages[0]].price }}</span>
-          </div>
-
-          <p>{{offerData[packages[0]].description }}</p>
-
-          <div class="changes-term">
-            <span>{{ offerData[packages[0]].changes }} правок</span>
-            <span>{{ offerData[packages[0]].term }} дней выполнения</span>
-          </div>
-
-          <ul class="option-list">
-            <ng-container *ngFor="let option of offerData.main_options">
-              <li [ngClass]="{'active': option[packages[0]]}">{{ option.title }}</li>
-            </ng-container>
-          </ul>
-        </div>
-        <form class="extra-features" [formGroup]="extraFeaturesForm">
-          <div class="show-extra-features" (click)="showFeatures()" [ngClass]="{open: openFeatures}">выбрать
-            Дополнительные опции</div>
-          <ul class="extra-features__list" [ngClass]="{open: openFeatures}">
-            <div class="extra-features__item" *ngFor="let extra_feature of offerData.extra_features">
-              <mat-checkbox class="extra-features__checkbox"></mat-checkbox>
-              <div class="extra-features__text">
-                <span class="extra-features__title">{{extra_feature.title}}</span>
-                <span class="extra-features__price">{{extra_feature.price}} UAH</span>
-              </div>
-            </div>
-            <ng-container *ngFor="let extra_feature of offerData.extra_features">
-              <div class="extra-features__item" *ngIf="extra_feature.published">
-                <mat-checkbox class="extra-features__checkbox"></mat-checkbox>
-                <div class="extra-features__text">
-                  <span class="extra-features__title">{{extra_feature.title}}</span>
-                  <span class="extra-features__price">{{extra_feature.price}} UAH</span>
-                </div>
-              </div>
-            </ng-container>
-
-
-          </ul>
-        </form>
-        <div class="btn-order-service">
-          Заказать услугу <span>(за {{ offerData[packages[0]].price }} ₴)</span>
         </div>
       </div>
     </ng-container>

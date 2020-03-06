@@ -65,7 +65,11 @@ export class ServicePagePackagesComponent implements OnInit {
   }
 
   openTab = (i: number) => {
-    this.currentTab = i;
+    if (!this.offerData.allPackages) {
+      this.currentTab = 0;
+    } else {
+      this.currentTab = i;
+    }
   }
 
   showFeatures() {
