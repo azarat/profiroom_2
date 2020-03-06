@@ -15,7 +15,7 @@ import { CollucutorsListInterface } from '../../interfaces/collucotors-list.inte
 export class MessagerToolsComponent implements OnInit {
 
   @Input() collocutorData: CollocutorListModel;
-  @Input() deal: CollucutorsListInterface;
+  public deal: CollucutorsListInterface;
 
   packagePrice: string;
   isUserFreelancer: boolean = null;
@@ -81,7 +81,7 @@ export class MessagerToolsComponent implements OnInit {
       this.deal = res;
       if (this.deal) {
         this.convertPackagePrice();
-        if(this.deal.workStarted === 1) {
+        if (this.deal.workStarted === 1) {
           this.setTimer();
         }
       }
