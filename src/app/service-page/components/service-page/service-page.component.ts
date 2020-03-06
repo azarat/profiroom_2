@@ -26,6 +26,8 @@ export class ServicePageComponent implements OnInit {
   public offerId;
   sticky = false;
   elementPosition: any;
+  public step2 = false;
+  public chousenPackage: string;
 
   @ViewChild('stickyMenu', { static: false }) menuElement: ElementRef;
 
@@ -44,6 +46,7 @@ export class ServicePageComponent implements OnInit {
       .pipe(
         filter((res: any) => !!res),
       )
+      // tslint:disable-next-line: variable-name
       .subscribe(_offerId => {
         this.getOfferData(_offerId);
         this.getSimilarOffers(_offerId);
@@ -57,11 +60,12 @@ export class ServicePageComponent implements OnInit {
 
   getOfferData(offerId: { offerId: string }) {
     this.offerDataService.loadOfferDate(offerId)
-      .pipe(filter((res: any) => !!res))
-      .subscribe(offerData => {
-        this.offerData = offerData.userOffer;
-        this.formateCommentCount();
-      });
+    .pipe(filter((res: any) => !! res))
+    .subscribe(offerData => {
+      this.offerData = offerData.userOffer;
+      // console.log(this.offerData);
+      this.formateCommentCount();
+    });
   }
 
   formateCommentCount() {
@@ -76,9 +80,9 @@ export class ServicePageComponent implements OnInit {
     this.offerDataService.similarOffers(offerId)
       .subscribe((res: any) => {
 
-        this.similarOffers = res;
-        console.log(this.similarOffers);
-      });
+      this.similarOffers = res;
+      // console.log(this.similarOffers);
+    });
   }
 
   // tslint:disable-next-line: use-lifecycle-interface
@@ -115,5 +119,9 @@ export class ServicePageComponent implements OnInit {
     this._scrollToService.scrollTo(config);
   }
 
+  openCheckout(packageForm) {
+    this.chousenPackage = packageForm;
+    this.step2 = true;
+  }
 
 }

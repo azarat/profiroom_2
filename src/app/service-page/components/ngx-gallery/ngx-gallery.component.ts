@@ -19,49 +19,10 @@ export class NgxGalleryComponent implements OnInit {
   @Input()offerData: OfferDataInterface;
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[] = [];
-  // galleryImages: NgxGalleryImage[] = [{
-  //   big: 'https://www.thecubetest.site/Backend/storage/app/' + 'offerFiles/testfile1.jpg',
-  //   medium: 'https://www.thecubetest.site/Backend/storage/app/' + 'offerFiles/testfile1.jpg',
-  //   small: 'https://www.thecubetest.site/Backend/storage/app/' + 'offerFiles/testfile1.jpg'
-  // },
-  // {
-  //   big: 'https://www.thecubetest.site/Backend/storage/app/' + 'offerFiles/testfile2.png',
-  //   medium: 'https://www.thecubetest.site/Backend/storage/app/' + 'offerFiles/testfile2.png',
-  //   small: 'https://www.thecubetest.site/Backend/storage/app/' + 'offerFiles/testfile2.png'
-  // },
-  // {
-  //   big: 'https://www.thecubetest.site/Backend/storage/app/' + 'offerFiles/testfile3.jpg',
-  //   medium: 'https://www.thecubetest.site/Backend/storage/app/' + 'offerFiles/testfile3.jpg',
-  //   small: 'https://www.thecubetest.site/Backend/storage/app/' + 'offerFiles/testfile3.jpg'
-  // },
-  // {
-  //   big: 'https://www.thecubetest.site/Backend/storage/app/' + 'offerFiles/testfile1.jpg',
-  //   medium: 'https://www.thecubetest.site/Backend/storage/app/' + 'offerFiles/testfile1.jpg',
-  //   small: 'https://www.thecubetest.site/Backend/storage/app/' + 'offerFiles/testfile1.jpg'
-  // },
-  // {
-  //   big: 'https://www.thecubetest.site/Backend/storage/app/' + 'offerFiles/testfile2.png',
-  //   medium: 'https://www.thecubetest.site/Backend/storage/app/' + 'offerFiles/testfile2.png',
-  //   small: 'https://www.thecubetest.site/Backend/storage/app/' + 'offerFiles/testfile2.png'
-  // },
-  // {
-  //   big: 'https://www.thecubetest.site/Backend/storage/app/' + 'offerFiles/testfile3.jpg',
-  //   medium: 'https://www.thecubetest.site/Backend/storage/app/' + 'offerFiles/testfile3.jpg',
-  //   small: 'https://www.thecubetest.site/Backend/storage/app/' + 'offerFiles/testfile3.jpg'
-  // },
-  // ];
-
-  // public offerData: OfferDataInterface;
 
   constructor(
     private servicePageService: ServicePageService
-  ) {
-    // this.servicePageService.offerDate$
-    // .pipe(filter((res: any) => !!res))
-    // .subscribe(data => {
-    //   this.offerData = data.userOffer;
-    // });
-  }
+  ) {}
 
   ngOnInit() {
     if (this.offerData.files !== null) {
@@ -72,9 +33,12 @@ export class NgxGalleryComponent implements OnInit {
       {
         width: '860px',
         height: '650px',
+        // lazyLoading: false,
         thumbnailsColumns: 5,
         imageAnimation: NgxGalleryAnimation.Slide,
+        previewAnimation: true,
         imageInfinityMove: true,
+        previewInfinityMove: true,
         thumbnailsPercent: 19.5,
         thumbnailsMargin: 8,
         thumbnailMargin: 8

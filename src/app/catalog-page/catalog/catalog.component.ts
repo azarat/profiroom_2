@@ -45,17 +45,17 @@ export class CatalogComponent implements OnInit {
       this.category = Params.category;
     });
 
-    // --------------check queryParams value---------------
-    this._route.queryParams.subscribe(qParams => {
-      if (qParams && (Object.keys(qParams).length === 0)) {
-        this.catalogFilters.current_page = 1;
-        this.GetOffersService.setFilters(this.catalogFilters);
-        this.GetOffersService.getOffers(this.catalogFilters);
-      } else {
-        this.GetOffersService.getOffers(qParams);
+    // // --------------check queryParams value---------------
+    // this._route.queryParams.subscribe(qParams => {
+    //   if (qParams && (Object.keys(qParams).length === 0)) {
+    //     this.catalogFilters.current_page = 1;
+    //     this.GetOffersService.setFilters(this.catalogFilters);
+    //     this.GetOffersService.getOffers(this.catalogFilters);
+    //   } else {
+    //     this.GetOffersService.getOffers(qParams);
 
-      }
-    });
+    //   }
+    // });
   }
 
   ngOnInit() {
