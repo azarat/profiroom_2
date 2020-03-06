@@ -23,6 +23,8 @@ export class MessagerToolsComponent implements OnInit {
   hundr: number = 0;
   tens: number = 0;
   singlNum: number = 0;
+  isDealBtnsVisible = null;
+
 
   constructor(
     private chatService: ChatService,
@@ -117,6 +119,13 @@ export class MessagerToolsComponent implements OnInit {
     this.singlNum = x;
   }
 
+  private showDealButtons() {
+    if (this.deal.moneyHolded === 0 || this.deal.dealDone || this.deal.workEnded && this.isUserFreelancer ) {
+      this.isDealBtnsVisible = null;
+    } else if (this.deal.earlyСlosing === 1) {
+      let FreelancerCancel = this.deal.histroy.incleudes()
+    }
+  }
 
 
 
