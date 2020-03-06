@@ -4,10 +4,10 @@ import {
 } from 'class-transformer';
 
 
-export class ExtraFeaturesList {
-  @Expose() extraСhanges: string;
-  @Expose() extraСommercial: string;
-  @Expose() extraTerms: string;
+export class ExtraFeaturesModel {
+  @Expose() extraСhanges: boolean;
+  @Expose() extraCommercial: boolean;
+  @Expose() extraTerms: boolean;
   @Expose() extraFeatureTitle: string;
   // tslint:disable-next-line: no-use-before-declare
   @Type(() => ExtraFeatures) extraFeatures: ExtraFeatures[];

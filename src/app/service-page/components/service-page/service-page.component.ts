@@ -120,8 +120,7 @@ export class ServicePageComponent implements OnInit {
   }
 
   openCheckout(packageForm) {
-    console.log(packageForm);
-    // this.chousenPackage = packageType;
+    this.chousenPackage = packageForm;
     this.step2 = true;
   }
 

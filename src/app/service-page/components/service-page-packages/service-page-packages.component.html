@@ -88,11 +88,12 @@
 
   </div>
 
-  <!-- <div class="tabContentContainer" *ngIf="!offerData.allPackages">
+  <div class="tabContentContainer" *ngIf="!offerData.allPackages">
 
     <ng-container>
       <div class="tabContent">
         <div class="main-info" *ngIf="offerData">
+
           <div class="title-price">
             <h4>{{offerData[packages[0]].title }}</h4>
             <span>{{ offerData[packages[0]].price }}</span>
@@ -107,7 +108,7 @@
 
           <ul class="option-list">
             <ng-container *ngFor="let option of offerData.main_options">
-              <li [ngClass]="{'active': option[package]}">{{ option.title }}</li>
+              <li [ngClass]="{'active': option[packages[0]]}">{{ option.title }}</li>
             </ng-container>
           </ul>
         </div>
@@ -141,7 +142,7 @@
       </div>
     </ng-container>
 
-  </div> -->
+  </div>
 
   <div class="btn-options compare">
     <span>Cравнить пакеты услуг</span>

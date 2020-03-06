@@ -92,7 +92,7 @@
       background-repeat: no-repeat;
       top: 0;
       bottom: 0;
-      right: -27px;
+      right: -28px;
       height: 100%;
       width: 30px;
       z-index: 9;
@@ -131,6 +131,50 @@
     line-height: 23px;
     color: #323C47;
     margin: 0;
+    margin-bottom: 40px;
+  }
+  .extra-features__form{
+    .extra-features__list{
+      padding: 0;
+      margin: 0;
+    }
+    .extra-features__item{
+      display: flex;
+      margin-bottom: 15px;
+      ::ng-deep {
+
+        .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background,
+        .mat-checkbox-checked.mat-accent .mat-checkbox-background {
+          background-color: #3C7EEA;
+        }
+
+        .mat-checkbox-checked:not(.mat-checkbox-disabled).mat-accent .mat-ripple-element,
+        .mat-checkbox:active:not(.mat-checkbox-disabled).mat-accent .mat-ripple-element {
+          background-color: #3C7EEA;
+        }
+      }
+      .extra-features__title{
+        display: block;
+        font-family: "Source Sans Pro";
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 117%;
+        color: #707683;
+        margin: 0;
+        margin-left: 16px;
+        margin-bottom: 8px;
+      }
+      .extra-features__description{
+        font-family: "Source Sans Pro";
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 169%;
+        color: #707683;
+        margin: 0;
+        margin-left: 16px;
+      }
+
+    }
   }
 }
 

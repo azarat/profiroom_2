@@ -2,7 +2,6 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { OfferDataInterface } from 'src/app/shared/interfaces/offer-date.interface';
 import { ServicePageService } from '../../services/service-page.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ExtraFeaturesList } from 'src/app/models/service-page/service-page.model';
 
 @Component({
   selector: 'app-service-page-packages',
@@ -58,8 +57,10 @@ export class ServicePagePackagesComponent implements OnInit {
       extraCommercial: [''],
     });
     this.offerData.extra_features.forEach((el: any) => {
-      this.extraFeaturesForm.addControl(el.title, this.fb.control(null));
-      console.log(this.extraFeaturesForm);
+      if (el.published) {
+        this.extraFeaturesForm.addControl(el.title, this.fb.control(null));
+      }
+
     });
   }
 
@@ -77,7 +78,6 @@ export class ServicePagePackagesComponent implements OnInit {
   }
 
   goCheckout(packageType) {
-    console.log(packageType);
     this.extraFeaturesForm.addControl('packageTitle', this.fb.control(packageType));
     this.checkoutState.emit(this.extraFeaturesForm.value);
   }

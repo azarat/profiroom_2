@@ -20,66 +20,66 @@
       <h3 class="additional-options__title">Добавить дополнительные опции к услуге?</h3>
       <h4 class="additional-options__name">{{offerData.title}}</h4>
 
-      <!-- <ul class="extra-features__list" [ngClass]="{open: openFeatures}">
-        <ng-container *ngFor="let extra_term of offerData.extra_terms">
-          <div class="extra-features__item" *ngIf="extra_term.package == chousenPackage">
-            <mat-checkbox class="extra-features__checkbox" formControlName="extraTerms">
-            </mat-checkbox>
+      <form class="extra-features__form" [formGroup]="checkoutExtraFeatures">
+        <ul class="extra-features__list" [ngClass]="{open: openFeatures}">
+          <ng-container *ngFor="let extra_term of offerData.extra_terms">
+            <div class="extra-features__item" *ngIf="extra_term.package == chousenPackage.packageTitle">
+              <mat-checkbox class="extra-features__checkbox" formControlName="extraTerms" [(ngModel)]="extraFeatures.extraTerms">
+              </mat-checkbox>
+              <div class="extra-features__text">
+                <span class="extra-features__title">Сжатые сроки</span>
+
+              </div>
+            </div>
+          </ng-container>
+          <div class="extra-features__item" *ngIf="offerData.extra_changes">
+            <mat-checkbox class="extra-features__checkbox" formControlName="extraСhanges"></mat-checkbox>
             <div class="extra-features__text">
-              <span class="extra-features__title">Сжатые сроки</span>
-              <span class="extra-features__price">{{extra_term.price}} UAH</span>
+              <span class="extra-features__title">Дополнительные правки</span>
             </div>
           </div>
-        </ng-container>
-        <div class="extra-features__item" *ngIf="offerData.extra_changes">
-          <mat-checkbox class="extra-features__checkbox" formControlName="extraСhanges">
-          </mat-checkbox>
-          <div class="extra-features__text">
-            <span class="extra-features__title">Дополнительные правки</span>
-            <span class="extra-features__price">{{offerData.extra_changes.price}} UAH</span>
-          </div>
-        </div>
-        <div class="extra-features__item" *ngIf="offerData.extra_commercial">
-          <mat-checkbox class="extra-features__checkbox" formControlName="extraCommercial">
-          </mat-checkbox>
-          <div class="extra-features__text">
-            <span class="extra-features__title">Коммерческое использование</span>
-            <span class="extra-features__price">{{offerData.extra_commercial.price}} UAH</span>
-          </div>
-        </div>
-
-        <ng-container *ngFor="let extra_feature of offerData.extra_features">
-          <div class="extra-features__item" *ngIf="extra_feature.published">
-            <mat-checkbox class="extra-features__checkbox" [formControlName]="extra_feature.title">
+          <div class="extra-features__item" *ngIf="offerData.extra_commercial">
+            <mat-checkbox class="extra-features__checkbox" formControlName="extraCommercial" [(ngModel)]="extraFeatures.extraCommercial">
             </mat-checkbox>
             <div class="extra-features__text">
-              <span class="extra-features__title">{{extra_feature.title}}</span>
-              <span class="extra-features__price">{{extra_feature.price}} UAH</span>
+              <span class="extra-features__title">Коммерческое использование</span>
             </div>
           </div>
-        </ng-container>
 
-      </ul> -->
+          <ng-container *ngFor="let extra_feature of offerData.extra_features">
+            <div class="extra-features__item" *ngIf="extra_feature.published">
+              <mat-checkbox class="extra-features__checkbox" [formControlName]="extra_feature.title">
+              </mat-checkbox>
+              <div class="extra-features__text">
+                <span class="extra-features__title">{{extra_feature.title}}</span>
+                <p class="extra-features__description">{{extra_feature.description}}</p>
+              </div>
+
+            </div>
+          </ng-container>
+
+        </ul>
+      </form>
     </div>
   </div>
   <div class="final-services">
     <h3 class="final-services__title">ваш выбор услуги</h3>
     <div class="final-services__top">
-      <h4 class="additional-options__name">{{chousenPackage}}</h4>
+      <h4 class="additional-options__name">{{chousenPackage.packageTitle}}</h4>
       <div class="final-price__no-features">
-        <span class="final-price__text">Общая стоимость (без доп. опций)</span><span class="final-price__price">{{offerData[chousenPackage].price}} UAH</span>
+        <span class="final-price__text">Общая стоимость (без доп. опций)</span><span class="final-price__price">{{offerData[chousenPackage.packageTitle].price}} UAH</span>
       </div>
     </div>
     <div class="final-services__features">
 
       <div class="changes-term">
-        <span>{{ offerData[chousenPackage].changes }} правок</span>
-        <span>{{ offerData[chousenPackage].term }} дней выполнения</span>
+        <span>{{ offerData[chousenPackage.packageTitle].changes }} правок</span>
+        <span>{{ offerData[chousenPackage.packageTitle].term }} дней выполнения</span>
       </div>
 
       <ul class="option-list">
         <ng-container *ngFor="let option of offerData.main_options">
-          <li [ngClass]="{'active': option[chousenPackage]}">{{ option.title }}</li>
+          <li class="active" *ngIf="option[chousenPackage.packageTitle]">{{ option.title }}</li>
         </ng-container>
       </ul>
 
