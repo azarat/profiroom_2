@@ -30,5 +30,7 @@
     </ng-container>
 
   </div>
-  <p class="show-offers" (click)=showAllOffers() [ngClass] = "{open: offersShowState}">показать больше</p>
+  <ng-container *ngIf="userData.offers.length > 3">
+    <p class="show-offers" (click)=showAllOffers() [ngClass] = "{open: offersShowState}">показать больше</p>
+  </ng-container>
 </section>

@@ -22,6 +22,7 @@ export class CategorysCatalogPageComponent implements OnInit {
   ngOnInit() {
     this.GetCategorieItemsService.categoriesList$.subscribe((res: any) => {
       this.subcategoriesList = res;
+      console.log(res);
     });
   }
 }

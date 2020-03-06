@@ -1,6 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { OfferDataInterface } from 'src/app/shared/interfaces/offer-date.interface';
 import { ServicePageService } from '../../services/service-page.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-service-page-packages',
@@ -9,8 +10,16 @@ import { ServicePageService } from '../../services/service-page.service';
 })
 export class ServicePagePackagesComponent implements OnInit {
 
+  // tslint:disable-next-line: no-output-on-prefix
+  @Output() checkoutState = new EventEmitter<any>();
+  public openFeatures = false;
+  public extraFeaturesForm: FormGroup;
+  extraFeatures: any;
+
   @Input() offerData: OfferDataInterface;
   @Input() offerId;
+
+
 
   public currentTab: any = 0;
   public tabs = [
@@ -32,16 +41,44 @@ export class ServicePagePackagesComponent implements OnInit {
 
 
   constructor(
-    private servicePackageService: ServicePageService
+    private servicePackageService: ServicePageService,
+    private fb: FormBuilder
   ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    // console.log(this.offerData.extra_terms);
+    this.initForm();
+  }
+
+  initForm() {
+    this.extraFeaturesForm = this.fb.group({
+      extraTerms: [''],
+      extraСhanges: [''],
+      extraCommercial: [''],
+    });
+    this.offerData.extra_features.forEach((el: any) => {
+      if (el.published) {
+        this.extraFeaturesForm.addControl(el.title, this.fb.control(null));
+      }
+
+    });
+  }
 
   openTab = (i: number) => {
     this.currentTab = i;
   }
 
+  showFeatures() {
+    this.openFeatures = !this.openFeatures;
+  }
+
+  // tslint:disable-next-line: variable-name
   public orderService(_package: string) {
     this.servicePackageService.createDeal(this.offerId, _package);
+  }
+
+  goCheckout(packageType) {
+    this.extraFeaturesForm.addControl('packageTitle', this.fb.control(packageType));
+    this.checkoutState.emit(this.extraFeaturesForm.value);
   }
 }

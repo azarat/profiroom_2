@@ -5,64 +5,135 @@
     border: 1px solid #F2F5FB;
     box-sizing: border-box;
   }
-  ::ng-deep .ngx-gallery-image.ngx-gallery-active{
-    z-index: 1;
-  }
-  ::ng-deep .ngx-gallery-arrow-wrapper{
-    width: 41px;
-    height: 100.2%;
-    background-color: #fff;
-    z-index: 9;
-    &.ngx-gallery-arrow-left{
-      .ngx-gallery-icon::after{
-        transform: translate(-30%, -50%) rotate(135deg);
-      }
-      .ngx-gallery-arrow{
-        left: 0;
-      }
+  ::ng-deep {
+    .ngx-gallery-image.ngx-gallery-active{
+      z-index: 1;
     }
-    &.ngx-gallery-arrow-right{
-      .ngx-gallery-icon::after{
-        transform: translate(-70%, -50%) rotate(-45deg);
-      }
-      .ngx-gallery-arrow{
-        right: 0;
-      }
-    }
-    .ngx-gallery-icon{
-      width: 100%;
-      height: 100%;
-      background-color: transparent;
-      top: 0;
-      left: 0;
-      transform: translate(0);
-      z-index: 9;
-      &::after{
-        content: "";
-        position: absolute;
-        border: 3px solid #3F60FB;
-        border-left: transparent;
-        border-top: transparent;
-        width: 10px;
-        height: 10px;
+    .ngx-gallery-active{
+      .ngx-gallery-arrow-wrapper{
+        width: 55px;
+        height: 55px;
+        background-color: transparent;
         top: 50%;
-        left: 50%;
+        transform: translateY(-50%);
+        .ngx-gallery-icon{
+          border-radius: 50%;
+          background: rgba(255, 255, 255, 0.9);
+          border: 1px solid rgba(128, 152, 213, 0.2);
+          box-sizing: border-box;
+          box-shadow: 10px 10px 16px rgba(128, 152, 213, 0.25);
+        }
+        .fa-arrow-circle-right:before{
+          content: '';
+        }
+        .fa-arrow-circle-left:before{
+          content: '';
+        }
+        &.ngx-gallery-arrow-right{
+          right: 45px;
+        }
+        &.ngx-gallery-arrow-left{
+          left: 45px;
+        }
       }
-    }
-  }
-  ::ng-deep .ngx-gallery-close{
-    background-color: black;
-  }
-
-  ::ng-deep ngx-gallery-thumbnails{
-    .ngx-gallery-thumbnail{
-      border: 1px solid #F2F5FB;
-      box-sizing: border-box;
     }
     .ngx-gallery-arrow-wrapper{
-      width: 27px;
+      width: 41px;
+      height: 100.2%;
+      background-color: #fff;
+      z-index: 9;
+      &.ngx-gallery-arrow-left{
+        .ngx-gallery-icon::after{
+          transform: translate(-30%, -50%) rotate(135deg);
+        }
+        .ngx-gallery-arrow{
+          left: 0;
+        }
+      }
+      &.ngx-gallery-arrow-right{
+        .ngx-gallery-icon::after{
+          transform: translate(-70%, -50%) rotate(-45deg);
+        }
+        .ngx-gallery-arrow{
+          right: 0;
+        }
+      }
+      .ngx-gallery-icon{
+        width: 100%;
+        height: 100%;
+        background-color: transparent;
+        top: 0;
+        left: 0;
+        transform: translate(0);
+        z-index: 9;
+        &::after{
+          content: "";
+          position: absolute;
+          border: 3px solid #3F60FB;
+          border-left: transparent;
+          border-top: transparent;
+          width: 10px;
+          height: 10px;
+          top: 50%;
+          left: 50%;
+        }
+      }
+    }
+    .ngx-gallery-preview-img-wrapper{
+      background: rgba(244, 247, 252, 0.7);
+      backdrop-filter: blur(2px);
+    }
+    .ngx-gallery-preview-top{
+      .ngx-gallery-icon{
+        position: relative;
+        margin-right: 0;
+        margin-top: 0;
+        right: 55px;
+        top: 35px;
+        width: 55px;
+        height: 55px;
+        font-size: 25px;
+        cursor: pointer;
+        background-color: transparent;
+        border-radius: 50%;
+        text-decoration: none;
+        &::before{
+          content: "";
+          width: 25px;
+          height: 3px;
+          background-color: #3F60FB;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%) rotate(45deg);
+        }
+        &::after{
+          content: '';
+          width: 25px;
+          height: 3px;
+          background-color: #3F60FB;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%) rotate(-45deg);
+        }
+      }
+      .ngx-gallery-close{
+        // background-color: black;
+        display: none;
+      }
+    }
+    ngx-gallery-thumbnails{
+      .ngx-gallery-thumbnail{
+        border: 1px solid #F2F5FB;
+        box-sizing: border-box;
+      }
+      .ngx-gallery-arrow-wrapper{
+        width: 27px;
+      }
     }
   }
+
   .fantom_full-size{
     content: "";
     position: absolute;

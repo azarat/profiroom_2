@@ -1,0 +1,113 @@
+
+<div class="service-page-checkout">
+  <div class="main-block" *ngIf="offerData">
+    <ul class="service-order-steps">
+      <li class="single-step">
+        <div class="single-step__status done"></div>
+        <h4>Выбор пакета услуг</h4>
+      </li>
+      <li class="single-step">
+        <div class="single-step__status dev">2</div>
+        <h4>Выбор дополнительных опций</h4>
+      </li>
+      <li class="single-step">
+        <div class="single-step__status">3</div>
+        <h4>Заполнение брифа</h4>
+      </li>
+    </ul>
+
+    <div class="additional-options">
+      <h3 class="additional-options__title">Добавить дополнительные опции к услуге?</h3>
+      <h4 class="additional-options__name">{{offerData.title}}</h4>
+
+      <form class="extra-features__form" [formGroup]="checkoutExtraFeatures">
+        <ul class="extra-features__list" [ngClass]="{open: openFeatures}">
+          <ng-container *ngFor="let extra_term of offerData.extra_terms">
+            <div class="extra-features__item" *ngIf="extra_term.package == chousenPackage.packageTitle">
+              <mat-checkbox class="extra-features__checkbox" formControlName="extraTerms" [(ngModel)]="extraFeatures.extraTerms">
+              </mat-checkbox>
+              <div class="extra-features__text">
+                <span class="extra-features__title">Сжатые сроки</span>
+
+              </div>
+            </div>
+          </ng-container>
+          <div class="extra-features__item" *ngIf="offerData.extra_changes">
+            <mat-checkbox class="extra-features__checkbox" formControlName="extraСhanges"></mat-checkbox>
+            <div class="extra-features__text">
+              <span class="extra-features__title">Дополнительные правки</span>
+            </div>
+          </div>
+          <div class="extra-features__item" *ngIf="offerData.extra_commercial">
+            <mat-checkbox class="extra-features__checkbox" formControlName="extraCommercial" [(ngModel)]="extraFeatures.extraCommercial">
+            </mat-checkbox>
+            <div class="extra-features__text">
+              <span class="extra-features__title">Коммерческое использование</span>
+            </div>
+          </div>
+
+          <ng-container *ngFor="let extra_feature of offerData.extra_features">
+            <div class="extra-features__item" *ngIf="extra_feature.published">
+              <mat-checkbox class="extra-features__checkbox" [formControlName]="extra_feature.title">
+              </mat-checkbox>
+              <div class="extra-features__text">
+                <span class="extra-features__title">{{extra_feature.title}}</span>
+                <p class="extra-features__description">{{extra_feature.description}}</p>
+              </div>
+
+            </div>
+          </ng-container>
+
+        </ul>
+      </form>
+    </div>
+  </div>
+  <div class="final-services">
+    <h3 class="final-services__title">ваш выбор услуги</h3>
+    <div class="final-services__top">
+      <h4 class="additional-options__name">{{chousenPackage.packageTitle}}</h4>
+      <div class="final-price__no-features">
+        <span class="final-price__text">Общая стоимость (без доп. опций)</span><span class="final-price__price">{{offerData[chousenPackage.packageTitle].price}} UAH</span>
+      </div>
+    </div>
+    <div class="final-services__features">
+
+      <div class="changes-term">
+        <span>{{ offerData[chousenPackage.packageTitle].changes }} правок</span>
+        <span>{{ offerData[chousenPackage.packageTitle].term }} дней выполнения</span>
+      </div>
+
+      <ul class="option-list">
+        <ng-container *ngFor="let option of offerData.main_options">
+          <li class="active" *ngIf="option[chousenPackage.packageTitle]">{{ option.title }}</li>
+        </ng-container>
+      </ul>
+
+    </div>
+    <div class="final-services__extra-features">
+
+      <div class="extra-features-title">Дополнительные опции</div>
+
+      <ul class="option-list">
+        <div class="extra-features__item">
+
+            <span class="extra-features__title">Сжатые сроки</span>
+            <div class="extra-features__price">5000 <span>UAH</span></div>
+
+        </div>
+        <div class="extra-features__item">
+
+            <span class="extra-features__title">Сжатые сроки</span>
+            <div class="extra-features__price">5000 <span>UAH</span></div>
+
+        </div>
+      </ul>
+
+    </div>
+
+
+  </div>
+</div>
+
+
+
