@@ -23,7 +23,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   public exitFromBreefPopUpVisible: boolean = null;
   public isChat = true;
 
-  deal: CollucutorsListInterface = null;
+  deal: CollucutorsListInterface;
 
 
   constructor(

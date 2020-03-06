@@ -86,6 +86,7 @@ export class MessagerComponent implements OnInit, OnDestroy {
       });
     // console.log(this.collocutorData);
     this._isChatHidden();
+    // this.getDealData();
   }
 
   public ngOnDestroy() {
@@ -148,15 +149,16 @@ export class MessagerComponent implements OnInit, OnDestroy {
 
   // Close chat if deal is done
   private _isChatHidden() {
-    this.deal.workEnded === 1 || this.deal.dealDone === 1 ? this.chatHided = true : this.chatHided = null;
+    this.deal && (this.deal.workEnded === 1 || this.deal.dealDone === 1) ? this.chatHided = true : this.chatHided = null;
     console.log('is this deal???', this.chatHided)
   }
 
-  private getDealData() {
-    this.dealService.dealData$
-    .subscribe(res => {
-      this.deal = res;
-    });
-  }
+  // private getDealData() {
+  //   this.dealService.dealData$
+  //   .subscribe(res => {
+
+  //     this.deal = res;
+  //   });
+  // }
 
 }
