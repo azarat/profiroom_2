@@ -123,7 +123,7 @@ export class MessagerToolsComponent implements OnInit {
     if (this.deal.moneyHolded === 0 || this.deal.dealDone || this.deal.workEnded && this.isUserFreelancer ) {
       this.isDealBtnsVisible = null;
     } else if (this.deal.earlyСlosing === 1) {
-      let FreelancerCancel = this.deal.histroy.incleudes()
+      // let FreelancerCancel = this.deal.history.includes()
     }
   }
 

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ReaitDealComponent } from './reait-deal.component';
+import { RateDealComponent } from './reait-deal.component';
 
 describe('ReaitDealComponent', () => {
-  let component: ReaitDealComponent;
-  let fixture: ComponentFixture<ReaitDealComponent>;
+  let component: RateDealComponent;
+  let fixture: ComponentFixture<RateDealComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ReaitDealComponent ]
+      declarations: [ RateDealComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ReaitDealComponent);
+    fixture = TestBed.createComponent(RateDealComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
