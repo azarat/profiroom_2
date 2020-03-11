@@ -45,6 +45,11 @@ export class EducationUserSettingsComponent implements OnInit {
     // console.log(this.userSettings);
   }
 
+  // --------------- change in field -----------------//
+  // onFilterChange() {
+
+  // }
+
   // --------------- create education-item -----------------//
   addEducation() {
     this.userSettingsService.newEducationId().subscribe(
@@ -54,9 +59,9 @@ export class EducationUserSettingsComponent implements OnInit {
         if (this.educationId) {
           this.userSettings.education.push({
             id: this.educationId,
-            institution: '',
+            institution: 'Учебное заведение',
             academicDegree: 1,
-            specialty: '',
+            specialty: 'Специальность',
             startEducation: 1960,
             finishEducation: 1960,
             diploma: []
@@ -74,9 +79,8 @@ export class EducationUserSettingsComponent implements OnInit {
     const educationId = {
       id: deletedEducation
     };
-
+    this.userSettingsService.deleteEducationID(educationId).subscribe((res: any) => {});
     this.userSettings.deleteEducation(i);
-    this.userSettingsService.deleteEducatioon(educationId);
   }
 
   //  --------------- diploma photos uploading ---------------

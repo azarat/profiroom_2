@@ -10,37 +10,45 @@ export class UserSettingsService {
   constructor(
     private http: HttpClient
   ) { }
-
+  // ------ upload avatar -------
   uploadFiles(files) {
     return this.http.post('/loadAva', files);
   }
 
-  uploadDiplomaPhotos(files) {
-    return this.http.post('/loadDiplomaFiles', files);
-  }
-
+  // ------ education avatar -------
   newEducationId() {
     return this.http.post('/newEducation', '');
   }
-  deleteEducatioon(id) {
+  deleteEducationID(id) {
+    console.log('delete');
     return this.http.post('/deleteEducation', id);
   }
+  uploadDiplomaPhotos(files) {
+    return this.http.post('/loadDiplomaFiles', files);
+  }
+  deleteFile(id) {
+    return this.http.post('/deleteDiplomaFiles', id);
+  }
 
+
+
+  // ------ Additional education avatar -------
+  newAdditioanlEducationId() {
+    return this.http.post('/newAditionalEducation', '');
+  }
+  deleteAdditioanlEducationID(id) {
+    return this.http.post('/deleteAditionalEducation', id);
+  }
   uploadAdditionalDiplomaPhotos(files) {
     return this.http.post('/loadAdditionalDiplomaFiles', files);
   }
 
-  newAdditioanlEducationId() {
-    return this.http.post('/newEducation', '');
-  }
+
 
   public getServiceData() {
     return this.http.get('/getUserSettings');
   }
 
-  deleteFile(id) {
-    return this.http.post('/deleteDiplomaFiles', id);
-  }
 
   public updateService( formData) {
     return this.http.post<any>('/updateUserSettings', formData);

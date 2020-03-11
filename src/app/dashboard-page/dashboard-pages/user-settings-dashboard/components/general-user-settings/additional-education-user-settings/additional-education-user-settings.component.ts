@@ -42,7 +42,7 @@ export class AdditionalEducationUserSettingsComponent implements OnInit {
   }
 
   // --------------- create education-item -----------------//
-  addEducation() {
+  addAdditionalEducation() {
     this.userSettingsService.newAdditioanlEducationId().subscribe(
       (res: any) => {
         this.additionalEducationId = res.data[0].id;
@@ -62,6 +62,7 @@ export class AdditionalEducationUserSettingsComponent implements OnInit {
       }
     );
     this.openItem = this.userSettings.additionalEducation.length + 1;
+    this.files = [];
   }
 
   // --------------- delete education-item -----------------//
@@ -71,7 +72,9 @@ export class AdditionalEducationUserSettingsComponent implements OnInit {
     };
 
     this.userSettings.deleteAdditionalEducation(i);
-    this.userSettingsService.deleteEducatioon(educationId);
+    console.log('pre delete', this.userSettings.additionalEducation);
+    this.userSettingsService.deleteAdditioanlEducationID(educationId).subscribe((res: any) => {});
+    console.log('after delete', this.userSettings.additionalEducation);
   }
 
   chooseItem(i) {
@@ -87,6 +90,7 @@ export class AdditionalEducationUserSettingsComponent implements OnInit {
     const formData: FormData = new FormData();
     this.files = [];
 
+    console.log(this.files);
     // tslint:disable-next-line: prefer-for-of
     for (let index = 0; index < event.length; index++) {
       this.files.push(event[index]);
@@ -113,7 +117,7 @@ export class AdditionalEducationUserSettingsComponent implements OnInit {
     if (form.invalid) {
       return;
     }
-    this.addEducation();
+    this.addAdditionalEducation();
     this.submited = false;
   }
 
