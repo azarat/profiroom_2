@@ -16,7 +16,7 @@
       </li>
     </ul>
 
-    <div class="additional-options">
+    <div class="additional-options" *ngIf="offerData">
       <h3 class="additional-options__title">Добавить дополнительные опции к услуге?</h3>
       <h4 class="additional-options__name">{{offerData.title}}</h4>
 
@@ -24,7 +24,12 @@
         <ul class="extra-features__list" [ngClass]="{open: openFeatures}">
           <ng-container *ngFor="let extra_term of offerData.extra_terms">
             <div class="extra-features__item" *ngIf="extra_term.package == chousenPackage.packageTitle">
-              <mat-checkbox class="extra-features__checkbox" formControlName="extraTerms" [(ngModel)]="extraFeatures.extraTerms">
+              <mat-checkbox
+              class="extra-features__checkbox"
+              name="extraTerms"
+              [(ngModel)]="checkoutExtraFeatures.extraTerms"
+              #extraTerms="ngModel"
+              >
               </mat-checkbox>
               <div class="extra-features__text">
                 <span class="extra-features__title">Сжатые сроки</span>
@@ -33,13 +38,23 @@
             </div>
           </ng-container>
           <div class="extra-features__item" *ngIf="offerData.extra_changes">
-            <mat-checkbox class="extra-features__checkbox" formControlName="extraСhanges"></mat-checkbox>
+            <mat-checkbox
+            class="extra-features__checkbox"
+            name="extraСhanges"
+            [(ngModel)]="checkoutExtraFeatures.extraСhanges"
+            #extraСhanges="ngModel"
+            >
+          </mat-checkbox>
             <div class="extra-features__text">
               <span class="extra-features__title">Дополнительные правки</span>
             </div>
           </div>
           <div class="extra-features__item" *ngIf="offerData.extra_commercial">
-            <mat-checkbox class="extra-features__checkbox" formControlName="extraCommercial" [(ngModel)]="extraFeatures.extraCommercial">
+            <mat-checkbox
+            class="extra-features__checkbox"
+            name="extraCommercial"
+            [(ngModel)]="checkoutExtraFeatures.extraCommercial"
+            #extraCommercial="ngModel">
             </mat-checkbox>
             <div class="extra-features__text">
               <span class="extra-features__title">Коммерческое использование</span>
