@@ -140,6 +140,7 @@
     }
     .extra-features__item{
       display: flex;
+      flex-direction: column;
       margin-bottom: 15px;
       ::ng-deep {
 
@@ -300,7 +301,7 @@
       }
     }
   }
-  &__extra-features{
+  &__extra-features, &__service-price{
     margin: 0px 53px 16px;
     border-bottom: 1px solid #EBEEFF;
     padding-bottom: 6px;
@@ -316,31 +317,63 @@
       padding: 0;
       list-style-type: none;
       margin-bottom: 0;
-      .extra-features__item {
-        display: flex;
-        justify-content: space-between;
-        font-weight: normal;
-        font-size: 18px;
-        line-height: 117%;
-        color: #707683;
+    }
+    .extra-features__item {
+      display: flex;
+      justify-content: space-between;
+      font-weight: normal;
+      font-size: 18px;
+      line-height: 117%;
+      color: #707683;
 
-        position: relative;
-        margin-bottom: 12px;
-      }
-      .extra-features__title{
-        font-size: 16px;
-        line-height: 21px;
-        color: #323C47;
-      }
-      .extra-features__price{
-        font-size: 16px;
-        line-height: 131%;
-        color: #323C47;
-        font-weight: 600;
-        span{
-          font-size: 15px;
-        }
+      position: relative;
+      margin-bottom: 12px;
+    }
+    .extra-features__title{
+      font-size: 16px;
+      line-height: 21px;
+      color: #323C47;
+    }
+    .extra-features__price{
+      font-size: 16px;
+      line-height: 131%;
+      color: #323C47;
+      font-weight: 600;
+      span{
+        font-size: 15px;
       }
     }
+  }
+  &__service-price{
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+}
+
+.btn-checkoutForm{
+  background-color: #5d8fff;
+  padding: 10px;
+  width: fit-content;
+  color: #fff;
+}
+
+.final-price{
+  margin: 0px 53px 16px;
+  color: #29CC97;
+  font-family: 'Source Sans Pro';
+  &__wrapper{
+    display: flex;
+    justify-content: space-between;
+  }
+  &__title{
+    font-weight: normal;
+    font-size: 17px;
+    line-height: 117%;
+    text-transform: uppercase;
+  }
+  &__price{
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 117%;
   }
 }
