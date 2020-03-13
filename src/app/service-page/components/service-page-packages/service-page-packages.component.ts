@@ -52,13 +52,13 @@ export class ServicePagePackagesComponent implements OnInit {
 
   initForm() {
     this.extraFeaturesForm = this.fb.group({
-      extraTerms: [''],
-      extraСhanges: [''],
-      extraCommercial: [''],
+      extraTerms: [false],
+      extraСhanges: [false],
+      extraCommercial: [false],
     });
     this.offerData.extra_features.forEach((el: any) => {
       if (el.published) {
-        this.extraFeaturesForm.addControl(el.title, this.fb.control(null));
+        this.extraFeaturesForm.addControl(el.title, this.fb.control(false));
       }
 
     });

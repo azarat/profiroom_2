@@ -13,14 +13,13 @@ export class ServicePageCheckoutComponent implements OnInit {
   @Input() chousenOnOfferPage;
 
   public currentPackage;
+  public noOneCheked = false;
+  public finalSum = 0;
+  public serviceCommission = 500;
 
   public checkoutForm: FormGroup;
-
   public extraFeatures;
   public extraFeaturesResult;
-  public finalSum = 0;
-
-  public serviceCommission = 500;
 
   constructor(
     private fb: FormBuilder
@@ -28,9 +27,14 @@ export class ServicePageCheckoutComponent implements OnInit {
 
   ngOnInit() {
     this.currentPackage = this.chousenOnOfferPage.packageTitle;
-    // console.log(this.currentPackage);
     this.initForm();
     this.chousenFeatures();
+
+
+    // console.log(this.chousenOnOfferPage);
+    // console.log(this.checkoutForm);
+
+    // this.steValuesFromOfferPage(this.chousenOnOfferPage);
   }
 
   initForm() {
@@ -42,45 +46,67 @@ export class ServicePageCheckoutComponent implements OnInit {
     this.offerData.extra_features.forEach((el: any) => {
       this.checkoutForm.addControl(el.title, this.fb.control(false));
     });
+
+    console.log(this.checkoutForm.value);
+    for (let key in this.chousenOnOfferPage) {
+      if (this.chousenOnOfferPage[key] && key !== 'packageTitle') {
+        this.checkoutForm.value[key] = true;
+
+
+      }
+    }
   }
+
+  // steValuesFromOfferPage(obj) {
+  //   for (let key in obj) {
+  //     if (obj[key] && key !== 'packageTitle') {
+  //       this.checkoutForm.value[key] = true;
+  //     }
+  //   }
+  //   console.log(this.checkoutForm.value);
+  // }
 
   chousenFeatures() {
     this.extraFeaturesResult = Object.values(this.checkoutForm.value);
-    console.log(this.extraFeaturesResult);
-    console.log(this.finalSum);
     this.calculateFinalPrice();
 
+    for (let key in this.checkoutForm.value) {
+      if (this.checkoutForm.value[key] === true && key !== 'packageTitle') {
+        this.noOneCheked = true;
+        console.log(this.checkoutForm.value);
+        console.log(this.noOneCheked);
+      } else {
+        this.noOneCheked = false;
+      }
+    }
   }
 
   calculateFinalPrice() {
     this.finalSum = 0;
-    console.log('стартовая сума ', this.finalSum);
+    // ---сума пакета---//
     this.finalSum += this.offerData.basic.price;
-    console.log('+сума пакета ', this.finalSum);
+    // ---сума комисия---//
     this.finalSum += this.serviceCommission;
-    console.log('+сума комисия ', this.finalSum);
-
+    // ---сума за сжатые сроки---//
     if (this.extraFeaturesResult[0]) {
       this.offerData.extra_terms.forEach((item) => {
         if (item.package === this.currentPackage) {
           this.finalSum += item.price;
         }
       });
-      console.log('+сума сроки ', this.finalSum);
     }
+    // ---сума за комерцию---//
     if (this.extraFeaturesResult[1]) {
       this.finalSum += this.offerData.extra_commercial.price;
-      console.log('+сума комерция ', this.finalSum);
     }
+    // ---сума за дополнительные правки---//
     if (this.extraFeaturesResult[2]) {
       this.finalSum += this.offerData.extra_changes.price;
     }
-
+    // ---сума за доп фичи---//
     for (let i = 3; i < this.extraFeaturesResult.length; i++) {
-      console.log(i);
       if (this.extraFeaturesResult[i]) {
         this.finalSum += this.offerData.extra_features[i - 3].price;
-        console.log(i - 3);
       }
     }
   }

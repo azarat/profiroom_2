@@ -36,40 +36,40 @@
             Дополнительные опции</div>
           <ul class="extra-features__list" [ngClass]="{open: openFeatures}">
             <ng-container *ngFor="let extra_term of offerData.extra_terms">
-              <div class="extra-features__item" *ngIf="extra_term.package == package">
+              <div class="extra-features__item" *ngIf="extra_term.package == package && extra_term.published">
                 <mat-checkbox class="extra-features__checkbox" formControlName="extraTerms">
+                  <div class="extra-features__text">
+                    <span class="extra-features__title">Сжатые сроки</span>
+                    <span class="extra-features__price">{{extra_term.price}} UAH</span>
+                  </div>
                 </mat-checkbox>
-                <div class="extra-features__text">
-                  <span class="extra-features__title">Сжатые сроки</span>
-                  <span class="extra-features__price">{{extra_term.price}} UAH</span>
-                </div>
               </div>
             </ng-container>
-            <div class="extra-features__item" *ngIf="offerData.extra_changes">
+            <div class="extra-features__item" *ngIf="offerData.extra_changes.published">
               <mat-checkbox class="extra-features__checkbox" formControlName="extraСhanges">
+                <div class="extra-features__text">
+                  <span class="extra-features__title">Дополнительные правки</span>
+                  <span class="extra-features__price">{{offerData.extra_changes.price}} UAH</span>
+                </div>
               </mat-checkbox>
-              <div class="extra-features__text">
-                <span class="extra-features__title">Дополнительные правки</span>
-                <span class="extra-features__price">{{offerData.extra_changes.price}} UAH</span>
-              </div>
             </div>
-            <div class="extra-features__item" *ngIf="offerData.extra_commercial">
+            <div class="extra-features__item" *ngIf="offerData.extra_commercial.published">
               <mat-checkbox class="extra-features__checkbox" formControlName="extraCommercial">
+                <div class="extra-features__text">
+                  <span class="extra-features__title">Коммерческое использование</span>
+                  <span class="extra-features__price">{{offerData.extra_commercial.price}} UAH</span>
+                </div>
               </mat-checkbox>
-              <div class="extra-features__text">
-                <span class="extra-features__title">Коммерческое использование</span>
-                <span class="extra-features__price">{{offerData.extra_commercial.price}} UAH</span>
-              </div>
             </div>
 
             <ng-container *ngFor="let extra_feature of offerData.extra_features">
               <div class="extra-features__item" *ngIf="extra_feature.published">
                 <mat-checkbox class="extra-features__checkbox" [formControlName]="extra_feature.title">
+                  <div class="extra-features__text">
+                    <span class="extra-features__title">{{extra_feature.title}}</span>
+                    <span class="extra-features__price">{{extra_feature.price}} UAH</span>
+                  </div>
                 </mat-checkbox>
-                <div class="extra-features__text">
-                  <span class="extra-features__title">{{extra_feature.title}}</span>
-                  <span class="extra-features__price">{{extra_feature.price}} UAH</span>
-                </div>
               </div>
             </ng-container>
 
