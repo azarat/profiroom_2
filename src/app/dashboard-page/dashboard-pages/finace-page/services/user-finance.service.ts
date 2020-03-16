@@ -23,11 +23,11 @@ export class UserFinanceService {
   public makePayment(userData) {
     this.http.post('/Purchase', userData)
     .subscribe((res: any) => {
-     this.ranWFP( res.responce);
+     this.ranWayForPay( res.responce);
     })
   }
 
-  ranWFP(obj) {
+  private ranWayForPay(obj) {
     this.wayforpay.run(obj);
   }
 }

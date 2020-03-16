@@ -16,6 +16,7 @@ export class UserHeaderMenuComponent implements OnInit {
   @Output() userIdChange = new EventEmitter<any>();
   user: UserModel;
   menuOpen: boolean = null;
+  public isUserFreelancer: boolean;
 
 
   constructor(
@@ -29,6 +30,7 @@ export class UserHeaderMenuComponent implements OnInit {
       .subscribe((res: any) => {
         this.user = plainToClass(UserModel, res[0]);
       });
+  this._checkUserState()
   }
 
   toggleMenu() {
@@ -44,6 +46,19 @@ export class UserHeaderMenuComponent implements OnInit {
     this.localStorageService.setItem('userId', null);
 
     this.userIdChange.emit(null);
+  }
+
+
+  private _checkUserState() {
+    this.localStorageService.getItem('userRole').value === 1 ? this.isUserFreelancer = true : this.isUserFreelancer = null;
+
+    // const state = this.localStorageService.getItem('userRole').value;
+    // console.log(state)
+    // if (state === '1') {
+    //   this.isUserFreelancer = true;
+    // } else if (state === '2') {
+    //   this.isUserFreelancer = null;
+    // }
   }
 
 }

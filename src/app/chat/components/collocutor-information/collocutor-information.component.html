@@ -1,13 +1,14 @@
 <section class="collocutor-wrap" *ngIf="collocutor">
   <div class=" line">
     <div class="collocutor-photo">
-      <img [src]=collocutor.avatar alt="collocutor-photo">
-    </div>
+      <a [routerLink]="'/user/' + collocutorData.collocutorId | localize" >
+      <img [src]=collocutor.avatar alt="collocutor-photo"></a>
+        </div>
   </div>
   <div class="information">
-    <p class="name">
+      <a class="name" [routerLink]="'/user/' + collocutorData.collocutorId | localize" >
       <span>{{ collocutorData.collocutorName }}</span>&nbsp;<span> {{ collocutorData.collocutorSurname }}</span>
-    </p>
+      </a>
     <div class="raiting">
       <app-star-raiting [currentRaiting]="collocutor.raiting"></app-star-raiting>
       <span>{{ collocutor.raiting  }}</span> <span class="comments">({{ collocutorAllComments }} отзывов)</span>

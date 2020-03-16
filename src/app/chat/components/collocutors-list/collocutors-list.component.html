@@ -15,9 +15,10 @@
     <!-- List of ollocutors  -->
     <div class="collocutors-list" [ngClass]="{ projects: chatType === 'work' }">
       <ng-container *ngFor="let collocutor of collocutors, let i=index">
-        <div class="collocutor" *ngIf="!(collocutor.freelanser_id == userId && collocutor.breef == 0)"
+        <div class="collocutor" *ngIf="!(collocutor.freelanser_id == userId && collocutor.breef == 0) &&
+        currentFilterType === 'all' || currentFilterType === collocutor.status"
           (click)="openChat(collocutor)" [ngClass]="{'unread': userId === +collocutor.unread}">
-          <span *ngIf="chatType == 'work'" class="status"></span>
+          <span *ngIf="chatType == 'work'" class="status {{ collocutor.status }}"></span>
            <p class="date" *ngIf="collocutor.message.length !== 0">
           {{ collocutor.message[0].dateTime | dateFormatPipe: 'dd.MM HH:mm' }}
           </p>
@@ -30,7 +31,7 @@
           <div class="message-preview">
             <div class="photo">
               <img [src]="collocutor.collocutorAva" alt="collocutor-photo" />
-              <span class="status"></span>
+              <span class="status {{ collocutor.status }}"></span>
             </div>
             <div class="message-information">
               <p class="collocutor-name">{{ collocutor.collocutorName }} {{ collocutor.collocutorSurname }} </p>

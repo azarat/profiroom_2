@@ -1,4 +1,4 @@
-<div class="system-message {{ messageClass }}">
+<div class="system-message {{ messageClass }}" >
   <div>
     <div class="icon">
       <img [src]="'/assets/images/icons/deals-icons/' + systemMessage.message.name + '.png'" alt="system-icon">
@@ -27,8 +27,8 @@
         <button class="btn" *ngIf="dealCencel && messageClass === 'deal-cencel'" (click)="submitDealCancel()"  >Подтвердть отмену</button>
         <!-- Deal preFinish -->
 
-        <button class="btn-sec"  *ngIf="!isUserFreelancer &&dealCencel && messageClass === 'DealFinishedByFreelancer'" (click)="cancelFinishDeal()"  >вернуть к работе </button>
-        <button class="btn" *ngIf="!isUserFreelancer &&dealCencel && messageClass === 'DealFinishedByFreelancer'" (click)="submitFinishWork()"  > работа завершена</button>
+        <button class="btn-sec"  *ngIf="!isUserFreelancer && dealCencel && messageClass === 'DealFinishedByFreelancer'" (click)="cancelFinishDeal()"  >вернуть к работе </button>
+        <button class="btn" *ngIf="!isUserFreelancer && dealCencel && messageClass === 'DealFinishedByFreelancer'" (click)="submitFinishWork()"  > работа завершена</button>
 
 
       </div>

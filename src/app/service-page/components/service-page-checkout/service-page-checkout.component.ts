@@ -30,6 +30,9 @@ export class ServicePageCheckoutComponent implements OnInit {
   public extraFeatures;
   public extraFeaturesResultArr;
   public extraFeaturesResult;
+  @Input() chousenPackage;
+  // public extraFeatures: ExtraFeaturesModel;
+  public openFeatures: any;
 
   public outputDealData: {
     id?: number;

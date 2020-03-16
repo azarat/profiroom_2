@@ -240,6 +240,39 @@
     width: 100%;
     overflow: hidden;
     text-align: center;
+
+    font-family: Source Sans Pro, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 27px;
+    color: #33596e;
+    opacity: 0.5;
+    margin-bottom: 38px;
+    position: relative;
+    overflow: hidden;
+    &:before {
+      content: '';
+      position: absolute;
+      width: 200%;
+      height: 1px;
+      width: 200%;
+      height: 1px;
+      background: #EBEEFF;
+      left: -158%;
+      top: 50%;
+
+    }
+    &:after {
+      content: '';
+      position: absolute;
+      width: 200%;
+      height: 1px;
+      background: #EBEEFF;
+      right: -158%;
+      top: 50%;
+
+    }
   }
   .time {
     font-family: Source Sans Pro, sans-serif;

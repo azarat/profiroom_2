@@ -3,6 +3,9 @@ import { UserStateService } from 'src/app/dashboard-page/services/user-state.ser
 import { ChatService } from '../../services/chat.service';
 import { CollocutorListModel } from 'src/app/models/chat/collocutors-list.model';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
+import { CollucutorsListInterface } from '../../interfaces/collucotors-list.interface';
+import { DealService } from '../../services/deal.service';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-breef-message-showing',
@@ -21,11 +24,16 @@ export class BreefMessageShowingComponent implements OnInit {
     answer: any
     isanswerArr?: boolean
   }[] = null;
+  deal: CollucutorsListInterface;
+  dealApproved;
+
+  buttonText = 'развернуть';
 
   constructor(
     // private userStateService: UserStateService,
     private chatService: ChatService,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private dealService: DealService
   ) { }
 
   ngOnInit() {
@@ -34,6 +42,7 @@ export class BreefMessageShowingComponent implements OnInit {
     // this.userStateService.userState$.subscribe(res => {
     //   this.userState = res;
     // })
+    this.getDealData();
   }
 
   private convertObjToArr() {
@@ -66,11 +75,30 @@ export class BreefMessageShowingComponent implements OnInit {
     });
   }
 
-  showHideBreef() {
+  public showHideBreef() {
     if (this.isBreefElVisible === null) {
       this.isBreefElVisible = true;
     } else {
       this.isBreefElVisible = !this.isBreefElVisible;
     }
+    if (this.isBreefElVisible === true) {
+      this.buttonText = 'свернуть';
+    } else {
+      this.buttonText = 'развернуть';
+    }
+  }
+
+  private getDealData() {
+    this.dealService.dealData$
+    .subscribe(res => {
+      this.deal = res;
+      if(this.deal) {
+        this.isDealApproved();
+      }
+    });
+  }
+
+  private isDealApproved() {
+    this.dealApproved  = this.deal.history.find(el => el.answer === 'approveBreef');
   }
 }

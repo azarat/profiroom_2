@@ -12,7 +12,7 @@ import { SimilarOffersInterface } from 'src/app/shared/interfaces/similar-offers
 export class ServicePageEarlierViewedComponent implements OnInit {
 
   public id;
-  @Input() similarOffers: SimilarOffersInterface;
+  @Input() similarOffers: any;
   constructor(
     private route: ActivatedRoute,
     private localize: LocalizeRouterService,

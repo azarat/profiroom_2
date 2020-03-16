@@ -13,7 +13,7 @@ const n = 5750;
 })
 export class CollocutorInformationComponent implements OnInit {
 
-  collocutorRaiting = 4;
+  // collocutorRaiting = 4;
   public collocutorAllComments = null;
   public isInformWraped: boolean = false;
   public wrapButtonText: string = 'развернуть';

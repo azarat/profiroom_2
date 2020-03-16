@@ -6,11 +6,11 @@ export const projectTypesConst = [
   },
   {
     name: 'Бриф',
-    type: 'breef'
+    type: 'new'
   },
   {
     name: 'Новые',
-    type: 'new'
+    type: 'sentBreef'
   },
   {
     name: 'В процессе',
@@ -18,7 +18,7 @@ export const projectTypesConst = [
   },
   {
     name: 'Архив',
-    type: 'archive'
+    type: 'archived'
   },
   {
     name: 'Арбитраж',
