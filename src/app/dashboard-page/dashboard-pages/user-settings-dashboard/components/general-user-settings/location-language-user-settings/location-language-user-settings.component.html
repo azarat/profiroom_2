@@ -21,7 +21,10 @@
 
           <div class="field-block">
             <h5 class="fields-title">Язык</h5>
-            <input class="fields-value" type="text" [(ngModel)]="userSettings.language[i].langName" maxlength="15">
+            <input class="fields-value" [ngClass] = "{not_Valid: !langName.valid}" type="text" [(ngModel)]="userSettings.language[i].langName" #langName="ngModel" maxlength="15" required minlength="4">
+            <div *ngIf="!langName.valid" class="alert-danger">
+              <p>specialty must be at least 4 characters long.</p>
+            </div>
           </div>
 
           <div class="field-block language-level">

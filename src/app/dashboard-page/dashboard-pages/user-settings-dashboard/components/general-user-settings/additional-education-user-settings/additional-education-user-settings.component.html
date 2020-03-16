@@ -18,9 +18,9 @@
               minlength="4"
               name="institution-{{i}}"
               [(ngModel)]="userSettings.additionalEducation[i].additionalInstitution"
-              [ngClass] = "{not_Valid: !institution.valid && submited}"
+              [ngClass] = "{not_Valid: !institution.valid }"
             >
-            <div *ngIf="!institution.valid && submited" class="alert-danger">
+            <div *ngIf="!institution.valid " class="alert-danger">
               <p>institution must be at least 4 characters long.</p>
             </div>
           </div>
@@ -36,9 +36,9 @@
                 minlength="4"
                 name="specialty-{{i}}"
                 [(ngModel)]="userSettings.additionalEducation[i].courseName"
-                [ngClass] = "{not_Valid: !specialty.valid && submited}"
+                [ngClass] = "{not_Valid: !specialty.valid}"
               >
-              <div *ngIf="!specialty.valid && submited" class="alert-danger">
+              <div *ngIf="!specialty.valid" class="alert-danger">
                 <p>specialty must be at least 4 characters long.</p>
               </div>
             </div>
@@ -96,7 +96,7 @@
             </div>
 
             <div class="add-photos">
-              <input type="file" id="additionalDiplomaFiles-{{i}}"  class="input-file" #file name="file"
+              <input type="file" id="additionalDiplomaFiles-{{i}}" class="input-file" #file name="file"
                 (change)="fileProgress($event.target.files, userSettings.additionalEducation[i].id, i)" />
               <label for="additionalDiplomaFiles-{{i}}">Загрузить файл/фото диплома</label>
             </div>

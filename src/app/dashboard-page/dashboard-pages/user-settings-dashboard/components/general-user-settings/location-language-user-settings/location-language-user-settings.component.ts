@@ -30,7 +30,7 @@ export class LocationLanguageUserSettingsComponent implements OnInit {
     this.userSettings.language.push(
       {
         langName: null,
-        langLevel: null
+        langLevel: 1
       }
     );
   }

@@ -18,10 +18,10 @@
               minlength="4"
               name="institution-{{i}}"
               [(ngModel)]="userSettings.education[i].institution"
-              [ngClass] = "{not_Valid: !institution.valid && submited}"
+              [ngClass] = "{not_Valid: !institution.valid}"
             >
 
-            <div *ngIf="!institution.valid && submited" class="alert-danger">
+            <div *ngIf="!institution.valid" class="alert-danger">
               <p>institution must be at least 4 characters long.</p>
             </div>
 
@@ -49,9 +49,10 @@
                   minlength="4"
                   name="specialty-{{i}}"
                   [(ngModel)]="userSettings.education[i].specialty"
-                  [ngClass] = "{not_Valid: !specialty.valid && submited}"
+                  [ngClass] = "{not_Valid: !specialty.valid}"
+
                   >
-                  <div *ngIf="!specialty.valid && submited" class="alert-danger">
+                  <div *ngIf="!specialty.valid" class="alert-danger">
                     <p>specialty must be at least 4 characters long.</p>
                   </div>
               </div>
@@ -99,8 +100,8 @@
             </button>
           </div>
 
-          <button type="button" class="delete-education">
-            <i class="material-icons" (click)="deleteEducation(userSettings.education[i].id, i)">delete</i>
+          <button type="button" class="delete-education" (click)="deleteEducation(userSettings.education[i].id, i)">
+            <i class="material-icons" >delete</i>
           </button>
         </div>
 

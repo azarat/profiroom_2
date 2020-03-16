@@ -27,7 +27,7 @@ export class ServicePageComponent implements OnInit {
   sticky = false;
   elementPosition: any;
   public step2 = false;
-  public chousenPackage: string;
+  public chousenOnOfferPage: string;
 
   @ViewChild('stickyMenu', { static: false }) menuElement: ElementRef;
 
@@ -120,7 +120,7 @@ export class ServicePageComponent implements OnInit {
   }
 
   openCheckout(packageForm) {
-    this.chousenPackage = packageForm;
+    this.chousenOnOfferPage = packageForm;
     this.step2 = true;
   }
 

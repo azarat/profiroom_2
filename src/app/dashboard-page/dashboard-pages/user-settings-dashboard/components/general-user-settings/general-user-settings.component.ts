@@ -30,7 +30,7 @@ export class GeneralUserSettingsComponent implements OnInit {
     .pipe(filter((res: any) => !!res))
     .subscribe(
       (res) => {
-        // location.reload();
+        location.reload();
       }
     );
 
