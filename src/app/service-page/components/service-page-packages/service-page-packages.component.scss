@@ -231,6 +231,7 @@
       &__item{
         display: flex;
         margin-bottom: 10px;
+        width: auto;
         ::ng-deep {
 
           .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background,
@@ -244,9 +245,12 @@
           }
         }
       }
+
       &__text{
         width: 100%;
-        margin-left: 16px;
+        margin-left: 0px;
+        padding-left: 10px;
+        box-sizing: border-box;
         display: flex;
         justify-content: space-between;
       }
@@ -264,7 +268,17 @@
         line-height: 150%;
         color: #323C47;
       }
-
+      mat-checkbox{
+        width: 100%;
+        ::ng-deep{
+          .mat-checkbox-layout{
+            width: 100%!important;
+            .mat-checkbox-label{
+              width: 100%;
+            }
+          }
+        }
+      }
     }
   }
   // .hide {

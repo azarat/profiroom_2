@@ -19,8 +19,6 @@ export class ServicePagePackagesComponent implements OnInit {
   @Input() offerData: OfferDataInterface;
   @Input() offerId;
 
-
-
   public currentTab: any = 0;
   public tabs = [
     {
@@ -46,19 +44,19 @@ export class ServicePagePackagesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // console.log(this.offerData.extra_terms);
+    console.log(this.offerData);
     this.initForm();
   }
 
   initForm() {
     this.extraFeaturesForm = this.fb.group({
-      extraTerms: [false],
-      extraСhanges: [false],
-      extraCommercial: [false],
+      extraTerms: [null],
+      extraСhanges: [null],
+      extraCommercial: [null],
     });
     this.offerData.extra_features.forEach((el: any) => {
       if (el.published) {
-        this.extraFeaturesForm.addControl(el.title, this.fb.control(false));
+        this.extraFeaturesForm.addControl(el.title, this.fb.control(null));
       }
 
     });
@@ -85,4 +83,6 @@ export class ServicePagePackagesComponent implements OnInit {
     this.extraFeaturesForm.addControl('packageTitle', this.fb.control(packageType));
     this.checkoutState.emit(this.extraFeaturesForm.value);
   }
+
+
 }

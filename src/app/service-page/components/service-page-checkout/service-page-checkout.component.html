@@ -32,7 +32,7 @@
             </div>
           </ng-container>
           <div class="extra-features__item" *ngIf="offerData.extra_changes.published">
-            <mat-checkbox class="example-margin" formControlName="extraChanges" name='extraChanges'>
+            <mat-checkbox class="example-margin" formControlName="extraСhanges" name='extraСhanges'>
               <div class="extra-features__text">
                 <span class="extra-features__title">Дополнительные правки</span>
               </div>
@@ -73,9 +73,9 @@
       </div>
       <div class="final-services__features">
 
-        <div class="changes-term">
-          <span>{{ offerData[currentPackage].changes }} правок</span>
-          <span>{{ offerData[currentPackage].term }} дней выполнения</span>
+        <div class="changes-term" *ngIf="outputDealData">
+          <span>{{ outputDealData.сhangesCount }} правок</span>
+          <span>{{ outputDealData.term }} дней выполнения</span>
         </div>
 
         <ul class="option-list">
@@ -85,15 +85,15 @@
         </ul>
 
       </div>
-      <div class="final-services__extra-features" *ngIf="noOneCheked">
+      <div class="final-services__extra-features" >
 
         <div class="extra-features-title">Дополнительные опции</div>
 
-        <ul class="option-list" >
+        <ul class="option-list" *ngIf="extraFeaturesResultArr">
 
           <ng-container *ngFor="let extra_term of offerData.extra_terms">
             <div class="extra-features__item" *ngIf="extra_term.package == currentPackage">
-              <ng-container *ngIf="extraFeaturesResult[0]">
+              <ng-container *ngIf="extraFeaturesResultArr[0]">
 
                 <span class="extra-features__title">Сжатые сроки</span>
                 <div class="extra-features__price">{{extra_term.price}} <span>UAH</span></div>
@@ -102,17 +102,17 @@
             </div>
           </ng-container>
 
-          <div class="extra-features__item" *ngIf="extraFeaturesResult[1]">
+          <div class="extra-features__item" *ngIf="extraFeaturesResultArr[2]">
             <span class="extra-features__title">Дополнительные правки</span>
             <div class="extra-features__price">{{offerData.extra_changes.price}} <span>UAH</span></div>
           </div>
-          <div class="extra-features__item" *ngIf="extraFeaturesResult[2]">
+          <div class="extra-features__item" *ngIf="extraFeaturesResultArr[1]">
             <span class="extra-features__title">Коммерческое использование</span>
             <div class="extra-features__price">{{offerData.extra_commercial.price}} <span>UAH</span></div>
           </div>
 
           <ng-container *ngFor="let extra_feature of offerData.extra_features; let i = index">
-            <div class="extra-features__item" *ngIf="extraFeaturesResult[i + 3]">
+            <div class="extra-features__item" *ngIf="extraFeaturesResultArr[i + 3]">
               <span class="extra-features__title">{{extra_feature.title}}</span>
               <div class="extra-features__price">{{extra_feature.price}} <span>UAH</span></div>
             </div>

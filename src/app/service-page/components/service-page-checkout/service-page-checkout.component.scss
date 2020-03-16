@@ -27,7 +27,7 @@
   .single-step{
     display: flex;
     align-items: center;
-    padding: 18px 25px 18px 15px;
+    padding: 18px 25px;
     box-shadow: 7px 3px 12px 4px rgba(128, 152, 213, 0.25);
     border-radius: 3px;
     position: relative;
@@ -165,7 +165,6 @@
         color: #707683;
         margin: 0;
         margin-left: 16px;
-        margin-bottom: 8px;
       }
       .extra-features__description{
         font-family: "Source Sans Pro";
