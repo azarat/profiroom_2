@@ -198,7 +198,7 @@
                 <span>Сделаю за</span>
                 <div [style.borderColor]="name.invalid && submited ? '#f44336': '#dce0e6'">
                   <div class=" select-wrap-extra">
-                    <mat-select name="optionPrice-{{j}}" required [(ngModel)]="userService.extra_features[j].optionPrice" #name="ngModel">
+                    <mat-select name="optionPrice-{{j}}" required [(ngModel)]="userService.extra_features[j].optionCountDays" #name="ngModel">
                       <mat-option *ngFor="let days of changesArrayCounter(); let i = index" [value]="days">
                         {{ days }}
                       </mat-option>
@@ -206,7 +206,7 @@
                   </div>
                 </div>
                 <div class="price" [style.borderColor]="name.invalid && submited ? '#f44336': '#dce0e6'">
-                  <input type="text" name="optionPerTime-{{j}}" [(ngModel)]="userService.extra_features[j].optionCountDays" #name="ngModel" required knifeOnlyNumbers maxlength="4">
+                  <input type="text" name="optionPerTime-{{j}}" [(ngModel)]="userService.extra_features[j].optionPrice" #name="ngModel" required knifeOnlyNumbers maxlength="4">
                   <span class="money">UAH</span>
                 </div>
               </div>

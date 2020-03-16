@@ -127,6 +127,12 @@ export class MessagerToolsComponent implements OnInit {
     }
   }
 
+  public holdMoneynDeal() {
+    this.chatService.holdMoney(this.collocutorData.id)
+      .subscribe(res => {
+        // this.resetDealData(this.collocutorData.id)
+      });
+  }
 
 
 }

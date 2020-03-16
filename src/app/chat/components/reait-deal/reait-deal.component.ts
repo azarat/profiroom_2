@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 
@@ -9,13 +9,15 @@ import { LocalStorageService } from 'src/app/core/services/local-storage.service
   styleUrls: ['./rate-deal.component.scss']
 })
 export class RateDealComponent implements OnInit {
+
+  @Input() offer_id;
   public starsArr = new Array(5);
   public isHover: boolean = false;
   public quolityRait: number = 0;
   public termRait: number = 0;
   public civilityRait: number = 0;
   public rateForm: FormGroup;
-  userId;
+  userId = this.localStorageService.getItem('userId').value;
 
   constructor(
     private fb: FormBuilder,
@@ -24,7 +26,7 @@ export class RateDealComponent implements OnInit {
 
   ngOnInit() {
     this._createForm();
-    this.userId = this.localStorageService.getItem('userId').value;
+
   }
 
   public getQuolity(n){
@@ -49,12 +51,14 @@ export class RateDealComponent implements OnInit {
       userId: [this.userId],
       term: [null],
       civility: [null],
-      comment: [null]
+      comment: [null],
+      offerId: [null]
     });
   }
 
   public submitRaite() {
-    console.log(this.rateForm.value)
+    this.rateForm.controls['offerId'].setValue(this.offer_id);
+    console.log(this.rateForm.value);
 
   }
 }

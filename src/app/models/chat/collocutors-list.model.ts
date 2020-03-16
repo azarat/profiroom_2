@@ -10,6 +10,7 @@ export class CollocutorListModel {
   @Expose() offers_title: string;
   @Expose() collocutorId: number;
   @Expose() freelanser_id: number;
+  @Expose() earlyСlosing: number;
   @Expose() collocutorAva: string;
   @Expose() lastMesageDate: string;
   @Expose() collocutorName: string;

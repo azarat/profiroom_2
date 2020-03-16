@@ -34,7 +34,7 @@ export class BaseInterceptor implements HttpInterceptor {
   ): Observable < HttpEvent < any >> {
     // http://194.28.103.239/
     // const url = 'http://194.28.103.239/Backend/api';
-    const url = 'http://test.thecubetest.site/Backend/api';
+    const url = 'http://dev.thecubetest.site/Backend/api';
     // const url = 'https://www.thecubetest.site/Backend/api';
     const token = this.localStorageService.getItem('token').value;
     if (req.url.indexOf('http' || 'https') !== 0) {
