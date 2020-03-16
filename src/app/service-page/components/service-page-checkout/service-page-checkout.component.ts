@@ -12,6 +12,7 @@ export class ServicePageCheckoutComponent implements OnInit {
   @Input() offerData: OfferDataInterface;
   @Input() chousenPackage;
   public extraFeatures: ExtraFeaturesModel;
+  public openFeatures: any;
 
   public checkoutExtraFeatures: FormGroup;
   constructor(
