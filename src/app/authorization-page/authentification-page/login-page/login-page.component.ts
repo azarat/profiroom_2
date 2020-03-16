@@ -65,20 +65,34 @@ export class LoginPageComponent implements OnInit {
     }
     this.authentificationService.authenticate(this.loginForm.value)
       .subscribe(
-        (data: UserModel) => {
-          if (data) {
-
-            const translatedPath: any = this.localize.translateRoute('/dashboard');
-            this.localStorageService.setItem('token', data.token);
-            this.router.navigate([translatedPath]);
+        (data: UserModel| any) => {
+          if (data !== null) {
+            if (data === 'Bad Request') {
+              this.message = {
+                title: 'Ошибка',
+                description: 'Неподтвержденная почта'
+              };
+            } else {
+              const translatedPath: any = this.localize.translateRoute('/dashboard');
+              this.localStorageService.setItem('token', data.token);
+              this.router.navigate([translatedPath]);
+            }
           }
         },
         error => {
-          this.message = {
-            title: 'Ошибка',
-            description: 'Не верно укзанные данные'
-          };
+          if (error === 'Bad Request') {
+            this.message = {
+              title: 'Ошибка',
+              description: 'Неподтвержденная почта'
+            };
+          } else {
+            this.message = {
+              title: 'Ошибка',
+              description: 'Не верно укзанные данные'
+            };
+          }
         });
+
   }
   // signInWithGoogle(): void {
   //   this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);

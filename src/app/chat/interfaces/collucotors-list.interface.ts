@@ -3,7 +3,7 @@ export interface CollucutorsListInterface {
 
   id?: number;
   roomId?: number;
-  status?: number | string;
+  status?: string;
   unread?: number | string;
   collocutorId?: number;
   freelanser_id?: number;
@@ -20,6 +20,12 @@ export interface CollucutorsListInterface {
   offer_id?: number;
   amount?: number;
   moneyHolded?: number;
+  workStarted?: number;
+  changes?: number;
+  term?: number;
+  earlyСlosing: number;
+  workEnded: number;
+  dealDone: number;
   message: {
     author?: number | string;
     message?: string;
@@ -27,4 +33,5 @@ export interface CollucutorsListInterface {
     authorAva?: string;
     type?: string;
   }[];
+  history?: any[];
 }

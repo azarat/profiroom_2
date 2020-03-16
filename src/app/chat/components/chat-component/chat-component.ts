@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { CollucutorsListInterface } from '../../interfaces/collucotors-list.interface';
 import { UserStateService } from 'src/app/dashboard-page/services/user-state.service';
+import { DealService } from '../../services/deal.service';
 
 @Component({
   selector: 'app-chat',
@@ -22,12 +23,15 @@ export class ChatComponent implements OnInit, OnDestroy {
   public exitFromBreefPopUpVisible: boolean = null;
   public isChat = true;
 
+  deal: CollucutorsListInterface;
+
 
   constructor(
     private chatService: ChatService,
     private socketService: SocketService,
     private route: ActivatedRoute,
     private userStateService: UserStateService,
+    private dealService: DealService
   ) { }
 
   ngOnInit() {
@@ -37,6 +41,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.subscribeColucutors();
     this.openNewDeal();
 
+    this._subscribeDealInWorkChat();
   }
   ngOnDestroy(): void {
     this.socketService.closeCollocutorSocket(this.chatType);
@@ -84,11 +89,33 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   }
 
-  private _resetChat(){
+  private _resetChat() {
     this.isChat = null;
     setTimeout(() => {
       this.isChat = true;
       this.collocutorData = null;
     }, 100);
   }
+
+  private _subscribeDealInWorkChat() {
+    if ( this.chatType === 'work') {
+      this.getDealData();
+      this._dealUpdating();
+    }
+  }
+
+  private getDealData() {
+    this.dealService.dealData$
+    .subscribe(res => {
+      this.deal = res;
+    });
+  }
+
+  private _dealUpdating() {
+    this.socketService.dealUpdating()
+    .subscribe((res: any) => {
+      this.dealService.setDealInfo(res);
+    });
+  }
+
 }

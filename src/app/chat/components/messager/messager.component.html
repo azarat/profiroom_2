@@ -14,7 +14,7 @@
       [chatType]="chatType"
         [collocutorData]="collocutorData"></app-message-list>
     </div>
-    <form #message="ngForm" (ngSubmit)="sendMessage(message)" class="message-input">
+    <form #message="ngForm" (ngSubmit)="sendMessage(message)" class="message-input" >
       <div class="text-input">
         <textarea name="messageText" [ngModel]="messageText" #textarea id="message" placeholder="Сообщение"
           (keydown)="keyDown($event, message)"></textarea>
@@ -31,6 +31,7 @@
         <button type="submit" class="submit"></button>
       </div>
     </form>
-
+    <!-- deal  -->
+    <app-rate-deal *ngIf="deal && deal.dealDone === 1 && deal.status !=='archived'"></app-rate-deal>
   </div>
 </div>

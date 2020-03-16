@@ -116,6 +116,23 @@
   padding-left: 20px;
   max-width: 105px;
   margin-bottom: 10px;
+  margin-top: 10px;
+  position: relative;
+  &:after {
+    position: absolute;
+    content: '\e915';
+    font-family: icomoon;
+    font-style: 20px;
+    color: #3C7EEA;
+    right: 19px;
+    font-size: 10px;
+    top: 55%;
+    transform: translateY(-50%);
+  }
+  &.up:after {
+    top: -45%;
+    transform: rotate(180deg) translateY(-50%);
+  }
 }
 
 .breef-decisions-options {

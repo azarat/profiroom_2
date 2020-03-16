@@ -20,6 +20,9 @@ export class ServicePageCheckoutComponent implements OnInit {
   public checkoutForm: FormGroup;
   public extraFeatures;
   public extraFeaturesResult;
+  @Input() chousenPackage;
+  // public extraFeatures: ExtraFeaturesModel;
+  public openFeatures: any;
 
   constructor(
     private fb: FormBuilder

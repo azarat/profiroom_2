@@ -27,6 +27,7 @@ export class MessageListComponent implements OnInit, AfterViewChecked, AfterView
 
   public typing: boolean = null;
   public typingUser: number;
+
   constructor(
     private chatService: ChatService,
     private messageScrollerService: MessageScrollerService,

@@ -101,17 +101,6 @@ export class ChatService {
     return this.http.post('/cancelFinishDeal', {deal_id: dealId });
   }
 
-
-  public resetDealInfo(dealData) {
-    this._dealInfo.next(null)
-    setTimeout(() =>{
-      this._dealInfo.next(dealData)
-    }, 1000);
-      this._dealInfo.next(dealData);
-
-  }
-
-
 }
 
 

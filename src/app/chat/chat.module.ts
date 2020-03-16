@@ -32,7 +32,8 @@ import { LocalizeRouterModule } from 'localize-router';
 
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-
+import { RateDealComponent } from './components/reait-deal/reait-deal.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 
@@ -52,6 +53,7 @@ import { TranslateModule } from '@ngx-translate/core';
     ChatErrorsComponent,
     BreefMessageShowingComponent,
     SystemMessagesInDealsComponent,
+    RateDealComponent,
 
     // Directives
 
@@ -64,6 +66,7 @@ import { TranslateModule } from '@ngx-translate/core';
     ClickOutsideModule,
     FormsModule,
     ReactiveFormsModule,
+    FontAwesomeModule,
 
     DataFormatModule,
     FileSizeModule,

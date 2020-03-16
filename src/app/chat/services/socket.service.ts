@@ -21,7 +21,7 @@ export class SocketService {
   constructor(
     private http: HttpClient
   ) {
-    this.socket = io(this.host);
+    this.socket = io.connect(this.host);
   }
 
   public connect() {
@@ -70,6 +70,7 @@ export class SocketService {
   public checkNotifications() {
     return new Observable(observer => {
       this.socket.on('notify', (data) => {
+        console.log(data)
         observer.next(data);
       });
     });
@@ -96,12 +97,22 @@ export class SocketService {
     return new Observable(observer => {
       this.socket.on('collocutorsList', (data) => {
         observer.next(data);
-        console.log('CollocutorsListData', data)
       });
     });
   }
 
+  public subscribeDeal() {
+    this.socket.emit('join', this.keyPath + 'systemMessage_' + this.socketId);
+  }
 
+  public dealUpdating() {
+    return new Observable(observer => {
+      this.socket.on('DealInfo', (data) => {
+        observer.next(data);
+        console.log('dealData', data)
+      });
+    });
+  }
 
 
 
