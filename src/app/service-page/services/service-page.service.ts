@@ -44,6 +44,10 @@ export class ServicePageService {
     return this.http.post('/simularOffers', offerid);
   }
 
+  makeDeal(data: object) {
+    return this.http.post('/makeDeal', data);
+  }
+
   public createDeal(offerId: number, dealtype) {
     this.http.post('/makeDeal', { offer_id: offerId, package: dealtype })
       .subscribe((res: any) => {

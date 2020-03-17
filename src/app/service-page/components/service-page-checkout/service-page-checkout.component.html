@@ -1,7 +1,7 @@
 
 <div class="service-page-checkout">
   <div class="main-block" *ngIf="offerData">
-    <ul class="service-order-steps">
+    <ul class="service-order-steps" (click)=>
       <li class="single-step">
         <div class="single-step__status done"></div>
         <h4>Выбор пакета услуг</h4>
@@ -26,9 +26,10 @@
             <div class="extra-features__item" *ngIf="extra_term.package == currentPackage && extra_term.published">
               <mat-checkbox class="extra-features__checkbox" formControlName="extraTerms" name="extraTerms">
                 <div class="extra-features__text">
-                  <span class="extra-features__title">Сжатые сроки</span>
+                  <span class="extra-features__title">Сжатые сроки  - {{extra_term.count_days}} дней</span>
                 </div>
               </mat-checkbox>
+              <div class="extra-features__price">{{extra_term.price}} грн</div>
             </div>
           </ng-container>
           <div class="extra-features__item" *ngIf="offerData.extra_changes.published">
@@ -37,6 +38,7 @@
                 <span class="extra-features__title">Дополнительные правки</span>
               </div>
             </mat-checkbox>
+            <div class="extra-features__price">{{offerData.extra_changes.price}} грн</div>
           </div>
           <div class="extra-features__item" *ngIf="offerData.extra_commercial.published">
             <mat-checkbox class="extra-features__checkbox" formControlName="extraCommercial" name='extraCommercial'>
@@ -44,17 +46,23 @@
                 <span class="extra-features__title">Коммерческое использование</span>
               </div>
             </mat-checkbox>
+            <div class="extra-features__price">{{offerData.extra_commercial.price}} грн</div>
           </div>
 
           <ng-container *ngFor="let extra_feature of offerData.extra_features; let i = index">
-            <div class="extra-features__item"  *ngIf="extra_feature.published">
-              <mat-checkbox class="extra-features__checkbox" [formControlName]="extra_feature.title" name='extra_feature.titl'>
-                <span class="extra-features__title">{{extra_feature.title}}</span>
-              </mat-checkbox>
+            <div class="extra-features__item extra-features__item-column"  *ngIf="extra_feature.published">
+              <div class="extra-features__item-wrapper">
+                <mat-checkbox class="extra-features__checkbox" [formControlName]="extra_feature.title" name='extra_feature.titl'>
+                  <span class="extra-features__title">{{extra_feature.title}}</span>
+                  
+                </mat-checkbox>
+                <div class="extra-features__price">{{extra_feature.price}} грн</div>
+              </div>
               <div class="extra-features__text">
                 <p class="extra-features__description">{{extra_feature.description}}</p>
               </div>
             </div>
+            
           </ng-container>
 
         </ul>
@@ -73,9 +81,9 @@
       </div>
       <div class="final-services__features">
 
-        <div class="changes-term" *ngIf="outputDealData">
-          <span>{{ outputDealData.сhangesCount }} правок</span>
-          <span>{{ outputDealData.term }} дней выполнения</span>
+        <div class="changes-term" >
+          <div>{{ outputDealData.changesFinal }} правок</div>
+          <div>{{ outputDealData.term }} дней выполнения</div>
         </div>
 
         <ul class="option-list">
@@ -135,7 +143,7 @@
       </div>
 
       <div class="btn-wrapper">
-        <div class="btn-ceckout btn-accept-ceckout" type="submit" >Заказать услугу</div>
+        <div class="btn-ceckout btn-accept-ceckout" type="submit" (click)="sendDealData(outputDealData)">Подтвердить заказ</div>
       </div>
     </div>
   </div>

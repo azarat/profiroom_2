@@ -10,6 +10,8 @@ import {
   FormBuilder,
   FormGroup
 } from '@angular/forms';
+import { ServicePageService } from '../../services/service-page.service';
+import { filter } from 'rxjs/operators';
 
 
 @Component({
@@ -35,13 +37,15 @@ export class ServicePageCheckoutComponent implements OnInit {
   public openFeatures: any;
 
   public outputDealData: {
-    id?: number;
+    offer_id?: number;
     userId?: number;
+    package?: string;
     finalPrice?: number;
-    extra_terms?: boolean;
+    extraTerms?: boolean;
     term?: number;
     extraChanges?: boolean;
-    сhangesCount?: number;
+    extraComercial?: boolean;
+    changesFinal?: number;
     extra_features?: {
       title?: string;
       price?: number;
@@ -49,7 +53,8 @@ export class ServicePageCheckoutComponent implements OnInit {
   } = {};
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private servicePageService: ServicePageService
   ) {}
 
   ngOnInit() {
@@ -59,9 +64,11 @@ export class ServicePageCheckoutComponent implements OnInit {
 
 
     // console.log(this.chousenOnOfferPage);
-    // console.log(this.checkoutForm);
+    
 
     // this.steValuesFromOfferPage(this.chousenOnOfferPage);
+    this.outputDealData.changesFinal = this.offerData[this.currentPackage].changes;
+    console.log(this.outputDealData);
   }
 
   private initForm() {
@@ -159,7 +166,6 @@ export class ServicePageCheckoutComponent implements OnInit {
       });
     });
     console.log(featuresArr);
-    console.log(this.outputDealData);
     // if (featuresArr[0].value) { this.outputDealData.push(element)}
 
     const mainselectedOptions = featuresArr.filter(el => {
@@ -172,19 +178,46 @@ export class ServicePageCheckoutComponent implements OnInit {
     const isExtraChanges = mainselectedOptions.some(el => {
       return el.name === 'extraСhanges';
     });
+    const isExtraComercial = mainselectedOptions.some(el => {
+      return el.name === 'extraCommercial';
+    });
 
     // возращаем "дней выполнения" из доп. опции(сжатые строки) или из пакета
-    this.outputDealData.term = isExtraTerms === true ?
-    this.filterTerm(this.offerData.extra_terms) :
-    this.offerData[this.currentPackage].term;
+    // this.outputDealData.term = isExtraTerms === true ?
+    // this.filterTerm(this.offerData.extra_terms) :
+    // this.offerData[this.currentPackage].term;
+
+    if(isExtraTerms) {
+      this.outputDealData.term = this.filterTerm(this.offerData.extra_terms);
+      this.outputDealData.extraTerms = true;
+    } else {
+      this.outputDealData.term = this.offerData[this.currentPackage].term;
+      this.outputDealData.extraTerms = false;
+    }
 
     // возращаем количестово дополнительных правок из доп. опции или из пакета
-    this.outputDealData.сhangesCount = isExtraChanges === true ?
-    this.offerData.extra_changes.count :
-    this.offerData[this.currentPackage].changes;
+    // this.outputDealData.changesFinal = isExtraChanges === true ?
+    // this.offerData.extra_changes.count :
+    // this.offerData[this.currentPackage].changes;
 
-    // возращаем "возвращаем количество правок"
+    if(isExtraChanges) {
+      this.outputDealData.changesFinal = this.offerData[this.currentPackage].changes + this.offerData.extra_changes.count;
+      this.outputDealData.extraChanges = true;
+    } else {
+      this.outputDealData.changesFinal = this.offerData[this.currentPackage].changes;
+      this.outputDealData.extraChanges = false;
+    }
+
+    // статус комерческого использования
+    this.outputDealData.extraComercial = isExtraComercial === true ? true: false;
+
+    // возращаем "возвращаем конечную цену"
     this.outputDealData.finalPrice = this.finalSum;
+
+    // загальні данні по оферу
+    this.outputDealData.offer_id = this.offerData.id;
+    this.outputDealData.userId = this.offerData.user_id;
+    this.outputDealData.package = this.currentPackage;
 
     console.log(this.outputDealData);
   }
@@ -195,4 +228,15 @@ export class ServicePageCheckoutComponent implements OnInit {
     })[0].count_days;
   }
 
+  sendDealData(data) {
+    this.servicePageService.makeDeal(data)
+    .pipe(
+      filter((response: any) => !!response)
+    )
+    .subscribe(response => {
+      console.log(response);
+    });
+  }
 }
+
+
