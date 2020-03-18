@@ -123,5 +123,8 @@ export class ServicePageComponent implements OnInit {
     this.chousenOnOfferPage = packageForm;
     this.step2 = true;
   }
+  hideCheckout() {
+    this.step2 = false;
+  }
 
 }

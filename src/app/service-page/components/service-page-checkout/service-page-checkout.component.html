@@ -1,8 +1,8 @@
 
 <div class="service-page-checkout">
   <div class="main-block" *ngIf="offerData">
-    <ul class="service-order-steps" (click)=>
-      <li class="single-step">
+    <ul class="service-order-steps">
+      <li class="single-step" (click)='goToOffer()'>
         <div class="single-step__status done"></div>
         <h4>Выбор пакета услуг</h4>
       </li>
@@ -142,8 +142,8 @@
         </div>
       </div>
 
-      <div class="btn-wrapper">
-        <div class="btn-ceckout btn-accept-ceckout" type="submit" (click)="sendDealData(outputDealData)">Подтвердить заказ</div>
+      <div class="btn-wrapper"> 
+        <div class="btn-ceckout btn-accept-ceckout" type="submit" (click)="sendDealData()">Подтвердить заказ</div>
       </div>
     </div>
   </div>
