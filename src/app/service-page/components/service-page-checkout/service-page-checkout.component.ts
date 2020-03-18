@@ -237,7 +237,7 @@ export class ServicePageCheckoutComponent implements OnInit {
   }
 
   sendDealData() {
-    this.servicePageService.makeDeal(this.outputDealData);
+    this.servicePageService.makeDeal(this.outputDealData, this.outputDealData.offer_id);
   }
 }
 

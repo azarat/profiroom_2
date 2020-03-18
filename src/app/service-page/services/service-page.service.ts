@@ -44,11 +44,11 @@ export class ServicePageService {
     return this.http.post('/simularOffers', offerid);
   }
 
-  public makeDeal(data: object) {
+  public makeDeal(data: object, offer_id) {
     return this.http.post('/makeDeal', data)
     .subscribe((res: any) => {
       console.log(res);
-      this.routeToWorkChat(res.dealId, res.offer_id, res.roomId);
+      this.routeToWorkChat(res.dealId, offer_id, res.roomId);
     });
   }
 
