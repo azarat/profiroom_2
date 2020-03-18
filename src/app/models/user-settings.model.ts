@@ -29,7 +29,7 @@ export class UserSettingsModel {
   @Expose() oldMail: string;
   @Expose() newMail: string;
   @Expose() copyNewMail: string;
-
+  @Expose() email: string;
 
   @Expose() allDiplomaPhotos: [];
 

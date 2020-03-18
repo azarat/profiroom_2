@@ -2,10 +2,10 @@
 <app-categories-header></app-categories-header>
 <div class="wrapper">
   <div class="bread-crumbs">
-    <ul *ngIf="catalogFilters.subCategory">
+    <ul *ngIf="catalogFilters.subCategoryc && offersList">
       <li><a [routerLink]="['/'] | localize">Главная</a></li>
       <li><a [routerLink]="['/' + 'catalog/' + category] | localize">{{ category }}</a></li>
-      <li><a>{{ catalogFilters.subCategory }}</a></li>
+      <li><a>{{ offersList.name }}</a></li>
 
     </ul>
           <!-- <li><a [routerLink]="['/catalog', subcategoriesList.link] | localize">{{ subcategory }}</a></li> -->

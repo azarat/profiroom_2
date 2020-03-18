@@ -88,10 +88,6 @@ export class UserPageComponent implements OnDestroy  {
     }
   }
 
-  goBack() {
-    this._location.back();
-  }
-
 // Open ChatRoom ws this collocutor
   public openChat(userId) {
     this.currentUserService.wrightTo(userId)

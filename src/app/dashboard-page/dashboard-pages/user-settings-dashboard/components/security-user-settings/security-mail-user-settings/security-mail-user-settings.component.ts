@@ -16,7 +16,6 @@ export class SecurityMailUserSettingsComponent implements OnInit {
 
   public submitedMailForm = false;
   public changeMailResult = null;
-  public currentMail: string;
 
   mailForm: FormGroup;
 
@@ -26,8 +25,9 @@ export class SecurityMailUserSettingsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
     this.mailForm = this.formBuilder.group({
-      oldMail: ['', [
+      oldMail: [this.userSettings.email, [
         Validators.required,
         Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')
       ]],
@@ -41,10 +41,7 @@ export class SecurityMailUserSettingsComponent implements OnInit {
     this.mailForm.valueChanges.subscribe((value) => console.log(value));
     this.mailForm.statusChanges.subscribe((status) => {
       console.log(this.mailForm.status);
-
     });
-
-    this.currentMail = this.userSettings.oldMail;
   }
 
   updateMail(form: FormGroup ) {

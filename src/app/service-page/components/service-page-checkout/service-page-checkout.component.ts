@@ -66,17 +66,11 @@ export class ServicePageCheckoutComponent implements OnInit {
     this.initForm();
     this.chousenFeatures();
 
-
-    // console.log(this.chousenOnOfferPage);
-    
-
-    // this.steValuesFromOfferPage(this.chousenOnOfferPage);
     this.outputDealData.changesFinal = this.offerData[this.currentPackage].changes;
-    console.log(this.outputDealData);
   }
 
   goToOffer() {
-    this.checkoutHidden.emit(true);
+    this.checkoutHidden.emit();
   }
 
   private initForm() {
@@ -146,13 +140,8 @@ export class ServicePageCheckoutComponent implements OnInit {
     }
     // ---сума за доп фичи---//
     for (let i = 3; i < this.extraFeaturesResultArr.length; i++) {
-
-
-      // console.log(this.extraFeaturesResultArr);
       if (this.extraFeaturesResultArr[i]) {
-        // console.log(i);
         this.finalSum += this.offerData.extra_features[i - 3].price;
-
       }
     }
   }
@@ -173,8 +162,6 @@ export class ServicePageCheckoutComponent implements OnInit {
         }
       });
     });
-    console.log(featuresArr);
-    // if (featuresArr[0].value) { this.outputDealData.push(element)}
 
     const mainselectedOptions = featuresArr.filter(el => {
       return el.value === true;
@@ -191,10 +178,6 @@ export class ServicePageCheckoutComponent implements OnInit {
     });
 
     // возращаем "дней выполнения" из доп. опции(сжатые строки) или из пакета
-    // this.outputDealData.term = isExtraTerms === true ?
-    // this.filterTerm(this.offerData.extra_terms) :
-    // this.offerData[this.currentPackage].term;
-
     if(isExtraTerms) {
       this.outputDealData.term = this.filterTerm(this.offerData.extra_terms);
       this.outputDealData.extraTerms = true;
@@ -204,10 +187,6 @@ export class ServicePageCheckoutComponent implements OnInit {
     }
 
     // возращаем количестово дополнительных правок из доп. опции или из пакета
-    // this.outputDealData.changesFinal = isExtraChanges === true ?
-    // this.offerData.extra_changes.count :
-    // this.offerData[this.currentPackage].changes;
-
     if(isExtraChanges) {
       this.outputDealData.changesFinal = this.offerData[this.currentPackage].changes + this.offerData.extra_changes.count;
       this.outputDealData.extraChanges = true;

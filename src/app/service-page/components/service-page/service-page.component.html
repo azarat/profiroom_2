@@ -115,7 +115,7 @@
     </div>
     <div class="choose-packet">
       <div class="runing-block">
-        <app-service-page-packages [offerData]="offerData" [offerId]="offerId" *ngIf="offerData" (checkoutState)="openCheckout($event)">
+        <app-service-page-packages [offerData]="offerData" [offerId]="offerId" *ngIf="offerData" (checkoutState)="openCheckout($event)" (scrollToCompare)="scrollTo('compare-table')">
         </app-service-page-packages>
       </div>
     </div>

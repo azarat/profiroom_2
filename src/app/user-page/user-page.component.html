@@ -15,9 +15,6 @@
 
 <div class="wrapper" *ngIf="userData">
   <div class="content">
-    <div class="back-to-list" >
-      <a (click)="goBack()">Вернуться к списку фрилансеров</a>
-    </div>
     <section class="general-information" id="about"> 
       <div class="general-information__avatar">
         <img [src]="userData.avatar" alt="user avatar">
