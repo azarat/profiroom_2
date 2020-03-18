@@ -236,8 +236,8 @@ export class ServicePageCheckoutComponent implements OnInit {
     })[0].count_days;
   }
 
-  sendDealData(data) {
-    this.servicePageService.makeDeal(data)
+  sendDealData() {
+    this.servicePageService.makeDeal(this.outputDealData);
   }
 }
 

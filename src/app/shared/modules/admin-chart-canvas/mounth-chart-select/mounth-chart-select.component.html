@@ -1,12 +1,12 @@
-<div class="select-wrap">
+<div class="select-wrap" >
     <div class="year">
         <span class="prev"></span>
-            <span class="current">2019</span>
+            <span class="current" [(ngModel)]="currentData.year" >2019</span>
         <span class="next"></span>
     </div>
     <div class="month">
         <span class="prev"></span>
-            <span class="current">Декабрь</span>
+            <span class="current" [(ngModel)]="currentData.month">{{  currentData.month | AdminMonthPipe }}</span>
         <span class="next"></span>
     </div>
 </div>

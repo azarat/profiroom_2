@@ -8,17 +8,32 @@ import { AdminChartCanvasComponent } from './admin-chart-canvas.component';
 import { ChartsModule } from 'ng2-charts';
 import { CalendarSharedModule } from '../calendar/calendar.module';
 import { MounthChartSelectComponent } from './mounth-chart-select/mounth-chart-select.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MonthAdminPipe } from './pipes/month-administrator.pipe';
+import { AdminMonthModule } from '../../pipes/admin-month/admin-month.module';
+
 
 
 @NgModule({
-  declarations: [AdminChartCanvasComponent, MounthChartSelectComponent],
+  declarations: [
+    AdminChartCanvasComponent, 
+    MounthChartSelectComponent,
+
+    // pipe
+    MonthAdminPipe
+  ],
   imports: [
     CommonModule,
     ArrReverceModule,
     ThousandSeparatorModule,
     MonthPipeModule,
     ChartsModule,
-    CalendarSharedModule
+    CalendarSharedModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AdminMonthModule
+
+    
   ],
   exports: [
     AdminChartCanvasComponent,

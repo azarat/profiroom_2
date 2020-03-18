@@ -158,7 +158,7 @@ private _selectXtarXBar() {
     this.lineChartLabels = monthArrConst;
   } else if (this.curerntType.value === 'month') {
     // this.yearBar = this.canvasXbarService.getMontDaysCount();
-    this.lineChartLabels = this.yearBar;
+    // this.lineChartLabels = this.canvasXbarService.getMontDaysCount();
   } else {
     this.setDayChartBar()
   }

@@ -17,6 +17,22 @@
       &.current {
         min-width: 75px;
         display: inline-block;
+        text-align: center;
+
+        font-family: Source Sans Pro, sans-serif;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 18px;
+        text-transform: uppercase;
+        color: #99ACB7;
+      }
+    }
+
+    &.month {
+      span.current {
+        font-weight: 400;
+        color: #3C7EEA;
       }
     }
 
@@ -30,8 +46,8 @@
         content: "";
         width: 5px;
         height: 5px;
-        border-bottom: 1px solid #979797;
-        border-left: 1px solid #979797;
+        border-bottom: 2px solid #979797;
+        border-left: 2px solid #979797;
         opacity: 0.8;
       }
     }
@@ -46,8 +62,8 @@
         content: "";
         width: 5px;
         height: 5px;
-        border-bottom: 1px solid #979797;
-        border-left: 1px solid #979797;
+        border-bottom: 2px solid #979797;
+        border-left: 2px solid #979797;
         opacity: 0.8;
       }
     }
@@ -60,7 +76,7 @@
       }
 
       &:hover:before {
-        border-color: red;
+        border-color: #3C7EEA;
       }
     }
 

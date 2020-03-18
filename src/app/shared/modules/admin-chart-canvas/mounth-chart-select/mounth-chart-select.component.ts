@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
 
 @Component({
   selector: 'app-mounth-chart-select',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MounthChartSelectComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit() {
+  currentData: {
+    month: number;
+    year: number
+  } = {
+    month: 12,
+    year: 2019
   }
+
+  constructor() {}
+
+  ngOnInit() {}
 
 }
