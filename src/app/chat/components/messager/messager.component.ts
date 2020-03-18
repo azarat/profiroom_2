@@ -68,11 +68,7 @@ export class MessagerComponent implements OnInit, OnDestroy {
         if (newMessage.type === 'file' && typeof newMessage.message === 'string') {
           newMessage.message = typeof newMessage.message === 'string' ? JSON.parse(newMessage.message) : [];
         }
-
         this.messagesList.push(newMessage);
-
-
-
       });
 
     this.keyword$
@@ -86,7 +82,7 @@ export class MessagerComponent implements OnInit, OnDestroy {
       });
     // console.log(this.collocutorData);
     this._isChatHidden();
-    // this.getDealData();
+    console.log(this.deal)
   }
 
   public ngOnDestroy() {

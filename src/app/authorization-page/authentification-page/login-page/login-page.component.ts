@@ -78,8 +78,10 @@ export class LoginPageComponent implements OnInit {
               this.router.navigate([translatedPath]);
             }
           }
+          console.log(data)
         },
         error => {
+          console.log(error)
           if (error === 'Bad Request') {
             this.message = {
               title: 'Ошибка',

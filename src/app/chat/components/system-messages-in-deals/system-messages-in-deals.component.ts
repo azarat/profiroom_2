@@ -55,12 +55,6 @@ export class SystemMessagesInDealsComponent implements OnInit {
     }
   }
 
-  public holdMoneynDeal() {
-    this.chatService.holdMoney(this.collocutorData.id)
-      .subscribe(res => {
-        // this.resetDealData(this.collocutorData.id)
-      });
-  }
 
   public goToWork() {
     this.chatService.startWork(this.collocutorData.id)
