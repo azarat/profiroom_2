@@ -44,8 +44,12 @@ export class ServicePageService {
     return this.http.post('/simularOffers', offerid);
   }
 
-  makeDeal(data: object) {
-    return this.http.post('/makeDeal', data);
+  public makeDeal(data: object) {
+    return this.http.post('/makeDeal', data)
+    .subscribe((res: any) => {
+      console.log(res);
+      this.routeToWorkChat(res.dealId, res.offer_id, res.roomId);
+    });
   }
 
   public createDeal(offerId: number, dealtype) {
@@ -56,7 +60,7 @@ export class ServicePageService {
       });
   }
   // Navigate to work chat vs querry params to open this deal as active
-  private routeToWorkChat(dealRoomId: number, _offerId: number, _roomId: string) {
+  public routeToWorkChat(dealRoomId: number, _offerId: number, _roomId: string) {
     const translatedPath: any = this.localize.translateRoute('/dashboard/projects');
     console.log('event')
     this.router.navigate([translatedPath], {
