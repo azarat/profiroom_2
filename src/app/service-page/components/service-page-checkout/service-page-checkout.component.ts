@@ -1,7 +1,9 @@
 import {
   Component,
   OnInit,
-  Input
+  Input,
+  Output,
+  EventEmitter
 } from '@angular/core';
 import {
   OfferDataInterface
@@ -33,6 +35,8 @@ export class ServicePageCheckoutComponent implements OnInit {
   public extraFeaturesResultArr;
   public extraFeaturesResult;
   @Input() chousenPackage;
+  @Output() public checkoutHidden: EventEmitter<any> = new EventEmitter<any>();
+
   // public extraFeatures: ExtraFeaturesModel;
   public openFeatures: any;
 
@@ -69,6 +73,10 @@ export class ServicePageCheckoutComponent implements OnInit {
     // this.steValuesFromOfferPage(this.chousenOnOfferPage);
     this.outputDealData.changesFinal = this.offerData[this.currentPackage].changes;
     console.log(this.outputDealData);
+  }
+
+  goToOffer() {
+    this.checkoutHidden.emit(true);
   }
 
   private initForm() {
@@ -207,7 +215,7 @@ export class ServicePageCheckoutComponent implements OnInit {
       this.outputDealData.changesFinal = this.offerData[this.currentPackage].changes;
       this.outputDealData.extraChanges = false;
     }
-
+    
     // статус комерческого использования
     this.outputDealData.extraComercial = isExtraComercial === true ? true: false;
 
