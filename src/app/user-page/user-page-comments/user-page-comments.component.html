@@ -29,7 +29,7 @@
                 <a class="comment__name" [routerLink]="['/user', comment.author.id] | localize">{{comment.author.name}} {{comment.author.surname}}</a>
                 <div class="comment__date">{{comment.author.updated_at}}</div>
               </div>
-              <div class="comment__message">{{comment.offers.description}}</div>
+              <div class="comment__message">{{comment.commentText}}</div>
               <div class="comment__raiting">
                 <div class="comment__raiting-item">
                   <span>Качество</span>
@@ -84,7 +84,7 @@
                 <a class="comment__name" [routerLink]="['/user', comment.author.id] | localize">{{comment.author.name}} {{comment.author.surname}}</a>
                 <div class="comment__date">{{comment.author.updated_at}}</div>
               </div>
-              <div class="comment__message">{{comment.offers.description}}</div>
+              <div class="comment__message">{{comment.commentText}}</div>
               <div class="comment__raiting">
                 <div class="comment__raiting-item">
                   <span>Качество</span>
