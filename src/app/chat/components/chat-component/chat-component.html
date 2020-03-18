@@ -5,7 +5,7 @@
   <section class="messager" *ngIf="collocutorData">
     <!-- messager -->
     <app-messager *ngIf="collocutorData && chatType === 'classic'  || collocutorData && deal && collocutorData.breef == 1 && chatType === 'work'" [collocutorData]="collocutorData"
-      [chatType]="chatType" [(isFileLoaderVisible)]="isFileLoaderVisible"  ></app-messager>
+      [chatType]="chatType" [(isFileLoaderVisible)]="isFileLoaderVisible" [deal]="deal" ></app-messager>
 <!-- breef -->
     <app-project-breef-filling
     *ngIf="(collocutorData && collocutorData.breef == 0) && chatType === 'work'"
@@ -15,7 +15,7 @@
       >
     </app-project-breef-filling>
 
-    
+
   </section>
   <section class="collocutors-tools">
     <!-- right chat bar -->

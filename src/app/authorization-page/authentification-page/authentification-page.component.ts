@@ -18,6 +18,9 @@ export class AuthentificationPageComponent implements OnInit {
     private authService: AuthentificationService
   ) {
     this._route.queryParams.subscribe(data => {
+      if (data.type) {
+        data.type === 'signup' ? this.auth = true : this.auth = false;
+      }
       if (data.id) {
         this.authService.verifyEmail(data.id, data.expires, data.signature)
           .subscribe(data => {
@@ -28,6 +31,7 @@ export class AuthentificationPageComponent implements OnInit {
               };
             }
           });
+
       }
     });
   }

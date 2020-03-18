@@ -15,11 +15,9 @@
       <app-user-header-menu *ngIf="userId" [(userId)]="userId"></app-user-header-menu>
       <div *ngIf="!userId">
         <div class="login">
-          <a [routerLink]="'/auth' | localize" role="button">Вход</a>
+          <a [routerLink]="'/auth' | localize" [queryParams]="{type: 'signin'}" role="button">Вход</a>
         </div>
-        <div class="registrate">
-          <a [routerLink]="'/auth' | localize" role="button">Зарегистрироваться</a>
-        </div>
+        <a class="registrate" [routerLink]="'/auth' | localize" [queryParams]="{type: 'signup'}" role="button">Зарегистрироваться</a>
       </div>
 
     </div>

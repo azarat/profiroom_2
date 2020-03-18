@@ -2,27 +2,27 @@
   <form class="raite" #form="ngForm" [formGroup]="rateForm" (ngSubmit)="submitRaite()">
     <h5>Пожалуйста оцените работу фрилансера</h5>
     <p>Выберите необходимое кол-во звёзд</p>
-    <div class="stars">
+    <div class="stars" >
       <div class="reait-item">
-        <div class="title">Качество услуг</div>
+        <div class="title">{{ isUserFreelancer? 'Постановка задачи': 'Качество услуг' }}</div>
         <div (mouseenter)="isHover = true" (mouseleave)="isHover = false">
-          <span class="star" *ngFor="let el of starsArr, let i = index" (click)="getQuolity(i+1)"
+          <span class="star" *ngFor="let el of starsArr, let i = index" (click)="getQuolity(i+1, isUserFreelancer? 'requirementsClarity' : 'quality')"
           [ngClass]="{ 'full-star': quolityRait >=i+1 }"
           ></span>
         </div>
       </div>
       <div class="reait-item">
-        <div class="title">Срок исполнения</div>
+        <div class="title">{{isUserFreelancer? 'Четкость требований': 'Сроки исполнения'}} </div>
         <div (mouseenter)="isHover = true" (mouseleave)="isHover = false">
-          <span class="star" *ngFor="let el of starsArr, let i = index" (click)="getTerm(i+1)"
+          <span class="star" *ngFor="let el of starsArr, let i = index" (click)="getTerm(i+1, isUserFreelancer? 'taskClarity' : 'term')"
           [ngClass]="{ 'full-star': termRait >=i+1 }"
           ></span>
         </div>
       </div>
       <div class="reait-item">
-        <div class="title">Вежливость фрилансера</div>
+        <div class="title">{{isUserFreelancer? 'Контактность': ' Вежливость фрилансера'}}</div>
         <div (mouseenter)="isHover = true" (mouseleave)="isHover = false">
-          <span class="star" *ngFor="let el of starsArr, let i = index" (click)="getCivility(i+1)"
+          <span class="star" *ngFor="let el of starsArr, let i = index" (click)="getCivility(i+1, isUserFreelancer? 'contactLevel' : 'civility')"
           [ngClass]="{ 'full-star': civilityRait >=i+1 }"
           ></span>
         </div>

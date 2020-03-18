@@ -21,7 +21,7 @@ export const routes: Routes = [
   {
     path: 'auth',
     canActivateChild: [AuthorisatedGuard],
-    pathMatch: 'prefix',
+    // pathMatch: 'prefix',
     loadChildren: () => import('./authorization-page/authorization-page.module').then(m => m.AuthorizationPageModule)
   },
   {
