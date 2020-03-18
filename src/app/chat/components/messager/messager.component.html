@@ -32,6 +32,6 @@
       </div>
     </form>
     <!-- deal  -->
-    <app-rate-deal [offer_id]="deal.offer_id"></app-rate-deal>
+    <app-rate-deal *ngIf="deal && deal.offers_id && deal.status !== 'archived'" [deal]="deal" [offer_id]="deal.offers_id"></app-rate-deal>
   </div>
 </div>
