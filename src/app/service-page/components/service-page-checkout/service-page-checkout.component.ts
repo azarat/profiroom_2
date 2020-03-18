@@ -230,12 +230,6 @@ export class ServicePageCheckoutComponent implements OnInit {
 
   sendDealData(data) {
     this.servicePageService.makeDeal(data)
-    .pipe(
-      filter((response: any) => !!response)
-    )
-    .subscribe(response => {
-      console.log(response);
-    });
   }
 }
 

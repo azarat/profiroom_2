@@ -35,16 +35,17 @@ import {
 export class AdminChartCanvasComponent implements OnInit {
 
   public listOpen: boolean = null;
+  public monthSelectOpen: boolean = null;
   chartTypes = [{
-      name: 'год',
+      name: 'Год',
       value: 'year'
     },
     {
-      name: 'месяц',
+      name: 'Месяц',
       value: 'month'
     },
     {
-      name: 'день',
+      name: 'День',
       value: 'day'
     }
   ];
@@ -53,7 +54,7 @@ export class AdminChartCanvasComponent implements OnInit {
     name: string,
     value: string
   } = {
-    name: 'год',
+    name: 'Год',
     value: 'year'
   }
 
@@ -188,5 +189,9 @@ private _selectXtarXBar() {
     if (this.showedDate !== 2018) {
       this.showedDate = this.showedDate - 1;
     }
+  }
+
+  public toggleMonthSelect() {
+    this.monthSelectOpen = this.monthSelectOpen?  null : true;
   }
 }

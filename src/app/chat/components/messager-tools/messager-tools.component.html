@@ -26,6 +26,10 @@
     </div>
     <div class="extra-features">
       <p>Коммерческое использование</p>
+      <ng-container *ngIf="deal.extra_features.length > 0">
+        <p *ngFor="let el of deal.extra_features">{{ el.title }}</p>
+      </ng-container>
+      
     </div>
   </div>
 

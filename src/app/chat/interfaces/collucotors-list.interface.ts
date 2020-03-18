@@ -33,5 +33,6 @@ export interface CollucutorsListInterface {
     authorAva?: string;
     type?: string;
   }[];
+  extra_features: any [];
   history?: any[];
 }

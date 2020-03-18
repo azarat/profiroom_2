@@ -75,9 +75,9 @@ export class ServicePagePackagesComponent implements OnInit {
   }
 
   // tslint:disable-next-line: variable-name
-  public orderService(_package: string) {
-    this.servicePackageService.createDeal(this.offerId, _package);
-  }
+  // public orderService(_package: string) {
+  //   this.servicePackageService.createDeal(this.offerId, _package);
+  // }
 
   goCheckout(packageType) {
     this.extraFeaturesForm.addControl('packageTitle', this.fb.control(packageType));

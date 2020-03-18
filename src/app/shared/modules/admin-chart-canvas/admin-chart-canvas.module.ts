@@ -7,10 +7,11 @@ import { AdminChartCanvasComponent } from './admin-chart-canvas.component';
 
 import { ChartsModule } from 'ng2-charts';
 import { CalendarSharedModule } from '../calendar/calendar.module';
+import { MounthChartSelectComponent } from './mounth-chart-select/mounth-chart-select.component';
 
 
 @NgModule({
-  declarations: [AdminChartCanvasComponent],
+  declarations: [AdminChartCanvasComponent, MounthChartSelectComponent],
   imports: [
     CommonModule,
     ArrReverceModule,
