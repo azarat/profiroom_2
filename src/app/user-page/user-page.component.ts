@@ -15,11 +15,25 @@ import { Subject } from 'rxjs';
   templateUrl: './user-page.component.html',
   styleUrls: ['./user-page.component.scss']
 })
-export class UserPageComponent implements OnDestroy  {
+export class UserPageComponent implements OnDestroy, OnInit  {
 
   public userData: UserDataInterface;
   sticky = false;
   elementPosition: any;
+
+  openModalWindow:boolean=false;
+  imagePointer:number;
+  // public images: {
+  //   thumb: string, 
+  //   img: string, 
+  //   description: string
+  // } [] = [];
+
+  public  images = [
+    { thumb: 'http://194.28.103.239/Backend/public/storage/offerFiles/medium/testfile3.jpeg', img: 'http://194.28.103.239/Backend/public/storage/offerFiles/medium/testfile3.jpeg', description: 'Image 1' },
+    { thumb: 'http://194.28.103.239/Backend/public/storage/offerFiles/medium/testfile2.png', img: 'http://194.28.103.239/Backend/public/storage/offerFiles/medium/testfile2.png', description: 'Image 2' },
+  ];
+
   public academicDegreesTranslations = [
     'Начальный ',
     'Ниже среднего',
@@ -44,12 +58,21 @@ export class UserPageComponent implements OnDestroy  {
     // tslint:disable-next-line: variable-name
     private _location: Location
   ) {
-
     this.route.params.pipe(takeUntil(this.destroy$))
     .subscribe((params: Params) => {
       this.id = params;
       this.getUserData(this.id);
       window.scrollTo(0, 0);
+    });
+    
+  }
+
+  ngOnInit() {}
+
+  public initImagesArray() {
+    this.userData.education.forEach((el: any) => {
+      console.log(el);
+      // this.images.push(this.images.thumb = )
     });
   }
 
@@ -57,8 +80,12 @@ export class UserPageComponent implements OnDestroy  {
     this.userService.loadUserDate(id)
       .pipe(filter((res: any) => !!res))
       .subscribe(userData => {
+
         this.userData = userData.user;
+        console.log(this.userData);
+        this.initImagesArray();
       });
+      
   }
 
   scrollTo(target: string) {
@@ -102,5 +129,25 @@ export class UserPageComponent implements OnDestroy  {
   public ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
+  }
+
+  // img pop-up
+  public OpenImageModel(imageSrc,images) {
+    //alert('OpenImages');
+    console.log('img');
+    var imageModalPointer;
+    for (var i = 0; i < images.length; i++) {
+           if (imageSrc === images[i].img) {
+             imageModalPointer = i;
+             console.log('jhhl',i);
+             break;
+           }
+      }
+    this.openModalWindow = true;
+    this.images = images;
+    this.imagePointer  = imageModalPointer;
+  }
+  cancelImageModel() {
+    this.openModalWindow = false;
   }
 }

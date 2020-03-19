@@ -107,6 +107,14 @@
             <div class="aducation__specialty">{{ education.specialty}}</div>
             <div class="aducation__years">{{ education.startEducation}} - {{ education.finishEducation}}</div>
           </div>
+          <div class="aducation__img-list">
+            <div class="img-item" *ngFor="let img of images; let i = index">
+              <div class="float-left" *ngIf="i <= 2" >
+                <a class="more" *ngIf="i==2" (click)="OpenImageModel(img.img,images)"> +{{images.length - 3}} more </a> 
+                <img class="list-img" src="{{img.thumb}}"(click)="OpenImageModel(img.img,images)" alt='Image' />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -145,9 +153,6 @@
     </section>
     <app-user-page-services *ngIf="userData" [userData] = userData id="services"></app-user-page-services>
     <app-user-page-comments *ngIf="userData" [userData] = userData id="comments"></app-user-page-comments>
-    <div class="back-to-list" >
-      <a (click)="goBack()">Вернуться к списку фрилансеров</a>
-    </div>
   </div>
 </div>
 
