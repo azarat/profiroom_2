@@ -6,6 +6,7 @@ export interface OfferDataInterface {
   user_id?: number;
   created_at?: string;
   allPackages?: number;
+  averageMark?: number;
   user?: {
     id?: number;
     country?: string;

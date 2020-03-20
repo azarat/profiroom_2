@@ -28,6 +28,7 @@ export class UserPageCommentsComponent implements OnInit {
   public currentTab = 0;
   public id;
 
+  public showAllchildComments = null;
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -48,6 +49,10 @@ export class UserPageCommentsComponent implements OnInit {
       relativeTo: this.route,
       queryParams: this.id,
     });
+  }
+
+  public showMoreChileComments(x) {
+    this.showAllchildComments !== x ? this.showAllchildComments = x : this.showAllchildComments = null;
   }
 
 

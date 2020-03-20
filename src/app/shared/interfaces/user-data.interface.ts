@@ -29,6 +29,9 @@ export interface UserDataInterface {
     specialty?: string;
     startEducation?: number;
     finishEducation?: number;
+    diploma_files?: [{
+      link?: string;
+    }]
   }];
   additionalEducation?: [{
     additionalInstitution?: string;
@@ -48,7 +51,7 @@ export interface UserDataInterface {
     qualityMark?: number;
     termMark?: number;
     politenessMark?: number;
-
+    created_at?: string;
     offers_id?: number;
     commentator_id?: number;
     commentText?: string;
@@ -71,6 +74,7 @@ export interface UserDataInterface {
       qualityMark?: number;
       termMark?: number;
       politenessMark?: number;
+      created_at?: string;
       author?: [{
         avatar?: string;
         name?: string;
@@ -87,6 +91,7 @@ export interface UserDataInterface {
     offers_id?: number;
     commentator_id?: number;
     commentText?: string;
+    created_at?: string;
     author?: [{
       id: number;
       name?: string;
@@ -105,6 +110,7 @@ export interface UserDataInterface {
       qualityMark?: number;
       termMark?: number;
       politenessMark?: number;
+      created_at?: string;
       author?: [{
         avatar?: string;
         name?: string;

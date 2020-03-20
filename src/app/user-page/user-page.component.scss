@@ -372,8 +372,12 @@
   }
   &__info-block {
     margin-bottom: 22px;
+    display: flex;
     &:last-child {
       margin-bottom: 0;
+    }
+    .text-wrapper{
+      margin-top: 15px;
     }
   }
   &__institution {
@@ -392,6 +396,77 @@
   &__years {
     color: #99acb7;
   }
+  &__img-list{
+    display: flex;
+    .img-item{
+      position: static;
+      width: 160px;
+      height: 160px;
+      cursor: pointer;
+      margin-right: 15px;
+      img{
+        object-fit: contain;
+        width: auto;
+        height: 100%;
+        max-height: 160px;
+        max-width: 160px;
+      }
+      &.open_popUp{
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background: rgba(244, 247, 252, 0.7);
+        z-index: 9;
+        img{
+          position: fixed;
+          top: 50%;
+          left: 50%;
+          height: 100%;
+          width: 100%;
+          transform: translate(-50%, -50%);
+          max-width: 500px;
+          max-height: 500px;
+        }
+        .close-popUp{
+          display: block;
+        }
+      }
+      .close-popUp{
+        display: none;
+        position: absolute;
+        top: 50px;
+        right: 50px;
+        width: 55px;
+        height: 55px;
+        font-size: 25px;
+        cursor: pointer;
+        background-color: transparent;
+        z-index: 9;
+        &::before{
+          content: "";
+          width: 25px;
+          height: 3px;
+          background-color: #3F60FB;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%) rotate(45deg);
+        }
+        &::after{
+          content: "";
+          width: 25px;
+          height: 3px;
+          background-color: #3F60FB;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%) rotate(-45deg);
+        }
+      }
+    }
+  }
 }
 
 .raiting {
@@ -408,7 +483,7 @@
     justify-content: space-between;
     width: 100%;
     margin-bottom: 16px;
-
+    position: relative;
     font-size: 16px;
     line-height: 17px;
     &:nth-child(3) {
@@ -431,3 +506,11 @@
   }
 }
 
+.comments-count{
+  position: absolute;
+  right: -110px;
+  font-family: 'Source Sans Pro';
+  font-size: 16px;
+  line-height: 20px;
+  color: #99ACB7;
+}

@@ -106,6 +106,14 @@
             <span class="raiting-type_number">{{ offerData.user.politenessMark }}</span>
           </div>
         </div>
+
+        <div class="raiting-type average">
+          <div class="raiting-type_name">Средняя оценка</div>
+          <div class="raiting-type_numeral">
+            <span class="raiting-type_number">{{ offerData.averageMark }}</span>
+          </div>
+          <span class="comments-count">( {{ offerData.comments_count}} отзывов):</span>
+        </div>
       </section>
 
       <app-service-page-comments [offerData]="offerData" *ngIf="offerData" id="comments"></app-service-page-comments>

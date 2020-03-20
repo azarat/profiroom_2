@@ -101,20 +101,25 @@
     <section class="aducation" id="aducation">
       <div class="section-title">Высшее образование</div>
       <div class="aducation__wrapper">
-        <div class="aducation__info-block" *ngFor="let education of userData.education">
-          <div class="aducation__institution">{{ education.institution}}</div>
-          <div class="aducation__group">
-            <div class="aducation__specialty">{{ education.specialty}}</div>
-            <div class="aducation__years">{{ education.startEducation}} - {{ education.finishEducation}}</div>
-          </div>
-          <div class="aducation__img-list">
-            <div class="img-item" *ngFor="let img of images; let i = index">
-              <div class="float-left" *ngIf="i <= 2" >
-                <a class="more" *ngIf="i==2" (click)="OpenImageModel(img.img,images)"> +{{images.length - 3}} more </a> 
-                <img class="list-img" src="{{img.thumb}}"(click)="OpenImageModel(img.img,images)" alt='Image' />
+        <div class="aducation__info-block" *ngFor="let education of userData.education; let thisArr = index">
+
+          <div class="aducation__img-list" *ngIf="education.diploma_files.length; let i = index">
+            <ng-container *ngFor="let img of education.diploma_files; let i = index">
+              <div class="img-item"  (click)="showPopUp(i, thisArr, 'img')" [ngClass]="{open_popUp: clickedEducationImgs === thisArr && clickedSinglImg === i}">
+                <img src="{{img.link}}" alt="">
+                <div class="close-popUp" ></div>
               </div>
+            </ng-container>
+          </div>
+
+          <div class="text-wrapper">
+            <div class="aducation__institution">{{ education.institution}}</div>
+            <div class="aducation__group">
+              <div class="aducation__specialty">{{ education.specialty}}</div>
+              <div class="aducation__years">{{ education.startEducation}} - {{ education.finishEducation}}</div>
             </div>
           </div>
+
         </div>
       </div>
     </section>
@@ -131,24 +136,26 @@
       </div>
     </section>
     <section class="raiting" id="rating">
-      <div class="section-title">Общий рейтинг всех услуг <span>( {{ userData.comments_count}} отзывов):</span></div>
+      <div class="section-title">Общий рейтинг</div>
       <div class="raiting__wrapper">
         <div class="raiting__info-block">
           <div class="raiting__name">Качество услуг</div>
-          <div class="star-raiting">5</div>
+          <div class="star-raiting">{{ userData.qualityMark}}</div>
         </div>
         <div class="raiting__info-block">
           <div class="raiting__name">Срок исполнения</div>
-          <div class="star-raiting">4</div>
+          <div class="star-raiting">{{ userData.termMark}}</div>
         </div>
         <div class="raiting__info-block">
           <div class="raiting__name">Вежливость фрилансера</div>
-          <div class="star-raiting">4</div>
+          <div class="star-raiting">{{ userData.politenessMark}}</div>
         </div>
         <div class="raiting__info-block">
           <div class="raiting__name">Средняя оценка</div>
-          <div class="star-raiting">4,5</div>
+          <div class="star-raiting">4,5 </div>
+          <span class="comments-count">( {{ userData.comments_count}} отзывов):</span>
         </div>
+
       </div>
     </section>
     <app-user-page-services *ngIf="userData" [userData] = userData id="services"></app-user-page-services>

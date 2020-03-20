@@ -9,6 +9,7 @@ import { LocalizeRouterService } from 'localize-router';
 import {Location} from '@angular/common';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { WindowScrollBlockService } from '../core/services/window-scrolling.service';
 
 @Component({
   selector: 'app-user-page',
@@ -23,16 +24,9 @@ export class UserPageComponent implements OnDestroy, OnInit  {
 
   openModalWindow:boolean=false;
   imagePointer:number;
-  // public images: {
-  //   thumb: string, 
-  //   img: string, 
-  //   description: string
-  // } [] = [];
 
-  public  images = [
-    { thumb: 'http://194.28.103.239/Backend/public/storage/offerFiles/medium/testfile3.jpeg', img: 'http://194.28.103.239/Backend/public/storage/offerFiles/medium/testfile3.jpeg', description: 'Image 1' },
-    { thumb: 'http://194.28.103.239/Backend/public/storage/offerFiles/medium/testfile2.png', img: 'http://194.28.103.239/Backend/public/storage/offerFiles/medium/testfile2.png', description: 'Image 2' },
-  ];
+  public clickedEducationImgs = null;
+  public clickedSinglImg = null;
 
   public academicDegreesTranslations = [
     'Начальный ',
@@ -45,7 +39,7 @@ export class UserPageComponent implements OnDestroy, OnInit  {
 
   private id: any = null;
   private destroy$ = new Subject<undefined>();
-
+  private windowScrolling: WindowScrollBlockService;
 
   constructor(
     // tslint:disable-next-line: variable-name
@@ -55,9 +49,11 @@ export class UserPageComponent implements OnDestroy, OnInit  {
     private currentUserService: UserService,
     private localize: LocalizeRouterService,
     private router: Router,
+    private _windowScrollBlockService: WindowScrollBlockService,
     // tslint:disable-next-line: variable-name
     private _location: Location
   ) {
+    this.windowScrolling = _windowScrollBlockService;
     this.route.params.pipe(takeUntil(this.destroy$))
     .subscribe((params: Params) => {
       this.id = params;
@@ -69,21 +65,12 @@ export class UserPageComponent implements OnDestroy, OnInit  {
 
   ngOnInit() {}
 
-  public initImagesArray() {
-    this.userData.education.forEach((el: any) => {
-      console.log(el);
-      // this.images.push(this.images.thumb = )
-    });
-  }
-
   getUserData(id: { id: number }) {
     this.userService.loadUserDate(id)
       .pipe(filter((res: any) => !!res))
       .subscribe(userData => {
 
         this.userData = userData.user;
-        console.log(this.userData);
-        this.initImagesArray();
       });
       
   }
@@ -132,22 +119,26 @@ export class UserPageComponent implements OnDestroy, OnInit  {
   }
 
   // img pop-up
-  public OpenImageModel(imageSrc,images) {
-    //alert('OpenImages');
-    console.log('img');
-    var imageModalPointer;
-    for (var i = 0; i < images.length; i++) {
-           if (imageSrc === images[i].img) {
-             imageModalPointer = i;
-             console.log('jhhl',i);
-             break;
-           }
-      }
-    this.openModalWindow = true;
-    this.images = images;
-    this.imagePointer  = imageModalPointer;
+  public showPopUp(i, thisArr, text) {
+    // this.windowScrolling.disable();
+    if(this.clickedEducationImgs !== thisArr) {
+      this.clickedEducationImgs = thisArr
+    } else {
+      this.clickedEducationImgs =false;
+    }
+    if(this.clickedSinglImg !== i) {
+      this.clickedSinglImg = i
+    } else {
+      this.clickedSinglImg =false;
+    }
+    
+    console.log(this.clickedEducationImgs, this.clickedSinglImg, text)
   }
-  cancelImageModel() {
-    this.openModalWindow = false;
-  }
+  // public closePopUp(){
+  //   this.clickedEducationImgs = false;
+  //   this.clickedSinglImg = false;
+  //   // this.windowScrolling.enable();
+  //   console.log(this.clickedEducationImgs, this.clickedSinglImg)
+  // }
+
 }

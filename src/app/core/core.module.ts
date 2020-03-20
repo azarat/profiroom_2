@@ -12,6 +12,7 @@ import { AuthentificationService } from './services/auth.service';
 import { UserService } from './services/user.service';
 import { LocalStorageService } from './services/local-storage.service';
 import { UnauthorisatedGuard } from './guards/unauthorisated.guard';
+import { WindowScrollBlockService } from './services/window-scrolling.service';
 
 import { config } from 'process';
 
@@ -70,7 +71,7 @@ const gConfig = {
     UnauthorisatedGuard,
     AuthorisatedGuard,
     CategorysListService,
-
+    WindowScrollBlockService,
   ]
 })
 export class CoreModule { }
