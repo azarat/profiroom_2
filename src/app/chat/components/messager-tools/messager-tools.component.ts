@@ -1,11 +1,28 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { CollocutorListModel } from 'src/app/models/chat/collocutors-list.model';
-import { ChatService } from '../../services/chat.service';
-import { LocalStorageService } from 'src/app/core/services/local-storage.service';
+import {
+  Component,
+  OnInit,
+  Input
+} from '@angular/core';
+import {
+  CollocutorListModel
+} from 'src/app/models/chat/collocutors-list.model';
+import {
+  ChatService
+} from '../../services/chat.service';
+import {
+  LocalStorageService
+} from 'src/app/core/services/local-storage.service';
 import * as moment from 'moment';
-import { DealService } from '../../services/deal.service';
-import { SocketService } from '../../services/socket.service';
-import { CollucutorsListInterface } from '../../interfaces/collucotors-list.interface';
+import {
+  DealService
+} from '../../services/deal.service';
+import {
+  SocketService
+} from '../../services/socket.service';
+import {
+  CollucutorsListInterface
+} from '../../interfaces/collucotors-list.interface';
+import { trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-messager-tools',
@@ -19,19 +36,27 @@ export class MessagerToolsComponent implements OnInit {
 
   packagePrice: string;
   isUserFreelancer: boolean = null;
-  thsnd: number = 0;
-  hundr: number = 0;
-  tens: number = 0;
-  singlNum: number = 0;
+  thsnd = 0;
+  hundr = 0;
+  tens = 0;
+  singlNum = 0;
   isDealBtnsVisible = null;
 
+
+  // varaibles for buttons
+
+  canDealBePayded: boolean = null;
+  canDealBeStarted: boolean = null;
+  isCencelButn: boolean = null;
+  isFinishDealButn: boolean = null;
+  isCancelOrCompleateDealBtn: boolean = null;
 
   constructor(
     private chatService: ChatService,
     private localStorageService: LocalStorageService,
     private dealService: DealService,
     private socketService: SocketService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.getDeal();
@@ -39,7 +64,7 @@ export class MessagerToolsComponent implements OnInit {
     this.getDealData();
     // this._dealUpdating();
     this.checkIsUserFreelancer();
-    console.log(this.deal)
+    console.log(this.deal);
   }
 
 
@@ -49,43 +74,33 @@ export class MessagerToolsComponent implements OnInit {
 
   private checkIsUserFreelancer() {
     const userId = this.localStorageService.getItem('userId').value;
-    if (this.collocutorData.freelanser_id === userId) {
-      this.isUserFreelancer = true;
-    }
+    this.isUserFreelancer = this.collocutorData.freelanser_id === userId ? true : null; // check is user Freelancer
   }
 
   getDeal() {
     this.chatService.getDealData(this.collocutorData.id)
-    .subscribe((res: any) => {
-      this.dealService.setDealInfo(res);
-    });
-  }
-
-  public cencelWork() {
-    this.chatService.cencelWork(this.collocutorData.id)
-      .subscribe(res => {
-        // this.chatService.resetDealInfo(this.collocutorData.id);
-      });
-  }
-
-  public finishWork() {
-    this.chatService.finishDeal(this.collocutorData.id)
-      .subscribe(res => {
-        // this.chatService.resetDealInfo(this.collocutorData.id)
+      .subscribe((res: any) => {
+        this.dealService.setDealInfo(res);
       });
   }
 
   private getDealData() {
     this.dealService.dealData$
-    .subscribe(res => {
-      this.deal = res;
-      if (this.deal) {
-        this.convertPackagePrice();
-        if (this.deal.workStarted === 1) {
-          this.setTimer();
+      .subscribe(res => {
+        console.log('updated deal', res);
+        this.deal = res;
+        if (this.deal) {
+          this.convertPackagePrice();
+
+          this.checkDealCanBePayded(); // check does deal can be payded
+          this.freelancerStartWorking(); // check does freelancer cen start working
+          this.cenDealBeCanceled();
+          this.cenDealBeFineshed();
+          if (this.deal.workStarted === 1) {
+            this.setTimer();
+          }
         }
-      }
-    });
+      });
   }
 
 
@@ -97,7 +112,7 @@ export class MessagerToolsComponent implements OnInit {
       // const finisherAt = moment(dealStartedAt).add('days', this.deal.amount);
       const finisherAt = moment(moment(new Date(dealStartedAt)).add(this.deal.term, 'days').toDate(), 'M/D/YYYY');
       const curentTime = moment(new Date(), 'M/D/YYYY');
-      let daysLeft = finisherAt.diff(curentTime, 'days')
+      const daysLeft = finisherAt.diff(curentTime, 'days');
 
       this.getDaysCount(daysLeft);
     }
@@ -120,7 +135,7 @@ export class MessagerToolsComponent implements OnInit {
   }
 
   private showDealButtons() {
-    if (this.deal.moneyHolded === 0 || this.deal.dealDone || this.deal.workEnded && this.isUserFreelancer ) {
+    if (this.deal.moneyHolded === 0 || this.deal.dealDone || this.deal.workEnded && this.isUserFreelancer) {
       this.isDealBtnsVisible = null;
     } else if (this.deal.earlyСlosing === 1) {
       // let FreelancerCancel = this.deal.history.includes()
@@ -134,5 +149,55 @@ export class MessagerToolsComponent implements OnInit {
       });
   }
 
+  private checkDealCanBePayded() { // check is user customer, breef submited and deal status is inProgress
+    this.canDealBePayded = (!this.isUserFreelancer && this.deal.moneyHolded !== 1
+      && this.deal.breef === 1 && this.deal.status === 'inProgress') ? true : null;
+  }
+
+  private freelancerStartWorking() { // check does freelancer cen start working
+    this.canDealBeStarted = this.isUserFreelancer && this.deal.workStarted !== 1 && this.deal.earlyСlosing !== 1
+      && this.deal.moneyHolded === 1 && this.deal.status !== 'archived' ? true : null;
+  }
+
+  private cenDealBeCanceled() {
+    this.isCencelButn = this.deal.earlyСlosing !== 1 && this.deal.dealDone !== 1
+      && this.deal.breef === 1 && this.deal.status !== 'archived' ? true : null;
+  }
+
+  private cenDealBeFineshed() {
+    this.isFinishDealButn = this.isUserFreelancer && this.deal.moneyHolded === 1 && this.deal.earlyСlosing !== 1
+      && this.deal.workStarted === 1 && this.deal.workEnded !== 1 && this.deal.dealDone !== 1 ? true : null;
+  }
+
+  // private cencelOrCompleateDeal() {
+  //   this.isCancelOrCompleateDealBtn = !this.isUserFreelancer && this.deal.workEnded === 1
+  //     && this.deal.dealDone !== 1 && this.deal.status !== 'archived' ? true : null;
+  // }
+
+
+
+  // API
+
+  public goToWork() {
+    this.chatService.startWork(this.collocutorData.id)
+      .subscribe(res => {
+        console.log(res);
+        // this.resetDealData(this.collocutorData.id)
+      });
+  }
+
+  public cencelWork() {
+    this.chatService.cencelWork(this.collocutorData.id)
+      .subscribe(res => {
+        // this.chatService.resetDealInfo(this.collocutorData.id);
+      });
+  }
+
+  public finishWork() {
+    this.chatService.finishDeal(this.collocutorData.id)
+      .subscribe(res => {
+        // this.chatService.resetDealInfo(this.collocutorData.id)
+      });
+  }
 
 }

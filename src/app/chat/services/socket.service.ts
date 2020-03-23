@@ -70,25 +70,27 @@ export class SocketService {
   public checkNotifications() {
     return new Observable(observer => {
       this.socket.on('notify', (data) => {
-        console.log(data)
+        console.log(data);
         observer.next(data);
       });
     });
   }
 
   //  user List subscrubing
-  public subscribeOnListOfCollucutors(_chatType: string) {
+  // tslint:disable-next-line:variable-name
+  public subscribeOnListOfCollucutors(_chatType?: string) {
     if (_chatType === this.typeOfChat) {
       return;
     } else {
-      this.typeOfChat = this._resetChatRoom(_chatType);
+      this.typeOfChat =  _chatType ? this._resetChatRoom(_chatType) : this.typeOfChat;
       this.socket.emit('join', this.keyPath + this.typeOfChat + this.socketId);
     }
   }
 
+  // tslint:disable-next-line:variable-name
   public closeCollocutorSocket(_chatType: string) {
     this.socket.emit('leave', this.keyPath + this.chatRoomId + this.socketId);
-    return _chatType;
+    return _chatType ? _chatType : this.typeOfChat;
   }
 
 
@@ -109,7 +111,7 @@ export class SocketService {
     return new Observable(observer => {
       this.socket.on('DealInfo', (data) => {
         observer.next(data);
-        console.log('dealData', data)
+        console.log('dealData', data);
       });
     });
   }

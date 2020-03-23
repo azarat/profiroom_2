@@ -15,4 +15,4 @@ export const tabsConst = [
     name: 'Незавершенные',
     value: 'broken'
   },
-]
+];

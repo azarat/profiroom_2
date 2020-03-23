@@ -51,7 +51,17 @@
         <div class="packages-title" *ngFor="let package of packagesTypes; index as x" [ngClass]="{ 'field-required': title.invalid && submited }">
           <div class="textarea">
             <textarea [(ngModel)]="userService.packagesTitle[package +'Title']" name="title_{{ package }}" rows="2" [maxlength]="35" #title="ngModel"
-              [required]="(x == 0 && !userService.allPackages) || (userService.allPackages ) && submited"></textarea>
+              [required]="(x == 0 && !userService.allPackages) || (userService.allPackages ) && submited"
+              ngbPopover="Укажите опции, которые входят в каждый ценовой диапазон.&#9252;
+              Это позволит: &#9252;
+- выставить на продажу более дорогую &#x2424;
+услугу&#x2424;
+- оформит комплексное предложение&#x2424;
+- увеличить стоимость заказа" 
+        
+        popoverTitle="Предложите покупателю три пакета услуг по разной цене" 
+        placement="right" popoverClass="popover" maxlength="300" closeDelay="200"
+              ></textarea>
           </div>
         </div>
 

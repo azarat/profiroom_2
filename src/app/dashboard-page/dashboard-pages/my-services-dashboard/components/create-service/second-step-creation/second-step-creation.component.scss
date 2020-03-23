@@ -41,7 +41,7 @@ form::ng-deep {
   h5 {
     font-family: "Source Sans Pro", sans-serif;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 600;
     font-size: 14px;
     line-height: 20px;
     color: #323c47;
@@ -283,6 +283,7 @@ quill-editor::ng-deep {
   .ql-container {
     border: 1px solid #DCE0E6;
     border-radius: 0px 0px 3px 3px;
+    background: #fff;
   }
 }
 
@@ -297,7 +298,7 @@ quill-editor::ng-deep {
     font-family: Source Sans Pro, sans-serif;
     border: none;
     border-radius: 4px;
-    font-weight: 700;
+    font-weight: 600;
     font-size: 14px;
     line-height: 18px;
     // color: #4285F4;

@@ -24,7 +24,7 @@
           <span></span>
         </div>
         <div *ngIf="monthSelectOpen" class="select">
-          <app-mounth-chart-select></app-mounth-chart-select>
+          <app-mounth-chart-select (currentDateEmitting)="currentDateEmitting($event)"></app-mounth-chart-select>
         </div>
       </div>
 

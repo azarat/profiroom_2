@@ -47,4 +47,4 @@ export const monthConst = [
         name: 'Декабрь',
         num: 12
     },
-]
+];

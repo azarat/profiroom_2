@@ -8,8 +8,9 @@ import { plainToClass } from 'class-transformer';
 import { UserModel } from '../models/user.model';
 import { LocalStorageService } from '../core/services/local-storage.service';
 import { SocketService } from '../chat/services/socket.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { UserStateService } from './services/user-state.service';
+import { LocalizeRouterService } from 'localize-router';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -33,7 +34,9 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
     private socetService: SocketService,
     private localStorageService: LocalStorageService,
     private router: Router,
-    private userStatseService: UserStateService
+    private userStatseService: UserStateService,
+    private localize: LocalizeRouterService,
+    private activatedRoute: ActivatedRoute
   ) {
 
   }
@@ -58,6 +61,7 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
         this.authService.saveUserId(this.user.id);
         this.localStorageService.setItem('userImage', this.user.avatar);
         this.localStorageService.setItem('userRole', this.user.role_id);
+        this.redirectToFinancesIfCustomer();
       });
   }
 
@@ -94,13 +98,27 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
 
   // tslint:disable-next-line: variable-name
   public changeUserType(_userType?: number) {
+
     if (this.user.role_id !== _userType) {
       this.userStatseService.toggleUserState()
         .subscribe((res: any) => {
           this.user.role_id = res.newRole;
           this.localStorageService.setItem('userRole', res.newRole);
           this.userStatseService.setUserState(res.newRole);
+          this.redirectToFinancesIfCustomer();
+
         });
+    }
+  }
+
+  private redirectToFinancesIfCustomer() {
+    const url = this.router.url;
+    if (this.user.role_id === 2 && url.includes('home')) {
+      const translatedPath: any = this.localize.translateRoute('/dashboard/finance');
+      this.router.navigate([translatedPath],
+      {
+        relativeTo: this.activatedRoute,
+      });
     }
   }
 

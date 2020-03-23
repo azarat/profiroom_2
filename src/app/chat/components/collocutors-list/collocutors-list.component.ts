@@ -33,7 +33,7 @@ export class CollocutorsListComponent implements OnInit {
   public lastMessageDate: string;
   @Input() chatType: string;
   public userId;
-  currentFilterType: string = 'all';
+  currentFilterType = 'all';
 
   @Output() currentRoom = new EventEmitter();
 
@@ -65,7 +65,7 @@ export class CollocutorsListComponent implements OnInit {
     this.chatService.getChatRooms(this.chatType)
       .subscribe((res: CollucutorsListInterface[]) => {
         this.collocutors = res;
-        console.log(this.collocutors)
+        console.log(res);
         this._sortMessagesByTime(this.collocutors);
         this.openDealAfterBreefSubmit();
       });
@@ -138,7 +138,6 @@ export class CollocutorsListComponent implements OnInit {
   }
 
   public setCurrentType(event: any) {
-    console.log(event)
     this.currentFilterType = event;
   }
 

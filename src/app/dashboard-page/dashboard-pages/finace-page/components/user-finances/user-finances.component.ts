@@ -11,18 +11,16 @@ import { UserFinanceService } from '../../services/user-finance.service';
 })
 export class UserFinancesComponent implements OnInit {
 
-  // transactionType: string;
-  userFinance: FinanceInterface;
-  deffaultSelect = new FormControl('null');
-  transactions = {
+  public userFinance: FinanceInterface;
+  public transactions = {
     transactionType: null,
     amount: null,
-    password: null
+    password: null,
   };
+  public paymentsFullSize =  false;
+  public userCashMoves: any[];
+  public allStatisticInfo: any[] = compressedFinanceInfoConst;
 
-  userCashMoves: any[];
-
-  allStatisticInfo: any[] = compressedFinanceInfoConst;
   constructor(
     private userFinanceService: UserFinanceService
   ) { }
@@ -32,11 +30,9 @@ export class UserFinancesComponent implements OnInit {
   }
 
   getFinanceData() {
-
     this.userFinanceService.getUserFinanceData()
       .subscribe((res: any) => {
         this.userFinance = res[0];
-        console.log(res[0]);
         this.userCashMoves = this.sortcashByTime(this.userFinance.history);
       });
   }
@@ -50,7 +46,14 @@ export class UserFinancesComponent implements OnInit {
 
   makePayment() {
     this.userFinanceService.makePayment(this.transactions);
-    // console.log(this.transactions)
+  }
+
+ public unrollPaymentsList() {
+   this.paymentsFullSize = !this.paymentsFullSize;
+  }
+
+  public rollPaymentsList() {
+    this.paymentsFullSize = false;
   }
 
 }

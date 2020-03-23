@@ -54,9 +54,9 @@ export class AdminChartCanvasComponent implements OnInit {
     name: string,
     value: string
   } = {
-    name: 'Год',
-    value: 'year'
-  }
+      name: 'Год',
+      value: 'year'
+    };
 
   public lineChartData: ChartDataSets[] = [{
       data: [65, 59, 80, 81, 56, 55, 40],
@@ -157,10 +157,11 @@ private _selectXtarXBar() {
   if (this.curerntType.value === 'year') {
     this.lineChartLabels = monthArrConst;
   } else if (this.curerntType.value === 'month') {
-    // this.yearBar = this.canvasXbarService.getMontDaysCount();
-    // this.lineChartLabels = this.canvasXbarService.getMontDaysCount();
+    const year = new Date().getFullYear();
+    const month = new Date().getMonth() + 1;
+    this.lineChartLabels = this.canvasXbarService.getMontDaysCount(month, year);
   } else {
-    this.setDayChartBar()
+    this.setDayChartBar();
   }
 }
   public selectChartType(type) {
@@ -192,6 +193,11 @@ private _selectXtarXBar() {
   }
 
   public toggleMonthSelect() {
-    this.monthSelectOpen = this.monthSelectOpen?  null : true;
+    this.monthSelectOpen = this.monthSelectOpen ?  null : true;
+  }
+
+
+  public currentDateEmitting(date) {
+    this.lineChartLabels = this.canvasXbarService.getMontDaysCount(date.month, date.year);
   }
 }
