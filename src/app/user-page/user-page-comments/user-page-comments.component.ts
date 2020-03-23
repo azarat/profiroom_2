@@ -29,6 +29,7 @@ export class UserPageCommentsComponent implements OnInit {
   public id;
 
   public showAllchildComments = null;
+  public convertedDate = null;
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -55,5 +56,11 @@ export class UserPageCommentsComponent implements OnInit {
     this.showAllchildComments !== x ? this.showAllchildComments = x : this.showAllchildComments = null;
   }
 
+  public converDateToDMY(x) {
+    console.log(x);
+    console.log(this.convertedDate = x.slice(0, x.indexOf(' ')));
+    return this.convertedDate = x.slice(0, x.indexOf(' '));
+  
+  }
 
 }

@@ -20,6 +20,12 @@ export interface UserDataInterface {
   positive_comments_count?: number;
   negative_comments_count?: number;
   updated_at?: number;
+  averageRaiting?: {
+    averageMark?: number;
+    qualityMark?: number;
+    termMark?: number;
+    politenessMark?: number;
+  }
   language?: [{
     langName?: string;
     langLevel?: number;
@@ -48,19 +54,21 @@ export interface UserDataInterface {
     minPrice?: number;
   }];
   positiveComments?: [{
-    qualityMark?: number;
-    termMark?: number;
-    politenessMark?: number;
     created_at?: string;
     offers_id?: number;
     commentator_id?: number;
     commentText?: string;
-
     author?: [{
       id: number;
       name?: string;
       surname?: string;
       avatar?: string;
+      averageRaiting?: {
+        averageMark?: number;
+        qualityMark?: number;
+        termMark?: number;
+        politenessMark?: number;
+      }
     }];
     offers?: [{
       id: number;
@@ -85,9 +93,6 @@ export interface UserDataInterface {
     }];
   }];
   negativeComments?: [{
-    qualityMark?: number;
-    termMark?: number;
-    politenessMark?: number;
     offers_id?: number;
     commentator_id?: number;
     commentText?: string;
@@ -97,6 +102,12 @@ export interface UserDataInterface {
       name?: string;
       surname?: string;
       avatar?: string;
+      averageRaiting?: {
+        averageMark?: number;
+        qualityMark?: number;
+        termMark?: number;
+        politenessMark?: number;
+      }
     }];
     offers?: [{
       id: number;

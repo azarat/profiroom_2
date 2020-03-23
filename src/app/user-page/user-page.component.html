@@ -140,20 +140,20 @@
       <div class="raiting__wrapper">
         <div class="raiting__info-block">
           <div class="raiting__name">Качество услуг</div>
-          <div class="star-raiting">{{ userData.qualityMark}}</div>
+          <div class="star-raiting">{{ userData.averageRaiting.qualityMark}}</div>
         </div>
         <div class="raiting__info-block">
           <div class="raiting__name">Срок исполнения</div>
-          <div class="star-raiting">{{ userData.termMark}}</div>
+          <div class="star-raiting">{{ userData.averageRaiting.termMark}}</div>
         </div>
         <div class="raiting__info-block">
           <div class="raiting__name">Вежливость фрилансера</div>
-          <div class="star-raiting">{{ userData.politenessMark}}</div>
+          <div class="star-raiting">{{ userData.averageRaiting.politenessMark}}</div>
         </div>
         <div class="raiting__info-block">
           <div class="raiting__name">Средняя оценка</div>
           <div class="star-raiting">4,5 </div>
-          <span class="comments-count">( {{ userData.comments_count}} отзывов):</span>
+          <span class="comments-count">( {{ userData.averageRaiting.comments_count}} отзывов):</span>
         </div>
 
       </div>

@@ -22,16 +22,29 @@
           <div class="right-side">
             <a class="user-name" [routerLink]="['/user', comment.author.id] | localize">{{ comment.author.name }}
               {{ comment.author.surname }}</a>
-              <div class="user-raiting-wrapp">
+              <!-- <div class="user-raiting-wrapp">
                 <span class="star-raiting">{{ comment.mark }}</span>
-              </div>
+              </div> -->
             <!-- <div class="publication_time">
               09.01.2020
             </div> -->
             <p class="comment-text">
               {{ comment.commentText }}
             </p>
-
+            <div class="comment__raiting">
+              <div class="comment__raiting-item">
+                <span>Качество</span>
+                <div class="star-raiting">{{comment.author.averageRaiting.qualityMark}}</div>
+              </div>
+              <div class="comment__raiting-item">
+                <span>Срок</span>
+                <div class="star-raiting">{{comment.author.averageRaiting.termMark}}</div>
+              </div>
+              <div class="comment__raiting-item">
+                <span>Вежливость</span>
+                <div class="star-raiting">{{comment.author.averageRaiting.politenessMark}}</div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="comment_child__wrapper" *ngIf="comment.childs">
@@ -45,6 +58,7 @@
               <div class="right-side">
                 <a class="user-name" [routerLink]="['/user', child.author.id] | localize">{{ child.author.name }}
                   {{ child.author.surname }}</a>
+                  <!-- <div class="comment__date">{{comment.created_at}}</div> -->
                 <p class="comment-text">
                   {{ child.commentText }}
                 </p>
