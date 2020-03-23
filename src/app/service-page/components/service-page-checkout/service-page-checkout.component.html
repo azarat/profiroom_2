@@ -20,7 +20,7 @@
       <h3 class="additional-options__title">Добавить дополнительные опции к услуге?</h3>
       <h4 class="additional-options__name">{{offerData.title}}</h4>
 
-      <form class="extra-features__form" [formGroup]="checkoutForm" >
+      <form class="extra-features__form" [formGroup]="checkoutForm">
         <ul class="extra-features__list">
           <ng-container *ngFor="let extra_term of offerData.extra_terms">
             <div class="extra-features__item" *ngIf="extra_term.package == currentPackage && extra_term.published">
@@ -93,11 +93,11 @@
         </ul>
 
       </div>
-      <div class="final-services__extra-features" >
+      <div class="final-services__extra-features" *ngIf="!noOneCheked">
 
         <div class="extra-features-title">Дополнительные опции</div>
 
-        <ul class="option-list" *ngIf="extraFeaturesResultArr">
+        <ul class="option-list" >
 
           <ng-container *ngFor="let extra_term of offerData.extra_terms">
             <div class="extra-features__item" *ngIf="extra_term.package == currentPackage">

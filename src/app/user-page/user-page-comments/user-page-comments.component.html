@@ -1,6 +1,6 @@
 <section class="comments" *ngIf="userData">
   <div class="comments__top">
-    <div class="section-title">Отзывы <span>({{ userData.comments_count }})</span></div>
+    <div class="section-title">Отзывы <span>({{ userData.comments_freelancer_count }})</span></div>
 
     <div class="tabs">
       <div class="tab" (click)="currentTab = 0" [ngClass]="{active: currentTab === 0}">Положительные

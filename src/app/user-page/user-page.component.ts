@@ -27,6 +27,7 @@ export class UserPageComponent implements OnDestroy, OnInit  {
 
   public clickedEducationImgs = null;
   public clickedSinglImg = null;
+  public userTypeFreelancer = true;
 
   public academicDegreesTranslations = [
     'Начальный ',
@@ -131,14 +132,16 @@ export class UserPageComponent implements OnDestroy, OnInit  {
     } else {
       this.clickedSinglImg =false;
     }
-    
-    console.log(this.clickedEducationImgs, this.clickedSinglImg, text)
   }
-  // public closePopUp(){
-  //   this.clickedEducationImgs = false;
-  //   this.clickedSinglImg = false;
-  //   // this.windowScrolling.enable();
-  //   console.log(this.clickedEducationImgs, this.clickedSinglImg)
-  // }
 
+  // switching user types     
+  // 0 - frilancer
+  // 1 - customer
+  public chouseUser(x) {
+    if(x === 0) {
+      this.userTypeFreelancer = true;
+    } else {
+      this.userTypeFreelancer = false;
+    }
+  }
 }

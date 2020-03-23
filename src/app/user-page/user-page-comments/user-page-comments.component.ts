@@ -57,10 +57,7 @@ export class UserPageCommentsComponent implements OnInit {
   }
 
   public converDateToDMY(x) {
-    console.log(x);
-    console.log(this.convertedDate = x.slice(0, x.indexOf(' ')));
     return this.convertedDate = x.slice(0, x.indexOf(' '));
-  
   }
 
 }

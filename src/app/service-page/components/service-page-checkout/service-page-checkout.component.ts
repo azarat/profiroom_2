@@ -30,6 +30,7 @@ export class ServicePageCheckoutComponent implements OnInit {
   public finalSum = 0;
   public serviceCommission = 500;
 
+  public IsChecked = false;
   public checkoutForm: FormGroup;
   public extraFeatures;
   public extraFeaturesResultArr;
@@ -65,7 +66,7 @@ export class ServicePageCheckoutComponent implements OnInit {
     this.currentPackage = this.chousenOnOfferPage.packageTitle;
     this.initForm();
     this.chousenFeatures();
-
+    // this.steValuesFromOfferPage(this.extraFeaturesResult);
     this.outputDealData.changesFinal = this.offerData[this.currentPackage].changes;
   }
 
@@ -88,25 +89,26 @@ export class ServicePageCheckoutComponent implements OnInit {
         this.checkoutForm.value[key] = true;
       }
     }
+    console.log(this.checkoutForm.value);
   }
-
-  // steValuesFromOfferPage(obj) {
-  //   for (let key in obj) {
-  //     if (obj[key] && key !== 'packageTitle') {
-  //       this.checkoutForm.value[key] = true;
-  //     }
-  //   }
-  //   console.log(this.checkoutForm.value);
-  // }
 
   chousenFeatures() {
     this.extraFeaturesResultArr = Object.values(this.checkoutForm.value);
     this.extraFeaturesResult = this.checkoutForm.value;
-    // console.log('this.extraFeaturesResult', this.extraFeaturesResult)
+    this.IsChecked = true;
+    console.log('this.extraFeaturesResult', this.extraFeaturesResult);
+    console.log('this.extraFeaturesResultArr', this.extraFeaturesResultArr);
     this.calculateFinalPrice();
     this.createFinalDealData();
-    // for (let key in this.checkoutForm.value) {
-    //   if (this.checkoutForm.value[key] === true && key !== 'packageTitle') {
+    if(this.extraFeaturesResultArr.some(element => element === true)) {
+      this.noOneCheked = false;
+      console.log(this.noOneCheked);
+    } else {
+      this.noOneCheked = true;
+      console.log(this.noOneCheked);
+    }
+    // for (let key in this.extraFeaturesResult) {
+    //   if (this.extraFeaturesResult[key] !== true && key !== 'packageTitle') {
     //     this.noOneCheked = true;
     //     console.log(this.checkoutForm.value);
     //     console.log(this.noOneCheked);
@@ -114,6 +116,13 @@ export class ServicePageCheckoutComponent implements OnInit {
     //     this.noOneCheked = false;
     //   }
     // }
+  }
+
+  public setValuesOnFirstLoad(x) {
+    if(this.extraFeaturesResult[x]) {
+      return this.IsChecked
+    }
+   
   }
 
   calculateFinalPrice() {

@@ -13,7 +13,16 @@ export interface UserDataInterface {
   inProgressOffers?: number;
   queuedOffers?: number;
   endedWorks?: number;
-  arbitration?: number;
+
+  customer_deals_count?: number;
+  freelancer_deals_count?: number;
+  comments_freelancer_count?: number;
+  commentsсustomer_count?: number;
+  arbitration?: {
+    freelancer?: number;
+    customer?: number;
+    all?: number;
+  }
   answerTime?: number;
   description?: string;
   comments_count?: number;
