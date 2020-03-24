@@ -17,11 +17,6 @@
       </ng-container>
 
       <div class="actions" [ngClass]="{ btwn: dealCencel }">
-        <!-- <button *ngIf="!isUserFreelancer && messageClass === 'breef' && collocutorData.moneyHolded !== 1" class="btn" (click)="holdMoneynDeal()">Зарезирвировать оплату</button>
-
-        <button *ngIf="isUserFreelancer && messageClass === 'hold-money' && collocutorData.workStarted !==1" class="btn" (click)="goToWork()">уведометь о начале работы</button> -->
-
-        <!-- deal canceling  -->
 
         <button class="btn-sec"  *ngIf="dealCencel && messageClass === 'deal-cencel'"  >Обратится в арбитраж</button>
         <button class="btn" *ngIf="dealCencel && messageClass === 'deal-cencel'" (click)="submitDealCancel()"  >Подтвердть отмену</button>
@@ -29,8 +24,6 @@
 
         <button class="btn-sec"  *ngIf="!isUserFreelancer && dealCencel && messageClass === 'DealFinishedByFreelancer'" (click)="cancelFinishDeal()"  >вернуть к работе </button>
         <button class="btn" *ngIf="!isUserFreelancer && dealCencel && messageClass === 'DealFinishedByFreelancer'" (click)="submitFinishWork()"  > работа завершена</button>
-
-
       </div>
     </div>
   </div>

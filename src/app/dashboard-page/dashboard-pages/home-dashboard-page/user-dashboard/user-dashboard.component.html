@@ -1,0 +1,78 @@
+<div class="wrapper">
+  <section class="main-statistic">
+      <div class="main-statistic-item" *ngFor="let el of statsicArr, let i = index">
+        <div class="icon"></div>
+        <div>
+          <p>{{ user.purse[el.valueName] }}</p>
+          <p>{{ el.name }}</p>
+        </div>
+      </div>
+  </section>
+  <section class="charst-statistic">
+    <div class="charts">
+      <div>
+        <h5 class="title">
+            Показатели аккаунта
+        </h5>
+        <div class="chart-body">
+          <div class="acc-settings">
+            <div>
+              <span>
+                12
+              </span>
+              <span>
+                кол-во просмотров моего аккаунта
+              </span>
+            </div>
+            <div>
+              <span>
+                12
+              </span>
+              <span>
+                заказчиков откликнулось
+              </span>
+            </div>
+            <div>
+              <span>
+                12
+              </span>
+              <span>
+                начато сотрудничество
+              </span>
+            </div>
+          </div>
+          <div class="filter-brns">
+            <button class="active" >День</button>
+            <button >Месяц</button>
+          </div>
+        </div>
+      </div>
+      <div class="request-settings">
+        <h5 class="title">
+          Кол-во заявок за время
+        </h5>
+        <div class="chart">
+           <app-line-chart-dashboard></app-line-chart-dashboard>
+        </div>
+        <div class="filter-brns">
+          <button class="active" >День</button>
+          <button >Месяц</button>
+        </div>
+      </div>
+      <div>
+        <h5 class="title">
+          Кол-во заказов
+        </h5>
+        <div class="chart-body">
+            <app-pie-chart-dashboard></app-pie-chart-dashboard>
+        </div>
+      </div>
+    </div>
+    <div class="achives">
+
+    </div>
+
+
+  </section>
+  <section class="ets"></section>
+</div>

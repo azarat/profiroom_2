@@ -12,6 +12,7 @@ import { ThousandSeparatorModule } from 'src/app/shared/pipes/thousand-separator
 import { AdminChartCanvasModule } from 'src/app/shared/modules/admin-chart-canvas/admin-chart-canvas.module';
 import { UserFinancesComponent } from './components/user-finances/user-finances.component';
 import { AdminFinancesComponent } from './components/admin-finances/admin-finances.component';
+import { ClickOutsideModule } from 'ng-click-outside';
 
 const routes: Routes = [
   {
@@ -36,7 +37,10 @@ const routes: Routes = [
 
     // Pipes
     DataFormatModule,
-    ThousandSeparatorModule
+    ThousandSeparatorModule,
+
+    // directives
+    ClickOutsideModule
   ]
 })
 export class FinacePageModule { }

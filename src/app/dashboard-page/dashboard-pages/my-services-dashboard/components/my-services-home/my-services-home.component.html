@@ -1,35 +1,22 @@
 <section class="wrap" *ngIf="userServices">
   <h3>Мои услуги</h3>
-  <!-- <div class="tabs-wrap">
-    <ul>
-      <li *ngFor="let tab of tabs" [ngClass]="{ active: currentTab === tab.value }" (click)="setCurrentTab(tab.value)">
-        <button mat-button>{{ tab.name }}</button>
-        </li>
-    </ul>
-  </div> -->
+
   <section #scrolledBlock>
-
-    <!-- <div class="add-service" *ngIf="userServices.length > 0">
-      <button class="btn-tetraty" (click)="createNewService()"> <i class="material-icons">
-          add_circle_outline
-        </i>Создать услугу</button><br><br>
-    </div> -->
-
 
     <ng-container *ngIf="userServices.length > 0">
 
       <mat-tab-group animationDuration="0ms" (selectedTabChange)="setCurrentTab($event)">
 
         <mat-tab *ngFor="let tab of tabs"  label="{{ tab.name }}">
-          <div class="add-service" *ngIf="userServices.length > 0">
-            <button class="btn-tetraty" (click)="createNewService()"> <i class="material-icons">
+          <div class="add-service" *ngIf="userServices.length > 0" (click)="createNewService()">
+            <button class="btn-tetraty" > <i class="material-icons">
                 add_circle_outline
               </i>Создать услугу</button><br><br>
           </div>
           <ng-container *ngFor="let userService of userServices; let i = index">
             <ng-container *ngIf="currentTab === 0 || userService.published && currentTab === 1 || userService.canPublish && currentTab === 2 || !userService.canPublish && currentTab === 3 ">
               <div class="item" >
-                <div class="service-photo" >
+                <div class="service-photo" (click)="openOffer(userService.id)">
                   <img [src]="userService.mainImage" alt="offer-img">
                 </div>
                 <div class="offer-name">
@@ -40,9 +27,9 @@
                     <button class="show-menu"  (click)="showMenu(i)"><i class="material-icons">
                         more_vert
                       </i></button>
-                    <div class="menu" *ngIf="menuOpen === i">
+                    <div class="menu" *ngIf="menuOpen === i" (clickOutside)="hideMenu($event, i)" [exclude]="'.show-menu'">
                       <ul >
-                        <li (click)="openOffer(userService.id)" (clickOutside)="hideMenu($event, i)"><i class="material-icons">
+                        <li (click)="openOffer(userService.id)"><i class="material-icons">
                             create
                           </i>Редактировать</li>
                         <li>
@@ -64,51 +51,9 @@
             </ng-container>
           </ng-container>
 
-
-
-
         </mat-tab>
-
       </mat-tab-group>
 
-
-      <!-- <ng-container *ngFor="let userService of userServices; let i = index">
-        <ng-container *ngIf="currentTab === null || userService.published && currentTab === 'published' || userService.canPublish && currentTab === 'unpublished' || !userService.canPublish && currentTab === 'broken' ">
-          <div class="item">
-            <div class="service-photo">
-              <img [src]="'https://www.thecubetest.site/Backend/storage/app/' + userService.mainImage" alt="offer-img">
-            </div>
-            <div class="offer-name">
-              <h6>
-                {{ userService.title }}
-              </h6>
-              <div class="item-menu" >
-                <button class="show-menu" (clickOutside)="hideMenu(i)" (click)="showMenu(i)"><i class="material-icons">
-                    more_vert
-                  </i></button>
-                <div class="menu" *ngIf="menuOpen === i">
-                  <ul>
-                    <li (click)="openOffer(userService.id)"><i class="material-icons">
-                        create
-                      </i>Редактировать</li>
-                    <li>
-
-                      <i class="material-icons">
-                        visibility_off
-                      </i>
-                      Скрыть услугу </li>
-                    <li (click)="deleteService(userService.id)">
-                      <i class="material-icons">
-                        delete
-                      </i>
-                      Удалить</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </ng-container>
-      </ng-container> -->
     </ng-container>
 
     <!-- first service creation -->

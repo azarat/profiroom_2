@@ -1,0 +1,12 @@
+<div class="select-wrap"  >
+    <div class="year">
+        <span class="prev" (click)="prevYear()"></span>
+            <span class="current" >{{ currentData.year  }}</span>
+        <span class="next" (click)="nextYear()"></span>
+    </div>
+    <div class="month">
+        <span class="prev" (click)="prevMonth()"></span>
+            <span class="current" >{{  currentData.month  | adminMonth }}</span>
+        <span class="next" (click)="nextMonth()"></span>
+    </div>
+</div>

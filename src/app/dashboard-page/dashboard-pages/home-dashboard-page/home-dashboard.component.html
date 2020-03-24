@@ -1,1 +1,5 @@
-<p>home-dashboard works!</p>
+<ng-container *ngIf="user">
+ <app-user-dashboard *ngIf="user" [user]="user"></app-user-dashboard>
+<app-admin-dashboard *ngIf=" user.role_id && user.role_id !== 1 || user.role_id !== 2" ></app-admin-dashboard>   
+</ng-container>
+

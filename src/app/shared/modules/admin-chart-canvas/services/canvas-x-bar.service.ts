@@ -36,16 +36,4 @@ export class CanvasXbarService {
     return time;
   }
 
-  public selectXtarXBar(type) {
-    if (type.name === 'year') {
-      return monthArrConst;
-    } else if (type.name === 'month') {
-      // this.yearBar = this.canvasXbarService.getMontDaysCount();
-    } else if (type.name === 'day') {
-      return this.getHoursCount();
-    }
-  }
-
-
-
 }

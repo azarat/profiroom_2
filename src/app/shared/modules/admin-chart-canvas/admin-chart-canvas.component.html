@@ -18,6 +18,16 @@
         <button class="next" *ngIf="showedDate < currentYear" [disabled]="showedDate === currentYear"
           (click)="nextYear()">{{ showedDate + 1 }} год</button>
       </div>
+      <div class="chart-month-btns" *ngIf="curerntType.value === 'month'">
+        <div class="show-select" (click)="toggleMonthSelect()">
+          <span>выберите месяц и год</span>
+          <span></span>
+        </div>
+        <div *ngIf="monthSelectOpen" class="select">
+          <app-mounth-chart-select (currentDateEmitting)="currentDateEmitting($event)"></app-mounth-chart-select>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
@@ -32,5 +42,10 @@
   </div>
   <div class="curent-statistic">
     <app-calendar *ngIf="curerntType.value === 'day'"></app-calendar>
+
+    <div class="description" *ngIf="curerntType.value !== 'day'">
+      <p>Доход биржи</p>
+      <p>Кол-во входящих средств</p>
+    </div>
   </div>
 </div>

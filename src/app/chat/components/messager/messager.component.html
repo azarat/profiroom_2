@@ -9,12 +9,12 @@
     </div>
   </div>
   <div class="messager-wrap">
-    <div class="previous-massages">
+    <div class="previous-massages" [ngClass]="canChating? '': 'full'">
       <app-message-list [chatRoom]="collocutorData" *ngIf="collocutorData && messagesList" [messagesList]="messagesList"
       [chatType]="chatType"
         [collocutorData]="collocutorData"></app-message-list>
     </div>
-    <form #message="ngForm" (ngSubmit)="sendMessage(message)" class="message-input" >
+    <form *ngIf="canChating" #message="ngForm" (ngSubmit)="sendMessage(message)" class="message-input" >
       <div class="text-input">
         <textarea name="messageText" [ngModel]="messageText" #textarea id="message" placeholder="Сообщение"
           (keydown)="keyDown($event, message)"></textarea>
@@ -32,6 +32,6 @@
       </div>
     </form>
     <!-- deal  -->
-    <app-rate-deal *ngIf="deal && deal.offers_id && deal.status !== 'archived'" [deal]="deal" [offer_id]="deal.offers_id"></app-rate-deal>
+    <!-- <app-rate-deal *ngIf="deal && deal.offers_id && deal.status !== 'archived'" [deal]="deal" [offer_id]="deal.offers_id"></app-rate-deal> -->
   </div>
 </div>

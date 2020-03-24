@@ -42,6 +42,6 @@
         {{ collocutor.description }}
     </p>
     </div>
-    <button class="btn-tetraty" (click)="showAllInfo()">{{ wrapButtonText }}</button>
+    <button class="btn-tetraty" [ngClass]="isInformWraped? 'open': 'close'" (click)="showAllInfo()">{{ wrapButtonText }}</button>
   </div>
 </section>

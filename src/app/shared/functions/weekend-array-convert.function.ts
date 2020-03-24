@@ -5,7 +5,7 @@ export function weekendArrayConvertFunction(arr: string[]) {
   const weekendArr = [];
 
   arr.forEach((element) => {
-    console.log(currentLang.localeData().weekdaysShort(moment(element)))
+    // console.log(currentLang.localeData().weekdaysShort(moment(element)))
     weekendArr.push(currentLang.localeData().weekdaysShort(moment(element)));
   });
   return weekendArr;

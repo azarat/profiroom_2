@@ -64,13 +64,18 @@
       &:last-child {
 
         height: 43px;
-        background: #000;
-        background: #3f60fb;
+        // background: #000;
+        // background: #3f60fb;
+        background: #C3CCF2;
         box-shadow: 0px 9px 21px rgba(128, 152, 213, 0.1);
         border-radius: 8px;
         display: flex;
         justify-content: center;
         align-items: center;
+
+        h5 {
+          color: #fff;
+        }
       }
 
       .step-order {
@@ -171,6 +176,11 @@
         }
         &:after {
           background: #AECCFF;
+        }
+
+        &:last-child() {
+          background: #C3CCF2;
+          
         }
       }
     }

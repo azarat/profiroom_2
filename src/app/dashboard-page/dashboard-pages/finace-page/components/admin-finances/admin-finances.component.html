@@ -1,5 +1,5 @@
-<div class="admin statistic">
-  <section class="compressed-statistic" *ngIf="userFinance">
+<div class="admin statistic" *ngIf="userFinance">
+  <section class="compressed-statistic" >
     <div *ngFor="let el of allStatisticInfo">
       <div class="icon">
         <img src="/assets/images/icons/finance/{{el.type}}.png" alt="">

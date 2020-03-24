@@ -52,13 +52,7 @@ export class ServicePageService {
     });
   }
 
-  public createDeal(offerId: number, dealtype) {
-    this.http.post('/makeDeal', { offer_id: offerId, package: dealtype })
-      .subscribe((res: any) => {
-        console.log(res);
-        this.routeToWorkChat(res.dealId, offerId, res.roomId);
-      });
-  }
+
   // Navigate to work chat vs querry params to open this deal as active
   public routeToWorkChat(dealRoomId: number, _offerId: number, _roomId: string) {
     const translatedPath: any = this.localize.translateRoute('/dashboard/projects');

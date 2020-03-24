@@ -36,10 +36,6 @@ export class CollocutorInformationComponent implements OnInit {
 
   public showAllInfo() {
     this.isInformWraped = !this.isInformWraped;
-    if(this.isInformWraped) {
-      this.wrapButtonText = 'свернуть';
-    } else {
-      this.wrapButtonText = 'развернуть';
-    }
+    this.wrapButtonText = this.isInformWraped === true ? 'свернуть' : 'развернуть';
   }
 }

@@ -87,6 +87,12 @@
       border-color: #FFCFCF;
     }
   }
+  &.DealFinishCanceled{
+    h5 {
+      color: #44C0F1;
+      border-color: #44C0F1;
+    }
+  }
   &.DealFinished{
     h5 {
       color: #34C28D;

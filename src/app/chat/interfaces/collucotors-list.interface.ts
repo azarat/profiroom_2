@@ -26,6 +26,8 @@ export interface CollucutorsListInterface {
   earlyСlosing: number;
   workEnded: number;
   dealDone: number;
+  collucotorOnline: boolean;
+  dealCanceled: number;
   message: {
     author?: number | string;
     message?: string;
@@ -33,5 +35,6 @@ export interface CollucutorsListInterface {
     authorAva?: string;
     type?: string;
   }[];
+  extra_features: any [];
   history?: any[];
 }
