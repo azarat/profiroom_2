@@ -253,6 +253,7 @@ section:not(.wrap) {
   background: rgba(224, 225, 249, 0.3);
   backdrop-filter: blur(4px);
   z-index: 50;
+  font-family: Source Sans Pro, sans-serif ;
   .msg {
     padding: 35px 70px;
     text-align: center;
@@ -262,8 +263,10 @@ section:not(.wrap) {
     justify-content: space-between;
     box-shadow: 0px 10px 16px rgba(128, 152, 213, 0.25);
     background: #fff;
+    border-radius: 4px;
     h5 {
       width: 100%;
+      font-size: 18px;
     }
     button {
       max-height: 40px;

@@ -35,16 +35,17 @@ import {
 export class AdminChartCanvasComponent implements OnInit {
 
   public listOpen: boolean = null;
+  public monthSelectOpen: boolean = null;
   chartTypes = [{
-      name: 'год',
+      name: 'Год',
       value: 'year'
     },
     {
-      name: 'месяц',
+      name: 'Месяц',
       value: 'month'
     },
     {
-      name: 'день',
+      name: 'День',
       value: 'day'
     }
   ];
@@ -53,9 +54,9 @@ export class AdminChartCanvasComponent implements OnInit {
     name: string,
     value: string
   } = {
-    name: 'год',
-    value: 'year'
-  }
+      name: 'Год',
+      value: 'year'
+    };
 
   public lineChartData: ChartDataSets[] = [{
       data: [65, 59, 80, 81, 56, 55, 40],
@@ -156,10 +157,11 @@ private _selectXtarXBar() {
   if (this.curerntType.value === 'year') {
     this.lineChartLabels = monthArrConst;
   } else if (this.curerntType.value === 'month') {
-    // this.yearBar = this.canvasXbarService.getMontDaysCount();
-    this.lineChartLabels = this.yearBar;
+    const year = new Date().getFullYear();
+    const month = new Date().getMonth() + 1;
+    this.lineChartLabels = this.canvasXbarService.getMontDaysCount(month, year);
   } else {
-    this.setDayChartBar()
+    this.setDayChartBar();
   }
 }
   public selectChartType(type) {
@@ -188,5 +190,14 @@ private _selectXtarXBar() {
     if (this.showedDate !== 2018) {
       this.showedDate = this.showedDate - 1;
     }
+  }
+
+  public toggleMonthSelect() {
+    this.monthSelectOpen = this.monthSelectOpen ?  null : true;
+  }
+
+
+  public currentDateEmitting(date) {
+    this.lineChartLabels = this.canvasXbarService.getMontDaysCount(date.month, date.year);
   }
 }

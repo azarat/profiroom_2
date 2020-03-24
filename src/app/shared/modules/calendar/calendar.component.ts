@@ -40,6 +40,7 @@ const colors: any = {
   ]
 })
 export class CalendarComponent implements OnInit {
+
   @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
   @Input() userFinance;
 

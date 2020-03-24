@@ -8,6 +8,7 @@
 	"chat.work_chat.history.DealFinishedByFreelancer": "Работа закончена",
 	"chat.work_chat.history.approveBreef": "Сделка подтверждена",
 	"chat.work_chat.history.holdMoney": "Средства зарезирвировано.",
+	"chat.work_chat.history.DealFinishCanceledByCustomer": "Возвращено на доработку",
 	"chat.work_chat.history.workStarted": "Работа начата",
 	"chat.work_chat.system_messages.CancelsubmitedDescriptionDealer": "Вы прекратили сотрудничество с фрилансером по данному проекту. ",
 	"chat.work_chat.system_messages.CancelsubmitedDescriptionFreelancer": "Вы прекратили сотрудничество с заказчиком по данному проекту. ",
@@ -39,8 +40,12 @@
 	"chat.work_chat.system_messages.holdMoneyTitleFreelancer": "Средства зарезирвированы ",
 	"chat.work_chat.system_messages.workStartedDescriptionDealer": "Фрилансер приступил к работе. Следите за счетчиком срока исполнения работы.",
 	"chat.work_chat.system_messages.workStartedDescriptionFreelancer": "Вы уведомили заказчика о том, что приступили к проекту. Счетчик срока исполнения работы запустился.",
+	"chat.work_chat.system_messages.DealFinishCanceledByCustomerDescriptionFreelancer": "Заказчик вернул работу для корректировки согласно правок.",
+	"chat.work_chat.system_messages.DealFinishCanceledByCustomerDescriptionDealer": "Вы вернули работу фрилансеру на корректировку согласно правок.",
 	"chat.work_chat.system_messages.workStartedTitleDealer": "Работа начата",
 	"chat.work_chat.system_messages.workStartedTitleFreelancer": "Работа начата",
+	"chat.work_chat.system_messages.DealFinishCanceledByCustomerTitleFreelancer": "Работа по правкам",
+	"chat.work_chat.system_messages.DealFinishCanceledByCustomerTitleDealer": "Работа по правкам",
 	"header.catalog": "Каталог",
 	"header.how_it_works": "Как это работает"
 }

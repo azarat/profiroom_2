@@ -26,6 +26,7 @@ export class ChatService {
     private localStorageService: LocalStorageService
   ) { }
 
+  // tslint:disable-next-line:variable-name
   sentMessage(msg: any, room: string | number, messageType: string, _chatType: string) {
     const userId = this.localStorageService.getItem('userId').value;
     return this.http.post('/message', { roomId: room, author: userId, message: msg, type: messageType, chatType: _chatType });
@@ -48,6 +49,7 @@ export class ChatService {
     return this.http.post('/getChatFiles', { roomId: _roomId });
   }
 
+  // tslint:disable-next-line:variable-name
   public getBreef(_offerId) {
     return this.http.post('/getOfferBreef', { offer_id: _offerId });
   }
@@ -57,6 +59,7 @@ export class ChatService {
     return this.http.post('/setDealBreefAnswers', { deal_id: _deal_id, answers: JSON.stringify(_answer) });
   }
 
+  // tslint:disable-next-line:variable-name
   public deleteDeal(_deal_id: number, ) {
     return this.http.post('/deleteDeal', { deal_id: _deal_id });
   }

@@ -7,8 +7,10 @@ export class CollocutorListModel {
   @Expose() id: number;
   @Expose() status: string;
   @Expose() roomId: string;
+  // tslint:disable-next-line:variable-name
   @Expose() offers_title: string;
   @Expose() collocutorId: number;
+  // tslint:disable-next-line:variable-name
   @Expose() freelanser_id: number;
   @Expose() earlyСlosing: number;
   @Expose() collocutorAva: string;
@@ -16,6 +18,7 @@ export class CollocutorListModel {
   @Expose() collocutorName: string;
   @Expose() collocutorSurname: string;
   @Expose() unread: string;
+  // tslint:disable-next-line:variable-name
   @Expose() created_at: Date;
   @Expose() package: Date;
   @Expose() amount: Date;

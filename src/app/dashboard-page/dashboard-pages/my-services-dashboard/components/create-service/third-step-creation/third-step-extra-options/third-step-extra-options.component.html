@@ -39,7 +39,7 @@
               <div class=" select-wrap-extra">
                 <mat-select [(ngModel)]="userService.compressedDeadlines.basicCompressedDays" #name="ngModel" [required]="userService.compressedDeadlines.publishCompressedDeadlines && userService.allPackages" name="basicCompressedDays">
                   <mat-option *ngFor="let days of changesArrayCounter(); let i = index" [value]="days">
-                    {{ days }}
+                    {{ days }} дня
                   </mat-option>
                 </mat-select>
               </div>
@@ -59,7 +59,7 @@
               <div class=" select-wrap-extra">
                 <mat-select [(ngModel)]="userService.compressedDeadlines.advancedCompressedDays" #name="ngModel" [required]="userService.compressedDeadlines.publishCompressedDeadlines && userService.allPackages" name="advancedCompressedDays">
                   <mat-option *ngFor="let days of changesArrayCounter(); let i = index" [value]="days">
-                    {{ days }}
+                    {{ days }} дня
                   </mat-option>
                 </mat-select>
               </div>
@@ -78,7 +78,7 @@
               <div class=" select-wrap-extra">
                 <mat-select name="premiumCompressedDays" #name="ngModel" [required]="userService.compressedDeadlines.publishCompressedDeadlines && userService.allPackages" [(ngModel)]="userService.compressedDeadlines.premiumCompressedDays">
                   <mat-option *ngFor="let days of changesArrayCounter(); let i = index" [value]="days">
-                    {{ days }}
+                    {{ days }} дня
                   </mat-option>
                 </mat-select>
               </div>
@@ -108,7 +108,7 @@
           <div class=" select-wrap-extra">
             <mat-select name="extraOfferChanges" [required]="userService.extraOfferChanges.publishExtraOfferChanges" [(ngModel)]="userService.extraOfferChanges.extraChangesDays" #extraChangesDays="ngModel">
               <mat-option *ngFor="let days of changesArrayCounter(); let i = index" [value]="days">
-                {{ days }}
+                {{ days }} дня
               </mat-option>
             </mat-select>
           </div>
@@ -132,7 +132,8 @@
       <div class="options commercial">
         <span>Сделаю за</span>
         <div class="price" [style.borderColor]="name.invalid ? '#f44336': '#dce0e6'">
-          <input type="text" knifeOnlyNumbers maxlength="4" #name="ngModel" [required]="userService.commercialOffer.publishCommercialOffer" [(ngModel)]="userService.commercialOffer.priceForCommercialOffer" name="priceForCommercialOffer"> <span
+          <input type="text" knifeOnlyNumbers maxlength="4" #name="ngModel" [required]="userService.commercialOffer.publishCommercialOffer" 
+          [(ngModel)]="userService.commercialOffer.priceForCommercialOffer" name="priceForCommercialOffer"> <span
             class="money">UAH</span>
         </div>
       </div>
@@ -164,11 +165,11 @@
                 <div [style.borderColor]="name.invalid && submited ? '#f44336': '#dce0e6'">
                   <div class="select-wrap-extra">
 
-                    {{ userService.extra_features[j].optionPrice }}
+                    {{ userService.extra_features[j].optionCountDays }} дня
                   </div>
                 </div>
                 <div class="price" [style.borderColor]="name.invalid && submited ? '#f44336': '#dce0e6'">
-                  {{ userService.extra_features[j].optionCountDays }} <span class="money">UAH</span>
+                  {{ userService.extra_features[j].optionPrice }} <span class="money">UAH</span>
                 </div>
               </div>
             </div>
@@ -200,7 +201,7 @@
                   <div class=" select-wrap-extra">
                     <mat-select name="optionPrice-{{j}}" required [(ngModel)]="userService.extra_features[j].optionCountDays" #name="ngModel">
                       <mat-option *ngFor="let days of changesArrayCounter(); let i = index" [value]="days">
-                        {{ days }}
+                        {{ days }} дня
                       </mat-option>
                     </mat-select>
                   </div>

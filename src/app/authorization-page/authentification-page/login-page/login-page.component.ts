@@ -69,8 +69,8 @@ export class LoginPageComponent implements OnInit {
           if (data !== null) {
             if (data === 'Bad Request') {
               this.message = {
-                title: 'Ошибка',
-                description: 'Неподтвержденная почта'
+                title: 'Подтвердите регистрацию!',
+                description: 'Для завершения регистрации, пожалуйста, подтвердите Вашу электронную почту в сообщении, которое было отправлено Вам на указанный при регистрации почтовый ящик.'
               };
             } else {
               const translatedPath: any = this.localize.translateRoute('/dashboard');
@@ -84,8 +84,8 @@ export class LoginPageComponent implements OnInit {
           console.log(error)
           if (error === 'Bad Request') {
             this.message = {
-              title: 'Ошибка',
-              description: 'Неподтвержденная почта'
+              title: 'Подтвердите регистрацию!',
+              description: 'Для завершения регистрации, пожалуйста, подтвердите Вашу электронную почту в сообщении, которое было отправлено Вам на указанный при регистрации почтовый ящик.'
             };
           } else {
             this.message = {

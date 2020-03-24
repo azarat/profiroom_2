@@ -28,7 +28,7 @@ export class MessagerComponent implements OnInit, OnDestroy {
   private userId;
   private typing = false;
   private time: any;
-
+  public canChating = true;
   public keyword$ = new Subject();
   // tslint:disable-next-line: variable-name
   protected _destroy$ = new Subject();
@@ -82,7 +82,7 @@ export class MessagerComponent implements OnInit, OnDestroy {
       });
     // console.log(this.collocutorData);
     this._isChatHidden();
-    console.log(this.deal)
+    this.getDealData();
   }
 
   public ngOnDestroy() {
@@ -146,15 +146,21 @@ export class MessagerComponent implements OnInit, OnDestroy {
   // Close chat if deal is done
   private _isChatHidden() {
     this.deal && (this.deal.workEnded === 1 || this.deal.dealDone === 1) ? this.chatHided = true : this.chatHided = null;
-    console.log('is this deal???', this.chatHided)
+    console.log('is this deal???', this.chatHided);
   }
 
-  // private getDealData() {
-  //   this.dealService.dealData$
-  //   .subscribe(res => {
+  private getDealData() {
+    this.dealService.dealData$
+    .subscribe(res => {
 
-  //     this.deal = res;
-  //   });
-  // }
+      this.deal = res;
+      this.hideMessageInput();
+    });
+  }
+
+  private hideMessageInput() {
+    this.canChating = this.deal && this.chatType === 'work' && this.deal.earlyСlosing === 1 || this.deal && this.deal.dealDone === 1
+    || this.deal && this.deal.dealCanceled === 1  || this.deal && this.deal.workEnded === 1 ? null : true;
+  }
 
 }

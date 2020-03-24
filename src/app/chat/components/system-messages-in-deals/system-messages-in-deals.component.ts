@@ -14,7 +14,7 @@ export class SystemMessagesInDealsComponent implements OnInit {
   @Input() systemMessage;
   @Input() collocutorData: any;
   messageBreef = null;
-  messageMoneyHolded
+  messageMoneyHolded;
   isUserFreelancer: boolean = null;
   messageClass: string;
   public dealCencel: boolean = null;
@@ -45,6 +45,8 @@ export class SystemMessagesInDealsComponent implements OnInit {
       this.messageClass = 'DealFinishedByFreelancer';
     } else if (this.systemMessage.message.name === 'DealFinished') {
       this.messageClass = 'DealFinished';
+    } else if (this.systemMessage.message.name === 'DealFinishCanceledByCustomer') {
+      this.messageClass = 'DealFinishCanceled';
     }
   }
 

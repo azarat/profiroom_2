@@ -1,10 +1,11 @@
 <div class="inform" *ngIf="deal">
   <div class="tools">
     <h6>Действия</h6>
-    <button *ngIf="!isUserFreelancer  && collocutorData.moneyHolded !== 1" class="btn" (click)="holdMoneynDeal()">Зарезирвировать оплату</button>
-    <button (click)="cencelWork()" *ngIf="collocutorData.moneyHolded == 1" >отменить работу</button>
+    <button *ngIf="canDealBePayded" class="btn" (click)="holdMoneynDeal()">Зарезирвировать оплату</button>
+    <button *ngIf="canDealBeStarted" class="btn" (click)="goToWork()">Приступить к работе</button>
+    <button (click)="cencelWork()" *ngIf="isCencelButn" >отменить работу</button>
     <!-- <button>обратиться в арбитраж</button> -->
-    <button *ngIf="isUserFreelancer" (click)="finishWork()">Завершить работу</button>
+    <button *ngIf="isFinishDealButn" (click)="finishWork()" >Завершить работу</button>
   </div>
   <div class="timer" *ngIf="deal.workStarted === 1 && deal.moneyHolded !==0">
     <h6>Кол-во дней до завершения заказа</h6>
@@ -26,6 +27,10 @@
     </div>
     <div class="extra-features">
       <p>Коммерческое использование</p>
+      <ng-container *ngIf="deal.extra_features && deal.extra_features.length > 0">
+        <p *ngFor="let el of deal.extra_features">{{ el.title }}</p>
+      </ng-container>
+      
     </div>
   </div>
 

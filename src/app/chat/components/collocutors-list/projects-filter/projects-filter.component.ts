@@ -10,8 +10,8 @@ import { LocalStorageService } from 'src/app/core/services/local-storage.service
 export class ProjectsFilterComponent implements OnInit {
 
   public projectTypes: { name: string, type: string }[] = projectTypesConst;
-  public currentType: string = 'all';
-  public currentTypeName: string = 'Все';
+  public currentType = 'all';
+  public currentTypeName = 'Все';
   public isListVisible: boolean = null;
 
   @Output() setCurrentType = new EventEmitter();
@@ -22,17 +22,22 @@ export class ProjectsFilterComponent implements OnInit {
   }
 
   public toggleListOfTypes() {
-    if(!this.isListVisible) {
-      this.isListVisible = true;
-    } else {
-      this.isListVisible = !this.isListVisible;
-    }
+    this.isListVisible = !this.isListVisible ? true : !this.isListVisible;
+    // if (!this.isListVisible) {
+    //   this.isListVisible = true;
+    // } else {
+    //   this.isListVisible = !this.isListVisible;
+    // }
   }
 
   public setProjectType(type: string, name: string) {
     this.currentType = type;
     this.currentTypeName = name;
     this.setCurrentType.emit(this.currentType);
+    this.isListVisible = false;
+  }
+
+  public hideMenu() {
     this.isListVisible = false;
   }
 

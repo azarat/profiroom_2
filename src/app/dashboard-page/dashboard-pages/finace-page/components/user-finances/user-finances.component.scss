@@ -6,6 +6,20 @@
   display: flex;
   justify-content: space-between;
   height: 97%;
+  position: relative;
+  &.modal {
+    &:before {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      content: '';
+      top: 0;
+      left: 0;
+      background: rgba(224, 225, 249, 0.3);
+      backdrop-filter: blur(4px);
+      z-index: 15;
+    }
+  }
 }
 .statistic {
   width: 77.5%;
@@ -164,6 +178,14 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
+
+    &.full-size {
+      position: absolute;
+    width: 80%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20;
+    }
     .title {
       width: 100%;
       background: #f4f7fc;
@@ -177,6 +199,27 @@
       font-variant: small-caps;
       color: #323c47;
       box-sizing: border-box;
+      display: flex;
+      justify-content: space-between;
+
+      span.open {
+        position: relative;
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+        &:after {
+          position: absolute;
+          content: '\e90d';
+          font-family: icoMoon;
+          font-size: 18px;
+          text-align: center;
+          color: #BFC5D1;
+          font-weight: 400;
+        }
+        &:hover:after {
+          color: #3C7EEA;
+        }
+      }
     }
     .paymenst-list {
       height: 100%;
@@ -185,6 +228,7 @@
       overflow: hidden;
       display: flex;
       flex-direction: column;
+      background-color: #fff;
 
       .name {
         width: 33%;

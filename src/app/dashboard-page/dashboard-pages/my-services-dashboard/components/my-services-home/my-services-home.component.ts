@@ -1,13 +1,37 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { LocalizeRouterService } from 'localize-router';
-import { UserServiceModel } from 'src/app/models/user-services/user-service.model';
+import {
+  Component,
+  OnInit,
+  ElementRef,
+  ViewChild
+} from '@angular/core';
+import {
+  Router,
+  ActivatedRoute
+} from '@angular/router';
+import {
+  LocalizeRouterService
+} from 'localize-router';
+import {
+  UserServiceModel
+} from 'src/app/models/user-services/user-service.model';
 
-import { map, filter, first } from 'rxjs/operators';
-import { plainToClass } from 'class-transformer';
-import { untilDestroyed } from 'ngx-take-until-destroy';
-import { UserOffersService } from '../../services/user-offers.service';
-import { tabsConst } from '../../consts/tabs.const';
+import {
+  map,
+  filter,
+  first
+} from 'rxjs/operators';
+import {
+  plainToClass
+} from 'class-transformer';
+import {
+  untilDestroyed
+} from 'ngx-take-until-destroy';
+import {
+  UserOffersService
+} from '../../services/user-offers.service';
+import {
+  tabsConst
+} from '../../consts/tabs.const';
 
 @Component({
   selector: 'app-my-services-home',
@@ -26,14 +50,16 @@ export class MyServicesHomeComponent implements OnInit {
   currentTab = 0;
   tabs = tabsConst;
 
-  @ViewChild('scrolledBlock', {static: false}) el: ElementRef;
+  @ViewChild('scrolledBlock', {
+    static: false
+  }) el: ElementRef;
 
   constructor(
     private router: Router,
     private localize: LocalizeRouterService,
     private userOfferService: UserOffersService,
     // tslint:disable-next-line: variable-name
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.getUserServices();
@@ -45,7 +71,7 @@ export class MyServicesHomeComponent implements OnInit {
   setCurrentTab(tab: any) {
     this.currentTab = tab.index;
 
-    this.el.nativeElement.scroll(0, 0)
+    this.el.nativeElement.scroll(0, 0);
   }
 
 
@@ -87,25 +113,22 @@ export class MyServicesHomeComponent implements OnInit {
     this.userOfferService.serviceCreation()
       .pipe(filter((response: any) => !!response))
       .subscribe(res => {
-        this.router.navigate([this.translatedPath],
-          {
-            relativeTo: this.activatedRoute,
-            queryParams: res,
-            queryParamsHandling: 'merge',
-          });
+        this.router.navigate([this.translatedPath], {
+          relativeTo: this.activatedRoute,
+          queryParams: res,
+          queryParamsHandling: 'merge',
+        });
       });
   }
 
   openOffer(id: number) {
-    this.router.navigate([this.translatedPath],
-      {
-        relativeTo: this.activatedRoute,
-        queryParams: {
-          offerId: id
-        },
-        queryParamsHandling: 'merge',
-      }
-    );
+    this.router.navigate([this.translatedPath], {
+      relativeTo: this.activatedRoute,
+      queryParams: {
+        offerId: id
+      },
+      queryParamsHandling: 'merge',
+    });
   }
 
   showMenu(i: number) {
@@ -117,9 +140,9 @@ export class MyServicesHomeComponent implements OnInit {
 
   }
 
-  onClickedOutside(e: Event) {
-    // this.menuOpen = null;
-  }
+  // onClickedOutside(e: Event) {
+  //   // this.menuOpen = null;
+  // }
 
   // delete offer which has no name if user close offer creation process
   deleteEmptyService(arr: UserServiceModel[]) {
@@ -136,10 +159,8 @@ export class MyServicesHomeComponent implements OnInit {
 
 
   hideMenu(e: Event, i) {
-    console.log('event', e);
-    // if ( this.menuOpen === i ) {
-    //   this.menuOpen = null;
-    // }
+
+    this.menuOpen = null;
 
   }
 
