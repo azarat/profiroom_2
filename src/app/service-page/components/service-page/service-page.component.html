@@ -91,20 +91,28 @@
         <div class="raiting-type">
           <div class="raiting-type_name">Качество услуги</div>
           <div class="raiting-type_numeral">
-            <span class="raiting-type_number">{{ offerData.user.qualityMark }}</span>
+            <span class="raiting-type_number">{{ offerData.averageRaiting.qualityMark }}</span>
           </div>
         </div>
         <div class="raiting-type">
           <div class="raiting-type_name">Срок исполнения</div>
           <div class="raiting-type_numeral">
-            <span class="raiting-type_number">{{ offerData.user.termMark }}</span>
+            <span class="raiting-type_number">{{ offerData.averageRaiting.termMark }}</span>
           </div>
         </div>
         <div class="raiting-type">
           <div class="raiting-type_name">Вежливость фрилансера</div>
           <div class="raiting-type_numeral">
-            <span class="raiting-type_number">{{ offerData.user.politenessMark }}</span>
+            <span class="raiting-type_number">{{ offerData.averageRaiting.politenessMark }}</span>
           </div>
+        </div>
+
+        <div class="raiting-type average">
+          <div class="raiting-type_name">Средняя оценка</div>
+          <div class="raiting-type_numeral">
+            <span class="raiting-type_number">{{ offerData.averageRaiting.averageMark }}</span>
+          </div>
+          <span class="comments-count">( {{ offerData.comments_count}} отзывов):</span>
         </div>
       </section>
 
@@ -115,7 +123,7 @@
     </div>
     <div class="choose-packet">
       <div class="runing-block">
-        <app-service-page-packages [offerData]="offerData" [offerId]="offerId" *ngIf="offerData" (checkoutState)="openCheckout($event)">
+        <app-service-page-packages [offerData]="offerData" [offerId]="offerId" *ngIf="offerData" (checkoutState)="openCheckout($event)" (scrollToCompare)="scrollTo('compare-table')">
         </app-service-page-packages>
       </div>
     </div>

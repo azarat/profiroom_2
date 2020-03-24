@@ -26,7 +26,7 @@
                 <li *ngIf="registrationForm.controls['password'].hasError('hasNumber')">Должна быть минимум одна цифра</li>
                 <li *ngIf="registrationForm.controls['password'].hasError('hasSmallCase')">Должна быть минимум одна маленькая буква a-z</li>
                 <li *ngIf="registrationForm.controls['password'].hasError('hasCapitalCase')">Должна быть минимум одна большая буква A-Z</li>
-                <li *ngIf="registrationForm.controls['password'].hasError('hasSpecialCharacters')">Должна быть минимум один спец символ</li>
+                <li *ngIf="registrationForm.controls['password'].hasError('hasSpecialCharacters')">Должна быть минимум один спец символ </li>
                 <li *ngIf="registrationForm.controls['password'].hasError('minLengthCharacters')">Пароль не меньше 8 символов</li>
               </ul>
             </div>

@@ -25,7 +25,7 @@
 
         <div class="fields">
           <h5 class="fields-title">Новый пароль (если необходимо изменить)</h5>
-          <input class="fields-value new-passrord" placeholder="New password" formControlName="newPassword" required>
+          <input class="fields-value new-passrord" placeholder="" formControlName="newPassword" required>
           <div class="pass-erorrs">
             <span
               [ngClass]="passForm.get('passwords.newPassword').hasError('required') || passForm.get('passwords.newPassword').hasError('hasNumber') ? 'unvalidated': 'validated'"></span>
@@ -57,7 +57,7 @@
 
         <div class="fields">
           <h5 class="fields-title">Повторите новый пароль</h5>
-          <input class="fields-value" placeholder="Confirm password" formControlName="newPassword_confirmation">
+          <input class="fields-value" placeholder="" formControlName="newPassword_confirmation">
           <div class="error-message" *ngIf="passForm.hasError('notSame', 'passwords')">
             Ответ отрицательный. Пароли не совпадают
           </div>

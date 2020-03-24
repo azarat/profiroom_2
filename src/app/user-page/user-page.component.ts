@@ -9,17 +9,26 @@ import { LocalizeRouterService } from 'localize-router';
 import {Location} from '@angular/common';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { WindowScrollBlockService } from '../core/services/window-scrolling.service';
 
 @Component({
   selector: 'app-user-page',
   templateUrl: './user-page.component.html',
   styleUrls: ['./user-page.component.scss']
 })
-export class UserPageComponent implements OnDestroy  {
+export class UserPageComponent implements OnDestroy, OnInit  {
 
   public userData: UserDataInterface;
   sticky = false;
   elementPosition: any;
+
+  openModalWindow:boolean=false;
+  imagePointer:number;
+
+  public clickedEducationImgs = null;
+  public clickedSinglImg = null;
+  public userTypeFreelancer = true;
+
   public academicDegreesTranslations = [
     'Начальный ',
     'Ниже среднего',
@@ -31,7 +40,7 @@ export class UserPageComponent implements OnDestroy  {
 
   private id: any = null;
   private destroy$ = new Subject<undefined>();
-
+  private windowScrolling: WindowScrollBlockService;
 
   constructor(
     // tslint:disable-next-line: variable-name
@@ -41,24 +50,30 @@ export class UserPageComponent implements OnDestroy  {
     private currentUserService: UserService,
     private localize: LocalizeRouterService,
     private router: Router,
+    private _windowScrollBlockService: WindowScrollBlockService,
     // tslint:disable-next-line: variable-name
     private _location: Location
   ) {
-
+    this.windowScrolling = _windowScrollBlockService;
     this.route.params.pipe(takeUntil(this.destroy$))
     .subscribe((params: Params) => {
       this.id = params;
       this.getUserData(this.id);
       window.scrollTo(0, 0);
     });
+    
   }
+
+  ngOnInit() {}
 
   getUserData(id: { id: number }) {
     this.userService.loadUserDate(id)
       .pipe(filter((res: any) => !!res))
       .subscribe(userData => {
+
         this.userData = userData.user;
       });
+      
   }
 
   scrollTo(target: string) {
@@ -88,10 +103,6 @@ export class UserPageComponent implements OnDestroy  {
     }
   }
 
-  goBack() {
-    this._location.back();
-  }
-
 // Open ChatRoom ws this collocutor
   public openChat(userId) {
     this.currentUserService.wrightTo(userId)
@@ -106,5 +117,31 @@ export class UserPageComponent implements OnDestroy  {
   public ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
+  }
+
+  // img pop-up
+  public showPopUp(i, thisArr, text) {
+    // this.windowScrolling.disable();
+    if(this.clickedEducationImgs !== thisArr) {
+      this.clickedEducationImgs = thisArr
+    } else {
+      this.clickedEducationImgs =false;
+    }
+    if(this.clickedSinglImg !== i) {
+      this.clickedSinglImg = i
+    } else {
+      this.clickedSinglImg =false;
+    }
+  }
+
+  // switching user types     
+  // 0 - frilancer
+  // 1 - customer
+  public chouseUser(x) {
+    if(x === 0) {
+      this.userTypeFreelancer = true;
+    } else {
+      this.userTypeFreelancer = false;
+    }
   }
 }

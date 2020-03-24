@@ -30,6 +30,7 @@ export class ServicePageCheckoutComponent implements OnInit {
   public finalSum = 0;
   public serviceCommission = 500;
 
+  public IsChecked = false;
   public checkoutForm: FormGroup;
   public extraFeatures;
   public extraFeaturesResultArr;
@@ -65,18 +66,12 @@ export class ServicePageCheckoutComponent implements OnInit {
     this.currentPackage = this.chousenOnOfferPage.packageTitle;
     this.initForm();
     this.chousenFeatures();
-
-
-    // console.log(this.chousenOnOfferPage);
-    
-
-    // this.steValuesFromOfferPage(this.chousenOnOfferPage);
+    // this.steValuesFromOfferPage(this.extraFeaturesResult);
     this.outputDealData.changesFinal = this.offerData[this.currentPackage].changes;
-    console.log(this.outputDealData);
   }
 
   goToOffer() {
-    this.checkoutHidden.emit(true);
+    this.checkoutHidden.emit();
   }
 
   private initForm() {
@@ -94,25 +89,26 @@ export class ServicePageCheckoutComponent implements OnInit {
         this.checkoutForm.value[key] = true;
       }
     }
+    console.log(this.checkoutForm.value);
   }
-
-  // steValuesFromOfferPage(obj) {
-  //   for (let key in obj) {
-  //     if (obj[key] && key !== 'packageTitle') {
-  //       this.checkoutForm.value[key] = true;
-  //     }
-  //   }
-  //   console.log(this.checkoutForm.value);
-  // }
 
   chousenFeatures() {
     this.extraFeaturesResultArr = Object.values(this.checkoutForm.value);
     this.extraFeaturesResult = this.checkoutForm.value;
-    // console.log('this.extraFeaturesResult', this.extraFeaturesResult)
+    this.IsChecked = true;
+    console.log('this.extraFeaturesResult', this.extraFeaturesResult);
+    console.log('this.extraFeaturesResultArr', this.extraFeaturesResultArr);
     this.calculateFinalPrice();
     this.createFinalDealData();
-    // for (let key in this.checkoutForm.value) {
-    //   if (this.checkoutForm.value[key] === true && key !== 'packageTitle') {
+    if(this.extraFeaturesResultArr.some(element => element === true)) {
+      this.noOneCheked = false;
+      console.log(this.noOneCheked);
+    } else {
+      this.noOneCheked = true;
+      console.log(this.noOneCheked);
+    }
+    // for (let key in this.extraFeaturesResult) {
+    //   if (this.extraFeaturesResult[key] !== true && key !== 'packageTitle') {
     //     this.noOneCheked = true;
     //     console.log(this.checkoutForm.value);
     //     console.log(this.noOneCheked);
@@ -120,6 +116,13 @@ export class ServicePageCheckoutComponent implements OnInit {
     //     this.noOneCheked = false;
     //   }
     // }
+  }
+
+  public setValuesOnFirstLoad(x) {
+    if(this.extraFeaturesResult[x]) {
+      return this.IsChecked
+    }
+   
   }
 
   calculateFinalPrice() {
@@ -146,13 +149,8 @@ export class ServicePageCheckoutComponent implements OnInit {
     }
     // ---сума за доп фичи---//
     for (let i = 3; i < this.extraFeaturesResultArr.length; i++) {
-
-
-      // console.log(this.extraFeaturesResultArr);
       if (this.extraFeaturesResultArr[i]) {
-        // console.log(i);
         this.finalSum += this.offerData.extra_features[i - 3].price;
-
       }
     }
   }
@@ -173,8 +171,6 @@ export class ServicePageCheckoutComponent implements OnInit {
         }
       });
     });
-    console.log(featuresArr);
-    // if (featuresArr[0].value) { this.outputDealData.push(element)}
 
     const mainselectedOptions = featuresArr.filter(el => {
       return el.value === true;
@@ -191,10 +187,6 @@ export class ServicePageCheckoutComponent implements OnInit {
     });
 
     // возращаем "дней выполнения" из доп. опции(сжатые строки) или из пакета
-    // this.outputDealData.term = isExtraTerms === true ?
-    // this.filterTerm(this.offerData.extra_terms) :
-    // this.offerData[this.currentPackage].term;
-
     if(isExtraTerms) {
       this.outputDealData.term = this.filterTerm(this.offerData.extra_terms);
       this.outputDealData.extraTerms = true;
@@ -204,10 +196,6 @@ export class ServicePageCheckoutComponent implements OnInit {
     }
 
     // возращаем количестово дополнительных правок из доп. опции или из пакета
-    // this.outputDealData.changesFinal = isExtraChanges === true ?
-    // this.offerData.extra_changes.count :
-    // this.offerData[this.currentPackage].changes;
-
     if(isExtraChanges) {
       this.outputDealData.changesFinal = this.offerData[this.currentPackage].changes + this.offerData.extra_changes.count;
       this.outputDealData.extraChanges = true;
@@ -237,7 +225,7 @@ export class ServicePageCheckoutComponent implements OnInit {
   }
 
   sendDealData() {
-    this.servicePageService.makeDeal(this.outputDealData);
+    this.servicePageService.makeDeal(this.outputDealData, this.outputDealData.offer_id);
   }
 }
 

@@ -365,6 +365,19 @@
       color: #99acb7;
       padding-left: 5px;
     }
+    .comments-count{
+      font-family: "Source Sans Pro";
+      font-size: 16px;
+      line-height: 20px;
+      color: #99ACB7;
+      margin-left: 10px;
+      margin-top: 3px;
+    }
+    &.average{
+      padding-top: 15px;
+      border-top: 1px solid #EBEEFF;
+      margin-top: 5px;
+    }
   }
 }
 

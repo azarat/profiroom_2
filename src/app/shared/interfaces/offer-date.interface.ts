@@ -6,6 +6,15 @@ export interface OfferDataInterface {
   user_id?: number;
   created_at?: string;
   allPackages?: number;
+  description?: string;
+  raiting?: number;
+  comments_count?: number;
+  averageRaiting?: {
+    averageMark?: number;
+    qualityMark?: number;
+    termMark?: number;
+    politenessMark?: number;
+  }
   user?: {
     id?: number;
     country?: string;
@@ -17,9 +26,12 @@ export interface OfferDataInterface {
     name?: string;
     surname?: string;
     rank_id?: string;
-    qualityMark?: number;
-    termMark?: number;
-    politenessMark?: number;
+    averageRaiting?: {
+      averageMark?: number;
+      qualityMark?: number;
+      termMark?: number;
+      politenessMark?: number;
+    }
     userOffers?: [{
       title?: string;
       raiting?: number;
@@ -38,9 +50,7 @@ export interface OfferDataInterface {
       avatar?: string;
     }
   }];
-  description?: string;
-  raiting?: number;
-  comments_count?: number;
+
   profi?: {
     name?: string;
   };
@@ -58,6 +68,12 @@ export interface OfferDataInterface {
       name?: string;
       surname?: string;
       avatar?: string;
+      averageRaiting?: {
+        averageMark?: number;
+        qualityMark?: number;
+        termMark?: number;
+        politenessMark?: number;
+      }
     }
     child?: [{
       commentText?: string;
@@ -78,6 +94,12 @@ export interface OfferDataInterface {
       name?: string;
       surname?: string;
       avatar?: string;
+      averageRaiting?: {
+        averageMark?: number;
+        qualityMark?: number;
+        termMark?: number;
+        politenessMark?: number;
+      }
     }
     child?: [{
       commentText?: string;

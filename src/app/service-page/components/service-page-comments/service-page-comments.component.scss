@@ -97,12 +97,61 @@
       line-height: 23px;
       color: #4e5051;
     }
+    // .publication_time{
+    //   font-weight: normal;
+    //   font-size: 16px;
+    //   line-height: 20px;
+    //   color: #99ACB7;
+    // }
     &:nth-child(odd) {
       background-color: #fbfcfd;
     }
     &.sub{
       padding-left: 80px;
       padding-right: 60px;
+    }
+    &__raiting{
+      display: flex;
+
+      font-size: 16px;
+      line-height: 20px;
+      color: #707683;
+      &-item{
+        display: flex;
+        margin-right: 25px;
+        span{
+          padding-right: 7px;
+        }
+      }
+    }
+  }
+  .btn-show_more_comments{
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 16px;
+    text-align: center;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+    color: #3C7EEA;
+    cursor: pointer;
+    position: relative;
+    width: max-content;
+    padding-right: 20px;
+    margin: 0 auto;
+    &::after{
+      content: '';
+      background-image: url(/assets/images/svg/user/blue-arrow-down.svg);
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+      width: 12px;
+      height: 7px;
+    }
+    &.open{
+      &::after{
+        transform: translateY(-50%) rotate(-180deg);
+      }
     }
   }
 }
