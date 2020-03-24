@@ -333,6 +333,9 @@
     color: #4e5051;
     font-size: 16px;
     line-height: 17px;
+    &.fixed-width-block{
+      min-width: 170px;
+    }
   }
   &__title {
     font-weight: 600;

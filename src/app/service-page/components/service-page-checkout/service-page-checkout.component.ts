@@ -30,7 +30,6 @@ export class ServicePageCheckoutComponent implements OnInit {
   public finalSum = 0;
   public serviceCommission = 500;
 
-  public IsChecked = false;
   public checkoutForm: FormGroup;
   public extraFeatures;
   public extraFeaturesResultArr;
@@ -95,9 +94,7 @@ export class ServicePageCheckoutComponent implements OnInit {
   chousenFeatures() {
     this.extraFeaturesResultArr = Object.values(this.checkoutForm.value);
     this.extraFeaturesResult = this.checkoutForm.value;
-    this.IsChecked = true;
-    console.log('this.extraFeaturesResult', this.extraFeaturesResult);
-    console.log('this.extraFeaturesResultArr', this.extraFeaturesResultArr);
+
     this.calculateFinalPrice();
     this.createFinalDealData();
     if(this.extraFeaturesResultArr.some(element => element === true)) {
@@ -116,13 +113,6 @@ export class ServicePageCheckoutComponent implements OnInit {
     //     this.noOneCheked = false;
     //   }
     // }
-  }
-
-  public setValuesOnFirstLoad(x) {
-    if(this.extraFeaturesResult[x]) {
-      return this.IsChecked
-    }
-   
   }
 
   calculateFinalPrice() {

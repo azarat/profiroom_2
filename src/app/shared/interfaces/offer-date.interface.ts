@@ -19,7 +19,6 @@ export interface OfferDataInterface {
     id?: number;
     country?: string;
     answerTime?: number;
-    arbitration?: number;
     inProgressOffers?: number;
     description?: string;
     avatar?: string;
@@ -39,6 +38,11 @@ export interface OfferDataInterface {
       mainImage?: string;
       minprice?: number;
     }];
+    arbitration?: {
+      freelancer?: number;
+      customer?: number;
+      all?: number;
+    }
   };
   category: string;
   comments?: [{
@@ -63,6 +67,10 @@ export interface OfferDataInterface {
   positiveComments?: [{
     mark?: number;
     commentText?: string;
+
+    requirementsClarity?: number;
+    taskClarity?: number;
+    contactLevel?: number;
     author?: {
       id?: number;
       name?: string;
@@ -89,6 +97,10 @@ export interface OfferDataInterface {
   negativeComments?: [{
     mark?: number;
     commentText?: string;
+
+    requirementsClarity?: number;
+    taskClarity?: number;
+    contactLevel?: number;
     author?: {
       id?: number;
       name?: string;

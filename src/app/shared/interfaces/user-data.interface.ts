@@ -10,30 +10,47 @@ export interface UserDataInterface {
   country?: string;
   city?: string;
   email_verified_at?: string;
-  inProgressOffers?: number;
-  queuedOffers?: number;
+
+
   endedWorks?: number;
 
   customer_deals_count?: number;
   freelancer_deals_count?: number;
+
   comments_freelancer_count?: number;
   commentsсustomer_count?: number;
-  arbitration?: {
-    freelancer?: number;
-    customer?: number;
-    all?: number;
-  }
+  
+
   answerTime?: number;
   description?: string;
   comments_count?: number;
   positive_comments_count?: number;
   negative_comments_count?: number;
   updated_at?: number;
+  dealsCounts?: {
+    inProgressOffers?: number;
+    QueuedOffers?: number;
+    EndedWorks?: number;
+    dealsAsCustomer?: number;
+  }
+  arbitration?: {
+    freelancer?: number;
+    customer?: number;
+    all?: number;
+  }
   averageRaiting?: {
-    averageMark?: number;
-    qualityMark?: number;
-    termMark?: number;
-    politenessMark?: number;
+    freelancer?: {
+      averageMark?: number;
+      qualityMark?: number;
+      termMark?: number;
+      politenessMark?: number;
+    }
+    customer?: {
+      averageMark?: number;
+      requirementsClarity?: number;
+      taskClarity?: number;
+      contactLevel?: number;
+    }
   }
   language?: [{
     langName?: string;
