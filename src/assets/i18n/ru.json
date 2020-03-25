@@ -47,5 +47,8 @@
 	"chat.work_chat.system_messages.DealFinishCanceledByCustomerTitleFreelancer": "Работа по правкам",
 	"chat.work_chat.system_messages.DealFinishCanceledByCustomerTitleDealer": "Работа по правкам",
 	"header.catalog": "Каталог",
-	"header.how_it_works": "Как это работает"
+	"header.how_it_works": "Как это работает",
+	"user-pie-chart.compleatedDeals": "Завершеные",
+	"user-pie-chart.inProgress": "В процессе",
+	"user-pie-chart.falledDeals": "Проваленные"
 }

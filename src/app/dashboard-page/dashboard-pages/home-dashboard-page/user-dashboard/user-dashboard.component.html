@@ -59,12 +59,23 @@
           <button >Месяц</button>
         </div>
       </div>
-      <div>
+      <div class="pie-chart">
         <h5 class="title">
           Кол-во заказов
         </h5>
         <div class="chart-body">
             <app-pie-chart-dashboard></app-pie-chart-dashboard>
+        </div>
+        <div>
+          <div class="compleated legend">
+            <span class="line"></span><span>кол-во выполненных заказов</span>
+          </div>
+          <div class="in-progress legend">
+            <span class="line"></span><span>поекты в процессе</span>
+          </div>
+          <div class="droped legend">
+            <span class="line"></span><span>проекты не сданы</span>
+          </div>
         </div>
       </div>
     </div>

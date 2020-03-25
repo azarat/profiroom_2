@@ -42,5 +42,8 @@
 	"chat.work_chat.system_messages.workStartedTitleDealer": "Работа начата",
 	"chat.work_chat.system_messages.workStartedTitleFreelancer": "Работа начата",
 	"header.catalog": "Каталог",
-	"header.how_it_works": "Як це працює"
+	"header.how_it_works": "Як це працює",
+	"user-pie-chart.compleatedDeals": "Завершени",
+	"user-pie-chart.inProgress": "В процесси",
+	"user-pie-chart.falledDeals": "Провалени"
 }

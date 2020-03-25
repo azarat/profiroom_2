@@ -104,6 +104,61 @@
         padding: 60px 25px 35px 25px;
       }
     }
+    .pie-chart {
+      h5 {
+        margin-bottom: 35px;
+      }
+      .chart-body {
+        margin-bottom: 35px;
+
+        
+      }
+
+      .legend {
+        display: flex;
+        align-items: center;
+        margin-left: 43px;
+        span{
+          &:last-child {
+            margin-left: 16px;
+            font-family: Source Sans Pro, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 14px;
+            line-height: 18px;
+            color: #707683;
+          }
+          &:first-child {
+            display: block;
+            width: 26px;
+            height: 5px;
+            background: #4285F4;
+            border-radius: 5px;
+          }
+        }
+        &.compleated {
+           span{
+          &:first-child  { 
+            background: #4285F4;
+          }
+        }
+      }
+        &.in-progress {
+           span{
+          &:first-child  {
+            background: #5DDFA9;
+           }
+        }
+      }
+        &.droped {
+           span{
+          &:first-child  {
+            background: #FF9090;
+           }
+        }
+      }
+      }
+    }
     .filter-brns {
       display: flex;
       justify-content: center;
