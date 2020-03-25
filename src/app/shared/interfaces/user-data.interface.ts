@@ -158,4 +158,83 @@ export interface UserDataInterface {
     }];
   }];
 
+  positiveCommentsСustomer?: [{
+    created_at?: string;
+    offers_id?: number;
+    commentator_id?: number;
+    commentText?: string;
+    author?: [{
+      id: number;
+      name?: string;
+      surname?: string;
+      avatar?: string;
+      averageRaiting?: {
+        averageMark?: number;
+        requirementsClarity?: number;
+        taskClarity?: number;
+        contactLevel?: number;
+      }
+    }];
+    offers?: [{
+      id: number;
+      title?: string;
+      mainImage?: string;
+      description?: string;
+      raiting?: number;
+    }];
+    childs?: [{
+      commentText?: string;
+      qualityMark?: number;
+      termMark?: number;
+      politenessMark?: number;
+      created_at?: string;
+      author?: [{
+        avatar?: string;
+        name?: string;
+        surname?: string;
+        updated_at?: number;
+        id?: number;
+      }];
+    }];
+  }];
+  negativeCommentsСustomer?: [{
+    offers_id?: number;
+    commentator_id?: number;
+    commentText?: string;
+    created_at?: string;
+    author?: [{
+      id: number;
+      name?: string;
+      surname?: string;
+      avatar?: string;
+      averageRaiting?: {
+        averageMark?: number;
+        requirementsClarity?: number;
+        taskClarity?: number;
+        contactLevel?: number;
+      }
+    }];
+    offers?: [{
+      id: number;
+      title?: string;
+      mainImage?: string;
+      description?: string;
+      raiting?: number;
+    }];
+    childs?: [{
+      commentText?: string;
+      qualityMark?: number;
+      termMark?: number;
+      politenessMark?: number;
+      created_at?: string;
+      author?: [{
+        avatar?: string;
+        name?: string;
+        surname?: string;
+        updated_at?: number;
+        id?: number;
+      }];
+    }];
+  }];
+
 }

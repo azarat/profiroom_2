@@ -5,7 +5,7 @@
   <div class="navigation-page__wrapper">
     <ul>
       <li (click)="scrollTo('about')">О фрилансере</li>
-      <li (click)="scrollTo('aducation')">Образование</li>
+      <li (click)="scrollTo('aducation')" *ngIf="userTypeFreelancer">Образование</li>
       <li (click)="scrollTo('rating')">рейтинг</li>
       <li (click)="scrollTo('services')">услуги</li>
       <li (click)="scrollTo('comments')">отзывы</li>
@@ -186,7 +186,7 @@
       </div>
     </section>
     <app-user-page-services *ngIf="userData" [userData] = userData id="services"></app-user-page-services>
-    <app-user-page-comments *ngIf="userData" [userData] = userData id="comments"></app-user-page-comments>
+    <app-user-page-comments *ngIf="userData" [userData] = userData [userTypeFreelancer]=userTypeFreelancer id="comments"></app-user-page-comments>
   </div>
 </div>
 
