@@ -15,9 +15,6 @@
 
 <div class="wrapper" *ngIf="userData">
   <div class="content">
-    <div class="back-to-list" >
-      <a (click)="goBack()">Вернуться к списку фрилансеров</a>
-    </div>
     <section class="general-information" id="about"> 
       <div class="general-information__avatar">
         <img [src]="userData.avatar" alt="user avatar">
@@ -30,7 +27,7 @@
 
         <div class="general-information__lvl">Уровень: <span class="value">{{userData.rank_id}}</span></div>
       </div>
-      <div class="general-information__wrapper">
+      <div class="general-information__wrapper" *ngIf="userTypeFreelancer">
         <div class="general-information__available">Статус доступности: <span class="value"
             [ngClass]="{load: userData.load}">загружен(-а)</span></div>
         <div class="general-information__inProces">Проектов в работе: <span class="value">{{userData.inProgressOffers}}</span></div>
@@ -38,19 +35,13 @@
       </div>
       <div class="general-information__actions">
 
-        <!-- <div class="action tooltip" data-title="Смотреть профиль">
-          <a href="">
-            <img src="assets/images/svg/service-page/shape.svg" alt="" class="default-img">
-            <img src="assets/images/svg/service-page/shape-hov.svg" alt="" class="hover-img">
-          </a>
-        </div> -->
-        <div class="action tooltip" data-title="Написать сообщение" (click)="openChat(userData.id)">
+        <div class="action tooltip" data-title="Написать сообщение" (click)="openChat(userData.id)" >
           <a >
             <img src="assets/images/svg/service-page/envelope.svg" alt="" class="default-img">
             <img src="assets/images/svg/service-page/envelope-hov.svg" alt="" class="hover-img">
           </a>
         </div>
-        <div class="action tooltip" data-title="Добавить к избранным">
+        <div class="action tooltip" data-title="Добавить к избранным" *ngIf="userTypeFreelancer">
           <a href="">
             <img src="assets/images/svg/service-page/heart.svg" alt="" class="default-img">
             <img src="assets/images/svg/service-page/heart-hov.svg" alt="" class="hover-img">
@@ -65,6 +56,13 @@
 
       </div>
     </section>
+    <section class="switching-user-types">
+      <div class="btns-wrapper">
+        <div class="btn btn-user-type" [ngClass]="{active: userTypeFreelancer}" (click)=chouseUser(0) >Профиль филансера</div>
+        <div class="btn btn-user-type" [ngClass]="{active: !userTypeFreelancer}" (click)=chouseUser(1)>профиль заказчика</div>
+      </div>
+      <div class="switching-user-types__text">*Каждый пользователь данной биржи может быть одновременно исполнителем и заказчиком, в зависимости от потребности. </div>
+    </section>
     <section class="about-user">
       <div class="about-user__wrapper">
         <div class="about-user__info-block">
@@ -75,15 +73,27 @@
           <div class="about-user__title">На сайте с</div>
           <div class="about-user__value">{{userData.email_verified_at}}</div>
         </div>
-        <div class="about-user__info-block">
+        <div class="about-user__info-block" *ngIf="userTypeFreelancer">
           <div class="about-user__title">Исполненных проектов</div>
-          <div class="about-user__value">{{userData.endedWorks}}</div>
+          <div class="about-user__value">{{userData.freelancer_deals_count}}</div>
         </div>
-        <div class="about-user__info-block">
+        <div class="about-user__info-block" *ngIf="!userTypeFreelancer">
+          <div class="about-user__title">Количество заказов</div>
+          <div class="about-user__value">{{userData.customer_deals_count}}</div>
+        </div>
+        <div class="about-user__info-block" *ngIf="userTypeFreelancer">
           <div class="about-user__title">Обращений в арбитраж</div>
-          <div class="about-user__value">{{userData.arbitration}}</div>
+          <div class="about-user__value">{{userData.arbitration.freelancer}}</div>
         </div>
-        <div class="about-user__info-block">
+        <div class="about-user__info-block" *ngIf="!userTypeFreelancer">
+          <div class="about-user__title">Обращений в арбитраж</div>
+          <div class="about-user__value">{{userData.arbitration.customer}}</div>
+        </div>
+        <div class="about-user__info-block" *ngIf="userTypeFreelancer">
+          <div class="about-user__title">Время ответа</div>
+          <div class="about-user__value">{{userData.answerTime}}</div>
+        </div>
+        <div class="about-user__info-block" *ngIf="!userTypeFreelancer">
           <div class="about-user__title">Время ответа</div>
           <div class="about-user__value">{{userData.answerTime}}</div>
         </div>
@@ -101,19 +111,32 @@
         </li>
       </ul>
     </section>
-    <section class="aducation" id="aducation">
+    <section class="aducation" id="aducation" *ngIf="userTypeFreelancer">
       <div class="section-title">Высшее образование</div>
       <div class="aducation__wrapper">
-        <div class="aducation__info-block" *ngFor="let education of userData.education">
-          <div class="aducation__institution">{{ education.institution}}</div>
-          <div class="aducation__group">
-            <div class="aducation__specialty">{{ education.specialty}}</div>
-            <div class="aducation__years">{{ education.startEducation}} - {{ education.finishEducation}}</div>
+        <div class="aducation__info-block" *ngFor="let education of userData.education; let thisArr = index">
+
+          <div class="aducation__img-list" *ngIf="education.diploma_files.length; let i = index">
+            <ng-container *ngFor="let img of education.diploma_files; let i = index">
+              <div class="img-item"  (click)="showPopUp(i, thisArr, 'img')" [ngClass]="{open_popUp: clickedEducationImgs === thisArr && clickedSinglImg === i}">
+                <img src="{{img.link}}" alt="">
+                <div class="close-popUp" ></div>
+              </div>
+            </ng-container>
           </div>
+
+          <div class="text-wrapper">
+            <div class="aducation__institution">{{ education.institution}}</div>
+            <div class="aducation__group">
+              <div class="aducation__specialty">{{ education.specialty}}</div>
+              <div class="aducation__years">{{ education.startEducation}} - {{ education.finishEducation}}</div>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
-    <section class="aducation">
+    <section class="aducation" *ngIf="userTypeFreelancer">
       <div class="section-title">Дополнительное образование</div>
       <div class="aducation__wrapper">
         <div class="aducation__info-block" *ngFor="let education of userData.additionalEducation">
@@ -126,31 +149,30 @@
       </div>
     </section>
     <section class="raiting" id="rating">
-      <div class="section-title">Общий рейтинг всех услуг <span>( {{ userData.comments_count}} отзывов):</span></div>
+      <div class="section-title">Общий рейтинг</div>
       <div class="raiting__wrapper">
         <div class="raiting__info-block">
           <div class="raiting__name">Качество услуг</div>
-          <div class="star-raiting">5</div>
+          <div class="star-raiting">{{ userData.averageRaiting.qualityMark}}</div>
         </div>
         <div class="raiting__info-block">
           <div class="raiting__name">Срок исполнения</div>
-          <div class="star-raiting">4</div>
+          <div class="star-raiting">{{ userData.averageRaiting.termMark}}</div>
         </div>
         <div class="raiting__info-block">
           <div class="raiting__name">Вежливость фрилансера</div>
-          <div class="star-raiting">4</div>
+          <div class="star-raiting">{{ userData.averageRaiting.politenessMark}}</div>
         </div>
         <div class="raiting__info-block">
           <div class="raiting__name">Средняя оценка</div>
-          <div class="star-raiting">4,5</div>
+          <div class="star-raiting">{{ userData.averageRaiting.averageMark}}</div>
+          <span class="comments-count">( {{ userData.comments_freelancer_count}} отзывов):</span>
         </div>
+
       </div>
     </section>
     <app-user-page-services *ngIf="userData" [userData] = userData id="services"></app-user-page-services>
     <app-user-page-comments *ngIf="userData" [userData] = userData id="comments"></app-user-page-comments>
-    <div class="back-to-list" >
-      <a (click)="goBack()">Вернуться к списку фрилансеров</a>
-    </div>
   </div>
 </div>
 

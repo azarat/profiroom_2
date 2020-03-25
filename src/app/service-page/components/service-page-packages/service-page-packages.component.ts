@@ -12,6 +12,7 @@ export class ServicePagePackagesComponent implements OnInit {
 
   // tslint:disable-next-line: no-output-on-prefix
   @Output() checkoutState = new EventEmitter<any>();
+  @Output() scrollToCompare = new EventEmitter<any>();
   public openFeatures = false;
   public extraFeaturesForm: FormGroup;
   extraFeatures: any;
@@ -48,7 +49,7 @@ export class ServicePagePackagesComponent implements OnInit {
     this.initForm();
   }
 
-  initForm() {
+  private initForm() {
     this.extraFeaturesForm = this.fb.group({
       extraTerms: [null],
       extraСhanges: [null],
@@ -79,10 +80,13 @@ export class ServicePagePackagesComponent implements OnInit {
   //   this.servicePackageService.createDeal(this.offerId, _package);
   // }
 
-  goCheckout(packageType) {
+  public goCheckout(packageType) {
     this.extraFeaturesForm.addControl('packageTitle', this.fb.control(packageType));
     this.checkoutState.emit(this.extraFeaturesForm.value);
   }
 
+  public goCompareTable() {
+    this.scrollToCompare.emit();
+  }
 
 }

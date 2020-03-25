@@ -1,6 +1,6 @@
 export interface UserDataInterface {
   id: number | string;
-  role_id?: number | string;
+  // role_id?: number | string;
   load?: number;
   online?: number;
   avatar?: string;
@@ -13,13 +13,28 @@ export interface UserDataInterface {
   inProgressOffers?: number;
   queuedOffers?: number;
   endedWorks?: number;
-  arbitration?: number;
+
+  customer_deals_count?: number;
+  freelancer_deals_count?: number;
+  comments_freelancer_count?: number;
+  commentsсustomer_count?: number;
+  arbitration?: {
+    freelancer?: number;
+    customer?: number;
+    all?: number;
+  }
   answerTime?: number;
   description?: string;
   comments_count?: number;
   positive_comments_count?: number;
   negative_comments_count?: number;
   updated_at?: number;
+  averageRaiting?: {
+    averageMark?: number;
+    qualityMark?: number;
+    termMark?: number;
+    politenessMark?: number;
+  }
   language?: [{
     langName?: string;
     langLevel?: number;
@@ -29,6 +44,9 @@ export interface UserDataInterface {
     specialty?: string;
     startEducation?: number;
     finishEducation?: number;
+    diploma_files?: [{
+      link?: string;
+    }]
   }];
   additionalEducation?: [{
     additionalInstitution?: string;
@@ -45,19 +63,21 @@ export interface UserDataInterface {
     minPrice?: number;
   }];
   positiveComments?: [{
-    qualityMark?: number;
-    termMark?: number;
-    politenessMark?: number;
-
+    created_at?: string;
     offers_id?: number;
     commentator_id?: number;
     commentText?: string;
-
     author?: [{
       id: number;
       name?: string;
       surname?: string;
       avatar?: string;
+      averageRaiting?: {
+        averageMark?: number;
+        qualityMark?: number;
+        termMark?: number;
+        politenessMark?: number;
+      }
     }];
     offers?: [{
       id: number;
@@ -71,6 +91,7 @@ export interface UserDataInterface {
       qualityMark?: number;
       termMark?: number;
       politenessMark?: number;
+      created_at?: string;
       author?: [{
         avatar?: string;
         name?: string;
@@ -81,17 +102,21 @@ export interface UserDataInterface {
     }];
   }];
   negativeComments?: [{
-    qualityMark?: number;
-    termMark?: number;
-    politenessMark?: number;
     offers_id?: number;
     commentator_id?: number;
     commentText?: string;
+    created_at?: string;
     author?: [{
       id: number;
       name?: string;
       surname?: string;
       avatar?: string;
+      averageRaiting?: {
+        averageMark?: number;
+        qualityMark?: number;
+        termMark?: number;
+        politenessMark?: number;
+      }
     }];
     offers?: [{
       id: number;
@@ -105,6 +130,7 @@ export interface UserDataInterface {
       qualityMark?: number;
       termMark?: number;
       politenessMark?: number;
+      created_at?: string;
       author?: [{
         avatar?: string;
         name?: string;

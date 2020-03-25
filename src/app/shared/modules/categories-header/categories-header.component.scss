@@ -9,6 +9,11 @@
   background: #649af3;
   padding: 0;
   list-style-type: none;
+  &.no_hover{
+    .categorie-wrapper:hover{
+      overflow: hidden;
+    }
+  }
 }
 .categorie-wrapper {
   margin: 0;

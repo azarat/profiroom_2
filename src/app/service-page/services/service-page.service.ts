@@ -44,17 +44,14 @@ export class ServicePageService {
     return this.http.post('/simularOffers', offerid);
   }
 
-  // makeDeal(data: object) {
-  //   return this.http.post('/makeDeal', data);
-  // }
-
-  public makeDeal(data) {
-    this.http.post('/makeDeal', data)
-      .subscribe((res: any) => {
-        console.log(res);
-        this.routeToWorkChat(res.dealId, data.offerId, res.roomId);
-      });
+  public makeDeal(data: object, offer_id) {
+    return this.http.post('/makeDeal', data)
+    .subscribe((res: any) => {
+      console.log(res);
+      this.routeToWorkChat(res.dealId, offer_id, res.roomId);
+    });
   }
+
 
   // Navigate to work chat vs querry params to open this deal as active
   public routeToWorkChat(dealRoomId: number, _offerId: number, _roomId: string) {

@@ -46,23 +46,22 @@ export class CatalogComponent implements OnInit {
     });
 
     // // --------------check queryParams value---------------
-    // this._route.queryParams.subscribe(qParams => {
-    //   if (qParams && (Object.keys(qParams).length === 0)) {
-    //     this.catalogFilters.current_page = 1;
-    //     this.GetOffersService.setFilters(this.catalogFilters);
-    //     this.GetOffersService.getOffers(this.catalogFilters);
-    //   } else {
-    //     this.GetOffersService.getOffers(qParams);
+    this._route.queryParams.subscribe(qParams => {
+      if (qParams && (Object.keys(qParams).length === 0)) {
+        this.catalogFilters.current_page = 1;
+        this.GetOffersService.setFilters(this.catalogFilters);
+        this.GetOffersService.getOffers(this.catalogFilters);
+      } else {
+        this.GetOffersService.getOffers(qParams);
 
-    //   }
-    // });
+      }
+    });
   }
 
   ngOnInit() {
 
     this.GetOffersService.offersList.subscribe(data => {
       this.offersList = data;
-
       if (this.offersList) {
         this.pagesToShow();
       }

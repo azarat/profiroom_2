@@ -28,6 +28,8 @@ export class UserPageCommentsComponent implements OnInit {
   public currentTab = 0;
   public id;
 
+  public showAllchildComments = null;
+  public convertedDate = null;
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -50,5 +52,12 @@ export class UserPageCommentsComponent implements OnInit {
     });
   }
 
+  public showMoreChileComments(x) {
+    this.showAllchildComments !== x ? this.showAllchildComments = x : this.showAllchildComments = null;
+  }
+
+  public converDateToDMY(x) {
+    return this.convertedDate = x.slice(0, x.indexOf(' '));
+  }
 
 }

@@ -10,7 +10,7 @@ export class ServicePageCommentsComponent implements OnInit {
 
   @Input() offerData: OfferDataInterface;
   public convertedNumberOfComments;
-
+  public showAllchildComments = null;
   constructor() { }
 
   ngOnInit() {
@@ -23,6 +23,10 @@ export class ServicePageCommentsComponent implements OnInit {
     } else {
       this.convertedNumberOfComments = this.offerData.comments_count.toFixed(1) + "k+";
     }
+  }
+
+  public showMoreChileComments(x) {
+    this.showAllchildComments !== x ? this.showAllchildComments = x : this.showAllchildComments = null;
   }
 
 }

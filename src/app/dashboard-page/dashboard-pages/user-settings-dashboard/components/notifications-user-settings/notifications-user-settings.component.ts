@@ -27,21 +27,18 @@ export class NotificationsUserSettingsComponent implements OnInit {
 
   chouseAll() {
     if (this.userSettingsModel.userNotifications.notificationsAll) {
-      this.userSettingsModel.userNotifications.privateMessages = true;
-      this.userSettingsModel.userNotifications.newOrders = true;
-      this.userSettingsModel.userNotifications.serviceNotifications = true;
-      this.userSettingsModel.userNotifications.messagesActiveProject = true;
-      this.userSettingsModel.userNotifications.reservationFinancial = true;
-      this.userSettingsModel.userNotifications.deadlines = true;
-      this.userSettingsModel.userNotifications.orderFeedback = true;
+      for(let key in this.userSettingsModel.userNotifications) {
+        if(key !== 'id' && key !== 'user_id' && key !== 'notificationsAll') {
+          this.userSettingsModel.userNotifications[key] = true
+        }
+      }
+      console.log(this.userSettingsModel.userNotifications);
     } else {
-      this.userSettingsModel.userNotifications.privateMessages = false;
-      this.userSettingsModel.userNotifications.newOrders = false;
-      this.userSettingsModel.userNotifications.serviceNotifications = false;
-      this.userSettingsModel.userNotifications.messagesActiveProject = false;
-      this.userSettingsModel.userNotifications.reservationFinancial = false;
-      this.userSettingsModel.userNotifications.deadlines = false;
-      this.userSettingsModel.userNotifications.orderFeedback = false;
+      for(let key in this.userSettingsModel.userNotifications) {
+        if(key !== 'id' && key !== 'user_id' && key !== 'notificationsAll') {
+          this.userSettingsModel.userNotifications[key] = false
+        }
+      }
     }
   }
 }

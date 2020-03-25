@@ -1,8 +1,8 @@
 <!-- <ul *ngIf="categorysList !== null"> -->
-<div class="categorys-list" *ngIf="categorysList">
+<div class="categorys-list" *ngIf="categorysList" [ngClass]="{no_hover: noHover === true}">
   <div class="wrapper">
-    <ul class="categorie-wrapper" *ngFor="let category of categorysList.category">
-      <h3 class="categorie-name">
+    <ul class="categorie-wrapper" *ngFor="let category of categorysList.category" >
+      <h3 class="categorie-name" >
         <a class="categorie" [routerLink]="['/catalog', category.link] | localize" >{{category.name}}</a>
       </h3>
       <div class="subcategorys-list">
