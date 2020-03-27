@@ -34,6 +34,7 @@ export class ServicePageCheckoutComponent implements OnInit {
   public extraFeatures;
   public extraFeaturesResultArr;
   public extraFeaturesResult;
+  
   @Input() chousenPackage;
   @Output() public checkoutHidden: EventEmitter<any> = new EventEmitter<any>();
 

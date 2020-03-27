@@ -14,7 +14,10 @@
       <div class="user-raiting-wrapp">
         <p class="star-raiting">{{ offerData.raiting }}<span class="user-comments">({{ convertedNumberOfComments }} отзывов)</span></p>
       </div>
-      <div class="onlineStatus online">Oнлайн</div>
+      <div class="onlineStatus ">
+        <span class="online" *ngIf="offerData.user.online">Oнлайн</span>
+        <span class="offline" *ngIf="!offerData.user.online">Офлайн</span>
+      </div>
     </div>
     <div class="actions">
       <div class="action tooltip" data-title="Смотреть профиль">

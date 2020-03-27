@@ -26,7 +26,10 @@ export class ServicePageComponent implements OnInit {
   public offerId;
   sticky = false;
   elementPosition: any;
+
   public step2 = false;
+  // public step2 = true;
+
   public chousenOnOfferPage: string;
 
   @ViewChild('stickyMenu', { static: false }) menuElement: ElementRef;
@@ -56,7 +59,7 @@ export class ServicePageComponent implements OnInit {
   }
 
 
-  ngOnInit() { }
+  ngOnInit() {  }
 
   getOfferData(offerId: { offerId: string }) {
     this.offerDataService.loadOfferDate(offerId)

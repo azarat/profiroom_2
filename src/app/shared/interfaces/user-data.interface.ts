@@ -2,7 +2,7 @@ export interface UserDataInterface {
   id: number | string;
   // role_id?: number | string;
   load?: number;
-  online?: number;
+  online?: boolean;
   avatar?: string;
   name?: string;
   surname?: string;
@@ -10,17 +10,11 @@ export interface UserDataInterface {
   country?: string;
   city?: string;
   email_verified_at?: string;
-
-
   endedWorks?: number;
-
   customer_deals_count?: number;
   freelancer_deals_count?: number;
-
   comments_freelancer_count?: number;
   commentsсustomer_count?: number;
-  
-
   answerTime?: number;
   description?: string;
   comments_count?: number;

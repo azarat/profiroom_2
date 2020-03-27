@@ -146,7 +146,7 @@
     padding-left: 22px;
     position: relative;
     margin-bottom: 22px;
-    &::before {
+    span::before {
       content: "";
       position: absolute;
       top: 50%;
@@ -157,10 +157,16 @@
       border-radius: 50%;
       background-color: #ff647c;
     }
-    &.online {
-      color: #38cb8e;
-      &::before {
-        background-color: #38cb8e;
+    .online{
+      color: #38CB8E;
+      &::before{
+        background-color: #38CB8E;
+      }
+    }
+    .offline{
+      color: #ff647c;
+      &::before{
+        background-color: #ff647c;
       }
     }
   }

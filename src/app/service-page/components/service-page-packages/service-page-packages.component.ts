@@ -45,8 +45,8 @@ export class ServicePagePackagesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log(this.offerData);
     this.initForm();
+    // this.goCheckout('basic');
   }
 
   private initForm() {

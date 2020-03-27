@@ -25,6 +25,7 @@ export interface OfferDataInterface {
     name?: string;
     surname?: string;
     rank_id?: string;
+    online: boolean;
     averageRaiting?: {
       averageMark?: number;
       qualityMark?: number;
@@ -54,7 +55,6 @@ export interface OfferDataInterface {
       avatar?: string;
     }
   }];
-
   profi?: {
     name?: string;
   };
@@ -67,7 +67,6 @@ export interface OfferDataInterface {
   positiveComments?: [{
     mark?: number;
     commentText?: string;
-
     requirementsClarity?: number;
     taskClarity?: number;
     contactLevel?: number;
@@ -156,13 +155,6 @@ export interface OfferDataInterface {
     question?: string;
     answer?: string;
   }];
-  // userOffer?: [{
-  //   title?: string;
-  //   raiting?: number;
-  //   comments_count?: number;
-  //   mainImage?: string;
-  //   minprice?: number;
-  // }];
   visitedOffers?: [{
     title?: string;
     raiting?: number;

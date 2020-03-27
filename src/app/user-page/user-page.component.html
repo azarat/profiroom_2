@@ -23,7 +23,10 @@
         <div class="general-information__name"><span>{{userData.name}} {{userData.surname}}</span> </div>
         <!-- <div class="general-information__online"><span [ngClass]="{online: userData.online}">{{userData.online}}</span></div> -->
 
-        <div class="general-information__online"><span>Oфлайн</span></div>
+        <div class="general-information__online">
+          <span class="online" *ngIf="userData.online">Oнлайн</span>
+          <span class="offline" *ngIf="!userData.online">Офлайн</span>
+        </div>
 
         <div class="general-information__lvl">Уровень: <span class="value">{{userData.rank_id}}</span></div>
       </div>
