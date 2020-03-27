@@ -9,7 +9,7 @@ import { UserModel } from 'src/app/models/user.model';
 export class FreelacerAchivesComponent implements OnInit {
 
   @Input() userData: UserModel;
-  achivments
+  // achivments
   detailAchives: {
     name: string,
   } [] = [
@@ -32,6 +32,6 @@ export class FreelacerAchivesComponent implements OnInit {
   ngOnInit() {
   }
 
- 
+
 
 }

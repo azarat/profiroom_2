@@ -33,11 +33,14 @@
     <div class="all-achive-types">
         <div class="achive-el" *ngFor=" let el of detailAchives">
             <div>
-                <span></span>
+                <span class="icon" [ngClass]="{ 'full': userData.achivments[el.name + 'Acivment'] == 100 }"></span>
                 <p>Уровень моего професионализма и тарифный план</p>
             </div>
             <div class="detail-achive-line">
-                <span></span>
+                <div class="line">
+                    <span [style.width.%]="userData.achivments[el.name + 'Acivment']"></span> 
+                </div>
+                <span class="current-val">{{ userData.achivments[el.name + 'Acivment'] }} %</span>
             </div>
         </div>
     </div>

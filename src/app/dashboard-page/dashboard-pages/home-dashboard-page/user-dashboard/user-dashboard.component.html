@@ -1,7 +1,9 @@
 <div class="wrapper">
   <section class="main-statistic">
       <div class="main-statistic-item" *ngFor="let el of statsicArr, let i = index">
-        <div class="icon"></div>
+        <div class="icon">
+          <img src="/assets/images/icons/finance/{{el.icon}}.png" alt="">
+        </div>
         <div>
           <p>{{ user.purse[el.valueName] }}</p>
           <p>{{ el.name }}</p>
@@ -79,5 +81,43 @@
 
 
   </section>
-  <section class="ets"></section>
+  <section class="ets">
+    <div class="statistic">
+      <h5 class="title">
+        Показатели аккаунта
+      </h5>
+      <div class="ets-items">
+        <div>
+          <img src="/assets/images/icons/profile.png" alt="">
+          <div class="description">
+            <p>Мой профиль</p>
+            <p>31 просмотров </p>
+          </div>
+        </div>
+        <div>
+          <img src="/assets/images/icons/deals-icons/breef.png" alt="">
+          <div class="description">
+            <p>Заказы</p>
+            <p>5 брифов получено </p>
+          </div>
+        </div>
+        <div>
+          <img src="/assets/images/icons/deal-icon.png" alt="">
+          <div class="description">
+            <p>Сотрудничества</p>
+            <p>2 проекта</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="notify">
+      <button class="close"></button>
+      <img src="/assets/images/icons/notify-dashboard.png" alt="">
+      <h5>Поздравляем, {{ user.name }}!</h5>
+      <p>Вы достигли следующего уровня фриланса “Уверенный”, 
+        это открывает вам дополнительные возможности пользоваться 
+        сервисом Whocan!</p>
+      <button class="more">Узнать детали</button>
+    </div> 
+  </section>
 </div>

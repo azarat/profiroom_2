@@ -1,5 +1,9 @@
 .wrapper {
   margin-top: 34px;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 21px rgba(128, 152, 213, 0.074983);
+  border-radius: 4px;
+  padding-bottom: 26px;
 
   &>* {
     font-family: Source Sans Pro, sans-serif;
@@ -15,9 +19,9 @@
     letter-spacing: 0.15px;
     text-transform: uppercase;
     color: #323C47;
-    padding: 25px 20px;
+    padding-top: 25px;
     position: relative;
-
+    padding: 25px 20px;
     .ask {
       position: absolute;
       width: 16px;
@@ -74,26 +78,30 @@
             transform: translateX(-50%);
           }
         }
+
         &:after {
-            position: absolute;
-            content: '';
-            width: 100%;
-            height: 100%;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50% ,-50%);
-            background-repeat: no-repeat;
-            background-position: center;
-           
+          position: absolute;
+          content: '';
+          width: 100%;
+          height: 100%;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background-repeat: no-repeat;
+          background-position: center;
+
         }
+
         &.start:after {
-            background-image: url(/assets/images/icons/achives/beginer.png);
+          background-image: url(/assets/images/icons/achives/beginer.png);
         }
+
         &.middle:after {
-            background-image: url(/assets/images/icons/achives/middle.png);
+          background-image: url(/assets/images/icons/achives/middle.png);
         }
-        &.pro:after{
-            background-image: url(/assets/images/icons/achives/pro.png);
+
+        &.pro:after {
+          background-image: url(/assets/images/icons/achives/pro.png);
         }
       }
 
@@ -104,42 +112,124 @@
         background-color: #BDC3C7;
         top: 50%;
         left: 0;
+
         .position {
+          position: absolute;
+          height: 100%;
+          background: #4285F4;
+
+          &:after {
             position: absolute;
-            height: 100%;
-            background: #4285F4;
-            &:after {
-                position: absolute;
-                content: '';
-                width: 2px;
-                height: 34px;
-                right: 2px;
-                top: 50%;
-                transform: translateY(-50%);
-                background: #507BFC;
-            }
-            span {
-                position: absolute;
-                top: -42px;
-                right: -20px;
-                font-style: normal;
-                font-weight: normal;
-                font-size: 14px;
-                line-height: 18px;
-                color: #507BFC;
-            }
+            content: '';
+            width: 2px;
+            height: 34px;
+            right: 2px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #507BFC;
+          }
+
+          span {
+            position: absolute;
+            top: -42px;
+            right: -20px;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 14px;
+            line-height: 18px;
+            color: #507BFC;
+          }
         }
       }
     }
   }
+
   .all-achive-types {
-      width: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 46px;
+    justify-content: space-between;
+    padding: 0 20px;
+
+    .achive-el {
+      width: 48%;
+      margin-bottom: 15px;
       display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      margin-top: 23px;
+      align-items: flex-start;
+
+
       &>div {
-          width: 50%;
+        display: flex;
+        align-items: flex-start;
       }
+
+      .detail-achive-line {
+        margin-left: 17px;
+        align-items: center;
+
+        .line {
+          margin-right: 8px;
+          width: 180px;
+          height: 7px;
+          background: #BDC3C7;
+          border-radius: 2px;
+          position: relative;
+
+          span {
+            position: absolute;
+            display: block;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background: #5DDFA9;
+            border-radius: 2px;
+          }
+        }
+
+        .current-val {
+          font-style: normal;
+          font-weight: normal;
+          font-size: 14px;
+          line-height: 20px;
+          color: #728096;
+        }
+      }
+
+    }
+
+    .icon {
+      display: block;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      position: relative;
+      background: #BDC3C7;
+      margin-right: 14px;
+
+      &:before {
+        position: absolute;
+        content: '\e906';
+        font-family: icomoon;
+        font-size: 9px;
+        color: #fff;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      &.full {
+        background: #4285F4;
+      }
+    }
+
+    p {
+      margin: 0;
+      width: 240px;
+    }
   }
+
 }
+
+// e906

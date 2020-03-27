@@ -25,7 +25,7 @@ export class UserModel {
   @Expose() busy: any;
   @Expose() allDealsPerYears: number[];
   @Expose() allDealsperMonths: number[];
-  @Expose() achivments: any[];
+  @Expose() achivments: any;
 
   @Type(() => UserServiceModel) userservice: UserServiceModel[];
 
