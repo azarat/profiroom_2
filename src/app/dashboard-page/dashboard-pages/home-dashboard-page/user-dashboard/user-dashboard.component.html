@@ -10,41 +10,32 @@
   </section>
   <section class="charst-statistic">
     <div class="charts">
-      <div>
+      <div class="freelancer-status">
         <h5 class="title">
-            Показатели аккаунта
+          Сейчас в вашем профиле отображается
         </h5>
         <div class="chart-body">
-          <div class="acc-settings">
-            <div>
-              <span>
-                12
+          <div class="status">
+            <p>Статус доступности:  
+              <span class="work-status" [ngClass]="user.busy === 1? 'off': 'on'">
+                <ng-container *ngIf="user.busy === 1">загружен</ng-container>
+                <ng-container *ngIf="user.busy === 0">свободен</ng-container>
               </span>
-              <span>
-                кол-во просмотров моего аккаунта
-              </span>
-            </div>
-            <div>
-              <span>
-                12
-              </span>
-              <span>
-                заказчиков откликнулось
-              </span>
-            </div>
-            <div>
-              <span>
-                12
-              </span>
-              <span>
-                начато сотрудничество
-              </span>
+            </p>
+            <p>Проектов в работе: <span>2</span></p>
+            <p>Проектов в очереди: <span>2</span></p>
+          </div>
+          <div class="status-toggle-block">
+            <p>Изменить статус можно здесь</p>
+            <div class="switch">
+              <span (click)="changeWorkStatus(0)" [ngClass]="{active: user.busy === 0}">Свободен</span>
+              <div class="swp-btn" (click)="changeWorkStatus()" [ngClass]="user.busy === 1? 'busy': ''">
+                <span [ngClass]="{left: user.busy === 0, right: user.busy === 1 }"></span> 
+              </div>
+              <span (click)="changeWorkStatus(1)" [ngClass]="{active: user.busy === 1}">Загружен</span>
             </div>
           </div>
-          <div class="filter-brns">
-            <button class="active" >День</button>
-            <button >Месяц</button>
-          </div>
+
         </div>
       </div>
       <div class="request-settings">
@@ -52,11 +43,11 @@
           Кол-во заявок за время
         </h5>
         <div class="chart">
-           <app-line-chart-dashboard></app-line-chart-dashboard>
+           <app-line-chart-dashboard [user]="user" [currentFinanceFilter]="currentFinanceFilter" [chartLabels]="chartLabels"></app-line-chart-dashboard>
         </div>
         <div class="filter-brns">
-          <button class="active" >День</button>
-          <button >Месяц</button>
+          <button (click)="changeDateFilter('M')" [ngClass]="{'active': currentFinanceFilter === 'M'  }"> <span>Месяц</span> </button>
+          <button (click)="changeDateFilter('Y')" [ngClass]="{'active': currentFinanceFilter === 'Y'  }"> <span>Год</span> </button>
         </div>
       </div>
       <div class="pie-chart">
@@ -64,7 +55,7 @@
           Кол-во заказов
         </h5>
         <div class="chart-body">
-            <app-pie-chart-dashboard></app-pie-chart-dashboard>
+            <app-pie-chart-dashboard [user]="user"></app-pie-chart-dashboard>
         </div>
         <div>
           <div class="compleated legend">
@@ -79,9 +70,12 @@
         </div>
       </div>
     </div>
-    <div class="achives">
-
-    </div>
+    <section class="comments">
+      <app-users-comments *ngIf="user" [userData]="user"></app-users-comments>
+    </section>
+    <section class="achives">
+      <app-freelacer-achives *ngIf="user" [userData]="user"></app-freelacer-achives>
+    </section>
 
 
   </section>

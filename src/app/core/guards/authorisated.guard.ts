@@ -37,7 +37,7 @@ export class AuthorisatedGuard implements  CanActivateChild {
     if (!this.token.value) {
       return true;
     }
-    const redirectToAuthPath: any = this.localize.translateRoute('/dashboard');
+    const redirectToAuthPath: any = this.localize.translateRoute('/dashboard/home');
     this.router.navigate([redirectToAuthPath]);
     return false;
   }

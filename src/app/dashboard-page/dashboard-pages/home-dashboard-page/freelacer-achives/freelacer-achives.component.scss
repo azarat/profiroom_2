@@ -1,0 +1,145 @@
+.wrapper {
+  margin-top: 34px;
+
+  &>* {
+    font-family: Source Sans Pro, sans-serif;
+  }
+
+  h4 {
+    background: #F4F7FC;
+    border-radius: 4px 4px 0px 0px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+    text-transform: uppercase;
+    color: #323C47;
+    padding: 25px 20px;
+    position: relative;
+
+    .ask {
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      background-image: url(/assets/images/icons/ask.png);
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      border: none;
+      box-shadow: none;
+
+    }
+  }
+
+  .main-status {
+    padding: 0 20px;
+
+    p {
+      margin-top: 28px;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 24px;
+      color: #33596E;
+      opacity: 0.5;
+    }
+
+    .line-wrap {
+      height: 48px;
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+
+      .dot {
+        width: 48px;
+        height: 100%;
+        border-radius: 50%;
+        background-color: #4285F4;
+        position: relative;
+        z-index: 5;
+
+        span {
+          font-style: normal;
+          font-weight: normal;
+          font-size: 10px;
+          text-transform: uppercase;
+          color: #728096;
+          position: absolute;
+          bottom: -17px;
+
+          &:nth-child(2) {
+            left: 55%;
+            transform: translateX(-50%);
+          }
+        }
+        &:after {
+            position: absolute;
+            content: '';
+            width: 100%;
+            height: 100%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50% ,-50%);
+            background-repeat: no-repeat;
+            background-position: center;
+           
+        }
+        &.start:after {
+            background-image: url(/assets/images/icons/achives/beginer.png);
+        }
+        &.middle:after {
+            background-image: url(/assets/images/icons/achives/middle.png);
+        }
+        &.pro:after{
+            background-image: url(/assets/images/icons/achives/pro.png);
+        }
+      }
+
+      .line {
+        height: 1px;
+        position: absolute;
+        width: 100%;
+        background-color: #BDC3C7;
+        top: 50%;
+        left: 0;
+        .position {
+            position: absolute;
+            height: 100%;
+            background: #4285F4;
+            &:after {
+                position: absolute;
+                content: '';
+                width: 2px;
+                height: 34px;
+                right: 2px;
+                top: 50%;
+                transform: translateY(-50%);
+                background: #507BFC;
+            }
+            span {
+                position: absolute;
+                top: -42px;
+                right: -20px;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 14px;
+                line-height: 18px;
+                color: #507BFC;
+            }
+        }
+      }
+    }
+  }
+  .all-achive-types {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      margin-top: 23px;
+      &>div {
+          width: 50%;
+      }
+  }
+}

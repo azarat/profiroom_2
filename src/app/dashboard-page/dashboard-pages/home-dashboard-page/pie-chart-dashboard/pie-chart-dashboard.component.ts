@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import * as Chart from 'chart.js';
 import { TranslateService } from '@ngx-translate/core';
 import { filter, first } from 'rxjs/operators';
+import { UserModel } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-pie-chart-dashboard',
@@ -10,13 +11,14 @@ import { filter, first } from 'rxjs/operators';
 })
 export class PieChartDashboardComponent implements OnInit {
 
+  @Input() user: UserModel;
   private compleatedDeals: string;
   private inProgress: string;
   private falledDeals: string;
   private centerText: string;
-
-
-  chart: any;
+  public zeroDeals: boolean = null;
+  public dealsAmountInside: string = null;
+  public chart: any;
 
   constructor(
     private translate: TranslateService
@@ -26,8 +28,9 @@ export class PieChartDashboardComponent implements OnInit {
     this.translateCompleatedToolTip();
     this.translateInProgressToolTip();
     this.translateFailedToolTip();
-
+    this.checkDoesUserHaveDeals();
     this.chartCreation();
+    this.putTextInside();
   }
 
   private chartCreation() {
@@ -37,7 +40,7 @@ export class PieChartDashboardComponent implements OnInit {
         labels: [ this.compleatedDeals, this.inProgress, this.falledDeals],
         datasets: [
           {
-            data: [55, 45, 15],
+            data: [0, 12, 0],
             backgroundColor: ['#4285F4', '#5DDFA9', '#FF9090'],
             fill: false
           },
@@ -49,19 +52,13 @@ export class PieChartDashboardComponent implements OnInit {
         },
         tooltips: {
           enabled: true
-        }
+        },
+
       },
     });
-    const width = this.chart.width;
-    const height = this.chart.height;
-    const text = '82%';
-    const textX = Math.round((width - this.chart.ctx.measureText(text).width) / 2);
-    const textY = height / 2;
-
-    this.chart.ctx.fillText(text, textX, textY);
   }
 
-  private translateCompleatedToolTip() {
+  private translateCompleatedToolTip() { // translations of legenf
     this.translate.get('user-pie-chart.compleatedDeals')
       .pipe(first())
       .subscribe(res => {
@@ -69,7 +66,7 @@ export class PieChartDashboardComponent implements OnInit {
       });
   }
 
-  private translateInProgressToolTip() {
+  private translateInProgressToolTip() { // translations of legenf
     this.translate.get('user-pie-chart.inProgress')
       .pipe(first())
       .subscribe(res => {
@@ -77,12 +74,49 @@ export class PieChartDashboardComponent implements OnInit {
       });
   }
 
-  private translateFailedToolTip() {
+  private translateFailedToolTip() { // translations of legenf
     this.translate.get('user-pie-chart.compleatedDeals')
       .pipe(first())
       .subscribe(res => {
         this.falledDeals = res;
       });
+  }
+
+  private checkDoesUserHaveDeals() {
+    this.zeroDeals = true;
+    let arr = [0,12,0]
+    let amaunt = 0
+    arr.forEach(el => {
+      return amaunt +=el
+    })
+    amaunt === 0? this.zeroDeals = true : this.zeroDeals = null
+    this.dealsAmountInside = amaunt.toString();
+  }
+
+  private putTextInside() {
+    Chart.pluginService.register({
+      beforeDraw: (chart: any) => {
+        var width = this.chart.chart.width,
+        height = this.chart.chart.height,
+        ctx = this.chart.chart.ctx;
+
+        ctx.restore();
+        var fontSize = (height / 173).toFixed(2);
+        ctx.font = fontSize + "em Source Sans Pro, sans-serif";
+        ctx.textBaseline = "middle";
+    
+        var text = this.dealsAmountInside,
+            textX = Math.round((width - ctx.measureText(text).width) / 2),
+            textY = height / 2.2;
+        var textNext = "всего",
+            textXNext = Math.round((width - ctx.measureText(textNext).width) / 2),
+            textYNext = height / 1.8;
+    
+        ctx.fillText(text, textX, textY);
+        ctx.fillText(textNext, textXNext, textYNext);
+        ctx.save();
+      }
+    });
   }
 
 

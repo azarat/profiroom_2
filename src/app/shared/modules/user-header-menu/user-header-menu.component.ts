@@ -14,8 +14,8 @@ export class UserHeaderMenuComponent implements OnInit {
 
   @Input() userId: string | number;
   @Output() userIdChange = new EventEmitter<any>();
-  user: UserModel;
-  menuOpen: boolean = null;
+  public user: UserModel = null;
+  public menuOpen: boolean = null;
   public isUserFreelancer: boolean;
 
 
@@ -28,7 +28,8 @@ export class UserHeaderMenuComponent implements OnInit {
   ngOnInit() {
     this.userService.getDashboardRes()
       .subscribe((res: any) => {
-        this.user = plainToClass(UserModel, res[0]);
+        console.log(res)
+        this.user = plainToClass(UserModel, res);
       });
   this._checkUserState()
   }
@@ -51,14 +52,6 @@ export class UserHeaderMenuComponent implements OnInit {
 
   private _checkUserState() {
     this.localStorageService.getItem('userRole').value === 1 ? this.isUserFreelancer = true : this.isUserFreelancer = null;
-
-    // const state = this.localStorageService.getItem('userRole').value;
-    // console.log(state)
-    // if (state === '1') {
-    //   this.isUserFreelancer = true;
-    // } else if (state === '2') {
-    //   this.isUserFreelancer = null;
-    // }
   }
 
 }

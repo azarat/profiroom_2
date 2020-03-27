@@ -8,6 +8,8 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { ChartsModule } from 'ng2-charts';
 import { LineChartDashboardComponent } from './line-chart-dashboard/line-chart-dashboard.component';
 import { PieChartDashboardComponent } from './pie-chart-dashboard/pie-chart-dashboard.component';
+import { UsersCommentsModule } from 'src/app/shared/modules/users-comments/users-comments.module';
+import { FreelacerAchivesComponent } from './freelacer-achives/freelacer-achives.component';
 
 
 const dashboardPageRoutes: Routes = [
@@ -24,6 +26,7 @@ const dashboardPageRoutes: Routes = [
     AdminDashboardComponent,
     LineChartDashboardComponent,
     PieChartDashboardComponent,
+    FreelacerAchivesComponent,
   ],
   imports: [
     CommonModule,
@@ -33,6 +36,7 @@ const dashboardPageRoutes: Routes = [
     // MatIconModule,
     // MatBadgeModule,
     ChartsModule,
+    UsersCommentsModule
   ],
   exports: [
   ]

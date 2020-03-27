@@ -22,6 +22,10 @@ export class UserModel {
   @Expose() role_id: number;
   // tslint:disable-next-line: variable-name
   @Expose() updated_at: any;
+  @Expose() busy: any;
+  @Expose() allDealsPerYears: number[];
+  @Expose() allDealsperMonths: number[];
+  @Expose() achivments: any[];
 
   @Type(() => UserServiceModel) userservice: UserServiceModel[];
 
