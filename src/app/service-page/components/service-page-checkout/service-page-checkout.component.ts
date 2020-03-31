@@ -30,11 +30,11 @@ export class ServicePageCheckoutComponent implements OnInit {
   public finalSum = 0;
   public serviceCommission = 500;
 
-  public IsChecked = false;
   public checkoutForm: FormGroup;
   public extraFeatures;
   public extraFeaturesResultArr;
   public extraFeaturesResult;
+  
   @Input() chousenPackage;
   @Output() public checkoutHidden: EventEmitter<any> = new EventEmitter<any>();
 
@@ -76,12 +76,12 @@ export class ServicePageCheckoutComponent implements OnInit {
 
   private initForm() {
     this.checkoutForm = this.fb.group({
-      extraTerms: [null],
-      extraСhanges: [null],
-      extraCommercial: [null],
+      extraTerms: [this.chousenOnOfferPage.extraTerms],
+      extraСhanges: [this.chousenOnOfferPage.extraСhanges],
+      extraCommercial: [this.chousenOnOfferPage.extraCommercial],
     });
     this.offerData.extra_features.forEach((el: any) => {
-      this.checkoutForm.addControl(el.title, this.fb.control(null));
+      this.checkoutForm.addControl(el.title, this.fb.control(this.chousenOnOfferPage[el.title]));
     });
 
     for (let key in this.chousenOnOfferPage) {
@@ -89,40 +89,19 @@ export class ServicePageCheckoutComponent implements OnInit {
         this.checkoutForm.value[key] = true;
       }
     }
-    console.log(this.checkoutForm.value);
   }
 
   chousenFeatures() {
     this.extraFeaturesResultArr = Object.values(this.checkoutForm.value);
     this.extraFeaturesResult = this.checkoutForm.value;
-    this.IsChecked = true;
-    console.log('this.extraFeaturesResult', this.extraFeaturesResult);
-    console.log('this.extraFeaturesResultArr', this.extraFeaturesResultArr);
+
     this.calculateFinalPrice();
     this.createFinalDealData();
     if(this.extraFeaturesResultArr.some(element => element === true)) {
       this.noOneCheked = false;
-      console.log(this.noOneCheked);
     } else {
       this.noOneCheked = true;
-      console.log(this.noOneCheked);
     }
-    // for (let key in this.extraFeaturesResult) {
-    //   if (this.extraFeaturesResult[key] !== true && key !== 'packageTitle') {
-    //     this.noOneCheked = true;
-    //     console.log(this.checkoutForm.value);
-    //     console.log(this.noOneCheked);
-    //   } else {
-    //     this.noOneCheked = false;
-    //   }
-    // }
-  }
-
-  public setValuesOnFirstLoad(x) {
-    if(this.extraFeaturesResult[x]) {
-      return this.IsChecked
-    }
-   
   }
 
   calculateFinalPrice() {
@@ -214,8 +193,6 @@ export class ServicePageCheckoutComponent implements OnInit {
     this.outputDealData.offer_id = this.offerData.id;
     this.outputDealData.userId = this.offerData.user_id;
     this.outputDealData.package = this.currentPackage;
-
-    console.log(this.outputDealData);
   }
 
   private filterTerm(arr: any) {

@@ -11,6 +11,7 @@ export class ServicePageCommentsComponent implements OnInit {
   @Input() offerData: OfferDataInterface;
   public convertedNumberOfComments;
   public showAllchildComments = null;
+  public convertedDate = null;
   constructor() { }
 
   ngOnInit() {
@@ -27,6 +28,10 @@ export class ServicePageCommentsComponent implements OnInit {
 
   public showMoreChileComments(x) {
     this.showAllchildComments !== x ? this.showAllchildComments = x : this.showAllchildComments = null;
+  }
+
+  public converDateToYMD(x) {
+    return this.convertedDate = x.slice(0, x.indexOf(' '));
   }
 
 }

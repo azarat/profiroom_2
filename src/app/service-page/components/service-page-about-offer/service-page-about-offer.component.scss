@@ -71,11 +71,11 @@
       margin: 10px 0 10px;
     }
     .onlineStatus{
-      color: #38CB8E;
+      
       font-weight: 600;
       padding-left: 22px;
       position: relative;
-      &::before{
+      span::before{
         content: "";
         position: absolute;
         top: 50%;
@@ -85,11 +85,17 @@
         height: 10px;
         border-radius: 50%;
       }
-      &.online::before{
-        background-color: #38CB8E;
+      .online{
+        color: #38CB8E;
+        &::before{
+          background-color: #38CB8E;
+        }
       }
-      &.ofline::before{
-        background-color: gray;
+      .offline{
+        color: #ff647c;
+        &::before{
+          background-color: #ff647c;
+        }
       }
     }
   }

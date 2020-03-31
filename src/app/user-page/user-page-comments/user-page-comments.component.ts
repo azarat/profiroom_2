@@ -25,21 +25,41 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class UserPageCommentsComponent implements OnInit {
 
   @Input() userData: UserDataInterface;
+  @Input() userTypeFreelancer: number;
   public currentTab = 0;
   public id;
 
   public showAllchildComments = null;
   public convertedDate = null;
+
+  public commetsAllTypesArray = {
+    0: [
+      'positiveCommentsСustomer',
+      'negativeCommentsСustomer'
+    ],
+    1: [
+      'positiveComments',
+      'negativeComments'
+    ]
+  };
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private localize: LocalizeRouterService,
   ) { }
 
-  ngOnInit() {
+  ngOnInit() { }
+
+  public showArraysData() {
+    console.log(this.userTypeFreelancer);
+    console.log(this.currentTab);
+    // console.log(this.userData[this.commetsAllTypesArray[this.userTypeFreelancer[this.currentTab]]]);
+    // console.log(this.userData[this.commetsAllTypesArray[this.userTypeFreelancer]]);
+    console.log(this.userData[this.commetsAllTypesArray[this.userTypeFreelancer][this.currentTab]]);
+    console.log(this.userData[this.commetsAllTypesArray[0][0]]);
   }
 
-  openOffer(offerid) {
+  public openOffer(offerid) {
     const translatedPath: any = this.localize.translateRoute('/service');
 
     this.id = {
