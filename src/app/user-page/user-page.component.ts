@@ -27,7 +27,7 @@ export class UserPageComponent implements OnDestroy, OnInit  {
 
   public clickedEducationImgs = null;
   public clickedSinglImg = null;
-  public userTypeFreelancer = true;
+  public userTypeFreelancer = 1;
 
   public academicDegreesTranslations = [
     'Начальный ',
@@ -139,9 +139,9 @@ export class UserPageComponent implements OnDestroy, OnInit  {
   // 1 - customer
   public chouseUser(x) {
     if(x === 0) {
-      this.userTypeFreelancer = true;
+      this.userTypeFreelancer = 1;
     } else {
-      this.userTypeFreelancer = false;
+      this.userTypeFreelancer = 0;
     }
   }
 }

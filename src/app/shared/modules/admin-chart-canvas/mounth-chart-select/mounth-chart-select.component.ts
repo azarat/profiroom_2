@@ -14,7 +14,8 @@ export class MounthChartSelectComponent implements OnInit {
 
   public currentData: {
     month: number;
-    year: number
+    year?: number,
+    day?: number
   };
 
   public minYear = 2017;

@@ -36,7 +36,7 @@ export class AdminChartCanvasComponent implements OnInit {
 
   public listOpen: boolean = null;
   public monthSelectOpen: boolean = null;
-  chartTypes = [{
+  public chartTypes = [{
       name: 'Год',
       value: 'year'
     },
@@ -57,6 +57,7 @@ export class AdminChartCanvasComponent implements OnInit {
       name: 'Год',
       value: 'year'
     };
+
 
   public lineChartData: ChartDataSets[] = [{
       data: [65, 59, 80, 81, 56, 55, 40],
@@ -138,6 +139,12 @@ export class AdminChartCanvasComponent implements OnInit {
   public currentYear = new Date().getFullYear();
   public showedDate;
 
+  public currentData: {
+    year: number,
+    month?: number;
+    day?: number
+  };
+
   constructor(
     private canvasXbarService: CanvasXbarService
   ) {}
@@ -198,6 +205,7 @@ private _selectXtarXBar() {
 
 
   public currentDateEmitting(date) {
+    console.log(date)
     this.lineChartLabels = this.canvasXbarService.getMontDaysCount(date.month, date.year);
   }
 }

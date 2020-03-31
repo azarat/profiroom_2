@@ -2,7 +2,7 @@ export interface UserDataInterface {
   id: number | string;
   // role_id?: number | string;
   load?: number;
-  online?: number;
+  online?: boolean;
   avatar?: string;
   name?: string;
   surname?: string;
@@ -10,30 +10,41 @@ export interface UserDataInterface {
   country?: string;
   city?: string;
   email_verified_at?: string;
-  inProgressOffers?: number;
-  queuedOffers?: number;
   endedWorks?: number;
-
   customer_deals_count?: number;
   freelancer_deals_count?: number;
   comments_freelancer_count?: number;
   commentsсustomer_count?: number;
-  arbitration?: {
-    freelancer?: number;
-    customer?: number;
-    all?: number;
-  }
   answerTime?: number;
   description?: string;
   comments_count?: number;
   positive_comments_count?: number;
   negative_comments_count?: number;
   updated_at?: number;
+  dealsCounts?: {
+    inProgressOffers?: number;
+    QueuedOffers?: number;
+    EndedWorks?: number;
+    dealsAsCustomer?: number;
+  }
+  arbitration?: {
+    freelancer?: number;
+    customer?: number;
+    all?: number;
+  }
   averageRaiting?: {
-    averageMark?: number;
-    qualityMark?: number;
-    termMark?: number;
-    politenessMark?: number;
+    freelancer?: {
+      averageMark?: number;
+      qualityMark?: number;
+      termMark?: number;
+      politenessMark?: number;
+    }
+    customer?: {
+      averageMark?: number;
+      requirementsClarity?: number;
+      taskClarity?: number;
+      contactLevel?: number;
+    }
   }
   language?: [{
     langName?: string;
@@ -116,6 +127,85 @@ export interface UserDataInterface {
         qualityMark?: number;
         termMark?: number;
         politenessMark?: number;
+      }
+    }];
+    offers?: [{
+      id: number;
+      title?: string;
+      mainImage?: string;
+      description?: string;
+      raiting?: number;
+    }];
+    childs?: [{
+      commentText?: string;
+      qualityMark?: number;
+      termMark?: number;
+      politenessMark?: number;
+      created_at?: string;
+      author?: [{
+        avatar?: string;
+        name?: string;
+        surname?: string;
+        updated_at?: number;
+        id?: number;
+      }];
+    }];
+  }];
+
+  positiveCommentsСustomer?: [{
+    created_at?: string;
+    offers_id?: number;
+    commentator_id?: number;
+    commentText?: string;
+    author?: [{
+      id: number;
+      name?: string;
+      surname?: string;
+      avatar?: string;
+      averageRaiting?: {
+        averageMark?: number;
+        requirementsClarity?: number;
+        taskClarity?: number;
+        contactLevel?: number;
+      }
+    }];
+    offers?: [{
+      id: number;
+      title?: string;
+      mainImage?: string;
+      description?: string;
+      raiting?: number;
+    }];
+    childs?: [{
+      commentText?: string;
+      qualityMark?: number;
+      termMark?: number;
+      politenessMark?: number;
+      created_at?: string;
+      author?: [{
+        avatar?: string;
+        name?: string;
+        surname?: string;
+        updated_at?: number;
+        id?: number;
+      }];
+    }];
+  }];
+  negativeCommentsСustomer?: [{
+    offers_id?: number;
+    commentator_id?: number;
+    commentText?: string;
+    created_at?: string;
+    author?: [{
+      id: number;
+      name?: string;
+      surname?: string;
+      avatar?: string;
+      averageRaiting?: {
+        averageMark?: number;
+        requirementsClarity?: number;
+        taskClarity?: number;
+        contactLevel?: number;
       }
     }];
     offers?: [{
