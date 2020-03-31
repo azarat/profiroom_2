@@ -67,6 +67,7 @@ export class CalendarComponent implements OnInit {
   }
   ngOnInit() {
     this.events = this.transformFinanceInputs();
+    console.log(this.userFinance);
   }
 
   setView(view: CalendarView) {

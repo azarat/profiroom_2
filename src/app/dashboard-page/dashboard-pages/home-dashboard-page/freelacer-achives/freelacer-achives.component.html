@@ -1,0 +1,47 @@
+<div class="wrapper" *ngIf="userData">
+    <h4>Мои достижения <button class="ask"></button></h4>
+
+    <div class="main-status">
+        <p>Уровень моего професионализма и тарифный план</p>
+        <div>
+            <div class="line-wrap">
+                <div class="start dot">
+                    <span>
+                        Начинающий
+                    </span>
+                </div>
+                <div class="middle dot">
+                    <span>
+                        Уверенный
+                    </span>
+                </div>
+                <div class="pro dot">
+                    <span>
+                        Опытный
+                    </span>
+                </div>
+                <div class="line">
+                    <div class="position" [style.width.%]="userData.achivments.totalProgress">
+                       <span> {{ userData.achivments.totalProgress }} % </span> 
+                    </div>
+                    
+                    <!-- userData.achivments.totalProgress -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="all-achive-types">
+        <div class="achive-el" *ngFor=" let el of detailAchives">
+            <div>
+                <span class="icon" [ngClass]="{ 'full': userData.achivments[el.name + 'Acivment'] == 100 }"></span>
+                <p>Уровень моего професионализма и тарифный план</p>
+            </div>
+            <div class="detail-achive-line">
+                <div class="line">
+                    <span [style.width.%]="userData.achivments[el.name + 'Acivment']"></span> 
+                </div>
+                <span class="current-val">{{ userData.achivments[el.name + 'Acivment'] }} %</span>
+            </div>
+        </div>
+    </div>
+</div>

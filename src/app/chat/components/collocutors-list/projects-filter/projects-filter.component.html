@@ -1,4 +1,4 @@
-<div class="filters" (clickOutside)="hideMenu($event)">
+<div class="filters" (clickOutside)="hideMenu()">
   <div class="current {{ currentType }}" (click)="toggleListOfTypes()"><span>{{ currentTypeName}}</span> <span
       class="corner" [ngClass]="isListVisible? 'up': 'down'"></span></div>
   <div class="types-list"

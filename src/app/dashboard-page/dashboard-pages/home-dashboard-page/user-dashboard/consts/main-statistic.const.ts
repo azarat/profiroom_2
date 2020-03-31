@@ -2,26 +2,26 @@ export const mainStatisticConst = [
     {
         name: 'кол-во выполненных заказов',
         valueName: 'deposited',
-        icon: ''
+        icon: 'deals_count'
     },
     {
         name: 'кол-во всех заказчиков',
         valueName: 'withdraw',
-        icon: ''
+        icon: 'dealers_count'
     },
     {
         name: 'замороженные средства',
         valueName: 'hold',
-        icon: ''
+        icon: 'hold'
     },
     {
         name: 'выведенные средства',
         valueName: 'withdraw',
-        icon: ''
+        icon: 'withdrawn'
     },
     {
         name: 'состояние счёта',
         valueName: 'summ',
-        icon: ''
+        icon: 'current'
     },
 ];

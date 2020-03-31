@@ -7,7 +7,7 @@
     <!-- <button>обратиться в арбитраж</button> -->
     <button *ngIf="isFinishDealButn" (click)="finishWork()" >Завершить работу</button>
   </div>
-  <div class="timer" *ngIf="deal.workStarted === 1 && deal.moneyHolded !==0">
+  <div class="timer" *ngIf="deal.workStarted === 1 && deal.moneyHolded !==0 && deal.dealDone !== 1">
     <h6>Кол-во дней до завершения заказа</h6>
     <div class="clock">
       <div> <span>{{ thsnd }}</span> </div>

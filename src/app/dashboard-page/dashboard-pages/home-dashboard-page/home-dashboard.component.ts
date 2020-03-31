@@ -22,7 +22,7 @@ export class HomeDashboardComponent implements OnInit {
   private defineCurrentUser() {
     this.userService.getDashboardRes()
       .subscribe((res: any) => {
-        this.user = plainToClass(UserModel, res[0]);
+        this.user = plainToClass(UserModel, res);
       });
   }
 }
