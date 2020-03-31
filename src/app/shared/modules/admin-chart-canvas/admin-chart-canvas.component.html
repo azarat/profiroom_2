@@ -41,8 +41,8 @@
     </div>
   </div>
   <div class="curent-statistic">
-    <app-calendar *ngIf="curerntType.value === 'day'"></app-calendar>
-
+    <!-- <app-calendar ></app-calendar> -->
+    <div id="datepicker" class="calendar" *ngIf="curerntType.value === 'day'" ></div>
     <div class="description" *ngIf="curerntType.value !== 'day'">
       <p>Доход биржи</p>
       <p>Кол-во входящих средств</p>
