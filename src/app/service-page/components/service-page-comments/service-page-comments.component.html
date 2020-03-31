@@ -22,27 +22,22 @@
           <div class="right-side">
             <a class="user-name" [routerLink]="['/user', comment.author.id] | localize">{{ comment.author.name }}
               {{ comment.author.surname }}</a>
-              <!-- <div class="user-raiting-wrapp">
-                <span class="star-raiting">{{ comment.mark }}</span>
-              </div> -->
-            <!-- <div class="publication_time">
-              09.01.2020
-            </div> -->
+              <div class="comment__date">{{converDateToYMD(comment.created_at)}}</div>
             <p class="comment-text">
               {{ comment.commentText }}
             </p>
             <div class="comment__raiting">
               <div class="comment__raiting-item">
                 <span>Качество</span>
-                <div class="star-raiting">{{comment.author.averageRaiting.qualityMark}}</div>
+                <div class="star-raiting">{{comment.qualityMark}}</div>
               </div>
               <div class="comment__raiting-item">
                 <span>Срок</span>
-                <div class="star-raiting">{{comment.author.averageRaiting.termMark}}</div>
+                <div class="star-raiting">{{comment.termMark}}</div>
               </div>
               <div class="comment__raiting-item">
                 <span>Вежливость</span>
-                <div class="star-raiting">{{comment.author.averageRaiting.politenessMark}}</div>
+                <div class="star-raiting">{{comment.politenessMark}}</div>
               </div>
             </div>
           </div>
@@ -84,12 +79,24 @@
           <div class="right-side">
             <a class="user-name" [routerLink]="['/user', comment.author.id] | localize">{{ comment.author.name }}
               {{ comment.author.surname }}</a>
-            <div class="user-raiting-wrapp">
-              <span class="star-raiting">{{ comment.mark }}</span>
-            </div>
+            <div class="comment__date">{{converDateToYMD(comment.created_at)}}</div>
             <p class="comment-text">
               {{ comment.commentText }}
             </p>
+            <div class="comment__raiting">
+              <div class="comment__raiting-item">
+                <span>Качество</span>
+                <div class="star-raiting">{{comment.qualityMark}}</div>
+              </div>
+              <div class="comment__raiting-item">
+                <span>Срок</span>
+                <div class="star-raiting">{{comment.termMark}}</div>
+              </div>
+              <div class="comment__raiting-item">
+                <span>Вежливость</span>
+                <div class="star-raiting">{{comment.politenessMark}}</div>
+              </div>
+            </div>
           </div>
         </div>
 
