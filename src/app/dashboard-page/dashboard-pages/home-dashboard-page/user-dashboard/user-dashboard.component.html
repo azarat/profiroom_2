@@ -1,14 +1,14 @@
 <div class="wrapper">
   <section class="main-statistic">
-      <div class="main-statistic-item" *ngFor="let el of statsicArr, let i = index">
-        <div class="icon">
-          <img src="/assets/images/icons/finance/{{el.icon}}.png" alt="">
-        </div>
-        <div>
-          <p>{{ user.purse[el.valueName] }}</p>
-          <p>{{ el.name }}</p>
-        </div>
+    <div class="main-statistic-item" *ngFor="let el of statsicArr, let i = index">
+      <div class="icon">
+        <img src="/assets/images/icons/finance/{{el.icon}}.png" alt="">
       </div>
+      <div>
+        <p>{{ user.purse[el.valueName] }}</p>
+        <p>{{ el.name }}</p>
+      </div>
+    </div>
   </section>
   <section class="charst-statistic">
     <div class="charts">
@@ -18,7 +18,7 @@
         </h5>
         <div class="chart-body">
           <div class="status">
-            <p>Статус доступности:  
+            <p>Статус доступности:
               <span class="work-status" [ngClass]="user.busy === 1? 'off': 'on'">
                 <ng-container *ngIf="user.busy === 1">загружен</ng-container>
                 <ng-container *ngIf="user.busy === 0">свободен</ng-container>
@@ -32,7 +32,7 @@
             <div class="switch">
               <span (click)="changeWorkStatus(0)" [ngClass]="{active: user.busy === 0}">Свободен</span>
               <div class="swp-btn" (click)="changeWorkStatus()" [ngClass]="user.busy === 1? 'busy': ''">
-                <span [ngClass]="{left: user.busy === 0, right: user.busy === 1 }"></span> 
+                <span [ngClass]="{left: user.busy === 0, right: user.busy === 1 }"></span>
               </div>
               <span (click)="changeWorkStatus(1)" [ngClass]="{active: user.busy === 1}">Загружен</span>
             </div>
@@ -45,11 +45,14 @@
           Кол-во заявок за время
         </h5>
         <div class="chart">
-           <app-line-chart-dashboard [user]="user" [currentFinanceFilter]="currentFinanceFilter" [chartLabels]="chartLabels"></app-line-chart-dashboard>
+          <app-line-chart-dashboard [user]="user" [currentFinanceFilter]="currentFinanceFilter"
+            [chartLabels]="chartLabels"></app-line-chart-dashboard>
         </div>
         <div class="filter-brns">
-          <button (click)="changeDateFilter('M')" [ngClass]="{'active': currentFinanceFilter === 'M'  }"> <span>Месяц</span> </button>
-          <button (click)="changeDateFilter('Y')" [ngClass]="{'active': currentFinanceFilter === 'Y'  }"> <span>Год</span> </button>
+          <button (click)="changeDateFilter('M')" [ngClass]="{'active': currentFinanceFilter === 'M'  }">
+            <span>Месяц</span> </button>
+          <button (click)="changeDateFilter('Y')" [ngClass]="{'active': currentFinanceFilter === 'Y'  }">
+            <span>Год</span> </button>
         </div>
       </div>
       <div class="pie-chart">
@@ -57,7 +60,7 @@
           Кол-во заказов
         </h5>
         <div class="chart-body">
-            <app-pie-chart-dashboard [user]="user"></app-pie-chart-dashboard>
+          <app-pie-chart-dashboard [user]="user"></app-pie-chart-dashboard>
         </div>
         <div>
           <div class="compleated legend">
@@ -71,53 +74,56 @@
           </div>
         </div>
       </div>
-    </div>
-    <section class="comments">
-      <app-users-comments *ngIf="user" [userData]="user"></app-users-comments>
-    </section>
-    <section class="achives">
-      <app-freelacer-achives *ngIf="user" [userData]="user"></app-freelacer-achives>
-    </section>
-
-
-  </section>
-  <section class="ets">
-    <div class="statistic">
-      <h5 class="title">
-        Показатели аккаунта
-      </h5>
-      <div class="ets-items">
-        <div>
-          <img src="/assets/images/icons/profile.png" alt="">
-          <div class="description">
-            <p>Мой профиль</p>
-            <p>31 просмотров </p>
+      <div class="statistic">
+        <h5 class="title">
+          Показатели аккаунта
+        </h5>
+        <div class="ets-items">
+          <div>
+            <img src="/assets/images/icons/profile.png" alt="">
+            <div class="description">
+              <p>Мой профиль</p>
+              <p>31 просмотров </p>
+            </div>
           </div>
-        </div>
-        <div>
-          <img src="/assets/images/icons/deals-icons/breef.png" alt="">
-          <div class="description">
-            <p>Заказы</p>
-            <p>5 брифов получено </p>
+          <div>
+            <img src="/assets/images/icons/deals-icons/breef.png" alt="">
+            <div class="description">
+              <p>Заказы</p>
+              <p>5 брифов получено </p>
+            </div>
           </div>
-        </div>
-        <div>
-          <img src="/assets/images/icons/deal-icon.png" alt="">
-          <div class="description">
-            <p>Сотрудничества</p>
-            <p>2 проекта</p>
+          <div>
+            <img src="/assets/images/icons/deal-icon.png" alt="">
+            <div class="description">
+              <p>Сотрудничества</p>
+              <p>2 проекта</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
+
+
+  </section>
+  <section class="ets">
+    <div class="comments-block">
+      <section class="comments">
+        <app-users-comments *ngIf="user" [userData]="user"></app-users-comments>
+      </section>
+      <section class="achives">
+        <app-freelacer-achives *ngIf="user" [userData]="user"></app-freelacer-achives>
+      </section>
+    </div>
+
     <div class="notify">
       <button class="close"></button>
       <img src="/assets/images/icons/notify-dashboard.png" alt="">
       <h5>Поздравляем, {{ user.name }}!</h5>
-      <p>Вы достигли следующего уровня фриланса “Уверенный”, 
-        это открывает вам дополнительные возможности пользоваться 
+      <p>Вы достигли следующего уровня фриланса “Уверенный”,
+        это открывает вам дополнительные возможности пользоваться
         сервисом Whocan!</p>
       <button class="more">Узнать детали</button>
-    </div> 
+    </div>
   </section>
 </div>
