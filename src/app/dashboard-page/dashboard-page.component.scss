@@ -127,13 +127,19 @@
   position: relative;
   mat-icon {
     color: #fff;
+    &.active{
+      span {
+        display: block;
+        color: transparent;
+        width: 8px;
+        height: 8px;
+        border: 1px solid #ffffff;
+        right: -5px;
+        top: -5px;
+      }
+    }
     span {
-      color: transparent;
-      width: 8px;
-      height: 8px;
-      border: 1px solid #ffffff;
-      right: -5px;
-      top: -5px;
+      display: none;
     }
   }
 }

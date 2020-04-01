@@ -2,38 +2,7 @@
   <header>
     <a [routerLink]="'/' | localize" class="logo">whocan</a>
     <div class="controls">
-      <section class="notifications">
-        <mat-icon aria-hidden="false" matBadge="1" aria-label="Example home icon" matBadgeColor="warn">notifications
-        </mat-icon>
-        <div class="notifications-wrapp">
-          <div class="notifications-title">
-            Очистить все
-          </div>
-          <div class="notifications-list">
-            <div class="notification-item">
-              <div class="notification-item__icon">
-                <img src="assets/images/svg/notifications/vector-arbitrage.svg" alt="">
-              </div>
-              <div class="notification-item__text">Заявка в <span>арбитраж</span></div>
-              <div class="notification-item__date">27.03.2020</div>
-            </div>
-            <div class="notification-item">
-              <div class="notification-item__icon">
-                <img src="assets/images/svg/notifications/vector-arbitrage.svg" alt="">
-              </div>
-              <div class="notification-item__text"> <span>Оплачено</span> “Дизайн корпоративного сайта с адаптивом” </div>
-              <div class="notification-item__date">27.03.2020</div>
-            </div>
-            <div class="notification-item">
-              <div class="notification-item__icon">
-                <img src="assets/images/svg/notifications/vector-arbitrage.svg" alt="">
-              </div>
-              <div class="notification-item__text"> <span>Новое сообщение</span> от Николаса Дугеля  </div>
-              <div class="notification-item__date">27.03.2020</div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <app-system-messages [user]="user"></app-system-messages>
       <section class="type-section">
         <div class="switch">
           <span (click)="changeUserType(1)" [ngClass]="{active: user.role_id === 1}">Фрилансер</span>

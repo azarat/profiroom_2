@@ -24,7 +24,6 @@ export class UserDashboardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log(this.user);
     this.setMounthLabels();
   }
 
