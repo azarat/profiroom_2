@@ -1,5 +1,5 @@
 <div class="tools-bar">
-  <div class="items">
+  <div class="items" [ngClass]="{ dayschart: curerntType.value === 'day' }">
     <div>
       <h5>финансовая статистика</h5>
       <div class="chart-type">
@@ -14,9 +14,9 @@
       <div class="chart-year-btns" *ngIf="curerntType.value === 'year'">
         <!-- year  -->
         <button class="prev" *ngIf="showedDate >2017" [disabled]="showedDate === 2018"
-          (click)="prevYear()">{{ showedDate -1  }} год</button>
+          (click)="changeYear('prev')">{{ showedDate -1  }} год</button>
         <button class="next" *ngIf="showedDate < currentYear" [disabled]="showedDate === currentYear"
-          (click)="nextYear()">{{ showedDate + 1 }} год</button>
+          (click)="changeYear('next')">{{ showedDate + 1 }} год</button>
       </div>
       <div class="chart-month-btns" *ngIf="curerntType.value === 'month'">
         <div class="show-select" (click)="toggleMonthSelect()">
@@ -27,7 +27,9 @@
           <app-mounth-chart-select (currentDateEmitting)="currentDateEmitting($event)"></app-mounth-chart-select>
         </div>
       </div>
-
+      <div class="day-selected" *ngIf="curerntType.value === 'day'">
+        выберите дату по календарю
+      </div>
     </div>
   </div>
 </div>
@@ -42,7 +44,13 @@
   </div>
   <div class="curent-statistic">
     <!-- <app-calendar ></app-calendar> -->
-    <div id="datepicker" class="calendar" *ngIf="curerntType.value === 'day'" ></div>
+    <dl-date-time-picker *ngIf="curerntType.value === 'day'"
+    [(maxView)]="maxView"
+    [(minView)]="minView"
+    DL_DATE_TIME_INPUT_FORMATS_DEFAULT="optionsCalendar"
+    [(startView)]="startView"
+    [(ngModel)]="selectedDate"
+    (change)="onCustomDateChange($event.value)"></dl-date-time-picker>
     <div class="description" *ngIf="curerntType.value !== 'day'">
       <p>Доход биржи</p>
       <p>Кол-во входящих средств</p>

@@ -26,6 +26,10 @@ import {
 import {
   CanvasXbarService
 } from './services/canvas-x-bar.service';
+import * as moment from 'moment';
+import {
+  ChartDataService
+} from './services/chart-data.service';
 
 @Component({
   selector: 'app-admin-chart-canvas',
@@ -54,10 +58,20 @@ export class AdminChartCanvasComponent implements OnInit {
     name: string,
     value: string
   } = {
-      name: 'Год',
-      value: 'year'
-    };
+    name: 'Год',
+    value: 'year'
+  };
 
+  maxView = 'year';
+  minView = 'day';
+  selectedDate: Date;
+  showCalendar = true;
+  startView = 'day';
+  views = ['day', 'month', 'year'];
+  monthShort = ['янв', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+
+  optionsCalendar = moment.lang('ru');
 
   public lineChartData: ChartDataSets[] = [{
       data: [65, 59, 80, 81, 56, 55, 40],
@@ -68,7 +82,7 @@ export class AdminChartCanvasComponent implements OnInit {
     },
     {
       data: [28, 48, 40, 19, 86, 27, 90],
-      label: '',
+      label: 'Расход',
       lineTension: 0,
       maxBarThickness: 6,
       barThickness: 6,
@@ -76,7 +90,7 @@ export class AdminChartCanvasComponent implements OnInit {
     // { data: [180, 480, 770, 90, 1000, 270, 400], label: 'Series C', yAxisID: 'y-axis-1' }
   ];
 
-  private yearBar = weekendArrConst;
+  private weekendBar = weekendArrConst;
 
   public lineChartLabels: Label[];
 
@@ -138,46 +152,90 @@ export class AdminChartCanvasComponent implements OnInit {
   // year
   public currentYear = new Date().getFullYear();
   public showedDate;
-
-  public currentData: {
+  private currentData: {
+    month: number,
     year: number,
-    month?: number;
-    day?: number
+    day: number
+  } = {
+    month: null,
+    day: null,
+    year: this.currentYear
   };
 
   constructor(
-    private canvasXbarService: CanvasXbarService
+    private canvasXbarService: CanvasXbarService,
+    private chartDataService: ChartDataService
   ) {}
 
   ngOnInit() {
     this.selectChartType(this.curerntType);
     this.showedDate = this.currentYear;
+    this.getChartsData(this.currentData);
   }
 
+  //  getting Data for Chart
+
+  private getChartsData(date: any) {
+    this.chartDataService.getAllFinances(date)
+      .subscribe((res: {
+        periodIncome: number[],
+        outcome: number[]
+      }) => {
+        this.lineChartData[0].data = res.periodIncome;
+        this.lineChartData[1].data = res.outcome;
+        console.log(res);
+      });
+  }
+  //  select menu function
+  public selectChartType(type) {
+    this.curerntType = type; // set current filters type
+    this._selectXtarXBar();
+    this.listOpen = false; // hide menu
+  }
+
+  private _selectXtarXBar() {
+    const year = new Date().getFullYear(); // get current year
+    const month = new Date().getMonth() + 1; // geet current month
+    this.restDateFunction(this.curerntType.value); // reset data
+
+    if (this.curerntType.value === 'year') {
+
+      this.lineChartLabels = monthArrConst; // create month points
+      this.getChartsData(this.currentData);
+
+    } else if (this.curerntType.value === 'month') {
+
+      this.lineChartLabels = this.canvasXbarService.getMontDaysCount(month, year); // create points of days
+      this.currentData.month = month;
+      this.getChartsData(this.currentData);
+
+    } else if (this.curerntType.value === 'day') {
+
+      this.setDayChartBar();
+      this.currentData.month = month; // get current month
+      this.currentData.day = new Date().getDate(); // get current day
+      this.getChartsData(this.currentData); // get data
+
+    }
+  }
+
+  private restDateFunction(type) {
+    if (type === 'year') {
+      this.currentData.month = null; // clear to get only year
+      this.currentData.day = null; // clear to get only year
+    } else if ((type === 'month')) {
+      this.currentData.day = null; // clear to get only month
+    }
+  }
 
   private setDayChartBar() {
-    this.yearBar = this.canvasXbarService.getHoursCount();
-    this.lineChartLabels = this.yearBar;
+    // this.weekendBar = this.canvasXbarService.getHoursCount();
+    this.lineChartLabels = this.canvasXbarService.getHoursCount();
   }
 
-private _selectXtarXBar() {
-  if (this.curerntType.value === 'year') {
-    this.lineChartLabels = monthArrConst;
-  } else if (this.curerntType.value === 'month') {
-    const year = new Date().getFullYear();
-    const month = new Date().getMonth() + 1;
-    this.lineChartLabels = this.canvasXbarService.getMontDaysCount(month, year);
-  } else {
-    this.setDayChartBar();
-  }
-}
-  public selectChartType(type) {
-    this.curerntType = type;
-    this._selectXtarXBar();
-    this.listOpen = false;
-  }
 
-  openTypesList() {
+
+  openTypesList() {  // select menu
     if (!this.listOpen) {
       this.listOpen = true;
     } else {
@@ -188,24 +246,49 @@ private _selectXtarXBar() {
 
   // year chart
 
-  nextYear() {
-    if (this.showedDate !== this.currentYear) {
-      this.showedDate = this.showedDate + 1;
+  // nextYear() {
+  //   if (this.showedDate !== this.currentYear) {
+  //     this.showedDate = this.showedDate + 1;
+  //   }
+  //   this.currentData.year = this.showedDate;
+  // }
+  // prevYear() {
+  //   if (this.showedDate !== 2018) {
+  //     this.showedDate = this.showedDate - 1;
+  //   }
+  //   this.currentData.year = this.showedDate;
+  // }
+
+  public changeYear(move: string) {
+    if (move === 'next') {
+      this.currentData.year = this.showedDate !== this.currentYear ? this.showedDate += 1 : this.showedDate;
+    } else if (move === 'prev') {
+      this.currentData.year = this.showedDate !== 2018 ? this.showedDate -= 1 : this.showedDate;
     }
+    this.getChartsData(this.currentData);
   }
-  prevYear() {
-    if (this.showedDate !== 2018) {
-      this.showedDate = this.showedDate - 1;
-    }
-  }
+  // this.getChartsData(this.currentData);
 
   public toggleMonthSelect() {
-    this.monthSelectOpen = this.monthSelectOpen ?  null : true;
+    this.monthSelectOpen = this.monthSelectOpen ? null : true;
   }
 
 
   public currentDateEmitting(date) {
-    console.log(date)
     this.lineChartLabels = this.canvasXbarService.getMontDaysCount(date.month, date.year);
+    this.currentData.month = date.month; // get current month
+    this.currentData.year = date.year; // get current day
+    this.getChartsData(this.currentData);
   }
+
+  public onCustomDateChange(el: Date) {
+    if (el) {
+      this.currentData.year = el.getFullYear();
+      this.currentData.month = (el.getMonth()) + 1;
+      this.currentData.day = el.getDate();
+      console.log(this.currentData);
+      this.getChartsData(this.currentData);
+    }
+  }
+
 }
