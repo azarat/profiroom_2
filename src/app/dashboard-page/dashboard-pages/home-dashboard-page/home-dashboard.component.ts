@@ -22,6 +22,7 @@ export class HomeDashboardComponent implements OnInit {
   private defineCurrentUser() {
     this.userService.getDashboardRes()
       .subscribe((res: any) => {
+        console.log(res);
         this.user = plainToClass(UserModel, res);
       });
   }

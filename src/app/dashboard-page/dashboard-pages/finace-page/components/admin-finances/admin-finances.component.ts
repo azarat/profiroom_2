@@ -12,15 +12,15 @@ import { UserFinanceService } from '../../services/user-finance.service';
 export class AdminFinancesComponent implements OnInit {
 
   // transactionType: string;
-  userFinance: FinanceInterface;
-  deffaultSelect = new FormControl('null');
-  transactions = {
+  public userFinance: FinanceInterface;
+  public deffaultSelect = new FormControl('null');
+  public transactions = {
     transactionType: null,
     amount: null,
     password: null
   };
-
-  userCashMoves: any[];
+  public paymentsFullSize =  false;
+  public userCashMoves: any[];
 
   allStatisticInfo: any[] = compressedFinanceInfoConst;
   constructor(
@@ -48,9 +48,13 @@ export class AdminFinancesComponent implements OnInit {
     return x;
   }
 
-  makePayment() {
-    this.userFinanceService.makePayment(this.transactions);
-    // console.log(this.transactions)
-  }
+
+  public unrollPaymentsList() {
+    this.paymentsFullSize = !this.paymentsFullSize;
+   }
+
+   public rollPaymentsList() {
+     this.paymentsFullSize = false;
+   }
 
 }

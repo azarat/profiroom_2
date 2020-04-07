@@ -15,7 +15,7 @@ import { AuthentificationService } from 'src/app/core/services/auth.service';
 export class MainHeaderComponent implements OnInit {
 
   @Input() pageName: string;
-  userId: any;
+  public token: any;
   currentUser: UserModel;
   routeMainPage: any = this.localize.translateRoute('');
   constructor(
@@ -24,7 +24,7 @@ export class MainHeaderComponent implements OnInit {
     private localStorageService: LocalStorageService,
     private authService: AuthentificationService
   ) {
-    this.getUserId();
+    this.checkUserToken();
   }
 
   ngOnInit() { }
@@ -33,7 +33,7 @@ export class MainHeaderComponent implements OnInit {
     this.router.navigate([this.routeMainPage]);
   }
 
-  getUserId() {
-    this.userId = this.localStorageService.getItem('userId').value;
+  checkUserToken() {
+    this.token = this.localStorageService.getItem('token').value;
   }
 }

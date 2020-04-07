@@ -4,6 +4,7 @@ import { UserFinanceService } from './services/user-finance.service';
 import { filter } from 'rxjs/operators';
 import { FinanceInterface } from './interfaces/finance.interface';
 import { FormControl } from '@angular/forms';
+import { UserStateService } from '../../services/user-state.service';
 
 @Component({
   selector: 'app-finace-page',
@@ -12,13 +13,20 @@ import { FormControl } from '@angular/forms';
 })
 export class FinacePageComponent implements OnInit {
 
-
+  public userRole: number;
   constructor(
-
+    private userStateService: UserStateService
   ) { }
 
   ngOnInit() {
     // this.transactions.transactionType = null;
+    this.getUserRole();
+  }
 
+  private getUserRole() {
+    this.userStateService.userState$
+      .subscribe(data => {
+        this.userRole = data;
+      });
   }
 }
