@@ -40,7 +40,7 @@ export class PieChartDashboardComponent implements OnInit {
         labels: [ this.compleatedDeals, this.inProgress, this.falledDeals],
         datasets: [
           {
-            data: [0, 12, 0],
+            data: this.user.pieChart,
             backgroundColor: ['#4285F4', '#5DDFA9', '#FF9090'],
             fill: false
           },
@@ -84,9 +84,8 @@ export class PieChartDashboardComponent implements OnInit {
 
   private checkDoesUserHaveDeals() {
     this.zeroDeals = true;
-    let arr = [0,12,0]
     let amaunt = 0
-    arr.forEach(el => {
+    this.user.pieChart.forEach(el => {
       return amaunt +=el
     })
     amaunt === 0? this.zeroDeals = true : this.zeroDeals = null
