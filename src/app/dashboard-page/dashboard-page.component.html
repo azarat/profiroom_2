@@ -2,10 +2,7 @@
   <header>
     <a [routerLink]="'/' | localize" class="logo">whocan</a>
     <div class="controls">
-      <section class="notifications">
-        <mat-icon aria-hidden="false" matBadge="1" aria-label="Example home icon" matBadgeColor="warn">notifications
-        </mat-icon>
-      </section>
+      <app-system-messages [user]="user"></app-system-messages>
       <section class="type-section">
         <div class="switch" *ngIf="user.role_id !== 42">
           <span (click)="changeUserType(1)" [ngClass]="{active: user.role_id === 1}">Фрилансер</span>

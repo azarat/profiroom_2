@@ -46,7 +46,6 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
     this.defineCurrentUser();
     this.socetService.connect();
     this.checkNotifications();
-
   }
 
   ngAfterViewInit() {
