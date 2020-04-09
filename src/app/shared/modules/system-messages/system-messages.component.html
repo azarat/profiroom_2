@@ -1,32 +1,40 @@
 <section class="notifications">
-    <mat-icon aria-hidden="false" matBadge="1" aria-label="Example home icon" matBadgeColor="warn" (click)="toggleMessageList()">notifications
-    </mat-icon>
-    <div class="notifications-wrapp" *ngIf="showMessagesList" >
-      <div class="notifications-title">
-        Очистить все
-      </div>
-      <div class="notifications-list">
-        <div class="notification-item">
-          <div class="notification-item__icon">
-            <img src="assets/images/svg/notifications/vector-arbitrage.svg" alt="">
-          </div>
-          <div class="notification-item__text">Заявка в <span>арбитраж</span></div>
-          <div class="notification-item__date">27.03.2020</div>
-        </div>
-        <div class="notification-item">
-          <div class="notification-item__icon">
-            <img src="assets/images/svg/notifications/vector-arbitrage.svg" alt="">
-          </div>
-          <div class="notification-item__text"> <span>Оплачено</span> “Дизайн корпоративного сайта с адаптивом” </div>
-          <div class="notification-item__date">27.03.2020</div>
-        </div>
-        <div class="notification-item">
-          <div class="notification-item__icon">
-            <img src="assets/images/svg/notifications/vector-arbitrage.svg" alt="">
-          </div>
-          <div class="notification-item__text"> <span>Новое сообщение</span> от Николаса Дугеля  </div>
-          <div class="notification-item__date">27.03.2020</div>
-        </div>
-      </div>
+  <mat-icon aria-hidden="false" matBadge="1" aria-label="Example home icon" matBadgeColor="warn" (click)="toggleMessageList()" class="test" [ngClass]="{active: newSystemMessages}">notifications
+  </mat-icon>
+  <div class="notifications-wrapp" *ngIf="showMessagesListBlock" >
+    <div class="notifications-title"  *ngIf="messageListEmpty">
+      <span (click)="deleteMessageItem(0, systemMessagesArr.length)">Очистить все</span> 
     </div>
-  </section>
+    <div class="notifications-list"  *ngIf="messageListEmpty">
+      <div class="notification-item" *ngFor="let message of systemMessagesArr; let i = index ">
+
+        <ng-container *ngFor="let type of systemMessagesTypes">
+          <div class="notification-item__icon" *ngIf="message.message === type">
+            <img src="assets/images/icons/systemMessages/{{type}}.png" alt="">
+          </div>
+        </ng-container>
+
+        <div class="notification-item__text" (click)="openChat(message.roomId, message.id, i)" *ngIf="message.message === 'refuseBreef' "><span>Отказ от брифа </span>"{{message.offers_title}}"</div>
+        <div class="notification-item__text" (click)="openChat(message.roomId, message.id, i)" *ngIf="message.message === 'approveBreef' "><span>Бриф подтвержден</span>"{{message.offers_title}}"</div>
+        
+        <div class="notification-item__text" (click)="openChat(message.roomId, message.id, i)" *ngIf="message.message === 'workStarted'"><span>Работа начата </span> "{{message.offers_title}}"</div>
+        <div class="notification-item__text" (click)="openChat(message.roomId, message.id, i)" *ngIf="message.message === 'holdMoney' "><span>Средства зарезирвированы </span>"{{message.offers_title}}"</div>
+
+        <div class="notification-item__text" (click)="openChat(message.roomId, message.id, i)" *ngIf="message.message === 'DealClosedByCustomer' "><span>Работа отменина заказчиком </span>"{{message.offers_title}}"</div>
+        <div class="notification-item__text" (click)="openChat(message.roomId, message.id, i)" *ngIf="message.message === 'DealCloseByFreelancer' "><span>Работа отменина фрилансером </span>"{{message.offers_title}}"</div>
+
+        <div class="notification-item__text" (click)="openChat(message.roomId, message.id, i)" *ngIf="message.message === 'CancelSubmited' "><span>Фрилансер подтвердил отмену сотрудничества </span>"{{message.offers_title}}"</div>
+        <div class="notification-item__text" (click)="openChat(message.roomId, message.id, i)" *ngIf="message.message === 'DealFinishCanceledByCustomer'"><span>Работа отправлена на доработки </span>"{{message.offers_title}}"</div>
+        <div class="notification-item__text" (click)="openChat(message.roomId, message.id, i)" *ngIf="message.message === 'DealFinishedByFreelancer' "><span>Работа завершина фрилансером </span>"{{message.offers_title}}"</div>
+        <div class="notification-item__text" (click)="openChat(message.roomId, message.id, i)" *ngIf="message.message === 'DealFinished' "><span>Работа оплачена </span>"{{message.offers_title}}"</div>
+
+        <div class="notification-item__date">{{message.created_at}}</div>
+        <div class="notification-delet" (click)="deleteMessageItem(message.id, i)"></div>
+      </div>
+
+    </div>
+
+    <span class="emptyList" *ngIf="!messageListEmpty">Уведомлений нет</span>
+
+  </div>
+</section>

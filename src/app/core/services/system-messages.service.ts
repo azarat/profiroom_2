@@ -10,7 +10,16 @@ export class SystemMessagesService {
     private http: HttpClient,
   ) { }
 
-  public systemMessagesList(userID) {
-    return this.http.post('/systemMessages', {id: userID});
+  public systemMessagesList() {
+    return this.http.get('/bellNotiys')
+  }
+
+  public deleteSystemMessage(messageID) {
+    if(messageID !== 0) {
+      return this.http.post('/deleteBellNotiy', {notiyId: messageID})
+    } else {
+      return this.http.post('/deleteBellNotiy', {all: true})
+    }
+    
   }
 }
