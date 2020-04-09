@@ -9,7 +9,8 @@ import { ChartsModule } from 'ng2-charts';
 import { CalendarSharedModule } from '../calendar/calendar.module';
 import { MounthChartSelectComponent } from './mounth-chart-select/mounth-chart-select.component';
 import { AdminMonthModule } from '../../pipes/admin-month/admin-month.module';
-
+import {DlDateTimePickerModule, DlDateTimeDateModule} from 'angular-bootstrap-datetimepicker';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -26,7 +27,10 @@ import { AdminMonthModule } from '../../pipes/admin-month/admin-month.module';
     MonthPipeModule,
     ChartsModule,
     CalendarSharedModule,
-    AdminMonthModule
+    AdminMonthModule,
+    FormsModule,
+    DlDateTimeDateModule,
+    DlDateTimePickerModule
   ],
   exports: [
     AdminChartCanvasComponent,

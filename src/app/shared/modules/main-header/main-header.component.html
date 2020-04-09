@@ -12,8 +12,8 @@
       </nav>
     </div>
     <div class="auth" *ngIf="pageName !== 'authoriz'">
-      <app-user-header-menu *ngIf="userId" [(userId)]="userId"></app-user-header-menu>
-      <div *ngIf="!userId">
+      <app-user-header-menu *ngIf="token"></app-user-header-menu>
+      <div *ngIf="!token">
         <div class="login">
           <a [routerLink]="'/auth' | localize" [queryParams]="{type: 'signin'}" role="button">Вход</a>
         </div>

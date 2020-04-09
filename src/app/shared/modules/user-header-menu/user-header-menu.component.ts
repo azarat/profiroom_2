@@ -28,14 +28,15 @@ export class UserHeaderMenuComponent implements OnInit {
   ngOnInit() {
     this.userService.getDashboardRes()
       .subscribe((res: any) => {
-        console.log(res)
+        console.log(res);
         this.user = plainToClass(UserModel, res);
+        this._checkUserState();
       });
-  this._checkUserState()
+
   }
 
   toggleMenu() {
-    if(this.menuOpen === null) {
+    if (this.menuOpen === null) {
       this.menuOpen = true;
     } else {
       this.menuOpen = !this.menuOpen;
@@ -51,7 +52,7 @@ export class UserHeaderMenuComponent implements OnInit {
 
 
   private _checkUserState() {
-    this.localStorageService.getItem('userRole').value === 1 ? this.isUserFreelancer = true : this.isUserFreelancer = null;
+    this.user.role_id === 1 ? this.isUserFreelancer = true : this.isUserFreelancer = null;
   }
 
 }

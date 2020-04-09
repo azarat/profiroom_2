@@ -13,7 +13,7 @@ export class UserFinancesComponent implements OnInit {
 
   public userFinance: FinanceInterface;
   public transactions = {
-    transactionType: null,
+    transactionType: 'deffault',
     amount: null,
     password: null,
   };
@@ -33,7 +33,7 @@ export class UserFinancesComponent implements OnInit {
     this.userFinanceService.getUserFinanceData()
       .subscribe((res: any) => {
         this.userFinance = res[0];
-        console.log(this.userFinance)
+        console.log(this.userFinance);
         this.userCashMoves = this.sortcashByTime(this.userFinance.history);
       });
   }
