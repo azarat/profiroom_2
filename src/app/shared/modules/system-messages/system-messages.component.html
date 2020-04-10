@@ -14,19 +14,19 @@
           </div>
         </ng-container>
 
-        <div class="notification-item__text" (click)="openChat(message.roomId, message.id, i)" *ngIf="message.message === 'refuseBreef' "><span>Отказ от брифа </span>"{{message.offers_title}}"</div>
-        <div class="notification-item__text" (click)="openChat(message.roomId, message.id, i)" *ngIf="message.message === 'approveBreef' "><span>Бриф подтвержден</span>"{{message.offers_title}}"</div>
+        <div class="notification-item__text" (click)="openChat(message.roomId, message.id, i)" *ngIf="message.message === 'refuseBreef' && user.role_id === 2"><span>Отказ от брифа </span>"{{message.offers_title}}"</div>
+        <div class="notification-item__text" (click)="openChat(message.roomId, message.id, i)" *ngIf="message.message === 'approveBreef' && user.role_id === 2"><span>Бриф подтвержден</span>"{{message.offers_title}}"</div>
         
-        <div class="notification-item__text" (click)="openChat(message.roomId, message.id, i)" *ngIf="message.message === 'workStarted'"><span>Работа начата </span> "{{message.offers_title}}"</div>
-        <div class="notification-item__text" (click)="openChat(message.roomId, message.id, i)" *ngIf="message.message === 'holdMoney' "><span>Средства зарезирвированы </span>"{{message.offers_title}}"</div>
+        <div class="notification-item__text" (click)="openChat(message.roomId, message.id, i)" *ngIf="message.message === 'workStarted' && user.role_id === 2"><span>Работа начата </span> "{{message.offers_title}}"</div>
+        <div class="notification-item__text" (click)="openChat(message.roomId, message.id, i)" *ngIf="message.message === 'holdMoney' && user.role_id === 1"><span>Средства зарезирвированы </span>"{{message.offers_title}}"</div>
 
-        <div class="notification-item__text" (click)="openChat(message.roomId, message.id, i)" *ngIf="message.message === 'DealClosedByCustomer' "><span>Работа отменина заказчиком </span>"{{message.offers_title}}"</div>
-        <div class="notification-item__text" (click)="openChat(message.roomId, message.id, i)" *ngIf="message.message === 'DealCloseByFreelancer' "><span>Работа отменина фрилансером </span>"{{message.offers_title}}"</div>
+        <div class="notification-item__text" (click)="openChat(message.roomId, message.id, i)" *ngIf="message.message === 'DealClosedByCustomer' && user.role_id === 1"><span>Работа отменина заказчиком </span>"{{message.offers_title}}"</div>
+        <div class="notification-item__text" (click)="openChat(message.roomId, message.id, i)" *ngIf="message.message === 'DealCloseByFreelancer' && user.role_id === 2"><span>Работа отменина фрилансером </span>"{{message.offers_title}}"</div>
 
-        <div class="notification-item__text" (click)="openChat(message.roomId, message.id, i)" *ngIf="message.message === 'CancelSubmited' "><span>Фрилансер подтвердил отмену сотрудничества </span>"{{message.offers_title}}"</div>
-        <div class="notification-item__text" (click)="openChat(message.roomId, message.id, i)" *ngIf="message.message === 'DealFinishCanceledByCustomer'"><span>Работа отправлена на доработки </span>"{{message.offers_title}}"</div>
-        <div class="notification-item__text" (click)="openChat(message.roomId, message.id, i)" *ngIf="message.message === 'DealFinishedByFreelancer' "><span>Работа завершина фрилансером </span>"{{message.offers_title}}"</div>
-        <div class="notification-item__text" (click)="openChat(message.roomId, message.id, i)" *ngIf="message.message === 'DealFinished' "><span>Работа оплачена </span>"{{message.offers_title}}"</div>
+        <div class="notification-item__text" (click)="openChat(message.roomId, message.id, i)" *ngIf="message.message === 'CancelSubmited' && user.role_id === 2"><span>Фрилансер подтвердил отмену сотрудничества </span>"{{message.offers_title}}"</div>
+        <div class="notification-item__text" (click)="openChat(message.roomId, message.id, i)" *ngIf="message.message === 'DealFinishCanceledByCustomer' && user.role_id === 1"><span>Работа отправлена на доработки </span>"{{message.offers_title}}"</div>
+        <div class="notification-item__text" (click)="openChat(message.roomId, message.id, i)" *ngIf="message.message === 'DealFinishedByFreelancer' && user.role_id === 2"><span>Работа завершина фрилансером </span>"{{message.offers_title}}"</div>
+        <div class="notification-item__text" (click)="openChat(message.roomId, message.id, i)" *ngIf="message.message === 'DealFinished' && user.role_id === 1"><span>Работа оплачена </span>"{{message.offers_title}}"</div>
 
         <div class="notification-item__date">{{message.created_at}}</div>
         <div class="notification-delet" (click)="deleteMessageItem(message.id, i)"></div>

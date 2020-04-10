@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { OfferDataInterface } from 'src/app/shared/interfaces/offer-date.interface';
 import { ServicePageService } from '../../services/service-page.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 
 @Component({
   selector: 'app-service-page-packages',
@@ -13,6 +14,7 @@ export class ServicePagePackagesComponent implements OnInit {
   // tslint:disable-next-line: no-output-on-prefix
   @Output() checkoutState = new EventEmitter<any>();
   @Output() scrollToCompare = new EventEmitter<any>();
+  public token: any;
   public openFeatures = false;
   public extraFeaturesForm: FormGroup;
   extraFeatures: any;
@@ -41,12 +43,14 @@ export class ServicePagePackagesComponent implements OnInit {
 
   constructor(
     private servicePackageService: ServicePageService,
+    private localStorageService: LocalStorageService,
     private fb: FormBuilder
   ) { }
 
   ngOnInit() {
     this.initForm();
     // this.goCheckout('basic');
+    this.checkUserToken();
   }
 
   private initForm() {
@@ -87,6 +91,10 @@ export class ServicePagePackagesComponent implements OnInit {
 
   public goCompareTable() {
     this.scrollToCompare.emit();
+  }
+  checkUserToken() {
+    this.token = this.localStorageService.getItem('token').value;
+    console.log(this.token);
   }
 
 }

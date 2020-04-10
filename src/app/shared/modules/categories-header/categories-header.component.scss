@@ -24,6 +24,8 @@
   transition: overflow 0.5s;
   .categorie-name{
     margin: 0;
+    display: flex;
+    align-items: center;
     a{
       font-family: "Source Sans Pro";
       font-weight: 600;

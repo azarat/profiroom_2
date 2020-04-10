@@ -47,13 +47,13 @@
 
         <div class="actions">
           <div class="action tooltip" data-title="Смотреть профиль">
-            <a href="">
+            <a [routerLink]="['/user', offerData.user_id] | localize">
               <img src="assets/images/svg/service-page/shape.svg" alt="" class="default-img">
               <img src="assets/images/svg/service-page/shape-hov.svg" alt="" class="hover-img">
             </a>
           </div>
           <div class="action tooltip" data-title="Написать сообщение">
-            <a href="">
+            <a (click)="openChat(offerData.user_id)">
               <img src="assets/images/svg/service-page/envelope.svg" alt="" class="default-img">
               <img src="assets/images/svg/service-page/envelope-hov.svg" alt="" class="hover-img">
             </a>
@@ -78,7 +78,7 @@
 
       <div class="about-offer" id="description">
         <h4>Описание услуги</h4>
-        <p>{{ offerData.description }}</p>
+        <div class="about-offer__text" [innerHTML]="offerData.description"></div>
       </div>
 
       <app-service-page-compare-table [offerData]="offerData" *ngIf="offerData" id="compare-table">

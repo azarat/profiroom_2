@@ -31,8 +31,10 @@
         <div class="general-information__lvl">Уровень: <span class="value">{{userData.rank_id}}</span></div>
       </div>
       <div class="general-information__wrapper" *ngIf="userTypeFreelancer">
-        <div class="general-information__available">Статус доступности: <span class="value"
-            [ngClass]="{load: userData.load}">загружен(-а)</span></div>
+        <div class="general-information__available">Статус доступности: 
+          <span class="value free" *ngIf="!userData.busy">не загружен(-а)</span>
+          <span class="value" *ngIf="userData.busy">загружен(-а)</span>
+        </div>
         <div class="general-information__inProces">Проектов в работе: <span class="value">{{userData.dealsCounts.inProgressOffers}}</span></div>
         <div class="general-information__awaiting">Проектов в очереди: <span class="value">{{userData.dealsCounts.QueuedOffers}}</span></div>
       </div>
@@ -74,7 +76,7 @@
         </div>
         <div class="about-user__info-block">
           <div class="about-user__title">На сайте с</div>
-          <div class="about-user__value">{{userData.email_verified_at}}</div>
+          <div class="about-user__value">{{convertDateToDMY(userData.email_verified_at)}}</div>
         </div>
         <div class="about-user__info-block fixed-width-block" *ngIf="userTypeFreelancer">
           <div class="about-user__title">Исполненных проектов</div>
@@ -135,15 +137,29 @@
         </div>
       </div>
     </section>
+
     <section class="aducation" *ngIf="userTypeFreelancer">
       <div class="section-title">Дополнительное образование</div>
       <div class="aducation__wrapper">
         <div class="aducation__info-block" *ngFor="let education of userData.additionalEducation">
-          <div class="aducation__institution">{{ education.additionalInstitution}}</div>
-          <div class="aducation__group">
-            <div class="aducation__specialty">{{ education.courseName}}</div>
-            <div class="aducation__years">{{ education.startStudyYear}} - {{ education.endStudyYear}}</div>
+
+          <div class="aducation__img-list" *ngIf="education.aditional_diploma_files.length; let i = index">
+            <ng-container *ngFor="let img of education.aditional_diploma_files; let i = index">
+              <div class="img-item"  (click)="showPopUp(i, thisArr, 'img')" [ngClass]="{open_popUp: clickedEducationImgs === thisArr && clickedSinglImg === i}">
+                <img src="{{img.link}}" alt="">
+                <div class="close-popUp" ></div>
+              </div>
+            </ng-container>
           </div>
+
+          <div class="text-wrapper">
+            <div class="aducation__institution">{{ education.additionalInstitution}}</div>
+            <div class="aducation__group">
+              <div class="aducation__specialty">{{ education.courseName}}</div>
+              <div class="aducation__years">{{ education.startStudyYear}} - {{ education.endStudyYear}}</div>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>

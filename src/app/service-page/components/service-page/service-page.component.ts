@@ -8,6 +8,8 @@ import { filter } from 'rxjs/operators';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 import { ScrollToService, ScrollToConfigOptions } from '@nicky-lenaers/ngx-scroll-to';
 import { SimilarOffersInterface } from 'src/app/shared/interfaces/similar-offers.interface';
+import { UserService } from 'src/app/core/services/user.service';
+import { LocalizeRouterService } from 'localize-router';
 
 
 @Component({
@@ -43,6 +45,9 @@ export class ServicePageComponent implements OnInit {
     // tslint:disable-next-line: variable-name
     private _scrollToService: ScrollToService,
     private localStorageService: LocalStorageService,
+    private currentUserService: UserService,
+    private localize: LocalizeRouterService,
+    private router: Router,
 
   ) {
     this._route.queryParams
@@ -69,6 +74,21 @@ export class ServicePageComponent implements OnInit {
       // console.log(this.offerData);
       this.formateCommentCount();
     });
+  }
+
+  // Open ChatRoom ws this collocutor
+  public openChat(userId) {
+    console.log('go chat');
+    this.currentUserService.wrightTo(userId)
+      .subscribe(res => {
+        if (res === 'ok') {
+          const translatedPath: any = this.localize.translateRoute('/dashboard/chat-room');
+          this.router.navigate([translatedPath]);
+        } 
+      });
+        
+      const translatedPath: any = this.localize.translateRoute('/dashboard/chat-room');
+      this.router.navigate([translatedPath]);
   }
 
   formateCommentCount() {

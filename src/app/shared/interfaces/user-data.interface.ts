@@ -1,7 +1,7 @@
 export interface UserDataInterface {
   id: number | string;
   // role_id?: number | string;
-  load?: number;
+  busy?: number;
   online?: boolean;
   avatar?: string;
   name?: string;
