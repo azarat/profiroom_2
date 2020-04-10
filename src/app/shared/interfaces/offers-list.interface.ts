@@ -8,7 +8,12 @@ export interface OffersListInterface {
     id?: number;
     minprice: number;
     name?: string;
-    rating?: number;
+    averageRaiting?: {
+      averageMark?: number;
+      qualityMark?: number;
+      termMark?: number;
+      politenessMark?: number;
+    }
     sub_category_id: number;
     // user_id?: number;
     user?: [
