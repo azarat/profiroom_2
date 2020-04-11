@@ -93,7 +93,7 @@ export class LoginPageComponent implements OnInit {
           } else if(error === 'Bad Request') {
             this.message = {
               title: 'Ошибка',
-              description: 'Не верно укзанные данные'
+              description: 'Не верно указанные данные'
             };
           }
         });

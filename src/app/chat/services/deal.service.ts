@@ -32,5 +32,7 @@ export class DealService {
   //   return this.http.post('/sendCustomerComment', rateData);
   // }
 
-
+  public callToArbitr(id: number) {
+    return this.http.post('/callArbitr', { deal_id: id });
+  }
 }

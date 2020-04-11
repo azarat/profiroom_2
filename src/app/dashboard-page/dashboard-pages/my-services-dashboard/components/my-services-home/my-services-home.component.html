@@ -14,7 +14,8 @@
               </i>Создать услугу</button><br><br>
           </div>
           <ng-container *ngFor="let userService of userServices; let i = index">
-            <ng-container *ngIf="currentTab === 0 || userService.published && currentTab === 1 || userService.canPublish && currentTab === 2 || !userService.canPublish && currentTab === 3 ">
+            <ng-container *ngIf="currentTab === 0 || userService.published && currentTab === 1 || 
+            userService.canPublish && !userService.published && currentTab === 2 || !userService.canPublish && !userService.published &&  currentTab === 3 ">
               <div class="item" >
                 <div class="service-photo" (click)="openOffer(userService.id)">
                   <img [src]="userService.mainImage" alt="offer-img">

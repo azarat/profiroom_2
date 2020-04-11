@@ -4,6 +4,7 @@ import { UsersCommentsComponent } from './users-comments.component';
 import { LocalizeRouterModule } from 'localize-router';
 import { RouterModule } from '@angular/router';
 import { ClickOutsideModule } from 'ng-click-outside';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -13,7 +14,9 @@ import { ClickOutsideModule } from 'ng-click-outside';
     CommonModule,
     LocalizeRouterModule,
     RouterModule,
-    ClickOutsideModule
+    ClickOutsideModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     UsersCommentsComponent

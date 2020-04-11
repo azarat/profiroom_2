@@ -9,7 +9,7 @@ export class UserCommentService {
 
     constructor(private http: HttpClient){}
 
-    public sendComment() {
-        
+    public sendComment(data) {
+       return this.http.post('/commentAnswer', data);
     }
 }

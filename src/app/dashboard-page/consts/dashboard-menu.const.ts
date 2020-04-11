@@ -34,6 +34,6 @@ export const dashboardMenuConst = [
     title: 'Настройки',
     link: '/dashboard/settings',
     class: 'settings'
-  }
+  },
 ];
 

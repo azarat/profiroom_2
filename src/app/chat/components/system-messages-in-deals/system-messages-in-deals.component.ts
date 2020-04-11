@@ -13,10 +13,11 @@ export class SystemMessagesInDealsComponent implements OnInit {
 
   @Input() systemMessage;
   @Input() collocutorData: any;
-  messageBreef = null;
-  messageMoneyHolded;
-  isUserFreelancer: boolean = null;
-  messageClass: string;
+
+  public messageBreef = null;
+  public messageMoneyHolded;
+  public isUserFreelancer: boolean = null;
+  public messageClass: string;
   public dealCencel: boolean = null;
   public deal: CollucutorsListInterface;
 
@@ -29,6 +30,7 @@ export class SystemMessagesInDealsComponent implements OnInit {
     this._CheckMessage();
     this.checkIsUserFreelancer();
     this.changeBtnStyling();
+    console.log(this.systemMessage)
   }
 
   private _CheckMessage() {
@@ -47,6 +49,8 @@ export class SystemMessagesInDealsComponent implements OnInit {
       this.messageClass = 'DealFinished';
     } else if (this.systemMessage.message.name === 'DealFinishCanceledByCustomer') {
       this.messageClass = 'DealFinishCanceled';
+    }else if(this.systemMessage.message.name === 'arbitration') {
+      this.messageClass = 'arbitr';
     }
   }
 

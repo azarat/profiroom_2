@@ -34,22 +34,21 @@ export class MessagerToolsComponent implements OnInit {
   @Input() collocutorData: CollocutorListModel;
   public deal: CollucutorsListInterface;
 
-  packagePrice: string;
-  isUserFreelancer: boolean = null;
-  thsnd = 0;
-  hundr = 0;
-  tens = 0;
-  singlNum = 0;
-  isDealBtnsVisible = null;
-
+  public packagePrice: string;
+  public isUserFreelancer: boolean = null;
+  public thsnd = 0;
+  public hundr = 0;
+  public tens = 0;
+  public singlNum = 0;
+  public isDealBtnsVisible = null;
 
   // varaibles for buttons
-
-  canDealBePayded: boolean = null;
-  canDealBeStarted: boolean = null;
-  isCencelButn: boolean = null;
-  isFinishDealButn: boolean = null;
-  isCancelOrCompleateDealBtn: boolean = null;
+  public canDealBePayded: boolean = null;
+  public canDealBeStarted: boolean = null;
+  public isCencelButn: boolean = null;
+  public isFinishDealButn: boolean = null;
+  public isCancelOrCompleateDealBtn: boolean = null;
+  public isArbitrBtn: boolean = null;
 
   constructor(
     private chatService: ChatService,
@@ -96,6 +95,7 @@ export class MessagerToolsComponent implements OnInit {
           this.freelancerStartWorking(); // check does freelancer cen start working
           this.cenDealBeCanceled();
           this.cenDealBeFineshed();
+          this.isArbitrBtnVisible();
           if (this.deal.workStarted === 1) {
             this.setTimer();
           }
@@ -155,24 +155,24 @@ export class MessagerToolsComponent implements OnInit {
   }
 
   private freelancerStartWorking() { // check does freelancer cen start working
-    this.canDealBeStarted = this.isUserFreelancer && this.deal.workStarted !== 1 && this.deal.earlyСlosing !== 1
+    this.canDealBeStarted = this.isUserFreelancer && this.deal.workStarted !== 1 && this.deal.earlyСlosing !== 1 && this.deal.status !== 'arbitr' 
       && this.deal.moneyHolded === 1 && this.deal.status !== 'archived' ? true : null;
   }
 
   private cenDealBeCanceled() {
-    this.isCencelButn = this.deal.earlyСlosing !== 1 && this.deal.dealDone !== 1
+    this.isCencelButn = this.deal.earlyСlosing !== 1 && this.deal.dealDone !== 1 && this.deal.status !== 'arbitr' 
       && this.deal.breef === 1 && this.deal.status !== 'archived' ? true : null;
   }
 
   private cenDealBeFineshed() {
-    this.isFinishDealButn = this.isUserFreelancer && this.deal.moneyHolded === 1 && this.deal.earlyСlosing !== 1
+    this.isFinishDealButn = this.isUserFreelancer && this.deal.status !== 'arbitr'  && this.deal.moneyHolded === 1 && this.deal.earlyСlosing !== 1
       && this.deal.workStarted === 1 && this.deal.workEnded !== 1 && this.deal.dealDone !== 1 ? true : null;
   }
 
-  // private cencelOrCompleateDeal() {
-  //   this.isCancelOrCompleateDealBtn = !this.isUserFreelancer && this.deal.workEnded === 1
-  //     && this.deal.dealDone !== 1 && this.deal.status !== 'archived' ? true : null;
-  // }
+  private isArbitrBtnVisible() {
+    this.isArbitrBtn = this.deal.moneyHolded === 1 && this.deal.status !== 'arbitr' && this.deal.dealDone !== 1 
+    && this.deal.workEnded !== 1 ? true : null
+  }
 
 
 
@@ -198,6 +198,11 @@ export class MessagerToolsComponent implements OnInit {
       .subscribe(res => {
         // this.chatService.resetDealInfo(this.collocutorData.id)
       });
+  }
+
+  public callArbitr() {
+    this.dealService.callToArbitr(this.collocutorData.id)
+    .subscribe(res => console.log(res));
   }
 
 }

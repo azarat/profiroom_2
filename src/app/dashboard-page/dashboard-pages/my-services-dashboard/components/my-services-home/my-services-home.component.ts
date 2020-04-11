@@ -84,7 +84,7 @@ export class MyServicesHomeComponent implements OnInit {
       .subscribe((res: any) => {
         if (res.userOffers.length > 0) {
           this.userServices = plainToClass(UserServiceModel, this.deleteEmptyService(res.userOffers).slice().reverse());
-          // console.log( this.userServices);
+          console.log('userServices', this.userServices);
         } else {
           this.userServices = [];
         }
