@@ -205,7 +205,9 @@
       </div>
     </section>
     <app-user-page-services *ngIf="userData" [userData] = userData id="services"></app-user-page-services>
-    <app-user-page-comments *ngIf="userData" [userData] = userData [userTypeFreelancer]=userTypeFreelancer id="comments"></app-user-page-comments>
+    <!-- <app-user-page-comments *ngIf="userData" [userData] = userData [userTypeFreelancer]=userTypeFreelancer id="comments"></app-user-page-comments> -->
+
+    <app-users-comments *ngIf="userData" [userData]="userData"></app-users-comments>
   </div>
 </div>
 

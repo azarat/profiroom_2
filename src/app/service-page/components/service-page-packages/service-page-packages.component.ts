@@ -14,9 +14,10 @@ export class ServicePagePackagesComponent implements OnInit {
   // tslint:disable-next-line: no-output-on-prefix
   @Output() checkoutState = new EventEmitter<any>();
   @Output() scrollToCompare = new EventEmitter<any>();
-  public token: any;
+  public token: any = null;
   public openFeatures = false;
   public extraFeaturesForm: FormGroup;
+  public notAuth;
   extraFeatures: any;
 
   @Input() offerData: OfferDataInterface;
@@ -85,16 +86,29 @@ export class ServicePagePackagesComponent implements OnInit {
   // }
 
   public goCheckout(packageType) {
-    this.extraFeaturesForm.addControl('packageTitle', this.fb.control(packageType));
-    this.checkoutState.emit(this.extraFeaturesForm.value);
+    if(this.token !== null) {
+      this.extraFeaturesForm.addControl('packageTitle', this.fb.control(packageType));
+      this.checkoutState.emit(this.extraFeaturesForm.value);
+    } else {
+      console.log("не авторизирован");
+    }
+
+    
   }
 
   public goCompareTable() {
     this.scrollToCompare.emit();
   }
-  checkUserToken() {
+
+  private checkUserToken() {
     this.token = this.localStorageService.getItem('token').value;
-    console.log(this.token);
+    if(this.token !== null) {
+      this.notAuth = true;
+    } else {
+      this.notAuth = false;
+    }
   }
 
+
+  
 }

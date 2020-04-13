@@ -1,6 +1,6 @@
 <section class="about-offer">
   <h4 class="section-title">
-    Другие услуги фрилансера <span>()</span>
+    Другие услуги фрилансера <span>( {{offerData.user.userOffers.length}} из {{offerData.user.userOfferCount}})</span>
   </h4>
   <div class="cards-list" *ngIf="offerData">
     <div class="card" *ngFor="let offer of offerData.user.userOffers">

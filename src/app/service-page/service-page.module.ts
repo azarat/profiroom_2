@@ -17,6 +17,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { ServicePageCompareTableComponent } from './components/service-page-compare-table/service-page-compare-table.component';
 import { ServicePageEarlierViewedComponent } from './components/service-page-earlier-viewed/service-page-earlier-viewed.component';
 import { ServicePageCommentsComponent } from './components/service-page-comments/service-page-comments.component';
+import { UsersCommentsModule } from 'src/app/shared/modules/users-comments/users-comments.module';
 import { MatCheckboxModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ServicePageCheckoutComponent } from './components/service-page-checkout/service-page-checkout.component';
@@ -52,7 +53,8 @@ const routes: Routes = [
     MatExpansionModule,
     MatCheckboxModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    UsersCommentsModule,
   ],
   exports: [
     ServicePageComponent,
