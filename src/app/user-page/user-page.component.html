@@ -141,7 +141,7 @@
     <section class="aducation" *ngIf="userTypeFreelancer">
       <div class="section-title">Дополнительное образование</div>
       <div class="aducation__wrapper">
-        <div class="aducation__info-block" *ngFor="let education of userData.additionalEducation">
+        <div class="aducation__info-block" *ngFor="let education of userData.additionalEducation; let thisArr = index">
 
           <div class="aducation__img-list" *ngIf="education.aditional_diploma_files.length; let i = index">
             <ng-container *ngFor="let img of education.aditional_diploma_files; let i = index">
