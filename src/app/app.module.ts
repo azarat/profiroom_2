@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { SocketService } from './chat/services/socket.service';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { SystemMessagesService } from './shared/modules/system-messages/services/system-messages.service';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
   ],
   providers: [
     // CategoryResolver
-    SocketService
+    SocketService,
+    SystemMessagesService
   ],
   bootstrap: [AppComponent]
 })

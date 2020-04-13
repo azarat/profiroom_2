@@ -17,6 +17,7 @@
               #institution="ngModel"
               minlength="4"
               name="institution-{{i}}"
+              placeholder="Учебное заведение"
               [(ngModel)]="userSettings.additionalEducation[i].additionalInstitution"
               [ngClass] = "{not_Valid: !institution.valid }"
             >
@@ -35,6 +36,7 @@
                 #specialty="ngModel"
                 minlength="4"
                 name="specialty-{{i}}"
+                placeholder="Название курсов"
                 [(ngModel)]="userSettings.additionalEducation[i].courseName"
                 [ngClass] = "{not_Valid: !specialty.valid}"
               >

@@ -41,6 +41,7 @@ export class UserPageComponent implements OnDestroy, OnInit  {
   private id: any = null;
   private destroy$ = new Subject<undefined>();
   private windowScrolling: WindowScrollBlockService;
+  public convertedDate = null;
 
   constructor(
     // tslint:disable-next-line: variable-name
@@ -143,5 +144,8 @@ export class UserPageComponent implements OnDestroy, OnInit  {
     } else {
       this.userTypeFreelancer = 0;
     }
+  }
+  public convertDateToDMY(x) {
+    return this.convertedDate = x.slice(0, x.indexOf(' '));
   }
 }

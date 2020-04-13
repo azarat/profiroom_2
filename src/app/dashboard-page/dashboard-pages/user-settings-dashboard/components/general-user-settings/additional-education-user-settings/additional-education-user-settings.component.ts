@@ -49,8 +49,8 @@ export class AdditionalEducationUserSettingsComponent implements OnInit {
         if (this.additionalEducationId) {
           this.userSettings.additionalEducation.push({
             id: this.additionalEducationId,
-            additionalInstitution: 'Учебное заведение',
-            courseName: 'Название курсов',
+            additionalInstitution: '',
+            courseName: '',
             startStudyMounth: 1,
             startStudyYear: 1960,
             endStudyMounth: 1,

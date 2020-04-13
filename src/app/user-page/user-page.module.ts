@@ -5,7 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LocalizeRouterModule } from 'localize-router';
 import { MainHeaderModule } from '../shared/modules/main-header/main-header.module';
 import { CategoriesHeaderModule } from '../shared/modules/categories-header/categories-header.module';
-
+import { UsersCommentsModule } from 'src/app/shared/modules/users-comments/users-comments.module';
 import { UserDataService } from './service/user.service';
 import { UserPageServicesComponent } from './user-page-services/user-page-services.component';
 import { UserPageCommentsComponent } from './user-page-comments/user-page-comments.component';
@@ -30,7 +30,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     MainHeaderModule,
     CategoriesHeaderModule,
-
+    UsersCommentsModule,
     // -----matherials
     MatTabsModule
   ],
