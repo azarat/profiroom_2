@@ -145,7 +145,8 @@
 
           <div class="aducation__img-list" *ngIf="education.aditional_diploma_files.length; let i = index">
             <ng-container *ngFor="let img of education.aditional_diploma_files; let i = index">
-              <div class="img-item"  (click)="showPopUp(i, thisArr, 'img')" [ngClass]="{open_popUp: clickedEducationImgs === thisArr && clickedSinglImg === i}">
+              <div class="img-item"  (click)="showPopUp(i, thisArr, 'img')" [ngClass]="{open_popUp: clickedEducationImgs === thisArr 
+                && clickedSinglImg === i}">
                 <img src="{{img.link}}" alt="">
                 <div class="close-popUp" ></div>
               </div>
