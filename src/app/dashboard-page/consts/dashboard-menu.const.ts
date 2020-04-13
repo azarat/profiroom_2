@@ -35,5 +35,10 @@ export const dashboardMenuConst = [
     link: '/dashboard/settings',
     class: 'settings'
   },
+  {
+    title: 'Арбитраж',
+    link: '/dashboard/arbitration',
+    class: 'arbitr'
+  },
 ];
 

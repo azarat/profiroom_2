@@ -80,7 +80,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     TranslateModule
 
   ],
-  exports: [ChatComponent],
+  exports: [
+    ChatComponent,
+    BreefMessageShowingComponent,
+    SystemMessagesInDealsComponent,
+  ],
   providers: [
     ChatService,
     MessageScrollerService

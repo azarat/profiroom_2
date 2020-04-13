@@ -31,10 +31,10 @@
       <nav>
         <ng-container *ngFor="let el of dashboardMenu">
           <a class="{{el.class}}"
-            *ngIf="user.role_id === 1 && el.class !== 'catalog' || 
+            *ngIf="user.role_id === 1 && el.class !== 'catalog' && el.class !== 'arbitr' || 
             user.role_id === 2 && el.class !== 'dashboard' && 
-            el.class !== 'services' && el.class !== 'dashboard' ||
-            (user.role_id === 42 && el.class !== 'services' && el.class !== 'settings' && el.class !== 'projects')
+            el.class !== 'services' && el.class !== 'dashboard' && el.class !== 'arbitr' ||
+            (user.role_id === 42 && el.class !== 'services' && el.class !== 'settings' && el.class !== 'projects' || el.class === 'arbitr'  )
             "
             [routerLink]="el.link | localize" [routerLinkActive]="'active'" (click)="openChat(el.class)"
             [ngClass]="{ 'new-message': newMessage, 'new-work-message': newWorkMessage }"><span>{{ el.title }}</span></a>
