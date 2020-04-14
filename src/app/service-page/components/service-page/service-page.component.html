@@ -134,4 +134,18 @@
   <div class="checkout-block" *ngIf='step2'>
     <app-service-page-checkout [offerData]="offerData" [chousenOnOfferPage]="chousenOnOfferPage" (checkoutHidden)="hideCheckout()"></app-service-page-checkout>
   </div>
+  <div class="error-message" *ngIf="messageNotAuthorized">
+    <div class="error-message__info-block">
+      <div class="error-message__icon"><img src="/assets/images/svg/error-message-icon.svg" alt=""></div>
+      <div class="error-message__text">
+        <p class="accent">Вы не можите заказать услугу пока не авторизируетесь</p>
+        <p>Зарегистрируйтесь если вы ещё этого не сделали</p>
+      </div>
+      <div class="btns-wrapper">
+        <div class="btn" [routerLink]="'/auth' | localize">Авторизируйтесь</div>
+        <div class="btn accent" (click)="closeErroMessage()">Закрыть</div>
+      </div>
+      <div class="error-message__close" (click)="closeErroMessage()"></div>
+    </div>
+  </div>
 </div>

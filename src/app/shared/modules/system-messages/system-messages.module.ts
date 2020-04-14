@@ -4,6 +4,8 @@ import { SystemMessagesComponent } from './system-messages.component';
 import { MatIconModule } from '@angular/material/icon';
 import { ChatService } from 'src/app/chat/services/chat.service';
 import { SocketService } from 'src/app/chat/services/socket.service';
+import { ClickOutsideModule } from 'ng-click-outside';
+import { DataFormatModule } from '../../pipes/data-format/data-format.module';
 
 
 
@@ -16,7 +18,8 @@ import { SocketService } from 'src/app/chat/services/socket.service';
   imports: [
     CommonModule,
     MatIconModule,
-    
+    ClickOutsideModule,
+    DataFormatModule
   ],
   providers: [
     ChatService,
