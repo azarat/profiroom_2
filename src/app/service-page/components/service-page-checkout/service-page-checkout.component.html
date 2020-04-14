@@ -74,7 +74,10 @@
     <h3 class="final-services__title">ваш выбор услуги</h3>
     <div class="final-services__wrapper">
       <div class="final-services__top">
-        <h4 class="additional-options__name">{{currentPackage}}</h4>
+        <ng-container *ngFor="let package of packages">
+          <h4 class="additional-options__name" *ngIf="package.name === currentPackage">{{package.translate}}</h4>
+        </ng-container>
+        
         <div class="final-price__no-features">
           <span class="final-price__text">Общая стоимость (без доп. опций)</span><span class="final-price__price">{{offerData[currentPackage].price}} UAH</span>
         </div>

@@ -57,6 +57,21 @@ export class ServicePageCheckoutComponent implements OnInit {
     } [];
   } = {};
 
+  public packages = [
+    {
+      name: 'basic',
+      translate: 'Базовый'
+    },
+    {
+      name: 'advanced',
+      translate: 'Стандарт'
+    },
+    {
+      name: 'premium',
+      translate: 'Премиум'
+    }
+  ];
+
   constructor(
     private fb: FormBuilder,
     private servicePageService: ServicePageService

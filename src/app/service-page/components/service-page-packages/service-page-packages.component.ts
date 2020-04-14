@@ -64,7 +64,6 @@ export class ServicePagePackagesComponent implements OnInit {
       if (el.published) {
         this.extraFeaturesForm.addControl(el.title, this.fb.control(null));
       }
-
     });
   }
 

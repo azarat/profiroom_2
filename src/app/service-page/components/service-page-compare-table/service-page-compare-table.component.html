@@ -6,7 +6,7 @@
     <div class="table-titles">
       <div class="table-cell"></div>
       <div class="table-cell" >Базовый</div>
-      <div class="table-cell" *ngIf="offerData.allPackages">Cандарт</div>
+      <div class="table-cell" *ngIf="offerData.allPackages">Стандарт</div>
       <div class="table-cell" *ngIf="offerData.allPackages">Премиум</div>
     </div>
 
@@ -28,7 +28,7 @@
         </ng-container>
       </div>
       <div class="table-item">
-        <div class="table-cell title-cell">{{priceTitle[0].priceName}}</div>
+        <div class="table-cell title-cell">Цена</div>
         <ng-container *ngFor="let package of packages">
           <div class="table-cell centerMode">
             {{ offerData[package].price }} ₴
@@ -55,7 +55,7 @@
         </ng-container>
       </div>
       <div class="table-item">
-        <div class="table-cell title-cell">{{priceTitle[0].priceName}}</div>
+        <div class="table-cell title-cell">Цена</div>
         <ng-container>
           <div class="table-cell centerMode">
             {{ offerData.basic.price }} ₴
