@@ -200,17 +200,17 @@
       height: 100%;
       outline: none;
       width: 100%;
-      padding: 10px;
-      box-sizing: border-box;
+      // padding: 10px;
+      // box-sizing: border-box;
     }
 
     .input-wrap {
       padding: 10px;
       width: 80%;
-      height: 60%;
+      height: 100%;
       margin: auto;
       display: flex;
-      align-items: center;
+      align-content: center;
       justify-content: center;
 
       input {
@@ -314,6 +314,7 @@
       &>div {
         height: 60px;
         border-right: 1px solid #dce0e6;
+        display: flex;
       }
 
       .packages-title {
@@ -332,7 +333,12 @@
         width: 25%;
         height: 275px;
         border-right: 1px solid #dce0e6;
-
+        padding: 10px;
+        box-sizing: border-box;
+        textarea {
+          // padding: 10px;
+          box-sizing: border-box;
+        }
         .description-title {
           background: #f4f7fc;
         }
@@ -363,7 +369,7 @@
 
       .option-title {
         background: #f4f7fc;
-
+        display: flex;
         input {
           background: #f4f7fc;
 
@@ -568,9 +574,10 @@
 
             &.price {
               margin-left: 42px;
-              padding: 7px 8px;
+              padding: 3px 8px;
               width: 80px;
-              height: 20px;
+              height: 34px;
+              box-sizing: border-box;
 
               input {
                 width: 52%;
@@ -780,10 +787,10 @@
 
           &.price {
             margin-left: 42px;
-            padding: 7px 8px;
+            padding: 3px 8px;
             width: 80px;
-            height: 20px;
-
+            height: 34px;
+            box-sizing: border-box;
             input {
               width: 52%;
               height: 100%;

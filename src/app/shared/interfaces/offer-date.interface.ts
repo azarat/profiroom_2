@@ -27,6 +27,7 @@ export interface OfferDataInterface {
     rank_id?: string;
     online: boolean;
     countOffers?: number;
+    userOfferCount?: any;
     averageRaiting?: {
       averageMark?: number;
       qualityMark?: number;

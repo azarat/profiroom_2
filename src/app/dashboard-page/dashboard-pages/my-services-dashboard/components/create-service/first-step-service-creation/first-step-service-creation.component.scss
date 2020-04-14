@@ -108,7 +108,10 @@ form::ng-deep {
       top: -5px !important;
       z-index: 2;
       max-width: 323px;
-
+      border: none;
+      .arrow {
+        display: none !important;
+      }
       &:before {
         content: "";
         position: absolute;
@@ -130,6 +133,8 @@ form::ng-deep {
         line-height: 18px;
         color: #000000;
         margin: 0 0 12px;
+        background: transparent;
+        border: none;
       }
 
       .popover-body {

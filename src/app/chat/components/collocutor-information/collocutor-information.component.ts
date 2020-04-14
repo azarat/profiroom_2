@@ -30,7 +30,8 @@ export class CollocutorInformationComponent implements OnInit {
     .subscribe((res: any) => {
 
       this.collocutor = plainToClass(CollocutorInformationModel, res.user)
-      this.collocutorAllComments = this.commentsCountTransformerService.transformCommentsVlalue(this.collocutor.comments_count);
+      console.log('this.collocutor', this.collocutor)
+      this.collocutorAllComments = this.commentsCountTransformerService.transformCommentsVlalue(this.collocutor.negative_comments_count + this.collocutor.positive_comments_count );
     });
   }
 

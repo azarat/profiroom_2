@@ -4,7 +4,7 @@
     <button *ngIf="canDealBePayded" class="btn" (click)="holdMoneynDeal()">Зарезирвировать оплату</button>
     <button *ngIf="canDealBeStarted" class="btn" (click)="goToWork()">Приступить к работе</button>
     <button (click)="cencelWork()" *ngIf="isCencelButn" >отменить работу</button>
-    <!-- <button>обратиться в арбитраж</button> -->
+    <button *ngIf="isArbitrBtn" (click)="callArbitr()">обратиться в арбитраж</button>
     <button *ngIf="isFinishDealButn" (click)="finishWork()" >Завершить работу</button>
   </div>
   <div class="timer" *ngIf="deal.workStarted === 1 && deal.moneyHolded !==0 && deal.dealDone !== 1">

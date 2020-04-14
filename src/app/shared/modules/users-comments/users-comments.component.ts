@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { UserDataInterface } from '../../interfaces/user-data.interface';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LocalizeRouterService } from 'localize-router';
+import { UserCommentService } from './services/user.comment.service';
 
 @Component({
   selector: 'app-users-comments',
@@ -36,9 +37,8 @@ export class UsersCommentsComponent implements OnInit {
     }
   ];
   public commentForm: {
-    id: number,
-    text: string,
-    sender: number | string
+    commentText: string,
+    commentId: number | string
   };
 
   public showAllchildComments = null;
@@ -47,6 +47,7 @@ export class UsersCommentsComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private localize: LocalizeRouterService,
+    private userCommentService: UserCommentService
   ) { }
 
   ngOnInit() {
@@ -78,13 +79,20 @@ export class UsersCommentsComponent implements OnInit {
 
     this.commentFormOpen = this.commentFormOpen === id? null : id;
     this.commentForm = {
-      id: id,
-      text: null,
-      sender: this.userData.id
+      commentText: null,
+      commentId: id
     }
   }
 
   public closeForm() {
     this.commentFormOpen = null;
+  }
+
+  public sendComment(index, commentType) {
+    this.userCommentService.sendComment(this.commentForm )
+    .subscribe(res => {
+      console.log(res);
+      this.userData[commentType][index].childs.push(res);
+    })
   }
 }

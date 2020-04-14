@@ -1,0 +1,51 @@
+<div class="wrapper">
+    <h2>Арбитраж</h2>
+
+    <div class="arbitrations">
+        <div *ngFor="let el of arbitrationList">
+            <span class="name">
+                {{ el.offers_title }}
+            </span>
+            <span class="package">
+                package: {{ el.package }}
+            </span>
+            <span>created: {{ el.created_at | dateFormatPipe: 'dd.MM HH:mm'}}</span>
+            <button (click)="openDeal(el)">Open Deal</button>
+        </div>
+    </div>
+
+
+    <div class="deal" *ngIf="messages">
+        <br>
+        <button (click)="closeDeal()">Close This Deal</button>
+        <br>
+
+        <div>
+            <h5>Winer is ...
+                <span *ngIf="arbitrForm.vinner_id === dealInArbitration.freelanser_id">Freelancer</span>
+                <span *ngIf="arbitrForm.vinner_id === dealInArbitration.customer_id">Customer</span>
+            </h5>
+            <div>
+                <button (click)="WinerIs(dealInArbitration.customer_id)">Customer id: {{ dealInArbitration.freelanser_id }}</button>
+                <button (click)="WinerIs(dealInArbitration.freelanser_id)">Freelancer id:{{ dealInArbitration.customer_id }} </button>
+            </div>
+
+
+            <textarea name="" id="" cols="30" rows="10" placeholder="ArbitrMessage" required
+                [(ngModel)]="arbitrForm.messageText">
+
+            </textarea>
+            <button (click)="makeArbitration()">Submit</button>
+
+            <h5>messages</h5>
+            <pre>
+                {{ messages | json }}
+            </pre>
+        </div>
+
+
+    </div>
+
+
+
+</div>

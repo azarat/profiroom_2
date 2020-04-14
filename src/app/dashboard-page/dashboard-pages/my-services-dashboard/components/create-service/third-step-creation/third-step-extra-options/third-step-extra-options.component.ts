@@ -14,7 +14,9 @@ export class ThirdStepExtraOptionsComponent implements OnInit {
 
   @Input() userService: UserServiceModel;
   @Input() submited: boolean;
-  ngOnInit() {}
+  ngOnInit() {
+    this.setDefaultCheckboxes();
+  }
 
   changesArrayCounter() {
     const changes = new Array();
@@ -53,5 +55,11 @@ export class ThirdStepExtraOptionsComponent implements OnInit {
     showOptions() {
       this.optionsVisible = !this.optionsVisible;
     }
-
+    
+    private setDefaultCheckboxes() {
+      this.userService.commercialOffer.publishCommercialOffer = false;
+      this.userService.extraOfferChanges.publishExtraOfferChanges = false;
+      this.userService.compressedDeadlines.publishCompressedDeadlines
+       = false;
+    }
 }

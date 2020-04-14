@@ -127,23 +127,40 @@
       transform: translate(-50%, -50%);
       font-family: icoMoon;
       font-size: 16px;
-      background: #BFC5D1;
+      z-index: 2;
       border-radius: 2px;
       color: #fff;
+      background-color: transparent;
+    }
+
+    &:after {
+      position: absolute;
+      content: '';
+      width: 21px;
+      height: 17px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #BFC5D1;
+      z-index: 1;
+      border-radius: 3px;
     }
 
     &:hover {
       border: 1px solid #5695FD;
 
       &:before {
-        background: #5695FD
+       
+      }
+      &:after {
+         background: #5695FD
       }
     }
 
     &:active {
       border: 1px solid #1666EA;
 
-      &:before {
+      &:after {
         background: #1666EA;
       }
     }

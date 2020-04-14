@@ -30,7 +30,9 @@ translatedPath: any = this.localize.translateRoute('/dashboard/my-services');
   @Input() userService: UserServiceModel;
   @Output() public setCurrentStep = new EventEmitter();
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.userService.allPackages = false;
+   }
 
   changesArrayCounter() {
     const changes = new Array();

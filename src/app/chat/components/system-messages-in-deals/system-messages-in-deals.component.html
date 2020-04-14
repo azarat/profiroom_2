@@ -1,4 +1,4 @@
-<div class="system-message {{ messageClass }}" >
+<div class="system-message {{ messageClass }}" *ngIf="systemMessage.message.name !== 'moneyGivedToCustomer' && systemMessage.message.name !== 'moneyGivedToFreelancer'">
   <div>
     <div class="icon">
       <img [src]="'/assets/images/icons/deals-icons/' + systemMessage.message.name + '.png'" alt="system-icon">
@@ -32,3 +32,34 @@
 
 
 <!-- earlyСlosing -->
+<div class="system-message arbitr-mess" 
+*ngIf="systemMessage.message.name === 'moneyGivedToCustomer' || systemMessage.message.name === 'moneyGivedToFreelancer'">
+  <div class="icon">
+    <img [src]="'/assets/images/icons/deals-icons/arbitr-answer.png'" alt="system-icon">
+  </div>
+  
+  <div> 
+    
+    <h5>Решение арбитража</h5>
+    <div>
+      <div>
+        <p>
+          Вынесен вердикт в пользу
+        </p>
+      </div>
+      <div class="avatar"> <img [src]="systemMessage.message.vinnerAvatar" alt="ava"> </div>
+      <div>
+        <p>{{ systemMessage.message.vinnerName }} {{ systemMessage.message.vinnerSurname }}</p>
+        <p>
+          <ng-container *ngIf="systemMessage.message.name === 'moneyGivedToFreelancer'">Фрилансер</ng-container>
+          <ng-container *ngIf="systemMessage.message.name === 'moneyGivedToCustomer'">Заказчик</ng-container>
+        </p>
+      </div>
+  </div>
+  <div class="description">
+    <p>
+      {{ systemMessage.message.arbitrMessage }}
+    </p>
+  </div>
+</div>
+</div>

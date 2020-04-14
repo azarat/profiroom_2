@@ -50,7 +50,12 @@ const routes: Routes = [
         path: 'settings',
         loadChildren: () => import('./dashboard-pages/user-settings-dashboard/user-settings-dashboard.module')
           .then(m => m.UserSettingsDashboardModule)
+      },
+      {
+        path: 'arbitration',
+        loadChildren: () => import('./dashboard-pages/arbitration-page/arbitration-page.module').then(m => m.ArbitrationPageModule)
       }
+
 
     ]
   }

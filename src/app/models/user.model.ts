@@ -26,6 +26,7 @@ export class UserModel {
   @Expose() allDealsPerYears: number[];
   @Expose() allDealsperMonths: number[];
   @Expose() achivments: any;
+  @Expose() pieChart: number[];
 
   @Type(() => UserServiceModel) userservice: UserServiceModel[];
 
