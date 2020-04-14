@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { CategorysListService } from '../../../core/services/categorys.service';
+import { CategoriesListService } from '../../../core/services/categories.service';
 import { ActivatedRoute } from '@angular/router';
 
 
@@ -9,16 +9,16 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./categories-header.component.scss']
 })
 export class CategoriesHeaderComponent implements OnInit {
-  categorysList: any;
+  categoriesList: any;
   public noHover = false;
 
   // @Output() public hoverStatus = new EventEmitter();
 
   constructor(
-    private categorysListService: CategorysListService,
+    private categoriesListService: CategoriesListService,
     private _route: ActivatedRoute,
   ) {
-    this.categorysListService.getCategorys();
+    this.categoriesListService.getCategories();
 
     if(this._route.snapshot.routeConfig.path === ""){
       this.noHover = true;
@@ -26,9 +26,9 @@ export class CategoriesHeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.categorysListService.getCategorys()
+    this.categoriesListService.getCategories()
     .subscribe(res => {
-      this.categorysList = res;
+      this.categoriesList = res;
     });
     // this.hoverStatus.emit(true);
   }

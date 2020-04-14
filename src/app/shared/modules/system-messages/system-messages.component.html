@@ -1,7 +1,7 @@
 <section class="notifications">
   <mat-icon aria-hidden="false" matBadge="1" aria-label="Example home icon" matBadgeColor="warn" (click)="toggleMessageList($event)" class="test" [ngClass]="{active: newSystemMessages}">notifications
   </mat-icon>
-  <div class="notifications-wrapp" *ngIf="showMessagesListBlock" (clickOutside)="toggleMessageList($event)" [exclude]="'.test'"> 
+  <div class="notifications-wrap" *ngIf="showMessagesListBlock" (clickOutside)="toggleMessageList($event)" [exclude]="'.test'"> 
     <div class="notifications-title"  *ngIf="messageListEmpty">
       <span (click)="deleteMessageItem(0, systemMessagesArr.length)">Очистить все</span> 
     </div>
@@ -15,36 +15,10 @@
             </div>
             <div class="notification-item__text" (click)="openChat(message.roomId, message.id, i)"><span>{{type.message}} </span>"{{message.offers_title}}"</div>
             <div class="notification-item__date">{{message.created_at | dateFormatPipe: 'dd.MMMM HH:mm' }}</div>
-            <div class="notification-delet" (click)="deleteMessageItem(message.id, i)"></div>
+            <div class="notification-delete" (click)="deleteMessageItem(message.id, i)"></div>
           </div>
 
         </ng-container>
-        <!-- <div class="notification-item" >
-
-          <ng-container *ngFor="let type of systemMessagesTypes">
-            <div class="notification-item__icon" *ngIf="message.message === type">
-              <img src="assets/images/icons/systemMessages/{{type}}.png" alt="">
-            </div>
-          </ng-container>
-  
-          <div class="notification-item__text" (click)="openChat(message.roomId, message.id, i)" *ngIf="message.message === 'refuseBreef' && user.role_id === 2"><span>Отказ от брифа </span>"{{message.offers_title}}"</div>
-          <div class="notification-item__text" (click)="openChat(message.roomId, message.id, i)" *ngIf="message.message === 'approveBreef' && user.role_id === 2"><span>Бриф подтвержден</span>"{{message.offers_title}}"</div>
-          
-          <div class="notification-item__text" (click)="openChat(message.roomId, message.id, i)" *ngIf="message.message === 'workStarted' && user.role_id === 2"><span>Работа начата </span> "{{message.offers_title}}"</div>
-          <div class="notification-item__text" (click)="openChat(message.roomId, message.id, i)" *ngIf="message.message === 'holdMoney' && user.role_id === 1"><span>Средства зарезирвированы </span>"{{message.offers_title}}"</div>
-  
-          <div class="notification-item__text" (click)="openChat(message.roomId, message.id, i)" *ngIf="message.message === 'DealClosedByCustomer' && user.role_id === 1"><span>Работа отменина заказчиком </span>"{{message.offers_title}}"</div>
-          <div class="notification-item__text" (click)="openChat(message.roomId, message.id, i)" *ngIf="message.message === 'DealCloseByFreelancer' && user.role_id === 2"><span>Работа отменина фрилансером </span>"{{message.offers_title}}"</div>
-  
-          <div class="notification-item__text" (click)="openChat(message.roomId, message.id, i)" *ngIf="message.message === 'CancelSubmited' && user.role_id === 2"><span>Фрилансер подтвердил отмену сотрудничества </span>"{{message.offers_title}}"</div>
-          <div class="notification-item__text" (click)="openChat(message.roomId, message.id, i)" *ngIf="message.message === 'DealFinishCanceledByCustomer' && user.role_id === 1"><span>Работа отправлена на доработки </span>"{{message.offers_title}}"</div>
-          <div class="notification-item__text" (click)="openChat(message.roomId, message.id, i)" *ngIf="message.message === 'DealFinishedByFreelancer' && user.role_id === 2"><span>Работа завершина фрилансером </span>"{{message.offers_title}}"</div>
-          <div class="notification-item__text" (click)="openChat(message.roomId, message.id, i)" *ngIf="message.message === 'DealFinished' && user.role_id === 1"><span>Работа оплачена </span>"{{message.offers_title}}"</div>
-  
-          <div class="notification-item__date">{{message.created_at}}</div>
-          <div class="notification-delet" (click)="deleteMessageItem(message.id, i)"></div>
-        </div> -->
-
       </ng-container>
 
 

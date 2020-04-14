@@ -41,15 +41,15 @@
                 <div class="comment__raiting">
                   <div class="comment__raiting-item">
                     <span>Качество</span>
-                    <div class="star-raiting">{{comment.offers.averageRaiting.qualityMark}}</div>
+                    <div class="star-raiting">{{comment.offers.averageRating.qualityMark}}</div>
                   </div>
                   <div class="comment__raiting-item">
                     <span>Срок</span>
-                    <div class="star-raiting">{{comment.offers.averageRaiting.termMark}}</div>
+                    <div class="star-raiting">{{comment.offers.averageRating.termMark}}</div>
                   </div>
                   <div class="comment__raiting-item">
                     <span>Вежливость</span>
-                    <div class="star-raiting">{{comment.offers.averageRaiting.politenessMark}}</div>
+                    <div class="star-raiting">{{comment.offers.averageRating.politenessMark}}</div>
                   </div>
                 </div>
                 <form #form="ngForm" class="comment-form" action="" *ngIf="commentFormOpen && commentFormOpen === comment.id" (clickOutside)="closeForm()" [exclude]="'button.comment__answer'">

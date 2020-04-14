@@ -7,12 +7,12 @@
   position: relative;
   height: 50px;
 }
-.navigation_page {
+.navigation-page {
   background: #fafbfc;
   box-shadow: 0px 4px 4px rgba(128, 152, 213, 0.1);
   position: absolute;
   width: 100%;
-  top: 137px;
+  // top: 137px;
   &.sticky {
     position: fixed;
     top: 0;
@@ -154,8 +154,8 @@
       color: #5695FD;
     }
   }
-  &-raiting {
-    &-wrapp {
+  &-rating {
+    &-wrap {
       width: fit-content;
       text-align: right;
       position: relative;
@@ -308,7 +308,7 @@
 }
 
 
-.offer-raiting {
+.offer-rating {
   margin-bottom: 90px;
   position: relative;
   &::after{
@@ -320,7 +320,7 @@
     width: 100%;
     background: #EBEEFF;
   }
-  .raiting-type {
+  .rating-type {
     display: flex;
     margin-bottom: 13px;
     &_name {
@@ -387,7 +387,7 @@
 .choose-packet{
   width: 42%;
   position: relative;
-  .runing-block{
+  .running-block{
     width: 480px;
     height: auto;
     position: sticky;
@@ -516,4 +516,11 @@ app-service-page-earlier-viewed{
 }
 app-service-page-checkout{
   width: 100%;
+}
+
+@media (max-width: 1499px) {
+  .wrapper {
+    max-width: 1499px;
+    margin: 0 auto;
+  }
 }

@@ -26,7 +26,7 @@ export class UserPageComponent implements OnDestroy, OnInit  {
   imagePointer:number;
 
   public clickedEducationImgs = null;
-  public clickedSinglImg = null;
+  public clickedSingleImg = null;
   public userTypeFreelancer = 1;
 
   public academicDegreesTranslations = [
@@ -82,7 +82,7 @@ export class UserPageComponent implements OnDestroy, OnInit  {
       target,
       duration: 1000
     };
-    if (target === 'about' || target === 'aducation' ||
+    if (target === 'about' || target === 'education' ||
      target === 'rating' || target === 'comments' || target === 'services' ) {
       config.offset = -70;
     }
@@ -128,17 +128,17 @@ export class UserPageComponent implements OnDestroy, OnInit  {
     } else {
       this.clickedEducationImgs =false;
     }
-    if(this.clickedSinglImg !== i) {
-      this.clickedSinglImg = i
+    if(this.clickedSingleImg !== i) {
+      this.clickedSingleImg = i
     } else {
-      this.clickedSinglImg =false;
+      this.clickedSingleImg =false;
     }
   }
 
   // switching user types     
-  // 0 - frilancer
+  // 0 - freelancer
   // 1 - customer
-  public chouseUser(x) {
+  public choseUser(x) {
     if(x === 0) {
       this.userTypeFreelancer = 1;
     } else {

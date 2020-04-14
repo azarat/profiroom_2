@@ -26,7 +26,7 @@ export class NgxGalleryComponent implements OnInit {
 
   ngOnInit() {
     if (this.offerData.files !== null) {
-      this.pushImagesToArrey();
+      this.pushImagesToArray();
     }
 
     this.galleryOptions = [
@@ -64,7 +64,7 @@ export class NgxGalleryComponent implements OnInit {
 
 
 
-  pushImagesToArrey = () => {
+  pushImagesToArray = () => {
 
     this.offerData.files.forEach(item => {
       this.galleryImages.push(

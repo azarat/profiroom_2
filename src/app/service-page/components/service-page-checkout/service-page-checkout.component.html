@@ -11,7 +11,7 @@
         <h4>Выбор дополнительных опций</h4>
       </li>
       <li class="single-step">
-        <div class="single-step__status bref">3</div>
+        <div class="single-step__status brief">3</div>
         <h4>Заполнение брифа</h4>
       </li>
     </ul>
@@ -33,7 +33,7 @@
             </div>
           </ng-container>
           <div class="extra-features__item" *ngIf="offerData.extra_changes.published">
-            <mat-checkbox class="example-margin" formControlName="extraСhanges" name='extraСhanges'>
+            <mat-checkbox class="example-margin" formControlName="extraChanges" name='extraChanges'>
               <div class="extra-features__text">
                 <span class="extra-features__title">Дополнительные правки</span>
               </div>
@@ -52,7 +52,7 @@
           <ng-container *ngFor="let extra_feature of offerData.extra_features; let i = index">
             <div class="extra-features__item extra-features__item-column"  *ngIf="extra_feature.published">
               <div class="extra-features__item-wrapper">
-                <mat-checkbox class="extra-features__checkbox" [formControlName]="extra_feature.title" name='extra_feature.titl'>
+                <mat-checkbox class="extra-features__checkbox" [formControlName]="extra_feature.title" name='extra_feature.title'>
                   <span class="extra-features__title">{{extra_feature.title}}</span>
                   
                 </mat-checkbox>
@@ -66,7 +66,7 @@
           </ng-container>
 
         </ul>
-        <div class="btn-ceckout btn-checkoutForm" type="submit" (click)='chousenFeatures()'>добавить к услуге</div>
+        <div class="btn-checkout btn-checkoutForm" type="submit" (click)='chosenFeatures()'>добавить к услуге</div>
       </form>
     </div>
   </div>
@@ -74,7 +74,10 @@
     <h3 class="final-services__title">ваш выбор услуги</h3>
     <div class="final-services__wrapper">
       <div class="final-services__top">
-        <h4 class="additional-options__name">{{currentPackage}}</h4>
+        <ng-container *ngFor="let package of packages">
+          <h4 class="additional-options__name" *ngIf="package.name === currentPackage">{{package.translate}}</h4>
+        </ng-container>
+        
         <div class="final-price__no-features">
           <span class="final-price__text">Общая стоимость (без доп. опций)</span><span class="final-price__price">{{offerData[currentPackage].price}} UAH</span>
         </div>
@@ -93,7 +96,7 @@
         </ul>
 
       </div>
-      <div class="final-services__extra-features" *ngIf="!noOneCheked">
+      <div class="final-services__extra-features" *ngIf="!noOneChecked">
 
         <div class="extra-features-title">Дополнительные опции</div>
 
@@ -143,7 +146,7 @@
       </div>
 
       <div class="btn-wrapper"> 
-        <div class="btn-ceckout btn-accept-ceckout" type="submit" (click)="sendDealData()">Подтвердить заказ</div>
+        <div class="btn-checkout btn-accept-checkout" type="submit" (click)="sendDealData()">Подтвердить заказ</div>
       </div>
     </div>
   </div>

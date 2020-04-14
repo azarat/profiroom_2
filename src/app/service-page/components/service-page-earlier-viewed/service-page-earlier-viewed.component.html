@@ -4,7 +4,7 @@
   </h4>
   <div class="item-list" *ngIf="similarOffers">
 
-      <div class="card" *ngFor="let offer of similarOffers.simularOffers">
+      <div class="card" *ngFor="let offer of similarOffers.similarOffers">
         <div class="card-preview__bg">
           <img class="card-preview" [src]="offer.mainImage" (click)="openOffer(offer.id)">
         </div>
@@ -19,7 +19,7 @@
           </div>
           <p class="card-description__about" (click)="openOffer(offer.id)">{{offer.title}}</p>
           <div class="card-description__bottom">
-            <div class="card-description__level">{{offer.raiting}}</div>
+            <div class="card-description__level">{{offer.rating}}</div>
             <div class="card-description__comments"><a>({{offer.comments_count}} отзывов)</a></div>
           </div>
 

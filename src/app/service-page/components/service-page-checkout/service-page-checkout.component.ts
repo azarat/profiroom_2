@@ -23,10 +23,10 @@ import { filter } from 'rxjs/operators';
 })
 export class ServicePageCheckoutComponent implements OnInit {
   @Input() offerData: OfferDataInterface;
-  @Input() chousenOnOfferPage;
+  @Input() chosenOnOfferPage;
 
   public currentPackage;
-  public noOneCheked = false;
+  public noOneChecked = false;
   public finalSum = 0;
   public serviceCommission = 500;
 
@@ -35,7 +35,7 @@ export class ServicePageCheckoutComponent implements OnInit {
   public extraFeaturesResultArr;
   public extraFeaturesResult;
   
-  @Input() chousenPackage;
+  @Input() chosenPackage;
   @Output() public checkoutHidden: EventEmitter<any> = new EventEmitter<any>();
 
   // public extraFeatures: ExtraFeaturesModel;
@@ -49,7 +49,7 @@ export class ServicePageCheckoutComponent implements OnInit {
     extraTerms?: boolean;
     term?: number;
     extraChanges?: boolean;
-    extraComercial?: boolean;
+    extraCommercial?: boolean;
     changesFinal?: number;
     extra_features?: {
       title?: string;
@@ -57,15 +57,30 @@ export class ServicePageCheckoutComponent implements OnInit {
     } [];
   } = {};
 
+  public packages = [
+    {
+      name: 'basic',
+      translate: 'Базовый'
+    },
+    {
+      name: 'advanced',
+      translate: 'Стандарт'
+    },
+    {
+      name: 'premium',
+      translate: 'Премиум'
+    }
+  ];
+
   constructor(
     private fb: FormBuilder,
     private servicePageService: ServicePageService
   ) {}
 
   ngOnInit() {
-    this.currentPackage = this.chousenOnOfferPage.packageTitle;
+    this.currentPackage = this.chosenOnOfferPage.packageTitle;
     this.initForm();
-    this.chousenFeatures();
+    this.chosenFeatures();
     // this.steValuesFromOfferPage(this.extraFeaturesResult);
     this.outputDealData.changesFinal = this.offerData[this.currentPackage].changes;
   }
@@ -76,31 +91,31 @@ export class ServicePageCheckoutComponent implements OnInit {
 
   private initForm() {
     this.checkoutForm = this.fb.group({
-      extraTerms: [this.chousenOnOfferPage.extraTerms],
-      extraСhanges: [this.chousenOnOfferPage.extraСhanges],
-      extraCommercial: [this.chousenOnOfferPage.extraCommercial],
+      extraTerms: [this.chosenOnOfferPage.extraTerms],
+      extraChanges: [this.chosenOnOfferPage.extraChanges],
+      extraCommercial: [this.chosenOnOfferPage.extraCommercial],
     });
     this.offerData.extra_features.forEach((el: any) => {
-      this.checkoutForm.addControl(el.title, this.fb.control(this.chousenOnOfferPage[el.title]));
+      this.checkoutForm.addControl(el.title, this.fb.control(this.chosenOnOfferPage[el.title]));
     });
 
-    for (let key in this.chousenOnOfferPage) {
-      if (this.chousenOnOfferPage[key] && key !== 'packageTitle') {
+    for (let key in this.chosenOnOfferPage) {
+      if (this.chosenOnOfferPage[key] && key !== 'packageTitle') {
         this.checkoutForm.value[key] = true;
       }
     }
   }
 
-  chousenFeatures() {
+  chosenFeatures() {
     this.extraFeaturesResultArr = Object.values(this.checkoutForm.value);
     this.extraFeaturesResult = this.checkoutForm.value;
 
     this.calculateFinalPrice();
     this.createFinalDealData();
     if(this.extraFeaturesResultArr.some(element => element === true)) {
-      this.noOneCheked = false;
+      this.noOneChecked = false;
     } else {
-      this.noOneCheked = true;
+      this.noOneChecked = true;
     }
   }
 
@@ -159,9 +174,9 @@ export class ServicePageCheckoutComponent implements OnInit {
       return el.name === 'extraTerms';
     });
     const isExtraChanges = mainselectedOptions.some(el => {
-      return el.name === 'extraСhanges';
+      return el.name === 'extraChanges';
     });
-    const isExtraComercial = mainselectedOptions.some(el => {
+    const isExtraCommercial = mainselectedOptions.some(el => {
       return el.name === 'extraCommercial';
     });
 
@@ -184,7 +199,7 @@ export class ServicePageCheckoutComponent implements OnInit {
     }
     
     // статус комерческого использования
-    this.outputDealData.extraComercial = isExtraComercial === true ? true: false;
+    this.outputDealData.extraCommercial = isExtraCommercial === true ? true: false;
 
     // возращаем "возвращаем конечную цену"
     this.outputDealData.finalPrice = this.finalSum;
