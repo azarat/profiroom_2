@@ -32,7 +32,7 @@
         <ng-container *ngFor="let package of packages">
           <div class="table-cell centerMode">
             {{ offerData[package].price }} ₴
-            <div class="btn-buy-package">выбрать</div>
+            <div class="btn-buy-package" (click)="goCheckout(packageType)">выбрать</div>
           </div>
         </ng-container>
       </div>
@@ -59,7 +59,7 @@
         <ng-container>
           <div class="table-cell centerMode">
             {{ offerData.basic.price }} ₴
-            <div class="btn-buy-package">выбрать</div>
+            <div class="btn-buy-package" (click)="goCheckout(packageType)">выбрать</div>
           </div>
         </ng-container>
       </div>

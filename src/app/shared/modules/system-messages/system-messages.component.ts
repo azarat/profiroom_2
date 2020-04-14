@@ -19,19 +19,59 @@ export class SystemMessagesComponent implements OnInit {
   public messageListEmpty = false;
   public systemMessagesArr: any;
   public newSystemMessages = null;
+  menuOpen = null;
 
   public systemMessagesTypes = [
-    "refuseBreef",
-    "approveBreef",
-    "inProgress",
-    "DealFinished",
-    "DealFinishCanceledByCustomer",
-    "DealFinishedByFreelancer",
-    "CancelSubmited",
-    "DealClosedByCustomer",
-    "DealCloseByFreelancer",
-    "workStarted",
-    "holdMoney",
+    {
+      name: "DealFinished",
+      message: "Работа оплачена",
+      userType: 1
+    },
+    {
+      name: "DealFinishCanceledByCustomer",
+      message: "Работа отправлена на доработки",
+      userType: 1
+    },
+    {
+      name: "DealClosedByCustomer",
+      message: "Работа отменина заказчиком",
+      userType: 1
+    },
+    {
+      name: "holdMoney",
+      message: "Средства зарезирвированы",
+      userType: 1
+    },
+    {
+      name: "refuseBreef",
+      message: "Отказ от брифа",
+      userType: 2
+    },
+    {
+      name: "approveBreef",
+      message: "Бриф подтвержден",
+      userType: 2
+    },
+    {
+      name: "DealFinishedByFreelancer",
+      message: "Работа завершина фрилансером",
+      userType: 2
+    },
+    {
+      name: "CancelSubmited",
+      message: "Фрилансер подтвердил отмену сотрудничества",
+      userType: 2
+    },
+    {
+      name: "DealCloseByFreelancer",
+      message: "Работа отменина фрилансером",
+      userType: 2
+    },
+    {
+      name: "workStarted",
+      message: "Работа начата",
+      userType: 2
+    }
   ];
 
   constructor(
@@ -70,7 +110,8 @@ export class SystemMessagesComponent implements OnInit {
   }
 
   // opne notification block
-  public toggleMessageList() {
+  public toggleMessageList($event) {
+    console.log("opne notification block");
     this.showMessagesListBlock = !this.showMessagesListBlock;
     this.newSystemMessages = null;
   }
@@ -112,5 +153,10 @@ export class SystemMessagesComponent implements OnInit {
     // this.socketService.openChat(roomId);    -- для открыия конкретного чата 
   }
   
+  hideMenu(e: Event) {
+
+    this.menuOpen = null;
+
+  }
   
 }

@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { OfferDataInterface } from 'src/app/shared/interfaces/offer-date.interface';
+import { ServicePageService } from '../../services/service-page.service';
+import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 
 @Component({
   selector: 'app-service-page-compare-table',
@@ -9,6 +11,8 @@ import { OfferDataInterface } from 'src/app/shared/interfaces/offer-date.interfa
 export class ServicePageCompareTableComponent implements OnInit {
 
   @Input() offerData: OfferDataInterface;
+  private token: any = null;
+  private allowCheckout = null;
   public packages = [
     'basic',
     'advanced',
@@ -45,10 +49,33 @@ export class ServicePageCompareTableComponent implements OnInit {
     }
   ];
 
-  constructor() { }
+  constructor(
+    private servicePageService: ServicePageService,
+    private localStorageService: LocalStorageService,
+  ) {
+    this.token = this.localStorageService.getItem('token').value;
+  }
 
-  ngOnInit() {
+  ngOnInit() {}
 
+  public goCheckout(packageType) {
+    this.checkAuthorized();
+    if(this.allowCheckout) {
+      // this.extraFeaturesForm.addControl('packageTitle', this.fb.control(packageType));
+      // this.checkoutState.emit(this.extraFeaturesForm.value);
+      console.log(packageType);
+    }
+
+  }
+
+  private checkAuthorized() {
+    if(this.token !== null) {
+      this.servicePageService.setSpinnerState(false);
+      this.allowCheckout = true;
+    } else {
+      this.servicePageService.setSpinnerState(true);
+      this.allowCheckout = false;
+    }
   }
 
 }
