@@ -5,7 +5,7 @@
   <div class="navigation-page__wrapper">
     <ul>
       <li (click)="scrollTo('about')">О фрилансере</li>
-      <li (click)="scrollTo('aducation')" *ngIf="userTypeFreelancer">Образование</li>
+      <li (click)="scrollTo('education')" *ngIf="userTypeFreelancer">Образование</li>
       <li (click)="scrollTo('rating')">рейтинг</li>
       <li (click)="scrollTo('services')">услуги</li>
       <li (click)="scrollTo('comments')">отзывы</li>
@@ -35,7 +35,7 @@
           <span class="value free" *ngIf="!userData.busy">не загружен(-а)</span>
           <span class="value" *ngIf="userData.busy">загружен(-а)</span>
         </div>
-        <div class="general-information__inProces">Проектов в работе: <span class="value">{{userData.dealsCounts.inProgressOffers}}</span></div>
+        <div class="general-information__inProcess">Проектов в работе: <span class="value">{{userData.dealsCounts.inProgressOffers}}</span></div>
         <div class="general-information__awaiting">Проектов в очереди: <span class="value">{{userData.dealsCounts.QueuedOffers}}</span></div>
       </div>
       <div class="general-information__actions">
@@ -63,8 +63,8 @@
     </section>
     <section class="switching-user-types">
       <div class="btns-wrapper">
-        <div class="btn btn-user-type" [ngClass]="{active: userTypeFreelancer}" (click)=chouseUser(0) >Профиль филансера</div>
-        <div class="btn btn-user-type" [ngClass]="{active: !userTypeFreelancer}" (click)=chouseUser(1)>профиль заказчика</div>
+        <div class="btn btn-user-type" [ngClass]="{active: userTypeFreelancer}" (click)=choseUser(0) >Профиль филансера</div>
+        <div class="btn btn-user-type" [ngClass]="{active: !userTypeFreelancer}" (click)=choseUser(1)>профиль заказчика</div>
       </div>
       <div class="switching-user-types__text">*Каждый пользователь данной биржи может быть одновременно исполнителем и заказчиком, в зависимости от потребности. </div>
     </section>
@@ -112,14 +112,14 @@
         </li>
       </ul>
     </section>
-    <section class="aducation" id="aducation" *ngIf="userTypeFreelancer">
+    <section class="education" id="education" *ngIf="userTypeFreelancer">
       <div class="section-title">Высшее образование</div>
-      <div class="aducation__wrapper">
-        <div class="aducation__info-block" *ngFor="let education of userData.education; let thisArr = index">
+      <div class="education__wrapper">
+        <div class="education__info-block" *ngFor="let education of userData.education; let thisArr = index">
 
-          <div class="aducation__img-list" *ngIf="education.diploma_files.length; let i = index">
+          <div class="education__img-list" *ngIf="education.diploma_files.length; let i = index">
             <ng-container *ngFor="let img of education.diploma_files; let i = index">
-              <div class="img-item"  (click)="showPopUp(i, thisArr, 'img')" [ngClass]="{open_popUp: clickedEducationImgs === thisArr && clickedSinglImg === i}">
+              <div class="img-item"  (click)="showPopUp(i, thisArr, 'img')" [ngClass]="{open_popUp: clickedEducationImgs === thisArr && clickedSingleImg === i}">
                 <img src="{{img.link}}" alt="">
                 <div class="close-popUp" ></div>
               </div>
@@ -127,10 +127,10 @@
           </div>
 
           <div class="text-wrapper">
-            <div class="aducation__institution">{{ education.institution}}</div>
-            <div class="aducation__group">
-              <div class="aducation__specialty">{{ education.specialty}}</div>
-              <div class="aducation__years">{{ education.startEducation}} - {{ education.finishEducation}}</div>
+            <div class="education__institution">{{ education.institution}}</div>
+            <div class="education__group">
+              <div class="education__specialty">{{ education.specialty}}</div>
+              <div class="education__years">{{ education.startEducation}} - {{ education.finishEducation}}</div>
             </div>
           </div>
 
@@ -138,15 +138,15 @@
       </div>
     </section>
 
-    <section class="aducation" *ngIf="userTypeFreelancer">
+    <section class="education" *ngIf="userData.additionalEducation">
       <div class="section-title">Дополнительное образование</div>
-      <div class="aducation__wrapper">
-        <div class="aducation__info-block" *ngFor="let education of userData.additionalEducation; let thisArr = index">
+      <div class="education__wrapper">
+        <div class="education__info-block" *ngFor="let education_item of userData.additionalEducation; let thisArr = index">
 
-          <div class="aducation__img-list" *ngIf="education.aditional_diploma_files.length; let i = index">
-            <ng-container *ngFor="let img of education.aditional_diploma_files; let i = index">
+          <div class="education__img-list" *ngIf="education_item.additional_diploma_files.length; let i = index">
+            <ng-container *ngFor="let img of education_item.additional_diploma_files; let i = index">
               <div class="img-item"  (click)="showPopUp(i, thisArr, 'img')" [ngClass]="{open_popUp: clickedEducationImgs === thisArr 
-                && clickedSinglImg === i}">
+                && clickedSingleImg === i}">
                 <img src="{{img.link}}" alt="">
                 <div class="close-popUp" ></div>
               </div>
@@ -154,53 +154,53 @@
           </div>
 
           <div class="text-wrapper">
-            <div class="aducation__institution">{{ education.additionalInstitution}}</div>
-            <div class="aducation__group">
-              <div class="aducation__specialty">{{ education.courseName}}</div>
-              <div class="aducation__years">{{ education.startStudyYear}} - {{ education.endStudyYear}}</div>
+            <div class="education__institution">{{ education_item.additionalInstitution}}</div>
+            <div class="education__group">
+              <div class="education__specialty">{{ education_item.courseName}}</div>
+              <div class="education__years">{{ education_item.startStudyYear}} - {{ education_item.endStudyYear}}</div>
             </div>
           </div>
 
         </div>
       </div>
     </section>
-    <section class="raiting" id="rating">
+    <section class="rating" id="rating">
       <div class="section-title">Общий рейтинг</div>
-      <div class="raiting__wrapper"  *ngIf="userTypeFreelancer">
-        <div class="raiting__info-block">
-          <div class="raiting__name">Качество услуг</div>
-          <div class="star-raiting">{{ userData.averageRaiting.freelancer.qualityMark}}</div>
+      <div class="rating__wrapper"  *ngIf="userTypeFreelancer">
+        <div class="rating__info-block">
+          <div class="rating__name">Качество услуг</div>
+          <div class="star-rating">{{ userData.averageRating.freelancer.qualityMark}}</div>
         </div>
-        <div class="raiting__info-block">
-          <div class="raiting__name">Срок исполнения</div>
-          <div class="star-raiting">{{ userData.averageRaiting.freelancer.termMark}}</div>
+        <div class="rating__info-block">
+          <div class="rating__name">Срок исполнения</div>
+          <div class="star-rating">{{ userData.averageRating.freelancer.termMark}}</div>
         </div>
-        <div class="raiting__info-block">
-          <div class="raiting__name">Вежливость фрилансера</div>
-          <div class="star-raiting">{{ userData.averageRaiting.freelancer.politenessMark}}</div>
+        <div class="rating__info-block">
+          <div class="rating__name">Вежливость фрилансера</div>
+          <div class="star-rating">{{ userData.averageRating.freelancer.politenessMark}}</div>
         </div>
-        <div class="raiting__info-block">
-          <div class="raiting__name">Средняя оценка</div>
-          <div class="star-raiting">{{ userData.averageRaiting.freelancer.averageMark}}</div>
+        <div class="rating__info-block">
+          <div class="rating__name">Средняя оценка</div>
+          <div class="star-rating">{{ userData.averageRating.freelancer.averageMark}}</div>
           <span class="comments-count">( {{ userData.comments_freelancer_count}} отзывов):</span>
         </div>
       </div>
-      <div class="raiting__wrapper"  *ngIf="!userTypeFreelancer">
-        <div class="raiting__info-block">
-          <div class="raiting__name">Постановка задачи</div>
-          <div class="star-raiting">{{ userData.averageRaiting.customer.taskClarity}}</div>
+      <div class="rating__wrapper"  *ngIf="!userTypeFreelancer">
+        <div class="rating__info-block">
+          <div class="rating__name">Постановка задачи</div>
+          <div class="star-rating">{{ userData.averageRating.customer.taskClarity}}</div>
         </div>
-        <div class="raiting__info-block">
-          <div class="raiting__name">Чёткость требований</div>
-          <div class="star-raiting">{{ userData.averageRaiting.customer.requirementsClarity}}</div>
+        <div class="rating__info-block">
+          <div class="rating__name">Чёткость требований</div>
+          <div class="star-rating">{{ userData.averageRating.customer.requirementsClarity}}</div>
         </div>
-        <div class="raiting__info-block">
-          <div class="raiting__name">Контактность</div>
-          <div class="star-raiting">{{ userData.averageRaiting.customer.contactLevel}}</div>
+        <div class="rating__info-block">
+          <div class="rating__name">Контактность</div>
+          <div class="star-rating">{{ userData.averageRating.customer.contactLevel}}</div>
         </div>
-        <div class="raiting__info-block">
-          <div class="raiting__name">Средняя оценка</div>
-          <div class="star-raiting">{{ userData.averageRaiting.customer.averageMark}}</div>
+        <div class="rating__info-block">
+          <div class="rating__name">Средняя оценка</div>
+          <div class="star-rating">{{ userData.averageRating.customer.averageMark}}</div>
           <span class="comments-count">( {{ userData.comments_freelancer_count}} отзывов):</span>
         </div>
       </div>

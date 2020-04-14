@@ -30,7 +30,7 @@ export class ServicePageComponent implements OnInit {
   public messageNotAuthorized: boolean;
 
   public step2 = false;
-  public chousenOnOfferPage: string;
+  public chosenOnOfferPage: string;
 
   @ViewChild('stickyMenu', { static: false }) menuElement: ElementRef;
   
@@ -60,7 +60,6 @@ export class ServicePageComponent implements OnInit {
       });
 
       servicePageService.getSpinnerState().subscribe(data => {
-        console.log(data);
         this.messageNotAuthorized = data;
       });     
   }
@@ -112,7 +111,7 @@ export class ServicePageComponent implements OnInit {
     });
   }
 
-  // tslint:disable-next-line: use-lifecycle-interface
+  // tslint:disable-next-line: use-life-cycle-interface
   ngAfterViewInit() {
     this.elementPosition = this.menuElement.nativeElement.offsetTop;
   }
@@ -147,14 +146,14 @@ export class ServicePageComponent implements OnInit {
   }
 
   public openCheckout(packageForm) {
-    this.chousenOnOfferPage = packageForm;
+    this.chosenOnOfferPage = packageForm;
     this.step2 = true;
   }
   public hideCheckout() {
     this.step2 = false;
   }
 
-  public closeErroMessage() {
+  public closeErrorMessage() {
     this.servicePageService.setSpinnerState(false);
   }
 }

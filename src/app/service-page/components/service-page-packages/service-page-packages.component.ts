@@ -52,13 +52,12 @@ export class ServicePagePackagesComponent implements OnInit {
 
   ngOnInit() {
     this.initForm();
-    console.log(this.offerData.allPackages);
   }
 
   private initForm() {
     this.extraFeaturesForm = this.fb.group({
       extraTerms: [null],
-      extraСhanges: [null],
+      extraChanges: [null],
       extraCommercial: [null],
     });
     this.offerData.extra_features.forEach((el: any) => {

@@ -29,7 +29,7 @@ export class ServicePageService {
   }
 
   similarOffers(offerid: object) {
-    return this.http.post('/simularOffers', offerid);
+    return this.http.post('/similarOffers', offerid);
   }
 
   public makeDeal(data: object, offer_id) {

@@ -8,19 +8,9 @@ import { OfferDataInterface } from 'src/app/shared/interfaces/offer-date.interfa
   styleUrls: ['./service-page-questions.component.scss']
 })
 export class ServicePageQuestionsComponent implements OnInit {
-  panelOpenState = false;
-  btnNumber = 0;
 
   constructor() {}
   @Input() offerData: OfferDataInterface;
   ngOnInit() {}
-
-  showfull(questionNumber) {
-    if (questionNumber !== this.btnNumber) {
-      this.btnNumber = questionNumber;
-    } else {
-      this.btnNumber = null;
-    }
-  }
 
 }

@@ -1,26 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
-import { GetCategorieItemsService } from '../services/get-categorie-items.service';
+import { GetCategoryItemsService } from '../services/get-category-items.service';
 import { SubCategoryListInterface } from '../../shared/interfaces/subcategories-list.interface';
+import { CategoriesResolver } from '../resolves/categories.resolve';
 
-import { CategorysResolver } from '../resolves/categorys.resolve';
+
 
 @Component({
   selector: 'app-categories-catalog',
-  templateUrl: './categorys-catalog-page.component.html',
-  styleUrls: ['./categorys-catalog-page.component.scss']
+  templateUrl: './categories-catalog-page.component.html',
+  styleUrls: ['./categories-catalog-page.component.scss']
 })
-export class CategorysCatalogPageComponent implements OnInit {
+export class CategoriesCatalogPageComponent implements OnInit {
   subcategoriesList: SubCategoryListInterface = null;
   constructor(
     // private route: Router,
     // tslint:disable-next-line: no-shadowed-variable
-    private GetCategorieItemsService: GetCategorieItemsService
+    private getCategoryItemsService: GetCategoryItemsService
   ) {
   }
 
   ngOnInit() {
-    this.GetCategorieItemsService.categoriesList$.subscribe((res: any) => {
+    this.getCategoryItemsService.categoriesList$.subscribe((res: any) => {
       this.subcategoriesList = res;
       console.log(res);
     });

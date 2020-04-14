@@ -25,7 +25,7 @@ export class SystemMessagesService {
   }
 
   public connect() {
-    this.http.get('/checkAuthirization')
+    this.http.get('/checkAuthorization')
       .subscribe((res: any) => {
         if (!res.auth) {
           this.socket.disconnect(this.host);
@@ -52,14 +52,14 @@ export class SystemMessagesService {
   }
 
   public systemMessagesList() {
-    return this.http.get('/bellNotiys')
+    return this.http.get('/bellNotice')
   }
 
   public deleteSystemMessage(messageID) {
     if(messageID !== 0) {
-      return this.http.post('/deleteBellNotiy', {notiyId: messageID})
+      return this.http.post('/deleteBellNotice', {noticeId: messageID})
     } else {
-      return this.http.post('/deleteBellNotiy', {all: true})
+      return this.http.post('/deleteBellNotice', {all: true})
     }
   }
 
