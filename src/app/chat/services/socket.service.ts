@@ -26,7 +26,7 @@ export class SocketService {
 
   public connect() {
 
-    this.http.get('/checkAuthirization')
+    this.http.get('/checkAuthorization')
       .subscribe((res: any) => {
         if (!res.auth) {
           this.socket.disconnect(this.host);
