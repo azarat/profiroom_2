@@ -20,7 +20,7 @@ export class UserService {
         return this.http.get('/dashboard');
     }
 
-    public wrightTo(collocutorId) {
+    public wrightTo(collocutorId: number) {
       return this.http.post('/newChatRoom', {id: collocutorId});
     }
 }

@@ -84,7 +84,7 @@
       <app-service-page-compare-table [offerData]="offerData" *ngIf="offerData" id="compare-table" (checkoutState)="openCheckout($event)">
       </app-service-page-compare-table>
 
-      <section class="offer-rating" id="rating"  *ngIf="offerData.averageRating">
+      <section class="offer-rating" id="rating"  *ngIf="[offerData.averageRating] != 0">
         <h4 class="section-title">
           Рейтинг услуги “Дизайн сайтов”
         </h4>

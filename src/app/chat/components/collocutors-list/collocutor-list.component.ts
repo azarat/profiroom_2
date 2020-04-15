@@ -94,6 +94,7 @@ export class CollocutorListComponent implements OnInit {
   }
   //  separate function to connect chatRoom
   private _openChat(userInfo) {
+    console.log('userInfo', userInfo);
     this.currentRoom.emit(userInfo);
     this.socketService.openChat(userInfo.roomId);
   }

@@ -3,7 +3,7 @@
     <app-collocutor-list [chatType]="chatType" (currentRoom)="getCurrentRoom($event)"></app-collocutor-list>
   </section>
   <section class="messager" *ngIf="collocutorData">
-    <!-- messager -->
+    <!-- messenger -->
     <app-messenger *ngIf="collocutorData && chatType === 'classic'  || collocutorData && deal && collocutorData.brief == 1 && chatType === 'work'"
     [collocutorData]="collocutorData"
       [chatType]="chatType" [(isFileLoaderVisible)]="isFileLoaderVisible" [deal]="deal" ></app-messenger>

@@ -14,16 +14,15 @@ import { DealService } from '../../services/deal.service';
 })
 export class ChatComponent implements OnInit, OnDestroy {
 
-  @Input() chatType: string;
-  uploadedBriefFiles: any;
-
+  @Input() chatType: string; // work or classic chat
+  public uploadedBriefFiles: any;
   public collocutorData: CollocutorInterface;
   public isFileLoaderVisible: boolean = null;
-  // var if exit from unwritten brief
+  // var if exit from unWritten brief
   public exitFromBriefPopUpVisible: boolean = null;
   public isChat = true;
 
-  deal: CollocutorInterface;
+  public deal: CollocutorInterface;
 
 
   constructor(
@@ -37,22 +36,19 @@ export class ChatComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this._subscribeUserStateChanges();
     this.isChat = true;
-
     this.subscribeCollocutor();
-    this.openNewDeal();
-
+    this.openNewChatRoom();
     this._subscribeDealInWorkChat();
   }
   ngOnDestroy(): void {
     this.socketService.closeCollocutorSocket(this.chatType);
   }
 
-  // oen new chat vs delay to reset massager template
-  getCurrentRoom(userInfo) {
-    this.collocutorData = null;
+  // open new chat vs delay to reset messenger template
+  public getCurrentRoom(userInfo) {
+    this.collocutorData = null; // reset current data of
     setTimeout(() => {
       this.collocutorData = userInfo;
-      // this.newDealId = userInfo;
     }, 100);
   }
 
@@ -61,7 +57,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   // open brief feeling if is new and chat after sending brief
-  private openNewDeal() {
+  private openNewChatRoom() {
     this.route.queryParams
       .subscribe((res: any) => {
         if (res.hasOwnProperty('offers_id')) {
@@ -70,6 +66,8 @@ export class ChatComponent implements OnInit, OnDestroy {
           this.getCurrentRoom(res);
         } else if (res.hasOwnProperty('dealId')) {
           this._resetChat();
+        } else if(res.hasOwnProperty('dealId')) {
+
         }
       });
   }
