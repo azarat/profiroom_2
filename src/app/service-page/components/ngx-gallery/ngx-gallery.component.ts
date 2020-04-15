@@ -45,9 +45,9 @@ export class NgxGalleryComponent implements OnInit {
       },
       // max-width 800
       {
-        breakpoint: 800,
-        width: '100%',
-        height: '600px',
+        breakpoint: 1500,
+        width: '630px',
+        height: '480px',
         imagePercent: 80,
 
       },
@@ -69,12 +69,22 @@ export class NgxGalleryComponent implements OnInit {
     this.offerData.files.forEach(item => {
       this.galleryImages.push(
         {
-          big: 'https://www.thecubetest.site/Backend/storage/app/' + this.offerData.filesDirectory + '/big/' + item,
-          medium: 'https://www.thecubetest.site/Backend/storage/app/' + this.offerData.filesDirectory + '/medium/' + item,
-          small: 'https://www.thecubetest.site/Backend/storage/app/' + this.offerData.filesDirectory + '/small/' + item,
+          big: 'http://194.28.103.239/Backend/public/storage/offerFiles' + '/big/' + item,
+          medium: 'http://194.28.103.239/Backend/public/storage/offerFiles' + '/medium/' + item,
+          small: 'http://194.28.103.239/Backend/public/storage/offerFiles' +'/small/' + item,
         }
       );
     });
+
+    // this.offerData.files.forEach(item => {
+    //   this.galleryImages.push(
+    //     {
+    //       big: 'https://www.thecubetest.site/Backend/storage/app/' + this.offerData.filesDirectory + '/big/' + item,
+    //       medium: 'https://www.thecubetest.site/Backend/storage/app/' + this.offerData.filesDirectory + '/medium/' + item,
+    //       small: 'https://www.thecubetest.site/Backend/storage/app/' + this.offerData.filesDirectory + '/small/' + item,
+    //     }
+    //   );
+    // });
 
   }
 }

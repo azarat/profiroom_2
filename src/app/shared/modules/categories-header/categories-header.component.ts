@@ -19,7 +19,7 @@ export class CategoriesHeaderComponent implements OnInit {
     private _route: ActivatedRoute,
   ) {
     this.categoriesListService.getCategories();
-
+    console.log(this._route);
     if(this._route.snapshot.routeConfig.path === ""){
       this.noHover = true;
     }

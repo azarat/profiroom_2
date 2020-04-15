@@ -13,13 +13,33 @@ export class ServicePageAnotherServicesComponent implements OnInit {
   public id;
   @Input() offerData: OfferDataInterface;
 
+  private breakPointValue: number;
+  public laptopScreen = false;
+  public showedOffersCount = 0;
+
   constructor(
     private route: ActivatedRoute,
     private localize: LocalizeRouterService,
     private router: Router,
   ) {}
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.breakPointValue = window.innerWidth;
+    if(this.breakPointValue < 1499) {
+      this.laptopScreen = true;
+      this.offersCounting(4);
+    } else {
+      this.laptopScreen= false
+      this.offersCounting(5);
+    }
+  }
+
+  offersCounting(limit) {
+    for(let x = 0; x <= limit; x++) {
+      this.showedOffersCount = x;
+      console.log(this.showedOffersCount);
+    }
+  }
 
   openOffer(offerID) {
     const translatedPath: any = this.localize.translateRoute('/service');

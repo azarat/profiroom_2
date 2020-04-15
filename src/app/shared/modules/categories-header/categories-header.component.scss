@@ -4,25 +4,25 @@
   display: flex;
   justify-content: space-between;
 }
-.categorys-list {
+.categories-list {
   width: 100%;
   background: #649af3;
   padding: 0;
   list-style-type: none;
   &.no_hover{
-    .categorie-wrapper:hover{
+    .category-wrapper:hover{
       overflow: hidden;
     }
   }
 }
-.categorie-wrapper {
+.category-wrapper {
   margin: 0;
   padding: 0;
   position: relative;
   padding: 20px 0;
   overflow: hidden;
   transition: overflow 0.5s;
-  .categorie-name{
+  .category-name{
     margin: 0;
     display: flex;
     align-items: center;
@@ -38,7 +38,7 @@
   &:hover {
     overflow: visible;
     // z-index: 9;
-    .subcategorys-list {
+    .subcategories-list {
       transition: all 0.5s;
       opacity: 1;
       top: 100%;
@@ -46,17 +46,17 @@
     }
   }
   &:nth-child(1) {
-    .subcategorys-list {
+    .subcategories-list {
       min-width: 960px;
     }
   }
   &:nth-child(2) {
-    .subcategorys-list {
+    .subcategories-list {
       min-width: 710px;
     }
   }
   &:nth-child(3) {
-    .subcategorys-list {
+    .subcategories-list {
       min-width: 230px;
       .subcategory-group{
         padding-right: 0;
@@ -64,7 +64,7 @@
     }
   }
   &:nth-child(4) {
-    .subcategorys-list {
+    .subcategories-list {
       min-width: 310px;
       .subcategory-group{
         padding-right: 0;
@@ -72,7 +72,7 @@
     }
   }
   &:nth-child(5) {
-    .subcategorys-list {
+    .subcategories-list {
       min-width: 980px;
       left: -800px;
       .subcategory-group:last-child{
@@ -82,7 +82,7 @@
   }
 }
 
-.subcategorys-list {
+.subcategories-list {
   display: flex;
   flex-wrap: wrap;
   width: auto;
@@ -120,14 +120,14 @@
   & > div {
     margin-bottom: 12px;
     &:last-child {
-      .subcategorie {
+      .subcategory {
         margin-bottom: 0;
       }
     }
   }
 }
 
-.subcategorie {
+.subcategory {
   font-family: "Source Sans Pro";
   font-weight: normal;
   font-size: 16px;
@@ -137,5 +137,40 @@
   text-decoration: none;
   &:hover {
     text-decoration: underline;
+  }
+}
+
+@media (max-width: 1499px) {
+  .wrapper{
+    max-width: 1110px;
+  }
+  .category-wrapper {
+    .category-name{
+      a{
+        font-family: "Source Sans Pro";
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 20px;
+        color: #ffffff;
+        text-decoration: none;
+      }
+    }
+  }
+}
+@media (max-width: 1360px) {
+  .wrapper{
+    max-width: 1010px;
+  }
+  .category-wrapper {
+    .category-name{
+      a{
+        font-size: 14px;
+        line-height: 18px;
+      }
+    }
+  }
+  .subcategory {
+    font-size: 14px;
+    line-height: 18px;
   }
 }

@@ -2,10 +2,10 @@
   display: flex;
   flex-wrap: wrap;
 }
-.subcategory{
-  width: 30%;
-  padding: 30px;
-}
+// .subcategory{
+//   width: 30%;
+//   // padding: 30px;
+// }
 
 .wrapper{
   max-width: 1499px;
@@ -41,6 +41,7 @@
       color: #707683;
       text-decoration: none;
       width: fit-content;
+      
     }
     &:hover{
       a{
