@@ -3,9 +3,9 @@
   *ngIf="canDealBePayed || canDealBeStarted || isCancelButton || isArbiterBtn || isFinishDealButton"
   >
     <h6>Действия</h6>
-    <button *ngIf="canDealBePayed" class="btn" (click)="holdMoneyDeal()">Зарезирвировать оплату</button>
+    <button *ngIf="canDealBePayed" class="btn" (click)="holdDealMoney()">Зарезирвировать оплату</button>
     <button *ngIf="canDealBeStarted" class="btn" (click)="goToWork()">Приступить к работе</button>
-    <button (click)="cancelWork()" *ngIf="isCenacleButton" >отменить работу</button>
+    <button (click)="cancelWork()" *ngIf="isCancelButton" >отменить работу</button>
     <button *ngIf="isArbiterBtn" (click)="callArbiter()">обратиться в арбитраж</button>
     <button *ngIf="isFinishDealButton" (click)="finishWork()" >Завершить работу</button>
   </div>

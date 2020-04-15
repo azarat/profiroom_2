@@ -12,7 +12,7 @@
 
       </div>
     </div>
-    <ng-container  *ngIf="userData.negativeComments.length != 0">
+    <ng-container  *ngIf="userData.negativeComments.length >0">
         <div class="comment" *ngFor="let comment of userData[currentTab.value + 'Comments']; let parrentCommentIndex = index">
           <h5 class="comment__service-name" >
               <a [routerLink]="'/service'| localize" [queryParams]="{ offerId: comment.offers.id }"> {{comment.offers.title}}</a>

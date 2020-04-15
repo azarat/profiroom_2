@@ -1,7 +1,7 @@
 <section class="notifications">
-  <mat-icon aria-hidden="false" matBadge="1" aria-label="Example home icon" matBadgeColor="warn" (click)="toggleMessageList($event)" class="test" [ngClass]="{active: newSystemMessages}">notifications
+  <mat-icon aria-hidden="false" matBadge="1" aria-label="Example home icon" matBadgeColor="warn" (click)="toggleMessageList()" class="test" [ngClass]="{active: newSystemMessages}">notifications
   </mat-icon>
-  <div class="notifications-wrap" *ngIf="showMessagesListBlock" (clickOutside)="toggleMessageList($event)" [exclude]="'.test'"> 
+  <div class="notifications-wrap" *ngIf="showMessagesListBlock" (clickOutside)="toggleMessageList()" [exclude]="'.test'"> 
     <div class="notifications-title"  *ngIf="messageListEmpty">
       <span (click)="deleteMessageItem(0, systemMessagesArr.length)">Очистить все</span> 
     </div>
