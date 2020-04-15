@@ -1,13 +1,13 @@
 <app-main-header></app-main-header>
 <app-categories-header></app-categories-header>
 <div class="wrapper">
-  <div class="catalog-categories" *ngIf="categorysList">
-    <ul class="categorie" *ngFor="let category of categorysList.category">
-      <h3 class="categorie-name">{{category.name}}</h3>
+  <div class="catalog-categories" *ngIf="categoriesList">
+    <ul class="category" *ngFor="let category of categoriesList.category">
+      <h3 class="category-name">{{category.name}}</h3>
 
-      <li class="subcategorie-name"*ngFor="let sub_categorie of category.sub_categories">
-        <a [routerLink]="['/catalog', category.link, sub_categorie.link] | localize" class="subcategorie">
-          {{sub_categorie.name}}
+      <li class="subcategory-name"*ngFor="let sub_category of category.sub_categories">
+        <a [routerLink]="['/catalog', category.link, sub_category.link] | localize" class="subcategory">
+          {{sub_category.name}}
         </a>
       </li>
 

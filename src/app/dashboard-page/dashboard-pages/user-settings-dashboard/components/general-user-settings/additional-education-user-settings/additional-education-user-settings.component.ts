@@ -11,7 +11,7 @@ export class AdditionalEducationUserSettingsComponent implements OnInit {
 
   @Input() userSettings: UserSettingsModel;
   public submited = false;
-  public mounth = [];
+  public month = [];
   public openItem: number;
 
   files: any = [];
@@ -29,7 +29,7 @@ export class AdditionalEducationUserSettingsComponent implements OnInit {
   }
   createMountArray() {
     for (let i = 1; i <= 12; i++) {
-      this.mounth.push(i);
+      this.month.push(i);
     }
   }
   createYearArray() {
@@ -51,9 +51,9 @@ export class AdditionalEducationUserSettingsComponent implements OnInit {
             id: this.additionalEducationId,
             additionalInstitution: '',
             courseName: '',
-            startStudyMounth: 1,
+            startStudyMonth: 1,
             startStudyYear: 1960,
-            endStudyMounth: 1,
+            endStudyMonth: 1,
             endStudyYear: 1960,
             additionalDiploma: []
           });

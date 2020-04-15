@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { UserModel } from 'src/app/models/user.model';
-import { SystemMessageInterface } from '../../interfaces/system-message.interface';
 import { SystemMessagesService } from './services/system-messages.service';
 import { LocalizeRouterService } from 'localize-router';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -19,19 +18,59 @@ export class SystemMessagesComponent implements OnInit {
   public messageListEmpty = false;
   public systemMessagesArr: any;
   public newSystemMessages = null;
+  menuOpen = null;
 
   public systemMessagesTypes = [
-    "refuseBreef",
-    "approveBreef",
-    "inProgress",
-    "DealFinished",
-    "DealFinishCanceledByCustomer",
-    "DealFinishedByFreelancer",
-    "CancelSubmited",
-    "DealClosedByCustomer",
-    "DealCloseByFreelancer",
-    "workStarted",
-    "holdMoney",
+    {
+      name: "DealFinished",
+      message: "Работа оплачена",
+      userType: 1
+    },
+    {
+      name: "DealFinishCanceledByCustomer",
+      message: "Работа отправлена на доработки",
+      userType: 1
+    },
+    {
+      name: "DealClosedByCustomer",
+      message: "Работа отменина заказчиком",
+      userType: 1
+    },
+    {
+      name: "holdMoney",
+      message: "Средства зарезирвированы",
+      userType: 1
+    },
+    {
+      name: "refuseBrief",
+      message: "Отказ от брифа",
+      userType: 2
+    },
+    {
+      name: "approveBrief",
+      message: "Бриф подтвержден",
+      userType: 2
+    },
+    {
+      name: "DealFinishedByFreelancer",
+      message: "Работа завершина фрилансером",
+      userType: 2
+    },
+    {
+      name: "CancelSubmitted",
+      message: "Фрилансер подтвердил отмену сотрудничества",
+      userType: 2
+    },
+    {
+      name: "DealCloseByFreelancer",
+      message: "Работа отменина фрилансером",
+      userType: 2
+    },
+    {
+      name: "workStarted",
+      message: "Работа начата",
+      userType: 2
+    }
   ];
 
   constructor(
@@ -69,22 +108,19 @@ export class SystemMessagesComponent implements OnInit {
     });
   }
 
-  // opne notification block
-  public toggleMessageList() {
+  // open notification block
+  public toggleMessageList() {;
     this.showMessagesListBlock = !this.showMessagesListBlock;
     this.newSystemMessages = null;
   }
 
-  // delet single or all notifications from arr by API
+  // delete single or all notifications from arr by API
   public deleteMessageItem(id, index) {
 
     this.systemMessagesService.deleteSystemMessage(id)
     .subscribe(res => {
       console.log(this.systemMessagesArr);
     }); 
-    
-    console.log("id", id);
-    // console.log("index", index);
 
     if(id === 0) {
       this.systemMessagesArr.splice(0);
@@ -99,18 +135,14 @@ export class SystemMessagesComponent implements OnInit {
     if(this.systemMessagesArr.length > 0) {
       this.messageListEmpty = true;
     } else {this.messageListEmpty = false;}
-    console.log(this.messageListEmpty);
   }
 
   public openChat(roomId, id, index) {
     const translatedPath: any = this.localize.translateRoute('/dashboard/projects');
-    // this.deleteMessageItem(id, index);    -- для ужадения по клмку на сообщение
     this.router.navigate([translatedPath], {
       relativeTo: this.route,
       queryParams: {},
     });
-    // this.socketService.openChat(roomId);    -- для открыия конкретного чата 
   }
-  
   
 }

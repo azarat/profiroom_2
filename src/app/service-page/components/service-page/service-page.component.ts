@@ -18,33 +18,30 @@ import { LocalizeRouterService } from 'localize-router';
   styleUrls: ['./service-page.component.scss']
 })
 export class ServicePageComponent implements OnInit {
-  // public offerId: object = null;
   public offerData: OfferDataInterface = null;
   catalogSubscription: Subscription;
   // tslint:disable-next-line: variable-name
   public convertedNumberOfComments;
-  // viewedOffers: any = null;
   public similarOffers: SimilarOffersInterface = null;
   public offerId;
-  sticky = false;
+  public sticky = false;
   elementPosition: any;
 
-  public step2 = false;
-  // public step2 = true;
+  public messageNotAuthorized: boolean;
 
-  public chousenOnOfferPage: string;
+  public step2 = false;
+  public chosenOnOfferPage: string;
 
   @ViewChild('stickyMenu', { static: false }) menuElement: ElementRef;
-
+  
   constructor(
     // tslint:disable-next-line: variable-name
     private _route: ActivatedRoute,
     // tslint:disable-next-line: variable-name
     private _router: Router,
-    private offerDataService: ServicePageService,
+    private servicePageService: ServicePageService,
     // tslint:disable-next-line: variable-name
     private _scrollToService: ScrollToService,
-    private localStorageService: LocalStorageService,
     private currentUserService: UserService,
     private localize: LocalizeRouterService,
     private router: Router,
@@ -61,13 +58,19 @@ export class ServicePageComponent implements OnInit {
         window.scrollTo(0, 0);
         this.offerId = +_offerId.offerId;
       });
+
+      servicePageService.getSpinnerState().subscribe(data => {
+        this.messageNotAuthorized = data;
+      });     
   }
 
 
-  ngOnInit() {  }
+  ngOnInit() { 
+    // this.offerDataService.dataChange
+  }
 
   getOfferData(offerId: { offerId: string }) {
-    this.offerDataService.loadOfferDate(offerId)
+    this.servicePageService.loadOfferDate(offerId)
     .pipe(filter((res: any) => !! res))
     .subscribe(offerData => {
       this.offerData = offerData.userOffer;
@@ -91,7 +94,7 @@ export class ServicePageComponent implements OnInit {
       this.router.navigate([translatedPath]);
   }
 
-  formateCommentCount() {
+  private formateCommentCount() {
     if (this.offerData.comments_count < 1000) {
       this.convertedNumberOfComments = this.offerData.comments_count;
     } else {
@@ -99,8 +102,8 @@ export class ServicePageComponent implements OnInit {
     }
   }
 
-  getSimilarOffers(offerId: { offerId: string }) {
-    this.offerDataService.similarOffers(offerId)
+  public getSimilarOffers(offerId: { offerId: string }) {
+    this.servicePageService.similarOffers(offerId)
       .subscribe((res: any) => {
 
       this.similarOffers = res;
@@ -108,7 +111,7 @@ export class ServicePageComponent implements OnInit {
     });
   }
 
-  // tslint:disable-next-line: use-lifecycle-interface
+  // tslint:disable-next-line: use-life-cycle-interface
   ngAfterViewInit() {
     this.elementPosition = this.menuElement.nativeElement.offsetTop;
   }
@@ -125,7 +128,7 @@ export class ServicePageComponent implements OnInit {
   }
 
   // ** scroll to configuration
-  scrollTo(target: string) {
+  public scrollTo(target: string) {
     const config: ScrollToConfigOptions = {
       target,
       duration: 1000
@@ -142,12 +145,15 @@ export class ServicePageComponent implements OnInit {
     this._scrollToService.scrollTo(config);
   }
 
-  openCheckout(packageForm) {
-    this.chousenOnOfferPage = packageForm;
+  public openCheckout(packageForm) {
+    this.chosenOnOfferPage = packageForm;
     this.step2 = true;
   }
-  hideCheckout() {
+  public hideCheckout() {
     this.step2 = false;
   }
 
+  public closeErrorMessage() {
+    this.servicePageService.setSpinnerState(false);
+  }
 }

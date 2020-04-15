@@ -12,11 +12,10 @@
 
       </div>
     </div>
-    <ng-container>
+    <ng-container  *ngIf="userData.negativeComments.length != 0">
         <div class="comment" *ngFor="let comment of userData[currentTab.value + 'Comments']; let parrentCommentIndex = index">
           <h5 class="comment__service-name" >
               <a [routerLink]="'/service'| localize" [queryParams]="{ offerId: comment.offers.id }"> {{comment.offers.title}}</a>
-           
           </h5>
           <button class="comment__answer" (click)="openComentForm(comment.id)"></button>
           <div class="comment__wrapp">
@@ -42,15 +41,15 @@
                 <div class="comment__raiting">
                   <div class="comment__raiting-item">
                     <span>Качество</span>
-                    <div class="star-raiting">{{comment.offers.averageRaiting.qualityMark}}</div>
+                    <div class="star-raiting">{{comment.offers.averageRating.qualityMark}}</div>
                   </div>
                   <div class="comment__raiting-item">
                     <span>Срок</span>
-                    <div class="star-raiting">{{comment.offers.averageRaiting.termMark}}</div>
+                    <div class="star-raiting">{{comment.offers.averageRating.termMark}}</div>
                   </div>
                   <div class="comment__raiting-item">
                     <span>Вежливость</span>
-                    <div class="star-raiting">{{comment.offers.averageRaiting.politenessMark}}</div>
+                    <div class="star-raiting">{{comment.offers.averageRating.politenessMark}}</div>
                   </div>
                 </div>
                 <form #form="ngForm" class="comment-form" action="" *ngIf="commentFormOpen && commentFormOpen === comment.id" (clickOutside)="closeForm()" [exclude]="'button.comment__answer'">

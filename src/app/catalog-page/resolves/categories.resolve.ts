@@ -1,19 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
-import { GetCategorieItemsService } from '../services/get-categorie-items.service';
+import { GetCategoryItemsService } from '../services/get-category-items.service';
 import { SubCategoryListInterface } from 'src/app/shared/interfaces/subcategories-list.interface';
 
 @Injectable()
 
-export class CategorysResolver implements Resolve<any> {
+export class CategoriesResolver implements Resolve<any> {
   category: SubCategoryListInterface  ;
   constructor(
-    private aPiService: GetCategorieItemsService
+    private aPiService: GetCategoryItemsService
    ) {
 
   }
   resolve(route: ActivatedRouteSnapshot) {
-    this.aPiService.getCategorieItems(route.params.category);
+    this.aPiService.getCategoryItems(route.params.category);
 
   }
 }

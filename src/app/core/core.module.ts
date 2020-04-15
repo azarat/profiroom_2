@@ -17,9 +17,9 @@ import { WindowScrollBlockService } from './services/window-scrolling.service';
 import { config } from 'process';
 
 import { AuthorisatedGuard } from './guards/authorisated.guard';
-import { CategorysListService } from './services/categorys.service';
 import { OffersService } from './services/offers.service';
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
+import { CategoriesListService } from './services/categories.service';
 
 export const url = new URL(location.href).origin;
 
@@ -72,7 +72,7 @@ const gConfig = {
     LocalStorageService,
     UnauthorisatedGuard,
     AuthorisatedGuard,
-    CategorysListService,
+    CategoriesListService,
     WindowScrollBlockService,
   ]
 })

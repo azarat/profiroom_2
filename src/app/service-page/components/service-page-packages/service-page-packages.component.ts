@@ -14,11 +14,12 @@ export class ServicePagePackagesComponent implements OnInit {
   // tslint:disable-next-line: no-output-on-prefix
   @Output() checkoutState = new EventEmitter<any>();
   @Output() scrollToCompare = new EventEmitter<any>();
-  public token: any = null;
+
+  private token: any = null;
   public openFeatures = false;
   public extraFeaturesForm: FormGroup;
-  public notAuth;
-  extraFeatures: any;
+  public extraFeatures: any;
+  private allowCheckout = null;
 
   @Input() offerData: OfferDataInterface;
   @Input() offerId;
@@ -41,34 +42,32 @@ export class ServicePagePackagesComponent implements OnInit {
     'premium'
   ];
 
-
   constructor(
-    private servicePackageService: ServicePageService,
+    private servicePageService: ServicePageService,
     private localStorageService: LocalStorageService,
     private fb: FormBuilder
-  ) { }
+  ) {
+    this.token = this.localStorageService.getItem('token').value;
+  }
 
   ngOnInit() {
     this.initForm();
-    // this.goCheckout('basic');
-    this.checkUserToken();
   }
 
   private initForm() {
     this.extraFeaturesForm = this.fb.group({
       extraTerms: [null],
-      extraСhanges: [null],
+      extraChanges: [null],
       extraCommercial: [null],
     });
     this.offerData.extra_features.forEach((el: any) => {
       if (el.published) {
         this.extraFeaturesForm.addControl(el.title, this.fb.control(null));
       }
-
     });
   }
 
-  openTab = (i: number) => {
+  public openTab = (i: number) => {
     if (!this.offerData.allPackages) {
       this.currentTab = 0;
     } else {
@@ -76,39 +75,31 @@ export class ServicePagePackagesComponent implements OnInit {
     }
   }
 
-  showFeatures() {
+  public showFeatures() {
     this.openFeatures = !this.openFeatures;
-  }
-
-  // tslint:disable-next-line: variable-name
-  // public orderService(_package: string) {
-  //   this.servicePackageService.createDeal(this.offerId, _package);
-  // }
-
-  public goCheckout(packageType) {
-    if(this.token !== null) {
-      this.extraFeaturesForm.addControl('packageTitle', this.fb.control(packageType));
-      this.checkoutState.emit(this.extraFeaturesForm.value);
-    } else {
-      console.log("не авторизирован");
-    }
-
-    
   }
 
   public goCompareTable() {
     this.scrollToCompare.emit();
   }
 
-  private checkUserToken() {
-    this.token = this.localStorageService.getItem('token').value;
+  public goCheckout(packageType) {
+    this.checkAuthorized();
+    if(this.allowCheckout) {
+      this.extraFeaturesForm.addControl('packageTitle', this.fb.control(packageType));
+      this.checkoutState.emit(this.extraFeaturesForm.value);
+    }
+
+  }
+
+  private checkAuthorized() {
     if(this.token !== null) {
-      this.notAuth = true;
+      this.servicePageService.setSpinnerState(false);
+      this.allowCheckout = true;
     } else {
-      this.notAuth = false;
+      this.servicePageService.setSpinnerState(true);
+      this.allowCheckout = false;
     }
   }
 
-
-  
 }

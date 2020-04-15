@@ -24,11 +24,11 @@ export class UserPageServicesComponent implements OnInit {
 
   ngOnInit() {
   }
-  openOffer(offerid) {
+  openOffer(offerID) {
     const translatedPath: any = this.localize.translateRoute('/service');
 
     this.id = {
-      offerId: offerid
+      offerId: offerID
     };
 
     this.router.navigate( [translatedPath], {

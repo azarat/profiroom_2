@@ -11,8 +11,8 @@
     <div class="offer-info">
       <span class="offer-name" [routerLink]="['/user', offerData.user.id] | localize">{{ offerData.user.name }} {{ offerData.user.surname }}</span>
       <div class="offer-status">Уровень: {{ offerData.user.rank_id }}</div>
-      <div class="user-raiting-wrapp">
-        <p class="star-raiting">{{ offerData.raiting }}<span class="user-comments">({{ convertedNumberOfComments }} отзывов)</span></p>
+      <div class="user-rating-wrap">
+        <p class="star-rating">{{ offerData.rating }}<span class="user-comments">({{ convertedNumberOfComments }} отзывов)</span></p>
       </div>
       <div class="onlineStatus ">
         <span class="online" *ngIf="offerData.user.online">Oнлайн</span>
