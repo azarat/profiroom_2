@@ -70,15 +70,15 @@ export class OfferFaq {
   @Expose() answer: string;
 }
 
-export class BreefAnswerVariants {
+export class BriefAnswerVariants {
   @Expose() answerVariant: string;
 }
-export class Breef {
-  @Expose() breefTitle: string;
-  @Expose() breefAnswerType: string;
-  @Expose() breefAnwerRequired: boolean;
-  @Type(() => BreefAnswerVariants) breefAnswerVariants: BreefAnswerVariants[];
-  @Expose() breefMultiAnswers: boolean;
+export class Brief {
+  @Expose() briefTitle: string;
+  @Expose() briefAnswerType: string;
+  @Expose() briefAnswerRequired: boolean | string;
+  @Type(() => BriefAnswerVariants) briefAnswerVariants: BriefAnswerVariants[];
+  @Expose() briefMultiAnswers: boolean;
 }
 
 
@@ -117,7 +117,7 @@ export class UserServiceModel {
   @Type(() => ExtraFeatures) extra_features: ExtraFeatures[];
   // tslint:disable-next-line: variable-name
   @Type(() => OfferFaq) offer_faq: OfferFaq[];
-  @Type(() => Breef) offerBreef: Breef[];
+  @Type(() => Brief) offerBrief: Brief[];
 
 
   // -------delete option------
@@ -132,8 +132,8 @@ export class UserServiceModel {
     this.offer_faq.splice(index, 1);
   }
 
-  public removeBreefItem(index: number) {
-    this.offerBreef.splice(index, 1);
+  public removeBriefItem(index: number) {
+    this.offerBrief.splice(index, 1);
   }
 
 }

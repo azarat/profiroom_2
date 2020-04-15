@@ -26,7 +26,7 @@ export class SocketService {
 
   public connect() {
 
-    this.http.get('/checkAuthirization')
+    this.http.get('/checkAuthorization')
       .subscribe((res: any) => {
         if (!res.auth) {
           this.socket.disconnect(this.host);
@@ -76,9 +76,9 @@ export class SocketService {
     });
   }
 
-  //  user List subscrubing
+  //  user List subscribing
   // tslint:disable-next-line:variable-name
-  public subscribeOnListOfCollucutors(_chatType?: string) {
+  public subscribeOnCollocutorList(_chatType?: string) {
     if (_chatType === this.typeOfChat) {
       return;
     } else {

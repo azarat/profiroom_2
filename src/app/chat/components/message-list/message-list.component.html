@@ -3,22 +3,22 @@
   <div class="message-list" id="messages-wrap" #messagesWrap (scroll)="onScroll($event)">
     <!-- <div  #messagesHeight > -->
     <div *ngFor="let message of messagesList, let i = index">
-    <!-- breef -->
-    <div *ngIf="message.type === 'breef'" class="breef">
+    <!-- brief -->
+    <div *ngIf="message.type === 'brief'" class="brief">
       <div class="deal-start">
         {{ message.dateTime |  date: 'dd.MM yyyy' }}
         </div>
       <span class="time">{{ message.dateTime | dateFormatPipe: 'dd.MMMM HH:mm' }}</span>
       <div>
-        <app-breef-message-showing [breefMessage]="message.breef" [collocutorData]="collocutorData"></app-breef-message-showing>
+        <app-brief-message-showing *ngIf="collocutorData" [briefMessage]="message.brief" [collocutorData]="collocutorData"></app-brief-message-showing>
         </div>
       </div>
 
-      <!-- /breef -->
+      <!-- /brief -->
       <!-- message -->
       <div class="message"
-      *ngIf="message.type !== 'breef'"
-        [ngClass]="{ 'autor': message.author === userId, 'message-anchor': i === 0 || messagesList[i].author !== messagesList[i-1].author}">
+      *ngIf="message.type !== 'brief'"
+        [ngClass]="{ 'author': message.author === userId, 'message-anchor': i === 0 || messagesList[i].author !== messagesList[i-1].author}">
         <div class="photo" *ngIf="message.type !== 'systemMessage'">
           <ng-container
             *ngIf="i === 0 || i== messagesList.length-1 || messagesList[i].author !== messagesList[i+1].author">

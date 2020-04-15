@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { CollucutorsListInterface } from '../interfaces/collucotors-list.interface';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { CollocutorInterface } from '../interfaces/collocutor.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -9,10 +9,10 @@ import { HttpClient } from '@angular/common/http';
 
 export class DealService {
 
-  // dealData: CollucutorsListInterface;
+  // dealData: CollocutorListInterface;
   // tslint:disable-next-line:variable-name
   private _dealData = new BehaviorSubject(null);
-  public dealData$ = new Observable<CollucutorsListInterface>();
+  public dealData$ = new Observable<CollocutorInterface>();
 
   constructor(
     private http: HttpClient
@@ -20,7 +20,7 @@ export class DealService {
     this.dealData$ = this._dealData.asObservable();
   }
 
-  setDealInfo(deal: CollucutorsListInterface) {
+  setDealInfo(deal: CollocutorInterface) {
     this._dealData.next(deal);
   }
 
@@ -28,11 +28,11 @@ export class DealService {
     // Deal -> freelancer // Customer for customer
     return this.http.post('/send' + type + 'Comment', rateData);
   }
-  // public setСustomerRate(rateData) {
+  // public setCustomerRate(rateData) {
   //   return this.http.post('/sendCustomerComment', rateData);
   // }
 
-  public callToArbitr(id: number) {
-    return this.http.post('/callArbitr', { deal_id: id });
+  public callToArbiter(id: number) {
+    return this.http.post('/callArbiter', { deal_id: id });
   }
 }

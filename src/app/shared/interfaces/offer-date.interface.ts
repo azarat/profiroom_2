@@ -7,9 +7,8 @@ export interface OfferDataInterface {
   created_at?: string;
   allPackages?: number;
   description?: string;
-  raiting?: number;
   comments_count?: number;
-  averageRaiting?: {
+  averageRating?: {
     averageMark?: number;
     qualityMark?: number;
     termMark?: number;

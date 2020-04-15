@@ -13,7 +13,7 @@ import { UserServiceModel } from 'src/app/models/user-services/user-service.mode
   styleUrls: ['./fifth-step-creation.component.scss']
 })
 export class FifthStepCreationComponent implements OnInit {
-  submited = false;
+  submitted = false;
   showedItem: number = null;
   translatedPath: any = this.localize.translateRoute('/dashboard/my-services');
   answerTypes = [
@@ -37,36 +37,36 @@ export class FifthStepCreationComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if (this.userService.offerBreef.length === 0) {
-      this.addBreefItem();
+    if (this.userService.offerBrief.length === 0) {
+      this.addBriefItem();
     } else {
-      this.showedItem = this.userService.offerBreef.length;
+      this.showedItem = this.userService.offerBrief.length;
     }
   }
 
-  addBreefItem() {
-    this.userService.offerBreef.push({
-      breefTitle: null,
-      breefAnswerType: null,
-      breefAnwerRequired: false,
-      breefAnswerVariants: [],
-      breefMultiAnswers: false,
+  addBriefItem() {
+    this.userService.offerBrief.push({
+      briefTitle: null,
+      briefAnswerType: null,
+      briefAnswerRequired: false,
+      briefAnswerVariants: [],
+      briefMultiAnswers: false,
     }
     );
-    this.showedItem = this.userService.offerBreef.length;
+    this.showedItem = this.userService.offerBrief.length;
   }
 
   onFiltersChange(e: string, i: number) {
-    if (this.userService.offerBreef[i].breefAnswerType === 'radio' && this.userService.offerBreef[i].breefAnswerVariants === undefined) {
-      this.userService.offerBreef[i].breefAnswerVariants = [
+    if (this.userService.offerBrief[i].briefAnswerType === 'radio' && this.userService.offerBrief[i].briefAnswerVariants === undefined) {
+      this.userService.offerBrief[i].briefAnswerVariants = [
         {
           answerVariant: null
         },
         {
           answerVariant: null
         }];
-    } else if (this.userService.offerBreef[i].breefAnswerVariants.length === 0) {
-      this.userService.offerBreef[i].breefAnswerVariants.push(
+    } else if (this.userService.offerBrief[i].briefAnswerVariants.length === 0) {
+      this.userService.offerBrief[i].briefAnswerVariants.push(
         {
           answerVariant: null
         },
@@ -77,19 +77,19 @@ export class FifthStepCreationComponent implements OnInit {
     }
   }
 
-  addBreefAnswers(i: number) {
-    if (this.userService.offerBreef[i].breefAnswerType === 'radio') {
-      this.userService.offerBreef[i].breefAnswerVariants.push({
+  addBriefAnswers(i: number) {
+    if (this.userService.offerBrief[i].briefAnswerType === 'radio') {
+      this.userService.offerBrief[i].briefAnswerVariants.push({
         answerVariant: null
       });
     }
   }
   removeAnswer(i: number, j: number) {
-    this.userService.offerBreef[i].breefAnswerVariants.splice(j, 1);
+    this.userService.offerBrief[i].briefAnswerVariants.splice(j, 1);
   }
 
   nextStep(form: NgForm) {
-    this.submited = true;
+    this.submitted = true;
     if (!form.valid) {
       return;
     }
@@ -100,12 +100,12 @@ export class FifthStepCreationComponent implements OnInit {
       });
   }
 
-  changeBreefItem(index: number) {
+  changeBriefItem(index: number) {
     this.showedItem = index;
   }
 
-  deleteBreefItem(index: number) {
-    this.userService.removeBreefItem(index);
+  deleteBriefItem(index: number) {
+    this.userService.removeBriefItem(index);
   }
 
   quite = () => {

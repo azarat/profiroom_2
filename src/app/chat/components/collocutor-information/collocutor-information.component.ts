@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ChatService } from '../../services/chat.service';
 import { CollocutorInformationModel } from 'src/app/models/chat/collocutor-information.model';
 import { plainToClass } from 'class-transformer';
-import { CommetnsCountTransformerService } from 'src/app/core/services/comments-count-transformer.service';
+import { CommentsCountTransformerService } from 'src/app/core/services/comments-count-transformer.service';
 
 const n = 5750;
 
@@ -13,16 +13,16 @@ const n = 5750;
 })
 export class CollocutorInformationComponent implements OnInit {
 
-  // collocutorRaiting = 4;
+  // collocutorRating = 4;
   public collocutorAllComments = null;
-  public isInformWraped: boolean = false;
+  public isInformWrapped: boolean = false;
   public wrapButtonText: string = 'развернуть';
 
   @Input() collocutorData;
   public collocutor;
   constructor(
     private chatService: ChatService,
-    private commentsCountTransformerService: CommetnsCountTransformerService
+    private commentsCountTransformerService: CommentsCountTransformerService
   ) { }
 
   ngOnInit() {
@@ -31,12 +31,12 @@ export class CollocutorInformationComponent implements OnInit {
 
       this.collocutor = plainToClass(CollocutorInformationModel, res.user)
       console.log('this.collocutor', this.collocutor)
-      this.collocutorAllComments = this.commentsCountTransformerService.transformCommentsVlalue(this.collocutor.negative_comments_count + this.collocutor.positive_comments_count );
+      this.collocutorAllComments = this.commentsCountTransformerService.transformCommentsValue(this.collocutor.negative_comments_count + this.collocutor.positive_comments_count );
     });
   }
 
   public showAllInfo() {
-    this.isInformWraped = !this.isInformWraped;
-    this.wrapButtonText = this.isInformWraped === true ? 'свернуть' : 'развернуть';
+    this.isInformWrapped = !this.isInformWrapped;
+    this.wrapButtonText = this.isInformWrapped === true ? 'свернуть' : 'развернуть';
   }
 }

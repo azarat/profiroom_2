@@ -3,7 +3,7 @@ import { ChatService } from '../../services/chat.service';
 import { SocketService } from '../../services/socket.service';
 import { ActivatedRoute } from '@angular/router';
 import { filter } from 'rxjs/operators';
-import { CollucutorsListInterface } from '../../interfaces/collucotors-list.interface';
+import { CollocutorInterface } from '../../interfaces/collocutor.interface';
 import { UserStateService } from 'src/app/dashboard-page/services/user-state.service';
 import { DealService } from '../../services/deal.service';
 
@@ -15,15 +15,15 @@ import { DealService } from '../../services/deal.service';
 export class ChatComponent implements OnInit, OnDestroy {
 
   @Input() chatType: string;
-  uploadedBreefFiles: any;
+  uploadedBriefFiles: any;
 
-  public collocutorData: CollucutorsListInterface;
+  public collocutorData: CollocutorInterface;
   public isFileLoaderVisible: boolean = null;
-  // var if exit from unwritten breef
-  public exitFromBreefPopUpVisible: boolean = null;
+  // var if exit from unwritten brief
+  public exitFromBriefPopUpVisible: boolean = null;
   public isChat = true;
 
-  deal: CollucutorsListInterface;
+  deal: CollocutorInterface;
 
 
   constructor(
@@ -38,7 +38,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     this._subscribeUserStateChanges();
     this.isChat = true;
 
-    this.subscribeColucutors();
+    this.subscribeCollocutor();
     this.openNewDeal();
 
     this._subscribeDealInWorkChat();
@@ -47,7 +47,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.socketService.closeCollocutorSocket(this.chatType);
   }
 
-  // oen new chat vs delay to reset messager template
+  // oen new chat vs delay to reset massager template
   getCurrentRoom(userInfo) {
     this.collocutorData = null;
     setTimeout(() => {
@@ -56,19 +56,18 @@ export class ChatComponent implements OnInit, OnDestroy {
     }, 100);
   }
 
-  private subscribeColucutors() {
-    this.socketService.subscribeOnListOfCollucutors(this.chatType);
+  private subscribeCollocutor() {
+    this.socketService.subscribeOnCollocutorList(this.chatType);
   }
 
-  // open breef feeling if is new and chat after sending breef
+  // open brief feeling if is new and chat after sending brief
   private openNewDeal() {
     this.route.queryParams
-      .pipe(
-        filter((res: any) => !!res),
-      )
-      .subscribe((res) => {
+      .subscribe((res: any) => {
         if (res.hasOwnProperty('offers_id')) {
-          this.collocutorData = res;
+          console.log('new deal',res);
+          // this.collocutorData = res;
+          this.getCurrentRoom(res);
         } else if (res.hasOwnProperty('dealId')) {
           this._resetChat();
         }

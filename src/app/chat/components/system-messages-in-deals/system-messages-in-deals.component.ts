@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 import { ChatService } from '../../services/chat.service';
 import { DealService } from '../../services/deal.service';
-import { CollucutorsListInterface } from '../../interfaces/collucotors-list.interface';
+import { CollocutorInterface } from '../../interfaces/collocutor.interface';
 
 @Component({
   selector: 'app-system-messages-in-deals',
@@ -12,14 +12,14 @@ import { CollucutorsListInterface } from '../../interfaces/collucotors-list.inte
 export class SystemMessagesInDealsComponent implements OnInit {
 
   @Input() systemMessage;
-  @Input() collocutorData: any;
+  @Input() collocutorData: CollocutorInterface;
 
-  public messageBreef = null;
-  public messageMoneyHolded;
+  public messageBrief = null;
+  public messageMoneyHolden: boolean;
   public isUserFreelancer: boolean = null;
   public messageClass: string;
-  public dealCencel: boolean = null;
-  public deal: CollucutorsListInterface;
+  public dealCancel: boolean = null;
+  public deal: CollocutorInterface;
 
   constructor(
     private localStorageService: LocalStorageService,
@@ -30,19 +30,19 @@ export class SystemMessagesInDealsComponent implements OnInit {
     this._CheckMessage();
     this.checkIsUserFreelancer();
     this.changeBtnStyling();
-    console.log(this.systemMessage)
+    console.log('system message',this.collocutorData)
   }
 
   private _CheckMessage() {
-    if (this.systemMessage.message.name === 'approveBreef') {
-      this.messageClass = 'breef';
+    if (this.systemMessage.message.name === 'approveBrief') {
+      this.messageClass = 'brief';
     } else if (this.systemMessage.message.name === 'holdMoney') {
       this.messageClass = 'hold-money';
     } else if (this.systemMessage.message.name === 'workStarted') {
       this.messageClass = 'workStarted';
     } else if (this.systemMessage.message.name === 'DealClosedByCustomer' || this.systemMessage.message.name === 'DealCloseByFreelancer'
-      || this.systemMessage.message.name === 'Cancelsubmited') {
-      this.messageClass = 'deal-cencel';
+      || this.systemMessage.message.name === 'CancelSubmitted') {
+      this.messageClass = 'deal-cancel';
     } else if (this.systemMessage.message.name === 'DealFinishedByFreelancer') {
       this.messageClass = 'DealFinishedByFreelancer';
     } else if (this.systemMessage.message.name === 'DealFinished') {
@@ -50,13 +50,13 @@ export class SystemMessagesInDealsComponent implements OnInit {
     } else if (this.systemMessage.message.name === 'DealFinishCanceledByCustomer') {
       this.messageClass = 'DealFinishCanceled';
     }else if(this.systemMessage.message.name === 'arbitration') {
-      this.messageClass = 'arbitr';
+      this.messageClass = 'arbiter';
     }
   }
 
   private checkIsUserFreelancer() {
     const userId = this.localStorageService.getItem('userId').value;
-    if (this.collocutorData.freelanser_id === userId) {
+    if (this.collocutorData.freelancer_id === userId) {
       this.isUserFreelancer = true;
     }
   }
@@ -72,15 +72,15 @@ export class SystemMessagesInDealsComponent implements OnInit {
 
 
   private changeBtnStyling() {
-    if (this.isUserFreelancer && this.systemMessage.message.name === 'DealClosedByCustomer' && this.collocutorData.earlyClosing !== 0) {
-      return this.dealCencel = true;
+    if (this.isUserFreelancer && this.systemMessage.message.name === 'DealClosedByCustomer' && this.collocutorData.early_closing !== 0) {
+      return this.dealCancel = true;
     } else if (!this.isUserFreelancer && this.systemMessage.message.name === 'DealCloseByFreelancer'
-      && this.collocutorData.earlyClosing !== 0) {
-      return this.dealCencel = true;
+      && this.collocutorData.early_closing !== 0) {
+      return this.dealCancel = true;
     } else if (!this.isUserFreelancer && this.systemMessage.message.name === 'DealFinishedByFreelancer') {
-      return this.dealCencel = true;
+      return this.dealCancel = true;
     } else {
-      this.dealCencel = null;
+      this.dealCancel = null;
     }
   }
 

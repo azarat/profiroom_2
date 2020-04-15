@@ -56,7 +56,7 @@
     }
   }
 
-  &.breef {
+  &.brief {
     h5 {
       color: #67b7d4;
       border-color: #9de5ff;
@@ -75,7 +75,7 @@
       border-color: #FFE8C9;
     }
   }
-  &.deal-cencel{
+  &.deal-cancel{
     h5 {
       color: #FF9090;
       border-color: #FFDADA;
@@ -99,14 +99,14 @@
       border-color: #C4EAE0;
     }
   }
-   &.arbitr{
+   &.arbiter{
     h5 {
       color: #DA8383;
       border-color: #FFCFCF;
     }
   }
 
-  &.arbitr-mess {
+  &.arbiter-mess {
     display: flex;
     flex-direction: row;
     &>div {
