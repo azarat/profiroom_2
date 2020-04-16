@@ -10,7 +10,7 @@
     </ul>
   </div>
   <h2 class="category-title" *ngIf="subcategoriesList">{{ subcategoriesList.name }}</h2>
-  <div class="container">
+  <div class="catalo-page__wrapper">
     <div class="sidebar">
       <ul class="sidebar__subcategories-list" *ngIf="subcategoriesList">
         <li class="sidebar__subcategories" *ngFor="let sub_categories of subcategoriesList.sub_categories"><a
@@ -24,9 +24,9 @@
         <div class="subcategory-full-img" [routerLink]="['/catalog', subcategoriesList.link , sub_categories.link] | localize">
           <img [src]="'https://www.thecubetest.site/Backend/storage/app' + sub_categories.img" alt="{{ sub_categories.name }}">
         </div>
-        <h2 class="subcategory-full-title"><a
-            [routerLink]="['/catalog', subcategoriesList.link , sub_categories.link] | localize">
-            {{ sub_categories.name }} </a></h2>
+        <a [routerLink]="['/catalog', subcategoriesList.link , sub_categories.link] | localize">
+          <h2 class="subcategory-full-title">{{ sub_categories.name }} </h2>
+        </a>
       </div>
     </div>
   </div>

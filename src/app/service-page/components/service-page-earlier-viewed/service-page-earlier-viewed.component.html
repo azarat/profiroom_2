@@ -1,8 +1,8 @@
 <section class="early-viewed">
   <h4 class="section-title">
-    Похожие услуги создания сайтов
+    Похожие услуги “{{ offerData.title }}”
   </h4>
-  <div class="item-list" *ngIf="similarOffers">
+  <div class="cards-list" *ngIf="similarOffers">
 
       <div class="card" *ngFor="let offer of similarOffers.similarOffers">
         <div class="card-preview__bg">
@@ -10,17 +10,12 @@
         </div>
         <div class="card-description">
 
-          <div class="card-description__top">
-            <a class="card-description__ava" [routerLink]="['/user', offer.user.id] | localize"><img [src]="offer.user.avatar" alt="avatar"></a>
-            <div>
-              <a class="card-description__name" [routerLink]="['/user', offer.user.id] | localize">{{offer.user.name}} {{offer.user.surname}}</a>
-              <div class="card-description__skill">{{offer.user.rank_id}}</div>
-            </div>
-          </div>
           <p class="card-description__about" (click)="openOffer(offer.id)">{{offer.title}}</p>
           <div class="card-description__bottom">
-            <div class="card-description__level">{{offer.rating}}</div>
+            <div class="card-description__level">{{offer.averageRating.averageMark}}</div>
             <div class="card-description__comments"><a>({{offer.comments_count}} отзывов)</a></div>
+            <a class="card-description__ava" [routerLink]="['/user', offer.user.id] | localize"><img [src]="offer.user.avatar" alt="avatar">
+            </a>
           </div>
 
         </div>

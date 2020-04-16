@@ -6,7 +6,7 @@
   color: #323c47;
   font-family: "Source Sans Pro", sans-serif;
 }
-.item-list {
+.cards-list {
   display: flex;
   flex-wrap: wrap;
   -webkit-box-pack: start;
@@ -19,15 +19,10 @@
   box-sizing: border-box;
   font-family: "Source Sans Pro", sans-serif;
   color: #323c47;
-
   box-shadow: 0px 0px 4px rgba(199, 213, 255, 0.55);
   border-radius: 3px;
   background-color: #fff;
-  // &:nth-child(3n + 1){
-  //   margin-right: 0;
-  // }
   &-preview {
-
     &__bg {
       height: 220px;
       box-shadow: 0px 0px 4px rgba(199, 213, 255, 0.55);
@@ -35,47 +30,47 @@
       position: relative;
       overflow: hidden;
       cursor: pointer;
-      // background-image: url(/assets/images/preview.png);
-      // background-repeat: no-repeat;
-      // background-size: cover;
       img{
+        object-fit: cover;
         width: 100%;
-        height: auto;
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
+        height: 100%;
       }
     }
   }
   &-description {
     width: 100%;
-    padding: 27px 20px 10px;
+    padding: 17px 22px 8px;
     box-sizing: border-box;
-    height: 185px;
+    height: 125px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    &__top {
-      display: flex;
-      align-items: center;
-      img {
-        height: 40px;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-      }
-    }
+    // &__top {
+    //   display: flex;
+    //   align-items: center;
+    //   img {
+    //     height: 130%;
+    //     width: auto;
+    //     position: absolute;
+    //     top: 50%;
+    //     left: 50%;
+    //     transform: translate(-50%, -50%);
+    //   }
+    // }
     &__ava {
       height: 40px;
       width: 40px;
       border-radius: 50%;
       overflow: hidden;
       position: relative;
-      margin-right: 14px;
-      img{
+      margin-left: auto ;
+      img {
         height: 130%;
         width: auto;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
       }
     }
     &__name {
@@ -83,17 +78,20 @@
       font-size: 16px;
       line-height: 20px;
       padding-bottom: 3px;
-      color: #323c47;
       text-decoration: none;
+      color: #323c47;
       cursor: pointer;
       &:hover{
         color: #5695FD;
       }
     }
     &__about{
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 20px;
+      color: #323C47;
       max-height: 41px;
       overflow: hidden;
-      color: #323c47;
       cursor: pointer;
       &:hover{
         color: #5695FD;
@@ -103,12 +101,10 @@
       font-size: 16px;
       line-height: 20px;
     }
-    p {
-      margin: 15px 0 0;
-    }
     &__bottom {
       margin-top: auto;
       display: flex;
+      align-items: flex-end;
     }
     &__level {
       font-weight: 600;
@@ -116,6 +112,7 @@
       line-height: 20px;
       padding-left: 28px;
       position: relative;
+      height: 20px;
       &::before {
         content: "";
         position: absolute;
@@ -175,6 +172,68 @@
           top: 50%;
           transform: translateY(-50%);
         }
+      }
+    }
+  }
+}
+
+@media (max-width: 1499px) {
+  .early-viewed{
+    margin-bottom: 40px;
+  }
+  .section-title{
+    margin-bottom: 25px;
+  }
+  .cards-list {
+    margin: 0 -15px 0;
+  }
+  .card {
+    width: calc(25% - 30px);
+    margin: 0 15px 15px;
+    &-preview {
+      &__bg {
+        height: 155px;
+      }
+    }
+    &-description {
+      padding: 10px;
+      height: 90px;
+      &__about{
+        font-size: 14px;
+        line-height: 18px;
+      }
+      &__ava{
+        height: 30px;
+        width: 30px;
+      }
+    }
+    &-bottom {
+      height: 37px;
+    }
+  }
+}
+
+@media (max-width: 1360px) {
+  .card {
+    &-preview {
+      &__bg {
+        height: 140px;
+      }
+    }
+    &-description {
+      padding: 9px 10px 10px;
+      &__about{
+        font-size: 14px;
+        line-height: 16px;
+        margin: 0;
+      }
+      &__comments{
+        font-size: 14px;
+        line-height: 16px;
+      }
+      &__level{
+        font-size: 14px;
+        line-height: 16px;
       }
     }
   }

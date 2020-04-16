@@ -149,6 +149,39 @@
   }
 }
 
+.btn-watch-more{
+  margin: 30px auto 50px;
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  color: #3C7EEA;
+  cursor: pointer;
+  text-transform: uppercase;
+  width: fit-content;
+  position: relative;
+  padding-right: 20px;
+  &:hover {
+    color: #5695FD;
+  }
+  &:active{
+    color: #1666EA;
+  }
+  &::after{
+    content: '';
+    background-image: url(/assets/images/svg/user/blue-arrow-down.svg);
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%) rotate(-90deg);
+    width: 12px;
+    height: 7px;
+  }
+}
+
+
 @media (max-width: 1499px) {
   .another-services{
     margin-bottom: 40px;
@@ -176,47 +209,12 @@
       }
     }
     &-bottom {
-      border: 1px solid #F4F7FC;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 11px;
-      &__like {
-        width: 20px;
-        height: 18px;
-        background-image: url(/assets/images/icons/not_liked.png);
-        background-repeat: no-repeat;
-        background-size: cover;
-        cursor: pointer;
-        &.liked{
-          background-image: url(/assets/images/icons/liked.png);
-        }
-      }
-      &__price {
-        font-weight: normal;
-        font-size: 14px;
-        line-height: 18px;
-        span {
-          font-weight: bold;
-          font-size: 16px;
-          line-height: 20px;
-          padding-left: 13px;
-          position: relative;
-          &::before{
-            content: "$";
-            position: absolute;
-            left: 4px;
-            top: 50%;
-            transform: translateY(-50%);
-          }
-        }
-      }
+      height: 37px;
     }
   }
 }
 
-@media (max-width: 1361px) {
+@media (max-width: 1360px) {
   .card {
     &-preview {
       &__bg {
@@ -228,44 +226,6 @@
       &__about{
         font-size: 14px;
         line-height: 18px;
-      }
-    }
-    &-bottom {
-      border: 1px solid #F4F7FC;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 11px;
-      &__like {
-        width: 20px;
-        height: 18px;
-        background-image: url(/assets/images/icons/not_liked.png);
-        background-repeat: no-repeat;
-        background-size: cover;
-        cursor: pointer;
-        &.liked{
-          background-image: url(/assets/images/icons/liked.png);
-        }
-      }
-      &__price {
-        font-weight: normal;
-        font-size: 14px;
-        line-height: 18px;
-        span {
-          font-weight: bold;
-          font-size: 16px;
-          line-height: 20px;
-          padding-left: 13px;
-          position: relative;
-          &::before{
-            content: "$";
-            position: absolute;
-            left: 4px;
-            top: 50%;
-            transform: translateY(-50%);
-          }
-        }
       }
     }
   }
