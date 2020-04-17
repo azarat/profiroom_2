@@ -63,16 +63,16 @@
     margin-top: 4px;
   }
   .img-wrapper{
-    width: 115px;
-    height: 115px;
+    width: 125px;
+    height: 125px;
     cursor: pointer;
     position: relative;
     .ava-block{
       position: relative;
     }
     .img-block{
-      width: 115px;
-      height: 115px;
+      width: 125px;
+      height: 125px;
       background-color: gray;
       background:rgba(244, 247, 252, 0.4);
       border: 1px solid #99ACB7;
@@ -147,6 +147,9 @@
     width: 6px;
     height: 6px;
   }
+  h5.radio-title{
+    bottom: -2px;
+  }
 }
 
 .birthday-block{
@@ -188,3 +191,44 @@
 
 
 
+@media (max-width: 1499px) {
+  .top-block{
+    max-width: 510px;
+    margin-bottom: 10px;
+  }
+  .inform_section{
+    &__title{
+      padding: 40px 25px;
+      width: 25%;
+    }
+    &__fields{
+      padding: 40px 0;
+      width: 75%;
+    }
+  }
+  .gender-block{
+    margin-bottom: 40px;
+    .block-title{
+      margin-bottom: 20px;
+    }
+  }
+  .birthday-block{
+    max-width: 510px;
+  }
+  .about_me-block{
+    max-width: 510px;
+    .mat-form-field-infix{
+      border-top: 0!important;
+    }
+  }
+}
+@media (max-width: 1360px) {
+  .inform_section{
+    &__title{
+      width: 23%;
+    }
+    &__fields{
+      width: 77%;
+    }
+  }
+}

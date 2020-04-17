@@ -367,4 +367,29 @@ button {
   }
 }
 
-
+@media (max-width: 1499px) {
+  .inform_section{
+    &__title{
+      padding: 40px 25px;
+    }
+    &__fields{
+      padding: 40px 0;
+    }
+  }
+  .field-block-multiple{
+    max-width: 510px;
+  }
+  .single-education-block::after{
+    width: 100%;
+  }
+}
+@media (max-width: 1360px) {
+  .inform_section{
+    &__title{
+      width: 23%;
+    }
+    &__fields{
+      width: 77%;
+    }
+  }
+}

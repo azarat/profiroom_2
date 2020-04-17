@@ -178,3 +178,27 @@
     }
   }
 }
+
+@media (max-width: 1499px) {
+  .inform_section{
+    &__title{
+      padding: 40px 25px;
+    }
+    &__fields{
+      padding: 40px 0;
+    }
+  }
+  .inputs-wrapper{
+    max-width: 510px;
+  }
+}
+@media (max-width: 1360px) {
+  .inform_section{
+    &__title{
+      width: 23%;
+    }
+    &__fields{
+      width: 77%;
+    }
+  }
+}

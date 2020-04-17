@@ -605,11 +605,9 @@ app-service-page-checkout{
 
   //got
   .offer-rating {
-    margin-bottom: 80px;
-    .rating-type {
-      &.average{
-        display: none;
-      }
+    margin-bottom: 60px;
+    &::after{
+      bottom: -20px;
     }
   }
   

@@ -11,10 +11,6 @@ h1{
   margin: 30px;
   color: #323C47;
 }
-
-.tabs{
-
-}
 .mat-tab-group ::ng-deep{
   .mat-tab-label{
     opacity: 1;
@@ -38,5 +34,20 @@ h1{
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
     background-color: #3C7EEA;
+  }
+}
+
+@media (max-width: 1499px) {
+  h1{
+    margin: 30px auto 0px 15px; 
+  }
+  .mat-tab-group ::ng-deep{
+    .mat-tab-label{
+      opacity: 1;
+      &-content{
+        font-size: 16px;
+        line-height: 20px;
+      }
+    }
   }
 }
