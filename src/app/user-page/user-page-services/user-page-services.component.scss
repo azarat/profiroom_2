@@ -194,3 +194,17 @@
     }
   }
 }
+
+@media (max-width: 1499px) {
+  .user-services {
+    .card {
+      width: calc(33.3% - 40px);
+      margin: 0 20px 30px;
+      &-preview {
+        &__bg {
+          height: 180px;
+        }
+      }
+    }
+  }
+}

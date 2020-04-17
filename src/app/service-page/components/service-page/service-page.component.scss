@@ -46,52 +46,97 @@
     }
   }
 }
-
-.bread-crumbs {
+.bread-crumbs{
   margin-top: 85px;
-  ul {
+  ul{
     margin: 0;
     padding: 0;
     list-style-type: none;
     display: flex;
   }
-  li {
-    padding-right: 24px;
+  li{
+    padding-right: 20px;
     position: relative;
-    &::after {
-      content: ">";
+    &::after{
+      content: "";
+      background-image: url(/assets/images/svg/user/arrow-left-black.svg);
+      background-repeat: no-repeat;
+      background-size: contain;
       position: absolute;
-      right: 8px;
-      top: 50%;
-      transform: translateY(-50%);
+      top: 53%;
+      right: 7px;
+      transform: translateY(-50%) rotate(-180deg);
+      width: 6px;
+      height: 9px;
     }
-    a {
+    a{
       text-decoration: none;
       font-family: "Source Sans Pro";
       font-weight: normal;
       font-size: 14px;
       line-height: 18px;
-      color: #323c47;
+      color: #323C47;
     }
-    &:last-child {
-      a {
+    &:last-child{
+      a{
         font-weight: 600;
-        &:hover {
-          text-decoration: none;
-          cursor: default;
-        }
       }
-      &::after {
+      &::after{
         display: none;
       }
     }
-    &:hover {
-      a {
+    &:hover{
+      a{
         text-decoration: underline;
       }
     }
   }
 }
+// .bread-crumbs {
+//   margin-top: 85px;
+//   ul {
+//     margin: 0;
+//     padding: 0;
+//     list-style-type: none;
+//     display: flex;
+//   }
+//   li {
+//     padding-right: 24px;
+//     position: relative;
+//     &::after {
+//       content: ">";
+//       position: absolute;
+//       right: 8px;
+//       top: 50%;
+//       transform: translateY(-50%);
+//     }
+//     a {
+//       text-decoration: none;
+//       font-family: "Source Sans Pro";
+//       font-weight: normal;
+//       font-size: 14px;
+//       line-height: 18px;
+//       color: #323c47;
+//     }
+//     &:last-child {
+//       a {
+//         font-weight: 600;
+//         &:hover {
+//           text-decoration: none;
+//           cursor: default;
+//         }
+//       }
+//       &::after {
+//         display: none;
+//       }
+//     }
+//     &:hover {
+//       a {
+//         text-decoration: underline;
+//       }
+//     }
+//   }
+// }
 
 .main-block {
   display: flex;
