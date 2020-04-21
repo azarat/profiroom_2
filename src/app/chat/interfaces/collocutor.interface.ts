@@ -2,7 +2,7 @@
 export interface CollocutorInterface {
 
   id?: number;
-  roomId?: number;
+  roomId?: number | string;
   status?: string;
   unread?: number;
   collocutorId?: number;

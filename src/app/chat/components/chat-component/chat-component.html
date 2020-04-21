@@ -1,16 +1,14 @@
 <section class="wrapper" [ngClass]="{'attention': exitFromBriefPopUpVisible}" *ngIf="isChat">
   <section class="collocutors">
-    <app-collocutor-list [chatType]="chatType" (currentRoom)="getCurrentRoom($event)"></app-collocutor-list>
+    <app-collocutor-list [chatType]="chatType"></app-collocutor-list>
   </section>
   <section class="messager" *ngIf="collocutorData">
     <!-- messager -->
-    <app-messenger *ngIf="collocutorData && chatType === 'classic'  || collocutorData && deal && collocutorData.brief == 1 && chatType === 'work'"
-    [collocutorData]="collocutorData"
-      [chatType]="chatType" [(isFileLoaderVisible)]="isFileLoaderVisible" [deal]="deal" ></app-messenger>
+    <app-messenger *ngIf="collocutorData && chatType === 'classic'  || collocutorData && collocutorData.brief == 1 && chatType === 'work'"
+      [chatType]="chatType" [(isFileLoaderVisible)]="isFileLoaderVisible" ></app-messenger>
 <!-- breef -->
     <app-project-brief-filling
-    *ngIf="(collocutorData && collocutorData.brief == 0) && chatType === 'work'"
-      [collocutorData]="collocutorData"
+    *ngIf="collocutorData && collocutorData.brief == 0 && chatType === 'work'"
       [(exitFromBriefPopUpVisible)]="exitFromBriefPopUpVisible"
       (resetChat)="resetChat($event)"
       >
@@ -19,7 +17,7 @@
   </section>
   <section class="collocutors-tools">
     <!-- right chat bar -->
-    <app-messenger-tools *ngIf="chatType === 'work' && collocutorData" [collocutorData]="collocutorData"></app-messenger-tools>
+    <app-messenger-tools *ngIf="chatType === 'work' && collocutorData"></app-messenger-tools>
     <app-collocutor-information *ngIf="chatType === 'classic' && collocutorData" [collocutorData]="collocutorData">
     </app-collocutor-information>
 

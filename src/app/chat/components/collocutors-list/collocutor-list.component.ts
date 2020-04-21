@@ -14,6 +14,8 @@ import { CollocutorInterface } from '../../interfaces/collocutor.interface';
 import { UserStateService } from 'src/app/dashboard-page/services/user-state.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LocalizeRouterService } from 'localize-router';
+import { CollocutorService } from '../../services/collocutor.service';
+import { DealService } from '../../services/deal.service';
 
 
 
@@ -32,9 +34,12 @@ export class CollocutorListComponent implements OnInit {
   public collocutors: CollocutorInterface[];
   public lastMessageDate: string;
   @Input() chatType: string;
-  public userId;
-  currentFilterType = 'all';
-
+  public userId: number | any;
+  public currentFilterType = 'all';
+  private newChatRoomData: {
+    id: number,
+    roomId: string;
+  } = null;
   @Output() currentRoom = new EventEmitter();
 
   constructor(
@@ -45,13 +50,64 @@ export class CollocutorListComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private localize: LocalizeRouterService,
+    private collocutorService: CollocutorService,
+    private dealService: DealService
   ) { }
 
   ngOnInit() {
     this.userId = this.localStorageService.getItem('userId').value;
+    this._getChatRooms();
+    this._getChatInformation();
     this._subscribeNewMessages();
     this.checkUserState();
-    this._getChatRooms();
+  }
+
+// **** Get id of chatrooms or deals
+  private _getChatInformation() {  
+    this.route.queryParams.subscribe((res: any) => { 
+      if (res.hasOwnProperty('offers_id')) {
+        // If created new deal
+        console.log('new deal',res);
+        // this.collocutorData = res;
+        // this.getCurrentRoom(res);
+        this.getExistDeal(+res.id);
+
+      } else if (res.hasOwnProperty('dealId')) {
+        // If deal is already created
+        this.getExistDeal(+res.dealId);
+        // this._resetChat();
+      } else if(res.hasOwnProperty('id') && this.chatType=== 'classic') {
+        //  If classic chat and chat opened from user page
+        this.newChatRoomData = res;
+
+      }
+    });
+  }
+// Get Data of new deal
+  private getDealData(id: number) {
+
+    this.dealService.getDealData(id)
+    .pipe(filter((res: any) => !!res))
+    .subscribe((res: any) => {
+      console.log(res);
+      this.collocutorService.setCollocutorInfo(res);
+    })
+  }
+
+  // get exist Deal Data 
+
+  private getExistDeal(id: number) {
+    this.dealService.getDealData(id)
+    .subscribe((res: any)=> {
+      console.log('NEWDATA', res)
+      this.collocutorService.setCollocutorInfo(res);
+    })
+  }
+  // Find current collocutor in list
+  private _findChatRoom(id: number) {
+    return this.collocutors.filter(el =>{
+      return el.id === id
+    });
   }
 
   private checkUserState() {
@@ -64,10 +120,14 @@ export class CollocutorListComponent implements OnInit {
   private _getChatRooms() {
     this.chatService.getChatRooms(this.chatType)
       .subscribe((res: CollocutorInterface[]) => {
+        console.log(res)
         this.collocutors = res;
-        console.log(res);
         this._sortMessagesByTime(this.collocutors);
         this.openDealAfterBriefSubmit();
+        if(this.newChatRoomData && this.chatType === 'classic') {
+          let currentCollocutor = this._findChatRoom(+this.newChatRoomData.id)[0];
+          this._openChat(currentCollocutor);
+        }
       });
   }
 
@@ -78,24 +138,37 @@ export class CollocutorListComponent implements OnInit {
         this._sortMessagesByTime(this.collocutors);
       });
   }
-
+// Reset route from querryParams
   public openChat(userInfo) {
     this._openChat(userInfo);
-
+  let translatedPath: any;
     if (this.chatType === 'work') {
       // clear router from params if click on anther deal
-      const translatedPath: any = this.localize.translateRoute('/dashboard/projects');
-
+      translatedPath = this.localize.translateRoute('/dashboard/projects');
       this.router.navigate([translatedPath], {
         relativeTo: this.route,
-        queryParams: {},
+        queryParams: {dealId: userInfo.id},
+      });
+    } else if(this.chatType === 'classic') {
+      // clear router from params if click on anther chat
+      translatedPath = this.localize.translateRoute('/dashboard/chat-room');
+      this.router.navigate([translatedPath], {
+        relativeTo: this.route,
+        queryParams: {id: userInfo.id},
       });
     }
+ 
   }
+
   //  separate function to connect chatRoom
   private _openChat(userInfo) {
-    this.currentRoom.emit(userInfo);
+    // this.collocutorService.setCollocutorInfo(null);
+    // setTimeout(()=> {
+    
+    // }, 100)
+    this.collocutorService.setCollocutorInfo(userInfo);
     this.socketService.openChat(userInfo.roomId);
+    
   }
 
   private _pushNewMessage(arr, obj: any) {
@@ -139,9 +212,5 @@ export class CollocutorListComponent implements OnInit {
 
   public setCurrentType(event: any) {
     this.currentFilterType = event;
-  }
-
-  private checkIsDealNew() {
-
   }
 }

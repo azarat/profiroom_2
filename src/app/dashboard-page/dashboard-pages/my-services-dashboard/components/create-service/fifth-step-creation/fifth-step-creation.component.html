@@ -8,9 +8,9 @@
       [ngClass]="{ hiddenItem: showedItem !== i+1 }">
       <form #brief="ngForm">
         <div class="el">
-          <h6>{{ i+1 }}. <ng-container *ngIf="userService.offerBrief[i].briefTitle">
-              {{ userService.offerBrief[i].briefTitle.substr(0, 55) }}</ng-container> <span
-              *ngIf="userService.offerBrief[i].briefTitle && userService.offerBrief[i].briefTitle.length > 54">...</span>
+          <h6>{{ i+1 }}. <ng-container *ngIf="userService.offerBrief[i].title">
+              {{ userService.offerBrief[i].title.substr(0, 55) }}</ng-container> <span
+              *ngIf="userService.offerBrief[i].title && userService.offerBrief[i].title.length > 54">...</span>
           </h6>
           <div class="item-options">
             <button type="button" class="change"><i class="material-icons create"
@@ -21,39 +21,39 @@
           <div class="fields">
             <div class="title" [style.borderColor]="(title.invalid && submitted )? '#f44336' : '#dce0e6'">
               <textarea name="briefTtitle-{{i}}" placeholder="Напр., спецификации, брендбук, размеры, фотоматериалы"
-                required #title="ngModel" maxlength="500" [(ngModel)]="userService.offerBrief[i].briefTitle"></textarea>
+                required #title="ngModel" maxlength="500" [(ngModel)]="userService.offerBrief[i].title"></textarea>
               <span class="title-controls" *ngIf="title.pristine"> 500 символов</span>
               <span class="title-controls"
-                *ngIf="userService.offerBrief[i].briefTitle && userService.offerBrief[i].briefTitle.length < 500">
-                {{userService.offerBrief[i].briefTitle.length}}/500 символов</span>
+                *ngIf="userService.offerBrief[i].title && userService.offerBrief[i].title.length < 500">
+                {{userService.offerBrief[i].title.length}}/500 символов</span>
               <span class="title-controls"
-                *ngIf="userService.offerBrief[i].briefTitle && userService.offerBrief[i].briefTitle.length >= 500">
+                *ngIf="userService.offerBrief[i].title && userService.offerBrief[i].title.length >= 500">
                 достаточно</span>
             </div>
             <div class="options service-selects">
               <label for="answer-type">Тип ответа</label>
               <mat-form-field appearance="outline">
-                <mat-select id="answer-type-{{i}}" name="briefAnswerType{{i))" required
-            [(ngModel)]="userService.offerBrief[i].briefAnswerType" (ngModelChange)="onFiltersChange($event, i)">
+                <mat-select id="answer-type-{{i}}" name="answer_type{{i))" required
+            [(ngModel)]="userService.offerBrief[i].answer_type" (ngModelChange)="onFiltersChange($event, i)">
             <mat-option [value]="type.value" *ngFor="let type of answerTypes"> {{ type.name }}</mat-option>
                 </mat-select>
               </mat-form-field>
 
-              <input type="checkbox" [(ngModel)]="userService.offerBrief[i].briefAnswerRequired"
+              <input type="checkbox" [(ngModel)]="userService.offerBrief[i].answer_required"
                   class="tgl tgl-classic" name="requered-{{i}}" id="required-{{i}}">
                   <label for="required-{{i}}"></label>
                   <span>Ответ обязательный</span>
             </div>
-            <div class="multi" *ngIf="userService.offerBrief[i].briefAnswerType === 'radio'">
+            <div class="multi" *ngIf="userService.offerBrief[i].answer_type === 'radio'">
               <div class="brief-question-item"
-                [style.borderColor]="checkboxFields.invalid && submitted && userService.offerBrief[i].briefAnswerType === 'radio'? '#f44336' : '#dce0e6'"
-                *ngFor="let el of userService.offerBrief[i].briefAnswerVariants, let j = index">
+                [style.borderColor]="checkboxFields.invalid && submitted && userService.offerBrief[i].answer_type === 'radio'? '#f44336' : '#dce0e6'"
+                *ngFor="let el of userService.offerBrief[i].answers, let j = index">
 
-                <input type="text" [(ngModel)]="userService.offerBrief[i].briefAnswerVariants[j].answerVariant"
+                <input type="text" [(ngModel)]="userService.offerBrief[i].answers[j].answer"
                   #checkboxFields="ngModel" name="answerVariant-{{j}}" placeholder="Дополнительный ответ" required
                   maxlength="80">
                 <button class="clear"> <i class="material-icons"
-                    *ngIf="userService.offerBrief[i].briefAnswerVariants.length > 2" (click)="removeAnswer(i , j)">
+                    *ngIf="userService.offerBrief[i].answers.length > 2" (click)="removeAnswer(i , j)">
                     close
                   </i></button>
               </div>
@@ -66,7 +66,7 @@
 
                 </button>
                 <div class="comment">
-                  <input type="checkbox" [(ngModel)]="userService.offerBrief[i].briefMultiAnswers"
+                  <input type="checkbox" [(ngModel)]="userService.offerBrief[i].multi_answers"
                     class="tgl tgl-classic" name="multi-{{i}}" checkbox="" id="multi-answer">
                   <label for="multi-answer"></label>
                   <p>

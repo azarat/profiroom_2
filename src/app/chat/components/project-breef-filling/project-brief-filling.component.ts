@@ -6,6 +6,9 @@ import { plainToClass } from 'class-transformer';
 import { FormGroup, FormBuilder, FormArray, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LocalizeRouterService } from 'localize-router';
+import { DealService } from '../../services/deal.service';
+import { CollocutorService } from '../../services/collocutor.service';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-project-brief-filling',
@@ -14,7 +17,7 @@ import { LocalizeRouterService } from 'localize-router';
 })
 export class ProjectBriefFillingComponent implements OnInit {
 
-  @Input() collocutorData: CollocutorInterface;
+  public collocutorData: CollocutorInterface;
   @Input() exitFromBriefPopUpVisible: boolean;
 
   @Output() exitFromBriefPopUpVisibleChange = new EventEmitter<boolean>();
@@ -22,10 +25,11 @@ export class ProjectBriefFillingComponent implements OnInit {
 
   public briefForm: FormGroup;
   config: any[] = [];
-  offerBrief: any;
+  public offerBrief: Brief [];
   public submitted = null;
   constructor(
-    private chatService: ChatService,
+    private dealService: DealService,
+    private collocutorSevice: CollocutorService,
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
@@ -33,14 +37,27 @@ export class ProjectBriefFillingComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getOffer();
+    this.getCollocutorData();
+    
 
   }
 
-  private getOffer() {
-    this.chatService.getBrief(+this.collocutorData.offers_id)
+  private getCollocutorData() {
+    this.collocutorSevice.collocutorData$
+    .pipe(filter((res: any) => !!res))
+    .subscribe(res => {
+      this.collocutorData = res;
+        this.getOfferBrief();
+    })
+  } 
+
+  private getOfferBrief() {
+    console.log('getOfferBrief')
+    this.dealService.getBrief(+this.collocutorData.offers_id)
+    .pipe(filter((res: any) => !!res))
       .subscribe((res: any) => {
-        this.offerBrief = res.offerBrief;
+        console.log('breefData',res)
+        this.offerBrief = res.brief;
         console.log('offer brief',this.offerBrief);
         this.createFormGroup();
       });
@@ -49,18 +66,18 @@ export class ProjectBriefFillingComponent implements OnInit {
   private createFormGroup() {
     this.briefForm = this.fb.group({});
     this.offerBrief.forEach((el: Brief) => {
-      if (el.briefAnswerType === 'radio') {
-        if(el.briefAnswerRequired === '1') {
-          this.briefForm.addControl(el.briefTitle, new FormArray([], [Validators.required]));
+      if (el.answer_type === 'radio') {
+        if(el.answer_required === '1') {
+          this.briefForm.addControl(el.title, new FormArray([], [Validators.required]));
         } else {
-          this.briefForm.addControl(el.briefTitle, new FormArray([]));
+          this.briefForm.addControl(el.title, new FormArray([]));
         }
         
       } else {
-        if(el.briefAnswerRequired === '1') {
-          this.briefForm.addControl(el.briefTitle, this.fb.control(null, Validators.required));
+        if(el.answer_required === '1') {
+          this.briefForm.addControl(el.title, this.fb.control(null, Validators.required));
         } else {
-          this.briefForm.addControl(el.briefTitle, this.fb.control(null));
+          this.briefForm.addControl(el.title, this.fb.control(null));
         }
        
       }
@@ -75,7 +92,7 @@ export class ProjectBriefFillingComponent implements OnInit {
     }
     const translatedPath: any = this.localize.translateRoute('/dashboard/projects');
 
-    this.chatService.sendBeef(this.collocutorData.id, this.briefForm.value)
+    this.dealService.sendBeef(this.collocutorData.id, this.briefForm.value)
     .subscribe(res => {
 
       this.router.navigate([translatedPath], {
@@ -118,7 +135,7 @@ export class ProjectBriefFillingComponent implements OnInit {
   }
 
   public confirmDeleteBrief() {
-  this.chatService.deleteDeal(this.collocutorData.id)
+  this.dealService.deleteDeal(this.collocutorData.id)
   .subscribe(res => {
     if (res === 'ok') {
       this.returnToBrief();

@@ -13,9 +13,7 @@ import {
   LocalStorageService
 } from 'src/app/core/services/local-storage.service';
 import * as moment from 'moment';
-import {
-  DealService
-} from '../../services/deal.service';
+
 import {
   SocketService
 } from '../../services/socket.service';
@@ -23,6 +21,8 @@ import {
   CollocutorInterface
 } from '../../interfaces/collocutor.interface';
 import { trigger } from '@angular/animations';
+import { DealService } from '../../services/deal.service';
+import { CollocutorService } from '../../services/collocutor.service';
 
 @Component({
   selector: 'app-messenger-tools',
@@ -31,8 +31,8 @@ import { trigger } from '@angular/animations';
 })
 export class MessengerToolsComponent implements OnInit {
 
-  @Input() collocutorData: CollocutorListModel;
-  public deal: CollocutorInterface;
+  public collocutorData: CollocutorInterface;
+  // public deal: CollocutorInterface;
 
   public packagePrice: string;
   public isUserFreelancer: boolean = null;
@@ -54,49 +54,49 @@ export class MessengerToolsComponent implements OnInit {
     private chatService: ChatService,
     private localStorageService: LocalStorageService,
     private dealService: DealService,
-    private socketService: SocketService
+    private socketService: SocketService,
+    private collocutorService: CollocutorService
   ) {}
 
   ngOnInit() {
-    this.getDeal();
+    // this.getDeal();
     this.socketService.subscribeDeal();
     this.getDealData();
     // this._dealUpdating();
-    this.checkIsUserFreelancer();
-    console.log(this.deal);
+    
   }
 
 
   private convertPackagePrice() {
-    this.packagePrice = this.deal.amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+    this.packagePrice = this.collocutorData.amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
   }
 
   private checkIsUserFreelancer() {
     const userId = this.localStorageService.getItem('userId').value;
-    this.isUserFreelancer = this.collocutorData.freelancer_id === userId ? true : null; // check is user Freelancer
+    this.isUserFreelancer = this.collocutorData.freelancer_id === +userId ? true : null; // check is user Freelancer
   }
 
-  getDeal() {
-    this.chatService.getDealData(this.collocutorData.id)
-      .subscribe((res: any) => {
-        this.dealService.setDealInfo(res);
-      });
-  }
+  // getDeal() {
+  //   this.dealService.getDealData(this.collocutorData.id)
+  //     .subscribe((res: any) => {
+  //       this.dealService.setDealInfo(res);
+  //     });
+  // }
 
   private getDealData() {
-    this.dealService.dealData$
-      .subscribe(res => {
+    this.collocutorService.collocutorData$
+      .subscribe((res: any) => {
         console.log('updated deal', res);
-        this.deal = res;
-        if (this.deal) {
+        this.collocutorData = res;
+        if (this.collocutorData) {
           this.convertPackagePrice();
-
+          this.checkIsUserFreelancer();
           this.checkDealCanBePayed(); // check does deal can be payed
           this.freelancerStartWorking(); // check does freelancer cen start working
           this.cenDealBeCanceled();
           this.cenDealBeFinished();
           this.isArbiterBtnVisible();
-          if (this.deal.workStarted === 1) {
+          if (this.collocutorData.workStarted === 1) {
             this.setTimer();
           }
         }
@@ -107,10 +107,10 @@ export class MessengerToolsComponent implements OnInit {
   //  Timer
 
   private setTimer() {
-    if (this.deal.workStarted === 1) {
-      const dealStartedAt = this.deal.history.filter(el => el.answer === 'workStarted')[0].created_at;
-      // const finisherAt = moment(dealStartedAt).add('days', this.deal.amount);
-      const finisherAt = moment(moment(new Date(dealStartedAt)).add(this.deal.term, 'days').toDate(), 'M/D/YYYY');
+    if (this.collocutorData.workStarted === 1 && this.collocutorData.history) {
+      const dealStartedAt = this.collocutorData.history.filter(el => el.answer === 'workStarted')[0].created_at;
+      // const finisherAt = moment(dealStartedAt).add('days', this.collocutorData.amount);
+      const finisherAt = moment(moment(new Date(dealStartedAt)).add(this.collocutorData.term, 'days').toDate(), 'M/D/YYYY');
       const currentTime = moment(new Date(), 'M/D/YYYY');
       const daysLeft = finisherAt.diff(currentTime, 'days');
 
@@ -135,43 +135,45 @@ export class MessengerToolsComponent implements OnInit {
   }
 
   private showDealButtons() {
-    if (this.deal.moneyHolden === 0 || this.deal.dealDone || this.deal.workEnded && this.isUserFreelancer) {
+    if (this.collocutorData.moneyHolden === 0 || this.collocutorData.dealDone || this.collocutorData.workEnded && this.isUserFreelancer) {
       this.isDealButtonsVisible = null;
-    } else if (this.deal.early_closing === 1) {
-      // let FreelancerCancel = this.deal.history.includes()
+    } else if (this.collocutorData.early_closing === 1) {
+      // let FreelancerCancel = this.collocutorData.history.includes()
     }
   }
 
   public holdDealMoney() {
-    this.chatService.holdMoney(this.collocutorData.id)
+    this.dealService.holdMoney(this.collocutorData.id)
       .subscribe(res => {
         // this.resetDealData(this.collocutorData.id)
       });
   }
 
   private checkDealCanBePayed() { // check is user customer, brief submitted and deal status is inProgress
-    this.canDealBePayed = (!this.isUserFreelancer && this.deal.moneyHolden !== 1
-      && this.deal.brief === 1 && this.deal.status === 'inProgress') ? true : null;
+    this.canDealBePayed = (!this.isUserFreelancer && this.collocutorData.moneyHolden !== 1
+      && this.collocutorData.brief === 1 && this.collocutorData.status === 'inProgress') ? true : null;
   }
 
   private freelancerStartWorking() { // check does freelancer cen start working
-    this.canDealBeStarted = this.isUserFreelancer && this.deal.workStarted !== 1 && this.deal.early_closing !== 1 && this.deal.status !== 'arbiter' 
-      && this.deal.moneyHolden === 1 && this.deal.status !== 'archived' ? true : null;
+    console.log('freelancer', this.isUserFreelancer); 
+    this.canDealBeStarted = this.isUserFreelancer && this.collocutorData.workStarted !== 1 && this.collocutorData.early_closing !== 1 
+    && this.collocutorData.status !== 'arbiter' 
+      && this.collocutorData.moneyHolden === 1 && this.collocutorData.status !== 'archived' ? true : null;
   }
 
   private cenDealBeCanceled() {
-    this.isCancelButton = this.deal.early_closing !== 1 && this.deal.dealDone !== 1 && this.deal.status !== 'arbiter' 
-      && this.deal.brief === 1 && this.deal.status !== 'archived' ? true : null;
+    this.isCancelButton = this.collocutorData.early_closing !== 1 && this.collocutorData.dealDone !== 1 && this.collocutorData.status !== 'arbiter' 
+      && this.collocutorData.brief === 1 && this.collocutorData.status !== 'archived' ? true : null;
   }
 
   private cenDealBeFinished() {
-    this.isFinishDealButton = this.isUserFreelancer && this.deal.status !== 'arbiter'  && this.deal.moneyHolden === 1 && this.deal.early_closing !== 1
-      && this.deal.workStarted === 1 && this.deal.workEnded !== 1 && this.deal.dealDone !== 1 ? true : null;
+    this.isFinishDealButton = this.isUserFreelancer && this.collocutorData.status !== 'arbiter'  && this.collocutorData.moneyHolden === 1 && this.collocutorData.early_closing !== 1
+      && this.collocutorData.workStarted === 1 && this.collocutorData.workEnded !== 1 && this.collocutorData.dealDone !== 1 ? true : null;
   }
 
   private isArbiterBtnVisible() {
-    this.isArbiterBtn = this.deal.moneyHolden === 1 && this.deal.status !== 'arbiter' && this.deal.dealDone !== 1 
-    && this.deal.workEnded !== 1 ? true : null
+    this.isArbiterBtn = this.collocutorData.moneyHolden === 1 && this.collocutorData.status !== 'arbiter' && this.collocutorData.dealDone !== 1 
+    && this.collocutorData.workEnded !== 1 ? true : null
   }
 
 
@@ -179,7 +181,7 @@ export class MessengerToolsComponent implements OnInit {
   // API
 
   public goToWork() {
-    this.chatService.startWork(this.collocutorData.id)
+    this.dealService.startWork(this.collocutorData.id)
       .subscribe(res => {
         console.log(res);
         // this.resetDealData(this.collocutorData.id)
@@ -187,14 +189,14 @@ export class MessengerToolsComponent implements OnInit {
   }
 
   public cancelWork() {
-    this.chatService.cancelWork(this.collocutorData.id)
+    this.dealService.cancelWork(this.collocutorData.id)
       .subscribe(res => {
         // this.chatService.resetDealInfo(this.collocutorData.id);
       });
   }
 
   public finishWork() {
-    this.chatService.finishDeal(this.collocutorData.id)
+    this.dealService.finishDeal(this.collocutorData.id)
       .subscribe(res => {
         // this.chatService.resetDealInfo(this.collocutorData.id)
       });

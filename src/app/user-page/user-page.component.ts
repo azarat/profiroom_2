@@ -107,10 +107,13 @@ export class UserPageComponent implements OnDestroy, OnInit  {
 // Open ChatRoom ws this collocutor
   public openChat(userId) {
     this.currentUserService.wrightTo(userId)
-      .subscribe(res => {
-        if (res === 'ok') {
+      .subscribe((res: {id: number, roomId: string}) => {
+        if (res.id) {
           const translatedPath: any = this.localize.translateRoute('/dashboard/chat-room');
-          this.router.navigate([translatedPath]);
+          this.router.navigate([translatedPath],{
+            relativeTo: this.route,
+            queryParams: res
+          });
         }
       });
   }

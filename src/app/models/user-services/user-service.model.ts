@@ -71,14 +71,14 @@ export class OfferFaq {
 }
 
 export class BriefAnswerVariants {
-  @Expose() answerVariant: string;
+  @Expose() answer: string;
 }
 export class Brief {
-  @Expose() briefTitle: string;
-  @Expose() briefAnswerType: string;
-  @Expose() briefAnswerRequired: boolean | string;
-  @Type(() => BriefAnswerVariants) briefAnswerVariants: BriefAnswerVariants[];
-  @Expose() briefMultiAnswers: boolean;
+  @Expose() title: string;
+  @Expose() answer_type: string;
+  @Expose() answer_required: any;
+  @Type(() => BriefAnswerVariants) answers: BriefAnswerVariants[];
+  @Expose() multi_answers: any;
 }
 
 

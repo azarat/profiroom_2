@@ -8,28 +8,28 @@
     </h3>
 
     <form class="questions" [formGroup]="briefForm" >
-      <div class="question-item {{ briefItem.briefAnswerType }}" *ngFor="let briefItem of offerBrief, let i = index"  >
+      <div class="question-item {{ briefItem.answer_type }}" *ngFor="let briefItem of offerBrief, let i = index"  >
         <label  class="question-title">
-          {{i+1}}. {{ briefItem.briefTitle }}. <span *ngIf="briefItem.briefAnswerRequired === '1'" [ngClass]="{'required': briefForm.controls[briefItem.briefTitle].invalid && submitted  }" >(Поле обязательное до заполнения)
+          {{i+1}}. {{ briefItem.title }}. <span *ngIf="briefItem.answer_required === '1'" [ngClass]="{'required': briefForm.controls[briefItem.title].invalid && submitted  }" >(Поле обязательное до заполнения)
           </span>
         </label >
-        <div class="answer {{ briefItem.briefAnswerType }}"
-          [ngClass]="{ 'check-box': briefItem.briefAnswerType === 'radio' && briefItem.briefMultiAnswers === 1, 'radio-btns': briefItem.briefAnswerType === 'radio' && briefItem.briefMultiAnswers === 0  }">
+        <div class="answer {{ briefItem.answer_type }}"
+          [ngClass]="{ 'check-box': briefItem.answer_type === 'radio' && briefItem.multi_answers === 1, 'radio-btns': briefItem.answer_type === 'radio' && briefItem.multi_answers === 0  }">
 
           <!--text Answer -->
-          <textarea *ngIf="briefItem.briefAnswerType === 'text'" name="answer" [required]="briefItem.briefAnswerRequired === '1'" [formControlName]="briefItem.briefTitle" ></textarea>
+          <textarea *ngIf="briefItem.answer_type === 'text'" name="answer" [required]="briefItem.answer_required === '1'" [formControlName]="briefItem.title" ></textarea>
 
 
           <!-- different types -->
-          <ul *ngIf="briefItem.briefAnswerType === 'radio'">
-            <li *ngFor="let variant of briefItem.briefAnswerVariants, let j = index">
-              <input [ngClass]="briefItem.briefMultiAnswers === 0? 'radioButton ': 'tgl tgl-classic'"
-              name="radio" value="{{variant.answerVariant }}" id="{{ i + '-' + j }}"
-              [required]="briefItem.briefAnswerRequired === '1'" 
-              (change)="onCheckChange($event, briefItem.briefTitle)"
-              [type]="briefItem.briefMultiAnswers === 0? 'radio': 'checkbox'">
+          <ul *ngIf="briefItem.answer_type === 'radio'">
+            <li *ngFor="let variant of briefItem.answers, let j = index">
+              <input [ngClass]="briefItem.multi_answers === 0? 'radioButton ': 'tgl tgl-classic'"
+              name="radio" value="{{variant.answer }}" id="{{ i + '-' + j }}"
+              [required]="briefItem.answer_required === '1'" 
+              (change)="onCheckChange($event, briefItem.title)"
+              [type]="briefItem.multi_answers === 0? 'radio': 'checkbox'">
 
-             <label for="{{i + '-' + j}}">{{ variant.answerVariant }}</label>
+             <label for="{{i + '-' + j}}">{{ variant.answer }}</label>
               </li>
             </ul>
         </div>
