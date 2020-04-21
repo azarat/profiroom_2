@@ -2,35 +2,54 @@
   <form class="rate" #form="ngForm" [formGroup]="rateForm" (ngSubmit)="submitRating()">
     <h5>Пожалуйста оцените работу фрилансера</h5>
     <p>Выберите необходимое кол-во звёзд</p>
-    <div class="stars" >
-      <div class="rate-item">
+    <div class="stars">
+      <div class="rate-item" >
+
+        
         <div class="title">{{ isUserFreelancer? 'Постановка задачи': 'Качество услуг' }}</div>
-        <div (mouseenter)="isHover = true" (mouseleave)="isHover = false">
-          <span class="star" *ngFor="let el of starsArr, let i = index" (click)="getQuality(i+1, isUserFreelancer? 'requirementsClarity' : 'quality')"
-          [ngClass]="{ 'full-star': qualityRating >=i+1 }"
-          ></span>
+        <div (mouseenter)="isHover_first = true" (mouseleave)="isHover_first = false">
+          <div class="star" *ngFor="let el of starsArr, let i = index"
+            (click)="getQuality(i+1, isUserFreelancer? 'requirementsClarity' : 'quality')"
+            (mouseenter)="hoveredEl = i+1" (mouseleave)="hoveredEl  = i+1"
+            [ngClass]="{ 'full-star': qualityRating >=i+1 && !isHover_first || isHover_first && hoveredEl >=i+1 }">
+
+            <span class="rate-description" *ngIf="isHover_first && hoveredEl === i+1">
+              {{ 'dealRate.firstRate' + userType + 'Count' + (i+1) | translate}}
+            </span>
+          </div>
         </div>
       </div>
       <div class="rate-item">
         <div class="title">{{isUserFreelancer? 'Четкость требований': 'Сроки исполнения'}} </div>
-        <div (mouseenter)="isHover = true" (mouseleave)="isHover = false">
-          <span class="star" *ngFor="let el of starsArr, let i = index" (click)="getTerm(i+1, isUserFreelancer? 'taskClarity' : 'term')"
-          [ngClass]="{ 'full-star': termRating >=i+1 }"
-          ></span>
+        <div (mouseenter)="isHover_second = true" (mouseleave)="isHover_second = false">
+          <div class="star" *ngFor="let el of starsArr, let i = index"
+            (click)="getTerm(i+1, isUserFreelancer? 'taskClarity' : 'term')"
+            (mouseenter)="hoveredEl = i+1" (mouseleave)="hoveredEl  = i+1"
+            [ngClass]="{ 'full-star': termRating >=i+1 && !isHover_second || isHover_second && hoveredEl >=i+1 }">
+            <span class="rate-description" *ngIf="isHover_second && hoveredEl === i+1">
+              {{ 'dealRate.secondRate' + userType + 'Count' + (i+1) | translate}}
+            </span>
+          </div>
         </div>
       </div>
       <div class="rate-item">
         <div class="title">{{isUserFreelancer? 'Контактность': ' Вежливость фрилансера'}}</div>
-        <div (mouseenter)="isHover = true" (mouseleave)="isHover = false">
-          <span class="star" *ngFor="let el of starsArr, let i = index" (click)="getCivility(i+1, isUserFreelancer? 'contactLevel' : 'civility')"
-          [ngClass]="{ 'full-star': civilityRating >=i+1 }"
-          ></span>
+        <div (mouseenter)="isHover_third = true" (mouseleave)="isHover_third = false">
+          <div class="star" *ngFor="let el of starsArr, let i = index"
+            (click)="getCivility(i+1, isUserFreelancer? 'contactLevel' : 'civility')"
+            (mouseenter)="hoveredEl = i+1" (mouseleave)="hoveredEl = i+1"
+            [ngClass]="{ 'full-star': civilityRating >=i+1 && !isHover_third || isHover_third && hoveredEl >=i+1 }">
+            <span class="rate-description" *ngIf="isHover_third && hoveredEl === i+1">
+              {{ 'dealRate.thirdRate' + userType + 'Count' + (i+1) | translate}}
+            </span>
+          </div>
         </div>
       </div>
     </div>
     <div class="comment">
       <label for="comment">Нам важно услышать ваше мнение</label>
-      <textarea name="comment" id="comment" cols="30" rows="10" formControlName="comment" placeholder="Ваш комментарий"></textarea>
+      <textarea name="comment" id="comment" cols="30" rows="10" formControlName="comment"
+        placeholder="Ваш комментарий"></textarea>
     </div>
 
     <button class="btn" type="submit">отправить</button>

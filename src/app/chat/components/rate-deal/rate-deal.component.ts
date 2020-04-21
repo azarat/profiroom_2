@@ -17,15 +17,17 @@ export class RateDealComponent implements OnInit {
   @Input() offer_id;
   public collocutorData: CollocutorInterface;
   public starsArr = new Array(5);
-  public isHover: boolean = false;
+  public isHover_first: boolean = false;
+  public isHover_second: boolean = false;
+  public isHover_third: boolean = false;
   public qualityRating: number = 0;
   public termRating: number = 0;
   public civilityRating: number = 0;
   public rateForm: FormGroup;
   public userId = this.localStorageService.getItem('userId').value;
   public isUserFreelancer: boolean;
-  
-
+  public hoveredEl: number = null;
+  public userType: string = null;
   constructor(
     private fb: FormBuilder,
     private localStorageService: LocalStorageService,
@@ -35,7 +37,7 @@ export class RateDealComponent implements OnInit {
 
   ngOnInit() {
     this.getDealData();
-    this.checkIsUserFreelancer();
+    
     this._createForm();
     
 
@@ -46,6 +48,8 @@ export class RateDealComponent implements OnInit {
     .pipe(filter((res: any)=> !!res))
     .subscribe(res => {
       this.collocutorData = res;
+      console.log(this.collocutorData)
+      this.checkIsUserFreelancer();
     });
   }
 
@@ -57,9 +61,10 @@ export class RateDealComponent implements OnInit {
 
   private checkIsUserFreelancer() {
     const userId = this.localStorageService.getItem('userId').value;
-    if (this.collocutorData.freelancer_id === userId) {
+    if (this.collocutorData.freelancer_id === +userId) {
       this.isUserFreelancer = true;
     }
+    this.userType = this.isUserFreelancer === true? 'Freelancer' : 'Customer'
   }
 
   public getTerm(n, control){

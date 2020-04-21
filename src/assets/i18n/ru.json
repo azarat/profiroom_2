@@ -56,5 +56,40 @@
 	"header.how_it_works": "Как это работает",
 	"user-pie-chart.compleatedDeals": "Завершеные",
 	"user-pie-chart.inProgress": "В процессе",
-	"user-pie-chart.falledDeals": "Проваленные"
+	"user-pie-chart.falledDeals": "Проваленные",
+	"dealRate.firstRateCustomerCount1" : "Ужасно, услуга не соответствует описанию",
+	"dealRate.firstRateCustomerCount2" : "Плохо, услуга разочаровала меня",
+	"dealRate.firstRateCustomerCount3" : "Средне, могло быть и лучше",
+	"dealRate.firstRateCustomerCount4" : "Хорошо, именно это ожидалось от услуги",
+	"dealRate.firstRateCustomerCount5" : "Отлично, услуга превзошла мои ожидания",
+
+	"dealRate.secondRateCustomerCount1" : "Ужасно, срок  был неаргументировано провален",
+	"dealRate.secondRateCustomerCount2" : "Плохо, фрилансер затянул сроки",
+	"dealRate.secondRateCustomerCount3" : "Средне, услуга еле успевала к сроку сдачи",
+	"dealRate.secondRateCustomerCount4" : "Хорошо, именно то, что ожидалось по срокам ",
+	"dealRate.secondRateCustomerCount5" : "Отлично, услуга была сделана раньше сроков",
+
+	"dealRate.thirdRateCustomerCount1" : "Ужасно, фрилансер хамил",
+	"dealRate.thirdRateCustomerCount2" : "Плохо, фрилансер был раздражен",
+	"dealRate.thirdRateCustomerCount3" : "Средне, могло быть и лучше",
+	"dealRate.thirdRateCustomerCount4" : "Хорошо, вежливость соответствует ожиданиям",
+	"dealRate.thirdRateCustomerCount5" : "Отлично, фриланасер был учтивым и приятным",
+
+	"dealRate.firstRateFreelancerCount1" : "Ужасно, задача вовсе не соответствовала требованиям",
+	"dealRate.firstRateFreelancerCount2" : "Плохо, регулярные изменения в задаче",
+	"dealRate.firstRateFreelancerCount3" : "Средне, задача была размытой",
+	"dealRate.firstRateFreelancerCount4" : "Хорошо, стало всё понятно при обсуждении",
+	"dealRate.firstRateFreelancerCount5" : "Отлично, задача была конкретной и понятной ",
+
+	"dealRate.secondRateFreelancerCount1" : "Ужасно, заказчик часто менял требования",
+	"dealRate.secondRateFreelancerCount2" : "Плохо, заказчик сам не знал чего хочет",
+	"dealRate.secondRateFreelancerCount3" : "Средне, могло быть и лучше",
+	"dealRate.secondRateFreelancerCount4" : "Хорошо, с небольшими изменениями в требованиях  ",
+	"dealRate.secondRateFreelancerCount5" : "Отлично, сразу было все понятно",
+
+	"dealRate.thirdRateFreelancerCount1" : "Ужасно, заказчик куда-то пропал",
+	"dealRate.thirdRateFreelancerCount2" : "Плохо, заказчик регулярно не выходил на связь ",
+	"dealRate.thirdRateFreelancerCount3" : "Средне, могло быть и лучше",
+	"dealRate.thirdRateFreelancerCount4" : "Хорошо, как и ожидается от заказчиков",
+	"dealRate.thirdRateFreelancerCount5" : "Отлично, обратная связь приходила своевременно"
 }

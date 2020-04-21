@@ -77,7 +77,7 @@ export class SystemMessagesInDealsComponent implements OnInit {
   public goToWork() {
     this.dealService.startWork(this.collocutorData.id)
       .subscribe(res => {
-        console.log(res);
+        // console.log(res);
         // this.resetDealData(this.collocutorData.id)
       });
   }
