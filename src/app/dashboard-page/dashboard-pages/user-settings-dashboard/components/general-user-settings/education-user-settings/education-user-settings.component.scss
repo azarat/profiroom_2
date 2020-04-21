@@ -1,32 +1,3 @@
-.inform_section{
-  display: flex;
-  border-bottom: 1px solid #EBEEFF;
-  &__title{
-    padding: 50px 30px;
-    width: 25%;
-    h3{
-      margin: 0;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 14px;
-      line-height: 143%;
-      text-transform: uppercase;
-      color: #323C47;
-    }
-  }
-  &__fields{
-    padding: 50px 0 50px;
-    width: 75%;
-  }
-}
-
-.inputs-wrapper{
-  max-width: 630px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
 .block-title{
   font-family: 'Source Sans Pro';
   font-style: normal;
@@ -91,9 +62,7 @@
     }
   }
 }
-.field-block-multiple{
-  max-width: 630px;
-}
+
 .academicBlock{
   display: flex;
   justify-content: space-between;
@@ -364,32 +333,5 @@ button {
     width: 196px;
     height: 196px;
     padding: 2px;
-  }
-}
-
-@media (max-width: 1499px) {
-  .inform_section{
-    &__title{
-      padding: 40px 25px;
-    }
-    &__fields{
-      padding: 40px 0;
-    }
-  }
-  .field-block-multiple{
-    max-width: 510px;
-  }
-  .single-education-block::after{
-    width: 100%;
-  }
-}
-@media (max-width: 1360px) {
-  .inform_section{
-    &__title{
-      width: 23%;
-    }
-    &__fields{
-      width: 77%;
-    }
   }
 }

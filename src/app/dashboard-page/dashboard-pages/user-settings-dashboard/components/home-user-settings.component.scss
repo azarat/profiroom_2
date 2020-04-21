@@ -12,6 +12,7 @@ h1{
   color: #323C47;
 }
 .mat-tab-group ::ng-deep{
+  padding-bottom: 30px;
   .mat-tab-label{
     opacity: 1;
     &-content{
@@ -36,6 +37,27 @@ h1{
     background-color: #3C7EEA;
   }
 }
+::ng-deep.save-all{
+  font-family: "Source Sans Pro", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 1px;
+
+  color: #FFFFFF;
+  background: #3C7EEA;
+  box-shadow: 0px 2px 4px rgba(60, 9, 179, 0.3);
+  border-radius: 4px;
+  border: none;
+  margin: 30px auto 20px;
+  padding: 17px 35px 15px;
+  text-transform: uppercase;
+}
+
 
 @media (max-width: 1499px) {
   h1{
@@ -49,5 +71,8 @@ h1{
         line-height: 20px;
       }
     }
+  }
+  ::ng-deep.save-all{
+    padding: 10px 35px;
   }
 }
