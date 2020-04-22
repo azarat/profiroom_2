@@ -4,9 +4,9 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 
-export class CommetnsCountTransformerService {
+export class CommentsCountTransformerService {
 
-  public transformCommentsVlalue(num: number) {
+  public transformCommentsValue(num: number) {
     if (num < 1000) {
       return num;
     } else {

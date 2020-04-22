@@ -36,7 +36,8 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
     private router: Router,
     private userStatseService: UserStateService,
     private localize: LocalizeRouterService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    
   ) {
 
   }
@@ -70,6 +71,7 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
 
   public openChat(link) {
     this.notifyShow(link);
+    
   }
 
   notifyShow(link?: string) {

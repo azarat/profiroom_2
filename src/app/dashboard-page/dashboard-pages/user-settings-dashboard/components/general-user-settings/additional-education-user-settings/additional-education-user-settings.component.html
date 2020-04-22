@@ -72,8 +72,8 @@
                   <label class="block-title" for="startEducation">Окончание
                   </label>
                   <mat-select name="endEducationMounth" id="endEducationMounth"
-                    [(ngModel)]="userSettings.additionalEducation[i].endStudyMounth">
-                    <ng-container *ngFor="let endStudyMounth of mounth">
+                    [(ngModel)]="userSettings.additionalEducation[i].endStudyMonth">
+                    <ng-container *ngFor="let endStudyMounth of month">
                       <mat-option [value]="endStudyMounth">{{ endStudyMounth }}</mat-option>
                     </ng-container>
                   </mat-select>
@@ -113,7 +113,7 @@
 
         </div>
 
-        <button class="add-education add btn-tetraty" type="submit">
+        <button class="add-education add btn-third" type="submit">
           <i class="material-icons">
             add_circle_outline
           </i>

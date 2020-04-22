@@ -1,4 +1,4 @@
-<div class="system-message {{ messageClass }}" *ngIf="systemMessage.message.name !== 'moneyGivedToCustomer' && systemMessage.message.name !== 'moneyGivedToFreelancer'">
+<div class="system-message {{ messageClass }}" *ngIf="systemMessage.message.name !== 'moneyGivenToCustomer' && systemMessage.message.name !== 'moneyGivedToFreelancer'">
   <div>
     <div class="icon">
       <img [src]="'/assets/images/icons/deals-icons/' + systemMessage.message.name + '.png'" alt="system-icon">
@@ -16,14 +16,14 @@
         <p>{{'chat.work_chat.system_messages.' + systemMessage.message.name+ 'DescriptionDealer' | translate}} </p>
       </ng-container>
 
-      <div class="actions" [ngClass]="{ btwn: dealCencel }">
+      <div class="actions" [ngClass]="{ btwn: dealCancel }">
 
-        <button class="btn-sec"  *ngIf="dealCencel && messageClass === 'deal-cencel'"  >Обратится в арбитраж</button>
-        <button class="btn" *ngIf="dealCencel && messageClass === 'deal-cencel'" (click)="submitDealCancel()"  >Подтвердть отмену</button>
+        <button class="btn-sec"  *ngIf="dealCancel && messageClass === 'deal-cancel' && collocutorData.canceled !== 1"  >Обратится в арбитраж</button>
+        <button class="btn" *ngIf="dealCancel && messageClass === 'deal-cancel' && collocutorData.canceled !== 1" (click)="submitDealCancel()"  >Подтвердть отмену</button>
         <!-- Deal preFinish -->
 
-        <button class="btn-sec"  *ngIf="!isUserFreelancer && dealCencel && messageClass === 'DealFinishedByFreelancer'" (click)="cancelFinishDeal()"  >вернуть к работе </button>
-        <button class="btn" *ngIf="!isUserFreelancer && dealCencel && messageClass === 'DealFinishedByFreelancer'" (click)="submitFinishWork()"  > работа завершена</button>
+        <button class="btn-sec"  *ngIf="!isUserFreelancer && dealCancel && messageClass === 'DealFinishedByFreelancer' && collocutorData.workEnded === 1 && collocutorData.dealDone !== 1" (click)="cancelFinishDeal()"  >вернуть к работе </button>
+        <button class="btn" *ngIf="!isUserFreelancer && dealCancel && messageClass === 'DealFinishedByFreelancer' && collocutorData.workEnded === 1 && collocutorData.dealDone !== 1" (click)="submitFinishWork()"  > работа завершена</button>
       </div>
     </div>
   </div>
@@ -31,11 +31,11 @@
 </div>
 
 
-<!-- earlyСlosing -->
-<div class="system-message arbitr-mess" 
-*ngIf="systemMessage.message.name === 'moneyGivedToCustomer' || systemMessage.message.name === 'moneyGivedToFreelancer'">
+<!-- earlyClosing -->
+<div class="system-message arbiter-mess" 
+*ngIf="systemMessage.message.name === 'moneyGivenToCustomer' || systemMessage.message.name === 'moneyGivenToFreelancer'">
   <div class="icon">
-    <img [src]="'/assets/images/icons/deals-icons/arbitr-answer.png'" alt="system-icon">
+    <img [src]="'/assets/images/icons/deals-icons/arbiter-answer.png'" alt="system-icon">
   </div>
   
   <div> 
@@ -47,18 +47,18 @@
           Вынесен вердикт в пользу
         </p>
       </div>
-      <div class="avatar"> <img [src]="systemMessage.message.vinnerAvatar" alt="ava"> </div>
+      <div class="avatar"> <img [src]="systemMessage.message.winnerAvatar" alt="ava"> </div>
       <div>
-        <p>{{ systemMessage.message.vinnerName }} {{ systemMessage.message.vinnerSurname }}</p>
+        <p>{{ systemMessage.message.winnerName }} {{ systemMessage.message.winnerSurname }}</p>
         <p>
-          <ng-container *ngIf="systemMessage.message.name === 'moneyGivedToFreelancer'">Фрилансер</ng-container>
-          <ng-container *ngIf="systemMessage.message.name === 'moneyGivedToCustomer'">Заказчик</ng-container>
+          <ng-container *ngIf="systemMessage.message.name === 'moneyGivenToFreelancer'">Фрилансер</ng-container>
+          <ng-container *ngIf="systemMessage.message.name === 'moneyGivenToCustomer'">Заказчик</ng-container>
         </p>
       </div>
   </div>
   <div class="description">
     <p>
-      {{ systemMessage.message.arbitrMessage }}
+      {{ systemMessage.message.arbiterMessage }}
     </p>
   </div>
 </div>

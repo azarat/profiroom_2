@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class EmojiComponent implements OnInit {
 
-  @Input() textinput;
+  @Input() textareaInput;
   public isEmojiVisible = false;
 
   constructor() { }
@@ -16,7 +16,7 @@ export class EmojiComponent implements OnInit {
   }
 
   public get textInput() {
-    return this.textinput.nativeElement;
+    return this.textareaInput.nativeElement;
   }
 
   addEmoji(emoji: any) {

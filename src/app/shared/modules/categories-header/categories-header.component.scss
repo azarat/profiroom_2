@@ -58,7 +58,7 @@
   &:nth-child(3) {
     .subcategories-list {
       min-width: 230px;
-      .subcategory-group{
+      .sub_category-group{
         padding-right: 0;
       }
     }
@@ -66,7 +66,7 @@
   &:nth-child(4) {
     .subcategories-list {
       min-width: 310px;
-      .subcategory-group{
+      .sub_category-group{
         padding-right: 0;
       }
     }
@@ -75,7 +75,7 @@
     .subcategories-list {
       min-width: 980px;
       left: -800px;
-      .subcategory-group:last-child{
+      .sub_category-group:last-child{
         padding-right: 0;
       }
     }
@@ -103,7 +103,7 @@
 
 }
 
-.subcategory-group {
+.sub_category-group {
   min-width: auto;
   padding-bottom: 35px;
   padding-left: 0;

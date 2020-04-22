@@ -27,8 +27,8 @@
 
 .files-list {
   position: absolute;
-  left: -335px;
-  top: 28px;
+  right: -13px;
+  top: 32px;
   width: 407px;
   max-height: 213px;
   background: #FFFFFF;
@@ -107,6 +107,8 @@
     font-family: "Source Sans Pro", sans-serif;
     font-size: 14px;
     line-height: 18px;
+    margin-bottom: 0;
+    padding: 5px;
   }
 
   .list-wrap {

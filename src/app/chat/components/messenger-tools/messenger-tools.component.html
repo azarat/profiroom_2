@@ -1,0 +1,55 @@
+<div class="inform" *ngIf="collocutorData" >
+  <div class="tools"
+  *ngIf="canDealBePayed || canDealBeStarted || isCancelButton || isArbiterBtn || isFinishDealButton"
+  >
+    <h6>Действия</h6>
+    <button *ngIf="canDealBePayed" class="btn" (click)="holdDealMoney()">Зарезирвировать оплату</button>
+    <button *ngIf="canDealBeStarted" class="btn" (click)="goToWork()">Приступить к работе</button>
+    <button (click)="cancelWork()" *ngIf="isCancelButton" >отменить работу</button>
+    <button *ngIf="isArbiterBtn" (click)="callArbiter()">обратиться в арбитраж</button>
+    <button *ngIf="isFinishDealButton" (click)="finishWork()" >Завершить работу</button>
+  </div>
+  <div class="timer" *ngIf="collocutorData.workStarted === 1 && collocutorData.moneyHolden !==0 && collocutorData.dealDone !== 1">
+    <h6>Кол-во дней до завершения заказа</h6>
+    <div class="clock">
+      <div> <span>{{ thousand }}</span> </div>
+      <div> <span>{{ hundred }}</span> </div>
+      <div> <span>{{ tens }}</span> </div>
+      <div> <span>{{ singleNum }}</span> </div>
+    </div>
+  </div>
+  <div class="package {{ collocutorData.package }}">
+    <h6 class="title">{{ 'chat.work_chat.deal_info.packageType_' + collocutorData.package  | translate }}</h6>
+    <p class="price">{{packagePrice}} UAH</p>
+
+    <p class="subtitle">{{  collocutorData.offers_title }}</p>
+    <div class="main-info">
+      <p><span>Кол-во правок: </span><span>{{ collocutorData.changes}}</span></p>
+      <p><span>Срок исполнения: </span><span>{{ collocutorData.term }} дней</span></p>
+    </div>
+    <div class="extra-features">
+      <p>Коммерческое использование</p>
+      <ng-container *ngIf="collocutorData.extra_features && collocutorData.extra_features.length > 0">
+        <p *ngFor="let el of collocutorData.extra_features">{{ el.title }}</p>
+      </ng-container>
+      
+    </div>
+  </div>
+
+  <div class="history" *ngIf="collocutorData.brief !== 0 && collocutorData.brief !== '0'">
+    <h6 class="history-title">История</h6>
+    <div class="history-items">
+      <div class="history-item" *ngFor="let el of collocutorData.history" >
+        <div class="logo-icon">
+          <img [src]="'/assets/images/icons/deals-icons/' + el.answer + '.png'" alt="system-icon">
+        </div>
+        <div>
+          <div class="time">{{ el.created_at | date: 'dd.MM.yyyy HH:mm' }}</div>
+          <div class="description">{{ 'chat.work_chat.history.' +  el.answer | translate  }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 'chat.work_chat.history.' -->

@@ -1,0 +1,58 @@
+<div class="wrapper" *ngIf="offerBrief">
+  <section class="title">
+    Брииф
+  </section>
+  <section class="brief">
+    <h3 class="title">
+      <a href="/">Дизайн веб-сайтов с мобильным адаптивом</a>
+    </h3>
+
+    <form class="questions" [formGroup]="briefForm" >
+      <div class="question-item {{ briefItem.answer_type }}" *ngFor="let briefItem of offerBrief, let i = index"  >
+        <label  class="question-title">
+          {{i+1}}. {{ briefItem.title }}. <span *ngIf="briefItem.answer_required === '1'" [ngClass]="{'required': briefForm.controls[briefItem.title].invalid && submitted  }" >(Поле обязательное до заполнения)
+          </span>
+        </label >
+        <div class="answer {{ briefItem.answer_type }}"
+          [ngClass]="{ 'check-box': briefItem.answer_type === 'radio' && briefItem.multi_answers === 1, 'radio-btns': briefItem.answer_type === 'radio' && briefItem.multi_answers === 0  }">
+
+          <!--text Answer -->
+          <textarea *ngIf="briefItem.answer_type === 'text'" name="answer" [required]="briefItem.answer_required === '1'" [formControlName]="briefItem.title" ></textarea>
+
+
+          <!-- different types -->
+          <ul *ngIf="briefItem.answer_type === 'radio'">
+            <li *ngFor="let variant of briefItem.answers, let j = index">
+              <input [ngClass]="briefItem.multi_answers === 0? 'radioButton ': 'tgl tgl-classic'"
+              name="radio" value="{{variant.answer }}" id="{{ i + '-' + j }}"
+              [required]="briefItem.answer_required === '1'" 
+              (change)="onCheckChange($event, briefItem.title)"
+              [type]="briefItem.multi_answers === 0? 'radio': 'checkbox'">
+
+             <label for="{{i + '-' + j}}">{{ variant.answer }}</label>
+              </li>
+            </ul>
+        </div>
+      </div>
+      <div class="btns">
+        <button class="btn-sec" (click)="deleteBrief()">отменить</button>
+        <button class="btn" (click)="sendBrief()">отправить</button>
+      </div>
+    </form>
+  </section>
+
+  <div class="error-popup" *ngIf="exitFromBriefPopUpVisible">
+    <span class="hide" (click)="returnToBrief()"></span>
+    <div class="icon"></div>
+    <div class="info">
+      <p class="title">Вы не заполнили бриф до конца,
+        мы не можем его сохранить</p>
+      <p class="description">Экономте своё время, для того, чтобы Вам заново не заполнять бриф, дозаполните его сейчас  </p>
+    </div>
+    <div class="controls">
+      <button class="exit-brief" (click)="confirmDeleteBrief()"> <span>отказаться</span></button>
+      <button class="return-to-brief" (click)="returnToBrief()"> <span>заполнить</span></button>
+    </div>
+  </div>
+
+</div>

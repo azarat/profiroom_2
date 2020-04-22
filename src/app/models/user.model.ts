@@ -15,7 +15,7 @@ export class UserModel {
   @Expose() surname: string;
   @Expose() avatar: string;
   @Expose() purse: any;
-  @Expose() raiting: number;
+  @Expose() rating: number;
   // tslint:disable-next-line: variable-name
   @Expose() rank_id: number;
   // tslint:disable-next-line: variable-name
