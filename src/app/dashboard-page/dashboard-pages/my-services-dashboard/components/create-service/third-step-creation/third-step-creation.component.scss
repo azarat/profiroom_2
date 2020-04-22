@@ -335,10 +335,12 @@
         border-right: 1px solid #dce0e6;
         padding: 10px;
         box-sizing: border-box;
+
         textarea {
           // padding: 10px;
           box-sizing: border-box;
         }
+
         .description-title {
           background: #f4f7fc;
         }
@@ -370,6 +372,7 @@
       .option-title {
         background: #f4f7fc;
         display: flex;
+
         input {
           background: #f4f7fc;
 
@@ -791,6 +794,7 @@
             width: 80px;
             height: 34px;
             box-sizing: border-box;
+
             input {
               width: 52%;
               height: 100%;
@@ -929,55 +933,71 @@
     }
   }
 
-// --------------------- popover ------------------
+  // --------------------- popover ------------------
 
-ngb-popover-window {
-  &.popover {
-    background: #ffffff;
-    box-shadow: 0px 15px 21px rgba(128, 152, 213, 0.5);
-    border-radius: 8px;
-    padding: 18px 23px 19px 28px;
-    left: 14px !important;
-    top: -30px !important;
-    z-index: 2;
-    max-width: 323px;
-    z-index: 10;
-    &:before {
-      content: "";
-      position: absolute;
-      left: -9px;
-      top: 8px;
-      width: 22px;
-      height: 22px;
+  ngb-popover-window {
+    &.popover {
       background: #ffffff;
-      -webkit-transform: rotate(47deg);
-      transform: rotate(47deg);
-      box-sizing: border-box;
-      z-index: -1;
-    }
+      box-shadow: 0px 15px 21px rgba(128, 152, 213, 0.5);
+      border-radius: 8px;
+      padding: 18px 23px 19px 28px;
+      left: 14px !important;
+      top: -30px !important;
+      z-index: 2;
+      max-width: 323px;
+      z-index: 10;
 
-    h3 {
-      font-family: "Source Sans Pro", sans-serif;
-      font-weight: 400;
-      font-size: 14px;
-      line-height: 18px;
-      color: #000000;
-      margin: 0 0 12px;
-    }
+      &:before {
+        content: "";
+        position: absolute;
+        left: -9px;
+        top: 8px;
+        width: 22px;
+        height: 22px;
+        background: #ffffff;
+        -webkit-transform: rotate(47deg);
+        transform: rotate(47deg);
+        box-sizing: border-box;
+        z-index: -1;
+      }
 
-    .popover-body {
-      margin: 0;
-      font-family: "Source Sans Pro", sans-serif;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 14px;
-      line-height: 18px;
-      color: #707683;
+      h3 {
+        font-family: "Source Sans Pro", sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 18px;
+        color: #000000;
+        margin: 0 0 12px;
+      }
+
+      .popover-body {
+        margin: 0;
+        font-family: "Source Sans Pro", sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 18px;
+        color: #707683;
+      }
     }
   }
 }
 
 
+@media (max-width: 1499px) {
+  .step-wrapper {
+    padding-right: 10px;
+    &>form {
+      width: 100%;
+    }
+  }
+  .form-butons {
+    button {
+      font-size: 13px;
+      padding: 10px 24px;
+      &:first-of-type{
+        padding: 10px 24px;
+      }
+    }
+  }
 }
-
-
