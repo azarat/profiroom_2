@@ -1,4 +1,4 @@
-<div class="wrapper">
+<div class="wrapper" *ngIf="collocutorData">
   <div class="line">
     <div class="collocutor">
       <a [routerLink]="'/user/' + collocutorData.collocutorId | localize" >
@@ -32,6 +32,6 @@
       </div>
     </form>
     <!-- deal  -->
-    <app-rate-deal *ngIf="deal && deal.offers_id && deal.status !== 'archived'" [deal]="deal" [offer_id]="deal.offers_id"></app-rate-deal>
+    <app-rate-deal *ngIf="dealCanBeRated" [offer_id]="collocutorData.offers_id"></app-rate-deal>
   </div>
 </div>

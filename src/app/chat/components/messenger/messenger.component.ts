@@ -9,7 +9,7 @@ import { LocalStorageService } from 'src/app/core/services/local-storage.service
 import { filter, first, takeUntil, debounceTime } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { CollocutorInterface } from '../../interfaces/collocutor.interface';
-import { DealService } from '../../services/deal.service';
+import { CollocutorService } from '../../services/collocutor.service';
 
 
 // declare var $: any;
@@ -29,13 +29,13 @@ export class MessengerComponent implements OnInit, OnDestroy {
   private time: any;
   public canChatting = true;
   public keyword$ = new Subject();
-  // tslint:disable-next-line: variable-name
+  public  collocutorData: CollocutorInterface;
   protected _destroy$ = new Subject();
   public chatHided: boolean = null;
-
+  public dealCanBeRated: boolean = null;
   @Input() chatType: string;
-  @Input() deal: CollocutorInterface;
-  @Input() collocutorData: CollocutorListModel;
+  // @Input() deal: CollocutorInterface;
+ 
   @Input() isFileLoaderVisible: boolean;
   @Output() isFileLoaderVisibleChange = new EventEmitter<boolean>();
 
@@ -48,7 +48,7 @@ export class MessengerComponent implements OnInit, OnDestroy {
     private socketService: SocketService,
     private messageScrollService: MessageScrollService,
     private localStorageService: LocalStorageService,
-    private dealService: DealService ,
+    private collocutorService: CollocutorService ,
   ) {
     this.userId = this.localStorageService.getItem('userId').value;
   }
@@ -56,7 +56,8 @@ export class MessengerComponent implements OnInit, OnDestroy {
 
 
   ngOnInit() {
-    console.log('collocutorData', this.collocutorData)
+    this.getDealData();
+    
     this.chatService.getPreviousMessages(this.collocutorData.roomId, 0, this.chatType)
       .subscribe((res: any) => {
         this.messagesList = this.filterArrayOnMessTypes(res[0]);
@@ -82,7 +83,7 @@ export class MessengerComponent implements OnInit, OnDestroy {
       });
     // console.log(this.collocutorData);
     this._isChatHidden();
-    this.getDealData();
+    
   }
 
   public ngOnDestroy() {
@@ -123,13 +124,10 @@ export class MessengerComponent implements OnInit, OnDestroy {
     }
   }
 
-
   // open file-loader
-
   public openFilesLoader() {
     this.isFileLoaderVisibleChange.emit(true);
   }
-
 
   public filterArrayOnMessTypes(arr: any) {
     arr.forEach((el: any) => {
@@ -145,21 +143,27 @@ export class MessengerComponent implements OnInit, OnDestroy {
 
   // Close chat if deal is done
   private _isChatHidden() {
-    this.deal && (this.deal.workEnded === 1 || this.deal.dealDone === 1) ? this.chatHided = true : this.chatHided = null;
+    this.collocutorData && (this.collocutorData.workEnded === 1 || this.collocutorData.dealDone === 1) ? this.chatHided = true : this.chatHided = null;
   }
 
   private getDealData() {
-    this.dealService.dealData$
+    this.collocutorService.collocutorData$
     .subscribe(res => {
-
-      this.deal = res;
+      this.collocutorData = res;
+      console.log('collocutorData', this.collocutorData)
       this.hideMessageInput();
+      this.rateDeal();
     });
   }
 
   private hideMessageInput() {
-    this.canChatting = this.deal && this.chatType === 'work' && this.deal.early_closing === 1 || this.deal && this.deal.dealDone === 1
-    || this.deal && this.deal.dealCanceled === 1  || this.deal && this.deal.workEnded === 1 ? null : true;
+    this.canChatting = this.collocutorData && this.chatType === 'work' && this.collocutorData.early_closing === 1 || this.collocutorData && this.collocutorData.dealDone === 1
+    || this.collocutorData && this.collocutorData.dealCanceled === 1  || this.collocutorData && this.collocutorData.workEnded === 1 ? null : true;
+  }
+
+  private rateDeal() {
+    this.dealCanBeRated = this.collocutorData && this.collocutorData.status !== 'archived' && 
+    (this.collocutorData.dealDone === 1 || this.collocutorData.canceled === 1)? true : null;
   }
 
 }

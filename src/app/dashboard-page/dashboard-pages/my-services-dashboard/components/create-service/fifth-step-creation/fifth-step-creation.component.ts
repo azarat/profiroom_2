@@ -46,46 +46,46 @@ export class FifthStepCreationComponent implements OnInit {
 
   addBriefItem() {
     this.userService.offerBrief.push({
-      briefTitle: null,
-      briefAnswerType: null,
-      briefAnswerRequired: false,
-      briefAnswerVariants: [],
-      briefMultiAnswers: false,
+      title: null,
+      answer_type: null,
+      answer_required: false,
+      answers: [],
+      multi_answers: false,
     }
     );
     this.showedItem = this.userService.offerBrief.length;
   }
 
   onFiltersChange(e: string, i: number) {
-    if (this.userService.offerBrief[i].briefAnswerType === 'radio' && this.userService.offerBrief[i].briefAnswerVariants === undefined) {
-      this.userService.offerBrief[i].briefAnswerVariants = [
+    if (this.userService.offerBrief[i].answer_type === 'radio' && this.userService.offerBrief[i].answers === undefined) {
+      this.userService.offerBrief[i].answers = [
         {
-          answerVariant: null
+          answer: null
         },
         {
-          answerVariant: null
+          answer: null
         }];
-    } else if (this.userService.offerBrief[i].briefAnswerVariants.length === 0) {
-      this.userService.offerBrief[i].briefAnswerVariants.push(
+    } else if (this.userService.offerBrief[i].answers.length === 0) {
+      this.userService.offerBrief[i].answers.push(
         {
-          answerVariant: null
+          answer: null
         },
         {
-          answerVariant: null
+          answer: null
         }
       );
     }
   }
 
   addBriefAnswers(i: number) {
-    if (this.userService.offerBrief[i].briefAnswerType === 'radio') {
-      this.userService.offerBrief[i].briefAnswerVariants.push({
-        answerVariant: null
+    if (this.userService.offerBrief[i].answer_type === 'radio') {
+      this.userService.offerBrief[i].answers.push({
+        answer: null
       });
     }
   }
   removeAnswer(i: number, j: number) {
-    this.userService.offerBrief[i].briefAnswerVariants.splice(j, 1);
+    this.userService.offerBrief[i].answers.splice(j, 1);
   }
 
   nextStep(form: NgForm) {

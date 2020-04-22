@@ -1,8 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
-import { DealService } from '../../services/deal.service';
+import { CollocutorService } from '../../services/collocutor.service';
 import { CollocutorInterface } from '../../interfaces/collocutor.interface';
+import { DealService } from '../../services/deal.service';
+import { filter } from 'rxjs/operators';
 
 
 @Component({
@@ -13,28 +15,42 @@ import { CollocutorInterface } from '../../interfaces/collocutor.interface';
 export class RateDealComponent implements OnInit {
 
   @Input() offer_id;
-  @Input() deal: CollocutorInterface;
+  public collocutorData: CollocutorInterface;
   public starsArr = new Array(5);
-  public isHover: boolean = false;
+  public isHover_first: boolean = false;
+  public isHover_second: boolean = false;
+  public isHover_third: boolean = false;
   public qualityRating: number = 0;
   public termRating: number = 0;
   public civilityRating: number = 0;
   public rateForm: FormGroup;
-  userId = this.localStorageService.getItem('userId').value;
-  isUserFreelancer: boolean;
-  
-
+  public userId = this.localStorageService.getItem('userId').value;
+  public isUserFreelancer: boolean;
+  public hoveredEl: number = null;
+  public userType: string = null;
   constructor(
     private fb: FormBuilder,
     private localStorageService: LocalStorageService,
-    private dealService: DealService
+    private collocutorService: CollocutorService,
+    private dealSerice: DealService
   ) { }
 
   ngOnInit() {
-    this.checkIsUserFreelancer();
+    this.getDealData();
+    
     this._createForm();
     
 
+  }
+
+  private getDealData() {
+    this.collocutorService.collocutorData$
+    .pipe(filter((res: any)=> !!res))
+    .subscribe(res => {
+      this.collocutorData = res;
+      console.log(this.collocutorData)
+      this.checkIsUserFreelancer();
+    });
   }
 
   public getQuality(n, control){
@@ -45,9 +61,10 @@ export class RateDealComponent implements OnInit {
 
   private checkIsUserFreelancer() {
     const userId = this.localStorageService.getItem('userId').value;
-    if (this.deal.freelancer_id === userId) {
+    if (this.collocutorData.freelancer_id === +userId) {
       this.isUserFreelancer = true;
     }
+    this.userType = this.isUserFreelancer === true? 'Freelancer' : 'Customer'
   }
 
   public getTerm(n, control){
@@ -80,9 +97,9 @@ export class RateDealComponent implements OnInit {
   public submitRating() {
     this.rateForm.controls['offerId'].setValue(this.offer_id);
     this.rateForm.controls['userId'].setValue(this.getCollocutorId());
-    this.rateForm.controls['dealId'].setValue(this.deal.id);
+    this.rateForm.controls['dealId'].setValue(this.collocutorData.id);
     let type = this.isUserFreelancer? 'Customer' : "Deal";
-    this.dealService.setDealRate(this.rateForm.value, type)
+    this.dealSerice.setDealRate(this.rateForm.value, type)
     .subscribe(res => {
       if(res === 'ok') {
 
@@ -91,6 +108,6 @@ export class RateDealComponent implements OnInit {
   }
 
   private getCollocutorId() {
-    return this.userId === this.deal.freelancer_id ? this.deal.customer_id : this.deal.freelancer_id;
+    return this.userId === this.collocutorData.freelancer_id ? this.collocutorData.customer_id : this.collocutorData.freelancer_id;
   }
 }

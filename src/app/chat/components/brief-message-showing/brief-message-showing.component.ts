@@ -4,8 +4,9 @@ import { ChatService } from '../../services/chat.service';
 import { CollocutorListModel } from 'src/app/models/chat/collocutors-list.model';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 import { CollocutorInterface } from '../../interfaces/collocutor.interface';
-import { DealService } from '../../services/deal.service';
 import { filter } from 'rxjs/operators';
+import { DealService } from '../../services/deal.service';
+import { CollocutorService } from '../../services/collocutor.service';
 
 @Component({
   selector: 'app-brief-message-showing',
@@ -15,7 +16,7 @@ import { filter } from 'rxjs/operators';
 export class BriefMessageShowingComponent implements OnInit {
 
   @Input() briefMessage: {};
-  @Input() collocutorData: CollocutorInterface;
+   collocutorData: CollocutorInterface;
   public userState;
   public isBriefElVisible = null;
   public userId;
@@ -24,8 +25,8 @@ export class BriefMessageShowingComponent implements OnInit {
     answer: any
     isAnswerArr?: boolean
   }[] = null;
-  public deal: CollocutorInterface;
-  public dealApproved;
+  // public deal: CollocutorInterface;
+  public dealApproved = null;
 
   buttonText = 'развернуть';
 
@@ -33,7 +34,8 @@ export class BriefMessageShowingComponent implements OnInit {
     // private userStateService: UserStateService,
     private chatService: ChatService,
     private localStorageService: LocalStorageService,
-    private dealService: DealService
+    private dealService: DealService,
+    private collocutorService: CollocutorService
   ) { }
 
   ngOnInit() {
@@ -64,14 +66,14 @@ export class BriefMessageShowingComponent implements OnInit {
   }
 
   public approveBrief() {
-    this.chatService.approveBrief(this.collocutorData.id)
+    this.dealService.approveBrief(this.collocutorData.id)
     .subscribe(res => {
       console.log(res);
     });
   }
 
   public refuseBrief() {
-    this.chatService.refuseBrief(this.collocutorData.id)
+    this.dealService.refuseBrief(this.collocutorData.id)
     .subscribe(res => {
       console.log('refuse', res);
     });
@@ -86,16 +88,18 @@ export class BriefMessageShowingComponent implements OnInit {
   }
 
   private getDealData() {
-    this.dealService.dealData$
+    this.collocutorService.collocutorData$
+    .pipe(filter((res: any)=> !!res))
     .subscribe(res => {
-      this.deal = res;
-      if(this.deal) {
+      this.collocutorData = res;
+      if(this.collocutorData.history) {
         this.isDealApproved();
       }
     });
   }
 
   private isDealApproved() {
-    this.dealApproved  = this.deal.history.find(el => el.answer === 'approveBrief');
+
+    this.dealApproved  = this.collocutorData.history.find(el => el.answer === 'approveBrief');
   }
 }

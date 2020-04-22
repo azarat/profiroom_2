@@ -10,7 +10,7 @@
         </div>
       <span class="time">{{ message.dateTime | dateFormatPipe: 'dd.MMMM HH:mm' }}</span>
       <div>
-        <app-brief-message-showing *ngIf="collocutorData" [briefMessage]="message.brief" [collocutorData]="collocutorData"></app-brief-message-showing>
+        <app-brief-message-showing *ngIf="collocutorData" [briefMessage]="message.brief"></app-brief-message-showing>
         </div>
       </div>
 
@@ -41,7 +41,7 @@
         </div>
 
       <!-- system messages in deal -->
-      <app-system-messages-in-deals *ngIf="message.type == 'systemMessage'" [systemMessage]="message" [collocutorData]="collocutorData"></app-system-messages-in-deals>
+      <app-system-messages-in-deals *ngIf="message.type == 'systemMessage'" [systemMessage]="message"></app-system-messages-in-deals>
       <!-- /system messages in deal -->
         <!-- <div class="message-control" *ngIf="false"></div> -->
         <span class="time">{{ message.dateTime | dateFormatPipe: 'dd.MM HH:mm' }}</span>

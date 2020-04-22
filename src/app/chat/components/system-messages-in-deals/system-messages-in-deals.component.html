@@ -22,8 +22,8 @@
         <button class="btn" *ngIf="dealCancel && messageClass === 'deal-cancel' && collocutorData.canceled !== 1" (click)="submitDealCancel()"  >Подтвердть отмену</button>
         <!-- Deal preFinish -->
 
-        <button class="btn-sec"  *ngIf="!isUserFreelancer && dealCancel && messageClass === 'DealFinishedByFreelancer' && collocutorData.workEnded === 0" (click)="cancelFinishDeal()"  >вернуть к работе </button>
-        <button class="btn" *ngIf="!isUserFreelancer && dealCancel && messageClass === 'DealFinishedByFreelancer' && collocutorData.workEnded === 0" (click)="submitFinishWork()"  > работа завершена</button>
+        <button class="btn-sec"  *ngIf="!isUserFreelancer && dealCancel && messageClass === 'DealFinishedByFreelancer' && collocutorData.workEnded === 1 && collocutorData.dealDone !== 1" (click)="cancelFinishDeal()"  >вернуть к работе </button>
+        <button class="btn" *ngIf="!isUserFreelancer && dealCancel && messageClass === 'DealFinishedByFreelancer' && collocutorData.workEnded === 1 && collocutorData.dealDone !== 1" (click)="submitFinishWork()"  > работа завершена</button>
       </div>
     </div>
   </div>

@@ -10,30 +10,17 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable()
 
 export class ChatService {
-  // currentRoom: string;
-
-  // private connection: string;
-
-  // messagesArray: any[];
-
-  // tslint:disable-next-line: variable-name
-  private _dealInfo = new BehaviorSubject(null);
-  public dealInfo$ = this._dealInfo.asObservable();
-
   constructor(
-    // private socket: Socket,
     private http: HttpClient,
     private localStorageService: LocalStorageService
   ) { }
 
-  //  
-  // tslint:disable-next-line:variable-name
-  sendMessage(msg: any, room: string | number, messageType: string, _chatType: string) {
+  public sendMessage(msg: any, room: string | number, messageType: string, _chatType: string) {
     const userId = this.localStorageService.getItem('userId').value;
     return this.http.post('/message', { roomId: room, author: userId, message: msg, type: messageType, chatType: _chatType });
   }
 
-  getPreviousMessages(roomId: string, messCount: number, chatType: string) {
+  public getPreviousMessages(roomId: string | number, messCount: number, chatType: string) {
     return this.http.get('/getRoomMessages?roomId=' + roomId + '&start=' + messCount + '&chatType=' + chatType);
   }
   // work_
@@ -50,60 +37,7 @@ export class ChatService {
     return this.http.post('/getChatFiles', { roomId: _roomId });
   }
 
-  // tslint:disable-next-line:variable-name
-  public getBrief(_offerId) {
-    return this.http.post('/getOfferBrief', { offer_id: _offerId });
-  }
 
-  // tslint:disable-next-line: variable-name
-  public sendBeef(_deal_id: number, _answer: any) {
-    return this.http.post('/setDealBriefAnswers', { deal_id: _deal_id, answers: JSON.stringify(_answer) });
-  }
-
-  // tslint:disable-next-line:variable-name
-  public deleteDeal(_deal_id: number, ) {
-    return this.http.post('/deleteDeal', { deal_id: _deal_id });
-  }
-
-
-  public getDealData(dealId: number) {
-    return this.http.post('/getDeal', {deal_id: dealId  });
-  }
-
-  public approveBrief(dealId: number) {
-    return this.http.post('/approveBrief', {deal_id: dealId });
-  }
-
-  public refuseBrief(dealId: number) {
-    return this.http.post('/refuseBrief', {deal_id: dealId });
-  }
-
-  // hold money on deal
-
-  public holdMoney(dealId: number) {
-    return this.http.post('/holdmoney', {deal_id: dealId });
-  }
-
-  public startWork(dealId: number) {
-    return this.http.post('/startWork', {deal_id: dealId });
-  }
-
-  public cancelWork(dealId: number) {
-    return this.http.post('/cancellationDeal', {deal_id: dealId });
-  }
-  public submitDealCancel(dealId: number) {
-    return this.http.post('/submitDealCancel', {deal_id: dealId });
-  }
-
-  public finishDeal(dealId: number) {
-    return this.http.post('/finishDeal', {deal_id: dealId });
-  }
-  public submitFinishDeal(dealId: number) {
-    return this.http.post('/submitDealFinish', {deal_id: dealId });
-  }
-  public cancelFinishDeal(dealId: number) {
-    return this.http.post('/cancelFinishDeal', {deal_id: dealId });
-  }
 
 }
 

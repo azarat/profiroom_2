@@ -24,8 +24,8 @@
       </div>
     </div>
   </div>
-  <button class="btn-third Brief-wrap-btn" (click)="showHideBrief()" [ngClass]="isBriefElVisible? 'up': 'down'"> {{ buttonText }}</button>
-  <div class="Brief-decisions-options"
+  <button class="btn-third brief-wrap-btn" (click)="showHideBrief()" [ngClass]="isBriefElVisible? 'up': 'down'"> {{ buttonText }}</button>
+  <div class="brief-decisions-options"
     *ngIf="collocutorData.freelancer_id === userId && collocutorData.status == 'sentBrief' && !dealApproved && collocutorData.early_closing === 0">
     <button class="btn-sec" (click)="refuseBrief()">ОТКЛОНИТЬ</button>
     <button class="btn" (click)="approveBrief()">ПРИНЯТЬ ЗАЯВКУ</button>
