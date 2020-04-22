@@ -1,7 +1,7 @@
 <div class="wrapper">
   <div class="steps">
     <h3>Создание услуги</h3>
-    <div class="steps-wrap" *ngIf="userService">
+    <div class="steps-wrap" *ngIf="userService" [ngClass]="{hideStepOne: userService.step === 4, hideStepTwo: userService.step >= 5}">
       <div class="step" *ngFor="let step of serviceCreationSteps, let i = index " (click)="goToStep(i+1)" [ngClass]="{dev: userService.step === i+1, done: userService.step > i+1 }">
         <h5>{{ step.title }}</h5>
         <p>{{ step.description }}</p>

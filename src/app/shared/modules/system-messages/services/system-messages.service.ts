@@ -34,7 +34,6 @@ export class SystemMessagesService {
           this.socketId = res.socketId;
           //  connect to user to his own socket
           this.socket.emit('join', 'gigroom_database_private-bellRoom-' + this.socketId);
-          console.log( 'gigroom_database_private-bellRoom-' + this.socketId);
         }
       });
 

@@ -84,14 +84,11 @@ export class SystemMessagesComponent implements OnInit {
 
   ngOnInit() {
 
-    console.log(this.user.role_id);
-
     // get all notifications by API
     this.systemMessagesService.systemMessagesList()
     .subscribe(res => {
       this.systemMessagesArr = res;
       this.systemMessagesArr = this.systemMessagesArr.reverse();
-      console.log(this.systemMessagesArr);
       this.checkListLength();
     }); 
 
