@@ -7,7 +7,8 @@
   max-width: 860px;
   margin-top: 50px;
   font-family: "Source Sans Pro", sans-serif;
-  height: 500px;
+  height: auto;
+  margin-bottom: 30px;
   // border: 1px solid black;
 }
 .final-services{
@@ -17,6 +18,7 @@
   top: 80px;
   margin: 50px 0 30px;
   margin-left: auto;
+  height: max-content;
 }
 .service-order-steps{
   list-style-type: none;
@@ -35,7 +37,7 @@
     background: #FAFBFC;
     h4{
       margin: 0;
-      font-family: 'Source Sans Pro';
+      font-family: 'Source Sans Pro', sans-serif;
       font-weight: 600;
       font-size: 16px;
       line-height: 20px;
@@ -125,8 +127,8 @@
 
 }
 .additional-options{
-  padding: 65px;
-  font-family: "Source Sans Pro";
+  padding: 34px 0;
+  font-family: 'Source Sans Pro', sans-serif;
   background: #FAFBFC;
   &__title{
     font-weight: bold;
@@ -135,7 +137,8 @@
     text-align: left;
     color: #323C47;
     margin: 0;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    padding: 0 64px;
   }
   &__name{
     font-weight: 600;
@@ -143,7 +146,8 @@
     line-height: 23px;
     color: #323C47;
     margin: 0;
-    margin-bottom: 40px;
+    margin-bottom: 34px;
+    padding: 0 64px;
   }
   .extra-features__form{
     .extra-features__list{
@@ -153,7 +157,8 @@
     .extra-features__item{
       display: flex;
       flex-direction: column;
-      margin-bottom: 30px;
+      // margin-bottom: 30px;
+      padding: 18px 64px;
       justify-content: space-between;
       flex-direction: row;
       ::ng-deep {
@@ -170,7 +175,7 @@
       }
       .extra-features__title{
         display: block;
-        font-family: "Source Sans Pro";
+        font-family: 'Source Sans Pro', sans-serif;
         font-weight: normal;
         font-size: 18px;
         line-height: 117%;
@@ -179,7 +184,7 @@
         margin-left: 16px;
       }
       .extra-features__description{
-        font-family: "Source Sans Pro";
+        font-family: 'Source Sans Pro', sans-serif;
         font-weight: normal;
         font-size: 16px;
         line-height: 169%;
@@ -200,12 +205,15 @@
         line-height: 131%;
         color: #323C47;
       }
+      &:nth-child(odd) {
+        background-color: #fff;
+      }
     }
   }
 }
 
 .final-services{
-  font-family: "Source Sans Pro";
+  font-family: 'Source Sans Pro', sans-serif;
   border: 1px solid rgba(220, 224, 230, 0.1);
   box-shadow: 0px 10px 16px rgba(128, 152, 213, 0.2);
   border-radius: 3px;
@@ -233,23 +241,24 @@
       line-height: 23px;
       color: #323C47;
       margin-bottom: 7px;
+      padding: 0;
     }
-      .final-price__no-features{
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        .final-price__text{
-          font-size: 16px;
-          line-height: 21px;
-          color: #707683;
-        }
-        .final-price__price{
-          font-weight: bold;
-          font-size: 18px;
-          line-height: 23px;
-          color: #707683;
-        }
+    .final-price__no-features{
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      .final-price__text{
+        font-size: 16px;
+        line-height: 21px;
+        color: #707683;
       }
+      .final-price__price{
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 23px;
+        color: #707683;
+      }
+    }
   }
   &__features{
     margin: 27px 0 16px;
@@ -259,7 +268,7 @@
       display: flex;
       justify-content: space-between;
       margin-bottom: 20px;
-      span {
+      div {
         font-style: normal;
         font-weight: normal;
         font-size: 18px;
@@ -376,7 +385,7 @@
   .final-price{
     margin: 0px 0 16px;
     color: #29CC97;
-    font-family: 'Source Sans Pro';
+    font-family: 'Source Sans Pro', sans-serif;
     &__wrapper{
       display: flex;
       justify-content: space-between;
@@ -406,7 +415,7 @@
   cursor: pointer;
 }
 .btn-checkoutForm{
-  margin-left: 40px;
+  margin-left: 100px;
   background: #fff;
   border: 1px solid #3C7EEA;
   color: #3C7EEA;
@@ -418,4 +427,206 @@
   background: #3C7EEA;
   box-shadow: 0px 2px 4px rgba(60, 9, 179, 0.3);
 }
+.info-subText{
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 16px;
+  line-height: 21px;
+  color: #99ACB7;
+  margin-top: 25px;
+}
 
+@media (max-width: 1499px) {
+  .service-page-checkout{
+    justify-content: space-between;
+  }
+  .main-block{
+    width: 70%;
+    max-width: 720px;
+  }
+  .additional-options{
+    &__title{
+      font-size: 18px;
+      line-height: 23px;
+      margin-bottom: 7px;
+      padding: 0 23px;
+    }
+    &__name{
+      font-size: 16px;
+      line-height: 20px;
+      margin-bottom: 26px;
+      padding: 0 23px;
+    }
+    .extra-features__form{
+      .extra-features__item{
+        padding: 15px 23px;
+        ::ng-deep label.mat-checkbox-layout{
+          margin-bottom: 0;
+        }
+        .extra-features__title{
+          font-size: 16px;
+          line-height: 131%;
+        }
+        .extra-features__description{
+          font-size: 14px;
+          line-height: 136%;
+          margin-left: 40px;
+          padding-top: 6px;
+        }
+        .extra-features__price{
+          font-weight: 600;
+          font-size: 16px;
+          line-height: 131%;
+        }
+        .extra-features__text{
+         
+        }
+      }
+    }
+  }
+  .btn-checkoutForm{
+    margin-left: 60px;
+    margin-top: 25px;
+    padding: 10px 25px;
+  }
+  .service-order-steps{
+    .single-step{
+      padding: 14px 15px 14px 18px;
+      h4{
+        font-size: 14px;
+        line-height: 18px;
+      }
+      &__status{
+        border: 1px solid #659AF3;
+        width: 25px;
+        height: 25px;
+        margin-right: 8px;
+        font-size: 14px;
+        line-height: 22px;
+        &.brief{
+          border: 1px solid #707683;
+        }
+      }
+      &::after{
+        content: "";
+        position: absolute;
+        background: transparent;
+        background-image: url(/assets/images/svg/triangle-white.svg);
+        background-size: contain;
+        background-repeat: no-repeat;
+        top: 0;
+        bottom: 0;
+        right: -28px;
+        height: 100%;
+        width: 30px;
+        z-index: 9;
+      }
+    }
+  }
+
+  .final-services{
+    width: 320px;
+    top: 80px;
+    margin: 50px 0 30px;
+    &__wrapper{
+      padding: 0 23px 25px;
+    }
+    &__title{
+      font-size: 14px;
+      padding: 22px 29px 20px;
+    }
+    &__top{
+      margin: 20px 0 15px;
+      padding-bottom: 14px;
+      .additional-options__name{
+        font-size: 16px;
+        line-height: 20px;
+      }
+      .final-price__no-features{
+        position: relative;
+        .final-price__price{
+          position: absolute;
+          right: 0;
+          top: -29px;
+        }
+        .final-price__text{
+          font-size: 14px;
+        }
+      }  
+    }
+    &__features{
+      margin: 16px 0 16px;
+      padding-bottom: 12px;
+      .changes-term {
+        margin-bottom: 15px;
+        div {
+          font-size: 14px;
+          line-height: 18px;
+          padding-left: 26px;
+          &:first-child {
+            &::before {
+              background-size: contain;
+              width: 21px;
+              height: 21px;
+              top: 54%;
+            }
+          }
+          &:last-child {
+            &::before {
+              background-size: contain;
+              width: 21px;
+              height: 21px;
+              top: 54%;
+            }
+          }
+        }
+      }
+      .option-list {
+        li {
+          font-size: 14px;
+          line-height: 150%;
+          margin-bottom: 3px;
+          padding-left: 20px;
+        }
+      }
+    }
+    &__extra-features, &__service-price{
+      margin: 0px 0 10px;
+      padding-bottom: 6px;
+      .extra-features-title{
+        font-size: 14px;
+        line-height: 21px;
+        margin-bottom: 11px;
+      }
+      .extra-features__item {
+        font-size: 16px;
+        margin-bottom: 10px;
+      }
+      .extra-features__title{
+        font-size: 14px;
+        line-height: 21px;  
+      }
+    }
+    &__service-price{
+      padding-bottom: 0;
+      margin-bottom: 14px;
+    }
+    .final-price{
+      &__title{
+        font-size: 14px;
+      }
+      &__price{
+        font-size: 16px;
+        line-height: 117%;
+      }
+    }
+  }
+  .btn-accept-checkout{
+    margin-top: 0;
+    padding: 12px 25px;
+  }
+  .info-subText{
+    text-align: center;
+    margin: 18px auto 0;
+    width: 95%;
+  }
+}
