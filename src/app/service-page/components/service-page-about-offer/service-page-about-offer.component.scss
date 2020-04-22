@@ -113,6 +113,7 @@
     position: relative;
     cursor: pointer;
     &.tooltip {
+      opacity: 1;
       &:before {
         display: block;
         position: absolute;
@@ -226,3 +227,28 @@
   color: #4E5051;
   margin-bottom: 15px;
 }
+
+
+@media (max-width: 1499px) {
+  .section-title{
+    margin-bottom: 25px;
+  }
+  .main-info{
+    margin-bottom: 20px;
+    .info-item{
+      width: auto;
+      &:nth-child(4){
+        width: auto;
+      }
+      &:nth-child(5){
+        width: auto;
+      }
+    }
+  }
+  .about-offer{
+    font-size: 16px;
+    line-height: 21px;
+    margin-bottom: 40px;
+  }
+}
+

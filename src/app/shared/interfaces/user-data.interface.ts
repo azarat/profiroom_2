@@ -63,6 +63,9 @@ export interface UserDataInterface {
     courseName?: string;
     startStudyYear?: number;
     endStudyYear?: number;
+    additional_diploma_files?: [{
+      link?: string;
+    }]
   }];
   offers?: [{
     id?: number;
@@ -71,6 +74,7 @@ export interface UserDataInterface {
     description?: string;
     comments_count?: number;
     minPrice?: number;
+    rating?: number;
   }];
   positiveComments?: [{
     created_at?: string;

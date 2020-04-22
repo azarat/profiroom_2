@@ -28,7 +28,7 @@
     position: fixed;
     top: 0;
     overflow: hidden;
-    z-index: 10;
+    z-index: 2000;
     width: 100%;
   }
   ul {
@@ -566,4 +566,47 @@
   font-size: 16px;
   line-height: 20px;
   color: #99ACB7;
+}
+
+@media (max-width: 1499px) {
+  .content {
+    max-width: 1110px;
+  }
+}
+
+@media (max-width: 1360px) {
+  .content {
+    max-width: 1010px;
+  }
+  .general-information {
+
+    &__avatar {
+      margin-right: 30px;
+    }
+    &__online {
+      span::before {
+        width: 9px;
+        height: 9px;
+      }
+    }
+    // &__lvl {}
+    &__available {
+      font-size: 14px;
+      line-height: 18px;
+    }
+    &__inProcess {
+      font-size: 14px;
+      line-height: 18px;
+    }
+    &__awaiting {
+      font-size: 14px;
+      line-height: 18px;
+    }
+  }
+  .switching-user-types{
+    &__text{
+      font-size: 14px;
+      line-height: 18px;
+    }
+  }
 }

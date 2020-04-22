@@ -86,7 +86,7 @@
 
       <section class="offer-rating" id="rating"  *ngIf="[offerData.averageRating] != 0">
         <h4 class="section-title">
-          Рейтинг услуги “Дизайн сайтов”
+          Рейтинг услуги “{{ offerData.title }}”
         </h4>
         <div class="rating-type">
           <div class="rating-type_name">Качество услуги</div>
@@ -129,7 +129,7 @@
       </div>
     </div>
     <app-service-page-another-services [offerData]="offerData" *ngIf="offerData"></app-service-page-another-services>
-    <app-service-page-earlier-viewed [similarOffers]="similarOffers" *ngIf="similarOffers"></app-service-page-earlier-viewed>
+    <app-service-page-earlier-viewed [similarOffers]="similarOffers" [offerData]="offerData" *ngIf="similarOffers && offerData"></app-service-page-earlier-viewed>
   </div>
   <div class="checkout-block" *ngIf='step2'>
     <app-service-page-checkout [offerData]="offerData" [chosenOnOfferPage]="chosenOnOfferPage" (checkoutHidden)="hideCheckout()"></app-service-page-checkout>

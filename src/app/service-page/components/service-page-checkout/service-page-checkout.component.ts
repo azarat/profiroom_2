@@ -123,7 +123,7 @@ export class ServicePageCheckoutComponent implements OnInit {
     this.finalSum = 0;
     // ---сума пакета---//
     this.finalSum += this.offerData.basic.price;
-    // ---сума комисия---//
+    // ---сума комиссия---//
     this.finalSum += this.serviceCommission;
     // ---сума за сжатые сроки---//
     if (this.extraFeaturesResultArr[0]) {
@@ -133,7 +133,7 @@ export class ServicePageCheckoutComponent implements OnInit {
         }
       });
     }
-    // ---сума за комерцию---//
+    // ---сума за коммерцию---//
     if (this.extraFeaturesResultArr[1]) {
       this.finalSum += this.offerData.extra_commercial.price;
     }
@@ -180,7 +180,7 @@ export class ServicePageCheckoutComponent implements OnInit {
       return el.name === 'extraCommercial';
     });
 
-    // возращаем "дней выполнения" из доп. опции(сжатые строки) или из пакета
+    // возвращаем "дней выполнения" из доп. опции(сжатые строки) или из пакета
     if(isExtraTerms) {
       this.outputDealData.term = this.filterTerm(this.offerData.extra_terms);
       this.outputDealData.extraTerms = true;
@@ -189,7 +189,7 @@ export class ServicePageCheckoutComponent implements OnInit {
       this.outputDealData.extraTerms = false;
     }
 
-    // возращаем количестово дополнительных правок из доп. опции или из пакета
+    // возвращаем количество дополнительных правок из доп. опции или из пакета
     if(isExtraChanges) {
       this.outputDealData.changesFinal = this.offerData[this.currentPackage].changes + this.offerData.extra_changes.count;
       this.outputDealData.extraChanges = true;
@@ -198,13 +198,13 @@ export class ServicePageCheckoutComponent implements OnInit {
       this.outputDealData.extraChanges = false;
     }
     
-    // статус комерческого использования
+    // статус коммерческого использования
     this.outputDealData.extraCommercial = isExtraCommercial === true ? true: false;
 
-    // возращаем "возвращаем конечную цену"
+    // возвращаем "возвращаем конечную цену"
     this.outputDealData.finalPrice = this.finalSum;
 
-    // загальні данні по оферу
+    // общие данные по оферу
     this.outputDealData.offer_id = this.offerData.id;
     this.outputDealData.userId = this.offerData.user_id;
     this.outputDealData.package = this.currentPackage;

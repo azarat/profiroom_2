@@ -10,18 +10,9 @@
       </div>
       <div class="card-description">
 
-        <!-- <div class="card-description__top">
-          <a class="card-description__ava" [routerLink]="['/user', offer.user.id] | localize"><img *ngIf="offer.user.avatar" [src]="offer.user.avatar" alt="avatar">
-          </a>
-          <div>
-            <a class="card-description__name" [routerLink]="['/user', offer.user.id] | localize">{{offer.user.name}} {{offer.user.surname}}</a>
-            <div class="card-description__skill">{{offer.user.rank_id}}</div>
-          </div>
-        </div> -->
-
         <p class="card-description__about" (click)="openOffer(offer.id)">{{offer.title}}</p>
         <div class="card-description__bottom">
-          <div class="card-description__level">{{offer.user.averageRating.freelancer.averageMark}}</div>
+          <div class="card-description__level">{{offer.averageRating.averageMark}}</div>
           <div class="card-description__comments"><a>({{offer.comments_count}} отзывов)</a></div>
           <a class="card-description__ava" [routerLink]="['/user', offer.user.id] | localize"><img *ngIf="offer.user.avatar" [src]="offer.user.avatar" alt="avatar">
           </a>
@@ -29,7 +20,6 @@
 
       </div>
       <div class="card-bottom">
-        <div class="card-bottom__like" [class.liked]="offer.liked"></div>
         <div class="card-bottom__price">
           начиная от
           <span>{{offer.minprice}}</span>

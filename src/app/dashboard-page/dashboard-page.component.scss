@@ -463,3 +463,61 @@
     opacity: 0.5;
   }
 }
+
+@media (max-width: 1499px) {
+  .side-bar {
+    .name {
+      font-size: 14px;
+      line-height: 24px;
+    }
+  
+    .menu {
+      padding: 35px 35px;  
+      a {
+        width: 46%;
+        height: 79px;
+        margin-bottom: 18px;
+        &:before {
+          font-size: 26px;
+        }
+        span {
+          font-size: 14px;
+          line-height: 18px;
+          margin-bottom: 12px;
+        }
+        &.chat {
+          &:after {
+            width: 34px;
+            height: 26px;
+          }
+        }
+        // .newMessage:not(.active)
+        &.chat.new-message:not(.active) {
+          &:after {
+            width: 7px;
+            height: 7px;
+          }
+        }
+  
+        &.projects.new-work-message:not(.active) {
+          &:after {
+            width: 7px;
+            height: 7px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1360px) {
+  .side-bar {
+    .avatar {
+      min-height: 230px;
+      height: 230px;
+      &::before{
+        height: 300px;
+      }
+    }
+  }
+}

@@ -44,10 +44,6 @@ export class CatalogComponent implements OnInit {
       if(Object.keys(Params).length <= 2) {
         this.GetOffersService.getOffers(this.catalogFilters);
       } else{
-
-
-
-
       }
       
       // ------- value of category for breadcrumbs

@@ -5,12 +5,12 @@
       <h3 class="category-name" >
         <a class="category" [routerLink]="['/catalog', category.link] | localize" >{{category.name}}</a>
       </h3>
-      <div class="sub_categories-list">
-        <ul class="sub_category-group" *ngFor="let group of category.groups;">
+      <div class="subcategories-list">
+        <ul class="subcategory-group" *ngFor="let group of category.groups;">
 
           <h4 class="sub_category-group__name">{{group}}</h4>
           <div *ngFor="let sub_category of category.sub_categories">
-            <a class="sub_category" [routerLink]="['/catalog', category.link, sub_category.link] | localize"
+            <a class="subcategory" [routerLink]="['/catalog', category.link, sub_category.link] | localize"
               *ngIf="group === sub_category.group">
               {{sub_category.name}}
             </a>

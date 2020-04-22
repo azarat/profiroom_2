@@ -8,8 +8,14 @@ export interface OffersListInterface {
     id?: number;
     minprice: number;
     name?: string;
+    mainImage?: string;
     sub_category_id: number;
-    // user_id?: number;
+    averageRating?: {
+      averageMark?: number;
+      qualityMark?: number;
+      termMark?: number;
+      politenessMark?: number;
+    }
     user?: 
       {
         avatar?: string;
@@ -17,16 +23,7 @@ export interface OffersListInterface {
         name?: string;
         rank_id: number;
         surname?: string;
-        averageRating?: {
-          freelancer?: {
-            averageMark?: number;
-            qualityMark?: number;
-            termMark?: number;
-            politenessMark?: number;
-          }
-        }
       };
-
   }[];
   current_page?: number;
   last_page?: number;

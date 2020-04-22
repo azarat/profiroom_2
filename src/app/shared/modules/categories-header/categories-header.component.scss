@@ -38,7 +38,7 @@
   &:hover {
     overflow: visible;
     // z-index: 9;
-    .sub_categories-list {
+    .subcategories-list {
       transition: all 0.5s;
       opacity: 1;
       top: 100%;
@@ -46,17 +46,17 @@
     }
   }
   &:nth-child(1) {
-    .sub_categories-list {
+    .subcategories-list {
       min-width: 960px;
     }
   }
   &:nth-child(2) {
-    .sub_categories-list {
+    .subcategories-list {
       min-width: 710px;
     }
   }
   &:nth-child(3) {
-    .sub_categories-list {
+    .subcategories-list {
       min-width: 230px;
       .sub_category-group{
         padding-right: 0;
@@ -64,7 +64,7 @@
     }
   }
   &:nth-child(4) {
-    .sub_categories-list {
+    .subcategories-list {
       min-width: 310px;
       .sub_category-group{
         padding-right: 0;
@@ -72,7 +72,7 @@
     }
   }
   &:nth-child(5) {
-    .sub_categories-list {
+    .subcategories-list {
       min-width: 980px;
       left: -800px;
       .sub_category-group:last-child{
@@ -82,7 +82,7 @@
   }
 }
 
-.sub_categories-list {
+.subcategories-list {
   display: flex;
   flex-wrap: wrap;
   width: auto;
@@ -120,14 +120,14 @@
   & > div {
     margin-bottom: 12px;
     &:last-child {
-      .subcategorie {
+      .subcategory {
         margin-bottom: 0;
       }
     }
   }
 }
 
-.sub_category {
+.subcategory {
   font-family: "Source Sans Pro";
   font-weight: normal;
   font-size: 16px;
@@ -137,5 +137,40 @@
   text-decoration: none;
   &:hover {
     text-decoration: underline;
+  }
+}
+
+@media (max-width: 1499px) {
+  .wrapper{
+    max-width: 1110px;
+  }
+  .category-wrapper {
+    .category-name{
+      a{
+        font-family: "Source Sans Pro";
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 20px;
+        color: #ffffff;
+        text-decoration: none;
+      }
+    }
+  }
+}
+@media (max-width: 1360px) {
+  .wrapper{
+    max-width: 1010px;
+  }
+  .category-wrapper {
+    .category-name{
+      a{
+        font-size: 14px;
+        line-height: 18px;
+      }
+    }
+  }
+  .subcategory {
+    font-size: 14px;
+    line-height: 18px;
   }
 }
