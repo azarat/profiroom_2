@@ -1,25 +1,25 @@
-<section class="wrapper" [ngClass]="{'attention': exitFromBreefPopUpVisible}" *ngIf="isChat">
+<section class="wrapper" [ngClass]="{'attention': exitFromBriefPopUpVisible}" *ngIf="isChat">
   <section class="collocutors">
-    <app-collocutors-list [chatType]="chatType" (currentRoom)="getCurrentRoom($event)"></app-collocutors-list>
+    <app-collocutor-list [chatType]="chatType" (currentRoom)="getCurrentRoom($event)"></app-collocutor-list>
   </section>
   <section class="messager" *ngIf="collocutorData">
-    <!-- messager -->
-    <app-messager *ngIf="collocutorData && chatType === 'classic'  || collocutorData && deal && collocutorData.breef == 1 && chatType === 'work'" [collocutorData]="collocutorData"
-      [chatType]="chatType" [(isFileLoaderVisible)]="isFileLoaderVisible" [deal]="deal" ></app-messager>
+    <!-- messenger -->
+    <app-messenger *ngIf="collocutorData && chatType === 'classic'  || collocutorData && deal && collocutorData.brief == 1 && chatType === 'work'"
+    [collocutorData]="collocutorData"
+      [chatType]="chatType" [(isFileLoaderVisible)]="isFileLoaderVisible" [deal]="deal" ></app-messenger>
 <!-- breef -->
-    <app-project-breef-filling
-    *ngIf="(collocutorData && collocutorData.breef == 0) && chatType === 'work'"
+    <app-project-brief-filling
+    *ngIf="(collocutorData && collocutorData.brief == 0) && chatType === 'work'"
       [collocutorData]="collocutorData"
-      [(exitFromBreefPopUpVisible)]="exitFromBreefPopUpVisible"
+      [(exitFromBriefPopUpVisible)]="exitFromBriefPopUpVisible"
       (resetChat)="resetChat($event)"
       >
-    </app-project-breef-filling>
-
+    </app-project-brief-filling>
 
   </section>
   <section class="collocutors-tools">
     <!-- right chat bar -->
-    <app-messager-tools *ngIf="chatType === 'work' && collocutorData" [collocutorData]="collocutorData"></app-messager-tools>
+    <app-messenger-tools *ngIf="chatType === 'work' && collocutorData" [collocutorData]="collocutorData"></app-messenger-tools>
     <app-collocutor-information *ngIf="chatType === 'classic' && collocutorData" [collocutorData]="collocutorData">
     </app-collocutor-information>
 
@@ -27,7 +27,7 @@
   <!-- file loader -->
   <section class="file-loader" *ngIf="isFileLoaderVisible && collocutorData">
     <app-upload-file [(isFileLoaderVisible)]="isFileLoaderVisible" [collocutorData]="collocutorData"
-    (uploadedBreefFiles)="uploadedBreefFiles"
+    (uploadedBreefFiles)="uploadedBriefFiles"
       [chatType]="chatType"></app-upload-file>
   </section>
 

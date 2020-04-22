@@ -1,7 +1,6 @@
 import { Component, OnInit, AfterViewChecked, Input, ViewChild, ElementRef, AfterViewInit, ViewChildren, QueryList } from '@angular/core';
 import { ChatService } from '../../services/chat.service';
-import { messages } from '../consts/messages.const';
-import { MessageScrollerService } from '../../services/message-scroller/message-scroller.service';
+import { MessageScrollService } from '../../services/message-scroll/message-scroll.service';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 import { CollocutorListModel } from 'src/app/models/chat/collocutors-list.model';
 import * as $ from 'jquery';
@@ -30,9 +29,9 @@ export class MessageListComponent implements OnInit, AfterViewChecked, AfterView
 
   constructor(
     private chatService: ChatService,
-    private messageScrollerService: MessageScrollerService,
+    private messageScrollService: MessageScrollService,
     private localStorageService: LocalStorageService,
-    private socetService: SocketService
+    private socketService: SocketService
   ) {
     this.userId = (this.localStorageService.getItem('userId').value).toString();
     this.userAvatar = this.localStorageService.getItem('userImage').value;
@@ -42,7 +41,7 @@ export class MessageListComponent implements OnInit, AfterViewChecked, AfterView
   @ViewChild('messagesWrap', { static: false }) messagesWrap: ElementRef;
 
   ngOnInit() {
-    this.messageScrollerService.onMessageScrollBottom();
+    this.messageScrollService.onMessageScrollBottom();
     // this.typingEventListener();
     // console.log(this.messagesList);
     // console.log(this.collocutorData);
@@ -52,7 +51,7 @@ export class MessageListComponent implements OnInit, AfterViewChecked, AfterView
   }
 
   ngAfterViewChecked() {
-    this.messageScrollerService.scrollToBottom(this.messagesWrap);
+    this.messageScrollService.scrollToBottom(this.messagesWrap);
 
   }
 
@@ -63,15 +62,15 @@ export class MessageListComponent implements OnInit, AfterViewChecked, AfterView
     // }
 
     const x = event.target.scrollHeight - event.target.scrollTop;
-    this.messageScrollerService.onScroll(this.messagesWrap);
+    this.messageScrollService.onScroll(this.messagesWrap);
     if (x > event.target.clientHeight + 300) {
       this.isScrollDownBtn = true;
     } else {
       this.isScrollDownBtn = null;
     }
-    const isbreefVisible = this.messagesList[0].hasOwnProperty('breef');
+    const isBriefVisible = this.messagesList[0].hasOwnProperty('brief');
 
-    if (event.target.scrollTop === 0 && isbreefVisible !== true ) {
+    if (event.target.scrollTop === 0 && isBriefVisible !== true ) {
       this.isShowMoreMessagesBtn = true;
     } else {
       this.isShowMoreMessagesBtn = null;

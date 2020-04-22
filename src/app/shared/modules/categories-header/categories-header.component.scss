@@ -4,26 +4,28 @@
   display: flex;
   justify-content: space-between;
 }
-.categorys-list {
+.categories-list {
   width: 100%;
   background: #649af3;
   padding: 0;
   list-style-type: none;
   &.no_hover{
-    .categorie-wrapper:hover{
+    .category-wrapper:hover{
       overflow: hidden;
     }
   }
 }
-.categorie-wrapper {
+.category-wrapper {
   margin: 0;
   padding: 0;
   position: relative;
   padding: 20px 0;
   overflow: hidden;
   transition: overflow 0.5s;
-  .categorie-name{
+  .category-name{
     margin: 0;
+    display: flex;
+    align-items: center;
     a{
       font-family: "Source Sans Pro";
       font-weight: 600;
@@ -36,7 +38,7 @@
   &:hover {
     overflow: visible;
     // z-index: 9;
-    .subcategorys-list {
+    .sub_categories-list {
       transition: all 0.5s;
       opacity: 1;
       top: 100%;
@@ -44,43 +46,43 @@
     }
   }
   &:nth-child(1) {
-    .subcategorys-list {
+    .sub_categories-list {
       min-width: 960px;
     }
   }
   &:nth-child(2) {
-    .subcategorys-list {
+    .sub_categories-list {
       min-width: 710px;
     }
   }
   &:nth-child(3) {
-    .subcategorys-list {
+    .sub_categories-list {
       min-width: 230px;
-      .subcategory-group{
+      .sub_category-group{
         padding-right: 0;
       }
     }
   }
   &:nth-child(4) {
-    .subcategorys-list {
+    .sub_categories-list {
       min-width: 310px;
-      .subcategory-group{
+      .sub_category-group{
         padding-right: 0;
       }
     }
   }
   &:nth-child(5) {
-    .subcategorys-list {
+    .sub_categories-list {
       min-width: 980px;
       left: -800px;
-      .subcategory-group:last-child{
+      .sub_category-group:last-child{
         padding-right: 0;
       }
     }
   }
 }
 
-.subcategorys-list {
+.sub_categories-list {
   display: flex;
   flex-wrap: wrap;
   width: auto;
@@ -101,7 +103,7 @@
 
 }
 
-.subcategory-group {
+.sub_category-group {
   min-width: auto;
   padding-bottom: 35px;
   padding-left: 0;
@@ -125,7 +127,7 @@
   }
 }
 
-.subcategorie {
+.sub_category {
   font-family: "Source Sans Pro";
   font-weight: normal;
   font-size: 16px;

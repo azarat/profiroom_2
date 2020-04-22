@@ -12,11 +12,10 @@
 
       </div>
     </div>
-    <ng-container>
+    <ng-container  *ngIf="userData.negativeComments.length >0">
         <div class="comment" *ngFor="let comment of userData[currentTab.value + 'Comments']; let parrentCommentIndex = index">
           <h5 class="comment__service-name" >
               <a [routerLink]="'/service'| localize" [queryParams]="{ offerId: comment.offers.id }"> {{comment.offers.title}}</a>
-           
           </h5>
           <button class="comment__answer" (click)="openComentForm(comment.id)"></button>
           <div class="comment__wrapp">
@@ -42,29 +41,29 @@
                 <div class="comment__raiting">
                   <div class="comment__raiting-item">
                     <span>Качество</span>
-                    <div class="star-raiting">{{comment.offers.averageRaiting.qualityMark}}</div>
+                    <div class="star-raiting">{{comment.offers.averageRating.qualityMark}}</div>
                   </div>
                   <div class="comment__raiting-item">
                     <span>Срок</span>
-                    <div class="star-raiting">{{comment.offers.averageRaiting.termMark}}</div>
+                    <div class="star-raiting">{{comment.offers.averageRating.termMark}}</div>
                   </div>
                   <div class="comment__raiting-item">
                     <span>Вежливость</span>
-                    <div class="star-raiting">{{comment.offers.averageRaiting.politenessMark}}</div>
+                    <div class="star-raiting">{{comment.offers.averageRating.politenessMark}}</div>
                   </div>
                 </div>
-                <form class="comment-form" action="" *ngIf="commentFormOpen && commentForm.id === comment.id" (clickOutside)="closeForm()" [exclude]="'button.comment__answer'">
+                <form #form="ngForm" class="comment-form" action="" *ngIf="commentFormOpen && commentFormOpen === comment.id" (clickOutside)="closeForm()" [exclude]="'button.comment__answer'">
                   <label for="answer-area">Напишите ответ</label>
-                    <textarea name="" id="answer-area" cols="30" rows="10"></textarea>
+                    <textarea name="comment" [(ngModel)]="commentForm.commentText" id="answer-area" cols="30" rows="10"></textarea>
 
-                  <button class="btn">Отправить</button>
+                  <button class="btn" type="submit" (click)="sendComment(parrentCommentIndex, currentTab.value + 'Comments')">Отправить</button>
                 </form>
               </div>
             </div>
 
-            <!-- <div class="comment_child__wrapper" *ngIf="comment.childs">
+            <div class="comment_child__wrapper" *ngIf="comment.childs.length !== 0">
               <ng-container *ngFor="let comment_child of comment.childs; let i = index">
-                <div class="comment__wrapp_child" *ngIf="i === 0 || showAllchildComments === parrentCommentIndex">
+                <div class="comment__wrapp_child" *ngIf="i === 0 || showAllChildComments === parrentCommentIndex">
                   <a class="comment__avatar" [routerLink]="['/user', comment_child.author.id] | localize">
                     <img [src]="comment_child.author.avatar" alt="ava">
                   </a>
@@ -81,8 +80,8 @@
               </ng-container>
               <div class="btn-show_more_comments" *ngIf="comment.childs.length > 1"
                 (click)="showMoreChileComments(parrentCommentIndex)"
-                [ngClass]="{open: showAllchildComments === parrentCommentIndex}">читать ответы</div>
-            </div> -->
+                [ngClass]="{open: showAllChildComments === parrentCommentIndex}">читать ответы</div>
+            </div>
           </div>
         </div>
     </ng-container>

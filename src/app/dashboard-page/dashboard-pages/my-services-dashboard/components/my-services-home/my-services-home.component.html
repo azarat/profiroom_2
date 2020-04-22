@@ -9,12 +9,13 @@
 
         <mat-tab *ngFor="let tab of tabs"  label="{{ tab.name }}">
           <div class="add-service" *ngIf="userServices.length > 0" (click)="createNewService()">
-            <button class="btn-tetraty" > <i class="material-icons">
+            <button class="btn-third" > <i class="material-icons">
                 add_circle_outline
               </i>Создать услугу</button><br><br>
           </div>
           <ng-container *ngFor="let userService of userServices; let i = index">
-            <ng-container *ngIf="currentTab === 0 || userService.published && currentTab === 1 || userService.canPublish && currentTab === 2 || !userService.canPublish && currentTab === 3 ">
+            <ng-container *ngIf="currentTab === 0 || userService.published && currentTab === 1 || 
+            userService.canPublish && !userService.published && currentTab === 2 || !userService.canPublish && !userService.published &&  currentTab === 3 ">
               <div class="item" >
                 <div class="service-photo" (click)="openOffer(userService.id)">
                   <img [src]="userService.mainImage" alt="offer-img">

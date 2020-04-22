@@ -5,10 +5,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { LocalizeRouterModule } from 'localize-router';
 import { MainHeaderModule } from '../shared/modules/main-header/main-header.module';
 import { CategoriesHeaderModule } from '../shared/modules/categories-header/categories-header.module';
-
+import { UsersCommentsModule } from 'src/app/shared/modules/users-comments/users-comments.module';
 import { UserDataService } from './service/user.service';
 import { UserPageServicesComponent } from './user-page-services/user-page-services.component';
-import { UserPageCommentsComponent } from './user-page-comments/user-page-comments.component';
 
 import { MatTabsModule} from '@angular/material';
 
@@ -23,15 +22,15 @@ const routes: Routes = [
 
 @NgModule({
 
-  declarations: [UserPageComponent, UserPageServicesComponent, UserPageCommentsComponent],
+  declarations: [UserPageComponent, UserPageServicesComponent],
   imports: [
     CommonModule,
     LocalizeRouterModule.forChild(routes),
     RouterModule.forChild(routes),
     MainHeaderModule,
     CategoriesHeaderModule,
-
-    // -----matherials
+    UsersCommentsModule,
+    // -----material's
     MatTabsModule
   ],
   providers: [

@@ -1,7 +1,7 @@
 <app-main-header></app-main-header>
 <app-categories-header></app-categories-header>
 
-<nav class="navigation_page" #stickyMenu [class.sticky]="sticky" *ngIf='!step2'>
+<nav class="navigation-page" #stickyMenu [class.sticky]="sticky" *ngIf='!step2'>
   <!-- <nav class="navigation_page" #stickyMenu [ngClass] = "{'sticky': sticky}"> -->
   <div class="wrapper">
     <ul>
@@ -38,8 +38,8 @@
           <div class="user-text">
             <a [routerLink]="['/user', offerData.user_id] | localize" class="user-name">{{ offerData.user.name }}
               {{ offerData.user.surname }}</a>
-            <div class="user-raiting-wrapp">
-              <span class="star-raiting">{{ offerData.raiting }}</span>
+            <div class="user-rating-wrap">
+              <span class="star-rating">{{ offerData.rating }}</span>
             </div>
             <span class="user-comments">({{ convertedNumberOfComments }} отзывов)</span>
           </div>
@@ -47,13 +47,13 @@
 
         <div class="actions">
           <div class="action tooltip" data-title="Смотреть профиль">
-            <a href="">
+            <a [routerLink]="['/user', offerData.user_id] | localize">
               <img src="assets/images/svg/service-page/shape.svg" alt="" class="default-img">
               <img src="assets/images/svg/service-page/shape-hov.svg" alt="" class="hover-img">
             </a>
           </div>
           <div class="action tooltip" data-title="Написать сообщение">
-            <a href="">
+            <a (click)="openChat(offerData.user_id)">
               <img src="assets/images/svg/service-page/envelope.svg" alt="" class="default-img">
               <img src="assets/images/svg/service-page/envelope-hov.svg" alt="" class="hover-img">
             </a>
@@ -78,51 +78,52 @@
 
       <div class="about-offer" id="description">
         <h4>Описание услуги</h4>
-        <p>{{ offerData.description }}</p>
+        <div class="about-offer__text" [innerHTML]="offerData.description"></div>
       </div>
 
-      <app-service-page-compare-table [offerData]="offerData" *ngIf="offerData" id="compare-table">
+      <app-service-page-compare-table [offerData]="offerData" *ngIf="offerData" id="compare-table" (checkoutState)="openCheckout($event)">
       </app-service-page-compare-table>
 
-      <section class="offer-raiting" id="rating">
+      <section class="offer-rating" id="rating"  *ngIf="[offerData.averageRating] != 0">
         <h4 class="section-title">
           Рейтинг услуги “Дизайн сайтов”
         </h4>
-        <div class="raiting-type">
-          <div class="raiting-type_name">Качество услуги</div>
-          <div class="raiting-type_numeral">
-            <span class="raiting-type_number">{{ offerData.averageRaiting.qualityMark }}</span>
+        <div class="rating-type">
+          <div class="rating-type_name">Качество услуги</div>
+          <div class="rating-type_numeral">
+            <span class="rating-type_number">{{ offerData.averageRating.qualityMark }}</span>
           </div>
         </div>
-        <div class="raiting-type">
-          <div class="raiting-type_name">Срок исполнения</div>
-          <div class="raiting-type_numeral">
-            <span class="raiting-type_number">{{ offerData.averageRaiting.termMark }}</span>
+        <div class="rating-type">
+          <div class="rating-type_name">Срок исполнения</div>
+          <div class="rating-type_numeral">
+            <span class="rating-type_number">{{ offerData.averageRating.termMark }}</span>
           </div>
         </div>
-        <div class="raiting-type">
-          <div class="raiting-type_name">Вежливость фрилансера</div>
-          <div class="raiting-type_numeral">
-            <span class="raiting-type_number">{{ offerData.averageRaiting.politenessMark }}</span>
+        <div class="rating-type">
+          <div class="rating-type_name">Вежливость фрилансера</div>
+          <div class="rating-type_numeral">
+            <span class="rating-type_number">{{ offerData.averageRating.politenessMark }}</span>
           </div>
         </div>
 
-        <div class="raiting-type average">
-          <div class="raiting-type_name">Средняя оценка</div>
-          <div class="raiting-type_numeral">
-            <span class="raiting-type_number">{{ offerData.averageRaiting.averageMark }}</span>
+        <div class="rating-type average">
+          <div class="rating-type_name">Средняя оценка</div>
+          <div class="rating-type_numeral">
+            <span class="rating-type_number">{{ offerData.averageRating.averageMark }}</span>
           </div>
           <span class="comments-count">( {{ offerData.comments_count}} отзывов):</span>
         </div>
       </section>
 
-      <app-service-page-comments [offerData]="offerData" *ngIf="offerData" id="comments"></app-service-page-comments>
+      <!-- <app-service-page-comments [offerData]="offerData" *ngIf="offerData" id="comments"></app-service-page-comments> -->
+      <app-users-comments *ngIf="offerData" [userData]="offerData"></app-users-comments>
       <app-service-page-questions [offerData]="offerData" *ngIf="offerData" id="questions"></app-service-page-questions>
       <app-service-page-about-offer [offerData]="offerData" *ngIf="offerData" id="about-offer">
       </app-service-page-about-offer>
     </div>
     <div class="choose-packet">
-      <div class="runing-block">
+      <div class="running-block">
         <app-service-page-packages [offerData]="offerData" [offerId]="offerId" *ngIf="offerData" (checkoutState)="openCheckout($event)" (scrollToCompare)="scrollTo('compare-table')">
         </app-service-page-packages>
       </div>
@@ -131,6 +132,20 @@
     <app-service-page-earlier-viewed [similarOffers]="similarOffers" *ngIf="similarOffers"></app-service-page-earlier-viewed>
   </div>
   <div class="checkout-block" *ngIf='step2'>
-    <app-service-page-checkout [offerData]="offerData" [chousenOnOfferPage]="chousenOnOfferPage" (checkoutHidden)="hideCheckout()"></app-service-page-checkout>
+    <app-service-page-checkout [offerData]="offerData" [chosenOnOfferPage]="chosenOnOfferPage" (checkoutHidden)="hideCheckout()"></app-service-page-checkout>
+  </div>
+  <div class="error-message" *ngIf="messageNotAuthorized">
+    <div class="error-message__info-block">
+      <div class="error-message__icon"><img src="/assets/images/svg/error-message-icon.svg" alt=""></div>
+      <div class="error-message__text">
+        <p class="accent">Вы не можите заказать услугу пока не авторизируетесь</p>
+        <p>Зарегистрируйтесь если вы ещё этого не сделали</p>
+      </div>
+      <div class="btns-wrapper">
+        <div class="btn" [routerLink]="'/auth' | localize">Авторизируйтесь</div>
+        <div class="btn accent" (click)="closeErrorMessage()">Закрыть</div>
+      </div>
+      <div class="error-message__close" (click)="closeErrorMessage()"></div>
+    </div>
   </div>
 </div>

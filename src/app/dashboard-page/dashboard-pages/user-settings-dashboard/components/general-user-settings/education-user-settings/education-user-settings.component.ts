@@ -59,9 +59,9 @@ export class EducationUserSettingsComponent implements OnInit {
         if (this.educationId) {
           this.userSettings.education.push({
             id: this.educationId,
-            institution: 'Учебное заведение',
+            institution: '',
             academicDegree: 1,
-            specialty: 'Специальность',
+            specialty: '',
             startEducation: 1960,
             finishEducation: 1960,
             diploma: []
@@ -104,7 +104,9 @@ export class EducationUserSettingsComponent implements OnInit {
     .subscribe((res: any) => {
       this.previewUrl = res.diploma[0].url;
 
-
+      if(this.userSettings.education[i].diploma == undefined) {
+        this.userSettings.education[i].diploma = [];
+      }
       this.userSettings.education[i].diploma.push(this.previewUrl);
     });
   }

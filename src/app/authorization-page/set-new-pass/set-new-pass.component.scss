@@ -12,6 +12,10 @@
   top: 0;
   width: 100vw;
   z-index: 20;
+  .column {
+    width: 416px;
+    margin: auto;
+  }
 }
 
 :host::ng-deep {

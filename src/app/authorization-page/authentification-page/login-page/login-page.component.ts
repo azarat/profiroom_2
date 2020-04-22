@@ -65,11 +65,13 @@ export class LoginPageComponent implements OnInit {
     }
     this.authentificationService.authenticate(this.loginForm.value)
       .subscribe(
-        (data: UserModel| any) => {
+        (data: UserModel | any) => {
+          console.log(data);
           if (data !== null) {
-            if (data === 'Bad Request') {
+            if (data === 'not verifired') {
               this.message = {
                 title: 'Подтвердите регистрацию!',
+                // tslint:disable-next-line:max-line-length
                 description: 'Для завершения регистрации, пожалуйста, подтвердите Вашу электронную почту в сообщении, которое было отправлено Вам на указанный при регистрации почтовый ящик.'
               };
             } else {
@@ -78,19 +80,20 @@ export class LoginPageComponent implements OnInit {
               this.router.navigate([translatedPath]);
             }
           }
-          console.log(data)
+          console.log(data);
         },
         error => {
-          console.log(error)
-          if (error === 'Bad Request') {
+
+          if (error === 'Forbidden') {
             this.message = {
               title: 'Подтвердите регистрацию!',
+              // tslint:disable-next-line:max-line-length
               description: 'Для завершения регистрации, пожалуйста, подтвердите Вашу электронную почту в сообщении, которое было отправлено Вам на указанный при регистрации почтовый ящик.'
             };
-          } else {
+          } else if(error === 'Bad Request') {
             this.message = {
               title: 'Ошибка',
-              description: 'Не верно укзанные данные'
+              description: 'Не верно указанные данные'
             };
           }
         });

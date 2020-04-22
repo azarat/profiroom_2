@@ -1,12 +1,12 @@
 ::ng-deep {
   background: #f1f2f4;
 
-  // -------- inputn classic
+  // -------- input classic
   input[type="checkbox"].tgl-classic + label {
     background: #fff;
   }
 
-  // -------- inputn checbox classic
+  // -------- input checkbox classic
   input[type="checkbox"].tgl-classic + label {
     display: block;
     margin: 0.2em;
@@ -79,7 +79,7 @@
     border-color: #bfb;
   }
 
-  //  ------------- input swich -------
+  //  ------------- input switch -------
 
   .tgl {
     display: none;
@@ -198,6 +198,7 @@
     outline: none;
     &:hover {
       background: #5695fd;
+      color: #fff;
     }
     &:active {
       background: #1666ea;
@@ -251,8 +252,7 @@
   }
 
   //  ---------- tetrary button ---------- //
-
-  .btn-tetraty {
+  .btn-third {
     // font-family: Source Sans Pro, sans-serif;
     font-style: normal;
     font-weight: 600;

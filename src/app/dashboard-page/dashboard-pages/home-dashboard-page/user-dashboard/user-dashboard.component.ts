@@ -4,7 +4,6 @@ import { mainStatisticConst } from './consts/main-statistic.const';
 import { ChartDataSets } from 'chart.js';
 import { DasboardService } from 'src/app/dashboard-page/services/dashboard.service';
 import { monthArrayConvert } from 'src/app/shared/functions/month-array-convert.function';
-import { compressedFinanceInfoConst } from '../../finace-page/consts/compressed-finance-info.const';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -24,7 +23,6 @@ export class UserDashboardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log(this.user);
     this.setMounthLabels();
   }
 

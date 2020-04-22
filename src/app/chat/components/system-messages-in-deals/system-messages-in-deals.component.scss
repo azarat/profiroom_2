@@ -56,7 +56,7 @@
     }
   }
 
-  &.breef {
+  &.brief {
     h5 {
       color: #67b7d4;
       border-color: #9de5ff;
@@ -75,7 +75,7 @@
       border-color: #FFE8C9;
     }
   }
-  &.deal-cencel{
+  &.deal-cancel{
     h5 {
       color: #FF9090;
       border-color: #FFDADA;
@@ -97,6 +97,93 @@
     h5 {
       color: #34C28D;
       border-color: #C4EAE0;
+    }
+  }
+   &.arbiter{
+    h5 {
+      color: #DA8383;
+      border-color: #FFCFCF;
+    }
+  }
+
+  &.arbiter-mess {
+    display: flex;
+    flex-direction: row;
+    &>div {
+      &:last-of-type {
+        width: 100%;
+      }
+      h5 {
+        color: #FC573B;
+        border-color: #F6D7D5;
+        &+div {
+          display: flex;
+          margin-top: 20px;
+          div {
+            &:first-of-type {
+              max-width: 130px;
+              p {
+                font-family: Source Sans Pro, sans-serif;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 16px;
+                line-height: 20px;
+                color: #323C47;
+              }
+            }
+            &.avatar {
+              width: 40px;
+              height: 40px;
+              margin: 0 20px 0 35px;
+              position: relative;
+              img {
+                position: absolute;
+                width: 40px;
+                height: auto;
+                max-height: 40px;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+              }
+              &+div {
+                p {
+                  &:first-of-type {
+                    font-family: Source Sans Pro, sans-serif;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 16px;
+                    line-height: 20px;
+                    color: #707683;
+                  }
+                  &:last-of-type {
+                    font-family: Source Sans Pro, sans-serif;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 14px;
+                    line-height: 18px;
+                    color: #99ACB7;
+                  }
+                }
+              }
+            }
+          }
+
+        }
+      }
+      .description {
+        margin-top: 20px;
+        width: 100%;
+        border-top: 1px solid #F6D7D5;
+        p {
+          padding: 6px 0 0;
+          font-family: Source Sans Pro, sans-serif;
+          font-style: normal;
+          font-weight: normal;
+          font-size: 16px;
+          line-height: 27px;
+          color: #707683;
+        }
+      }
     }
   }
 }

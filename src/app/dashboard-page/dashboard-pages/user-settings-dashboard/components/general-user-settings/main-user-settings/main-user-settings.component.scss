@@ -141,6 +141,12 @@
   .block-title{
     margin-bottom: 25px;
   }
+  .radio-btns .radioButton:checked + label:after{
+    top: 1px;
+    left: 4px;
+    width: 6px;
+    height: 6px;
+  }
 }
 
 .birthday-block{
@@ -167,14 +173,17 @@
     color: #707683;
     padding: 15px;
     box-sizing: border-box;
+    &::placeholder {
+      opacity: .5;
+    }
   }
 }
 
 .inform_section__fields::ng-deep {
   .mat-form-field-appearance-legacy .mat-form-field-underline {
-  height: 0;
-  display: none;
-}
+    height: 0;
+    display: none;
+  }
 }
 
 

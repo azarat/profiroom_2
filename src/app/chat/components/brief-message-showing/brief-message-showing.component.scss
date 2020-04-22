@@ -1,0 +1,160 @@
+.wrapper {
+  box-sizing: border-box;
+  padding: 28px 28px 15px;
+  background: #f4f7fc;
+  border-radius: 20px 0px 20px 20px;
+  width: 620px;
+}
+.title {
+  padding-right: 20px;
+  & > div {
+    display: flex;
+    box-sizing: border-box;
+  }
+  .brief-icon {
+    width: 56px;
+    min-width: 56px;
+    height: 56px;
+    background: rgba(108, 171, 172, 0.2);
+    border-radius: 10px;
+    margin-right: 20px;
+    position: relative;
+    &:after {
+      position: absolute;
+      content: "";
+      width: 26px;
+      height: 26px;
+      background-image: url(/assets/images/icons/deals-icons/brief.png);
+      background-size: contain;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    & + div {
+      width: 100%;
+    }
+  }
+  h4 {
+    padding: 0 0 8px;
+    margin: 0;
+    font-family: Source Sans Pro, sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 23px;
+    color: #6cabac;
+    border-bottom: 1px solid #d9e8ec;
+  }
+  p {
+    font-family: Source Sans Pro, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 23px;
+    color: #323c47;
+    margin: 8px 0 20px;
+  }
+}
+.brief {
+  background: #ffffff;
+  // border: 1px solid #dce0e6;
+  box-sizing: border-box;
+  border-radius: 2px;
+  // padding: 20px 26px 30px;
+  height: 0;
+  overflow: hidden;
+  &>div {
+    padding: 20px 26px 30px;
+  }
+  h5 {
+    font-family: Source Sans Pro, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 20px;
+    color: #252c35;
+    padding: 0;
+    margin: 0 0 8px;
+  }
+  .item {
+    p {
+      font-family: Source Sans Pro, sans-serif;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 20px;
+      color: #707683;
+      margin: 0 26px 8px;
+      padding: 0;
+      &:last-of-type {
+        margin-bottom: 18px;
+      }
+    }
+    // &:first-of-type {
+    //   margin: 20px 26px 8px;
+    // }
+    // &:last-of-type {
+    //   margin: 8px 26px 30px;
+    // }
+  }
+  &.show {
+    // border: 1px solid #dce0e6;
+    height: 380px;
+    // min-height: 100px;
+    // padding: 20px 26px 30px;
+    transition: height 1s;
+    overflow: auto;
+  }
+  &.hidden {
+    height: 0;
+    transition: height 1s ease-in-out;
+  }
+
+}
+.brief-wrap-btn {
+  margin-left: auto;
+  padding-left: 20px;
+  max-width: 105px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  position: relative;
+  &:after {
+    position: absolute;
+    content: '\e915';
+    font-family: icomoon;
+    font-style: 20px;
+    color: #3C7EEA;
+    right: 19px;
+    font-size: 10px;
+    top: 55%;
+    transform: translateY(-50%);
+  }
+  &.up:after {
+    top: -45%;
+    transform: rotate(180deg) translateY(-50%);
+  }
+}
+
+.brief-decisions-options {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 36px 0;
+  button {
+    padding: 10px 20px;
+    &:first-of-type {
+      margin-right: 50px;
+      padding: 10px 40px;
+    }
+  }
+}
+
+@keyframes briefItemsAnimation {
+  from{
+    height: 0;
+  }
+  to {
+    height: 100%;
+  }
+}

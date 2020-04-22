@@ -282,6 +282,8 @@ mat-tab-group ::ng-deep {
   .mat-tab-body-content {
     display: flex;
     flex-wrap: wrap;
+    flex-direction: row;
+    align-content: baseline;
   }
   .mat-ink-bar {
     background: #3c7eea !important;

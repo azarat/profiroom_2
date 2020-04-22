@@ -3,6 +3,6 @@ export interface CategoryInterface {
   id?: number;
   name?: string;
   link?: string;
-  descroption?: string;
+  description?: string;
   sub_categories?: [];
 }

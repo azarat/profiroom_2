@@ -46,7 +46,6 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
     this.defineCurrentUser();
     this.socetService.connect();
     this.checkNotifications();
-
   }
 
   ngAfterViewInit() {
@@ -60,7 +59,7 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
         this.userStatseService.setUserState(this.user.role_id);
         this.authService.saveUserId(this.user.id);
         this.localStorageService.setItem('userImage', this.user.avatar);
-        this.localStorageService.setItem('userRole', this.user.role_id);
+        this.userStatseService.setUserState(this.user.role_id);
         this.redirectToFinancesIfCustomer();
       });
   }
@@ -75,8 +74,6 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
 
   notifyShow(link?: string) {
     const url = this.router.url;
-
-
 
     if (url.includes('chat-room') || link === 'chat') {
       this.newMessage = null;
@@ -103,7 +100,6 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
       this.userStatseService.toggleUserState()
         .subscribe((res: any) => {
           this.user.role_id = res.newRole;
-          this.localStorageService.setItem('userRole', res.newRole);
           this.userStatseService.setUserState(res.newRole);
           this.redirectToFinancesIfCustomer();
 
@@ -113,7 +109,7 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
 
   private redirectToFinancesIfCustomer() {
     const url = this.router.url;
-    if (this.user.role_id === 2 && url.includes('home')) {
+    if (this.user.role_id === 2 && (url.includes('home') || url.includes('my-services') )) {
       const translatedPath: any = this.localize.translateRoute('/dashboard/finance');
       this.router.navigate([translatedPath],
       {

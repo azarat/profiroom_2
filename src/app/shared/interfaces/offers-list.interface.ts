@@ -8,19 +8,25 @@ export interface OffersListInterface {
     id?: number;
     minprice: number;
     name?: string;
-    rating?: number;
     sub_category_id: number;
     // user_id?: number;
-    user?: [
+    user?: 
       {
         avatar?: string;
         id?: number;
         name?: string;
         rank_id: number;
         surname?: string;
-      }
-    ];
-    liked?: boolean;
+        averageRating?: {
+          freelancer?: {
+            averageMark?: number;
+            qualityMark?: number;
+            termMark?: number;
+            politenessMark?: number;
+          }
+        }
+      };
+
   }[];
   current_page?: number;
   last_page?: number;

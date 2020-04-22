@@ -3,7 +3,7 @@ import { ChatService } from '../../services/chat.service';
 import { SocketService } from '../../services/socket.service';
 import { ActivatedRoute } from '@angular/router';
 import { filter } from 'rxjs/operators';
-import { CollucutorsListInterface } from '../../interfaces/collucotors-list.interface';
+import { CollocutorInterface } from '../../interfaces/collocutor.interface';
 import { UserStateService } from 'src/app/dashboard-page/services/user-state.service';
 import { DealService } from '../../services/deal.service';
 
@@ -14,16 +14,15 @@ import { DealService } from '../../services/deal.service';
 })
 export class ChatComponent implements OnInit, OnDestroy {
 
-  @Input() chatType: string;
-  uploadedBreefFiles: any;
-
-  public collocutorData: CollucutorsListInterface;
+  @Input() chatType: string; // work or classic chat
+  public uploadedBriefFiles: any;
+  public collocutorData: CollocutorInterface;
   public isFileLoaderVisible: boolean = null;
-  // var if exit from unwritten breef
-  public exitFromBreefPopUpVisible: boolean = null;
+  // var if exit from unWritten brief
+  public exitFromBriefPopUpVisible: boolean = null;
   public isChat = true;
 
-  deal: CollucutorsListInterface;
+  public deal: CollocutorInterface;
 
 
   constructor(
@@ -37,40 +36,38 @@ export class ChatComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this._subscribeUserStateChanges();
     this.isChat = true;
-
-    this.subscribeColucutors();
-    this.openNewDeal();
-
+    this.subscribeCollocutor();
+    this.openNewChatRoom();
     this._subscribeDealInWorkChat();
   }
   ngOnDestroy(): void {
     this.socketService.closeCollocutorSocket(this.chatType);
   }
 
-  // oen new chat vs delay to reset messager template
-  getCurrentRoom(userInfo) {
-    this.collocutorData = null;
+  // open new chat vs delay to reset messenger template
+  public getCurrentRoom(userInfo) {
+    this.collocutorData = null; // reset current data of
     setTimeout(() => {
       this.collocutorData = userInfo;
-      // this.newDealId = userInfo;
     }, 100);
   }
 
-  private subscribeColucutors() {
-    this.socketService.subscribeOnListOfCollucutors(this.chatType);
+  private subscribeCollocutor() {
+    this.socketService.subscribeOnCollocutorList(this.chatType);
   }
 
-  // open breef feeling if is new and chat after sending breef
-  private openNewDeal() {
+  // open brief feeling if is new and chat after sending brief
+  private openNewChatRoom() {
     this.route.queryParams
-      .pipe(
-        filter((res: any) => !!res),
-      )
-      .subscribe((res) => {
+      .subscribe((res: any) => {
         if (res.hasOwnProperty('offers_id')) {
-          this.collocutorData = res;
+          console.log('new deal',res);
+          // this.collocutorData = res;
+          this.getCurrentRoom(res);
         } else if (res.hasOwnProperty('dealId')) {
           this._resetChat();
+        } else if(res.hasOwnProperty('dealId')) {
+
         }
       });
   }

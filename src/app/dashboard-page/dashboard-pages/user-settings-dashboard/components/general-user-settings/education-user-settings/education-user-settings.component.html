@@ -17,6 +17,7 @@
               #institution="ngModel"
               minlength="4"
               name="institution-{{i}}"
+              placeholder="Учебное заведение"
               [(ngModel)]="userSettings.education[i].institution"
               [ngClass] = "{not_Valid: !institution.valid}"
             >
@@ -48,6 +49,7 @@
                   #specialty="ngModel"
                   minlength="4"
                   name="specialty-{{i}}"
+                  placeholder="Специальность"
                   [(ngModel)]="userSettings.education[i].specialty"
                   [ngClass] = "{not_Valid: !specialty.valid}"
 
@@ -85,6 +87,7 @@
               <ng-container *ngFor="let diplomaPhoto of userSettings.education[i].diploma; let x = index">
                 <div  class="img-item" *ngIf="diplomaPhoto != null" >
                   <img  [src]="diplomaPhoto" height="300" />
+                  <!-- <div class="delete-photo" (click)=""></div> -->
                 </div>
               </ng-container>
             </div>
@@ -106,7 +109,7 @@
         </div>
 
         <div class="add-education">
-          <button class="add btn-tetraty" type="submit">
+          <button class="add btn-third" type="submit">
             <i class="material-icons">add_circle_outline</i>
             <span>Добавить образование</span>
           </button>

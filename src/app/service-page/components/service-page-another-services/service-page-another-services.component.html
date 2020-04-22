@@ -1,6 +1,6 @@
 <section class="about-offer">
   <h4 class="section-title">
-    Другие услуги фрилансера
+    Другие услуги фрилансера <span>( {{offerData.user.userOffers.length}} из {{offerData.user.userOfferCount}})</span>
   </h4>
   <div class="cards-list" *ngIf="offerData">
     <div class="card" *ngFor="let offer of offerData.user.userOffers">
@@ -11,7 +11,7 @@
 
         <p class="card-description__about" (click)="openOffer(offer.id)">{{offer.title}}</p>
         <div class="card-description__bottom">
-          <div class="card-description__level">{{offer.raiting}}</div>
+          <div class="card-description__level">{{offer.rating}}</div>
           <div class="card-description__comments"><a>({{offer.comments_count}} отзывов)</a></div>
         </div>
 

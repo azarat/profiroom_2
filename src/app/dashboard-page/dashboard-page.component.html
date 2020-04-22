@@ -2,12 +2,9 @@
   <header>
     <a [routerLink]="'/' | localize" class="logo">whocan</a>
     <div class="controls">
-      <section class="notifications">
-        <mat-icon aria-hidden="false" matBadge="1" aria-label="Example home icon" matBadgeColor="warn">notifications
-        </mat-icon>
-      </section>
+      <app-system-messages [user]="user"></app-system-messages>
       <section class="type-section">
-        <div class="switch">
+        <div class="switch" *ngIf="user.role_id !== 42">
           <span (click)="changeUserType(1)" [ngClass]="{active: user.role_id === 1}">Фрилансер</span>
           <div class="swp-btn" (click)="changeUserType()">
             <span [ngClass]="{left: user.role_id === 1, right: user.role_id === 2 }"></span>
@@ -26,7 +23,7 @@
       <img [src]="user.avatar" alt="avatar" />
       <p class="name">{{ user.name }} {{ user.surname}}</p>
       <div class="raiting">
-        <app-star-raiting [currentRaiting]="user.raiting"></app-star-raiting>
+        <app-star-rating [currentRating]="user.rating"></app-star-rating>
       </div>
     </section>
     <section class="menu">
@@ -34,7 +31,11 @@
       <nav>
         <ng-container *ngFor="let el of dashboardMenu">
           <a class="{{el.class}}"
-            *ngIf="user.role_id === 1 && el.class !== 'catalog' || user.role_id === 2 && el.class !== 'dashboard' && el.class !== 'services' && el.class !== 'dashboard'"
+            *ngIf="user.role_id === 1 && el.class !== 'catalog' && el.class !== 'arbitr' || 
+            user.role_id === 2 && el.class !== 'dashboard' && 
+            el.class !== 'services' && el.class !== 'dashboard' && el.class !== 'arbitr' ||
+            (user.role_id === 42 && el.class !== 'services' && el.class !== 'settings' && el.class !== 'projects')
+            "
             [routerLink]="el.link | localize" [routerLinkActive]="'active'" (click)="openChat(el.class)"
             [ngClass]="{ 'new-message': newMessage, 'new-work-message': newWorkMessage }"><span>{{ el.title }}</span></a>
         </ng-container>

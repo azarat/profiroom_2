@@ -9,9 +9,9 @@
       <a class="name" [routerLink]="'/user/' + collocutorData.collocutorId | localize" >
       <span>{{ collocutorData.collocutorName }}</span>&nbsp;<span> {{ collocutorData.collocutorSurname }}</span>
       </a>
-    <div class="raiting">
-      <app-star-raiting [currentRaiting]="collocutor.raiting"></app-star-raiting>
-      <span>{{ collocutor.raiting  }}</span> <span class="comments">({{ collocutorAllComments }} отзывов)</span>
+    <div class="rating">
+      <app-star-rating [currentRating]="collocutor.rating"></app-star-rating>
+      <span>{{ collocutor.rating  }}</span> <span class="comments">({{ collocutorAllComments }} отзывов)</span>
     </div>
     <span class="line"></span>
     <div class="collocutor-main-info">
@@ -33,15 +33,15 @@
       </div>
       <div>
         <span>Арбитраж</span>
-        <span>{{ collocutor.arbitration }}</span>
+        <span>{{ collocutor.arbitration.all }}</span>
       </div>
     </div>
     <span class="line"></span>
-    <div class="collocutor-about" [ngClass]="{open: isInformWraped}">
+    <div class="collocutor-about" [ngClass]="{open: isInformWrapped}">
       <p>
         {{ collocutor.description }}
     </p>
     </div>
-    <button class="btn-tetraty" [ngClass]="isInformWraped? 'open': 'close'" (click)="showAllInfo()">{{ wrapButtonText }}</button>
+    <button class="btn-third" [ngClass]="isInformWrapped? 'open': 'close'" (click)="showAllInfo()">{{ wrapButtonText }}</button>
   </div>
 </section>

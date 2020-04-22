@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
-import { CategorysListService } from '../../core/services/categorys.service';
+import { CategoriesListService } from '../../core/services/categories.service';
 import { CategoryListInterface } from '../../shared/interfaces/categories-list.interface';
 
 @Component({
@@ -10,19 +10,19 @@ import { CategoryListInterface } from '../../shared/interfaces/categories-list.i
 })
 export class CatalogHomePageComponent implements OnInit {
 
-  categorysList: CategoryListInterface ;
-  // dataList: CategorysList;
+  categoriesList: CategoryListInterface ;
+  // dataList: CategoriesList;
 
   constructor(
     private route: Router,
     // tslint:disable-next-line: no-shadowed-variable
-    private CategorysListService: CategorysListService
+    private categoriesListService: CategoriesListService
   ) { }
 
   ngOnInit() {
-    this.CategorysListService.getCategorys()
+    this.categoriesListService.getCategories()
     .subscribe(res => {
-      this.categorysList = res;
+      this.categoriesList = res;
     });
   }
   navigateTo() {

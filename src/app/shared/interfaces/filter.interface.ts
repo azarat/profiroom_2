@@ -9,4 +9,5 @@ export interface FilterInterface {
   commercial?: boolean;
   confidentiality?: boolean;
   agreement?: boolean;
+  
 }

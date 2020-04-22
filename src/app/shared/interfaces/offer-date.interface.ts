@@ -2,14 +2,14 @@ export interface OfferDataInterface {
   id?: number;
   title?: string;
   mainImage?: string;
-  rating?: string;
+
   user_id?: number;
   created_at?: string;
   allPackages?: number;
   description?: string;
-  raiting?: number;
+  rating?: number;
   comments_count?: number;
-  averageRaiting?: {
+  averageRating?: {
     averageMark?: number;
     qualityMark?: number;
     termMark?: number;
@@ -26,7 +26,9 @@ export interface OfferDataInterface {
     surname?: string;
     rank_id?: string;
     online: boolean;
-    averageRaiting?: {
+    countOffers?: number;
+    userOfferCount?: any;
+    averageRating?: {
       averageMark?: number;
       qualityMark?: number;
       termMark?: number;
@@ -34,7 +36,7 @@ export interface OfferDataInterface {
     }
     userOffers?: [{
       title?: string;
-      raiting?: number;
+      rating?: number;
       comments_count?: number;
       mainImage?: string;
       minprice?: number;
@@ -55,9 +57,6 @@ export interface OfferDataInterface {
       avatar?: string;
     }
   }];
-  profi?: {
-    name?: string;
-  };
   filesDirectory?: string;
   files?: [{
     small?: string;
@@ -75,7 +74,7 @@ export interface OfferDataInterface {
       name?: string;
       surname?: string;
       avatar?: string;
-      averageRaiting?: {
+      averageRating?: {
         averageMark?: number;
         qualityMark?: number;
         termMark?: number;
@@ -105,7 +104,7 @@ export interface OfferDataInterface {
       name?: string;
       surname?: string;
       avatar?: string;
-      averageRaiting?: {
+      averageRating?: {
         averageMark?: number;
         qualityMark?: number;
         termMark?: number;
@@ -157,7 +156,7 @@ export interface OfferDataInterface {
   }];
   visitedOffers?: [{
     title?: string;
-    raiting?: number;
+    rating?: number;
     comments_count?: number;
     mainImage?: string;
     minprice?: number;
@@ -166,7 +165,7 @@ export interface OfferDataInterface {
     id?: number;
     offers_id?: number;
     package?: string;
-    coonditions?: number;
+    conditions?: number;
     count_days?: number;
     price?: number;
     published?: number;

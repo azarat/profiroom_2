@@ -17,9 +17,9 @@ import { WindowScrollBlockService } from './services/window-scrolling.service';
 import { config } from 'process';
 
 import { AuthorisatedGuard } from './guards/authorisated.guard';
-import { CategorysListService } from './services/categorys.service';
 import { OffersService } from './services/offers.service';
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
+import { CategoriesListService } from './services/categories.service';
 
 export const url = new URL(location.href).origin;
 
@@ -44,18 +44,20 @@ const gConfig = {
       loader: {
         provide: TranslateLoader,
         useFactory: (createTranslateLoader),
-        deps: [HttpClient]
+          deps: [HttpClient],
       }
     }
     ),
     LocalizeRouterModule.forRoot(routes, {
       parser: {
         provide: LocalizeParser,
-        useFactory: (translate: TranslateService, location: Location, settings: LocalizeRouterSettings, http: HttpClient) =>
+        useFactory: (translate: TranslateService, location: Location, settings: LocalizeRouterSettings, http: HttpClient, ) =>
             new LocalizeRouterHttpLoader(translate, location, settings, http, url + '/assets/locales.json'),
-        deps: [TranslateService, Location, LocalizeRouterSettings, HttpClient]
-      }
-    }),
+        deps: [TranslateService, Location, LocalizeRouterSettings, HttpClient, ],
+      },
+      alwaysSetPrefix: false
+    }
+    ),
     ScrollToModule.forRoot()
   ],
   providers: [
@@ -70,7 +72,7 @@ const gConfig = {
     LocalStorageService,
     UnauthorisatedGuard,
     AuthorisatedGuard,
-    CategorysListService,
+    CategoriesListService,
     WindowScrollBlockService,
   ]
 })

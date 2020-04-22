@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 export class UserStateService {
 
   // tslint:disable-next-line: variable-name
-  private _userState = new Subject<any>();
+  private _userState = new BehaviorSubject<any>(null);
   public userState$ = this._userState.asObservable();
 
   constructor(
