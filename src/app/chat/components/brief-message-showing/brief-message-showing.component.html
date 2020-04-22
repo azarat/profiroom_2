@@ -1,0 +1,33 @@
+<div class="wrapper">
+  <div class="title">
+    <div>
+      <div class="brief-icon"></div>
+      <div>
+        <h4>Бриф</h4>
+        <p>{{ collocutorData.offers_title }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="brief" *ngIf="briefItems"
+    [ngClass]="{ 'show': isBriefElVisible && isBriefElVisible === true, 'hidden': !isBriefElVisible && isBriefElVisible === false }">
+    <div>
+      <div class="item" *ngFor="let brief of briefItems, let i = index">
+        <h5>{{i+1}}. {{ brief.title }}</h5>
+        <p *ngIf="brief.isAnswerArr !== true">{{ brief.answer }}</p>
+        <ng-container *ngIf="brief.isAnswerArr === true">
+          <p *ngFor="let el of brief.answer">
+            {{ el }}
+          </p>
+        </ng-container>
+
+      </div>
+    </div>
+  </div>
+  <button class="btn-third brief-wrap-btn" (click)="showHideBrief()" [ngClass]="isBriefElVisible? 'up': 'down'"> {{ buttonText }}</button>
+  <div class="brief-decisions-options"
+    *ngIf="collocutorData.freelancer_id === userId && collocutorData.status == 'sentBrief' && !dealApproved && collocutorData.early_closing === 0">
+    <button class="btn-sec" (click)="refuseBrief()">ОТКЛОНИТЬ</button>
+    <button class="btn" (click)="approveBrief()">ПРИНЯТЬ ЗАЯВКУ</button>
+  </div>
+</div>

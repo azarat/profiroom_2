@@ -12,7 +12,7 @@
 
       </div>
     </div>
-    <ng-container  *ngIf="userData.negativeComments.length != 0">
+    <ng-container  *ngIf="userData.negativeComments.length >0">
         <div class="comment" *ngFor="let comment of userData[currentTab.value + 'Comments']; let parrentCommentIndex = index">
           <h5 class="comment__service-name" >
               <a [routerLink]="'/service'| localize" [queryParams]="{ offerId: comment.offers.id }"> {{comment.offers.title}}</a>
@@ -63,7 +63,7 @@
 
             <div class="comment_child__wrapper" *ngIf="comment.childs.length !== 0">
               <ng-container *ngFor="let comment_child of comment.childs; let i = index">
-                <div class="comment__wrapp_child" *ngIf="i === 0 || showAllchildComments === parrentCommentIndex">
+                <div class="comment__wrapp_child" *ngIf="i === 0 || showAllChildComments === parrentCommentIndex">
                   <a class="comment__avatar" [routerLink]="['/user', comment_child.author.id] | localize">
                     <img [src]="comment_child.author.avatar" alt="ava">
                   </a>
@@ -80,7 +80,7 @@
               </ng-container>
               <div class="btn-show_more_comments" *ngIf="comment.childs.length > 1"
                 (click)="showMoreChileComments(parrentCommentIndex)"
-                [ngClass]="{open: showAllchildComments === parrentCommentIndex}">читать ответы</div>
+                [ngClass]="{open: showAllChildComments === parrentCommentIndex}">читать ответы</div>
             </div>
           </div>
         </div>

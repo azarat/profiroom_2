@@ -35,7 +35,7 @@
     border-radius: 3px;
     // background: #a5affb;
   }
-  &.arbitr:before {
+  &.arbiter:before {
     background: #ff9090;
   }
   &.archived:before {
@@ -44,10 +44,10 @@
   &.inProgress:before {
     background: #a5affb;
   }
-  &.approveBreef:before {
+  &.approveBrief:before {
     background: #7ddfc3;
   }
-  &.breef:before {
+  &.brief:before {
     background: #fb9c6e;
   }
   .corner {
@@ -132,7 +132,7 @@
         top: 0;
         display: none;
       }
-      &.arbitr:before {
+      &.arbiter:before {
         background: #ff9090;
       }
       &.archived:before {
@@ -141,7 +141,7 @@
       &.inProgress:before {
         background: #a5affb;
       }
-      &.sentBreef:before {
+      &.sentBrief:before {
         background: #7ddfc3;
       }
       &.new:before {

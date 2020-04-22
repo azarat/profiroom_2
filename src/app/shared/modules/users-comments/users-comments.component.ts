@@ -41,7 +41,7 @@ export class UsersCommentsComponent implements OnInit {
     commentId: number | string
   };
 
-  public showAllchildComments = null;
+  public showAllChildComments = null;
   public convertedDate = null;
   constructor(
     private router: Router,
@@ -68,7 +68,7 @@ export class UsersCommentsComponent implements OnInit {
   }
 
   public showMoreChileComments(x) {
-    this.showAllchildComments !== x ? this.showAllchildComments = x : this.showAllchildComments = null;
+    this.showAllChildComments !== x ? this.showAllChildComments = x : this.showAllChildComments = null;
   }
 
   public converDateToDMY(x) {
@@ -91,7 +91,7 @@ export class UsersCommentsComponent implements OnInit {
   public sendComment(index, commentType) {
     this.userCommentService.sendComment(this.commentForm )
     .subscribe(res => {
-      console.log(res);
+      this.closeForm();
       this.userData[commentType][index].childs.push(res);
     })
   }

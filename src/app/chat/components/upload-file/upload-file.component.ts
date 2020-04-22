@@ -2,7 +2,7 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { FilesInterface } from '../../interfaces/files.interface';
 import { FileLoaderService } from '../../services/file-loader.service';
 import { ChatService } from '../../services/chat.service';
-import { MessageScrollerService } from '../../services/message-scroller/message-scroller.service';
+import { MessageScrollService } from '../../services/message-scroll/message-scroll.service';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 
 @Component({
@@ -17,7 +17,7 @@ export class UploadFileComponent implements OnInit {
   @Input() chatType: string;
   @Input() isFileLoaderVisible: boolean;
   @Output() isFileLoaderVisibleChange = new EventEmitter<boolean>();
-  @Output() uploadedBreefFiles = new EventEmitter<any>();
+  @Output() uploadedBriefFiles = new EventEmitter<any>();
 
   public disabled = false;
   public files: FilesInterface[] = [];
@@ -26,7 +26,7 @@ export class UploadFileComponent implements OnInit {
   constructor(
     private fileLoaderService: FileLoaderService,
     private chatService: ChatService,
-    private messageScrollerService: MessageScrollerService,
+    private messageScrollService: MessageScrollService,
     private localStorageService: LocalStorageService
   ) { }
 
@@ -82,11 +82,11 @@ export class UploadFileComponent implements OnInit {
     //   });
   }
 
-  sentMessage() {
+  sendMessage() {
     const MessageString = JSON.stringify(this.files);
-    this.chatService.sentMessage(MessageString, this.collocutorData.roomId, 'file', this.chatType)
+    this.chatService.sendMessage(MessageString, this.collocutorData.roomId, 'file', this.chatType)
       .subscribe(res => console.log(res));
     this.isFileLoaderVisibleChange.emit(false);
-    this.messageScrollerService.onMessageScrollBottom();
+    this.messageScrollService.onMessageScrollBottom();
   }
 }
