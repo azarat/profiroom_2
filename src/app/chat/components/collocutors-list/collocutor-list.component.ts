@@ -167,6 +167,8 @@ export class CollocutorListComponent implements OnInit {
     
     // }, 100)
     this.collocutorService.setCollocutorInfo(userInfo);
+    // console.log('userInfo', userInfo);
+    // this.currentRoom.emit(userInfo);
     this.socketService.openChat(userInfo.roomId);
     
   }

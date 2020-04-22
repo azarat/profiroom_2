@@ -19,7 +19,7 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   public collocutorData: CollocutorInterface = null;
   public isFileLoaderVisible: boolean = null;
-  // var if exit from unwritten brief
+  // var if exit from unWritten brief
   public exitFromBriefPopUpVisible: boolean = null;
   public isChat = true;
 

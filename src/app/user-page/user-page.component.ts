@@ -10,6 +10,7 @@ import {Location} from '@angular/common';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { WindowScrollBlockService } from '../core/services/window-scrolling.service';
+import { onlineCont } from '../shared/consts/online.const';
 
 @Component({
   selector: 'app-user-page',
@@ -21,7 +22,7 @@ export class UserPageComponent implements OnDestroy, OnInit  {
   public userData: UserDataInterface;
   sticky = false;
   elementPosition: any;
-
+  onlineModel = onlineCont;
   openModalWindow:boolean=false;
   imagePointer:number;
 
@@ -142,6 +143,7 @@ export class UserPageComponent implements OnDestroy, OnInit  {
   // 0 - freelancer
   // 1 - customer
   public choseUser(x) {
+
     if(x === 0) {
       this.userTypeFreelancer = 1;
     } else {
