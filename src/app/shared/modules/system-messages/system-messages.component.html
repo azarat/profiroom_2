@@ -2,10 +2,10 @@
   <mat-icon aria-hidden="false" matBadge="1" aria-label="Example home icon" matBadgeColor="warn" (click)="toggleMessageList()" class="test" [ngClass]="{active: newSystemMessages}">notifications
   </mat-icon>
   <div class="notifications-wrap" *ngIf="showMessagesListBlock" (clickOutside)="toggleMessageList()" [exclude]="'.test'"> 
-    <div class="notifications-title"  *ngIf="messageListEmpty">
+    <div class="notifications-title"  *ngIf="systemMessagesArr.length !== 0">
       <span (click)="deleteMessageItem(0, systemMessagesArr.length)">Очистить все</span> 
     </div>
-    <div class="notifications-list"  *ngIf="messageListEmpty">
+    <div class="notifications-list"  *ngIf="systemMessagesArr.length !== 0">
       <ng-container *ngFor="let message of systemMessagesArr; let i = index ">
         <ng-container *ngFor="let type of systemMessagesTypes">
 

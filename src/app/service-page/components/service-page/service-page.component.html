@@ -39,7 +39,7 @@
             <a [routerLink]="['/user', offerData.user_id] | localize" class="user-name">{{ offerData.user.name }}
               {{ offerData.user.surname }}</a>
             <div class="user-rating-wrap">
-              <span class="star-rating">{{ offerData.rating }}</span>
+              <span class="star-rating" [ngClass]="{'empty-rating': offerData.rating == 0}">{{ offerData.rating }}</span>
             </div>
             <span class="user-comments">({{ convertedNumberOfComments }} отзывов)</span>
           </div>
@@ -91,28 +91,28 @@
         <div class="rating-type">
           <div class="rating-type_name">Качество услуги</div>
           <div class="rating-type_numeral">
-            <span class="rating-type_number">{{ offerData.averageRating.qualityMark }}</span>
+            <span class="star-rating" [ngClass]="{'empty-rating': offerData.averageRating.qualityMark === 0}">{{ offerData.averageRating.qualityMark }}</span>
           </div>
         </div>
         <div class="rating-type">
           <div class="rating-type_name">Срок исполнения</div>
           <div class="rating-type_numeral">
-            <span class="rating-type_number">{{ offerData.averageRating.termMark }}</span>
+            <span class="star-rating" [ngClass]="{'empty-rating': offerData.averageRating.qualityMark === 0}">{{ offerData.averageRating.termMark }}</span>
           </div>
         </div>
         <div class="rating-type">
           <div class="rating-type_name">Вежливость фрилансера</div>
           <div class="rating-type_numeral">
-            <span class="rating-type_number">{{ offerData.averageRating.politenessMark }}</span>
+            <span class="star-rating" [ngClass]="{'empty-rating': offerData.averageRating.qualityMark === 0}">{{ offerData.averageRating.politenessMark }}</span>
           </div>
         </div>
 
         <div class="rating-type average">
           <div class="rating-type_name">Средняя оценка</div>
           <div class="rating-type_numeral">
-            <span class="rating-type_number">{{ offerData.averageRating.averageMark }}</span>
+            <span class="star-rating" [ngClass]="{'empty-rating': offerData.averageRating.qualityMark === 0}">{{ offerData.averageRating.averageMark }}</span>
           </div>
-          <span class="comments-count">( {{ offerData.comments_count}} отзывов):</span>
+          <span class="comments-count">( {{ offerData.comments_count}} отзывов)</span>
         </div>
       </section>
 

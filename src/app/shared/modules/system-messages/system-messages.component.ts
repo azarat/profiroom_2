@@ -86,9 +86,8 @@ export class SystemMessagesComponent implements OnInit {
 
     // get all notifications by API
     this.systemMessagesService.systemMessagesList()
-    .subscribe(res => {
-      this.systemMessagesArr = res;
-      this.systemMessagesArr = this.systemMessagesArr.reverse();
+    .subscribe((res: any[]) => {
+      this.systemMessagesArr = res.reverse();
       this.checkListLength();
     }); 
 

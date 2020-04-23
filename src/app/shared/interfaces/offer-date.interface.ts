@@ -40,6 +40,9 @@ export interface OfferDataInterface {
       comments_count?: number;
       mainImage?: string;
       minprice?: number;
+      id?: number;
+      liked?: number;
+      minPrice?: number;
     }];
     arbitration?: {
       freelancer?: number;
