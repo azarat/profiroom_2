@@ -126,7 +126,7 @@
 }
 .additional-options{
   padding: 65px;
-  font-family: "Source Sans Pro";
+  font-family: "Source Sans Pro", sans-serif;
   background: #FAFBFC;
   &__title{
     font-weight: bold;
@@ -170,7 +170,7 @@
       }
       .extra-features__title{
         display: block;
-        font-family: "Source Sans Pro";
+        font-family: "Source Sans Pro", sans-serif;
         font-weight: normal;
         font-size: 18px;
         line-height: 117%;
@@ -179,7 +179,7 @@
         margin-left: 16px;
       }
       .extra-features__description{
-        font-family: "Source Sans Pro";
+        font-family: "Source Sans Pro", sans-serif;
         font-weight: normal;
         font-size: 16px;
         line-height: 169%;
@@ -205,7 +205,7 @@
 }
 
 .final-services{
-  font-family: "Source Sans Pro";
+  font-family: "Source Sans Pro", sans-serif;
   border: 1px solid rgba(220, 224, 230, 0.1);
   box-shadow: 0px 10px 16px rgba(128, 152, 213, 0.2);
   border-radius: 3px;

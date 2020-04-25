@@ -33,7 +33,7 @@ export interface OfferDataInterface {
       qualityMark?: number;
       termMark?: number;
       politenessMark?: number;
-    }
+    } | number;
     userOffers?: [{
       title?: string;
       rating?: number;

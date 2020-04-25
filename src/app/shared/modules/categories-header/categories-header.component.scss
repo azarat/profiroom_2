@@ -27,7 +27,7 @@
     display: flex;
     align-items: center;
     a{
-      font-family: "Source Sans Pro";
+      font-family: "Source Sans Pro", sans-serif;
       font-weight: 600;
       font-size: 16px;
       line-height: 20px;
@@ -110,7 +110,7 @@
   padding-right: 70px;
   list-style-type: none;
   &__name {
-    font-family: "Source Sans Pro";
+    font-family: "Source Sans Pro", sans-serif;
     font-weight: 600;
     font-size: 16px;
     line-height: 20px;
@@ -128,7 +128,7 @@
 }
 
 .subcategory {
-  font-family: "Source Sans Pro";
+  font-family: "Source Sans Pro", sans-serif;
   font-weight: normal;
   font-size: 16px;
   line-height: 20px;
@@ -147,7 +147,7 @@
   .category-wrapper {
     .category-name{
       a{
-        font-family: "Source Sans Pro";
+        font-family: "Source Sans Pro", sans-serif;
         font-weight: 600;
         font-size: 16px;
         line-height: 20px;

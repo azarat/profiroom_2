@@ -19,7 +19,7 @@
       <div class="message"
       *ngIf="message.type !== 'brief'"
         [ngClass]="{ 'author': message.author === userId, 'message-anchor': i === 0 || messagesList[i].author !== messagesList[i-1].author}">
-        <div class="photo" *ngIf="message.type !== 'systemMessage'">
+        <div class="photo">
           <ng-container
             *ngIf="i === 0 || i== messagesList.length-1 || messagesList[i].author !== messagesList[i+1].author">
             <a [routerLink]="'/user/' + message.author | localize" ><img  *ngIf="message.author === userId" [src]="userAvatar" alt="avatar"></a>
@@ -41,7 +41,7 @@
         </div>
 
       <!-- system messages in deal -->
-      <app-system-messages-in-deals *ngIf="message.type == 'systemMessage'" [systemMessage]="message"></app-system-messages-in-deals>
+      <app-system-messages-in-deals *ngIf="message.type == 'systemMessage' && collocutorData" [systemMessage]="message"></app-system-messages-in-deals>
       <!-- /system messages in deal -->
         <!-- <div class="message-control" *ngIf="false"></div> -->
         <span class="time">{{ message.dateTime | dateFormatPipe: 'dd.MM HH:mm' }}</span>

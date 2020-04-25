@@ -4,7 +4,7 @@ import { SystemMessagesService } from './services/system-messages.service';
 import { LocalizeRouterService } from 'localize-router';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ChatService } from 'src/app/chat/services/chat.service';
-import { SocketService } from 'src/app/chat/services/socket.service';
+import { SocketService } from 'src/app/core/services/socket.service';
 
 @Component({
   selector: 'app-system-messages',
@@ -16,10 +16,10 @@ export class SystemMessagesComponent implements OnInit {
   @Input() user: UserModel;
   public showMessagesListBlock = false;
   public messageListEmpty = false;
-  public systemMessagesArr: any;
+  public systemMessagesArr: any[] = [];
   public newSystemMessages = null;
-  menuOpen = null;
-
+  public menuOpen = null;
+  public notifiation: any;
   public systemMessagesTypes = [
     {
       name: "DealFinished",
@@ -83,29 +83,25 @@ export class SystemMessagesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.getNotifications();    
+    // subscribe to the bellEvents and push it to the notification arr
+    this.socketService.checkSystemNotifications()
+      .subscribe((newNotify: any) => {
+        
+        this.systemMessagesArr.unshift(newNotify);
+        this.newSystemMessages = true;
+        // this.checkListLength();
+      });
+  }
 
-    console.log(this.user.role_id);
-
+  private getNotifications() {
     // get all notifications by API
     this.systemMessagesService.systemMessagesList()
-    .subscribe(res => {
-      this.systemMessagesArr = res;
-      this.systemMessagesArr = this.systemMessagesArr.reverse();
-      console.log(this.systemMessagesArr);
-      this.checkListLength();
-    }); 
-
-    // connect to the bellRoom by socket
-    this.systemMessagesService.connect();
-    
-    
-    // subscribe to the bellEvents and push it to the notification arr
-    this.systemMessagesService.checkSystemNotifications()
-    .subscribe((newNotify: any) => {
-      this.systemMessagesArr.unshift(newNotify);
-      this.newSystemMessages = true;
-      this.checkListLength();
-    });
+    .subscribe((res: any[]) => {
+      console.log('notifations ',res)
+      this.systemMessagesArr = res.reverse();
+      // this.checkListLength();
+  }); 
   }
 
   // open notification block
@@ -128,20 +124,18 @@ export class SystemMessagesComponent implements OnInit {
       this.systemMessagesArr.splice(index, 1);
     }
 
-    this.checkListLength();
+    // this.checkListLength();
   }
 
-  private checkListLength() {
-    if(this.systemMessagesArr.length > 0) {
-      this.messageListEmpty = true;
-    } else {this.messageListEmpty = false;}
-  }
+  // private checkListLength() {
+  //   this.messageListEmpty = this.systemMessagesArr.length > 0 ? true : false;
+  // }
 
-  public openChat(roomId, id, index) {
+  public openChat(roomId, id, index, dealId) {
     const translatedPath: any = this.localize.translateRoute('/dashboard/projects');
     this.router.navigate([translatedPath], {
       relativeTo: this.route,
-      queryParams: {},
+      queryParams: {dealId: dealId, roomId: roomId},
     });
   }
   

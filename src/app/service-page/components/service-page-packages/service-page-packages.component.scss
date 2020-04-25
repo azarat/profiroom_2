@@ -1,5 +1,5 @@
 .tabs {
-  font-family: "Source Sans Pro";
+  font-family: "Source Sans Pro", sans-serif;
   .tabs-top {
     display: flex;
     justify-content: space-between;
@@ -21,7 +21,7 @@
     z-index: 5;
     box-shadow: 0px 0px 16px rgba(128, 152, 213, 0.2);
 
-    font-family: "Source Sans Pro";
+    font-family: "Source Sans Pro", sans-serif;
     letter-spacing: 0.8px;
     font-style: normal;
     font-weight: 600;
@@ -179,7 +179,7 @@
       flex-direction: column;
       margin-bottom: 15px;
       .show-extra-features{
-        font-family: "Source Sans Pro";
+        font-family: "Source Sans Pro", sans-serif;
         font-weight: normal;
         font-size: 16px;
         line-height: 117%;
@@ -255,14 +255,14 @@
         justify-content: space-between;
       }
       &__title{
-        font-family: "Source Sans Pro";
+        font-family: "Source Sans Pro", sans-serif;
         font-weight: normal;
         font-size: 18px;
         line-height: 117%;
         color: #707683;
       }
       &__price{
-        font-family: "Source Sans Pro";
+        font-family: "Source Sans Pro", sans-serif;
         font-weight: 600;
         font-size: 14px;
         line-height: 150%;

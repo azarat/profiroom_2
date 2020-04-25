@@ -35,6 +35,7 @@ export class SocketService {
           this.socketId = res.socketId;
           //  connect to user to his own socket
           this.socket.emit('join', this.keyPath + this.socketId);
+          this.socket.emit('join', 'gigroom_database_private-bellRoom-' + this.socketId);
         }
       });
 
@@ -139,6 +140,14 @@ export class SocketService {
     });
   }
 
+  // Notifications in dashboard
+  public checkSystemNotifications() {
+    return new Observable(observer => {
+      this.socket.on('bellEvent', (data) => {
+        observer.next(data);
+      });
+    });
+  }
 
 
 }

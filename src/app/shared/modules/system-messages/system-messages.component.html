@@ -2,10 +2,10 @@
   <mat-icon aria-hidden="false" matBadge="1" aria-label="Example home icon" matBadgeColor="warn" (click)="toggleMessageList()" class="test" [ngClass]="{active: newSystemMessages}">notifications
   </mat-icon>
   <div class="notifications-wrap" *ngIf="showMessagesListBlock" (clickOutside)="toggleMessageList()" [exclude]="'.test'"> 
-    <div class="notifications-title"  *ngIf="messageListEmpty">
+    <div class="notifications-title"  *ngIf="systemMessagesArr.length !== 0">
       <span (click)="deleteMessageItem(0, systemMessagesArr.length)">Очистить все</span> 
     </div>
-    <div class="notifications-list"  *ngIf="messageListEmpty">
+    <div class="notifications-list"  *ngIf="systemMessagesArr.length !== 0">
       <ng-container *ngFor="let message of systemMessagesArr; let i = index ">
         <ng-container *ngFor="let type of systemMessagesTypes">
 
@@ -13,7 +13,9 @@
             <div class="notification-item__icon">
               <img src="assets/images/icons/systemMessages/{{type.name}}.png" alt="">
             </div>
-            <div class="notification-item__text" (click)="openChat(message.roomId, message.id, i)"><span>{{type.message}} </span>"{{message.offers_title}}"</div>
+            <div class="notification-item__text" (click)="openChat(message.roomId, message.id, i, message.deal_id)">
+              
+              <span>{{ notifiation.messageType[message.name] | translate }} </span>"{{message.offers_title}}"</div>
             <div class="notification-item__date">{{message.created_at | dateFormatPipe: 'dd.MMMM HH:mm' }}</div>
             <div class="notification-delete" (click)="deleteMessageItem(message.id, i)"></div>
           </div>
@@ -24,7 +26,7 @@
 
     </div>
 
-    <span class="emptyList" *ngIf="!messageListEmpty">Уведомлений нет</span>
+    <span class="emptyList" *ngIf="systemMessagesArr.length === 0">Уведомлений нет</span>
 
   </div>
 </section>

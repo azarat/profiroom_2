@@ -20,4 +20,8 @@ export class CollocutorService {
   public setCollocutorInfo(deal: CollocutorInterface) {
       this._collocutorData.next(deal);  
   }
+
+  public unsubscribeCollocutorData() {
+    this._collocutorData.unsubscribe();
+  }
 }
