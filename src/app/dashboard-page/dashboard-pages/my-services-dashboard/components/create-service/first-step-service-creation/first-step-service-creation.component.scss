@@ -526,3 +526,27 @@ form::ng-deep {
     }
   }
 }
+
+@media (max-width: 1499px) {
+  .step-wrapper > form{
+    width: 100%;
+  }
+    // ---------------------------file upload form ---------------------------
+  .items {
+    justify-content: flex-start;
+  }
+  .form-butons {
+    button {
+      font-size: 13px;
+      padding: 10px 24px;
+      &:first-of-type{
+        padding: 10px 24px;
+      }
+    }
+  }
+}
+@media (max-width: 1360px) {
+  form ::ng-deep {
+    width: 100%;
+  }
+}

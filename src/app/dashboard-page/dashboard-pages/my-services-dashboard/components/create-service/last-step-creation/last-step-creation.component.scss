@@ -86,3 +86,21 @@
       opacity: 0.5;
     }
   }
+
+  @media (max-width: 1499px) {
+    .step-wrapper {
+      padding-right: 10px;
+      &>form {
+        width: 100%;
+      }
+    }
+    .form-butons {
+      button {
+        font-size: 13px;
+        padding: 10px 24px;
+        &:first-of-type{
+          padding: 10px 24px;
+        }
+      }
+    }
+  }
