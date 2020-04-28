@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
@@ -43,7 +43,8 @@ import { SystemMessagesService } from './shared/modules/system-messages/services
   providers: [
     // CategoryResolver
     SocketService,
-    SystemMessagesService
+    SystemMessagesService,
+    Title
   ],
   bootstrap: [AppComponent]
 })
