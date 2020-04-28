@@ -18,6 +18,7 @@ import { LocalizeRouterService } from 'localize-router';
   templateUrl: './first-step-service-creation.component.html',
   styleUrls: ['./first-step-service-creation.component.scss']
 })
+
 export class FirstStepServiceCreationComponent implements OnInit {
   public categoryList: CategoryInterface[] = [];
   public firstStepForm: FormGroup;
@@ -35,6 +36,12 @@ export class FirstStepServiceCreationComponent implements OnInit {
   tags: { tag: string }[] = [];
   translatedPath: any = this.localize.translateRoute('/dashboard/my-services');
 
+  titlePosition: string;
+
+
+
+
+
   constructor(
     private userOffersService: UserOffersService,
     private fb: FormBuilder,
@@ -49,6 +56,14 @@ export class FirstStepServiceCreationComponent implements OnInit {
   @Input() userService: UserServiceModel;
 
   ngOnInit() {
+    console.log('width',window.innerWidth)
+
+    if(window.innerWidth >=768) {
+      this.titlePosition = 'right'
+    } else {
+      this.titlePosition = 'botom'
+    }
+
     this.userOffersService.getCategories()
       .pipe(
         filter((res: any) => !!res),

@@ -1,12 +1,18 @@
-<div class="step-wrapper" *ngIf="userService">
+<div class="step-wrapper" *ngIf="userService && titlePosition">
   <form #form="ngForm" (ngSubmit)="goNextStep(form)">
     <h3>1. Титульная информация</h3>
 
     <h5>Название услуги</h5>
-    <mat-form-field floatLabel="always" class="service-title" appearance="outline" maxlength="70" ngbPopover="Оно должно отражать суть вашего предложения
+    <!-- ngbPopover="Оно должно отражать суть вашего предложения
     и описывать услугу, которую вы готовы выполнить."
-      popoverTitle="Введите название услуги" placement="right" popoverClass="popover" closeDelay="200">
-      <textarea name="title" #serviceTit [(ngModel)]="userService.title" matInput required maxlength="70"></textarea>
+      popoverTitle="Введите название услуги" placement="right" popoverClass="popover" closeDelay="200" -->
+    <mat-form-field floatLabel="always" class="service-title" appearance="outline" maxlength="70" 
+    >
+      <textarea name="title" #serviceTit [(ngModel)]="userService.title" matInput required maxlength="70"
+      tooltip="Введите название услуги"
+    tooltipDescription="Оно должно отражать суть вашего предложения
+    и описывать услугу, которую вы готовы выполнить." placement="{{titlePosition}}"
+      ></textarea>
       <mat-hint align="end">{{ serviceTit.value.length }} из 70 максимально</mat-hint>
     </mat-form-field>
     <div class="service-selects">

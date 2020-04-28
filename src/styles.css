@@ -2,8 +2,75 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 @import '~open-iconic/font/css/open-iconic-bootstrap.css';
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", 'Source Sans Pro' , sans-serif; }
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", 'Source Sans Pro', sans-serif;
+}
 
 /* @import '~@fullcalendar/core/main.css';
 @import '~@fullcalendar/daygrid/main.css'; */
+
+
+.ng-tooltip {
+    position: absolute;
+    max-width: 370px;
+    font-size: 14px;
+    text-align: center;
+    background: #FFFFFF;
+    box-shadow: 0px 15px 21px rgba(128, 152, 213, 0.5);
+    border-radius: 8px;
+    padding: 18px 22px;
+    z-index: 1000;
+    opacity: 0;
+    box-sizing: border-box;
+
+}
+.ng-tooltip:after {
+    content: "";
+    position: absolute;
+    border-style: solid;
+  }
+  .ng-tooltip-top:after {
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 10px;
+    border-color: #FFFFFF transparent transparent transparent;
+  }
+  .ng-tooltip-bottom:after {
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 10px;
+    border-color: transparent transparent #FFFFFF transparent;
+  }
+  .ng-tooltip-right:after {
+    top: 50%;
+    right: 100%;
+    margin-top: -5px;
+    border-width: 10px;
+    border-color: transparent #FFFFFF transparent transparent;
+  }
+.ng-tooltip p {
+    font-family: Source Sans Pro, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 18px;
+    color: #707683;
+    margin-bottom: 12px;
+    text-align: left;
+}
+
+.ng-tooltip p:first-child {
+    color: #000000;
+}
+
+.ng-tooltip-show {
+    opacity: 1;
+}
