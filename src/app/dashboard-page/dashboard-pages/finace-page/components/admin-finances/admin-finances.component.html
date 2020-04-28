@@ -1,0 +1,19 @@
+<div class="admin statistic" *ngIf="userFinance">
+  <section class="compressed-statistic" >
+    <div *ngFor="let el of allStatisticInfo">
+      <div class="icon">
+        <img src="/assets/images/icons/finance/{{el.type}}.png" alt="">
+      </div>
+      <div class="data">
+        <p class="value"><span>{{ userFinance.purse[el.type] | thousandSeparator  }}</span> UAH</p>
+        <p class="title">&#32; {{ el.name }}</p>
+      </div>
+    </div>
+  </section>
+  <section class="chart-wrap">
+    <app-admin-chart-canvas></app-admin-chart-canvas>
+  </section>
+  <section>
+    
+  </section>
+</div>

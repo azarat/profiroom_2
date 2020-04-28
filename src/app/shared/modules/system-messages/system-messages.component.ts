@@ -98,10 +98,11 @@ export class SystemMessagesComponent implements OnInit {
     // get all notifications by API
     this.systemMessagesService.systemMessagesList()
     .subscribe((res: any[]) => {
+
       console.log('notifations ',res)
       this.systemMessagesArr = res.reverse();
       // this.checkListLength();
-  }); 
+  });
   }
 
   // open notification block

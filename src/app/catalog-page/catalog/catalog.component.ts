@@ -40,30 +40,33 @@ export class CatalogComponent implements OnInit {
   ) {
     // --------------check url params value---------------
     this._route.params.subscribe(Params => {
-      console.log("Params", Object.keys(Params).length );
+      console.log("Params", Object.keys(Params) );
+      console.log("Params", Params);
       this.catalogFilters = plainToClass(CatalogFiltersModel, Params);
-      this.catalogFilters.subCategory = Params.subCategory;
-      if(Object.keys(Params).length <= 2) {
+      console.log("this.catalogFilters.subCategory - ", this.catalogFilters.subCategory );
+      // this.catalogFilters.subCategory = Params.subCategory;
+      console.log("this.catalogFilters - ", this.catalogFilters );
+      // if(Object.keys(Params).length <= 2) {
         this.GetOffersService.getOffers(this.catalogFilters);
-      } else{
-      }
+      // } else{
+      // }
       
       // ------- value of category for breadcrumbs
       this.category = Params.category;
     });
 
-    // --------------check queryParams value---------------
-    this._route.queryParams.subscribe(qParams => {
-      console.log("qParams", qParams);
-      if (qParams && (Object.keys(qParams).length === 0)) {
-        this.catalogFilters.current_page = 1;
-        this.GetOffersService.setFilters(this.catalogFilters);
-        this.GetOffersService.getOffers(this.catalogFilters);
-      } else {
-        this.GetOffersService.getOffers(qParams);
+    // // --------------check queryParams value---------------
+    // this._route.queryParams.subscribe(qParams => {
+    //   console.log("qParams", qParams);
+    //   if (qParams && (Object.keys(qParams).length === 0)) {
+    //     this.catalogFilters.current_page = 1;
+    //     this.GetOffersService.setFilters(this.catalogFilters);
+    //     this.GetOffersService.getOffers(this.catalogFilters);
+    //   } else {
+    //     this.GetOffersService.getOffers(qParams);
 
-      }
-    });
+    //   }
+    // });
   }
 
   ngOnInit() {

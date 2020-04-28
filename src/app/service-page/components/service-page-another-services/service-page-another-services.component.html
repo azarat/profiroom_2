@@ -12,7 +12,7 @@
   
           <p class="card-description__about" (click)="openOffer(offer.id)">{{offer.title}}</p>
           <div class="card-description__bottom">
-            <div class="card-description__level">{{offer.rating}}</div>
+            <div class="star-rating" [ngClass]="{'empty-rating': offer.rating === 0}">{{offer.rating}}</div>
             <div class="card-description__comments"><a>({{offer.comments_count}} отзывов)</a></div>
           </div>
   
