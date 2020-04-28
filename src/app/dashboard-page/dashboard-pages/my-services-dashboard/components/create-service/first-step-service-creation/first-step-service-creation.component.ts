@@ -49,7 +49,7 @@ export class FirstStepServiceCreationComponent implements OnInit {
   @Input() userService: UserServiceModel;
 
   ngOnInit() {
-    this.userOffersService.getCategorys()
+    this.userOffersService.getCategories()
       .pipe(
         filter((res: any) => !!res),
         first()

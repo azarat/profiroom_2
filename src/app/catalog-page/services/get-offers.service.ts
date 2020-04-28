@@ -21,7 +21,7 @@ export class GetOffersService {
   private filters = new BehaviorSubject(this._filterValue);
   public filterVaraibles: Observable<CatalogFiltersModel>;
 
-  baseUrl = 'http://localhost:4200/ru/catalog/Programming/Javascript';
+  // baseUrl = 'http://localhost:4200/ru/catalog/Programming/Javascript';
 
   constructor(
     private http: HttpClient,

@@ -12,7 +12,7 @@
 
           <p class="card-description__about" (click)="openOffer(offer.id)">{{offer.title}}</p>
           <div class="card-description__bottom">
-            <div class="card-description__level">{{offer.averageRating.averageMark}}</div>
+            <div class="star-rating" [ngClass]="{'empty-rating': offer.averageRating.averageMark === 0}">{{offer.averageRating.averageMark}}</div>
             <div class="card-description__comments"><a>({{offer.comments_count}} отзывов)</a></div>
             <a class="card-description__ava" [routerLink]="['/user', offer.user.id] | localize"><img [src]="offer.user.avatar" alt="avatar">
             </a>

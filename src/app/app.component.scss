@@ -335,7 +335,7 @@
 
   // //  ---------- Star Raiting ----------
 
-  .star-raiting {
+  .star-rating {
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
@@ -356,6 +356,9 @@
       background-image: url(/assets/images/icons/Star.png);
       background-size: contain;
       background-repeat: no-repeat;
+    }
+    &.empty-rating::before {
+      background-image: url(/assets/images/icons/Star-gray.png);
     }
   }
 
