@@ -159,6 +159,13 @@
       display: flex;
       align-items: flex-start;
 
+      p {
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 20px;
+        color: #728096;
+      }
 
       &>div {
         display: flex;
@@ -166,7 +173,7 @@
       }
 
       .detail-achive-line {
-        margin-left: 17px;
+        margin-left: 10px;
         align-items: center;
 
         .line {

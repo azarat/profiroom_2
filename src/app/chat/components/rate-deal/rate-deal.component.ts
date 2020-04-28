@@ -28,6 +28,7 @@ export class RateDealComponent implements OnInit {
   public isUserFreelancer: boolean;
   public hoveredEl: number = null;
   public userType: string = null;
+  public rated: boolean = null;
   constructor(
     private fb: FormBuilder,
     private localStorageService: LocalStorageService,
@@ -102,7 +103,7 @@ export class RateDealComponent implements OnInit {
     this.dealSerice.setDealRate(this.rateForm.value, type)
     .subscribe(res => {
       if(res === 'ok') {
-
+        this.rated = true;
       }
     })
   }

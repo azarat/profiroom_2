@@ -4,7 +4,7 @@ import { MessageScrollService } from '../../services/message-scroll/message-scro
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 import { CollocutorListModel } from 'src/app/models/chat/collocutors-list.model';
 import * as $ from 'jquery';
-import { SocketService } from '../../services/socket.service';
+import { SocketService } from '../../../core/services/socket.service';
 
 @Component({
   selector: 'app-message-list',

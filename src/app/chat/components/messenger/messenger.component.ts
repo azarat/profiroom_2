@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, Input, ViewChildren, QueryList, Output, EventEmitter, OnDestroy, } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ChatService } from '../../services/chat.service';
-import { SocketService } from '../../services/socket.service';
+import { SocketService } from '../../../core/services/socket.service';
 import { CollocutorListModel } from 'src/app/models/chat/collocutors-list.model';
 import { MessageListComponent } from '../message-list/message-list.component';
 import { MessageScrollService } from '../../services/message-scroll/message-scroll.service';
@@ -33,6 +33,7 @@ export class MessengerComponent implements OnInit, OnDestroy {
   protected _destroy$ = new Subject();
   public chatHided: boolean = null;
   public dealCanBeRated: boolean = null;
+  public isUserFreelancer: boolean = null;
   @Input() chatType: string;
   // @Input() deal: CollocutorInterface;
  
@@ -58,10 +59,7 @@ export class MessengerComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.getDealData();
     
-    this.chatService.getPreviousMessages(this.collocutorData.roomId, 0, this.chatType)
-      .subscribe((res: any) => {
-        this.messagesList = this.filterArrayOnMessTypes(res[0]);
-      });
+
 
     this.socketService.onMessage()
       .subscribe((newMessage: any) => {
@@ -84,6 +82,14 @@ export class MessengerComponent implements OnInit, OnDestroy {
     // console.log(this.collocutorData);
     this._isChatHidden();
     
+  }
+
+  private getPrevMessages() {
+    this.chatService.getPreviousMessages(this.collocutorData.roomId, 0, this.chatType)
+      .subscribe((res: any) => {
+        this.messagesList = this.filterArrayOnMessTypes(res[0]);
+        console.log('MessagesList', this.messagesList )
+      });
   }
 
   public ngOnDestroy() {
@@ -150,6 +156,8 @@ export class MessengerComponent implements OnInit, OnDestroy {
     this.collocutorService.collocutorData$
     .subscribe(res => {
       this.collocutorData = res;
+      this.getPrevMessages();
+      this.checkIsUserFreelancer();
       console.log('collocutorData', this.collocutorData)
       this.hideMessageInput();
       this.rateDeal();
@@ -164,6 +172,14 @@ export class MessengerComponent implements OnInit, OnDestroy {
   private rateDeal() {
     this.dealCanBeRated = this.collocutorData && this.collocutorData.status !== 'archived' && 
     (this.collocutorData.dealDone === 1 || this.collocutorData.canceled === 1)? true : null;
+  }
+
+//  Check is user Freelancer
+  private checkIsUserFreelancer() {
+    const userId = this.localStorageService.getItem('userId').value;
+    if (this.collocutorData.freelancer_id === userId) {
+      this.isUserFreelancer = true;
+    }
   }
 
 }

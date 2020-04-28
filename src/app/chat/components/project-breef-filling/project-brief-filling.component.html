@@ -21,10 +21,11 @@
 
 
           <!-- different types -->
-          <ul *ngIf="briefItem.answer_type === 'radio'">
+          <fieldset *ngIf="briefItem.answer_type === 'radio'" id="radio-{{ i }}">
+          <ul>
             <li *ngFor="let variant of briefItem.answers, let j = index">
               <input [ngClass]="briefItem.multi_answers === 0? 'radioButton ': 'tgl tgl-classic'"
-              name="radio" value="{{variant.answer }}" id="{{ i + '-' + j }}"
+              name="radio-{{ i }}" value="{{variant.answer }}" id="{{ i + '-' + j }}"
               [required]="briefItem.answer_required === '1'" 
               (change)="onCheckChange($event, briefItem.title)"
               [type]="briefItem.multi_answers === 0? 'radio': 'checkbox'">
@@ -32,6 +33,8 @@
              <label for="{{i + '-' + j}}">{{ variant.answer }}</label>
               </li>
             </ul>
+          </fieldset>
+
         </div>
       </div>
       <div class="btns">

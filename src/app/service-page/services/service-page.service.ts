@@ -44,7 +44,7 @@ export class ServicePageService {
     const translatedPath: any = this.localize.translateRoute('/dashboard/projects');
     this.router.navigate([translatedPath], {
       relativeTo: this.route,
-      queryParams: { id: dealRoomId, offers_id: _offerId, breef: 0, roomId: _roomId },
+      queryParams: { id: dealRoomId, offers_id: _offerId, brief: 0, roomId: _roomId },
     });
   }
 

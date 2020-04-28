@@ -3,9 +3,11 @@ import { CommonModule } from '@angular/common';
 import { SystemMessagesComponent } from './system-messages.component';
 import { MatIconModule } from '@angular/material/icon';
 import { ChatService } from 'src/app/chat/services/chat.service';
-import { SocketService } from 'src/app/chat/services/socket.service';
+import { SocketService } from 'src/app/core/services/socket.service';
 import { ClickOutsideModule } from 'ng-click-outside';
 import { DataFormatModule } from '../../pipes/data-format/data-format.module';
+import { LocalizeRouterModule } from 'localize-router';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 
@@ -19,7 +21,9 @@ import { DataFormatModule } from '../../pipes/data-format/data-format.module';
     CommonModule,
     MatIconModule,
     ClickOutsideModule,
-    DataFormatModule
+    DataFormatModule,
+    LocalizeRouterModule,
+    TranslateModule
   ],
   providers: [
     ChatService,

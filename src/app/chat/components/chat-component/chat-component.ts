@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { ChatService } from '../../services/chat.service';
-import { SocketService } from '../../services/socket.service';
+import { SocketService } from '../../../core/services/socket.service';
 import { ActivatedRoute } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { CollocutorInterface } from '../../interfaces/collocutor.interface';
@@ -44,6 +44,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy(): void {
     this.socketService.closeCollocutorSocket(this.chatType);
+    this.collocutorService.setCollocutorInfo(null);
   }
 
   // oen new chat vs delay to reset massager template
