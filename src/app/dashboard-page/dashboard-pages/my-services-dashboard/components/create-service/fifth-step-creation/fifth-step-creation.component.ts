@@ -37,55 +37,66 @@ export class FifthStepCreationComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if (this.userService.offerBrief.length === 0) {
+    console.log(this.userService)
+    if (this.userService.offerbrief.length === 0) {
       this.addBriefItem();
     } else {
-      this.showedItem = this.userService.offerBrief.length;
+      this.showedItem = this.userService.offerbrief.length;
     }
   }
+//   answer_required: undefined
+// answer_type: undefined
+// briefAnswerRequired: "0"
+// briefAnswerType: "radio"
+// briefAnswerVariants: (5) [{…}, {…}, {…}, {…}, {…}]
+// briefMultianswers: 0
+// briefTitle: "brief PMDSrKvwwL brief))"
+// multi_answers: undefined
+// title: undefined
 
   addBriefItem() {
-    this.userService.offerBrief.push({
-      title: null,
-      answer_type: null,
-      answer_required: false,
-      answers: [],
-      multi_answers: false,
+    this.userService.offerbrief.push({
+      briefTitle: null,
+      briefAnswerType: null,
+      briefAnwerRequired: false,
+      briefAnswerVariants: [],
+      briefMultiAnswers: false,
+      briefAnswer: null
     }
     );
-    this.showedItem = this.userService.offerBrief.length;
+    this.showedItem = this.userService.offerbrief.length;
   }
 
   onFiltersChange(e: string, i: number) {
-    if (this.userService.offerBrief[i].answer_type === 'radio' && this.userService.offerBrief[i].answers === undefined) {
-      this.userService.offerBrief[i].answers = [
+    if (this.userService.offerbrief[i].briefAnswerType === 'radio' && this.userService.offerbrief[i].briefMultiAnswers === undefined) {
+      this.userService.offerbrief[i].briefAnswerVariants = [
         {
-          answer: null
+          answerVariant: null
         },
         {
-          answer: null
+          answerVariant: null
         }];
-    } else if (this.userService.offerBrief[i].answers.length === 0) {
-      this.userService.offerBrief[i].answers.push(
+    } else if (this.userService.offerbrief[i].briefAnswerVariants.length === 0) {
+      this.userService.offerbrief[i].briefAnswerVariants.push(
         {
-          answer: null
+          answerVariant: null
         },
         {
-          answer: null
+          answerVariant: null
         }
       );
     }
   }
 
   addBriefAnswers(i: number) {
-    if (this.userService.offerBrief[i].answer_type === 'radio') {
-      this.userService.offerBrief[i].answers.push({
-        answer: null
+    if (this.userService.offerbrief[i].briefAnswerType === 'radio') {
+      this.userService.offerbrief[i].briefAnswerVariants.push({
+        answerVariant: null
       });
     }
   }
   removeAnswer(i: number, j: number) {
-    this.userService.offerBrief[i].answers.splice(j, 1);
+    this.userService.offerbrief[i].briefAnswerVariants.splice(j, 1);
   }
 
   nextStep(form: NgForm) {

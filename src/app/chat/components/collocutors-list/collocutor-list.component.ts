@@ -41,7 +41,7 @@ export class CollocutorListComponent implements OnInit {
     roomId: string;
   } = null;
   // @Output() currentRoom = new EventEmitter();
-
+  private currentUserState: number // 1=> free, 2=> cusxtomer
   constructor(
     private chatService: ChatService,
     private socketService: SocketService,
@@ -97,8 +97,14 @@ export class CollocutorListComponent implements OnInit {
 private _isAnyChatOpen() {
   this.route.queryParams.subscribe((res: {offers_id?: any, dealId?: any, id?: any, roomId: string} | any) => {
 
-    if(res.hasOwnProperty('offers_id') && this.chatType === 'work') {
+    if(res.hasOwnProperty('offers_id') && this.chatType === 'work' && this.currentUserState === 2) {
       this._getDealData(res.id);
+    } else {
+      let translatedPath = this.localize.translateRoute('/dashboard/projects');
+      this.router.navigate([translatedPath], {
+        relativeTo: this.route,
+        queryParams: {},
+      });
     }
     
     if(res.hasOwnProperty('dealId') && this.chatType === 'work') {
@@ -245,7 +251,9 @@ private _isAnyChatOpen() {
   private _checkUserState() {
     this.userStateService.userState$
       .subscribe(res => {
+        this.currentUserState = res;
         this._getChatRooms();
+        this.collocutorService.setCollocutorInfo(null);
       });
   }
 

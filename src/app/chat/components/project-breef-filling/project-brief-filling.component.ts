@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CollocutorInterface } from '../../interfaces/collocutor.interface';
 import { ChatService } from '../../services/chat.service';
-import { Brief } from 'src/app/models/user-services/user-service.model';
 import { plainToClass } from 'class-transformer';
 import { FormGroup, FormBuilder, FormArray, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -9,6 +8,7 @@ import { LocalizeRouterService } from 'localize-router';
 import { DealService } from '../../services/deal.service';
 import { CollocutorService } from '../../services/collocutor.service';
 import { filter } from 'rxjs/operators';
+import { Brief } from 'src/app/models/user-services/brief.model';
 
 @Component({
   selector: 'app-project-brief-filling',

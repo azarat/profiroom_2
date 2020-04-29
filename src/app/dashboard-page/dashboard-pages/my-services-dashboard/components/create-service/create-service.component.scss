@@ -217,12 +217,12 @@ form {
         content: "";
         position: absolute;
         left: -9px;
-        top: 8px;
+        top: 50%;
         width: 22px;
         height: 22px;
         background: #ffffff;
-        -webkit-transform: rotate(47deg);
-        transform: rotate(47deg);
+        -webkit-transform: translateY(-50%) rotate(47deg);
+        transform: translateY(-50%) rotate(47deg);
         box-sizing: border-box;
         z-index: -1;
       }
@@ -233,9 +233,10 @@ form {
         font-size: 14px;
         line-height: 18px;
         color: #000000;
-        margin: 0 0 12px;
+        margin: 0;
         background: transparent;
         border: none;
+        padding: 0px 0 0 12px;
       }
       .arrow {
         display: none;

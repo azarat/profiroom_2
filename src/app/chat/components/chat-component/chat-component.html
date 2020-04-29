@@ -1,32 +1,25 @@
 <section class="wrapper" [ngClass]="{'attention': exitFromBriefPopUpVisible}" *ngIf="isChat">
-  <section class="collocutors">
-    <app-collocutor-list [chatType]="chatType"></app-collocutor-list>
-  </section>
-  <section class="messager" *ngIf="collocutorData">
-    <!-- messager -->
-    <app-messenger *ngIf="collocutorData && chatType === 'classic'  || collocutorData && collocutorData.brief == 1 && chatType === 'work'"
-      [chatType]="chatType" [(isFileLoaderVisible)]="isFileLoaderVisible" ></app-messenger>
-<!-- breef -->
-    <app-project-brief-filling
-    *ngIf="collocutorData && collocutorData.brief == 0 && chatType === 'work'"
-      [(exitFromBriefPopUpVisible)]="exitFromBriefPopUpVisible"
-      (resetChat)="resetChat($event)"
-      >
-    </app-project-brief-filling>
+    <section class="collocutors">
+        <app-collocutor-list [chatType]="chatType"></app-collocutor-list>
+    </section>
+    <section class="messager" *ngIf="collocutorData">
+        <!-- messager -->
+        <app-messenger *ngIf="collocutorData && chatType === 'classic'  || collocutorData && collocutorData.brief == 1 && chatType === 'work'" [chatType]="chatType" [(isFileLoaderVisible)]="isFileLoaderVisible"></app-messenger>
+        <!-- breef -->
+        <app-project-brief-filling *ngIf="collocutorData && collocutorData.brief == 0 && chatType === 'work'" [(exitFromBriefPopUpVisible)]="exitFromBriefPopUpVisible" (resetChat)="resetChat($event)">
+        </app-project-brief-filling>
 
-  </section>
-  <section class="collocutors-tools">
-    <!-- right chat bar -->
-    <app-messenger-tools *ngIf="chatType === 'work' && collocutorData"></app-messenger-tools>
-    <app-collocutor-information *ngIf="chatType === 'classic' && collocutorData">
-    </app-collocutor-information>
+    </section>
+    <section class="collocutors-tools">
+        <!-- right chat bar -->
+        <app-messenger-tools *ngIf="chatType === 'work' && collocutorData"></app-messenger-tools>
+        <app-collocutor-information *ngIf="chatType === 'classic' && collocutorData">
+        </app-collocutor-information>
 
-  </section>
-  <!-- file loader -->
-  <section class="file-loader" *ngIf="isFileLoaderVisible && collocutorData">
-    <app-upload-file [(isFileLoaderVisible)]="isFileLoaderVisible" [collocutorData]="collocutorData"
-    (uploadedBreefFiles)="uploadedBriefFiles"
-      [chatType]="chatType"></app-upload-file>
-  </section>
+    </section>
+    <!-- file loader -->
+    <section class="file-loader" *ngIf="isFileLoaderVisible && collocutorData">
+        <app-upload-file [(isFileLoaderVisible)]="isFileLoaderVisible" [collocutorData]="collocutorData" (uploadedBreefFiles)="uploadedBriefFiles" [chatType]="chatType"></app-upload-file>
+    </section>
 
 </section>

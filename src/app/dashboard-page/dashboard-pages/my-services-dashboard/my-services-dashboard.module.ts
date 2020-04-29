@@ -32,6 +32,7 @@ import { FourthStepCreationComponent } from './components/create-service/fourth-
 import { FifthStepCreationComponent } from './components/create-service/fifth-step-creation/fifth-step-creation.component';
 import { LastStepCreationComponent } from './components/create-service/last-step-creation/last-step-creation.component';
 import { TooltipDirective } from './directives/tooltip.directive';
+import { OutsideTolltiDirective } from './directives/outside-tooltip.directive';
 
 
 const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
@@ -60,7 +61,8 @@ const servicesRoutes: Routes = [
     FourthStepCreationComponent,
     FifthStepCreationComponent,
     LastStepCreationComponent,
-    TooltipDirective
+    TooltipDirective,
+    OutsideTolltiDirective
   ],
   imports: [
     // ---- angular

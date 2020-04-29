@@ -4,7 +4,7 @@
 
   <!--------------------  Deadlines -------------------->
   <div class="time-option">
-    <div class="option-wrap">
+    <div class="option-wrap" outsideTooltip="Установите цену для более быстрой доставки" outsideTooltipDescription="Очень быстрое время доставки должно быть короче вашего основного времени доставки." placement="right">
       <div class="checkbox">
         <input type="checkbox" name="time-to-do" class="tgl-classic" [(ngModel)]="userService.compressedDeadlines.publishCompressedDeadlines" id="time-to-do">
         <label for="time-to-do"></label>
@@ -29,7 +29,7 @@
       <button type="button" class="show-pack-options" [ngClass]="optionsVisible ? 'up' : 'down'" (click)="showOptions()" *ngIf="userService.allPackages"></button>
     </div>
     <!-------------------- Exta Options if All Packages -------------------->
-    <div class="all-types" *ngIf="userService.allPackages" [ngClass]="optionsVisible ? 'open' : 'closed'">
+    <div class="all-types" *ngIf="userService.allPackages" [ngClass]="optionsVisible ? 'open' : 'closed'" outsideTooltip="Установите цену для более быстрой доставки" outsideTooltipDescription="Очень быстрое время доставки должно быть короче вашего основного времени доставки." placement="right">
       <div>
         <div>
           <div class="extraoption-title">Базовый</div>
@@ -96,7 +96,7 @@
 
   <!-------------------- extra changes  -------------------->
   <div class="deffault-field">
-    <div class="option-wrap">
+    <div class="option-wrap" outsideTooltip="Дополнительная редакция" outsideTooltipDescription="Установите цену для дополнительной ревизии." placement="right">
       <div class="checkbox">
         <input type="checkbox" name="useExtraOfferChanges" [(ngModel)]="userService.extraOfferChanges.publishExtraOfferChanges" class="tgl-classic" id="extra-changes">
         <label for="extra-changes"></label>
