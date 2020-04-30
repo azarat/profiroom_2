@@ -26,31 +26,31 @@
 
     button {
       border-radius: 8px;
-      background-color: #ffffff;
-      color: #728096;
+      background-color: transparent;
+      color: #3C7EEA;
       font-family: "Source Sans Pro", sans-serif;
-      font-size: 12px;
-      font-weight: 400;
+      font-size: 13px;
+      font-weight: 600;
       letter-spacing: 1px;
       text-transform: uppercase;
       width: 100%;
       box-shadow: none;
-      border: none;
       box-sizing: border-box;
-      padding: 14px 9px 14px 42px;
-      text-align: left;
+      padding: 14px 0 14px;
+      text-align: center;
+      justify-content: center;
+      white-space: nowrap;
       outline: none;
       cursor: pointer;
+      border: 1px solid #3C7EEA;
 
       &:not(:last-of-type) {
         margin-bottom: 12px;
       }
 
       &:hover {
-        background: #3c7eea;
-        box-shadow: 0px 10px 20px rgba(80, 123, 252, 0.5);
-        color: #fff;
-        transform: scale(1.05);
+        color:#5695FD;
+        border: 1px solid #5695FD;
       }
     }
   }
@@ -255,6 +255,73 @@
         font-size: 16px;
         line-height: 20px;
         color: #323c47;
+      }
+    }
+  }
+}
+
+@media (max-width: 1499px) {
+  .inform {
+    padding: 12px 0;
+    .tools {
+      padding: 0 6px 6px;
+      h6{
+        font-size: 13px;
+        text-transform: uppercase;
+        font-weight: 400;
+        letter-spacing: 0.55px;
+        margin-bottom: 10px;
+      }
+      button{
+        font-size: 12px;
+        padding: 10px 0 10px;
+      }
+    }
+    .package{
+      padding: 18px 12px 10px;
+      margin: 6px 6px 2px;
+      h6{
+        font-size: 12px;
+        line-height: 18px;
+        & + p {
+          font-size: 14px;
+          line-height: 18px;
+        }
+      }
+      .subtitle{
+        font-size: 14px;
+        line-height: 18px;
+      }
+    }
+    .history{
+      padding: 5px 9px;
+      .history-title{
+        margin-bottom: 6px;
+      }
+      .history-item {
+        &:not(:last-of-type) {
+          margin-bottom: 16px;
+        }
+        .description {
+          font-size: 14px;
+          line-height: 18px;
+        }
+      }
+
+    }
+    .timer{
+      padding: 16px 12px;
+      .clock{
+        margin-top: 8px;
+        div{
+          width: 36px;
+          height: 36px;
+          border-radius: 10px;
+          span{
+            font-size: 24px;
+            line-height: 37px;
+          }
+        }
       }
     }
   }

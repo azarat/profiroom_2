@@ -27,6 +27,7 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
   private socket: string = null;
   public newMessage: boolean = null;
   public newWorkMessage: boolean = null;
+  public sideMenuClose = true;
 
   constructor(
     private authService: AuthentificationService,
@@ -37,7 +38,6 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
     private userStatseService: UserStateService,
     private localize: LocalizeRouterService,
     private activatedRoute: ActivatedRoute,
-    
   ) {
 
   }
@@ -120,4 +120,8 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
     }
   }
 
+  public toggleSideMenu() {
+    this.sideMenuClose = !this.sideMenuClose;
+    console.log(this.sideMenuClose)
+  }
 }

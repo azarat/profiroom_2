@@ -160,3 +160,10 @@
   }
 }
 
+@media (max-width: 1499px) {
+  .folder-btn {
+    &:after {
+      line-height: 18px;
+    }
+  }
+}

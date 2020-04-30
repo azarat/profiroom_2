@@ -5,7 +5,7 @@ export class CollocutorInformationModel {
 
   @Expose() id: string;
   @Expose() avatar: string;
-  @Expose() raiting: number;
+  @Expose() rating: number;
   @Expose() message: string;
   @Expose() language: string;
   @Expose() time: string;

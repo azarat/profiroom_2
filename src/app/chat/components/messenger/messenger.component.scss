@@ -151,3 +151,25 @@
     }
   }
 }
+
+@media (max-width: 1499px) {
+  .massager-wrap {
+    .previous-massages {
+      height: 75%;
+    }
+    .message-input{
+      min-height: 115px;
+      .tools{
+        height: 44px;
+      }
+      .text-input{
+        padding: 10px 20px 10px 20px;
+        min-height: 60px;
+        textarea{
+          font-size: 14px;
+          line-height: 18px;
+        }
+      }
+    }
+  }
+}

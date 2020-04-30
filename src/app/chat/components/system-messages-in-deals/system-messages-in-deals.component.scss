@@ -187,3 +187,24 @@
     }
   }
 }
+
+@media (max-width: 1499px) {
+  .system-message {
+    padding: 14px 20px 14px 20px;
+    min-width: 440px;
+    width: auto;
+    h5{
+      font-size: 16px;
+      line-height: 20px;
+      padding: 0 0 4px;
+    }
+    p{
+      margin: 4px 0 0;
+    }
+    .icon {
+      min-width: 50px;
+      height: 50px;
+      margin-right: 18px;
+    }
+  }
+}

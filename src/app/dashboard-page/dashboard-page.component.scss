@@ -18,7 +18,7 @@
     height: 6.5%;
     min-height: 70px;
     align-items: center;
-
+    z-index: 9;
     .logo {
       font-family: "Source Sans Pro", sans-serif;
       font-weight: 800;
@@ -189,7 +189,9 @@
   height: 93.4%;
   display: flex;
   flex-direction: column;
-
+  .toggleMenuBtn{
+    display: none;
+  }
   .avatar {
     min-height: 260px;
     height: 260px;
@@ -466,6 +468,8 @@
 
 @media (max-width: 1499px) {
   .side-bar {
+    height: 100vh;
+    z-index: 0;
     .name {
       font-size: 14px;
       line-height: 24px;
@@ -508,16 +512,122 @@
       }
     }
   }
+
 }
 
 @media (max-width: 1360px) {
   .side-bar {
+    width: 100%;
+    max-width: 275px;
+    position: fixed;
+    z-index: 7;
+    transition: all .3s ease-out;
     .avatar {
-      min-height: 230px;
-      height: 230px;
-      &::before{
-        height: 300px;
+      img{
+        margin-top: 45px;
+        transition: all .3s ease-out;
       }
+      .name, .rating{
+        transition: all .3s ease-out;
+      }
+      &::before{
+      }
+    }
+    &.simplified{
+      max-width: 75px;
+      transition: all .3s ease-out;
+      .menu{
+        padding: 30px 12px;
+        height: 100%;
+        nav{
+          a{
+            width: 100%; 
+            max-width: 51px;
+            max-height: 51px;
+            &::before{
+              top: 50%;
+              font-size: 20px;
+              line-height: 20px;
+            }
+            &::after{
+              top: 50%;
+              font-size: 20px;
+              line-height: 20px;
+            }
+            &.chat{
+              &::after{
+                width: 25px;
+                height: 19px;
+              }
+              &::before{
+                font-size: 19px;
+                line-height: 19px;
+              }
+            }
+            span{display: none;}
+          }
+        }
+      } 
+      .avatar {
+        min-height: 210px;
+        height: 210px;
+        transition: all .3s ease-out;
+        img{
+          width: 40px;
+          height: 40px;
+          margin: 40px 0 0;
+        }
+        .name, .rating{
+          display: none;
+
+          transition: all .3s ease-out;
+        }
+        &::before{
+          height: 300px;
+        }
+      }
+      .toggleMenuBtn{
+        top: 214px;
+        &::before{
+          transform: translate(-50%, -50%);
+        }
+      }
+    }
+    .toggleMenuBtn{
+      display: block;
+      background: #1565D8;
+      border-radius: 50%;
+      position: absolute;
+      width: 28px;
+      height: 28px;
+      top: 270px;
+      right: -13px;
+      &::before{
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        background-image: url(/assets/images/icons/white-chevron-right.png);
+        background-size: cover;
+        height: 13px;
+        width: 6px;
+        transform: translate(-50%, -50%) rotate(180deg);
+      }
+    }
+  }
+  .content-part{
+    width: calc(100% - 100px);
+    margin-left: 75px;
+    position: relative;
+    &:before {
+      position: absolute;
+      content: "";
+      width: 100vw;
+      background: #649af3;
+      height: 175px;
+      top: 0;
+      left: 0;
+      z-index: -1;
     }
   }
 }

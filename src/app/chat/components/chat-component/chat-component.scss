@@ -128,3 +128,38 @@
   background: rgba(224, 225, 249, 0.3);
   backdrop-filter: blur(4px);
 }
+
+@media (max-width: 1499px) {
+  .wrapper::ng-deep {
+    padding: 19px 15px 0;
+    .collocutors {
+      width: 23%;
+      .line {
+        padding: 13px 18px 11px 18px;
+        font-size: 13px;
+      }
+    }
+    .messager {
+      width: 55%;
+      .line {
+        padding: 12px 24px 12px 20px;
+        .collocutor {
+          a {
+            font-size: 16px;
+            line-height: 20px;
+          }
+        }
+      }
+    }
+    & > section:not(.file-loader) {
+      .line {
+        .collocutor{
+          max-height: 20px;
+        }
+      }
+    }
+    .collocutors-tools{
+      width: 20%;
+    }
+  }
+}

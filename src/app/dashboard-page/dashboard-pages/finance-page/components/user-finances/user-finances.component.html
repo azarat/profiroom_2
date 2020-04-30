@@ -11,6 +11,15 @@
           <p class="title">&#32; {{ el.name }}</p>
         </div>
       </div>
+
+      <div class="balance balance-copy laptop">
+        <div class="icon"><img src="/assets/images/icons/finance/current.png" alt=""></div>
+        <div class="data">
+          <p class="value"><span>{{ userFinance.purse.summ | thousandSeparator   }}</span> UAH</p>
+          <p class="title">&#32; состояние счета</p>
+        </div>
+      </div>  
+
     </section>
     <section class="graphics">
       <div class="graphic">
@@ -57,6 +66,43 @@
         </div>
       </div>
     </section>
+    <div class="wallet wallet-section-copy laptop">
+      <div class="wallet-section ">
+        <div class="title">ввод и вывод денег</div>
+        <div class="form">
+          <div class="operation-type">
+            <mat-select [(ngModel)]="transactions.transactionType" [(value)]="transactions.transactionType">
+              <mat-option [value]="'deffault'" disabled  >Выберите операцию</mat-option>
+              <mat-option [value]="'input'">
+                Ввести деньги
+              </mat-option>
+              <mat-option [value]="'output'">
+                Вывести деньги
+              </mat-option>
+            </mat-select>
+          </div>
+          <div class="cash-form">
+            <div class="count">
+              <p>напишите сумму</p>
+              <div>
+                <input [(ngModel)]="transactions.amount" id="count" type="text"><label for="count">
+                  <span>UAH</span></label>
+              </div>
+  
+            </div>
+  
+  
+            <div class="password">
+              <p>ваш пароль</p>
+              <input type="password" [(ngModel)]="transactions.password">
+            </div>
+            <button class="btn" type="submit" (click)="makePayment()">Подтвердить</button>
+            <div class="w-p"></div>
+          </div>
+        </div>
+  
+      </div>
+    </div>
   </div>
   <div class="wallet">
     <div class="balance">
