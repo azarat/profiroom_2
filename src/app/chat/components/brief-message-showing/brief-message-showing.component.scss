@@ -164,10 +164,10 @@
 @media (max-width: 1499px) {
   .wrapper {
     padding: 14px 20px 14px 20px;
-    min-width: 510px;
-    width: auto;
+    min-width: auto;
+    width: 100%;
     h5{
-      font-size: 16px;
+      font-size: 14px;
       line-height: 18px;
       padding: 0 0 4px;
     }
@@ -177,26 +177,42 @@
   }
   .title{
     h4{
-      font-size: 16px;
+      font-size: 14px;
       line-height: 18px;
       padding: 0 0 4px;
     }
     p{
       margin: 4px 0 0;
-      font-size: 16px;
-      line-height: 18px;
+      font-size: 14px;
+      line-height: 16px;
+      color: #707683; 
     }
     .brief-icon{
-        width: 50px;
-        min-width: 50px;
-        height: 50px;
+        width: 35px;
+        min-width: 35px;
+        height: 35px;
+        margin-right: 15px;
+        margin-top: 5px;
+        &::after{
+            width: 20px;
+            height: 20px
+        }
     }
   }
   .brief-wrap-btn {
-    font-size: 13px;
+    font-size: 12px;
+    min-width: 150px;
+    max-width: 150px;
+    margin-bottom: 0;
+    outline: none;
   }
   .brief-decisions-options{
     margin: 20px 0 10px;
+  }
+  .brief {
+    .time{
+        min-width: 40px;
+    }
   }
 }
 
