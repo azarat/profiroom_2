@@ -32,6 +32,6 @@
       </div>
     </form>
     <!-- deal  -->
-    <app-rate-deal *ngIf="dealCanBeRated" [offer_id]="collocutorData.offers_id"></app-rate-deal>
+    <app-rate-deal *ngIf="dealCanBeRated && (isUserFreelancer && collocutorData.commented_freelancer == 0 || !isUserFreelancer && collocutorData.commented_customer == 0  )" [offer_id]="collocutorData.offers_id"></app-rate-deal>
   </div>
 </div>

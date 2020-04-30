@@ -1,8 +1,8 @@
-<section class="collocutor-wrap" *ngIf="collocutor">
+<section class="collocutor-wrap" >
   <div class=" line">
     <div class="collocutor-photo">
       <a [routerLink]="'/user/' + collocutorData.collocutorId | localize" >
-      <img [src]=collocutor.avatar alt="collocutor-photo"></a>
+      <img [src]=collocutorData.avatar alt="collocutor-photo"></a>
         </div>
   </div>
   <div class="information">
@@ -10,36 +10,36 @@
       <span>{{ collocutorData.collocutorName }}</span>&nbsp;<span> {{ collocutorData.collocutorSurname }}</span>
       </a>
     <div class="rating">
-      <app-star-rating [currentRating]="collocutor.rating"></app-star-rating>
-      <span>{{ collocutor.rating  }}</span> <span class="comments">({{ collocutorAllComments }} отзывов)</span>
+      <app-star-rating [currentRating]="collocutorData.rating"></app-star-rating>
+      <span>{{ collocutorData.rating  }}</span> <span class="comments">({{ collocutorAllComments }} отзывов)</span>
     </div>
     <span class="line"></span>
     <div class="collocutor-main-info">
       <div>
         <span>Страна</span>
-        <span>{{ collocutor.country  }}</span>
+        <span>{{ collocutorData.country  }}</span>
       </div>
       <div>
         <span>Среднее время ответа</span>
-        <span>{{ collocutor.answerTime }} час</span>
+        <span>{{ collocutorData.answerTime }} час</span>
       </div>
       <div>
         <span>Разговорный язык</span>
-        <span>{{ collocutor.language }}</span>
+        <span>{{ collocutorData.language }}</span>
       </div>
       <div>
         <span>Выполнено заказов</span>
-        <span>{{ collocutor.endedWorks }}</span>
+        <span>{{ collocutorData.endedWorks }}</span>
       </div>
       <div>
         <span>Арбитраж</span>
-        <span>{{ collocutor.arbitration.all }}</span>
+        <span>{{ collocutorData.arbitration.all }}</span>
       </div>
     </div>
     <span class="line"></span>
     <div class="collocutor-about" [ngClass]="{open: isInformWrapped}">
       <p>
-        {{ collocutor.description }}
+        {{ collocutorData.description }}
     </p>
     </div>
     <button class="btn-third" [ngClass]="isInformWrapped? 'open': 'close'" (click)="showAllInfo()">{{ wrapButtonText }}</button>

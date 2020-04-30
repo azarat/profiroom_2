@@ -1,4 +1,4 @@
-<div class="rate-wrapper">
+<div class="rate-wrapper" *ngIf="!rated">
   <form class="rate" #form="ngForm" [formGroup]="rateForm" (ngSubmit)="submitRating()">
     <h5>Пожалуйста оцените работу фрилансера</h5>
     <p>Выберите необходимое кол-во звёзд</p>

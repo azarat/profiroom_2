@@ -7,7 +7,7 @@ import { plainToClass } from 'class-transformer';
 
 import { UserModel } from '../models/user.model';
 import { LocalStorageService } from '../core/services/local-storage.service';
-import { SocketService } from '../chat/services/socket.service';
+import { SocketService } from '../core/services/socket.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserStateService } from './services/user-state.service';
 import { LocalizeRouterService } from 'localize-router';

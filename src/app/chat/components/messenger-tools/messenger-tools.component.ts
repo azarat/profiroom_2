@@ -16,7 +16,7 @@ import * as moment from 'moment';
 
 import {
   SocketService
-} from '../../services/socket.service';
+} from '../../../core/services/socket.service';
 import {
   CollocutorInterface
 } from '../../interfaces/collocutor.interface';

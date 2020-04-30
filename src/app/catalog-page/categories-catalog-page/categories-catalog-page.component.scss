@@ -32,7 +32,7 @@
     }
     a{
       text-decoration: none;
-      font-family: "Source Sans Pro";
+      font-family: "Source Sans Pro", sans-serif;
       font-weight: normal;
       font-size: 14px;
       line-height: 18px;
@@ -54,7 +54,7 @@
   }
 }
 .category-title{
-  font-family: "Source Sans Pro";
+  font-family: "Source Sans Pro", sans-serif;
   font-style: normal;
   font-weight: bold;
   font-size: 48px;
@@ -80,7 +80,7 @@
     border-bottom: 0.5px solid #DCE0E6;
     a{
       display: block;
-      font-family: "Source Sans Pro";
+      font-family: "Source Sans Pro", sans-serif;
       font-style: normal;
       font-weight: normal;
       font-size: 16px;
@@ -128,7 +128,7 @@
     &-title{
       margin: 0;
       width: fit-content;
-      font-family: "Source Sans Pro";
+      font-family: "Source Sans Pro", sans-serif;
       font-weight: 600;
       font-size: 18px;
       line-height: 23px;
