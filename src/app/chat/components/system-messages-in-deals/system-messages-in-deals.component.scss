@@ -214,23 +214,31 @@
 @media (max-width: 1499px) {
   .system-message {
     padding: 14px 20px 14px 20px;
-    min-width: 440px;
-    width: auto;
-
+    min-width: auto;
+    width: calc(100% - 20px);
+    margin-left: auto;
     h5 {
-      font-size: 16px;
-      line-height: 20px;
+      font-size: 14px;
+      line-height: 18px;
       padding: 0 0 4px;
     }
 
     p {
-      margin: 4px 0 0;
+        font-size: 14px;
+        line-height: 18px;
+        margin: 4px 0 0;
     }
 
     .icon {
-      min-width: 50px;
-      height: 50px;
-      margin-right: 18px;
+        width: 35px;
+        min-width: 35px;
+        height: 35px;
+        margin-right: 15px;
+        margin-top: 5px;
+        &::after{
+            width: 20px;
+            height: 20px
+        }
     }
   }
 }

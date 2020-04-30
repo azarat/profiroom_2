@@ -8,7 +8,7 @@
         height: 100%;
         overflow-y: auto;
         &>div {
-            padding-right: 28px;
+            padding-right: 20px;
         }
     }
     .scroll-down {
@@ -121,7 +121,7 @@
     &.author {
         flex-direction: row-reverse;
         .photo {
-            margin-left: 20px;
+            margin-left: 10px;
             margin-right: 0;
         }
         .text {
@@ -306,15 +306,48 @@
 }
 
 @media (max-width: 1499px) {
+  .message-wrap{
+    padding: 24px 0 0 20px;
+  }
   .brief {
     .deal-start {
       margin-bottom: 10px;
     }
+    .time {
+      margin: 0 10px 0 0;
+      min-width: 40px;
+    }
   }
   .message {
     .text {
-      min-width: 380px;
       padding: 14px 20px;
+      min-width: auto;
+      width: calc(100% - 110px);
+      margin-left: auto;
+      font-size: 14px;
+      line-height: 18px;
     }
+    .time {
+      margin: 0 0 0 10px;
+      min-width: 40px;
+    }
+    .photo{
+      margin-right: 10px;
+    }
+    &.author {
+      .time {
+        margin: 0 10px 0 0;
+        min-width: 40px;
+      }
+      .photo{
+        margin-left: 10px;
+      }
+      .system-message{
+        margin-left: auto;
+      }
+    }
+  }
+  .brief-message__container{
+    width: calc(100% - 100px);
   }
 }
