@@ -108,10 +108,11 @@
       .line {
         height: 1px;
         position: absolute;
-        width: 100%;
+        width: 96%;
         background-color: #BDC3C7;
         top: 50%;
-        left: 0;
+        left: 50%;
+        transform: translateX(-50%);
 
         .position {
           position: absolute;

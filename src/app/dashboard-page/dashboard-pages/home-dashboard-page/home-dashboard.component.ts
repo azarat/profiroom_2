@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/core/services/user.service';
 import { UserModel } from 'src/app/models/user.model';
 import { plainToClass } from 'class-transformer';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home-dashboard',
@@ -12,11 +13,13 @@ export class HomeDashboardComponent implements OnInit {
   user: UserModel;
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private titleService: Title
   ) { }
 
   ngOnInit() {
     this.defineCurrentUser();
+    this.titleService.setTitle('Dashboard')
   }
 
   private defineCurrentUser() {

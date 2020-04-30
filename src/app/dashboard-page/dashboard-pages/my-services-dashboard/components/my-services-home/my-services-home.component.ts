@@ -32,6 +32,7 @@ import {
 import {
   tabsConst
 } from '../../consts/tabs.const';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-my-services-home',
@@ -58,12 +59,13 @@ export class MyServicesHomeComponent implements OnInit {
     private router: Router,
     private localize: LocalizeRouterService,
     private userOfferService: UserOffersService,
+    private titleService: Title
     // tslint:disable-next-line: variable-name
   ) {}
 
   ngOnInit() {
     this.getUserServices();
-
+    this.titleService.setTitle('Мои услуги');
   }
 
   // ngOnDestroy() {

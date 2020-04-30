@@ -10,6 +10,7 @@ import { ScrollToService, ScrollToConfigOptions } from '@nicky-lenaers/ngx-scrol
 import { SimilarOffersInterface } from 'src/app/shared/interfaces/similar-offers.interface';
 import { UserService } from 'src/app/core/services/user.service';
 import { LocalizeRouterService } from 'localize-router';
+import { Title } from '@angular/platform-browser';
 
 
 @Component({
@@ -45,6 +46,7 @@ export class ServicePageComponent implements OnInit {
     private currentUserService: UserService,
     private localize: LocalizeRouterService,
     private router: Router,
+    private titleService: Title
 
   ) {
     this._route.queryParams
@@ -57,6 +59,7 @@ export class ServicePageComponent implements OnInit {
         this.getSimilarOffers(_offerId);
         window.scrollTo(0, 0);
         this.offerId = +_offerId.offerId;
+        
       });
 
       servicePageService.getSpinnerState().subscribe(data => {
@@ -67,6 +70,7 @@ export class ServicePageComponent implements OnInit {
 
   ngOnInit() { 
     // this.offerDataService.dataChange
+    
   }
 
   getOfferData(offerId: { offerId: string }) {
@@ -76,6 +80,7 @@ export class ServicePageComponent implements OnInit {
       this.offerData = offerData.userOffer;
       // console.log(this.offerData);
       this.formateCommentCount();
+      this.titleService.setTitle('Gigrum | ' +  this.offerData.title);
     });
   }
 

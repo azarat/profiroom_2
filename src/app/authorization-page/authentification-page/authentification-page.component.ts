@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AuthentificationService } from 'src/app/core/services/auth.service';
 import { InfoMessageInterface } from 'src/app/shared/interfaces/info-message.interface';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-authentification-page',
@@ -10,12 +11,15 @@ import { InfoMessageInterface } from 'src/app/shared/interfaces/info-message.int
 })
 export class AuthentificationPageComponent implements OnInit {
 
-  auth = false;
-  message: InfoMessageInterface | boolean;
+  public auth = false;
+  public message: InfoMessageInterface | boolean;
+  public year = new Date().getFullYear();
+
   constructor(
     // tslint:disable-next-line: variable-name
     private _route: ActivatedRoute,
-    private authService: AuthentificationService
+    private authService: AuthentificationService,
+    private titleService: Title
   ) {
     this._route.queryParams.subscribe(data => {
       if (data.type) {
@@ -35,8 +39,10 @@ export class AuthentificationPageComponent implements OnInit {
       }
     });
   }
-  year = new Date().getFullYear();
+  
+
   ngOnInit() {
+    this.titleService.setTitle('Авторизация')
   }
   swipeBtn() {
       this.auth = !this.auth;

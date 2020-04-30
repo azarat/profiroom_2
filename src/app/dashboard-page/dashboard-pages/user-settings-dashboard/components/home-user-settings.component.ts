@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { plainToClass } from 'class-transformer';
 import { UserSettingsService } from '../services/user-settings.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-user-settings-dashboard',
@@ -18,10 +19,12 @@ export class HomeUserSettingsComponent implements OnInit {
     // tslint:disable-next-line: variable-name
     private _route: ActivatedRoute,
     private userSettingsService: UserSettingsService,
+    private titleService: Title
   ) { }
 
   ngOnInit() {
     this.getUserService();
+    this.titleService.setTitle('Настройки');
   }
 
   //  ** load userServiceData from server

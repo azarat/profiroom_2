@@ -8,6 +8,7 @@ import { Subscription, pipe, Observable } from 'rxjs';
 import { OffersListInterface } from 'src/app/shared/interfaces/offers-list.interface';
 import { plainToClass } from 'class-transformer';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-catalog',
@@ -33,7 +34,8 @@ export class CatalogComponent implements OnInit {
     private GetOffersService: GetOffersService,
     // tslint:disable-next-line: variable-name
     private _route: ActivatedRoute,
-    private router: Router
+    private router: Router, 
+    private titleService: Title
   ) {
 
     this._route.params.subscribe(Params => {
@@ -58,6 +60,9 @@ export class CatalogComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.titleService.setTitle('Каталог');
+
     this.GetOffersService.offersList.subscribe(data => {
       this.offersList = data;
       if (this.offersList) {

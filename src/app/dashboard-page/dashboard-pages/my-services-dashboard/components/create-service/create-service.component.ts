@@ -6,6 +6,7 @@ import { plainToClass } from 'class-transformer';
 import { UserServiceModel } from 'src/app/models/user-services/user-service.model';
 import { serviceCreationSteps } from '../../consts/steps.const';
 import { UserOffersService } from '../../services/user-offers.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-create-service',
@@ -20,12 +21,13 @@ export class CreateServiceComponent implements OnInit {
     // tslint:disable-next-line: variable-name
     private _route: ActivatedRoute,
     private userOffersService: UserOffersService,
-
+    private titleService: Title
   ) { }
 
   ngOnInit() {
     this.getUserService();
     // this.currentStep = 1;
+    this.titleService.setTitle('Создание услуги');
   }
 
   //  ** load userServiceData from server
