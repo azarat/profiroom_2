@@ -280,3 +280,26 @@
     }
   }
 }
+
+@media (max-width: 1499px) {
+  .chart-wrap {
+    padding: 12px;
+    background-color: #fff;
+    .score{
+      position: relative;
+      bottom: 5px;
+      div:not(:last-of-type){
+        margin-bottom: 14px;
+      }
+    }
+    .charts-items {
+      .charts-data {
+        height: 90%;
+      }
+
+    }
+    .title{
+      margin-bottom: 18px;
+    }
+  }
+}

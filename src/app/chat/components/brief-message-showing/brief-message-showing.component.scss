@@ -153,10 +153,40 @@
 }
 
 @keyframes briefItemsAnimation {
-    from {
-        height: 0;
-    }
-    to {
-        height: 100%;
-    }
+  from{
+    height: 0;
+  }
+  to {
+    height: 100%;
+  }
 }
+
+@media (max-width: 1499px) {
+  .wrapper {
+    padding: 14px 20px 14px 20px;
+    min-width: 510px;
+    width: auto;
+    h5{
+      font-size: 16px;
+      line-height: 20px;
+      padding: 0 0 4px;
+    }
+    p{
+      margin: 4px 0 0;
+    }
+  }
+  .title{
+    h4{
+      font-size: 16px;
+      line-height: 20px;
+      padding: 0 0 4px;
+    }
+    p{
+      margin: 4px 0 0;
+    }
+  }
+  .brief-wrap-btn {
+    font-size: 13px;
+  }
+}
+

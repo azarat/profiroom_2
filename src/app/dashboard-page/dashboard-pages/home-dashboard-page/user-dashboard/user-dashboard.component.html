@@ -14,7 +14,7 @@
     <div class="charts">
       <div class="freelancer-status">
         <h5 class="title">
-          Сейчас в вашем профиле отображается
+          Статус вашего профиля
         </h5>
         <div class="chart-body">
           <div class="status">
@@ -36,6 +36,7 @@
               </div>
               <span (click)="changeWorkStatus(1)" [ngClass]="{active: user.busy === 1}">Загружен</span>
             </div>
+            <div class="btn" [routerLink]="['/user', user.purse.id] | localize">смотреть профиль</div>
           </div>
 
         </div>
@@ -55,7 +56,7 @@
             <span>Год</span> </button>
         </div>
       </div>
-      <div class="pie-chart">
+      <div class="pie-chart" [ngClass]="{showLaptop: showPieChart}">
         <h5 class="title">
           Кол-во заказов
         </h5>
@@ -74,7 +75,7 @@
           </div>
         </div>
       </div>
-      <div class="statistic">
+      <div class="statistic"  [ngClass]="{showLaptop: !showPieChart}">
         <h5 class="title">
           Показатели аккаунта
         </h5>
@@ -101,6 +102,10 @@
             </div>
           </div>
         </div>
+      </div>
+      <div class="btns_wrapper__laptop">
+        <button (click)=openPieChart(1) [ngClass]="{outline: !showPieChart}">показатели аккаунта</button>
+        <button (click)=openPieChart(0) [ngClass]="{outline: showPieChart}">кол-во заказов</button>
       </div>
     </div>
 

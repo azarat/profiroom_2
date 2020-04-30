@@ -19,7 +19,6 @@ export class CatalogComponent implements OnInit {
 
   public catalogFilters: CatalogFiltersModel;
   public category;
-  public href;
 
   public currentQueryParams;
   public pagesArr = [];
@@ -38,35 +37,26 @@ export class CatalogComponent implements OnInit {
     private router: Router, 
     private titleService: Title
   ) {
-    // --------------check url params value---------------
+
     this._route.params.subscribe(Params => {
-      console.log("Params", Object.keys(Params) );
-      console.log("Params", Params);
       this.catalogFilters = plainToClass(CatalogFiltersModel, Params);
-      console.log("this.catalogFilters.subCategory - ", this.catalogFilters.subCategory );
-      // this.catalogFilters.subCategory = Params.subCategory;
-      console.log("this.catalogFilters - ", this.catalogFilters );
-      // if(Object.keys(Params).length <= 2) {
-        this.GetOffersService.getOffers(this.catalogFilters);
-      // } else{
-      // }
-      
-      // ------- value of category for breadcrumbs
+      this.catalogFilters.subCategory = Params.subCategory;
       this.category = Params.category;
     });
 
-    // // --------------check queryParams value---------------
-    // this._route.queryParams.subscribe(qParams => {
-    //   console.log("qParams", qParams);
-    //   if (qParams && (Object.keys(qParams).length === 0)) {
-    //     this.catalogFilters.current_page = 1;
-    //     this.GetOffersService.setFilters(this.catalogFilters);
-    //     this.GetOffersService.getOffers(this.catalogFilters);
-    //   } else {
-    //     this.GetOffersService.getOffers(qParams);
+    //----------- проверка наличия каких либо парметров в queryParams ------------//  
+    this._route.queryParams.subscribe(qParams => {
+      if (qParams && (Object.keys(qParams).length === 0)) {
+    //----------- используем даные (категория, подкатегория) из ActivatedRoute.params ------------//  
+        this.GetOffersService.getOffers(this.catalogFilters);
+      } else {
+        this.catalogFilters.current_page = 1;
+    //----------- устанавливаем параметры из ActivatedRoute.queryParams ------------//  
+        this.GetOffersService.setFilters(qParams);
+        this.GetOffersService.getOffers(qParams);
+      }
+    });
 
-    //   }
-    // });
   }
 
   ngOnInit() {
@@ -79,8 +69,6 @@ export class CatalogComponent implements OnInit {
         this.pagesToShow();
       }
     });
-
-    this.href = this.router.url;
   }
 
   pagesToShow() {
@@ -95,6 +83,5 @@ export class CatalogComponent implements OnInit {
       this.pagesArr.push(i);
     }
   }
-
 }
 

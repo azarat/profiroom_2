@@ -16,6 +16,7 @@ export class UserDashboardComponent implements OnInit {
   public statsicArr = mainStatisticConst;
   public currentFinanceFilter = 'M';
   public chartLabels: any[] = [];
+  public showPieChart = true;
   // public allStatisticInfo: any[] = compressedFinanceInfoConst;
 
   constructor(
@@ -80,6 +81,16 @@ export class UserDashboardComponent implements OnInit {
     this.chartLabels = monthArrayConvert(arr);
   }
 
+  public openPieChart(x){
+    if(x) {
+      this.showPieChart = true;
+      return
+    } else {
+      this.showPieChart = false;
+      return
+    }
+  }
+  
 
 
 }

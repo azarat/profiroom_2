@@ -51,6 +51,13 @@ export class UsersCommentsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    // if(this.userData.negative_comments_count == 0) {
+    //   this.currentTab.id = 0;
+    //   this.currentTab.name = 'Положительные';
+    //   this.currentTab.value = 'negative';
+    // }
+    console.log(this.userData[this.currentTab.value + 'Comments']);
+    // console.log(this.userData[this.currentTab.value + 'Comments']);
   }
 
   // public openOffer(offerid) {
