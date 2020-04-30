@@ -215,8 +215,8 @@
   .system-message {
     padding: 14px 20px 14px 20px;
     min-width: auto;
-    width: calc(100% - 20px);
-    margin-left: auto;
+    width: auto;
+    // margin-left: auto;
     h5 {
       font-size: 14px;
       line-height: 18px;

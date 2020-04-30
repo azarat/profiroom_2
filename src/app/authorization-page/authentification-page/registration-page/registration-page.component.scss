@@ -157,3 +157,12 @@ input {
   }
 
 }
+
+@media (max-width: 1499px) {
+  .social-login{
+    display: none;
+  }
+  h2{
+    margin: 0 auto;
+  }
+}
