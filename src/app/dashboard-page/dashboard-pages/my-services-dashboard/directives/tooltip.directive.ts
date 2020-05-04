@@ -10,14 +10,14 @@ export class TooltipDirective {
   @Input() placement: string;
   private tooltip: HTMLElement;
   private delay = '500';
-  private offset = 20;
+  private offset = 30;
   constructor(
     private el: ElementRef, 
     private renderer: Renderer2
   ) { }
 
-  @HostListener('click') onFocus() {
-    console.log('focus')
+  @HostListener('focus') onFocus() {
+    console.log(this.el)
     if(!this.tooltip) {this.show();}
   }
 

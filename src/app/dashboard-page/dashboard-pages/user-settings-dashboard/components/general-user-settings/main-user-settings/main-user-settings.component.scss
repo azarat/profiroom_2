@@ -171,7 +171,8 @@
 
 @media (max-width: 1499px) {
   .top-block{
-    max-width: 510px;
+    // max-width: 510px;
+    max-width: 68%;
     margin-bottom: 10px;
   }
   .gender-block{
@@ -181,10 +182,10 @@
     }
   }
   .birthday-block{
-    max-width: 510px;
+    max-width: 68%;
   }
   .about_me-block{
-    max-width: 510px;
+    max-width: 68%;
     .mat-form-field-infix{
       border-top: 0!important;
     }

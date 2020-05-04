@@ -1,65 +1,64 @@
 <div class="system-message {{ messageClass }}" *ngIf="systemMessage.message.name !== 'moneyGivenToCustomer' && systemMessage.message.name !== 'moneyGivedToFreelancer'">
-  <div>
-    <div class="icon">
-      <img [src]="'/assets/images/icons/deals-icons/' + systemMessage.message.name + '.png'" alt="system-icon">
+    <div>
+        <div class="icon">
+            <img [src]="'/assets/images/icons/deals-icons/' + systemMessage.message.name + '.png'" alt="system-icon">
+        </div>
+        <div class="description">
+            <!-- freelancer -->
+            <ng-container *ngIf="isUserFreelancer">
+                <h5>{{'chat.work_chat.system_messages.'+ systemMessage.message.name + 'TitleFreelancer' | translate}} </h5>
+                <p> {{'chat.work_chat.system_messages.' + systemMessage.message.name+ 'DescriptionFreelancer' | translate}}</p>
+            </ng-container>
+
+            <!-- dealer -->
+            <ng-container *ngIf="!isUserFreelancer">
+                <h5>{{'chat.work_chat.system_messages.'+ systemMessage.message.name + 'TitleDealer' | translate}} </h5>
+                <p>{{'chat.work_chat.system_messages.' + systemMessage.message.name+ 'DescriptionDealer' | translate}} </p>
+            </ng-container>
+
+            <div class="actions" [ngClass]="{ btwn: dealCancel }">
+
+                <button class="btn-sec" *ngIf="dealCancel && messageClass === 'deal-cancel' && collocutorData.canceled !== 1">Обратится в арбитраж</button>
+                <button class="btn" *ngIf="dealCancel && messageClass === 'deal-cancel' && collocutorData.canceled !== 1" (click)="submitDealCancel()">Подтвердть отмену</button>
+                <!-- Deal preFinish -->
+
+                <button class="btn-sec" *ngIf="!isUserFreelancer && dealCancel && messageClass === 'DealFinishedByFreelancer' && collocutorData.workEnded === 1 && collocutorData.dealDone !== 1" (click)="cancelFinishDeal()">вернуть к работе </button>
+                <button class="btn" *ngIf="!isUserFreelancer && dealCancel && messageClass === 'DealFinishedByFreelancer' && collocutorData.workEnded === 1 && collocutorData.dealDone !== 1" (click)="submitFinishWork()"> работа завершена</button>
+            </div>
+        </div>
     </div>
-    <div class="description">
-      <!-- freelancer -->
-      <ng-container *ngIf="isUserFreelancer">
-        <h5>{{'chat.work_chat.system_messages.'+ systemMessage.message.name + 'TitleFreelancer'  | translate}} </h5>
-        <p> {{'chat.work_chat.system_messages.' + systemMessage.message.name+ 'DescriptionFreelancer' | translate}}</p>
-      </ng-container>
-
-      <!-- dealer -->
-      <ng-container *ngIf="!isUserFreelancer">
-        <h5>{{'chat.work_chat.system_messages.'+ systemMessage.message.name + 'TitleDealer'  | translate}} </h5>
-        <p>{{'chat.work_chat.system_messages.' + systemMessage.message.name+ 'DescriptionDealer' | translate}} </p>
-      </ng-container>
-
-      <div class="actions" [ngClass]="{ btwn: dealCancel }">
-
-        <button class="btn-sec"  *ngIf="dealCancel && messageClass === 'deal-cancel' && collocutorData.canceled !== 1"  >Обратится в арбитраж</button>
-        <button class="btn" *ngIf="dealCancel && messageClass === 'deal-cancel' && collocutorData.canceled !== 1" (click)="submitDealCancel()"  >Подтвердть отмену</button>
-        <!-- Deal preFinish -->
-
-        <button class="btn-sec"  *ngIf="!isUserFreelancer && dealCancel && messageClass === 'DealFinishedByFreelancer' && collocutorData.workEnded === 1 && collocutorData.dealDone !== 1" (click)="cancelFinishDeal()"  >вернуть к работе </button>
-        <button class="btn" *ngIf="!isUserFreelancer && dealCancel && messageClass === 'DealFinishedByFreelancer' && collocutorData.workEnded === 1 && collocutorData.dealDone !== 1" (click)="submitFinishWork()"  > работа завершена</button>
-      </div>
-    </div>
-  </div>
 
 </div>
 
 
 <!-- earlyClosing -->
-<div class="system-message arbiter-mess" 
-*ngIf="systemMessage.message.name === 'moneyGivenToCustomer' || systemMessage.message.name === 'moneyGivenToFreelancer'">
-  <div class="icon">
-    <img [src]="'/assets/images/icons/deals-icons/arbiter-answer.png'" alt="system-icon">
-  </div>
-  
-  <div> 
-    
-    <h5>Решение арбитража</h5>
+<div class="system-message arbiter-mess" *ngIf="systemMessage.message.name === 'moneyGivenToCustomer' || systemMessage.message.name === 'moneyGivenToFreelancer'">
+    <div class="icon">
+        <img [src]="'/assets/images/icons/deals-icons/arbiter-answer.png'" alt="system-icon">
+    </div>
+
     <div>
-      <div>
-        <p>
-          Вынесен вердикт в пользу
-        </p>
-      </div>
-      <div class="avatar"> <img [src]="systemMessage.message.winnerAvatar" alt="ava"> </div>
-      <div>
-        <p>{{ systemMessage.message.winnerName }} {{ systemMessage.message.winnerSurname }}</p>
-        <p>
-          <ng-container *ngIf="systemMessage.message.name === 'moneyGivenToFreelancer'">Фрилансер</ng-container>
-          <ng-container *ngIf="systemMessage.message.name === 'moneyGivenToCustomer'">Заказчик</ng-container>
-        </p>
-      </div>
-  </div>
-  <div class="description">
-    <p>
-      {{ systemMessage.message.arbiterMessage }}
-    </p>
-  </div>
-</div>
+
+        <h5>Решение арбитража</h5>
+        <div>
+            <div>
+                <p>
+                    Вынесен вердикт в пользу
+                </p>
+            </div>
+            <div class="avatar"> <img [src]="systemMessage.message.winnerAvatar" alt="ava"> </div>
+            <div>
+                <p>{{ systemMessage.message.winnerName }} {{ systemMessage.message.winnerSurname }}</p>
+                <p>
+                    <ng-container *ngIf="systemMessage.message.name === 'moneyGivenToFreelancer'">Фрилансер</ng-container>
+                    <ng-container *ngIf="systemMessage.message.name === 'moneyGivenToCustomer'">Заказчик</ng-container>
+                </p>
+            </div>
+        </div>
+        <div class="description">
+            <p>
+                {{ systemMessage.message.arbiterMessage }}
+            </p>
+        </div>
+    </div>
 </div>

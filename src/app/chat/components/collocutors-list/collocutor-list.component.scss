@@ -3,6 +3,7 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+
   &.projects .collocutors-wrap {
     padding: 0;
   }
@@ -18,85 +19,89 @@
   flex-direction: column;
 
 
-.collocutors-serch {
-  display: flex;
-  justify-content: flex-end;
-  position: absolute;
-  height: 70px;
-  top: 0;
-  left: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  .collocutors-serch {
+    display: flex;
+    justify-content: flex-end;
+    position: absolute;
+    height: 70px;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-  width: 100%;
-  div {
     width: 100%;
-    padding-left: 32px;
-    border-bottom: 1px solid #c2cfe0;
-    margin: 20px;
-  }
-  input {
-    border: none;
-    width: 100%;
-    padding-bottom: 7px;
-    // padding-left: 40px;
-    outline: none;
+
+    div {
+      width: 100%;
+      padding-left: 32px;
+      border-bottom: 1px solid #c2cfe0;
+      margin: 20px;
+    }
+
+    input {
+      border: none;
+      width: 100%;
+      padding-bottom: 7px;
+      // padding-left: 40px;
+      outline: none;
+    }
+
   }
 
-}
+  .collocutors-list {
+    height: 100%;
+    overflow: auto;
 
-.collocutors-list {
-  height: 100%;
-  overflow: auto;
-  // padding-right: 20px;
-  // margin-top: 50px;
-    &::-webkit-scrollbar-track
-    {
+    // padding-right: 20px;
+    // margin-top: 50px;
+    &::-webkit-scrollbar-track {
       -webkit-box-shadow: none;
       border-radius: 10px;
       background-color: transparent;
     }
 
-    &::-webkit-scrollbar
-    {
+    &::-webkit-scrollbar {
       width: 6px;
       background-color: transparent;
     }
 
-    &::-webkit-scrollbar-thumb
-    {
+    &::-webkit-scrollbar-thumb {
       border-radius: 10px;
       // -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
       background: #649AF3;
     }
 
-}
-.collocutor {
-  box-sizing: border-box;
-  padding: 20px 20px 40px;
-  cursor: pointer;
-  width: 100%;
-  overflow: hidden;
-  padding: 20px 20px 40px;
-  // &:hover {
-  //   background: #F6F7FF;
-  //   border: 1px solid #F4F7FC;
-  //   box-sizing: border-box;
-  //   border-radius: 4px;
-  // }
-  &.unread {
-    .collocutor-name {
-      color: #323C47;
-    }
-    .collocutor-message {
+  }
+
+  .collocutor {
+    box-sizing: border-box;
+    padding: 20px 20px 40px;
+    cursor: pointer;
+    width: 100%;
+    overflow: hidden;
+    padding: 20px 20px 40px;
+
+    // &:hover {
+    //   background: #F6F7FF;
+    //   border: 1px solid #F4F7FC;
+    //   box-sizing: border-box;
+    //   border-radius: 4px;
+    // }
+    &.unread {
+      .collocutor-name {
         color: #323C47;
+      }
+
+      .collocutor-message {
+        color: #323C47;
+      }
+    }
+
+    &:hover {
+      background: #F6F7FF;
     }
   }
-  &:hover {
-    background: #F6F7FF;
-  }
-}
 
   .date {
     text-align: right;
@@ -108,6 +113,7 @@
     padding: 0;
     margin: 0;
   }
+
   .message-preview {
     display: flex;
     flex-direction: row;
@@ -115,20 +121,23 @@
     .message-information {
       width: inherit;
       overflow: hidden;
-      }
+    }
 
-    p{
+    p {
       margin: 0;
       padding: 0;
     }
+
     .photo {
       margin-right: 20px;
+
       img {
         width: 40px;
         height: 40px;
         border-radius: 50%;
       }
     }
+
     .collocutor-name {
       font-style: normal;
       font-weight: 600;
@@ -136,6 +145,7 @@
       line-height: 20px;
       color: #707683;
     }
+
     .collocutor-message {
       font-style: normal;
       font-weight: normal;
@@ -150,44 +160,81 @@
   }
 
 
-.collocutors-list.projects {
-  // margin-top: 0;
-  // padding-right: 10px;
-  margin-top: 20px;
-  .collocutor {
-    border-radius: 4px;
-    border: 1px solid #f4f7fc;
-    margin-bottom: 3px;
-    padding: 14px 15px 22px 21px;
-    position: relative;
-    .status {
-      height: 100%;
-      width: 3px;
-      position: absolute;
-      left: 0;
-      top: 0;
-      background: #7DDFC3;
-      box-shadow: -10px 9px 21px rgba(128, 152, 213, 0.15);
+  .collocutors-list.projects {
+    // margin-top: 0;
+    // padding-right: 10px;
+    margin-top: 20px;
+
+    .collocutor {
       border-radius: 4px;
-      &.arbiter {
-        background: #ff9090;
+      border: 1px solid #f4f7fc;
+      margin-bottom: 3px;
+      padding: 14px 15px 22px 21px;
+      position: relative;
+
+      .status {
+        height: 100%;
+        width: 3px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        background: #7DDFC3;
+        box-shadow: -10px 9px 21px rgba(128, 152, 213, 0.15);
+        border-radius: 4px;
+
+        &.arbiter {
+          background: #ff9090;
+        }
+
+        &.archived {
+          background: #bec8da;
+        }
+
+        &.inProgress {
+          background: #a5affb;
+        }
+
+        &.sentBrief {
+          background: #7ddfc3;
+        }
+
+        &.new {
+          background: #fb9c6e;
+        }
       }
-      &.archived {
-        background: #bec8da;
+    }
+  }
+
+}
+
+
+@media (max-width: 1499px) {
+  .collocutors-wrap {
+    .collocutor{
+      padding: 8px 16px 20px 20px;
+    }
+    .collocutors-list.projects {
+      margin-top: 10px;
+      .collocutor {
+        padding: 8px 15px 16px 15px; 
       }
-      &.inProgress {
-        background: #a5affb;
+    }
+    .message-preview {
+      .photo {
+        margin-right: 15px;
       }
-      &.sentBrief {
-        background: #7ddfc3;
+      .collocutor-name {
+        font-size: 14px;
+        line-height: 18px;
       }
-      &.new {
-        background: #fb9c6e;
+      .collocutor-message {
+        font-size: 14px;
+        line-height: 18px;
+      }
+      p{
+        font-size: 14px;
+        line-height: 18px;
       }
     }
   }
 }
-
-}
-
-

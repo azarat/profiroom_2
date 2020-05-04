@@ -1,47 +1,47 @@
-<section class="collocutor-wrap" >
-  <div class=" line">
-    <div class="collocutor-photo">
-      <a [routerLink]="'/user/' + collocutorData.collocutorId | localize" >
-      <img [src]=collocutorData.avatar alt="collocutor-photo"></a>
+<section class="collocutor-wrap">
+    <div class=" line">
+        <div class="collocutor-photo">
+            <a [routerLink]="'/user/' + collocutorData.collocutorId | localize">
+                <img [src]=collocutorData.avatar alt="collocutor-photo"></a>
         </div>
-  </div>
-  <div class="information">
-      <a class="name" [routerLink]="'/user/' + collocutorData.collocutorId | localize" >
-      <span>{{ collocutorData.collocutorName }}</span>&nbsp;<span> {{ collocutorData.collocutorSurname }}</span>
-      </a>
-    <div class="rating">
-      <app-star-rating [currentRating]="collocutorData.rating"></app-star-rating>
-      <span>{{ collocutorData.rating  }}</span> <span class="comments">({{ collocutorAllComments }} отзывов)</span>
     </div>
-    <span class="line"></span>
-    <div class="collocutor-main-info">
-      <div>
-        <span>Страна</span>
-        <span>{{ collocutorData.country  }}</span>
-      </div>
-      <div>
-        <span>Среднее время ответа</span>
-        <span>{{ collocutorData.answerTime }} час</span>
-      </div>
-      <div>
-        <span>Разговорный язык</span>
-        <span>{{ collocutorData.language }}</span>
-      </div>
-      <div>
-        <span>Выполнено заказов</span>
-        <span>{{ collocutorData.endedWorks }}</span>
-      </div>
-      <div>
-        <span>Арбитраж</span>
-        <span>{{ collocutorData.arbitration.all }}</span>
-      </div>
+    <div class="information">
+        <a class="name" [routerLink]="'/user/' + collocutorData.collocutorId | localize">
+            <span>{{ collocutorData.collocutorName }}</span>&nbsp;<span> {{ collocutorData.collocutorSurname }}</span>
+        </a>
+        <div class="rating">
+            <app-star-rating [currentRating]="collocutorData.rating"></app-star-rating>
+            <span>{{ collocutorData.rating  }}</span> <span class="comments">({{ collocutorAllComments }} отзывов)</span>
+        </div>
+        <span class="line"></span>
+        <div class="collocutor-main-info">
+            <div>
+                <span>Страна</span>
+                <span>{{ collocutorData.country  }}</span>
+            </div>
+            <div>
+                <span>Среднее время ответа</span>
+                <span>{{ collocutorData.answerTime }} час</span>
+            </div>
+            <div>
+                <span>Разговорный язык</span>
+                <span>{{ collocutorData.language }}</span>
+            </div>
+            <div>
+                <span>Выполнено заказов</span>
+                <span>{{ collocutorData.endedWorks }}</span>
+            </div>
+            <div>
+                <span>Арбитраж</span>
+                <span>{{ collocutorData.arbitration.all }}</span>
+            </div>
+        </div>
+        <span class="line"></span>
+        <div class="collocutor-about" [ngClass]="{open: isInformWrapped}">
+            <p>
+                {{ collocutorData.description }}
+            </p>
+        </div>
+        <button class="btn-third" [ngClass]="isInformWrapped? 'open': 'close'" (click)="showAllInfo()">{{ wrapButtonText }}</button>
     </div>
-    <span class="line"></span>
-    <div class="collocutor-about" [ngClass]="{open: isInformWrapped}">
-      <p>
-        {{ collocutorData.description }}
-    </p>
-    </div>
-    <button class="btn-third" [ngClass]="isInformWrapped? 'open': 'close'" (click)="showAllInfo()">{{ wrapButtonText }}</button>
-  </div>
 </section>

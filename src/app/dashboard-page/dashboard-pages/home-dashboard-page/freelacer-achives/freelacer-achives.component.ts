@@ -20,7 +20,7 @@ export class FreelacerAchivesComponent implements OnInit {
       name: 'messagesReply'
     },
     {
-      name: 'raiting'
+      name: 'rating'
     },
     {
       name: 'earned'

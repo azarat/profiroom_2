@@ -157,3 +157,12 @@
     }
   }
 }
+
+@media (max-width: 1499px) {
+  .filters {
+    min-height: 43px;
+  }
+  .current {
+    padding: 9px 21px 10px 17px;
+  }
+}

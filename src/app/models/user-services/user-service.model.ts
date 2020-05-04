@@ -4,6 +4,7 @@ import {
 } from 'class-transformer';
 
 
+
 export class PackagesTitle {
   @Expose() basicTitle: string;
   @Expose() advancedTitle: string;
@@ -71,14 +72,15 @@ export class OfferFaq {
 }
 
 export class BriefAnswerVariants {
-  @Expose() answer: string;
+  @Expose() answerVariant: string;
 }
 export class Brief {
-  @Expose() title: string;
-  @Expose() answer_type: string;
-  @Expose() answer_required: any;
-  @Type(() => BriefAnswerVariants) answers: BriefAnswerVariants[];
-  @Expose() multi_answers: any;
+  @Expose() briefTitle: string;
+  @Expose() briefAnswerType: string;
+  @Expose() briefAnwerRequired: boolean;
+  @Type(() => BriefAnswerVariants) briefAnswerVariants: BriefAnswerVariants[];
+  @Expose() briefMultiAnswers: boolean;
+  @Expose() briefAnswer: any;
 }
 
 
@@ -117,7 +119,7 @@ export class UserServiceModel {
   @Type(() => ExtraFeatures) extra_features: ExtraFeatures[];
   // tslint:disable-next-line: variable-name
   @Type(() => OfferFaq) offer_faq: OfferFaq[];
-  @Type(() => Brief) offerBrief: Brief[];
+  @Type(() => Brief) offerbrief: Brief[];
 
 
   // -------delete option------
@@ -133,7 +135,7 @@ export class UserServiceModel {
   }
 
   public removeBriefItem(index: number) {
-    this.offerBrief.splice(index, 1);
+    this.offerbrief.splice(index, 1);
   }
 
 }

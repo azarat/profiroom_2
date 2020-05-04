@@ -6,14 +6,17 @@
   min-width: 620px;
   display: flex;
   flex-direction: column;
-  & > div:first-of-type {
+
+  &>div:first-of-type {
     display: flex;
     flex-direction: row;
   }
+
   .icon {
     min-width: 56px;
     height: 56px;
     margin-right: 20px;
+
     img {
       width: 100%;
       height: 100%;
@@ -23,6 +26,7 @@
   .description {
     width: 100%;
   }
+
   h5 {
     font-family: Source Sans Pro, sans-serif;
     font-style: normal;
@@ -44,12 +48,15 @@
     opacity: 0.5;
     margin: 8px 0 0;
   }
+
   .actions {
     display: flex;
     justify-content: flex-end;
+
     &.btwn {
       justify-content: space-between;
     }
+
     button {
       margin-top: 20px;
       padding: 9px 20px;
@@ -69,37 +76,43 @@
       border-color: #D4DAFF;
     }
   }
-  &.workStarted{
+
+  &.workStarted {
     h5 {
       color: #F1A153;
       border-color: #FFE8C9;
     }
   }
-  &.deal-cancel{
+
+  &.deal-cancel {
     h5 {
       color: #FF9090;
       border-color: #FFDADA;
     }
   }
-  &.DealFinishedByFreelancer{
+
+  &.DealFinishedByFreelancer {
     h5 {
       color: #FF9E67;
       border-color: #FFCFCF;
     }
   }
-  &.DealFinishCanceled{
+
+  &.DealFinishCanceled {
     h5 {
       color: #44C0F1;
       border-color: #44C0F1;
     }
   }
-  &.DealFinished{
+
+  &.DealFinished {
     h5 {
       color: #34C28D;
       border-color: #C4EAE0;
     }
   }
-   &.arbiter{
+
+  &.arbiter {
     h5 {
       color: #DA8383;
       border-color: #FFCFCF;
@@ -109,19 +122,24 @@
   &.arbiter-mess {
     display: flex;
     flex-direction: row;
+
     &>div {
       &:last-of-type {
         width: 100%;
       }
+
       h5 {
         color: #FC573B;
         border-color: #F6D7D5;
+
         &+div {
           display: flex;
           margin-top: 20px;
+
           div {
             &:first-of-type {
               max-width: 130px;
+
               p {
                 font-family: Source Sans Pro, sans-serif;
                 font-style: normal;
@@ -131,11 +149,13 @@
                 color: #323C47;
               }
             }
+
             &.avatar {
               width: 40px;
               height: 40px;
               margin: 0 20px 0 35px;
               position: relative;
+
               img {
                 position: absolute;
                 width: 40px;
@@ -145,6 +165,7 @@
                 left: 50%;
                 transform: translate(-50%, -50%);
               }
+
               &+div {
                 p {
                   &:first-of-type {
@@ -155,6 +176,7 @@
                     line-height: 20px;
                     color: #707683;
                   }
+
                   &:last-of-type {
                     font-family: Source Sans Pro, sans-serif;
                     font-style: normal;
@@ -167,13 +189,14 @@
               }
             }
           }
-
         }
       }
+
       .description {
         margin-top: 20px;
         width: 100%;
         border-top: 1px solid #F6D7D5;
+
         p {
           padding: 6px 0 0;
           font-family: Source Sans Pro, sans-serif;
@@ -184,6 +207,38 @@
           color: #707683;
         }
       }
+    }
+  }
+}
+
+@media (max-width: 1499px) {
+  .system-message {
+    padding: 14px 20px 14px 20px;
+    min-width: auto;
+    width: calc(100% - 20px);
+    margin-left: auto;
+    h5 {
+      font-size: 14px;
+      line-height: 18px;
+      padding: 0 0 4px;
+    }
+
+    p {
+        font-size: 14px;
+        line-height: 18px;
+        margin: 4px 0 0;
+    }
+
+    .icon {
+        width: 35px;
+        min-width: 35px;
+        height: 35px;
+        margin-right: 15px;
+        margin-top: 5px;
+        &::after{
+            width: 20px;
+            height: 20px
+        }
     }
   }
 }
