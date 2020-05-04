@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 // import * as WayforPay from 'src/app/core/payments-js/wayforpay';
-declare var Wayforpay: any;
-
+// declare var Wayforpay: any;
+declare var LiqPayCheckout : any;
 @Injectable({
   providedIn: 'root'
 })
 
 export class UserFinanceService {
 
-  wayforpay = new Wayforpay();
+
 
   constructor(
     private http: HttpClient,
@@ -21,13 +21,28 @@ export class UserFinanceService {
   }
 
   public makePayment(userData) {
-    this.http.post('/Purchase', userData)
+    console.log(userData)
+    this.http.post('/payment', userData)
     .subscribe((res: any) => {
-     this.ranWayForPay( res.responce);
+      console.log(res)
+    this.ranLiqPay(res);
     })
   }
 
-  private ranWayForPay(obj) {
-    this.wayforpay.run(obj);
+  private ranLiqPay(res) {
+    LiqPayCheckout.init({
+      data: res.data,
+      signature: res.signature,
+      embedTo: "#liqpay_checkout",
+      language: 'ru',
+      mode: "popup"
+    }).on("liqpay.callback", function(data) {
+      console.log(data.status);
+      console.log(data);
+    }).on("liqpay.ready", function(){
+      console.log('ready')
+    }).on("liqpay.close", function(data){
+      console.log('close');
+    })
   }
 }

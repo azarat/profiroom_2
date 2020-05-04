@@ -13,6 +13,7 @@ import { UserFinancesComponent } from './components/user-finances/user-finances.
 import { AdminFinancesComponent } from './components/admin-finances/admin-finances.component';
 import { ClickOutsideModule } from 'ng-click-outside';
 import { FinancePageComponent } from './finance-page.component';
+import { NgKnifeModule } from 'ng-knife';
 
 const routes: Routes = [
   {
@@ -34,6 +35,7 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     MatSelectModule,
+    NgKnifeModule,
 
     // Pipes
     DataFormatModule,
