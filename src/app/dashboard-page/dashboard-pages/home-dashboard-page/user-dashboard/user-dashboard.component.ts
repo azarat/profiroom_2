@@ -31,8 +31,8 @@ export class UserDashboardComponent implements OnInit {
     if (status) {
       this.user.busy = this.user.busy === status ? status : this.changeFreelancerWorkStatus(status);
     } else {
-      this.user.busy = status;
-      this.changeFreelancerWorkStatus(status);
+      this.user.busy = this.user.busy === 0? this.user.busy = 1 : this.user.busy = 0;
+      this.changeFreelancerWorkStatus(this.user.busy);
     }
     // this.user.busy = this.user.busy === status? status : this.changeFreelancerWorkStatus(status)
   }
