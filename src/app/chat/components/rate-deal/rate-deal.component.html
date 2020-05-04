@@ -37,9 +37,10 @@
                 </div>
             </div>
         </div>
-        <div class="comment">
+        <div class="comment" [ngClass]="{'invalid': submit && rateForm.invalid }">
             <label for="comment">Нам важно услышать ваше мнение</label>
             <textarea name="comment" id="comment" cols="30" rows="10" formControlName="comment" placeholder="Ваш комментарий"></textarea>
+            <div *ngIf="submit && rateForm.invalid" class="error-message">Поле для заполнения обязательное</div>
         </div>
 
         <button class="btn" type="submit">отправить</button>

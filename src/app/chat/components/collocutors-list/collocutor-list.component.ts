@@ -99,15 +99,7 @@ private _isAnyChatOpen() {
 
     if(res.hasOwnProperty('offers_id') && this.chatType === 'work' && this.currentUserState === 2) {
       this._getDealData(res.id);
-    } else {
-      let translatedPath = this.localize.translateRoute('/dashboard/projects');
-      this.router.navigate([translatedPath], {
-        relativeTo: this.route,
-        queryParams: {},
-      });
-    }
-    
-    if(res.hasOwnProperty('dealId') && this.chatType === 'work') {
+    } else if (res.hasOwnProperty('dealId') && this.chatType === 'work') {
       // If Work chat
       this._getDealData(res.dealId);
 
@@ -115,6 +107,12 @@ private _isAnyChatOpen() {
     } else if(res.hasOwnProperty('id') && this.chatType === 'classic') {
       // Classic chat
       this._getCollocutorData(res.id);
+    } else if (this.chatType === 'work') {
+      let translatedPath = this.localize.translateRoute('/dashboard/projects');
+      this.router.navigate([translatedPath], {
+        relativeTo: this.route,
+        queryParams: {},
+      });
     }
 
     this._connectToCurrentChatSocket(res.roomId);

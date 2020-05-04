@@ -11,6 +11,7 @@ import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { WindowScrollBlockService } from '../core/services/window-scrolling.service';
 import { onlineCont } from '../shared/consts/online.const';
+import { LocalStorageService } from '../core/services/local-storage.service';
 
 @Component({
   selector: 'app-user-page',
@@ -23,13 +24,13 @@ export class UserPageComponent implements OnDestroy, OnInit  {
   sticky = false;
   elementPosition: any;
   onlineModel = onlineCont;
-  openModalWindow:boolean=false;
-  imagePointer:number;
+  openModalWindow: boolean = false;
+  imagePointer: number;
 
   public clickedEducationImgs = null;
   public clickedSingleImg = null;
   public userTypeFreelancer = 1;
-
+  public currentUserId: number;
   public academicDegreesTranslations = [
     'Начальный ',
     'Ниже среднего',
@@ -54,19 +55,24 @@ export class UserPageComponent implements OnDestroy, OnInit  {
     private router: Router,
     private _windowScrollBlockService: WindowScrollBlockService,
     // tslint:disable-next-line: variable-name
-    private _location: Location
+    private _location: Location,
+    private localStorageService : LocalStorageService
   ) {
     this.windowScrolling = _windowScrollBlockService;
+
+    
+  }
+
+  ngOnInit() {
     this.route.params.pipe(takeUntil(this.destroy$))
     .subscribe((params: Params) => {
       this.id = params;
       this.getUserData(this.id);
       window.scrollTo(0, 0);
     });
-    
-  }
 
-  ngOnInit() {}
+    this.currentUserId = Number(this.localStorageService.getItem('userId').value);
+  }
 
   getUserData(id: { id: number }) {
     this.userService.loadUserDate(id)
@@ -107,6 +113,9 @@ export class UserPageComponent implements OnDestroy, OnInit  {
 
 // Open ChatRoom ws this collocutor
   public openChat(userId) {
+    if(this.currentUserId === this.userData.id) {
+      return
+    }
     this.currentUserService.wrightTo(userId)
       .subscribe((res: {id: number, roomId: string}) => {
         if (res.id) {

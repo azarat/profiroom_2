@@ -103,7 +103,7 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
         .subscribe((res: any) => {
           this.user.role_id = res.newRole;
           this.userStatseService.setUserState(res.newRole);
-          this.redirectToFinancesIfCustomer();
+          // this.redirectToFinancesIfCustomer();
 
         });
     }

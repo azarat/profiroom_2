@@ -29,6 +29,8 @@ export class RateDealComponent implements OnInit {
   public hoveredEl: number = null;
   public userType: string = null;
   public rated: boolean = null;
+  public submit: boolean = null;
+
   constructor(
     private fb: FormBuilder,
     private localStorageService: LocalStorageService,
@@ -96,6 +98,12 @@ export class RateDealComponent implements OnInit {
   }
 
   public submitRating() {
+    this.submit = true;
+
+    if(this.rateForm.invalid) {
+      return
+    }
+
     this.rateForm.controls['offerId'].setValue(this.offer_id);
     this.rateForm.controls['userId'].setValue(this.getCollocutorId());
     this.rateForm.controls['dealId'].setValue(this.collocutorData.id);

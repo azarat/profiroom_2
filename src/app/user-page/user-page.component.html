@@ -40,7 +40,7 @@
       </div>
       <div class="general-information__actions">
 
-        <div class="action tooltip" data-title="Написать сообщение" (click)="openChat(userData.id)" >
+        <div *ngIf="currentUserId !== userData.id" class="action tooltip" data-title="Написать сообщение" (click)="openChat(userData.id)" >
           <a >
             <img src="assets/images/svg/service-page/envelope.svg" alt="" class="default-img">
             <img src="assets/images/svg/service-page/envelope-hov.svg" alt="" class="hover-img">
@@ -52,7 +52,7 @@
             <img src="assets/images/svg/service-page/heart-hov.svg" alt="" class="hover-img">
           </a>
         </div>
-        <div class="action tooltip" data-title="Пожаловаться">
+        <div *ngIf="currentUserId !== userData.id" class="action tooltip" data-title="Пожаловаться">
           <a href="">
             <img src="assets/images/svg/service-page/auction.svg" alt="" class="default-img">
             <img src="assets/images/svg/service-page/auction-hov.svg" alt="" class="hover-img">

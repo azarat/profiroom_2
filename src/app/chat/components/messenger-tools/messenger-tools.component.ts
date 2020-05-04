@@ -23,6 +23,7 @@ import {
 import { trigger } from '@angular/animations';
 import { DealService } from '../../services/deal.service';
 import { CollocutorService } from '../../services/collocutor.service';
+import { ErrorChatMessageService } from '../../services/error-chat-message.service';
 
 @Component({
   selector: 'app-messenger-tools',
@@ -55,7 +56,8 @@ export class MessengerToolsComponent implements OnInit {
     private localStorageService: LocalStorageService,
     private dealService: DealService,
     private socketService: SocketService,
-    private collocutorService: CollocutorService
+    private collocutorService: CollocutorService, 
+    private errorChatMessagesService: ErrorChatMessageService
   ) {}
 
   ngOnInit() {
@@ -181,6 +183,8 @@ export class MessengerToolsComponent implements OnInit {
   // API
 
   public goToWork() {
+
+    
     this.dealService.startWork(this.collocutorData.id)
       .subscribe(res => {
         console.log(res);
@@ -189,10 +193,13 @@ export class MessengerToolsComponent implements OnInit {
   }
 
   public cancelWork() {
-    this.dealService.cancelWork(this.collocutorData.id)
-      .subscribe(res => {
-        // this.chatService.resetDealInfo(this.collocutorData.id);
-      });
+    let message = {
+      type: 'cancel',
+      colocutorId: this.collocutorData.id
+    }
+
+    this.errorChatMessagesService.setErrorMessage(message);
+
   }
 
   public finishWork() {
