@@ -267,6 +267,11 @@
     .save-all{
       margin: 20px auto 20px;
     }
+    app-location-language-user-settings{
+      .field-block-multiple{
+        max-width: 100%;
+      } 
+    }
   }
 }
 

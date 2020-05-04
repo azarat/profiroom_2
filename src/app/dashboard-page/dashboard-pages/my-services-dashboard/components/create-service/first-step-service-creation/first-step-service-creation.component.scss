@@ -535,6 +535,9 @@ form::ng-deep {
     // ---------------------------file upload form ---------------------------
   .items {
     justify-content: flex-start;
+    .img-item{
+      margin-right: auto;
+    }
   }
   .form-butons {
     button {

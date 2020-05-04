@@ -19,59 +19,71 @@ export class SystemMessagesComponent implements OnInit {
   public systemMessagesArr: any[] = [];
   public newSystemMessages = null;
   public menuOpen = null;
-  public notifiation: any;
-  public systemMessagesTypes = [
-    {
-      name: "DealFinished",
-      message: "Работа оплачена",
-      userType: 1
-    },
-    {
-      name: "DealFinishCanceledByCustomer",
-      message: "Работа отправлена на доработки",
-      userType: 1
-    },
-    {
-      name: "DealClosedByCustomer",
-      message: "Работа отменина заказчиком",
-      userType: 1
-    },
-    {
-      name: "holdMoney",
-      message: "Средства зарезирвированы",
-      userType: 1
-    },
-    {
-      name: "refuseBrief",
-      message: "Отказ от брифа",
-      userType: 2
-    },
-    {
-      name: "approveBrief",
-      message: "Бриф подтвержден",
-      userType: 2
-    },
-    {
-      name: "DealFinishedByFreelancer",
-      message: "Работа завершина фрилансером",
-      userType: 2
-    },
-    {
-      name: "CancelSubmitted",
-      message: "Фрилансер подтвердил отмену сотрудничества",
-      userType: 2
-    },
-    {
-      name: "DealCloseByFreelancer",
-      message: "Работа отменина фрилансером",
-      userType: 2
-    },
-    {
-      name: "workStarted",
-      message: "Работа начата",
-      userType: 2
-    }
-  ];
+  public notifiation = {
+    DealFinished: 'Работа оплачена',
+    DealFinishCanceledByCustomer: 'Работа отправлена на доработки',
+    DealClosedByCustomer: 'Работа отменина заказчиком',
+    holdMoney: 'Средства зарезирвированы',
+    refuseBrief: 'Отказ от брифа',
+    approveBrief: 'Бриф подтвержден',
+    DealFinishedByFreelancer: 'Работа завершина фрилансером',
+    CancelSubmitted: 'Фрилансер подтвердил отмену сотрудничества',
+    DealCloseByFreelancer: 'Работа отменина фрилансером',
+    workStarted: 'Работа начата',
+    sentBrief: 'Пришел бриф'
+  }
+  // public systemMessagesTypes = [
+  //   {
+  //     name: "DealFinished",
+  //     message: "Работа оплачена",
+  //     userType: 1
+  //   },
+  //   {
+  //     name: "DealFinishCanceledByCustomer",
+  //     message: "Работа отправлена на доработки",
+  //     userType: 1
+  //   },
+  //   {
+  //     name: "DealClosedByCustomer",
+  //     message: "Работа отменина заказчиком",
+  //     userType: 1
+  //   },
+  //   {
+  //     name: "holdMoney",
+  //     message: "Средства зарезирвированы",
+  //     userType: 1
+  //   },
+  //   {
+  //     name: "refuseBrief",
+  //     message: "Отказ от брифа",
+  //     userType: 2
+  //   },
+  //   {
+  //     name: "approveBrief",
+  //     message: "Бриф подтвержден",
+  //     userType: 2
+  //   },
+  //   {
+  //     name: "DealFinishedByFreelancer",
+  //     message: "Работа завершина фрилансером",
+  //     userType: 2
+  //   },
+  //   {
+  //     name: "CancelSubmitted",
+  //     message: "Фрилансер подтвердил отмену сотрудничества",
+  //     userType: 2
+  //   },
+  //   {
+  //     name: "DealCloseByFreelancer",
+  //     message: "Работа отменина фрилансером",
+  //     userType: 2
+  //   },
+  //   {
+  //     name: "workStarted",
+  //     message: "Работа начата",
+  //     userType: 2
+  //   }
+  // ];
 
   constructor(
     private systemMessagesService: SystemMessagesService,

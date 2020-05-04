@@ -59,9 +59,10 @@
       overflow: hidden;
       position: relative;
       img{
-        width: 135%;
-        height: auto;
+        width: 110%;
+        height: 110%;
         position: absolute;
+        object-fit: cover;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
