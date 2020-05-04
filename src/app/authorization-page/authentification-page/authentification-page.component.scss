@@ -406,7 +406,7 @@
   }
 
   .social-login {
-    margin: 50px 0 36px;
+    margin: 50px 0 37px;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -547,5 +547,19 @@
   100% {
     right: 0;
     width: 40%;
+  }
+}
+
+@media (max-width: 1499px) {
+  .auth-pg{
+    .swipe-block {
+      .inform{
+        height: auto;
+      }
+    }
+  }
+
+  .social-login{
+    display: none;
   }
 }

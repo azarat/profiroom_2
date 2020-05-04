@@ -72,9 +72,9 @@ export class AdditionalEducationUserSettingsComponent implements OnInit {
     };
 
     this.userSettings.deleteAdditionalEducation(i);
-    console.log('pre delete', this.userSettings.additionalEducation);
+
     this.userSettingsService.deleteAdditioanlEducationID(educationId).subscribe((res: any) => {});
-    console.log('after delete', this.userSettings.additionalEducation);
+
   }
 
   chooseItem(i) {

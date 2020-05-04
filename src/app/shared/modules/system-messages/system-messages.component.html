@@ -7,20 +7,22 @@
     </div>
     <div class="notifications-list"  *ngIf="systemMessagesArr.length !== 0">
       <ng-container *ngFor="let message of systemMessagesArr; let i = index ">
-        <ng-container *ngFor="let type of systemMessagesTypes">
+    
 
-          <div class="notification-item" *ngIf="message.message === type.name && user.role_id === type.userType">
+          <div class="notification-item" *ngIf="message.message">
             <div class="notification-item__icon">
-              <img src="assets/images/icons/systemMessages/{{type.name}}.png" alt="">
+              <img src="assets/images/icons/systemMessages/{{message.message}}.png" alt="">
             </div>
             <div class="notification-item__text" (click)="openChat(message.roomId, message.id, i, message.deal_id)">
               
-              <span>{{ notifiation.messageType[message.name] | translate }} </span>"{{message.offers_title}}"</div>
-            <div class="notification-item__date">{{message.created_at | dateFormatPipe: 'dd.MMMM HH:mm' }}</div>
+              <!-- <span>{{ notifiation.messageType[message.name] | translate }} </span>"{{message.offers_title}}"</div> -->
+
+              <span>{{ notifiation[message.message] | translate }} </span>"{{message.offers_title}}"</div>
+            <div class="notification-item__date">{{message.created_at | dateFormatPipe: 'dd.MM HH:mm' }}</div>
             <div class="notification-delete" (click)="deleteMessageItem(message.id, i)"></div>
           </div>
 
-        </ng-container>
+  
       </ng-container>
 
 
