@@ -72,7 +72,7 @@ export class FilterComponent implements OnInit {
         }
       }
     });
-    this._getOffersService.setFilters(this.catalogFilters);
+    // this._getOffersService.setFilters(this.catalogFilters);
   }
 
 }

@@ -14,7 +14,7 @@ export class ProjectsPageComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.titleService.setTitle('Проекты');
+    // this.titleService.setTitle('Проекты');
   }
 
 }

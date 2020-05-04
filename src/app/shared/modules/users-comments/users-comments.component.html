@@ -12,15 +12,16 @@
 
       </div>
     </div>
-    <ng-container  *ngIf="userData.negativeComments.length >0">
+    <ng-container>
         <div class="comment" *ngFor="let comment of userData[currentTab.value + 'Comments']; let parrentCommentIndex = index">
-          <h5 class="comment__service-name" >
-              <a [routerLink]="'/service'| localize" [queryParams]="{ offerId: comment.offers.id }"> {{comment.offers.title}}</a>
+
+          <h5 class="comment__service-name" *ngIf="comment.offers">
+            <a [routerLink]="'/service'| localize" [queryParams]="{ offerId: comment.offers.id }"> {{comment.offers.title}}</a>
           </h5>
           <button class="comment__answer" (click)="openComentForm(comment.id)"></button>
           <div class="comment__wrapp">
             <div class="comment__wrapp_parrent">
-              <div class="comment__img">
+              <div class="comment__img" *ngIf="comment.offers">
                 <div class="comment__img-wrapper">
                     <a [routerLink]="'/service'| localize" [queryParams]="{ offerId: comment.offers.id }">
                      <img [src]="comment.offers.mainImage"  alt="service img">   
@@ -38,18 +39,32 @@
                   <div class="comment__date">{{converDateToDMY(comment.created_at)}}</div>
                 </div>
                 <div class="comment__message">{{comment.commentText}}</div>
-                <div class="comment__raiting">
-                  <div class="comment__raiting-item">
+                <div class="comment__rating" *ngIf="comment.offers">
+                  <div class="comment__rating-item">
                     <span>Качество</span>
-                    <div class="star-raiting">{{comment.offers.averageRating.qualityMark}}</div>
+                    <div class="star-rating">{{comment.offers.averageRating.qualityMark}}</div>
                   </div>
-                  <div class="comment__raiting-item">
+                  <div class="comment__rating-item">
                     <span>Срок</span>
-                    <div class="star-raiting">{{comment.offers.averageRating.termMark}}</div>
+                    <div class="star-rating">{{comment.offers.averageRating.termMark}}</div>
                   </div>
-                  <div class="comment__raiting-item">
+                  <div class="comment__rating-item">
                     <span>Вежливость</span>
-                    <div class="star-raiting">{{comment.offers.averageRating.politenessMark}}</div>
+                    <div class="star-rating">{{comment.offers.averageRating.politenessMark}}</div>
+                  </div>
+                </div>
+                <div class="comment__rating service-page__version" *ngIf="!comment.offers">
+                  <div class="comment__rating-item">
+                    <span>Постановка задачи</span>
+                    <div class="star-rating">{{comment.qualityMark}}</div>
+                  </div>
+                  <div class="comment__rating-item">
+                    <span>Чёткость требований</span>
+                    <div class="star-rating">{{comment.termMark}}</div>
+                  </div>
+                  <div class="comment__rating-item">
+                    <span>Контактность</span>
+                    <div class="star-rating">{{comment.politenessMark}}</div>
                   </div>
                 </div>
                 <form #form="ngForm" class="comment-form" action="" *ngIf="commentFormOpen && commentFormOpen === comment.id" (clickOutside)="closeForm()" [exclude]="'button.comment__answer'">
@@ -83,6 +98,8 @@
                 [ngClass]="{open: showAllChildComments === parrentCommentIndex}">читать ответы</div>
             </div>
           </div>
+
+
         </div>
     </ng-container>
   </section>

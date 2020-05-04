@@ -17,17 +17,16 @@
       </section>
     </div>
   </header>
-  <div class="side-bar">
+  <div class="side-bar" [ngClass]='{simplified: sideMenuClose}'>
     <section class="avatar">
       <div class="lines"></div>
       <img [src]="user.avatar" alt="avatar" />
       <p class="name">{{ user.name }} {{ user.surname}}</p>
-      <div class="raiting">
+      <div class="rating">
         <app-star-rating [currentRating]="user.rating"></app-star-rating>
       </div>
     </section>
     <section class="menu">
-
       <nav>
         <ng-container *ngFor="let el of dashboardMenu">
           <a class="{{el.class}}"
@@ -39,10 +38,9 @@
             [routerLink]="el.link | localize" [routerLinkActive]="'active'" (click)="openChat(el.class)"
             [ngClass]="{ 'new-message': newMessage, 'new-work-message': newWorkMessage }"><span>{{ el.title }}</span></a>
         </ng-container>
-
-
       </nav>
     </section>
+    <div class="toggleMenuBtn" (click)='toggleSideMenu()'></div>
   </div>
   <div class="content-part">
     <router-outlet></router-outlet>

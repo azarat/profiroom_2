@@ -9,7 +9,7 @@
                     {{ message.dateTime | date: 'dd.MM yyyy' }}
                 </div>
                 <span class="time">{{ message.dateTime | dateFormatPipe: 'dd.MMMM HH:mm' }}</span>
-                <div>
+                <div class="brief-message__container">
                     <app-brief-message-showing *ngIf="collocutorData" [briefMessage]="message.brief"></app-brief-message-showing>
                 </div>
             </div>
