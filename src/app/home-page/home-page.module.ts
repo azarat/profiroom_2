@@ -7,6 +7,7 @@ import { MainHeaderModule } from '../shared/modules/main-header/main-header.modu
 import { ChatModule } from '../chat/chat.module';
 import { HomePageAdvantagesComponent } from './home-page-advantages/home-page-advantages.component';
 import { HomePageSearchComponent } from './home-page-search/home-page-search.component';
+import { HomePageHowWorkComponent } from './home-page-how-work/home-page-how-work.component';
 
 const routes: Routes = [
   {
@@ -20,7 +21,8 @@ const routes: Routes = [
   declarations: [
     HomePageComponent,
     HomePageAdvantagesComponent,
-    HomePageSearchComponent
+    HomePageSearchComponent,
+    HomePageHowWorkComponent
   ],
   exports: [
     HomePageComponent
