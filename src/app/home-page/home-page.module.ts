@@ -5,6 +5,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { LocalizeRouterModule } from 'localize-router';
 import { MainHeaderModule } from '../shared/modules/main-header/main-header.module';
 import { ChatModule } from '../chat/chat.module';
+import { HomePageAdvantagesComponent } from './home-page-advantages/home-page-advantages.component';
+import { HomePageSearchComponent } from './home-page-search/home-page-search.component';
 
 const routes: Routes = [
   {
@@ -16,7 +18,9 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    HomePageComponent
+    HomePageComponent,
+    HomePageAdvantagesComponent,
+    HomePageSearchComponent
   ],
   exports: [
     HomePageComponent
