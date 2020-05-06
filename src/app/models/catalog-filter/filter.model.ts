@@ -15,7 +15,7 @@ export class FilterTypesModel {
 }
 
 export class CatalogFiltersModel  {
-  @Expose() online?: boolean;
+  @Expose() online?: any;
   @Expose() filterBy?: string;
   @Expose() current_page?: number;
   @Expose() page?: number;

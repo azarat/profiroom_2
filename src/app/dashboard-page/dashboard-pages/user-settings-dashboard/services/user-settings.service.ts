@@ -34,10 +34,10 @@ export class UserSettingsService {
 
   // ------ Additional education avatar -------
   newAdditioanlEducationId() {
-    return this.http.post('/newAditionalEducation', '');
+    return this.http.post('/newAdditionalEducation', '');
   }
   deleteAdditioanlEducationID(id) {
-    return this.http.post('/deleteAditionalEducation', id);
+    return this.http.post('/deleteAdditionalEducation', id);
   }
   uploadAdditionalDiplomaPhotos(files) {
     return this.http.post('/loadAdditionalDiplomaFiles', files);
