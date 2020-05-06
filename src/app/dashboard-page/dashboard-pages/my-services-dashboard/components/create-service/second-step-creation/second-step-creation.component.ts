@@ -22,7 +22,7 @@ export class SecondStepCreationComponent implements OnInit {
   characterLength: number = null;
   descriptionForm: FormGroup;
   translatedPath: any = this.localize.translateRoute('/dashboard/my-services');
-
+  public submited: boolean = null;
   public editor;
   constructor(
     private userOffersService: UserOffersService,
@@ -36,10 +36,13 @@ export class SecondStepCreationComponent implements OnInit {
   ngOnInit() { }
 
   onEditorCreated = ( event: any ) => {
-    this.characterLength = event.editor.container.innerText.replace(/\s+/g, '').length;
+    // this.characterLength = event.editor.container.innerText.replace(/\s+/g, '').length;
+    console.log(event.editor.container.innerText.length)
+    this.characterLength = event.editor.container.innerText.length;
     // this.editor = event;
   }
   nextStep = (form: NgForm) => {
+    this.submited = true;
 
     if (!form.valid || this.characterLength < 100 || this.characterLength > 500) {
       return;

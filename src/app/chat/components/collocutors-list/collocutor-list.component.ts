@@ -16,6 +16,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { LocalizeRouterService } from 'localize-router';
 import { CollocutorService } from '../../services/collocutor.service';
 import { DealService } from '../../services/deal.service';
+import { Subscription } from 'rxjs';
 
 
 
@@ -41,6 +42,9 @@ export class CollocutorListComponent implements OnInit {
     roomId: string;
   } = null;
   // @Output() currentRoom = new EventEmitter();
+
+  private querrySubscription : Subscription 
+  private userStateSubscription : Subscription 
   private currentUserState: number // 1=> free, 2=> cusxtomer
   constructor(
     private chatService: ChatService,
@@ -60,6 +64,14 @@ export class CollocutorListComponent implements OnInit {
     
     this._subscribeNewMessages();
     this._checkUserState();
+  }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    // this.route.queryParams.unsubscribe()
+    this.querrySubscription.unsubscribe();
+    this.userStateSubscription.unsubscribe();
   }
 
   
@@ -95,7 +107,7 @@ export class CollocutorListComponent implements OnInit {
 
 //  Check querry params
 private _isAnyChatOpen() {
-  this.route.queryParams.subscribe((res: {offers_id?: any, dealId?: any, id?: any, roomId: string} | any) => {
+  this.querrySubscription = this.route.queryParams.subscribe((res: {offers_id?: any, dealId?: any, id?: any, roomId: string} | any) => {
 
     if(res.hasOwnProperty('offers_id') && this.chatType === 'work' && this.currentUserState === 2) {
       this._getDealData(res.id);
@@ -247,7 +259,7 @@ private _isAnyChatOpen() {
 
 //  If user role changed
   private _checkUserState() {
-    this.userStateService.userState$
+    this.userStateSubscription = this.userStateService.userState$
       .subscribe(res => {
         this.currentUserState = res;
         this._getChatRooms();

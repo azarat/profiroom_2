@@ -38,8 +38,10 @@ export class SystemMessagesInDealsComponent implements OnInit {
     this.collocutorService.collocutorData$
     .subscribe(res => {
       this.collocutorData = res;
-      this.changeBtnStyling();
       this.checkIsUserFreelancer();
+      this.changeBtnStyling();
+      console.log('CDELKA',this.collocutorData)
+      
     });
   }
 
@@ -67,7 +69,7 @@ export class SystemMessagesInDealsComponent implements OnInit {
   }
 
   private checkIsUserFreelancer() {
-    const userId = this.localStorageService.getItem('userId').value;
+    const userId = Number(this.localStorageService.getItem('userId').value);
     if (this.collocutorData.freelancer_id === userId) {
       this.isUserFreelancer = true;
     }
@@ -84,7 +86,9 @@ export class SystemMessagesInDealsComponent implements OnInit {
 
 
   private changeBtnStyling() {
+    console.log(this.isUserFreelancer, this.systemMessage.message.name === 'DealClosedByCustomer', this.collocutorData.early_closing !== 0)
     if (this.isUserFreelancer && this.systemMessage.message.name === 'DealClosedByCustomer' && this.collocutorData.early_closing !== 0) {
+      
       return this.dealCancel = true;
     } else if (!this.isUserFreelancer && this.systemMessage.message.name === 'DealCloseByFreelancer'
       && this.collocutorData.early_closing !== 0) {

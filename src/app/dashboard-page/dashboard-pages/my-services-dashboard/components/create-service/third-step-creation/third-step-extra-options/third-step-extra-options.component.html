@@ -16,7 +16,7 @@
           <div class=" select-wrap-extra">
             <mat-select #name="ngModel" [(ngModel)]="userService.compressedDeadlines.basicCompressedDays" [required]="userService.compressedDeadlines.publishCompressedDeadlines" name="basicCompressedDays">
               <mat-option *ngFor="let days of changesArrayCounter(); let i = index" [value]="days">
-                {{ days }}
+                {{ days }} дня
               </mat-option>
             </mat-select>
           </div>

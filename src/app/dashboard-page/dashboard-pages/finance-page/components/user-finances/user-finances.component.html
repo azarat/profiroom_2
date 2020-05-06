@@ -1,174 +1,153 @@
-<div class="user" *ngIf="userFinance" [ngClass]="paymentsFullSize? 'modal': ''">
+<div class="user" *ngIf="userFinance" [ngClass]="paymentsFullSize? 'modal': ''" >
     <div class="statistic">
-        <!-- User finance statistic -->
-        <section class="compressed-statistic">
-            <div *ngFor="let el of allStatisticInfo">
-                <div class="icon">
-                    <img src="/assets/images/icons/finance/{{el.type}}.png" alt="">
-                </div>
-                <div class="data">
-                    <p class="value"><span>{{ userFinance.purse[el.type] | thousandSeparator  }}</span> UAH</p>
-                    <p class="title">&#32; {{ el.name }}</p>
-                </div>
+      <!-- User finance statistic -->
+      <section class="compressed-statistic">
+        <div *ngFor="let el of allStatisticInfo">
+          <div class="icon">
+            <img src="/assets/images/icons/finance/{{el.type}}.png" alt="">
+          </div>
+          <div class="data">
+            <p class="value">
+              <span *ngIf="el.type !== 'summ'">{{ userFinance.purse[el.type] | thousandSeparator  }}</span>
+              UAH</p>
+            <p class="title">&#32; {{ el.name }}</p>
+          </div>
+        </div>
+  
+        <div class="balance balance-copy laptop">
+          <div class="icon"><img src="/assets/images/icons/finance/current.png" alt=""></div>
+          <div class="data">
+            <p class="value"><span>{{ userFinance.purse.summ }}</span> UAH</p>
+            <p class="title">&#32; состояние счета</p>
+          </div>
+        </div>  
+  
+      </section>
+      <section class="graphics">
+        <div class="graphic">
+          <div class="title">мой доход <span> (UAH)</span></div>
+          <app-diagram></app-diagram>
+        </div>
+        <div class="calendar" >
+          <app-calendar [userFinance]="userFinance.history"></app-calendar>
+          <div class="info">
+            <div>
+              <span>доход</span>
             </div>
-
-            <div class="balance balance-copy laptop">
-                <div class="icon"><img src="/assets/images/icons/finance/current.png" alt=""></div>
-                <div class="data">
-                    <p class="value"><span>{{ userFinance.purse.summ | thousandSeparator   }}</span> UAH</p>
-                    <p class="title">&#32; состояние счета</p>
+            <div>
+              <span>вывод денег</span>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="paymenst" (clickOutside)="rollPaymentsList()" [ngClass]="paymentsFullSize? 'full-size': ''">
+        <div class="title">
+          <span>история платежей</span>  <span class="open" (click)="unrollPaymentsList()"></span>
+        </div>
+        <div class="paymenst-list">
+          <div class="title">
+            <span class="name">от кого</span>
+            <span class="date">Дата операции</span>
+            <span class="service">Услуга</span>
+            <span class="cash">Сумма</span>
+          </div>
+          <div class="payment-items">
+            <div class="item" *ngFor="let payment of userCashMoves">
+              <div class="name">
+                <div class="ava">
+                  <img [src]="payment.user.avatar" alt="">
                 </div>
+                <span> {{ payment.user.name + ' ' +   payment.user.surname }}</span>
+              </div>
+              <div class="date">{{ payment.created_at | dateFormatPipe: 'dd.MM.yyyy' }}</div>
+              <div class="service">{{ payment.OffersTitle }}</div>
+              <div class="cash"><span [ngClass]="{ output: payment.income === 0 }">
+                  {{ payment.amount }}
+                </span> UAH</div>
             </div>
-
-        </section>
-        <section class="graphics">
-            <div class="graphic">
-                <div class="title">мой доход <span> (UAH)</span></div>
-                <app-diagram></app-diagram>
+          </div>
+        </div>
+      </section>
+      <div class="wallet wallet-section-copy laptop">
+        <div class="wallet-section ">
+          <div class="title">ввод и вывод денег</div>
+          <div class="form">
+            <div class="operation-type">
+              <mat-select [(ngModel)]="transactions.transactionType" [(value)]="transactions.transactionType">
+                <mat-option [value]="'deffault'" disabled  >Выберите операцию</mat-option>
+                <mat-option [value]="'input'">
+                  Ввести деньги
+                </mat-option>
+                <mat-option [value]="'output'">
+                  Вывести деньги
+                </mat-option>
+              </mat-select>
             </div>
-            <div class="calendar">
-                <app-calendar [userFinance]="userFinance.history"></app-calendar>
-                <div class="info">
-                    <div>
-                        <span>доход</span>
-                    </div>
-                    <div>
-                        <span>вывод денег</span>
-                    </div>
+            <div class="cash-form">
+              <div class="count">
+                <p>напишите сумму</p>
+                <div>
+                  <input [(ngModel)]="transactions.amount" id="count" type="text"><label for="count">
+                    <span>UAH</span></label>
                 </div>
+    
+              </div>
+    
+    
+              <div class="password">
+                <p>ваш пароль</p>
+                <input type="password" [(ngModel)]="transactions.password">
+              </div>
+              <button class="btn" type="submit" (click)="makePayment()">Подтвердить</button>
+              <div class="w-p"></div>
             </div>
-        </section>
-        <section class="paymenst" (clickOutside)="rollPaymentsList()" [ngClass]="paymentsFullSize? 'full-size': ''">
-            <div class="title">
-                <span>история платежей</span> <span class="open" (click)="unrollPaymentsList()"></span>
-            </div>
-            <div class="paymenst-list">
-                <div class="title">
-                    <span class="name">от кого</span>
-                    <span class="date">Дата операции</span>
-                    <span class="service">Услуга</span>
-                    <span class="cash">Сумма</span>
-                </div>
-                <div class="payment-items">
-                    <div class="item" *ngFor="let payment of userCashMoves">
-                        <div class="name">
-                            <div class="ava">
-                                <img [src]="payment.user.avatar" alt="">
-                            </div>
-                            <span> {{ payment.user.name + ' ' +   payment.user.surname }}</span>
-                        </div>
-                        <div class="paymenst-list">
-                            <div class="title">
-                                <span class="name">от кого</span>
-                                <span class="date">Дата операции</span>
-                                <span class="service">Услуга</span>
-                                <span class="cash">Сумма</span>
-                            </div>
-                            <div class="payment-items">
-                                <div class="item" *ngFor="let payment of userCashMoves">
-                                    <div class="name">
-                                        <div class="ava">
-                                            <img [src]="payment.user.avatar" alt="">
-                                        </div>
-                                        <span> {{ payment.user.name + ' ' +   payment.user.surname }}</span>
-                                    </div>
-                                    <div class="date">{{ payment.created_at | dateFormatPipe: 'dd.MM.yyyy' }}</div>
-                                    <div class="service">{{ payment.OffersTitle }}</div>
-                                    <div class="cash"><span [ngClass]="{ output: payment.income === 0 }">
-                <ng-container *ngIf="payment.income === 0">-</ng-container> {{ payment.amount }}
-              </span> UAH</div>
-                                </div>
-                            </div>
-                        </div>
-        </section>
-        <div class="wallet wallet-section-copy laptop">
-            <div class="wallet-section ">
-                <div class="title">ввод и вывод денег</div>
-                <div class="form">
-                    <div class="operation-type">
-                        <mat-select [(ngModel)]="transactions.transactionType" [(value)]="transactions.transactionType">
-                            <mat-option [value]="'deffault'" disabled>Выберите операцию</mat-option>
-                            <mat-option [value]="'input'">
-                                Ввести деньги
-                            </mat-option>
-                            <mat-option [value]="'output'">
-                                Вывести деньги
-                            </mat-option>
-                        </mat-select>
-                    </div>
-                    <div class="cash-form">
-                        <div class="count">
-                            <p>напишите сумму</p>
-                            <div>
-                                <input [(ngModel)]="transactions.amount" id="count" type="text"><label for="count">
+          </div>
+    
+        </div>
+      </div>
+    </div>
+    <div class="wallet">
+      <div class="balance">
+        <div class="icon"><img src="/assets/images/icons/finance/current.png" alt=""></div>
+        <div class="data">
+          <p class="value"><span>{{ userFinance.purse.summ }}</span> UAH</p>
+          <p class="title">&#32; состояние счета</p>
+        </div>
+      </div>
+      <div class="wallet-section">
+        <div class="title">ввод и вывод денег</div>
+        <div class="form">
+          <div class="operation-type">
+            <mat-select [(ngModel)]="transactions.transactionType" [(value)]="transactions.transactionType">
+              <mat-option [value]="'deffault'" disabled  >Выберите операцию</mat-option>
+              <mat-option [value]="'input'">
+                Ввести деньги
+              </mat-option>
+              <mat-option [value]="'output'">
+                Вывести деньги
+              </mat-option>
+            </mat-select>
+          </div>
+          <div class="cash-form">
+            <div class="count">
+              <p>напишите сумму</p>
+              <div>
+                <input [(ngModel)]="transactions.amount" id="count" type="text"><label for="count">
                   <span>UAH</span></label>
-                            </div>
-
-                        </div>
-
-
-                        <div class="password">
-                            <p>ваш пароль</p>
-                            <input type="password" [(ngModel)]="transactions.password">
-                        </div>
-                        <button class="btn" type="submit" (click)="makePayment()">Подтвердить</button>
-                        <div class="w-p"></div>
-                    </div>
-                </div>
-
+              </div>
+  
             </div>
-        </div>
-        </div>
-        <div class="wallet">
-            <div class="balance">
-                <div class="icon"><img src="/assets/images/icons/finance/current.png" alt=""></div>
-                <div class="data">
-                    <p class="value"><span>{{ userFinance.purse.summ | thousandSeparator   }}</span> UAH</p>
-                    <p class="title">&#32; состояние счета</p>
-                </div>
+  
+  
+            <div class="password">
+              <p>ваш пароль</p>
+              <input type="password" [(ngModel)]="transactions.password">
             </div>
-            <div class="wallet">
-                <div class="balance">
-                    <div class="icon"><img src="/assets/images/icons/finance/current.png" alt=""></div>
-                    <div class="data">
-                        <p class="value"><span>{{ userFinance.purse.summ | thousandSeparator   }}</span> UAH</p>
-                        <p class="title">&#32; состояние счета</p>
-                    </div>
-                </div>
-                <div class="wallet-section">
-                    <div class="title">ввод и вывод денег</div>
-                    <div class="form">
-                        <div class="operation-type">
-                            <mat-select [(ngModel)]="transactions.transactionType" [(value)]="transactions.transactionType">
-                                <mat-option [value]="'deffault'" disabled>Выберите операцию</mat-option>
-                                <mat-option [value]="'input'">
-                                    Ввести деньги
-                                </mat-option>
-                                <mat-option [value]="'output'">
-                                    Вывести деньги
-                                </mat-option>
-                            </mat-select>
-                        </div>
-                        <div class="cash-form">
-                            <div class="count">
-                                <p>напишите сумму</p>
-                                <div>
-                                    <input autocomplete="off" knifeOnlyNumbers [(ngModel)]="transactions.amount" id="count" type="text"><label for="count">
-                <span>UAH</span></label>
-                                </div>
-
-                            </div>
-
-
-                            <div class="password">
-                                <p>ваш пароль</p>
-                                <input type="password" [(ngModel)]="transactions.password">
-                            </div>
-                            <button class="btn" type="submit" (click)="makePayment()">Подтвердить</button>
-                            <div class="w-p"></div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
+            <button class="btn" type="submit" (click)="makePayment()">Подтвердить</button>
+            <div class="w-p"></div>
+          </div>
         </div>
+  
+      </div>
+    </div>
+  </div>

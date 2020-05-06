@@ -10,7 +10,7 @@
       </div>
     </div>
   </section>
-  <section class="charst-statistic">
+  <section class="charst-statistic" *ngIf="this.user.role_id === 1">
     <div class="charts">
       <div class="freelancer-status">
         <h5 class="title">
@@ -116,7 +116,7 @@
       <section class="comments">
         <app-users-comments *ngIf="user" [userData]="user"></app-users-comments>
       </section>
-      <section class="achives">
+      <section class="achives" *ngIf="this.user.role_id === 1">
         <app-freelacer-achives *ngIf="user" [userData]="user"></app-freelacer-achives>
       </section>
     </div>

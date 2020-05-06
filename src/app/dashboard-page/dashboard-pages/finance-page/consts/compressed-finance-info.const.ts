@@ -1,7 +1,7 @@
 export const compressedFinanceInfoConst = [
   {
     name: 'кол-во выполненных заказов',
-    type: 'deals_count'
+    type: 'deals_done_count'
   },
   {
     name: 'кол-во всех заказчиков',

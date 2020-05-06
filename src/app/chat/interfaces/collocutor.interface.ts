@@ -6,6 +6,7 @@ export interface CollocutorInterface {
   status?: string;
   avatar?: string;
   unread?: number;
+  online?: boolean;
   collocutorId?: number;
   freelancer_id?: number;
   customer_id?: number;

@@ -56,7 +56,7 @@ export class UsersCommentsComponent implements OnInit {
     //   this.currentTab.name = 'Положительные';
     //   this.currentTab.value = 'negative';
     // }
-    console.log(this.userData[this.currentTab.value + 'Comments']);
+    console.log(this.userData);
     // console.log(this.userData[this.currentTab.value + 'Comments']);
   }
 
