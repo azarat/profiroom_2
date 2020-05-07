@@ -1,0 +1,26 @@
+<div class="wrapper">
+    <div class="main-info">
+        <div class="main-info__wrap">
+            <h3 class="section__subtitle">появились вопросы?</h3>
+            <h2 class="section__title">Часто задаваемые вопросы</h2>
+            <div class="main-info__text">
+                <p>Выберите необходимую категорию: 
+                    Заказчикам / Фрилансерам</p>
+                <p>Не нашли ответ? Переходите на страницу Службы поддержки.</p>
+            </div>
+        </div>
+    </div>
+    <div class="guestion-tabs">
+        <mat-accordion>
+            <mat-expansion-panel class="question-item" *ngFor="let question of questions;" hideToggle>
+              <mat-expansion-panel-header class="question-item__title">
+                <mat-panel-title >
+                  {{question.title}}
+                  <div class="element-plus"></div>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <p class="question-item__text">{{question.text}}</p>
+            </mat-expansion-panel>
+          </mat-accordion>
+    </div>
+</div>

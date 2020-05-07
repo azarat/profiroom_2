@@ -1,0 +1,60 @@
+.wrapper{
+    padding: 150px 0 150px;
+}
+.main-info{
+    margin-bottom: 70px;
+}
+.freelancer-list{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -19px;
+    position: relative;
+    &::after{
+        content: "";
+        position: absolute;
+        z-index: 0;
+        top: -70px;
+        right: 0px;
+        width: 102px;
+        height: 118px;
+        background-image: url(/assets/images/images/dots-advantages.svg)
+    }
+}
+.freelancer-item{
+    width: calc(33% - 36px);
+    margin: 0 18px 64px;
+
+    background: #FFFFFF;
+    box-shadow: 0px 0px 40px rgba(128, 152, 213, 0.2);
+    border-radius: 16px;
+    z-index: 9;
+
+    padding: 23px 29px 26px;
+    &__top{
+        margin-bottom: 14px;
+        display: flex;
+        align-items: center;
+    }
+    &__icon{
+        width: 45px;
+        height: 45px;
+        margin-right: 20px;
+        img{
+            width: auto;
+            height: auto;
+            object-fit: cover;
+        }
+    }
+    &__title{
+        font-size: 22px;
+        line-height: 28px;
+        color: #323C47;
+    }
+    &__text{
+        font-size: 18px;
+        line-height: 23px;
+        color: #707683;
+        max-width: 320px;
+        margin-left: 65px;
+    }
+}

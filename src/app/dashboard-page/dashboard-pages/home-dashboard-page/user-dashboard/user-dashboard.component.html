@@ -36,7 +36,7 @@
               </div>
               <span (click)="changeWorkStatus(1)" [ngClass]="{active: user.busy === 1}">Загружен</span>
             </div>
-            <div class="btn" [routerLink]="['/user', user.purse.id] | localize">смотреть профиль</div>
+            <a class="btn open-prifile" [routerLink]="['/user', user.purse.id] | localize">смотреть профиль</a>
           </div>
 
         </div>

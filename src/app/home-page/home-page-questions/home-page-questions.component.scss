@@ -1,0 +1,106 @@
+.question-list {
+    width: auto;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .question-item {
+    width: 100%;
+    border-bottom: 1px solid #EBEEFF;
+    background-color: #F4F7FC;
+    &__title {
+      position: relative;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 23px;
+      color: #4E5051;
+      margin: 0;
+      cursor: pointer;
+      padding: 7px 20px 9px;
+      .element-plus{
+        color: #3a4046;
+        position: absolute;
+        top: 50%;
+        right: 20px;
+        transform: translateY(-50%);
+        width: 25px;
+        height: 25px;
+        cursor: pointer;
+        &::after {
+          content: "";
+          width: 12px;
+          height: 1px;
+          background-color: #3a4046;
+          transform: translate(-50%, -50%);
+          top: 50%;
+          left: 50%;
+          position: absolute;
+        }
+        &::before {
+          content: "";
+          width: 12px;
+          height: 1px;
+          background-color: #3a4046;
+          transform: translate(-50%, -50%) rotate(90deg);
+          top: 50%;
+          left: 50%;
+          position: absolute;
+          transition: all .2s;
+        }
+      }
+    }
+    &__text {
+      font-weight: normal;
+      font-size: 18px;
+      line-height: 23px;
+      color: #4E5051;
+      margin: 0;
+      font-family: "Source Sans Pro", sans-serif;
+      // padding: 0 100px 0 20px;
+      overflow: hidden;
+      // transition: all 0.3s;
+    }
+    &.active {
+      .question-item__title {
+        &::before {
+          transform: rotate(-90deg);
+        }
+      }
+  
+    }
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+  
+  .mat-expansion-panel-header{
+    font-family: "Source Sans Pro", sans-serif;
+  }
+  .mat-expansion-panel-header-title{
+    color: #4E5051;
+  }
+  .mat-expansion-panel-spacing{
+    margin: 0;
+    .element-plus{
+      &::before{
+        transform: translate(-50%, -50%) rotate(0deg);
+      }
+    }
+  }
+  .mat-expansion-panel{
+    box-shadow: none!important;
+  }
+  .mat-expansion-panel-content{
+    font-family: "Source Sans Pro", sans-serif;
+  }
+  .mat-expansion-indicator{
+    display: none;
+    &::after{
+      display: none;
+    }
+  }
+  .mat-expansion-indicator::after{
+    display: none!important;
+  }
