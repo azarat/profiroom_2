@@ -4,6 +4,8 @@ import { mainStatisticConst } from './consts/main-statistic.const';
 import { ChartDataSets } from 'chart.js';
 import { DasboardService } from 'src/app/dashboard-page/services/dashboard.service';
 import { monthArrayConvert } from 'src/app/shared/functions/month-array-convert.function';
+import { Subscription } from 'rxjs';
+import { UserStateService } from 'src/app/dashboard-page/services/user-state.service';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -18,13 +20,17 @@ export class UserDashboardComponent implements OnInit {
   public chartLabels: any[] = [];
   public showPieChart = true;
   // public allStatisticInfo: any[] = compressedFinanceInfoConst;
+  private userStateSubscription: Subscription
 
   constructor(
-    private dashboardService: DasboardService
+    private dashboardService: DasboardService,
+    private userStateService: UserStateService
   ) { }
 
   ngOnInit() {
     this.setMounthLabels();
+    this._checkUserState();
+    console.log(this.user)
   }
 
   public changeWorkStatus(status?: number) {
@@ -89,6 +95,14 @@ export class UserDashboardComponent implements OnInit {
       this.showPieChart = false;
       return
     }
+  }
+
+  //  If user role changed
+  private _checkUserState() {
+    this.userStateSubscription = this.userStateService.userState$
+      .subscribe(res => {
+        this.user.role_id = res;
+      });
   }
   
 

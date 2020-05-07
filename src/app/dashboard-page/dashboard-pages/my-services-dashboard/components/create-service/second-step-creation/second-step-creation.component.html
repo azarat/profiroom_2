@@ -3,15 +3,14 @@
     <h3>2. Описание услуги</h3>
 
     <h5>Опишите услугу как можно подробнее</h5>
-    <div class="form-group" [ngClass]="{'error': (characterLength !== 0 && characterLength <= 100 && characterLength !== null) || characterLength >=300}">
+    <div class="form-group" [ngClass]="{'error': (characterLength !== 0 && characterLength <= 100 && characterLength !== null) || characterLength >=500 && submited}">
 
       <quill-editor [modules]="config" [(ngModel)]="userService.description" name="editor" placeholder="" 
       (onContentChanged)="onEditorCreated($event)" ngbPopover="Проявите оригинальность:  добавьте аргументы в свою пользу, дайте гарантии,
         предоставьте бонусы и т.Д. чтобы покупатель выбрал именно Вашу услугу." popoverTitle="Опишите услугу, которую вы предлагаете, как можно подробнее." 
-        placement="right" popoverClass="popover" maxlength="300" closeDelay="200"></quill-editor>
-      <span *ngIf="characterLength === 0 || characterLength === null">100 минимум </span>
-      <span *ngIf="characterLength >=300">Слишком много буковок</span>
-      <span *ngIf="characterLength !== 0 && characterLength <= 100 && characterLength !== null">{{this.characterLength}} из 100</span>
+        placement="right" popoverClass="popover" maxlength="500" closeDelay="200"></quill-editor>
+      <span class="notify" *ngIf="submited && characterLength <= 100 || characterLength === null">Минимум 100 символов </span>
+      <span class="notify" *ngIf="submited && characterLength > 100 && characterLength !== null">{{this.characterLength}} из 500</span>
     </div>
 
     <div class="form-butons">

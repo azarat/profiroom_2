@@ -111,8 +111,8 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
 
   private redirectToFinancesIfCustomer() {
     const url = this.router.url;
-    if (this.user.role_id === 2 && (url.includes('home') || url.includes('my-services') )) {
-      const translatedPath: any = this.localize.translateRoute('/dashboard/finance');
+    if (this.user.role_id === 2 &&  url.includes('my-services')) {
+      const translatedPath: any = this.localize.translateRoute('/dashboard/home');
       this.router.navigate([translatedPath],
       {
         relativeTo: this.activatedRoute,

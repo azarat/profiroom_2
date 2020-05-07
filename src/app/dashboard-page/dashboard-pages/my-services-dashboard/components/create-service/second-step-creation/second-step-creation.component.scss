@@ -132,6 +132,17 @@ form::ng-deep {
     }
   }
 
+  .notify {
+    font-family: Source Sans Pro, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 18px;
+    display: block;
+    text-align: right;
+    color: #33596E;
+    opacity: 0.5;
+  }
   // .service-selects {
   //   .mat-form-field-infix {
   //     border-top: none;

@@ -2,7 +2,9 @@
     <div class="line">
         <div class="collocutor">
             <a [routerLink]="'/user/' + collocutorData.collocutorId | localize">
-      {{ collocutorData.collocutorName }} {{ collocutorData.collocutorSurname }} </a><span>онлайн</span>
+      {{ collocutorData.collocutorName }} {{ collocutorData.collocutorSurname }} </a>
+      <span *ngIf="collocutorData.collocutorOnline == true">онлайн</span>
+      <span *ngIf="collocutorData.collocutorOnline === false">офлайн</span>
         </div>
         <div class="massager-tools">
             <app-show-uploaded-files [chatRoom]="collocutorData.roomId"></app-show-uploaded-files>

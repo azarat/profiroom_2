@@ -12,6 +12,7 @@ import {
   CalendarDateFormatter
 } from 'angular-calendar';
 import { CustomDateFormatter } from './providers/custtom-week-day-formatter.provider';
+import { el } from 'date-fns/locale';
 
 const colors: any = {
   red: {
@@ -83,21 +84,47 @@ export class CalendarComponent implements OnInit {
 
     this.userFinance.forEach(element => {
       let event: string;
-      let type = '';
       if (element.income === 1) {
         event = 'input';
       } else {
         event = 'output';
-        type = '- ';
+        // type = '- ';
       }
-      eventsArr.push({ title: type + element.amount, start: new Date(element.created_at), cssClass: event });
-      return eventsArr;
+      
+      console.log(eventsArr.length)
+
+      if (eventsArr.length !== 0) {
+        let item = { title: element.amount, start: new Date(element.created_at), cssClass: event }
+        eventsArr.forEach(el => {
+          if (el.start.getDate() === item.start.getDate()) {
+            if (el.cssClass === item.cssClass) {
+              el.title = Number(el.title) + Number(item.title);
+
+            } else {
+              eventsArr.push({ title: element.amount, start: new Date(element.created_at), cssClass: event });
+            }
+
+          } else {
+            eventsArr.push({ title: element.amount, start: new Date(element.created_at), cssClass: event });
+          }
+        })
+      } else if(eventsArr.length === 0) {
+        let item = { title: element.amount, start: new Date(element.created_at), cssClass: event }
+        eventsArr.push({ title: element.amount, start: new Date(element.created_at), cssClass: event });
+        console.log(eventsArr)
+      }
+
+
+
+      
+      // return eventsArr;
     });
+    
     return eventsArr;
   }
 
   eventClicked({ event }: { event: CalendarEvent }): void {
-    console.log( event);
+    // console.log( event);
   }
 
 }
