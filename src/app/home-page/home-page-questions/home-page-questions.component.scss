@@ -78,8 +78,19 @@
             margin: 0 0 22px;
         }
     }
-}
-
+  }
+  position: relative;
+  &::after{
+    content: "";
+    position: absolute;
+    z-index: -2;
+    bottom: 26%;
+    right: -15%;
+    width: 140px;
+    height: 170px;
+    background-image: url(/assets/images/images/dots-advantages.svg);
+    background-repeat: no-repeat;
+  }
 }
 
 .question-wrap{

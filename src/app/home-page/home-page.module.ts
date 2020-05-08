@@ -11,6 +11,7 @@ import { HomePageHowWorkComponent } from './home-page-how-work/home-page-how-wor
 import { HomePageFindSpecialistComponent } from './home-page-find-specialist/home-page-find-specialist.component';
 import { HomePageQuestionsComponent } from './home-page-questions/home-page-questions.component';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { HomePageAppNewsComponent } from './home-page-app-news/home-page-app-news.component';
 
 const routes: Routes = [
   {
@@ -27,7 +28,8 @@ const routes: Routes = [
     HomePageSearchComponent,
     HomePageHowWorkComponent,
     HomePageFindSpecialistComponent,
-    HomePageQuestionsComponent
+    HomePageQuestionsComponent,
+    HomePageAppNewsComponent
   ],
   exports: [
     HomePageComponent
