@@ -1,12 +1,12 @@
 export const mainStatisticConst = [
     {
         name: 'кол-во выполненных заказов',
-        valueName: 'deposited',
+        valueName: 'deals_done_count',
         icon: 'deals_count'
     },
     {
         name: 'кол-во всех заказчиков',
-        valueName: 'withdraw',
+        valueName: 'customers_count',
         icon: 'dealers_count'
     },
     {

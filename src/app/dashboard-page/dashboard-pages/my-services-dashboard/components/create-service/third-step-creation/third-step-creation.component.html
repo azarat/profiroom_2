@@ -63,7 +63,7 @@
       <div class="packages-description line" outsideTooltip="Описание" outsideTooltipDescription="Подведите итог, что этот пакет предлагает покупателям, и почему вы включили эти предметы в свой пакет.
       Вы можете использовать максимум 100 символов.
       Например: этот пакет «Полный дизайн логотипа» включает в себя стандартный дизайн логотипа с 4 ревизиями и исходный файл." placement="right">
-        <div class="description-title">
+        <div class="description-title title">
           <p>
             Краткое описание
           </p>
@@ -116,13 +116,13 @@
 
         <div *ngFor="let package of packagesTypes; let x = index" [ngClass]="{ 'field-required': packagePrice.invalid && submited }">
           <div class="input-wrap">
-            <input type="text" knifeOnlyNumbers maxlength="7" #packagePrice="ngModel" [required]="(x == 0 && !userService.allPackages) || (userService.allPackages ) && submited" [(ngModel)]="userService.packagesPrices[package + 'Price']"
-              name="{{package + 'Price'}}">
+            <input  type="number" knifeOnlyNumbers maxlength="7" #packagePrice="ngModel" [required]="(x == 0 && !userService.allPackages) || (userService.allPackages ) && submited" [(ngModel)]="userService.packagesPrices[package + 'Price']"
+              name="{{package + 'Price'}}" [min]="250" (ngModelChange)="priceChange($event, package)" placeholder="min 250">
           </div>
         </div>
       </div>
       <!--------------------add options -------------------->
-      <form #f="ngForm" class="package-options" >
+      <form #f="ngForm" class="package-options extra" >
         <div class="added-option line" *ngFor="let arrayItem of userService.main_options; let i = index" outsideTooltip="Дополнительная опция" outsideTooltipDescription="Вы добавили опцию, дайте ей название и отметьте галочкой, чтобы покупатель видел  какому пакету услуг Вы относите данну опцию. " placement="right">
           <div class="option-title" [ngClass]="{ 'field-required': mainOptonTitle.invalid && submited }">
             <div class="input-wrap">
@@ -158,7 +158,7 @@
     </div>
 
     <div class="form-butons">
-      <button (click)="quite()" class="back">выйти</button>
+      <button (click)="quite()" class="back">вернться назад</button>
       <button class="save" type="submit">сохранить и продолжить</button>
     </div>
   </form>

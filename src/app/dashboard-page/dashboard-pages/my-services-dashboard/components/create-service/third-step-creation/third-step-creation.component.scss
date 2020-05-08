@@ -3,6 +3,17 @@
   overflow-x: hidden;
   height: 100%;
 
+  input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
   form {
     display: flex;
     flex-direction: column;
@@ -202,13 +213,18 @@
       width: 100%;
       // padding: 10px;
       // box-sizing: border-box;
+      font-family: Source Sans Pro, sans-serif;
+          font-style: normal;
+          font-weight: normal;
+          font-size: 14px;
+          line-height: 18px;
     }
 
     .input-wrap {
-      padding: 10px;
-      width: 80%;
+      padding: 10px 10px 10px 20px;
+      width: 90%;
       height: 100%;
-      margin: auto;
+      // margin: auto;
       display: flex;
       align-content: center;
       justify-content: center;
@@ -228,7 +244,7 @@
     }
 
     .select-wrap {
-      padding: 0 20px 0 30px;
+      padding: 0 20px 0 10px;
 
       .mat-select {
         height: 60px;
@@ -236,6 +252,15 @@
         flex-direction: column;
         justify-content: center;
         text-align: center;
+        font-family: Source Sans Pro, sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 21px;
+        /* identical to box height, or 131% */
+
+
+        color: #323C47;
       }
     }
 
@@ -248,6 +273,7 @@
       flex-direction: row;
       border-bottom: 1px solid #dce0e6;
 
+      
       .title {
         display: flex;
         align-items: center;
@@ -255,6 +281,13 @@
         p {
           padding-top: 0;
           padding-bottom: 0;
+        }
+      }
+      .description-title.title {
+        align-items: flex-start;
+        p{
+          padding-top: 16px;
+          padding-left: 10px;
         }
       }
 
@@ -320,6 +353,11 @@
       .packages-title {
         .textarea {
           height: 80%;
+          font-family: Source Sans Pro, sans-serif;
+          font-style: normal;
+          font-weight: normal;
+          font-size: 14px;
+          line-height: 18px;
         }
       }
     }
@@ -339,6 +377,11 @@
         textarea {
           // padding: 10px;
           box-sizing: border-box;
+          font-family: Source Sans Pro, sans-serif;
+          font-style: normal;
+          font-weight: normal;
+          font-size: 14px;
+          line-height: 18px;
         }
 
         .description-title {
@@ -368,14 +411,18 @@
           align-items: center;
         }
       }
-
+      &.extra {
+        input[type="text"] {
+          font-size: 14px;
+        }
+      }
       .option-title {
         background: #f4f7fc;
         display: flex;
 
         input {
           background: #f4f7fc;
-
+          text-align: left;
           &::-webkit-input-placeholder {
             /* Chrome/Opera/Safari */
             font-size: 14px;
@@ -919,6 +966,11 @@
                   height: 100%;
                   outline: none;
                   border: none;
+                  font-family: Source Sans Pro, sans-serif;
+                  font-style: normal;
+                  font-weight: normal;
+                  font-size: 14px;
+                  line-height: 18px;
                 }
               }
             }

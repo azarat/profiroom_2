@@ -1,11 +1,11 @@
 <section class="comments" *ngIf="userData">
     <div class="comments__top">
-      <div class="section-title">Рейтинг и отзывы <span>({{ userData.comments_freelancer_count }})</span></div>
+      <div class="section-title">Рейтинг и отзывы <span>({{ userData['negativeComments' + userType].length + userData['positiveComments' + userType].length }})</span></div>
   
       <div class="tabs">
         <ng-container *ngFor=" let tab of tabs, let i = index">
             <div class="tab" (click)="toggleTab(tab)" [ngClass]="{active: currentTab.id === i}">
-                {{ tab.name }} ({{ userData[tab.value + '_comments_count'] }}) <span></span>
+                {{ tab.name }} ({{ userData[tab.value + 'Comments' + userType].length }}) <span></span>
             </div>
         </ng-container>
 
@@ -13,7 +13,7 @@
       </div>
     </div>
     <ng-container>
-        <div class="comment" *ngFor="let comment of userData[currentTab.value + 'Comments']; let parrentCommentIndex = index">
+        <div class="comment" *ngFor="let comment of userData[currentTab.value + 'Comments' + userType ]; let parrentCommentIndex = index">
 
           <h5 class="comment__service-name" *ngIf="comment.offers">
             <a [routerLink]="'/service'| localize" [queryParams]="{ offerId: comment.offers.id }"> {{comment.offers.title}}</a>
@@ -39,39 +39,41 @@
                   <div class="comment__date">{{converDateToDMY(comment.created_at)}}</div>
                 </div>
                 <div class="comment__message">{{comment.commentText}}</div>
-                <div class="comment__rating" *ngIf="comment.offers">
+                <!-- Rating freelancer-->
+                <div class="comment__rating" *ngIf="this.userType === 'Freelancer'">
                   <div class="comment__rating-item">
                     <span>Качество</span>
-                    <div class="star-rating">{{comment.offers.averageRating.qualityMark}}</div>
-                  </div>
-                  <div class="comment__rating-item">
-                    <span>Срок</span>
-                    <div class="star-rating">{{comment.offers.averageRating.termMark}}</div>
-                  </div>
-                  <div class="comment__rating-item">
-                    <span>Вежливость</span>
-                    <div class="star-rating">{{comment.offers.averageRating.politenessMark}}</div>
-                  </div>
-                </div>
-                <div class="comment__rating service-page__version" *ngIf="!comment.offers">
-                  <div class="comment__rating-item">
-                    <span>Постановка задачи</span>
                     <div class="star-rating">{{comment.qualityMark}}</div>
                   </div>
                   <div class="comment__rating-item">
-                    <span>Чёткость требований</span>
+                    <span>Срок</span>
                     <div class="star-rating">{{comment.termMark}}</div>
                   </div>
                   <div class="comment__rating-item">
-                    <span>Контактность</span>
+                    <span>Вежливость</span>
                     <div class="star-rating">{{comment.politenessMark}}</div>
+                  </div>
+                </div>
+                <!-- Rating customer -->
+                <div class="comment__rating service-page__version" *ngIf="this.userType === 'Customer'">
+                  <div class="comment__rating-item">
+                    <span>Постановка задачи</span>
+                    <div class="star-rating">{{comment.taskClarity}}</div>
+                  </div>
+                  <div class="comment__rating-item">
+                    <span>Чёткость требований</span>
+                    <div class="star-rating">{{comment.requirementsClarity}}</div>
+                  </div>
+                  <div class="comment__rating-item">
+                    <span>Контактность</span>
+                    <div class="star-rating">{{comment.contactLevel}}</div>
                   </div>
                 </div>
                 <form #form="ngForm" class="comment-form" action="" *ngIf="commentFormOpen && commentFormOpen === comment.id" (clickOutside)="closeForm()" [exclude]="'button.comment__answer'">
                   <label for="answer-area">Напишите ответ</label>
                     <textarea name="comment" [(ngModel)]="commentForm.commentText" id="answer-area" cols="30" rows="10"></textarea>
 
-                  <button class="btn" type="submit" (click)="sendComment(parrentCommentIndex, currentTab.value + 'Comments')">Отправить</button>
+                  <button class="btn" type="submit" (click)="sendComment(parrentCommentIndex, currentTab.value + 'Comments'+ userType)">Отправить</button>
                 </form>
               </div>
             </div>

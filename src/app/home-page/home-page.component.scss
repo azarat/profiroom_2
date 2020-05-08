@@ -2,7 +2,7 @@ h1 {
   text-align: center;
 }
 
-::ng-deep {
+:host::ng-deep {
   div{
     font-family: "Source Sans Pro", sans-serif;
     font-style: normal;

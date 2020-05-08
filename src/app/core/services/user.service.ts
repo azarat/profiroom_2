@@ -23,4 +23,8 @@ export class UserService {
     public wrightTo(collocutorId: number) {
       return this.http.post('/newChatRoom', {id: collocutorId});
     }
+
+    public getMinUserData() {
+      return this.http.get('/getUserMinInfo');
+    }
 }
