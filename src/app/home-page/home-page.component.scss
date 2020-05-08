@@ -136,6 +136,7 @@ section::ng-deep {
   position: relative;
   padding-top: 200px;
   overflow: hidden;
+  z-index: 1;
   .arrows{
     position: absolute;
     width: 100%;
@@ -176,4 +177,7 @@ section::ng-deep {
   background: #3C7DEA;
   padding: 90px 0 100px;
   // overflow: hidden;
+}
+.support{
+  z-index: 9;
 }
