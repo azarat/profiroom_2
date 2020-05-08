@@ -10,6 +10,7 @@ body {
 body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", 'Source Sans Pro', sans-serif;
+    position: relative;
 }
 
 

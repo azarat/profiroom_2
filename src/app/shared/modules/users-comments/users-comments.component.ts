@@ -3,6 +3,7 @@ import { UserDataInterface } from '../../interfaces/user-data.interface';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LocalizeRouterService } from 'localize-router';
 import { UserCommentService } from './services/user.comment.service';
+import { UserStateService } from 'src/app/dashboard-page/services/user-state.service';
 
 @Component({
   selector: 'app-users-comments',
@@ -36,6 +37,8 @@ export class UsersCommentsComponent implements OnInit {
       value: 'negative'
     }
   ];
+
+  public userState: number;
   public commentForm: {
     commentText: string,
     commentId: number | string
@@ -43,11 +46,14 @@ export class UsersCommentsComponent implements OnInit {
 
   public showAllChildComments = null;
   public convertedDate = null;
+  public userType: string = null;
+  public userAnserType: string = null;
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private localize: LocalizeRouterService,
-    private userCommentService: UserCommentService
+    private userCommentService: UserCommentService,
+    private userStateService: UserStateService
   ) { }
 
   ngOnInit() {
@@ -58,18 +64,17 @@ export class UsersCommentsComponent implements OnInit {
     // }
     console.log(this.userData);
     // console.log(this.userData[this.currentTab.value + 'Comments']);
+    this.checkUserState();
   }
 
-  // public openOffer(offerid) {
-  //   const translatedPath: any = this.localize.translateRoute('/service');
-
-  //   this.router.navigate( [translatedPath], {
-  //     relativeTo: this.route,
-  //     queryParams: {
-  //       offerId: offerid
-  //     },
-  //   });
-  // }
+  private checkUserState() {
+    this.userStateService.userState$
+    .subscribe(res=> {
+      // this.userState = res;
+      this.userType = res === 1 ? 'Freelancer' : 'Customer';
+      // this.userAnserType = res === 1 ? 'custromer' : 'freelancer';
+    })
+  }
   public toggleTab(tab: any) {
     this.currentTab = tab;
   }

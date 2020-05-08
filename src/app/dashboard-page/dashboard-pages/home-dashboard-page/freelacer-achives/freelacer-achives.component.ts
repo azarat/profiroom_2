@@ -12,18 +12,23 @@ export class FreelacerAchivesComponent implements OnInit {
   // achivments
   detailAchives: {
     name: string,
+    text: string
   } [] = [
     {
-      name: 'successDeals'
+      name: 'successDeals',
+      text: 'Количество завершенных заказов'
     },
     {
-      name: 'messagesReply'
+      name: 'messagesReply',
+      text: 'Время ответа'
     },
     {
-      name: 'rating'
+      name: 'rating',
+      text: 'Суммарный рейтинг'
     },
     {
-      name: 'earned'
+      name: 'earned',
+      text: 'Суммарный заработок'
     },
   ];
 

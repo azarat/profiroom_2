@@ -34,6 +34,7 @@ import { LastStepCreationComponent } from './components/create-service/last-step
 import { TooltipDirective } from './directives/tooltip.directive';
 import { OutsideTolltiDirective } from './directives/outside-tooltip.directive';
 
+import { CustomFormsModule } from 'ng2-validation'
 
 const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
 
@@ -92,7 +93,8 @@ const servicesRoutes: Routes = [
     MatChipsModule,
     MatTabsModule,
 
-    ClickOutsideModule
+    ClickOutsideModule,
+    CustomFormsModule
   ],
   exports: [
 

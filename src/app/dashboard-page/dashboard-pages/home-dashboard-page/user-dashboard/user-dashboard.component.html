@@ -24,8 +24,8 @@
                 <ng-container *ngIf="user.busy === 0">свободен</ng-container>
               </span>
             </p>
-            <p>Проектов в работе: <span>2</span></p>
-            <p>Проектов в очереди: <span>2</span></p>
+            <p>Проектов в работе: <span>{{ user.dealsCounts.inProgressOffers }}</span></p>
+            <p>Проектов в очереди: <span>{{ user.dealsCounts.QueuedOffers }}</span></p>
           </div>
           <div class="status-toggle-block">
             <p>Изменить статус можно здесь</p>

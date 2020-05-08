@@ -21,20 +21,20 @@
                     </span>
                 </div>
                 <div class="line">
-                    <div class="position" [style.width.%]="userData.achivments.totalProgress">
+                    <!-- <div class="position" [style.width.%]="userData.achivments.totalProgress">
                        <span> {{ userData.achivments.totalProgress }} % </span> 
-                    </div>
+                    </div> -->
                     
                     <!-- userData.achivments.totalProgress -->
                 </div>
             </div>
         </div>
     </div>
-    <div class="all-achive-types">
+    <!-- <div class="all-achive-types">
         <div class="achive-el" *ngFor=" let el of detailAchives">
             <div>
                 <span class="icon" [ngClass]="{ 'full': userData.achivments[el.name + 'Acivment'] == 100 }"></span>
-                <p>Уровень моего професионализма и тарифный план</p>
+                <p>{{ el.text }}</p>
             </div>
             <div class="detail-achive-line">
                 <div class="line">
@@ -43,5 +43,5 @@
                 <span class="current-val">{{ userData.achivments[el.name + 'Acivment'] }} %</span>
             </div>
         </div>
-    </div>
+    </div> -->
 </div>

@@ -7,7 +7,7 @@ import { plainToClass } from 'class-transformer';
 
 import { formatDataFunction } from 'src/app/shared/functions/format-data.function';
 import { CollocutorListModel } from 'src/app/models/chat/collocutors-list.model';
-import { filter } from 'rxjs/operators';
+import { filter, first } from 'rxjs/operators';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 import { Howl, Howler } from 'howler';
 import { CollocutorInterface } from '../../interfaces/collocutor.interface';
@@ -150,7 +150,7 @@ private _isAnyChatOpen() {
 
   private _getDealData(dealId) {
     this.dealService.getDealData(dealId)
-      .pipe(filter((res: any) => !! res))
+      .pipe(filter((res: any) => !! res), first())
       .subscribe((res: any)=> {
         console.log('NEWDATA', res)
         this.collocutorService.setCollocutorInfo(res);

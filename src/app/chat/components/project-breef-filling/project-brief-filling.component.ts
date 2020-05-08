@@ -7,7 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { LocalizeRouterService } from 'localize-router';
 import { DealService } from '../../services/deal.service';
 import { CollocutorService } from '../../services/collocutor.service';
-import { filter } from 'rxjs/operators';
+import { filter, first } from 'rxjs/operators';
 import { Brief } from 'src/app/models/user-services/brief.model';
 
 @Component({
@@ -44,7 +44,12 @@ export class ProjectBriefFillingComponent implements OnInit {
 
   private getCollocutorData() {
     this.collocutorSevice.collocutorData$
-    .pipe(filter((res: any) => !!res))
+    .pipe(
+      filter((res: any) => !!res),
+      first()
+
+
+      )
     .subscribe(res => {
       this.collocutorData = res;
         this.getOfferBrief();
