@@ -29,54 +29,45 @@
                 <div class="flip-container" [ngClass]="{customer: activeTab === 0, freelancer: activeTab === 1}"ontouchstart="this.classList.toggle('hover');">
                     <div class="flipper">
                         <div class="step-img-wrap front"><img src="assets/images/images/step1.svg" alt=""></div>
-                        <div class="step-img-wrap back"><img src="assets/images/images/step4.jpg" alt=""></div>
+                        <div class="step-img-wrap back"><img src="assets/images/images/step1.svg" alt=""></div>
                     </div>
                 </div> 
-                
-                <!-- <div class="step-img-wrap"><img src="assets/images/images/step1.svg" alt=""></div> -->
-                <div class="step-text">Ознакомьтесь с примерами работ фрилансера</div>
+                <div class="step-text" *ngIf="activeTab === 0">Ознакомьтесь с примерами работ фрилансера</div>
+                <div class="step-text" *ngIf="activeTab === 1">Создайте профайл - это ваша визитная карточка фрилансера.</div>
             </div>
             <div class="step">
                 <div class="step-number">2</div>
                 <div class="flip-container" [ngClass]="{customer: activeTab === 0, freelancer: activeTab === 1}"ontouchstart="this.classList.toggle('hover');">
                     <div class="flipper">
-                        <div class="step-img-wrap front"><img src="assets/images/images/step2.svg" alt=""></div>
+                        <div class="step-img-wrap front"><img src="assets/images/images/step2.1.svg" alt=""></div>
                         <div class="step-img-wrap back"><img src="assets/images/images/step2.svg" alt=""></div>
                     </div>
                 </div> 
-                <div class="step-text">Почитайте отзывы от предыдущих заказчиков</div>
+                <div class="step-text" *ngIf="activeTab === 0">Почитайте отзывы от предыдущих заказчиков</div>
+                <div class="step-text" *ngIf="activeTab === 1">Опишите весь спектр своего опыта, подберите лучшие работы для портфолио, укажите преимущества своего сервиса.</div>
             </div>
             <div class="step">
                 <div class="step-number">3</div>
                 <div class="flip-container" [ngClass]="{customer: activeTab === 0, freelancer: activeTab === 1}"ontouchstart="this.classList.toggle('hover');">
                     <div class="flipper">
-                        <div class="step-img-wrap front"><img src="assets/images/images/step3.svg" alt=""></div>
+                        <div class="step-img-wrap front"><img src="assets/images/images/step3.1.svg" alt=""></div>
                         <div class="step-img-wrap back"><img src="assets/images/images/step3.svg" alt=""></div>
                     </div>
                 </div> 
-                <div class="step-text">Выберите удобный пакет услуг для проекта</div>
-            </div>
+                <div class="step-text" *ngIf="activeTab === 0">Выберите удобный пакет услуг для проекта</div>
+                <div class="step-text" *ngIf="activeTab === 1">Создайте три пакета сервиса Базовый, Стандартный и Премиум. Это позволит увеличить ассортимент опций и часто среднюю цену сделки.</div>
+            </div> 
             <div class="step">
                 <div class="step-number">4</div>
                 <div class="flip-container" [ngClass]="{customer: activeTab === 0, freelancer: activeTab === 1}"ontouchstart="this.classList.toggle('hover');">
                     <div class="flipper">
-                        <div class="step-img-wrap front"><img src="assets/images/images/step4.svg" alt=""></div>
+                        <div class="step-img-wrap front"><img src="assets/images/images/step4.1.svg" alt=""></div>
                         <div class="step-img-wrap back"><img src="assets/images/images/step4.svg" alt=""></div>
                     </div>
                 </div> 
-                <div class="step-text">Свяжитесь с фрилансером для согласования деталей</div>
+                <div class="step-text" *ngIf="activeTab === 0">Свяжитесь с фрилансером для согласования деталей</div>
+                <div class="step-text" *ngIf="activeTab === 1">Используйте дополнительные опции для увеличения результатов обеих сторон.</div>
             </div>
-        </div>
-    </div>
-</div>
-
-<div class="flip-container" ontouchstart="this.classList.toggle('hover');">
-    <div class="flipper">
-        <div class="front">
-            <!-- front content -->
-        </div>
-        <div class="back">
-            <!-- back content -->
         </div>
     </div>
 </div>

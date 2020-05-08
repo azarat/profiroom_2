@@ -8,6 +8,10 @@ import { ChatModule } from '../chat/chat.module';
 import { HomePageAdvantagesComponent } from './home-page-advantages/home-page-advantages.component';
 import { HomePageSearchComponent } from './home-page-search/home-page-search.component';
 import { HomePageHowWorkComponent } from './home-page-how-work/home-page-how-work.component';
+import { HomePageFindSpecialistComponent } from './home-page-find-specialist/home-page-find-specialist.component';
+import { HomePageQuestionsComponent } from './home-page-questions/home-page-questions.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { HomePageAppNewsComponent } from './home-page-app-news/home-page-app-news.component';
 
 const routes: Routes = [
   {
@@ -22,7 +26,10 @@ const routes: Routes = [
     HomePageComponent,
     HomePageAdvantagesComponent,
     HomePageSearchComponent,
-    HomePageHowWorkComponent
+    HomePageHowWorkComponent,
+    HomePageFindSpecialistComponent,
+    HomePageQuestionsComponent,
+    HomePageAppNewsComponent
   ],
   exports: [
     HomePageComponent
@@ -32,7 +39,7 @@ const routes: Routes = [
     LocalizeRouterModule.forChild(routes),
     RouterModule.forChild(routes),
     MainHeaderModule,
-
+    MatExpansionModule,
     ChatModule
   ]
 })

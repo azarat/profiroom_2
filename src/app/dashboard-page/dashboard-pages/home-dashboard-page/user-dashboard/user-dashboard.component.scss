@@ -174,7 +174,10 @@
           margin: 0 0  24px;
         }
       }
-
+      .open-prifile{
+        margin: 28px 0 20px;
+        padding: 16px 20px;
+      }
     }
     .request-settings {
       .chart {
@@ -540,10 +543,6 @@
         .status-toggle-block {
           p {
             margin: 20px 0 14px;
-          }
-          .btn{
-            margin: 28px 0 20px;
-            padding: 16px 20px;
           }
         }
       }
