@@ -30,7 +30,7 @@
        width: 100%;
        height: 5px;
        border-bottom: 1px solid #3C7EEA;
-       margin-bottom: 30px;
+       margin-bottom: 40px;
        .indicator{
             position: relative;
             bottom: -1px;
@@ -53,8 +53,8 @@
     }
     .tabs-text{
         p{
-            font-size: 16px;
-            line-height: 20px;
+            font-size: 24px;
+            line-height: 33px;
             letter-spacing: 0.5px;
             margin: 0 0 22px;
         }
@@ -63,12 +63,24 @@
 
 .steps{
     width: 50%;
+    &-list{
+        position: relative;
+        &::before{
+            content: '';
+            position: absolute;
+            left: 22.5%;
+            top: 2%;
+            height: 90%;
+            width: 1px;
+            border-left: 2px dashed #D3D4F8;
+        }
+    }
 }
 .step{
     display: flex;
     align-items: center;
 
-    margin-bottom: 17px;
+    margin-bottom: 25px;
     &-number{
         font-weight: 600;
         font-size: 13px;
@@ -80,7 +92,7 @@
         width: 22px;
         height: 22px;
         position: relative;
-        margin-right: 20px;
+        margin-right: 30px;
         &::before{
             content: "";
             position: absolute;
@@ -97,12 +109,39 @@
         background: #FFFFFF;
         box-shadow: 0px 4px 12px #E5EAF4;
         border-radius: 3px;
-        max-width: 160px;
         height: auto;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
         img{
-            width: 100%;
-            height: 100%;
+            width: auto;
+            height: auto;
             object-fit: cover;
+        }
+        &:nth-child(1){
+            height: 145px;
+            img{
+                max-height: 93px;
+            }
+        }
+        &:nth-child(2){
+            height: 130px;
+            img{
+                max-height: 106px;
+            }
+        }
+        &:nth-child(3){
+            height: 180px;
+            img{
+                max-height: 135px;
+            }
+        }
+        &:nth-child(4){
+            height: 135px;
+            img{
+                max-height: 110px;
+            }
         }
     }
     &-text{
@@ -117,15 +156,15 @@
 .flip-container{
     perspective: 1000;
     margin-right: 30px;
-    width: 160px;
-    height: 110px;
+    width: 235px;
+    height: 150px;
     &.freelancer .flipper {
         transform: rotateY(180deg);
     }
         
     .front, .back {
-        width: 160px;
-        height: 110px;
+        width: 235px;
+        // height: 110px;
         backface-visibility: hidden;
         position: absolute;
         top: 0;
