@@ -17,12 +17,12 @@
         font-size: 24px;
         line-height: 33px;
         letter-spacing: 0.5px;
-        margin: 0;
+        margin: 0 0 60px;
 
         max-width: 510px;
     }
     &__wrap{
-        padding: 110px 0;
+        padding: 70px 0;
         position: relative;
         &::before{
             content: "";
@@ -52,7 +52,18 @@
 
     }
     z-index: 1;
-
+    .btn.colored{
+        width: max-content;
+    }
+    .section__subtitle{
+        margin: 0 0 15px;
+    }
+    .section__title{
+        margin: 0 0 40px;
+    }
+    .main-info__text{
+        margin: 0 0 55px; 
+    }
 }
 
 
