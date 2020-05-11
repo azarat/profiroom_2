@@ -17,6 +17,7 @@ export interface SubCategoryListInterface {
       id?: number;
       link?: string;
       name?: string;
+      img: string;
     }
   ];
 }

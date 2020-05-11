@@ -20,12 +20,12 @@
     </div>
 
     <div class="subcategories-list" *ngIf="subcategoriesList">
-      <div class="subcategory-full" *ngFor="let sub_categories of subcategoriesList.sub_categories">
-        <div class="subcategory-full-img" [routerLink]="['/catalog', subcategoriesList.link , sub_categories.link] | localize">
-          <img [src]="'https://www.thecubetest.site/Backend/storage/app' + sub_categories.img" alt="{{ sub_categories.name }}">
+      <div class="subcategory-full" *ngFor="let sub_category of subcategoriesList.sub_categories">
+        <div class="subcategory-full-img" [routerLink]="['/catalog', subcategoriesList.link , sub_category.link] | localize">
+          <img [src]="'https://www.thecubetest.site/Backend/storage/app' + sub_category.img" alt="{{ sub_category.name }}">
         </div>
-        <a [routerLink]="['/catalog', subcategoriesList.link , sub_categories.link] | localize">
-          <h2 class="subcategory-full-title">{{ sub_categories.name }} </h2>
+        <a [routerLink]="['/catalog', subcategoriesList.link , sub_category.link] | localize">
+          <h2 class="subcategory-full-title">{{ sub_category.name }} </h2>
         </a>
       </div>
     </div>
