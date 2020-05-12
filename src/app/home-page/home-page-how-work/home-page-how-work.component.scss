@@ -183,3 +183,126 @@
         transform: rotateY(180deg);
     }
 }
+
+@media (max-width: 1499px) {
+    .tabs{
+        max-width: 350px;
+        position: relative;
+        &-list{
+            .tab{
+                font-size: 18px;
+                line-height: 24px;
+                margin-bottom: 0;
+            }
+        }
+        &-slider{
+           width: 100%;
+           height: 5px;
+           margin-bottom: 20px;
+           .indicator{
+                width: 140px;
+                margin: 0 -5px 0px;
+                height: 4px;
+                &.activeTwo{
+                    transform: translateX(calc(350px - 96%));
+                }
+           }
+        }
+        .tabs-text{
+            p{
+                font-size: 16px;
+                line-height: 23px;
+                margin: 0 0 22px;
+            }
+        }
+        &::after{
+            content: "";
+            position: absolute;
+            z-index: -2;
+            bottom: -150px;
+            left: -30%;
+            width: 102px;
+            height: 118px;
+            background-image: url(/assets/images/images/dots-advantages.svg)
+        }
+    }
+    .steps{
+        &-list{
+            &::before{
+                left: 26.5%;
+            }
+            &::after{
+                content: "";
+                position: absolute;
+                z-index: -2;
+                top: 50%;
+                right: -20%;
+                width: 102px;
+                height: 118px;
+                background-image: url(/assets/images/images/dots-advantages.svg)
+            }
+        }
+    }
+    .step{  
+        margin-bottom: 17px;
+        &-number{
+            min-width: 22px;
+            min-height: 22px;
+        }
+        &-img-wrap{
+            img{
+                width: 85%;
+                height: 85%;
+                object-fit: contain;
+            }
+            &:nth-child(1){
+                height: 96px;
+                img{
+                    width: 85%;
+                    height: 85%;
+                    object-fit: contain;
+                }
+            }
+            &:nth-child(2){
+                height: 86px;
+                img{
+                    width: 85%;
+                    height: 85%;
+                    object-fit: contain;
+                }
+            }
+            &:nth-child(3){
+                height: 120px;
+                img{
+                    width: 85%;
+                    height: 85%;
+                    object-fit: contain;
+                }
+            }
+            &:nth-child(4){
+                height: 90px;
+                img{
+                    width: 85%;
+                    height: 85%;
+                    object-fit: contain;
+                }
+            }
+        }
+        &-text{
+            font-size: 16px;
+            line-height: 20px;
+            letter-spacing: 0.5px;
+            color: #707683;
+            max-width: 280px;
+        }
+    }
+    .flip-container{
+        perspective: 1000;
+        width: 160px;
+        height: 100px;
+            
+        .front, .back {
+            width: 160px;
+        }
+    }
+}

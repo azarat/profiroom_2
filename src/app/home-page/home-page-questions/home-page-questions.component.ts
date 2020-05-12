@@ -7,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePageQuestionsComponent implements OnInit {
 
-  customCollapsedHeight="90px";
+  private breakPointValue: number;
+  public customCollapsedHeight="90px";
 
   public questions = {
     freelancer: [
@@ -53,6 +54,12 @@ export class HomePageQuestionsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.breakPointValue = window.innerWidth;
+    if(this.breakPointValue < 1499) {
+      this.customCollapsedHeight = "80px";
+    } else {
+      this.customCollapsedHeight = "90px";
+    }
   }
   public selectTab(x) {
     this.activeTab = x;
