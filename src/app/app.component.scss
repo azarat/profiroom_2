@@ -447,3 +447,12 @@
 }
 
 
+@media (max-width: 1499px) {
+  ::ng-deep {
+    .btn {
+      font-size: 13px;
+      line-height: 16px;
+      padding: 13px 20px;
+    }
+  }
+}

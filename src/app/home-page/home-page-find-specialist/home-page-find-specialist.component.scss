@@ -58,3 +58,50 @@
         margin-left: 65px;
     }
 }
+
+@media (max-width: 1499px) {
+    .wrapper{
+        padding: 80px 0 80px;
+    }
+    .main-info{
+        max-width: 440px;
+        margin-bottom: 40px;
+    }
+    .freelancer-list{
+        margin: 0 -16px;
+        &::after{
+            content: "";
+            position: absolute;
+            z-index: 0;
+            top: -70px;
+            right: 0px;
+            width: 102px;
+            height: 118px;
+            background-image: url(/assets/images/images/dots-advantages.svg)
+        }
+    }
+    .freelancer-item{
+        width: calc(33% - 30px);
+        margin: 0 15px 40px;
+        &__top{
+            margin-bottom: 5px;
+        }
+        &__icon{
+            width: 33px;
+            height: 33px;
+            margin-right: 14px;
+            img{
+                max-width: 100%;
+            }
+        }
+        &__title{
+            font-size: 16px;
+            line-height: 18px;
+        }
+        &__text{
+            font-size: 14px;
+            line-height: 18px;
+            margin-left: 48px;
+        }
+    }
+}
