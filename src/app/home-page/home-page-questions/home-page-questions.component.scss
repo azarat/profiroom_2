@@ -272,39 +272,138 @@
       background-repeat: no-repeat;
     }
   }
-.question-item {
-  &__title {
-    font-size: 18px;
-    line-height: 24px;
-    padding: 27px 40px 27px;
-    .element-plus{
-      width: 15px;
-      height: 15px;
-      &::after {
+  .question-item {
+    &__title {
+      font-size: 18px;
+      line-height: 24px;
+      padding: 27px 40px 27px;
+      .element-plus{
         width: 15px;
-        height: 3px;
-      }
-      &::before {
-        width: 15px;
-        height: 3px;
+        height: 15px;
+        &::after {
+          width: 15px;
+          height: 3px;
+        }
+        &::before {
+          width: 15px;
+          height: 3px;
+        }
       }
     }
-  }
-  &__text {
-    font-size: 16px;
-    line-height: 23px;
-    padding: 0 16px 0;
-  }
-  &.active {
-    .question-item__title {
-      &::before {
-        transform: rotate(-90deg);
-      }
+    &__text {
+      font-size: 16px;
+      line-height: 23px;
+      padding: 0 16px 0;
     }
+    &.active {
+      .question-item__title {
+        &::before {
+          transform: rotate(-90deg);
+        }
+      }
 
-  }
-  &:last-child {
-    border-bottom: none;
+    }
+    &:last-child {
+      border-bottom: none;
+    }
   }
 }
+
+@media (max-width: 1199.98px) {
+  .main-info{
+    width: 50%;
+    &__text{
+      font-size: 14px;
+      line-height: 20px;
+      color: #707683;
+      margin-bottom: 22px;
+      p{
+        margin-bottom: 20px;
+        &:first-child{
+          max-width: 250px;
+        }
+        &:last-child{
+          max-width: 250px;
+        }
+      }
+    }
+    .section__subtitle{
+      margin: 0 0 8px;
+    }
+    .section__title{
+      max-width: 350px;
+      margin: 0 0 20px;
+    }
+    .btn.outline{
+      padding: 13px 35px;
+    }
+  }
+  .guestion-tabs{
+    width: 50%;
+    min-height: 400px;
+    .tabs{
+      max-width: 320px;
+      &-list{
+          max-width: 320px;
+          .tab{
+            font-size: 16px;
+            line-height: 20px;
+            margin-bottom: 0;
+          }
+      }
+      &-slider{
+         .indicator{
+              width: 125px;
+              &.activeOne{
+                transform: translateX(0);
+                width: 110px;
+              }
+              &.activeTwo{
+                transform: translateX(calc(325px - 100%));
+                width: 135px;
+              }
+         }
+      }
+    }
+    position: relative;
+    &::after{
+      content: "";
+      position: absolute;
+      z-index: -2;
+      bottom: 23%;
+      right: -15%;
+      width: 100px;
+      height: 180px;
+      background-image: url(/assets/images/images/dots-advantages.svg);
+      background-repeat: no-repeat;
+    }
+  }
+  .question-item {
+    &__title {
+      font-size: 14px;
+      line-height: 18px;
+      padding: 17px 18px 18px;
+      .element-plus{
+        display: none;
+      }
+    }
+    &__text {
+      font-size: 14px;
+      line-height: 20px;
+      padding: 0;
+    }
+    &.active {
+      .question-item__title {
+        &::before {
+          transform: rotate(-90deg);
+        }
+      }
+      .mat-expansion-panel-body{
+        padding: 0 18px 16px;
+      }
+    }
+    &:last-child {
+      border-bottom: none;
+    }
+  }
 }
