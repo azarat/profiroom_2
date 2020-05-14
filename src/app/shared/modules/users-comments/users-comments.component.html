@@ -1,11 +1,13 @@
-<section class="comments" *ngIf="userData">
+<section class="comments" *ngIf="userData && userData['negativeComments' + userRole].length +
+userData['positiveComments' + userRole].length > 0">
     <div class="comments__top">
-      <div class="section-title">Рейтинг и отзывы <span>({{ userData['negativeComments' + userType].length + userData['positiveComments' + userType].length }})</span></div>
-  
+      <div class="section-title">Рейтинг и отзывы <span>({{ userData['negativeComments' + userRole].length +
+        userData['positiveComments' + userRole].length }})</span></div>
+
       <div class="tabs">
         <ng-container *ngFor=" let tab of tabs, let i = index">
             <div class="tab" (click)="toggleTab(tab)" [ngClass]="{active: currentTab.id === i}">
-                {{ tab.name }} ({{ userData[tab.value + 'Comments' + userType].length }}) <span></span>
+                {{ tab.name }} ({{ userData[tab.value + 'Comments' + userRole].length }}) <span></span>
             </div>
         </ng-container>
 
@@ -13,22 +15,24 @@
       </div>
     </div>
     <ng-container>
-        <div class="comment" *ngFor="let comment of userData[currentTab.value + 'Comments' + userType ]; let parrentCommentIndex = index">
+        <div class="comment" *ngFor="let comment of userData[currentTab.value + 'Comments' + userRole ]; let parrentCommentIndex = index">
 
           <h5 class="comment__service-name" *ngIf="comment.offers">
             <a [routerLink]="'/service'| localize" [queryParams]="{ offerId: comment.offers.id }"> {{comment.offers.title}}</a>
           </h5>
-          <button class="comment__answer" (click)="openComentForm(comment.id)"></button>
+          <button class="comment__answer" (click)="openComentForm(comment.id)"
+           *ngIf="this.authorizatedUserId && ((userData.user_id == this.authorizatedUserId && pageType === 'service') ||
+           this.pageType === 'dashboard' || this.pageType === 'user' && this.authorizatedUserId === userData.id  )"></button>
           <div class="comment__wrapp">
             <div class="comment__wrapp_parrent">
               <div class="comment__img" *ngIf="comment.offers">
                 <div class="comment__img-wrapper">
                     <a [routerLink]="'/service'| localize" [queryParams]="{ offerId: comment.offers.id }">
-                     <img [src]="comment.offers.mainImage"  alt="service img">   
+                     <img [src]="comment.offers.mainImage"  alt="service img">
                     </a>
                 </div>
               </div>
-  
+
               <a class="comment__avatar" [routerLink]="['/user', comment.author.id] | localize">
                 <img [src]="comment.author.avatar" alt="user avatar">
               </a>
@@ -40,7 +44,7 @@
                 </div>
                 <div class="comment__message">{{comment.commentText}}</div>
                 <!-- Rating freelancer-->
-                <div class="comment__rating" *ngIf="this.userType === 'Freelancer'">
+                <div class="comment__rating" *ngIf="userRole === 'Freelancer'">
                   <div class="comment__rating-item">
                     <span>Качество</span>
                     <div class="star-rating">{{comment.qualityMark}}</div>
@@ -55,7 +59,7 @@
                   </div>
                 </div>
                 <!-- Rating customer -->
-                <div class="comment__rating service-page__version" *ngIf="this.userType === 'Customer'">
+                <div class="comment__rating service-page__version" *ngIf="userRole === 'Customer'">
                   <div class="comment__rating-item">
                     <span>Постановка задачи</span>
                     <div class="star-rating">{{comment.taskClarity}}</div>
@@ -73,7 +77,7 @@
                   <label for="answer-area">Напишите ответ</label>
                     <textarea name="comment" [(ngModel)]="commentForm.commentText" id="answer-area" cols="30" rows="10"></textarea>
 
-                  <button class="btn" type="submit" (click)="sendComment(parrentCommentIndex, currentTab.value + 'Comments'+ userType)">Отправить</button>
+                  <button class="btn" type="submit" (click)="sendComment(parrentCommentIndex, currentTab.value + 'Comments'+ userRole)">Отправить</button>
                 </form>
               </div>
             </div>
@@ -105,4 +109,4 @@
         </div>
     </ng-container>
   </section>
-  
+

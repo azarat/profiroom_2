@@ -20,8 +20,8 @@ export class UserDashboardComponent implements OnInit {
   public chartLabels: any[] = [];
   public showPieChart = true;
   // public allStatisticInfo: any[] = compressedFinanceInfoConst;
-  private userStateSubscription: Subscription
-
+  private userStateSubscription: Subscription;
+  public userRole: string;
   constructor(
     private dashboardService: DasboardService,
     private userStateService: UserStateService
@@ -30,7 +30,6 @@ export class UserDashboardComponent implements OnInit {
   ngOnInit() {
     this.setMounthLabels();
     this._checkUserState();
-    console.log(this.user)
   }
 
   public changeWorkStatus(status?: number) {
@@ -102,9 +101,9 @@ export class UserDashboardComponent implements OnInit {
     this.userStateSubscription = this.userStateService.userState$
       .subscribe(res => {
         this.user.role_id = res;
+        this.userRole = res === 1 ? 'Freelancer' : 'Customer';
       });
   }
-  
 
 
 }

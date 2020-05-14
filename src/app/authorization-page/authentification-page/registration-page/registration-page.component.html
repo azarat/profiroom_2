@@ -1,19 +1,17 @@
 <div class="registration-bl">
   <div class="container">
     <div class="row">
-      <h2>Регистрация</h2>
-      <p class="text">Добро пожаловать на лучшую платформу фриланса Whocan!</p>
+      <h2>{{'auth-page.registr.head' | translate}}</h2>
+      <p class="text">{{'auth-page.registr.title' | translate}}</p>
       <form #form="ngForm" [formGroup]="registrationForm" (ngSubmit)="registrate()">
         <mat-form-field>
             <mat-label>Email</mat-label>
           <input matInput type="email" formControlName="email" required />
-          <mat-error *ngIf="registrationForm.get('email').hasError('required')">{{ "Введите Email" }}</mat-error>
-          <mat-error *ngIf="registrationForm.get('email').hasError('email')">{{
-            "Некорректный email"
-          }}</mat-error>
+          <mat-error *ngIf="registrationForm.get('email').hasError('required')">{{'auth-page.email-error-require' | translate}}</mat-error>
+          <mat-error *ngIf="registrationForm.get('email').hasError('email')">{{'auth-page.email-error' | translate}}</mat-error>
         </mat-form-field>
         <mat-form-field>
-            <mat-label>Введите пароль</mat-label>
+            <mat-label>{{'auth-page.password-field.title' | translate}}</mat-label>
             <input class="pass" matInput type="password" [type]="hideF ? 'password' : 'text'" formControlName="password" required />
             <div class="pass-erorrs">
               <span [ngClass]="registrationForm.controls['password'].hasError('required') || registrationForm.controls['password'].hasError('hasNumber') ? 'unvalidated': 'validated'"></span>
@@ -23,11 +21,11 @@
               <span [ngClass]="registrationForm.controls['password'].hasError('required') || registrationForm.controls['password'].hasError('minLengthCharacters') ? 'unvalidated': 'validated'"></span>
               <ul class="description" *ngIf="registrationForm.controls['password'].invalid">
 
-                <li *ngIf="registrationForm.controls['password'].hasError('hasNumber')">Должна быть минимум одна цифра</li>
-                <li *ngIf="registrationForm.controls['password'].hasError('hasSmallCase')">Должна быть минимум одна маленькая буква a-z</li>
-                <li *ngIf="registrationForm.controls['password'].hasError('hasCapitalCase')">Должна быть минимум одна большая буква A-Z</li>
-                <li *ngIf="registrationForm.controls['password'].hasError('hasSpecialCharacters')">Должна быть минимум один спец символ  (! " # $ % & ' ( ) * + , - . / : ; < = > ? @ [ \ ] ^ _`  | } ~)</li>
-                <li *ngIf="registrationForm.controls['password'].hasError('minLengthCharacters')">Пароль не меньше 8 символов</li>
+                <li *ngIf="registrationForm.controls['password'].hasError('hasNumber')">{{'auth-page.password-field.numbers-required' | translate}}</li>
+                <li *ngIf="registrationForm.controls['password'].hasError('hasSmallCase')">{{'auth-page.password-field.small-case' | translate}}</li>
+                <li *ngIf="registrationForm.controls['password'].hasError('hasCapitalCase')">{{'auth-page.password-field.uppercase' | translate}}</li>
+                <li *ngIf="registrationForm.controls['password'].hasError('hasSpecialCharacters')">{{'auth-page.password-field.specific-simbols' | translate}}</li>
+                <li *ngIf="registrationForm.controls['password'].hasError('minLengthCharacters')">{{'auth-page.password-field.min-length' | translate}}</li>
               </ul>
             </div>
             <!-- <button type="button" class="pass" mat-icon-button matSuffix (click)="hideF = !hideF" [attr.aria-label]="'Hide password'"
@@ -58,19 +56,16 @@
             }}</mat-error>
         </mat-form-field>
         <section>
-            <mat-checkbox class="controls" required  class="policy" formControlName="agreed">Я согласен(а) с <span>Политикой конфиденциальности</span></mat-checkbox>
+            <mat-checkbox class="controls" required  class="policy" formControlName="agreed" [innerHTML]="'auth-page.registr.confident-policy' | translate"></mat-checkbox>
         </section>
         <section  class="submit">
-            <!-- <button [style.background-color]="!registrationForm.valid? '#c2cfe0': '#3c7eea'" mat-button [disabled]="registrationForm.invalid"  type="submit" mat-raised-button>
-                Зарегистрироваться
-            </button> -->
             <button class="btn" type="submit"  [disabled]="registrationForm.invalid">
-                Зарегистрироваться
+              {{'auth-page.registr.submit-btn' | translate}}
             </button>
         </section >
       </form>
       <section class="social-login">
-        <span>или  зарегистрироваться с помощью </span>
+        <span>{{'auth-page.registr.register-vs-social' | translate}}</span>
           <div class="social">
             <button class="fb"></button><button class="gl"></button><button class="lin"></button>
           </div>
