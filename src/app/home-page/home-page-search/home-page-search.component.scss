@@ -58,6 +58,10 @@
 }
 
 @media (max-width: 1499px) {
+  .content{
+    position: relative;
+    z-index: 9;
+  }
   .section-subtitle {
     font-size: 13px;
     line-height: 16px;
@@ -69,5 +73,20 @@
     font-size: 36px;
     line-height: 43px;
     margin: 0 0 44px;
+  }
+}
+
+@media (max-width: 1199.98px) {
+  .section-subtitle {
+    font-size: 10px;
+    line-height: 13px;
+    margin: 0 0 21px;
+  }
+  
+  .section-title {
+    max-width: 480px;
+    font-size: 24px;
+    line-height: 119.2%;
+    margin: 0 0 26px;
   }
 }

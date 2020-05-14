@@ -55,10 +55,10 @@ export class HomePageQuestionsComponent implements OnInit {
 
   ngOnInit() {
     this.breakPointValue = window.innerWidth;
-    if(this.breakPointValue < 1499) {
+    if(this.breakPointValue >= 1200 && this.breakPointValue < 1499) {
       this.customCollapsedHeight = "80px";
-    } else {
-      this.customCollapsedHeight = "90px";
+    } else if (this.breakPointValue < 1200) {
+      this.customCollapsedHeight = "50px";
     }
   }
   public selectTab(x) {
