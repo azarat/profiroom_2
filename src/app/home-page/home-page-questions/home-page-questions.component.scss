@@ -407,3 +407,86 @@
     }
   }
 }
+
+@media (max-width: 767.98px) {
+  .wrapper{
+    flex-direction: column;
+  }
+  .main-info{
+    width: 100%;
+    &__text{
+      p{
+        margin-bottom: 20px;
+        &:first-child{
+          max-width: none;
+        }
+        &:last-child{
+          max-width: none;
+        }
+      }
+    }
+    .section__subtitle{
+      margin: 0 0 8px;
+    }
+    .section__title{
+      max-width: 270px;
+    }
+    .btn.outline{
+      display: none;
+    }
+  }
+  .guestion-tabs{
+    width: 100%;
+    min-height: max-content;
+    max-height: 430px;
+    position: relative;
+    transition: all .5s ease-in-out;
+    .tabs{
+      max-width: 320px;
+      &-list{
+          max-width: 320px;
+          .tab{
+            font-size: 16px;
+            line-height: 20px;
+            margin-bottom: 0;
+          }
+      }
+      &-slider{
+         .indicator{
+              width: 125px;
+              &.activeOne{
+                transform: translateX(0);
+                width: 110px;
+              }
+              &.activeTwo{
+                transform: translateX(calc(325px - 100%));
+                width: 135px;
+              }
+         }
+      }
+    }
+    position: relative;
+    &::after{
+      content: "";
+      position: absolute;
+      z-index: -2;
+      bottom: 23%;
+      right: -15%;
+      width: 100px;
+      height: 180px;
+      background-image: url(/assets/images/images/dots-advantages.svg);
+      background-repeat: no-repeat;
+    }
+  }
+}
+
+@media (max-width: 340px) {
+  .guestion-tabs{
+    .tabs-slider{
+      .indicator.activeTwo{
+        transform: translateX(calc(300px - 100%));
+        width: 125px;
+      }
+    }
+  }
+}

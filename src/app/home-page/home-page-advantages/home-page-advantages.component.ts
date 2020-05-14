@@ -7,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePageAdvantagesComponent implements OnInit {
 
+  public activeTab = 0;
   constructor() { }
 
   ngOnInit() {
+  }
+
+  toggleTab(x) {
+    if(this.activeTab === x) {
+      this.activeTab = null;
+    } else {
+      this.activeTab = x;
+    }
   }
 
 }

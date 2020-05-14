@@ -18,6 +18,9 @@ export class MainHeaderComponent implements OnInit {
   public token: any;
   currentUser: UserModel;
   routeMainPage: any = this.localize.translateRoute('');
+  public hamburgerMenu = false;
+  public langList = false;
+
   constructor(
     private localize: LocalizeRouterService,
     private router: Router,
@@ -35,5 +38,13 @@ export class MainHeaderComponent implements OnInit {
 
   checkUserToken() {
     this.token = this.localStorageService.getItem('token').value;
+  }
+
+  public toggleHamburgerMenu(){
+    this.hamburgerMenu = !this.hamburgerMenu;
+  }
+
+  public showLangList(){
+    this.langList = !this.langList;
   }
 }

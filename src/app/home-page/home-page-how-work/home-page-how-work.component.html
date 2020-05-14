@@ -21,8 +21,8 @@
             </div>
         </div>
     </div>
-    <div class="steps">
-        <div class="steps-list">
+    <div class="steps" [ngClass]="{simpleBlock: activeTab === 0, elongatedBlock: activeTab === 1}">
+        <div class="steps-list" [ngClass]="{activeSLideOne: currentSlide === 0, activeSLideTwo: currentSlide === 1, activeSLideThree: currentSlide === 2, activeSLideFour: currentSlide === 3}">
             <div class="step">
                 <div class="step-number">1</div>
 
@@ -68,6 +68,10 @@
                 <div class="step-text" *ngIf="activeTab === 0">Свяжитесь с фрилансером для согласования деталей</div>
                 <div class="step-text" *ngIf="activeTab === 1">Используйте дополнительные опции для увеличения результатов обеих сторон.</div>
             </div>
+        </div>
+        <div class="slider-navigation">
+            <button class="circle-btn right" [ngClass]="{disabled: currentSlide === 0}" (click)="decreaseSlide()"></button>
+            <button class="circle-btn left" [ngClass]="{disabled: currentSlide === 3}" (click)="increaseSlide()"></button>
         </div>
     </div>
 </div>

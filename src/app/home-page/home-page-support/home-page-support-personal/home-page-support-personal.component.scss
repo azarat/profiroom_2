@@ -428,3 +428,158 @@ $orbit-color: $gray;
     @include orbit(400px, 0, 30s);
   }
 }
+
+@media (max-width: 767.98px) {
+  .personal{
+    margin-top: 80px;
+  }
+  .orbit {
+  
+    &.small {
+      top: 17%;
+      left: 22%;
+  
+      .sphere {
+        animation: spinBack 18s linear infinite;
+        &:nth-child(1) {
+          bottom: 0;
+          right: -40px;
+        }
+  
+        &:nth-child(2) {
+          top: 40px;
+          left: 25px;
+        }
+      }
+    }
+  
+    &.medium {
+      left: 18%;
+      top: 10%;
+      .sphere {
+        animation: spinBack 24s linear infinite;
+  
+        &:nth-child(1) {
+          bottom: -30px;
+          left: 0px;
+        }
+  
+        &:nth-child(2) {
+          top: 40px;
+          left: 0;
+        }
+      }
+    }
+  
+    &.large {
+      top: 0;
+      left: 8%;
+      .sphere {
+        animation: spinBack 30s linear infinite;
+        &:nth-child(1) {
+          top: -50px;
+          left: 40%;
+        }
+        &:nth-child(2) {
+          top: 270px;
+          right: 0;
+        }
+      }
+  
+      &::before {
+
+      }
+    }
+    .sphere {
+  
+      &.small {
+        width: 55px;
+        height: 55px;
+      }
+  
+      &.medium {
+        width: 75px;
+        height: 75px;
+      }
+  
+      &.large {
+        width: 95px;
+        height: 95px;
+        border: 3px solid #fff;
+      }
+    }
+  }
+  .orbit.small {
+    @include orbit(230px, 0, 18s);
+  }
+  
+  .orbit.medium {
+    @include orbit(260px, 0, 24s);
+  }
+  
+  .orbit.large {
+    @include orbit(340px, 0, 30s);
+  }
+}
+
+@media (max-width: 425px) {
+  .orbit {
+    &.small {
+      top: 18%;
+      left: 24%;
+    }
+  
+    &.medium {
+      left: 16%;
+      top: 8%;
+    }
+  
+    &.large {
+      left: 10%;
+      .sphere {
+        &:nth-child(2) {
+          top: 210px;
+        }
+      }
+    }
+    .orbit.small {
+      @include orbit(200px, 0, 18s);
+    }
+    
+    .orbit.medium {
+      @include orbit(260px, 0, 24s);
+    }
+    
+    .orbit.large {
+      @include orbit(310px, 0, 30s);
+    }
+  }
+}
+
+@media (max-width: 380px) {
+  .orbit.small {
+    @include orbit(200px, 0, 18s);
+  }
+  .orbit {
+  
+    &.small {
+      top: 18%;
+      left: 20%;
+    }
+  
+    &.medium {
+      left: 10%;
+      top: 8%;
+    }
+  
+    &.large {
+      left: 10px;
+      .sphere {
+        &:nth-child(2) {
+          top: 210px;
+        }
+      }
+    }
+
+  }
+}
