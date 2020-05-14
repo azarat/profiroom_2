@@ -68,13 +68,13 @@
               </div>
 
               <div class="period-wrapper">
-                <div class="field-block service-selects mounthes">
+                <div class="field-block service-selects monthes">
                   <label class="block-title" for="startEducation">Окончание
                   </label>
-                  <mat-select name="endEducationMounth" id="endEducationMounth"
+                  <mat-select name="endEducationMonth" id="endEducationMonth"
                     [(ngModel)]="userSettings.additionalEducation[i].endStudyMonth">
-                    <ng-container *ngFor="let endStudyMounth of month">
-                      <mat-option [value]="endStudyMounth">{{ endStudyMounth }}</mat-option>
+                    <ng-container *ngFor="let endStudyMonth of month">
+                      <mat-option [value]="endStudyMonth">{{ endStudyMonth }}</mat-option>
                     </ng-container>
                   </mat-select>
                 </div>

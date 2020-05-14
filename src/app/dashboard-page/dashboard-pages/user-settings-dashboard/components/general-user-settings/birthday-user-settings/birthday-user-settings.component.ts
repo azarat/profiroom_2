@@ -8,7 +8,7 @@ import { UserSettingsModel } from 'src/app/models/user-settings.model';
 })
 export class BirthdayUserSettingsComponent implements OnInit {
   days = [];
-  mounth = [];
+  month = [];
   // year: number = 1996;
 
   public maxDays: number;
@@ -33,7 +33,7 @@ export class BirthdayUserSettingsComponent implements OnInit {
   }
   createMountArray() {
     for (let i = 1; i <= 12; i++) {
-      this.mounth.push(i);
+      this.month.push(i);
     }
   }
 

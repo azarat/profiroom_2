@@ -12,6 +12,9 @@ import { HomePageFindSpecialistComponent } from './home-page-find-specialist/hom
 import { HomePageQuestionsComponent } from './home-page-questions/home-page-questions.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { HomePageAppNewsComponent } from './home-page-app-news/home-page-app-news.component';
+import { HomePageSupportComponent } from './home-page-support/home-page-support.component';
+import { HomePageSupportPersonalComponent } from './home-page-support/home-page-support-personal/home-page-support-personal.component';
+// import { HomePageSupportPersonalComponent } from './home-page-support/home-page-support-personal/home-page-support-personal.component';
 
 const routes: Routes = [
   {
@@ -29,7 +32,9 @@ const routes: Routes = [
     HomePageHowWorkComponent,
     HomePageFindSpecialistComponent,
     HomePageQuestionsComponent,
-    HomePageAppNewsComponent
+    HomePageAppNewsComponent,
+    HomePageSupportComponent,
+    HomePageSupportPersonalComponent
   ],
   exports: [
     HomePageComponent

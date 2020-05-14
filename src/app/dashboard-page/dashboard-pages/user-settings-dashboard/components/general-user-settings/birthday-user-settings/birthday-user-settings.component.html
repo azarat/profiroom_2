@@ -6,9 +6,9 @@
       </ng-container>
     </mat-select>
   </div>
-  <div class="mounth">
+  <div class="month">
     <mat-select name="month" id=""  [(ngModel)]="userSettingsModel.birthDay.month" (ngModelChange)="filterChanhe()">
-      <ng-container *ngFor="let month of mounth, let i = index">
+      <ng-container *ngFor="let month of month, let i = index">
         <mat-option [value]="month">{{ month }}</mat-option>
       </ng-container>
     </mat-select>
