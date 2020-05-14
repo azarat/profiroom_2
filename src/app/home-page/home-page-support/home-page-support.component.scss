@@ -90,7 +90,7 @@
     .btn{
       position: absolute;
       white-space: nowrap;
-      right: 0;
+      right: 15px;
     }
   }
 }
@@ -108,5 +108,11 @@
   .personal-wrapper{
     width: 100%;
     min-height: 350px;
+  }
+}
+
+@media (max-width: 420px) {
+  .personal-wrapper{
+    min-height: 440px;
   }
 }

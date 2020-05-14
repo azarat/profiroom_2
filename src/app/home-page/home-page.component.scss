@@ -526,7 +526,7 @@ h1 {
     }
   }
   .advantages{
-    height: 105%;
+    height: 55%;
   }
   .how-work{
     padding: 140px 0 0px;
@@ -704,8 +704,17 @@ h1 {
     &::before{
       display: none;
     }
+    .wrapper{
+      padding: 0 35px;
+
+    }
+    .columns-list{
+      flex-direction: column;
+      padding-top: 90px;
+    }
     .column{
       width: 100%;
+      margin-bottom: 10px;
       &-title{
         font-size: 16px;
         line-height: 20px;
@@ -715,30 +724,19 @@ h1 {
         font-size: 14px;
         line-height: 18px;
       }
-      .column{
-        &.column-info{
-          width: 100%;
-          order: 4;
-          justify-content: center;
-          align-items: center;
-          h4, p{
-            text-align: center;
-          }
-        }
-        &:nth-child(1){
-          margin-right: auto;
-          width: 100%;
-        }
-        &:nth-child(2){
-          width: 100%;
-        }
-        &:nth-child(3){
-          width: 100%;
-        }
-        &:nth-child(4){
-          width: 100%;
+
+      &.column-info{
+        width: 100%;
+        order: 4;
+        justify-content: center;
+        align-items: center;
+        h4, p{
+          text-align: center;
+          margin-top: 0;
+
         }
       }
+
     }
     .copyright{
       font-size: 13px;

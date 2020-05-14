@@ -479,3 +479,14 @@
     }
   }
 }
+
+@media (max-width: 340px) {
+  .guestion-tabs{
+    .tabs-slider{
+      .indicator.activeTwo{
+        transform: translateX(calc(300px - 100%));
+        width: 125px;
+      }
+    }
+  }
+}

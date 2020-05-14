@@ -521,3 +521,65 @@ $orbit-color: $gray;
     @include orbit(340px, 0, 30s);
   }
 }
+
+@media (max-width: 425px) {
+  .orbit {
+    &.small {
+      top: 18%;
+      left: 24%;
+    }
+  
+    &.medium {
+      left: 16%;
+      top: 8%;
+    }
+  
+    &.large {
+      left: 10%;
+      .sphere {
+        &:nth-child(2) {
+          top: 210px;
+        }
+      }
+    }
+    .orbit.small {
+      @include orbit(200px, 0, 18s);
+    }
+    
+    .orbit.medium {
+      @include orbit(260px, 0, 24s);
+    }
+    
+    .orbit.large {
+      @include orbit(310px, 0, 30s);
+    }
+  }
+}
+
+@media (max-width: 380px) {
+  .orbit.small {
+    @include orbit(200px, 0, 18s);
+  }
+  .orbit {
+  
+    &.small {
+      top: 18%;
+      left: 20%;
+    }
+  
+    &.medium {
+      left: 10%;
+      top: 8%;
+    }
+  
+    &.large {
+      left: 10px;
+      .sphere {
+        &:nth-child(2) {
+          top: 210px;
+        }
+      }
+    }
+
+  }
+}
