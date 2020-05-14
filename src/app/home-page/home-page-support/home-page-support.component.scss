@@ -94,3 +94,19 @@
     }
   }
 }
+
+@media (max-width: 767.98px) {
+  .wrapper{
+    flex-direction: column-reverse;
+    padding: 20px 15px 70px;
+    overflow: hidden;
+  }
+  .main-info{
+    width: 100%;
+    position: relative;
+  }
+  .personal-wrapper{
+    width: 100%;
+    min-height: 350px;
+  }
+}

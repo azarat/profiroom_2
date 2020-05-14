@@ -12,9 +12,9 @@
     <div class="features">
         <!-- <div class="features-wrap"> -->
             <div class="features-column">
-                <div class="features-item__wrapper">
+                <div class="features-item__wrapper" [ngClass]="{openTab: activeTab === 0}">
                     <div class="features-item">
-                        <div class="features-item__top">
+                        <div class="features-item__top" (click)="toggleTab(0)">
                             <div class="features-item__icon"><img src="assets/images/icons/advantages/payment-protection.svg" alt=""></div>
                             <h4 class="features-item__title">Защита платежей</h4>
                         </div>
@@ -23,9 +23,9 @@
                         </p>
                     </div>
                 </div>
-                <div class="features-item__wrapper">
+                <div class="features-item__wrapper" [ngClass]="{openTab: activeTab === 1}">
                     <div class="features-item">
-                        <div class="features-item__top">
+                        <div class="features-item__top" (click)="toggleTab(1)">
                             <div class="features-item__icon"><img src="assets/images/icons/advantages/opacity.svg" alt=""></div>
                             <h4 class="features-item__title">Прозрачность</h4>
                         </div>
@@ -36,9 +36,9 @@
                 </div>
             </div>
             <div class="features-column">
-                <div class="features-item__wrapper">
+                <div class="features-item__wrapper" [ngClass]="{openTab: activeTab === 2}">
                     <div class="features-item">
-                        <div class="features-item__top">
+                        <div class="features-item__top" (click)="toggleTab(2)"> 
                             <div class="features-item__icon"><img src="assets/images/icons/advantages/quick-payouts.svg" alt=""></div>
                             <h4 class="features-item__title">Быстрые выплаты</h4>
                         </div>
@@ -48,9 +48,9 @@
                     </div>
                 </div>
 
-                <div class="features-item__wrapper">
+                <div class="features-item__wrapper" [ngClass]="{openTab: activeTab === 3}">
                     <div class="features-item">
-                        <div class="features-item__top">
+                        <div class="features-item__top" (click)="toggleTab(3)">
                             <div class="features-item__icon"><img src="assets/images/icons/advantages/cashback.svg" alt=""></div>
                             <h4 class="features-item__title">Кэшбэк</h4>
                         </div>
@@ -60,9 +60,9 @@
                     </div>
                 </div>
 
-                <div class="features-item__wrapper">
+                <div class="features-item__wrapper" [ngClass]="{openTab: activeTab === 4}">
                     <div class="features-item">
-                        <div class="features-item__top">
+                        <div class="features-item__top" (click)="toggleTab(4)">
                             <div class="features-item__icon"><img src="assets/images/icons/advantages/convenient-system.svg" alt=""></div>
                             <h4 class="features-item__title"> Удобная система</h4>
                         </div>
