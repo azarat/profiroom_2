@@ -25,6 +25,7 @@ export class HomeUserSettingsComponent implements OnInit {
   ngOnInit() {
     this.getUserService();
     this.titleService.setTitle('Настройки');
+    
   }
 
   //  ** load userServiceData from server
@@ -38,9 +39,9 @@ export class HomeUserSettingsComponent implements OnInit {
         filter((response: any) => !!response)
       )
       .subscribe(response => {
+        console.log(response);
         this.userSettingsModel = plainToClass(UserSettingsModel, response);
       });
-
   }
 
 }

@@ -23,7 +23,7 @@ export class BirthdayUserSettingsComponent implements OnInit {
     this.createArrayYear();
     this.filterChanhe();
     this.createDayArray();
-    this.createMountArray();
+    this.createMontArray();
   }
 
   createDayArray() {
@@ -31,7 +31,7 @@ export class BirthdayUserSettingsComponent implements OnInit {
       this.days.push(i);
     }
   }
-  createMountArray() {
+  createMontArray() {
     for (let i = 1; i <= 12; i++) {
       this.month.push(i);
     }
