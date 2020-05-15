@@ -20,7 +20,9 @@
   <div class="side-bar" [ngClass]='{simplified: sideMenuClose}'>
     <section class="avatar">
       <div class="lines"></div>
-      <img [src]="user.avatar" alt="avatar" />
+      <div class="avatar-wrapper">
+        <img [src]="user.avatar" alt="avatar" />
+      </div>
       <p class="name">{{ user.name }} {{ user.surname}}</p>
       <div class="rating">
         <app-star-rating [currentRating]="user.rating"></app-star-rating>
