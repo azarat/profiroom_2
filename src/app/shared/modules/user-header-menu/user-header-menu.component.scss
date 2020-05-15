@@ -109,10 +109,15 @@
   .user-menu span{
     display: none;
   }
-  .menu.open{
-    display: block;
-    min-width: 150px;
-    right: -15px;
-    top: 45px;
+  .menu{
+    &::after{
+      transform: translateX(-110%);
+    }
+    &.open{
+      display: block;
+      min-width: 150px;
+      right: -15px;
+      top: 48px;
+    }
   }
 }
