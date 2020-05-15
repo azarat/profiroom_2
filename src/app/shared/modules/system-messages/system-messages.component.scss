@@ -1,6 +1,8 @@
 .notifications {
   margin-right: 30px;
   position: relative;
+  display: flex;
+  align-items: center;
   mat-icon {
     color: #fff;
     cursor: pointer;

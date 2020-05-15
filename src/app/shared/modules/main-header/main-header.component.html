@@ -31,13 +31,14 @@
       </div>
 
     </div>
-
+    <div class="logo">
+      <!-- <a [routerLink]="'' | localize"> <img src="assets/images/logo.svg" alt=""></a> -->
+      <a [routerLink]="'' | localize"> Whocan</a>
+    </div>
     <div class="menu">
-      <div class="logo">
-        <!-- <a [routerLink]="'' | localize"> <img src="assets/images/logo.svg" alt=""></a> -->
-        <a [routerLink]="'' | localize"> Whocan</a>
-      </div>
+
       <nav *ngIf="pageName !== 'authoriz'">
+        <a [routerLink]="''">Главная</a>
         <a [routerLink]="''">{{'header.how_it_works' | translate}}</a>
         <a [routerLink]="['/catalog'] | localize">Каталог</a>
         <a [routerLink]="''">Проэкты</a>

@@ -19,3 +19,11 @@
         border: 40px solid #E9ECF1;;
     }
 }
+@media (max-width: 1499px) {
+    .chart.zero {
+        &:before {
+            height: 13rem;
+            width: 13rem;
+        }
+    }
+}

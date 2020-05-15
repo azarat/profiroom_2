@@ -8,10 +8,12 @@
   <div class="menu" [ngClass]="menuOpen? 'open': 'close'">
     <ul>
       <li> <a [routerLink]="'/dashboard'| localize">Дашбоард</a> </li>
-      <li> <a [routerLink]="'/dashboard/chat-room'| localize">чат</a> </li>
-      <li> <a [routerLink]="'/dashboard/projects'| localize">проэкты</a> </li>
-      <li> <a [routerLink]="'/dashboard/finance'| localize">финансы</a> </li>
-      <li (click)="logOut()">Выйти</li>
+      <li> <a [routerLink]="'/dashboard/finance'| localize">Финансы</a> </li>
+      <li> <a [routerLink]="'/dashboard/chat-room'| localize">Чат</a> </li>
+      <li> <a [routerLink]="'/dashboard/projects'| localize">Проэкты</a> </li>  
+      <li> <a [routerLink]="'/dashboard/my-services'| localize">Мои услуги</a> </li>
+      <li class="system-item arrow-top"> <a [routerLink]="'/dashboard/settings'| localize">Настройки</a> </li>
+      <li class="system-item" (click)="logOut()">Выйти</li>
     </ul>
   </div>
 </div>

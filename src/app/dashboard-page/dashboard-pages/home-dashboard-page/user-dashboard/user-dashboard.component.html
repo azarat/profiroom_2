@@ -5,7 +5,7 @@
         <img src="/assets/images/icons/finance/{{el.icon}}.png" alt="">
       </div>
       <div>
-        <p>{{ user.purse[el.valueName] }}</p>
+        <p [ngClass]="{inline: el.icon === 'current'}">{{ user.purse[el.valueName] }}</p><span *ngIf="el.icon === 'current'">UAH</span>
         <p>{{ el.name }}</p>
       </div>
     </div>

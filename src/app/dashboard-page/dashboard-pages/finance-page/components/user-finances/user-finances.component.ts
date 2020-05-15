@@ -32,7 +32,7 @@ export class UserFinancesComponent implements OnInit {
   getFinanceData() {
     this.userFinanceService.getUserFinanceData()
       .subscribe((res: any) => {
-        this.userFinance = res[0];
+        this.userFinance = res;
         console.log(this.userFinance);
         this.userCashMoves = this.sortcashByTime(this.userFinance.history);
       });
