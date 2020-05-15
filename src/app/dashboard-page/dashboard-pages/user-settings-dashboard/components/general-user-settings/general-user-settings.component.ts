@@ -23,7 +23,7 @@ export class GeneralUserSettingsComponent implements OnInit {
   ngOnInit( ) { }
 
   updateSettings() {
-    console.log(this.userSettingsModel);
+    console.log("перед загрузкой", this.userSettingsModel);
     // timer(200);
 
     this.userSettingsService.updateService(this.userSettingsModel)

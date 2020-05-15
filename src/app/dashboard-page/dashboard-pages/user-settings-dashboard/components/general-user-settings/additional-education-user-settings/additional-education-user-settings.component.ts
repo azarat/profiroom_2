@@ -24,10 +24,10 @@ export class AdditionalEducationUserSettingsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.createMountArray();
+    this.createMonthArray();
     this.openItem = this.userSettings.additionalEducation.length;
   }
-  createMountArray() {
+  createMonthArray() {
     for (let i = 1; i <= 12; i++) {
       this.month.push(i);
     }
