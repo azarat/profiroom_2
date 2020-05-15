@@ -84,7 +84,11 @@ export class CalendarComponent implements OnInit {
 
     this.userFinance.forEach(element => {
       let event: string;
-      if (element.income === 1) {
+      if (element.trnsactonType === ('hold' || 'dealCanceled')) {
+        return;
+      }
+
+      if (element.income === 1 ) {
         event = 'input';
       } else {
         event = 'output';

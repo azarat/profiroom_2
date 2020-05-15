@@ -56,7 +56,7 @@
             }}</mat-error>
         </mat-form-field>
         <section>
-            <mat-checkbox class="controls" required  class="policy" formControlName="agreed" [innerHTML]="'auth-page.registr.confident-policy' | translate"></mat-checkbox>
+             <mat-checkbox class="controls" required  class="policy" formControlName="agreed">{{'auth-page.registr.i-agree' | translate}}<span>{{'auth-page.registr.confident-policy' | translate}}</span></mat-checkbox>
         </section>
         <section  class="submit">
             <button class="btn" type="submit"  [disabled]="registrationForm.invalid">

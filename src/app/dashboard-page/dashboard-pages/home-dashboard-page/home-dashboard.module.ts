@@ -10,6 +10,7 @@ import { LineChartDashboardComponent } from './line-chart-dashboard/line-chart-d
 import { PieChartDashboardComponent } from './pie-chart-dashboard/pie-chart-dashboard.component';
 import { UsersCommentsModule } from 'src/app/shared/modules/users-comments/users-comments.module';
 import { FreelacerAchivesComponent } from './freelacer-achives/freelacer-achives.component';
+import { ThousandSeparatorModule } from 'src/app/shared/pipes/thousand-separator/thousand-separator.module';
 
 
 const dashboardPageRoutes: Routes = [
@@ -36,7 +37,8 @@ const dashboardPageRoutes: Routes = [
     // MatIconModule,
     // MatBadgeModule,
     ChartsModule,
-    UsersCommentsModule
+    UsersCommentsModule,
+    ThousandSeparatorModule,
   ],
   exports: [
   ]

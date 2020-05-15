@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { UserModel } from 'src/app/models/user.model';
+import { freelancerCheckpointConst } from './consts/frelancer-checkpoints.const';
 
 @Component({
   selector: 'app-freelacer-achives',
@@ -8,35 +8,29 @@ import { UserModel } from 'src/app/models/user.model';
 })
 export class FreelacerAchivesComponent implements OnInit {
 
-  @Input() userData: UserModel;
-  // achivments
-  detailAchives: {
-    name: string,
-    text: string
-  } [] = [
-    {
-      name: 'successDeals',
-      text: 'Количество завершенных заказов'
-    },
-    {
-      name: 'messagesReply',
-      text: 'Время ответа'
-    },
-    {
-      name: 'rating',
-      text: 'Суммарный рейтинг'
-    },
-    {
-      name: 'earned',
-      text: 'Суммарный заработок'
-    },
-  ];
+  @Input() achivements;
+
+  public ranks = freelancerCheckpointConst;
+  public currentRank: number;
+  public prevRank: number;
+  public nextRank: number;
+  public moveTo: string = null;
 
   constructor() { }
 
   ngOnInit() {
+    this.checkNeibourRanks();
   }
 
+  private checkNeibourRanks() {
+    this.currentRank = this.achivements.rank_id;
+    this.prevRank = this.currentRank === 0 ? null : this.currentRank - 1;
+    this.nextRank = this.currentRank === 4 ? null : this.currentRank + 1;
+  }
+
+  public moveCards(type: string) {
+    this.moveTo = type;
+  }
 
 
 }

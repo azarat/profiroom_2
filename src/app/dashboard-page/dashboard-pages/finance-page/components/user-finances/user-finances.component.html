@@ -2,14 +2,21 @@
     <div class="statistic">
       <!-- User finance statistic -->
       <section class="compressed-statistic">
-        <div *ngFor="let el of allStatisticInfo">
+        <div *ngFor="let el of allStatisticInfo, let i = index">
           <div class="icon">
             <img src="/assets/images/icons/finance/{{el.type}}.png" alt="">
           </div>
           <div class="data">
             <p class="value">
-              <span *ngIf="el.type !== 'summ'">{{ userFinance.purse[el.type] | thousandSeparator  }}</span>
-              UAH</p>
+              <span *ngIf="el.type !== 'summ'">
+                {{ userFinance.purse[el.type] | thousandSeparator: "all"  }}
+
+              </span>
+              <ng-container *ngIf="i >1">
+                 UAH
+              </ng-container>
+
+            </p>
             <p class="title">&#32; {{ el.name }}</p>
           </div>
         </div>

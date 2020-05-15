@@ -5,9 +5,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class ThousandSeparatorPipe implements PipeTransform {
 
-  transform(value: any, ...args: any[]): any {
-    if(value < 1000) {
-      return value
+  transform(value: any, arg: string): any {
+    if(value < 10000 && arg === 'all') {
+      return value;
     }
     return (Math.round((value.toFixed(0)) / 100 ) * 100).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
   }

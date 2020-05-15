@@ -9,16 +9,16 @@
 
 
   .name {
-    width: 25%;
+    width: 28%;
   }
   .date {
     width: 8%;
   }
   .service {
-    width: 28%;
+    width: 30%;
   }
   .type {
-    width: 18%;
+    width: 21%;
   }
   .cash {
     width: 8%;
@@ -125,6 +125,14 @@
         -webkit-line-clamp: 1;
         -webkit-box-orient: vertical;
       }
+      .type {
+        font-family: Source Sans Pro, sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 20px;
+        color: #707683;
+      }
       .cash {
         font-family: Source Sans Pro;
         font-style: normal;
@@ -141,6 +149,9 @@
           color: #29cc97;
           &.output {
             color: #fd1f3a;
+          }
+          &.hold, &.dealCanceled {
+            color: #9DC6FF;
           }
         }
       }

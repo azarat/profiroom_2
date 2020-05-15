@@ -10,15 +10,22 @@
     <div class="item" *ngFor="let payment of userCashMoves">
       <div class="name">
         <div class="ava">
-          <img [src]="payment.user.avatar" alt="">
+          <img [src]="payment.user.avatar" alt="user-avatar">
         </div>
         <span> {{ payment.user.name + ' ' +   payment.user.surname }}</span>
       </div>
       <div class="date">{{ payment.created_at | dateFormatPipe: 'dd.MM.yyyy' }}</div>
       <div class="service">{{ payment.OffersTitle }}</div>
-      <div class="type"></div>
-      <div class="cash"><span [ngClass]="{ output: payment.income === 0 }">
-          {{ payment.amount }}
+      <div class="type ">
+        <ng-container *ngFor="let el of paymentsTypes">
+          <ng-container *ngIf="el.type === payment.trnsactonType">
+              {{ el.name }}
+          </ng-container>
+
+        </ng-container>
+      </div>
+      <div class="cash"><span class="{{payment.trnsactonType}}">
+          <span *ngIf="payment.trnsactonType === 'output'">-</span>{{ payment.amount }}
         </span> UAH</div>
     </div>
   </div>

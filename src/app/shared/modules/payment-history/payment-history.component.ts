@@ -9,6 +9,24 @@ export class PaymentHistoryComponent implements OnInit {
 
   @Input() userFinance;
   public userCashMoves: any[];
+  public paymentsTypes = [
+    {
+      type: 'income',
+      name: 'Пополнение счета'
+    },
+    {
+      type: 'hold',
+      name: 'Средства зарезервированы'
+    },
+    {
+      type: 'dealDone',
+      name: 'Получение оплаты'
+    },
+    {
+      type: 'dealCanceled',
+      name: 'Отмена резирвации средств'
+    }
+  ];
 
   constructor() { }
 

@@ -1,47 +1,107 @@
-<div class="wrapper" *ngIf="userData">
-    <h4>Мои достижения <button class="ask"></button></h4>
+<div class="wrapper" *ngIf="achivements">
+  <h4>Мои достижения <button class="ask"></button></h4>
 
-    <div class="main-status">
-        <p>Уровень моего професионализма и тарифный план</p>
-        <div>
-            <div class="line-wrap">
-                <div class="start dot">
-                    <span>
-                        Начинающий
-                    </span>
-                </div>
-                <div class="middle dot">
-                    <span>
-                        Уверенный
-                    </span>
-                </div>
-                <div class="pro dot">
-                    <span>
-                        Опытный
-                    </span>
-                </div>
-                <div class="line">
-                    <!-- <div class="position" [style.width.%]="userData.achivments.totalProgress">
-                       <span> {{ userData.achivments.totalProgress }} % </span> 
-                    </div> -->
-                    
-                    <!-- userData.achivments.totalProgress -->
-                </div>
-            </div>
+  <div class="main-status">
+    <p>Уровень моего професионализма и тарифный план</p>
+    <div>
+      <div class="line-wrap">
+        <div *ngFor="let el of ranks" class="dot {{ el.class}}" [ngClass]="{'done': el.rank <= achivements.rank_id }">
+          <span>
+            {{ el.title}}
+          </span>
         </div>
+        <div class="line">
+          <div class="position" [style.width.%]="(achivements.rank_id * 25) + (achivements.nextLevelProgress * 0.25)">
+          </div>
+        </div>
+      </div>
     </div>
-    <!-- <div class="all-achive-types">
-        <div class="achive-el" *ngFor=" let el of detailAchives">
-            <div>
-                <span class="icon" [ngClass]="{ 'full': userData.achivments[el.name + 'Acivment'] == 100 }"></span>
-                <p>{{ el.text }}</p>
-            </div>
-            <div class="detail-achive-line">
-                <div class="line">
-                    <span [style.width.%]="userData.achivments[el.name + 'Acivment']"></span> 
+  </div>
+
+  <!--  -->
+  <div class="all-achive-types">
+    <h6>Условия перехода на следующий уровень</h6>
+
+    <div class="skills-level">
+      <div class="btns prev" *ngIf="(moveTo === 'next' || moveTo === null) && (achivements.rank_id !== 0 || achivements.rank_id !== 4)" (click)="moveCards('prev')"></div>
+      <div class="btns next" *ngIf="(moveTo == 'prev' && moveTo !== null) && (achivements.rank_id !== 0 || achivements.rank_id !== 4)" (click)="moveCards('next')"></div>
+      <div class="slides">
+        <div class="skills-level-items {{ moveTo}}" [ngClass]="{blocked: (achivements.rank_id === 0 && achivements.rank_id === 4) }">
+          <ng-container *ngFor="let el of ranks, let i = index">
+            <div class="skill" *ngIf="prevRank === i || currentRank === i ||  nextRank === i">
+              <div class="skill-title">
+                <span class="icon {{ el.class }}" [ngClass]="{'done' : el.rank <= currentRank }"></span>
+                <!-- currentRank -->
+                <span *ngIf="(currentRank === 0 || currentRank === 4 ) &&  currentRank === i ">
+                  Вы достигли уровня
+                </span>
+                <span *ngIf="(currentRank > 0 && currentRank < 4) &&  currentRank === i">
+                  Ваш уровень
+                </span>
+                <!-- prevRank -->
+                <span *ngIf="prevRank === i">
+                  Предыдущий уровень
+                </span>
+
+                <!-- nextRank -->
+                <span *ngIf="nextRank === i">
+                  Следующий уровень
+                </span>
+                {{ ' "'+el.title + '"'}}
+              </div>
+              <div class="skill-checkpoints ">
+                <div class="checkpoint" *ngFor="let checkpoint of el.checkpoints">
+                  <div class="name">
+                    <span>{{ checkpoint.name }}</span>
+                    <span>Цель</span>
+                  </div>
+                  <div class="checkpoint-progress {{ el.class }}">
+                    <div class="status"
+                      [ngClass]="{ 'done': el.class === 'zero' || ((checkpoint.type === 'rating' && achivements.ratingProgress === 100
+                || checkpoint.type === 'deals' && achivements.successDealsProgress === 100 ) && nextRank === i ) || prevRank === i || currentRank === i }">
+                    </div>
+                    <span class="current">
+                      <ng-container *ngIf="el.class === 'zero'">
+                        100%
+                      </ng-container>
+                      <ng-container *ngIf="i>1">
+                        <span *ngIf="checkpoint.type === 'days'">
+                          {{ achivements.termProgress }}
+                        </span>
+
+                      </ng-container>
+                      <img *ngIf="checkpoint.type === 'rating'" src="/assets/images/icons/Star.png" alt="rating">
+                    </span>
+                    <div class="line">
+                      <ng-container prevRank !=i>
+                        <span class="line-progress" *ngIf="checkpoint.type === 'rating'"
+                          [style.width.%]="achivements.ratingProgress"></span>
+                        <span class="line-progress" *ngIf="checkpoint.type === 'deals'"
+                          [style.width.%]="achivements.successDealsProgress"></span>
+                        <span class="line-progress" *ngIf="checkpoint.type == 'days'"
+                          [style.width.%]="(achivements.termProgress/checkpoint.target)*100"></span>
+                      </ng-container>
+
+                      <span class="line-progress" *ngIf="prevRank === i || currentRank === i  "
+                        [style.width.%]="100"></span>
+                    </div>
+                    <span class="target">
+                      {{ checkpoint.target }}
+                    </span>
+                    <img *ngIf="checkpoint.type === 'rating'" src="/assets/images/icons/Star.png" alt="rating">
+                  </div>
                 </div>
-                <span class="current-val">{{ userData.achivments[el.name + 'Acivment'] }} %</span>
+              </div>
             </div>
+
+          </ng-container>
         </div>
-    </div> -->
+      </div>
+
+
+
+
+    </div>
+
+  </div>
 </div>
