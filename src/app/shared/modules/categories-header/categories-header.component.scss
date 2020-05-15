@@ -1,6 +1,7 @@
 .wrapper{
   max-width: 1499px;
   margin: 0 auto;
+  padding: 0 15px;
   display: flex;
   justify-content: space-between;
 }
@@ -177,5 +178,14 @@
   .subcategory {
     font-size: 14px;
     line-height: 18px;
+  }
+}
+
+@media (max-width: 1199.98px) {
+
+}
+@media (max-width: 767.98px) {
+  .wrapper{
+    display: none;
   }
 }
