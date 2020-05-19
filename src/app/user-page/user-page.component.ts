@@ -30,6 +30,8 @@ export class UserPageComponent implements OnDestroy, OnInit  {
   public clickedEducationImgs = null;
   public clickedSingleImg = null;
   public userTypeFreelancer = 1;
+  public userRole: string = 'Freelancer';
+
   public currentUserId: number;
   public academicDegreesTranslations = [
     'Бакалавр',
@@ -66,8 +68,6 @@ export class UserPageComponent implements OnDestroy, OnInit  {
     private localStorageService : LocalStorageService
   ) {
     this.windowScrolling = _windowScrollBlockService;
-
-    
   }
 
   ngOnInit() {
@@ -85,10 +85,8 @@ export class UserPageComponent implements OnDestroy, OnInit  {
     this.userService.loadUserDate(id)
       .pipe(filter((res: any) => !!res))
       .subscribe(userData => {
-
         this.userData = userData.user;
       });
-      
   }
 
   scrollTo(target: string) {
@@ -120,14 +118,14 @@ export class UserPageComponent implements OnDestroy, OnInit  {
 
 // Open ChatRoom ws this collocutor
   public openChat(userId) {
-    if(this.currentUserId === this.userData.id) {
-      return
+    if (this.currentUserId === this.userData.id) {
+      return;
     }
     this.currentUserService.wrightTo(userId)
       .subscribe((res: {id: number, roomId: string}) => {
         if (res.id) {
           const translatedPath: any = this.localize.translateRoute('/dashboard/chat-room');
-          this.router.navigate([translatedPath],{
+          this.router.navigate([translatedPath], {
             relativeTo: this.route,
             queryParams: res
           });
@@ -155,17 +153,15 @@ export class UserPageComponent implements OnDestroy, OnInit  {
     }
   }
 
-  // switching user types     
+  // switching user types
   // 0 - freelancer
   // 1 - customer
   public choseUser(x) {
-
-    if(x === 0) {
-      this.userTypeFreelancer = 1;
-    } else {
-      this.userTypeFreelancer = 0;
-    }
+    this.userTypeFreelancer = x === 0 ? 1 : 0;
+    this.userRole = x === 0 ? 'Freelancer' : 'Customer';
+    // pageType
   }
+
   public convertDateToDMY(x) {
     return this.convertedDate = x.slice(0, x.indexOf(' '));
   }

@@ -117,8 +117,8 @@
       </section>
 
       <!-- <app-service-page-comments [offerData]="offerData" *ngIf="offerData" id="comments"></app-service-page-comments> -->
-      <!-- <app-users-comments *ngIf="offerData" [userData]="offerData"></app-users-comments> -->
-      <app-service-page-questions [offerData]="offerData" *ngIf="offerData" id="questions"></app-service-page-questions>
+      <app-users-comments *ngIf="offerData" [userData]="offerData" [userRole]="''"></app-users-comments>
+      <app-service-page-questions [offerData]="offerData" *ngIf="offerData"  id="questions"></app-service-page-questions>
       <app-service-page-about-offer [offerData]="offerData" *ngIf="offerData" id="about-offer">
       </app-service-page-about-offer>
     </div>

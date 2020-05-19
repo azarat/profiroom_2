@@ -34,16 +34,11 @@ export class UserFinancesComponent implements OnInit {
       .subscribe((res: any) => {
         this.userFinance = res;
         console.log(this.userFinance);
-        this.userCashMoves = this.sortcashByTime(this.userFinance.history);
+
       });
   }
 
-  sortcashByTime(arr) {
-    const x = arr.sort((a, b) => {
-      return b.created_at.localeCompare(a.created_at);
-    });
-    return x;
-  }
+
 
   makePayment() {
     this.userFinanceService.makePayment(this.transactions);

@@ -34,7 +34,7 @@ export class ServicePageComponent implements OnInit {
   public chosenOnOfferPage: string;
 
   @ViewChild('stickyMenu', { static: false }) menuElement: ElementRef;
-  
+
   constructor(
     // tslint:disable-next-line: variable-name
     private _route: ActivatedRoute,
@@ -59,18 +59,16 @@ export class ServicePageComponent implements OnInit {
         this.getSimilarOffers(_offerId);
         window.scrollTo(0, 0);
         this.offerId = +_offerId.offerId;
-        
       });
 
-      servicePageService.getSpinnerState().subscribe(data => {
+    servicePageService.getSpinnerState().subscribe(data => {
         this.messageNotAuthorized = data;
-      });     
+      });
   }
 
 
-  ngOnInit() { 
+  ngOnInit() {
     // this.offerDataService.dataChange
-    
   }
 
   getOfferData(offerId: { offerId: string }) {
@@ -78,7 +76,7 @@ export class ServicePageComponent implements OnInit {
     .pipe(filter((res: any) => !! res))
     .subscribe(offerData => {
       this.offerData = offerData.userOffer;
-      // console.log(this.offerData);
+      console.log(this.offerData);
       this.formateCommentCount();
       this.titleService.setTitle('Gigrum | ' +  this.offerData.title);
     });
@@ -86,17 +84,15 @@ export class ServicePageComponent implements OnInit {
 
   // Open ChatRoom ws this collocutor
   public openChat(userId) {
-    console.log('go chat');
     this.currentUserService.wrightTo(userId)
       .subscribe(res => {
         if (res === 'ok') {
           const translatedPath: any = this.localize.translateRoute('/dashboard/chat-room');
           this.router.navigate([translatedPath]);
-        } 
+        }
       });
-        
-      const translatedPath: any = this.localize.translateRoute('/dashboard/chat-room');
-      this.router.navigate([translatedPath]);
+    const translatedPath: any = this.localize.translateRoute('/dashboard/chat-room');
+    this.router.navigate([translatedPath]);
   }
 
   private formateCommentCount() {

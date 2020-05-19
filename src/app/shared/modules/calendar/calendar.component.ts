@@ -84,17 +84,19 @@ export class CalendarComponent implements OnInit {
 
     this.userFinance.forEach(element => {
       let event: string;
-      if (element.income === 1) {
+      if (element.trnsactonType === ('hold' || 'dealCanceled')) {
+        return;
+      }
+
+      if (element.income === 1 ) {
         event = 'input';
       } else {
         event = 'output';
         // type = '- ';
       }
-      
-      console.log(eventsArr.length)
 
       if (eventsArr.length !== 0) {
-        let item = { title: element.amount, start: new Date(element.created_at), cssClass: event }
+        const item = { title: element.amount, start: new Date(element.created_at), cssClass: event };
         eventsArr.forEach(el => {
           if (el.start.getDate() === item.start.getDate()) {
             if (el.cssClass === item.cssClass) {
@@ -107,19 +109,18 @@ export class CalendarComponent implements OnInit {
           } else {
             eventsArr.push({ title: element.amount, start: new Date(element.created_at), cssClass: event });
           }
-        })
+        });
       } else if(eventsArr.length === 0) {
-        let item = { title: element.amount, start: new Date(element.created_at), cssClass: event }
+        const item = { title: element.amount, start: new Date(element.created_at), cssClass: event };
         eventsArr.push({ title: element.amount, start: new Date(element.created_at), cssClass: event });
-        console.log(eventsArr)
       }
 
 
 
-      
+
       // return eventsArr;
     });
-    
+
     return eventsArr;
   }
 

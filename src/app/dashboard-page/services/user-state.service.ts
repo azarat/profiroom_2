@@ -14,10 +14,7 @@ export class UserStateService {
 
   constructor(
     private http: HttpClient,
-  ) {
-    // this.http.get('userState')
-
-  }
+  ) {}
 
   public setUserState(state: number) {
     this._userState.next(state);

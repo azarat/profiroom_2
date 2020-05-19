@@ -114,10 +114,10 @@
   <section class="ets">
     <div class="comments-block">
       <section class="comments">
-        <app-users-comments *ngIf="user" [userData]="user"></app-users-comments>
+        <app-users-comments *ngIf="user" [userData]="user" [userRole]="userRole"></app-users-comments>
       </section>
       <section class="achives" *ngIf="this.user.role_id === 1">
-        <app-freelacer-achives *ngIf="user" [userData]="user"></app-freelacer-achives>
+        <app-freelacer-achives *ngIf="user" [achivements]="user.achivements"></app-freelacer-achives>
       </section>
     </div>
 

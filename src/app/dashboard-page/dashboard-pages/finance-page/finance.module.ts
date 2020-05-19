@@ -14,6 +14,7 @@ import { AdminFinancesComponent } from './components/admin-finances/admin-financ
 import { ClickOutsideModule } from 'ng-click-outside';
 import { FinancePageComponent } from './finance-page.component';
 import { NgKnifeModule } from 'ng-knife';
+import { PaymentHistoryModule } from 'src/app/shared/modules/payment-history/payment-history.module';
 
 const routes: Routes = [
   {
@@ -30,6 +31,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
 
     CalendarSharedModule,
+    PaymentHistoryModule,
     DiagramModule,
     AdminChartCanvasModule,
     FormsModule,

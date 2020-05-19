@@ -15,7 +15,7 @@
 
 <div class="wrapper" *ngIf="userData">
   <div class="content">
-    <section class="general-information" id="about"> 
+    <section class="general-information" id="about">
       <div class="general-information__avatar">
         <img [src]="userData.avatar" alt="user avatar">
       </div>
@@ -31,7 +31,7 @@
         <div class="general-information__lvl">Уровень: <span class="value">{{lvlTranslation[userData.rank_id]}}</span></div>
       </div>
       <div class="general-information__wrapper" *ngIf="userTypeFreelancer">
-        <div class="general-information__available">Статус доступности: 
+        <div class="general-information__available">Статус доступности:
           <span class="value free" *ngIf="!userData.busy">не загружен(-а)</span>
           <span class="value" *ngIf="userData.busy">загружен(-а)</span>
         </div>
@@ -145,7 +145,7 @@
 
           <div class="education__img-list" *ngIf="education_item.additional_diploma_files.length; let i = index">
             <ng-container *ngFor="let img of education_item.additional_diploma_files; let i = index">
-              <div class="img-item"  (click)="showPopUp(i, thisArr, 'img')" [ngClass]="{open_popUp: clickedEducationImgs === thisArr 
+              <div class="img-item"  (click)="showPopUp(i, thisArr, 'img')" [ngClass]="{open_popUp: clickedEducationImgs === thisArr
                 && clickedSingleImg === i}">
                 <img src="{{img.link}}" alt="">
                 <div class="close-popUp" ></div>
@@ -208,7 +208,7 @@
     <app-user-page-services *ngIf="userData" [userData] = userData id="services"></app-user-page-services>
     <!-- <app-user-page-comments *ngIf="userData" [userData] = userData [userTypeFreelancer]=userTypeFreelancer id="comments"></app-user-page-comments> -->
 
-    <app-users-comments *ngIf="userData" [userData]="userData"></app-users-comments>
+    <app-users-comments *ngIf="userData" [userData]="userData" [userRole]="userRole"></app-users-comments>
   </div>
 </div>
 

@@ -54,7 +54,7 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
   }
 
   private defineCurrentUser() {
-    this.userService.getDashboardRes()
+    this.userService.getMinUserData()
       .subscribe((res: any) => {
         this.user = plainToClass(UserModel, res);
         this.userStatseService.setUserState(this.user.role_id);
@@ -71,7 +71,7 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
 
   public openChat(link) {
     this.notifyShow(link);
-    
+
   }
 
   notifyShow(link?: string) {
@@ -122,6 +122,5 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
 
   public toggleSideMenu() {
     this.sideMenuClose = !this.sideMenuClose;
-    console.log(this.sideMenuClose)
   }
 }

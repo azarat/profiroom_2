@@ -12,7 +12,7 @@
     <div class="score">
       <!-- <ng-container *ngIf="maxInput"> -->
       <div>{{ maxInput | thousandSeparator }}</div>
-      <div *ngFor="let el of stepsCount | reverse">{{ maxInput/maxStepCount * el | thousandSeparator }}</div>
+      <div *ngFor="let el of stepsCount | reverse">{{ maxInput/maxStepCount * el | thousandSeparator: "thousand" }}</div>
       <div>
       </div>
       <!-- </ng-container> -->

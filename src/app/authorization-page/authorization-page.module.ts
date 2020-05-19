@@ -20,6 +20,7 @@ import { LoginPageComponent } from './authentification-page/login-page/login-pag
 import { RegistrationPageComponent } from './authentification-page/registration-page/registration-page.component';
 import { SetNewPassComponent } from './set-new-pass/set-new-pass.component';
 import { PassResetGuard } from '../core/guards/pass-reset.guard';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 const routes: Routes = [
@@ -71,6 +72,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     LocalizeRouterModule.forChild(routes),
+    TranslateModule,
     RouterModule.forChild(routes),
     FormsModule,
     ReactiveFormsModule,

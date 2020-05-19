@@ -31,7 +31,7 @@ export class SystemMessagesInDealsComponent implements OnInit {
   ngOnInit() {
     this.getDealData();
     this._CheckMessage();
-    
+
   }
 
   private getDealData() {
@@ -40,8 +40,7 @@ export class SystemMessagesInDealsComponent implements OnInit {
       this.collocutorData = res;
       this.checkIsUserFreelancer();
       this.changeBtnStyling();
-      console.log('CDELKA',this.collocutorData)
-      
+
     });
   }
 
@@ -63,7 +62,7 @@ export class SystemMessagesInDealsComponent implements OnInit {
       this.messageClass = 'DealFinished';
     } else if (this.systemMessage.message.name === 'DealFinishCanceledByCustomer') {
       this.messageClass = 'DealFinishCanceled';
-    }else if(this.systemMessage.message.name === 'arbitration') {
+    } else if (this.systemMessage.message.name === 'arbitration') {
       this.messageClass = 'arbiter';
     }
   }
@@ -86,9 +85,7 @@ export class SystemMessagesInDealsComponent implements OnInit {
 
 
   private changeBtnStyling() {
-    console.log(this.isUserFreelancer, this.systemMessage.message.name === 'DealClosedByCustomer', this.collocutorData.early_closing !== 0)
     if (this.isUserFreelancer && this.systemMessage.message.name === 'DealClosedByCustomer' && this.collocutorData.early_closing !== 0) {
-      
       return this.dealCancel = true;
     } else if (!this.isUserFreelancer && this.systemMessage.message.name === 'DealCloseByFreelancer'
       && this.collocutorData.early_closing !== 0) {

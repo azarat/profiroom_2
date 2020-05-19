@@ -35,8 +35,8 @@ export class AdminFinancesComponent implements OnInit {
 
     this.userFinanceService.getUserFinanceData()
       .subscribe((res: any) => {
-        this.userFinance = res[0];
-        console.log(res[0]);
+        this.userFinance = res;
+        console.log(res);
         this.userCashMoves = this.sortcashByTime(this.userFinance.history);
       });
   }

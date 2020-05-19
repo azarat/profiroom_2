@@ -20,6 +20,7 @@ export interface UserDataInterface {
   positive_comments_count?: number;
   negative_comments_count?: number;
   updated_at?: number;
+  user_id?: number;
   dealsCounts?: {
     inProgressOffers?: number;
     QueuedOffers?: number;

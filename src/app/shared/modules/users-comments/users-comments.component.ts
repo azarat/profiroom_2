@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { LocalizeRouterService } from 'localize-router';
 import { UserCommentService } from './services/user.comment.service';
 import { UserStateService } from 'src/app/dashboard-page/services/user-state.service';
+import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 
 @Component({
   selector: 'app-users-comments',
@@ -13,6 +14,7 @@ import { UserStateService } from 'src/app/dashboard-page/services/user-state.ser
 export class UsersCommentsComponent implements OnInit {
 
   @Input() userData: UserDataInterface;
+  @Input() userRole: string;
   public commentFormOpen: number = null;
   public currentTab: {
     id: number,
@@ -22,7 +24,8 @@ export class UsersCommentsComponent implements OnInit {
       id: 0,
       name: 'Положительные',
       value: 'positive'
-  }
+  };
+  public commentsCount: number;
   public id;
 
   public tabs = [
@@ -48,32 +51,36 @@ export class UsersCommentsComponent implements OnInit {
   public convertedDate = null;
   public userType: string = null;
   public userAnserType: string = null;
+  public authorizatedUserId: number = null;
+  public pageType: string;
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private localize: LocalizeRouterService,
     private userCommentService: UserCommentService,
-    private userStateService: UserStateService
+    private userStateService: UserStateService,
+    private localStorageService: LocalStorageService
   ) { }
 
   ngOnInit() {
-    // if(this.userData.negative_comments_count == 0) {
-    //   this.currentTab.id = 0;
-    //   this.currentTab.name = 'Положительные';
-    //   this.currentTab.value = 'negative';
-    // }
-    console.log(this.userData);
-    // console.log(this.userData[this.currentTab.value + 'Comments']);
-    this.checkUserState();
+    this.findCurrentRoute();
+    this.authorizatedUserId = +(this.localStorageService.getItem('userId').value);
   }
 
-  private checkUserState() {
-    this.userStateService.userState$
-    .subscribe(res=> {
-      // this.userState = res;
-      this.userType = res === 1 ? 'Freelancer' : 'Customer';
-      // this.userAnserType = res === 1 ? 'custromer' : 'freelancer';
-    })
+  private findCurrentRoute() {
+    if(this.router.url.includes('service')) {
+      this.pageType = 'service';
+    } else if(this.router.url.includes('dashboard')) {
+      this.pageType = 'dashboard';
+    } else {
+      this.pageType = 'user';
+    }
+  };
+
+  private checkCommentsCount() {
+    this.commentsCount = this.userData['negativeComments' + this.userType].length +
+    this.userData['positiveComments' + this.userType].length;
   }
   public toggleTab(tab: any) {
     this.currentTab = tab;
@@ -93,7 +100,7 @@ export class UsersCommentsComponent implements OnInit {
     this.commentForm = {
       commentText: null,
       commentId: id
-    }
+    };
   }
 
   public closeForm() {
