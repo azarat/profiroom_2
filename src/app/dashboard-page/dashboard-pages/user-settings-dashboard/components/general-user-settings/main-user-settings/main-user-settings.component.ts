@@ -39,5 +39,8 @@ export class MainUserSettingsComponent implements OnInit {
       });
   }
 
+  public onFilterChange(form: NgForm){
+        console.log(form);
+    }
 
 }

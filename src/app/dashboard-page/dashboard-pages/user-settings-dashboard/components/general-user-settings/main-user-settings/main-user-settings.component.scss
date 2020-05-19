@@ -109,8 +109,10 @@
       box-sizing: border-box;
       background: #F4F7FC;
       border-radius: 5px;
-      border: none;
       width: 100%;
+      &.ng-invalid{
+        border: 1px solid #FF647C;
+      }
     }
   }
 }

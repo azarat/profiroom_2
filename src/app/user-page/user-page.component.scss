@@ -451,6 +451,7 @@
   }
   &__img-list{
     display: flex;
+    flex-wrap: wrap;
     .img-item{
       position: static;
       width: 160px;

@@ -12,7 +12,24 @@ export class AdditionalEducationUserSettingsComponent implements OnInit {
   @Input() userSettings: UserSettingsModel;
   public submited = false;
   public month = [];
+  public monthTranslate = [
+    'Январь',
+    'Февраль',
+    'Март',
+    'Апрель',
+    'Май',
+    'Июнь',
+    'Июль',
+    'Август',
+    'Сентябрь',
+    'Октябрь',
+    'Ноябрь',
+    'Декабрь'
+  ];
   public openItem: number;
+
+  public yearsArr = [];
+  public yearsFinishArr = [];
 
   files: any = [];
   previewUrl: any;
@@ -24,21 +41,34 @@ export class AdditionalEducationUserSettingsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.createYearArray(new Date().getFullYear()+5);
+    this.createFinishYearArray(1960);
     this.createMonthArray();
-    this.openItem = this.userSettings.additionalEducation.length;
+    // this.openItem = this.userSettings.additionalEducation.length;
+    this.openItem = null;
+    console.log(this.openItem);
   }
   createMonthArray() {
     for (let i = 1; i <= 12; i++) {
       this.month.push(i);
     }
   }
-  createYearArray() {
-    const years = [];
-    const currentYear = new Date().getFullYear();
-    for (let i = 1960; i <= currentYear + 5; i++) {
-      years.push(i);
+  createYearArray(limit) {
+    if(limit === 0) return
+    this.yearsArr = [];
+    for (let i = 1960; i <= limit; i++) {
+      this.yearsArr.push(i);
     }
-    return years;
+    return this.yearsArr;
+  }
+
+  createFinishYearArray(limit) {
+    this.yearsFinishArr = [];
+    const currentYear = new Date().getFullYear();
+    for (let i = limit; i <= currentYear + 5; i++) {
+      this.yearsFinishArr.push(i);
+    }
+    return this.yearsFinishArr;
   }
 
   // --------------- create education-item -----------------//

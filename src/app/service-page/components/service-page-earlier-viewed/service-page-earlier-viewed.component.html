@@ -1,8 +1,8 @@
-<section class="early-viewed">
+<section class="early-viewed" *ngIf="similarOffers.length">
   <h4 class="section-title">
     Похожие услуги “{{ offerData.title }}”
   </h4>
-  <div class="cards-list" *ngIf="similarOffers">
+  <div class="cards-list">
 
       <div class="card" *ngFor="let offer of similarOffers.similarOffers">
         <div class="card-preview__bg">

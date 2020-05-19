@@ -59,7 +59,7 @@ export class UserSettingsService {
   }
 
   public updateUserPassAccess( formData) {
-    return this.http.post<any>('/password/updatePass', formData);
+    return this.http.post<any>('/password/reset', formData);
   }
 
   public updateUserMailAccess( formData) {

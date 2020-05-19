@@ -3,10 +3,11 @@
     <h3>О себе</h3>
   </div>
   <div class="inform_section__fields">
+    <form #form="ngForm">
     <div class="top-block">
       <div class="user-avatar" >
         <h3 class="block-title">Аватар</h3>
-        <form #form="ngForm" >
+        
           <div>
             <input type="file" id="file" class="input-file" #fileInput (change)="avatarUpload($event)" >
             <label for="file" class="img-wrapper">
@@ -18,16 +19,43 @@
               </div>
             </label>
           </div>
-        </form>
+
       </div>
       <div class="full-name-block">
         <div class="fields">
           <h5 class="fields-title">Имя</h5>
-          <input class="fields-value" type="text" placeholder="Имя" [(ngModel)]="userSettingsModel.name" maxlength="15" >
+          <input class="fields-value" 
+           type="text"
+           required
+           knifeAlphanumeric
+           #firstName="ngModel"
+           name="firstName"
+           placeholder="Имя" 
+           [(ngModel)]="userSettingsModel.name"
+           minlength="2"
+           maxlength="15"
+           (change)="onFilterChange(firstName)"
+          >
+          <div *ngIf="firstName.control.touched && firstName.control.status === 'INVALID'" class="alert-danger">
+            <p>Поле заполнено неверно</p>
+          </div>
         </div>
         <div class="fields">
           <h5 class="fields-title"> Фамилия</h5>
-          <input class="fields-value" type="text" placeholder="Фамилия" [(ngModel)]="userSettingsModel.surname" maxlength="15">
+          <input class="fields-value" 
+            type="text" 
+            required
+            knifeAlphanumeric
+            #surname="ngModel"
+            name="surname"
+            placeholder="Фамилия" 
+            [(ngModel)]="userSettingsModel.surname"
+            minlength="2" 
+            maxlength="15"
+          >
+          <div *ngIf="surname.control.touched && surname.control.status === 'INVALID'" class="alert-danger">
+            <p>Поле заполнено неверно</p>
+          </div>
         </div>
       </div>
     </div>
@@ -50,10 +78,12 @@
     </div>
     <h5 class="fields-title">Расскажите о  себе</h5>
     <mat-form-field floatLabel="always" class="about_me-block" >
-      <textarea class="fields-value" #serviceDescription [(ngModel)]="userSettingsModel.description" cols="45" matInput maxlength="1200"></textarea>
+      <textarea class="fields-value" #serviceDescription name="description" [(ngModel)]="userSettingsModel.description" cols="45" matInput maxlength="1200"></textarea>
       <mat-hint align="end">{{ serviceDescription.value.length }} из 1200 максимально</mat-hint>
     </mat-form-field>
+  </form>
   </div>
+
 </div>
 
 
