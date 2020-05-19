@@ -27,14 +27,13 @@
           <input class="fields-value" 
            type="text"
            required
-           knifeAlphanumeric
+           
            #firstName="ngModel"
            name="firstName"
            placeholder="Имя" 
            [(ngModel)]="userSettingsModel.name"
            minlength="2"
            maxlength="15"
-           (change)="onFilterChange(firstName)"
           >
           <div *ngIf="firstName.control.touched && firstName.control.status === 'INVALID'" class="alert-danger">
             <p>Поле заполнено неверно</p>

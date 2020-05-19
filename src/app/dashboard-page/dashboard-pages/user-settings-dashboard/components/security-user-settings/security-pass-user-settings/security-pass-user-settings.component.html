@@ -10,10 +10,10 @@
           <h5 class="fields-title">Старый пароль</h5>
           <input class="fields-value" type="password" formControlName='oldPassword' maxlength="50">
           <div class="succes-message" *ngIf="submitedPassForm && changePasswordResult" >
-            Ответ положительный. Пароль изменен
+            Пароль изменен
           </div>
           <div class="error-message" *ngIf="submitedPassForm && !changePasswordResult && passForm.controls.oldPassword.value" >
-            Ответ отрицательный. Пароль другой
+            Старый пароль введен неверно
           </div>
           <div class="error-message" *ngIf="submitedPassForm  && !passForm.controls.oldPassword.value">
             Это обязательное поле
