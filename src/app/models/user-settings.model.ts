@@ -88,7 +88,7 @@ export class AdditionalEducation {
   @Expose() startStudyMonth: number;
   @Expose() startStudyYear: number;
   @Expose() endStudyMonth: number;
-  @Expose() endStudyYear: number;
+  @Expose() endStudyYear: any;
   @Expose() additionalDiploma: any[];
 }
 

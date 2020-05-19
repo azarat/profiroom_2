@@ -8,6 +8,7 @@ import { MatTabsModule,
          MatInputModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
+import { NgKnifeModule } from 'ng-knife';
 
 // tslint:disable-next-line: max-line-length
 import { GeneralUserSettingsComponent } from './components/general-user-settings/general-user-settings.component';
@@ -53,6 +54,7 @@ const servicesRoutes: Routes = [
     RouterModule.forChild(servicesRoutes),
     FormsModule,
     ReactiveFormsModule,
+    NgKnifeModule,
 
     // -----matherials
     MatTabsModule,

@@ -65,18 +65,18 @@
               <div class="field-block service-selects">
                 <label class="block-title" for="startEducation">Год старта</label>
                 <mat-select name="startEducation" id="startEducation"
-                  [(ngModel)]="userSettings.education[i].startEducation">
+                  [(ngModel)]="userSettings.education[i].startEducation" (selectionChange)="createYearsFinished($event.value)">
                   <ng-container *ngFor="let startEducation of yearsArr">
                     <mat-option [value]="startEducation">{{ startEducation }}</mat-option>
                   </ng-container>
                 </mat-select>
               </div>
               <div class="field-block service-selects">
-                <label class="block-title" for="startEducation">Год окончания</label>
-                <mat-select name="startEducation" id="startEducation"
+                <label class="block-title" for="finishEducation">Год окончания</label>
+                <mat-select name="finishEducation" id="finishEducation" (selectionChange)="createYears($event.value)"
                   [(ngModel)]="userSettings.education[i].finishEducation">
-                  <ng-container *ngFor="let finishEducation of yearsArr">
-                    <mat-option [value]="finishEducation" *ngIf="finishEducation > yearsFiltered">{{ finishEducation }}
+                  <ng-container *ngFor="let finishEducation of yearsFinishArr">
+                    <mat-option [value]="finishEducation">{{ finishEducation }}
                     </mat-option>
                   </ng-container>
                 </mat-select>

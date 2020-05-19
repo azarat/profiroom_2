@@ -10,6 +10,7 @@ import { UserDataService } from './service/user.service';
 import { UserPageServicesComponent } from './user-page-services/user-page-services.component';
 
 import { MatTabsModule} from '@angular/material';
+import { DataFormatModule } from '../shared/pipes/data-format/data-format.module';
 
 const routes: Routes = [
   {
@@ -30,6 +31,7 @@ const routes: Routes = [
     MainHeaderModule,
     CategoriesHeaderModule,
     UsersCommentsModule,
+    DataFormatModule,
     // -----material's
     MatTabsModule
   ],

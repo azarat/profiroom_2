@@ -32,11 +32,18 @@ export class UserPageComponent implements OnDestroy, OnInit  {
   public userTypeFreelancer = 1;
   public currentUserId: number;
   public academicDegreesTranslations = [
-    'Начальный ',
-    'Ниже среднего',
-    'Средний ',
-    'Выше среднего',
-    'Князь тьмы'
+    'Бакалавр',
+    'Магистр',
+    'Аспирант',
+    'Кандидат наук',
+    'Доктор наук'
+  ];
+  public lvlTranslation = [
+    'Стартовый',
+    'Начинающий',
+    'Уверенный',
+    'Опытный',
+    'Мастер джедай'
   ];
   @ViewChild('stickyMenu', {static: false}) menuElement: ElementRef;
 

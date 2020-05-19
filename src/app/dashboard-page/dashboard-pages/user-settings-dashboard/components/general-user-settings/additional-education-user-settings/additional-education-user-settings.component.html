@@ -53,14 +53,14 @@
                   <mat-select name="startEducationMonth" id="startEducationMonth"
                     [(ngModel)]="userSettings.additionalEducation[i].startStudyMonth">
                     <ng-container *ngFor="let startEducationMonth of month">
-                      <mat-option [value]="startEducationMonth">{{ startEducationMonth }}</mat-option>
+                      <mat-option [value]="startEducationMonth">{{ monthTranslate[startEducationMonth - 1] }}</mat-option>
                     </ng-container>
                   </mat-select>
                 </div>
                 <div class="field-block service-selects">
                   <mat-select name="startEducationYear" id="startEducationYear"
-                    [(ngModel)]="userSettings.additionalEducation[i].startStudyYear">
-                    <ng-container *ngFor="let startYear of createYearArray()">
+                    [(ngModel)]="userSettings.additionalEducation[i].startStudyYear" (selectionChange)="createFinishYearArray($event.value)">
+                    <ng-container *ngFor="let startYear of yearsArr">
                       <mat-option [value]="startYear">{{ startYear }}</mat-option>
                     </ng-container>
                   </mat-select>
@@ -74,14 +74,15 @@
                   <mat-select name="endEducationMonth" id="endEducationMonth"
                     [(ngModel)]="userSettings.additionalEducation[i].endStudyMonth">
                     <ng-container *ngFor="let endStudyMonth of month">
-                      <mat-option [value]="endStudyMonth">{{ endStudyMonth }}</mat-option>
+                      <mat-option [value]="endStudyMonth">{{ monthTranslate[endStudyMonth - 1] }}</mat-option>
                     </ng-container>
                   </mat-select>
                 </div>
                 <div class="field-block service-selects">
                   <mat-select name="endEducationYear" id="endEducationYear"
-                    [(ngModel)]="userSettings.additionalEducation[i].endStudyYear">
-                    <ng-container *ngFor="let endStudyYear of createYearArray()">
+                    [(ngModel)]="userSettings.additionalEducation[i].endStudyYear" (selectionChange)="createYearArray($event.value)">
+                    <mat-option [value] = 0> - </mat-option>
+                    <ng-container *ngFor="let endStudyYear of yearsFinishArr">
                       <mat-option [value]="endStudyYear">{{ endStudyYear }}</mat-option>
                     </ng-container>
                   </mat-select>

@@ -21,14 +21,15 @@ export class EducationUserSettingsComponent implements OnInit {
   previewUrl: any;
 
   public yearsArr = [];
-  public yearsFiltered = [];
+  public yearsFinishArr = [];
+
   public academicDegrees = [1, 2, 3, 4, 5];
   public academicDegreesTranslations = [
     'Бакалавр',
     'Магистр',
-    'Доцент',
-    'Профессор',
-    'Владыка ситхов'
+    'Аспирант',
+    'Кандидат наук',
+    'Доктор наук'
   ];
 
   constructor(
@@ -36,19 +37,13 @@ export class EducationUserSettingsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.createYears();
-    this.openItem = this.userSettings.education.length;
-
-    // if (!this.userSettings.education.length) {
-    //   this.addEducation();
-    // }
-    // console.log(this.userSettings);
+    this.createYearsFinished(1960);
+    this.createYears(2020);
+    
+    // this.openItem = this.userSettings.education.length;
+    this.openItem = null;
+    console.log(this.openItem);
   }
-
-  // --------------- change in field -----------------//
-  // onFilterChange() {
-
-  // }
 
   // --------------- create education-item -----------------//
   addEducation() {
@@ -121,9 +116,18 @@ export class EducationUserSettingsComponent implements OnInit {
   }
 
   // --------------- create years array-----------------//
-  createYears() {
-    for (let i = 1960; i <= 2019; i++) {
+  createYears(limit) {
+    this.yearsArr = [];
+    for (let i = 1960; i <= limit; i++) {
       this.yearsArr.push(i);
+    }
+  }
+
+  // --------------- create years finish array-----------------//
+  createYearsFinished(limit) {
+    this.yearsFinishArr = [];
+    for (let i = limit; i <= 2019; i++) {
+      this.yearsFinishArr.push(i);
     }
   }
 

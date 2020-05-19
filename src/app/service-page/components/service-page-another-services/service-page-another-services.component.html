@@ -1,6 +1,6 @@
-<section class="another-services">
+<section class="another-services"  *ngIf="offerData.user.userOffers.length">
   <h4 class="section-title">
-    Другие услуги фрилансера <span>( {{showedOffersCount}} из {{offerData.user.userOfferCount}})</span>
+    Другие услуги фрилансера <span *ngIf="offerData.user.userOfferCount > 4">({{showedOffersCount}} из {{offerData.user.userOfferCount}})</span>
   </h4>
   <div class="cards-list" *ngIf="offerData">
     <ng-container *ngFor="let offer of offerData.user.userOffers; let i = index">
@@ -27,7 +27,7 @@
       </div>
     </ng-container>
   </div>
-  <div class="btn-wrapper">
+  <div class="btn-wrapper" *ngIf="offerData.user.userOfferCount > 4">
     <div class="btn-watch-more" [routerLink]="['/user', offerData.user_id]">больше услуг в профиле</div>
   </div>
 </section>

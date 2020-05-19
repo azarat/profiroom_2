@@ -37,7 +37,6 @@ export class ServicePageAnotherServicesComponent implements OnInit {
   offersCounting(limit) {
     for(let x = 0; x <= limit; x++) {
       this.showedOffersCount = x;
-      console.log(this.showedOffersCount);
     }
   }
 
