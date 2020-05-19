@@ -9,6 +9,7 @@ import { Title } from '@angular/platform-browser';
 export class ProjectsPageComponent implements OnInit {
 
   public chatType = 'work';
+
   constructor(
     private titleService: Title
   ) { }

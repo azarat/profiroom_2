@@ -18,7 +18,7 @@ export class CollocutorService {
   }
 // Set collocutor Data after reset
   public setCollocutorInfo(deal: CollocutorInterface) {
-      this._collocutorData.next(deal);  
+      this._collocutorData.next(deal);
   }
 
   public unsubscribeCollocutorData() {

@@ -32,14 +32,14 @@ export class ResetPasswordPageComponent implements OnInit {
     this.authentificationService.resetPass(this.resetPass.value).subscribe(
       res => {
       this.message = {
-        title: 'Запрос одобрен!',
-        description: 'На указанную Вами почту придёт письмо для создания нового пароля.'
+        title: 'auth-page.sys-messages.request-succes',
+        description: 'auth-page.sys-messages.submit-password-email'
       };
     },
     erorr => {
       this.message = {
-        title: 'Ошибка',
-        description: 'Этот Email не зарегистрирован'
+        title: 'auth-page.sys-messages.erorr-message-title',
+        description: 'auth-page.sys-messages.not-registred-email'
       };
     });
   }

@@ -13,6 +13,7 @@ import { FreelacerAchivesComponent } from './freelacer-achives/freelacer-achives
 import { ThousandSeparatorModule } from 'src/app/shared/pipes/thousand-separator/thousand-separator.module';
 
 
+
 const dashboardPageRoutes: Routes = [
   {
     path: '',
@@ -39,6 +40,7 @@ const dashboardPageRoutes: Routes = [
     ChartsModule,
     UsersCommentsModule,
     ThousandSeparatorModule,
+
   ],
   exports: [
   ]

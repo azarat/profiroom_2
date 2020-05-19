@@ -84,14 +84,14 @@ export class RegistrationPageComponent implements OnInit {
     this.autServ.registation(this.registrationForm.value)
       .subscribe(res => {
         this.message = {
-          title: 'Регистрация успешна',
-          description: 'На указанную Вами почту придёт письмо с подтверждением регистрации.'
+          title: 'auth-page.sys-messages.register-succes',
+          description: 'auth-page.sys-messages.succes-text'
         };
       },
         erorr => {
           this.message = {
-            title: 'Ошибка',
-            description: 'Этот Email уже зарегистрирован'
+            title: 'auth-page.sys-messages.erorr-message-title',
+            description: 'auth-page.sys-messages.mail-already-exist'
           };
         }
       );

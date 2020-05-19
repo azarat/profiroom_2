@@ -5,6 +5,7 @@ import { DashboardPageComponent } from './dashboard-page/dashboard-page.componen
 import { HomePageComponent } from './home-page/home-page.component';
 import { UnauthorisatedGuard } from './core/guards/unauthorisated.guard';
 import { AuthorisatedGuard } from './core/guards/authorisated.guard';
+import { LocalizeRouterModule } from 'localize-router';
 
 
 
@@ -38,10 +39,10 @@ export const routes: Routes = [
     path: 'user/:id',
     loadChildren: () => import('./user-page/user-page.module').then(m => m.UserPageModule)
   },
-  // {
-  //   path: '**',
-  //   redirectTo: '/404'
-  // },
+  {
+    path: '**',
+    redirectTo: ''
+  },
   // {
   //   path: '404',
   //   loadChildren: () => import('./error-page/error-page.module').then(m => m.ErrorPageModule)
@@ -51,6 +52,7 @@ export const routes: Routes = [
 
 @NgModule({
   imports: [
+    LocalizeRouterModule.forChild(routes),
     RouterModule.forRoot(routes)
   ],
   exports: [RouterModule]

@@ -27,14 +27,17 @@ export const freelancerCheckpointConst: {
       checkpoints: [
         {
           name: 'Заполнение профиля',
+          type: 'profile',
           target: '100%',
         },
         {
           name: 'Создание первой услуги',
+          type: 'offer',
           target: '100%',
         },
         {
           name: 'Закрытие первой сделки',
+          type: 'dealDone',
           target: '100%',
         },
       ]

@@ -16,8 +16,8 @@ export class MainHeaderComponent implements OnInit {
 
   @Input() pageName: string;
   public token: any;
-  currentUser: UserModel;
-  routeMainPage: any = this.localize.translateRoute('');
+  public currentUser: UserModel;
+  public routeMainPage: any = this.localize.translateRoute('');
   public hamburgerMenu = false;
   public langList = false;
 
@@ -44,7 +44,7 @@ export class MainHeaderComponent implements OnInit {
     this.hamburgerMenu = !this.hamburgerMenu;
   }
 
-  public showLangList(){
+  public showLangList() {
     this.langList = !this.langList;
   }
 }

@@ -5,7 +5,7 @@
         <img src="/assets/images/icons/finance/{{el.type}}.png" alt="">
       </div>
       <div class="data">
-        <p class="value"><span>{{ userFinance.purse[el.type] | thousandSeparator  }}</span> UAH</p>
+        <p class="value"><span>{{ userFinance.purse[el.type] | thousandSeparator: 'all'  }}</span> UAH</p>
         <p class="title">&#32; {{ el.name }}</p>
       </div>
     </div>

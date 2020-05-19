@@ -23,10 +23,16 @@
     <h6>Условия перехода на следующий уровень</h6>
 
     <div class="skills-level">
-      <div class="btns prev" *ngIf="(moveTo === 'next' || moveTo === null) && (achivements.rank_id !== 0 || achivements.rank_id !== 4)" (click)="moveCards('prev')"></div>
-      <div class="btns next" *ngIf="(moveTo == 'prev' && moveTo !== null) && (achivements.rank_id !== 0 || achivements.rank_id !== 4)" (click)="moveCards('next')"></div>
+      <div class="btns prev"
+        *ngIf="((moveTo === 'next' || moveTo === null) && (achivements.rank_id !== 0 && achivements.rank_id !== 4))"
+        (click)="moveCards('prev')"></div>
+      <div class="btns next"
+        *ngIf="((moveTo == 'prev' && moveTo !== null) && (achivements.rank_id !== 0 && achivements.rank_id !== 4))"
+        (click)="moveCards('next')"></div>
       <div class="slides">
-        <div class="skills-level-items {{ moveTo}}" [ngClass]="{blocked: (achivements.rank_id === 0 && achivements.rank_id === 4) }">
+
+        <div class="skills-level-items {{ moveTo}}"
+          [ngClass]="{blocked: (achivements.rank_id === 0 || achivements.rank_id === 4) }">
           <ng-container *ngFor="let el of ranks, let i = index">
             <div class="skill" *ngIf="prevRank === i || currentRank === i ||  nextRank === i">
               <div class="skill-title">
@@ -58,7 +64,7 @@
                   <div class="checkpoint-progress {{ el.class }}">
                     <div class="status"
                       [ngClass]="{ 'done': el.class === 'zero' || ((checkpoint.type === 'rating' && achivements.ratingProgress === 100
-                || checkpoint.type === 'deals' && achivements.successDealsProgress === 100 ) && nextRank === i ) || prevRank === i || currentRank === i }">
+                || checkpoint.type === 'deals' && achivements.successDealsProgress === 100 ) && nextRank === i ) || prevRank === i || currentRank === i || (currentRank === 0 && achivements[checkpoint.type]  === true) }">
                     </div>
                     <span class="current">
                       <ng-container *ngIf="el.class === 'zero'">
@@ -70,10 +76,19 @@
                         </span>
 
                       </ng-container>
+                      <ng-container *ngIf="i === 1">
+
+                        <span *ngIf="achivements[checkpoint.type]  === true">
+                          100%
+                        </span>
+                        <span *ngIf="achivements[checkpoint.type]  === false">
+                          0
+                        </span>
+                      </ng-container>
                       <img *ngIf="checkpoint.type === 'rating'" src="/assets/images/icons/Star.png" alt="rating">
                     </span>
                     <div class="line">
-                      <ng-container prevRank !=i>
+                      <ng-container *ngIf="prevRank != i">
                         <span class="line-progress" *ngIf="checkpoint.type === 'rating'"
                           [style.width.%]="achivements.ratingProgress"></span>
                         <span class="line-progress" *ngIf="checkpoint.type === 'deals'"
@@ -82,7 +97,11 @@
                           [style.width.%]="(achivements.termProgress/checkpoint.target)*100"></span>
                       </ng-container>
 
-                      <span class="line-progress" *ngIf="prevRank === i || currentRank === i  "
+                      <span class="line-progress" *ngIf="(prevRank === i || currentRank === i) && i !== 1"
+                        [style.width.%]="100"></span>
+
+                      <!-- for 1 rank -->
+                      <span class="line-progress" *ngIf="i == 1 && achivements[checkpoint.type]  === true"
                         [style.width.%]="100"></span>
                     </div>
                     <span class="target">

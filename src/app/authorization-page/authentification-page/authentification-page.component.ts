@@ -30,8 +30,8 @@ export class AuthentificationPageComponent implements OnInit {
           .subscribe(data => {
             if (data === 'Email verified!' ) {
               this.message = {
-                title: 'Email подтвержден',
-                description: 'Теперь можете войти в личный кабинет'
+                title: 'auth-page.sys-messages.email-werifired',
+                description: 'auth-page.sys-messages.email-werifired-description'
               };
             }
           });
@@ -39,7 +39,6 @@ export class AuthentificationPageComponent implements OnInit {
       }
     });
   }
-  
 
   ngOnInit() {
     this.titleService.setTitle('Авторизация')
