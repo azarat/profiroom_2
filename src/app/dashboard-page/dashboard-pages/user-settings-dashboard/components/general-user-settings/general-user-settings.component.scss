@@ -235,9 +235,112 @@
   }
 }
 
-// .save-all{
-//   margin: 30px auto 20px;
-// }
+.error-message {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(224, 225, 249, 0.4);
+  backdrop-filter: blur(8px);
+  z-index: 1070;
+  &__info-block{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    height: auto;
+    width: 100%;
+    transform: translate(-50%, -50%);
+    max-width: 440px;
+    // max-height: 350px;
+
+    padding: 25px 35px;
+    background: #FFFFFF;
+    box-shadow: 0px 15px 30px rgba(16, 27, 79, 0.15);
+    border-radius: 10px;
+  }
+  &__icon{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  &__text{
+    margin-bottom: 35px;
+    p{
+      font-size: 16px;
+      line-height: 156%;
+      text-align: center;
+      color: #707683;
+      margin: 0;
+      &.accent{
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 28px;
+        text-align: center;
+        color: #F1A153;
+        margin-bottom: 15px;
+      }
+    }
+  }
+  &__close{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 25px;
+    height: 25px;
+    font-size: 25px;
+    cursor: pointer;
+    background-color: transparent;
+    z-index: 9;
+    &::before{
+      content: "";
+      width: 20px;
+      height: 2px;
+      background-color: #BFC5D1;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+    &::after{
+      content: "";
+      width: 20px;
+      height: 2px;
+      background-color: #BFC5D1;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+  }
+  .btns-wrapper{
+    display: flex;
+    justify-content: space-between;
+    .btn{
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #707683;
+      padding: 11px 0;
+      border: 1px solid #707683;
+      background: #FFFFFF;
+      border-radius: 4px;
+      cursor: pointer;
+      max-width: 170px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      &.accent{
+        background: #F1A153;
+        color: #fff;
+        border: 1px solid #F1A153;
+        box-shadow: 0px 5px 8px rgba(241, 161, 83, 0.35);
+      }
+    }
+  }
+}
 
 @media (max-width: 1499px) {
   ::ng-deep{

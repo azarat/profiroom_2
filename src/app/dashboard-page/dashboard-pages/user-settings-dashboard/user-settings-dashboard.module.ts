@@ -19,7 +19,7 @@ import { LocationLanguageUserSettingsComponent } from './components/general-user
 import { EducationUserSettingsComponent } from './components/general-user-settings/education-user-settings/education-user-settings.component';
 import { AdditionalEducationUserSettingsComponent } from './components/general-user-settings/additional-education-user-settings/additional-education-user-settings.component';
 import { NotificationsUserSettingsComponent } from './components/notifications-user-settings/notifications-user-settings.component';
-import { FinanceUserSettingsComponent } from './components/finance-user-settings/finance-user-settings.component';
+
 import { SecurityUserSettingsComponent } from './components/security-user-settings/security-user-settings.component';
 import { SecurityPassUserSettingsComponent } from './components/security-user-settings/security-pass-user-settings/security-pass-user-settings.component';
 import { SecurityMailUserSettingsComponent } from './components/security-user-settings/security-mail-user-settings/security-mail-user-settings.component';
@@ -66,7 +66,7 @@ const servicesRoutes: Routes = [
     EducationUserSettingsComponent,
     AdditionalEducationUserSettingsComponent,
     NotificationsUserSettingsComponent,
-    FinanceUserSettingsComponent,
+
     SecurityUserSettingsComponent,
     SecurityPassUserSettingsComponent,
     SecurityMailUserSettingsComponent

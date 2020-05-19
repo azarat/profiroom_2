@@ -7,6 +7,9 @@ import { UserSettingsService } from '../services/user-settings.service';
 import { Title } from '@angular/platform-browser';
 import { ComponentCanDeactivate } from '../user-settings-dashboard.module';
 import { Observable } from 'rxjs/internal/Observable';
+import cloneDeep from 'lodash/clonedeep';
+import isEqual from 'lodash/isEqual';
+
 
 @Component({
   selector: 'app-user-settings-dashboard',
@@ -16,7 +19,7 @@ import { Observable } from 'rxjs/internal/Observable';
 export class HomeUserSettingsComponent implements OnInit, ComponentCanDeactivate {
 
   public userSettingsModel: UserSettingsModel = null;
-  private onloadUserModelCopy : any = null;
+  private onloadUserModelCopy: UserSettingsModel = null;
 
   constructor(
     // tslint:disable-next-line: variable-name
@@ -29,11 +32,8 @@ export class HomeUserSettingsComponent implements OnInit, ComponentCanDeactivate
     // insert logic to check if there are pending changes here;
     // returning true will navigate without confirmation
     // returning false will show a confirm alert before navigating away
-
-    console.log(this.userSettingsModel);
-    console.log(this.onloadUserModelCopy);
-
-    if(this.onloadUserModelCopy === this.userSettingsModel) {
+    
+    if(isEqual(this.onloadUserModelCopy, this.userSettingsModel)) {
       return true
     }
     return false
@@ -49,6 +49,11 @@ export class HomeUserSettingsComponent implements OnInit, ComponentCanDeactivate
 
   ngOnInit() {
     this.getUserService();
+
+    this.userSettingsService.onloadUserModelCopy$.subscribe((res: UserSettingsModel) => {
+      this.onloadUserModelCopy = res;
+    });
+    
     this.titleService.setTitle('Настройки');
     
   }
@@ -64,11 +69,11 @@ export class HomeUserSettingsComponent implements OnInit, ComponentCanDeactivate
         filter((response: any) => !!response)
       )
       .subscribe(response => {
-        console.log(response);
         this.userSettingsModel = plainToClass(UserSettingsModel, response);
-        this.onloadUserModelCopy = Object.assign(new UserSettingsModel(), this.userSettingsModel)
-        console.log(this.onloadUserModelCopy);
+        this.userSettingsService.onloadUserModelCopy$.next(cloneDeep(this.userSettingsModel));
       });
   }
+
+
 
 }

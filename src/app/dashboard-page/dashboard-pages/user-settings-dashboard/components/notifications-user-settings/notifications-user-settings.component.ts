@@ -26,7 +26,7 @@ export class NotificationsUserSettingsComponent implements OnInit {
     .pipe(filter((res: any) => !!res))
     .subscribe(
       (res) => {
-        location.reload();
+        // this.userSettingsService.onloadUserModelCopy$.next(this.userSettingsModel);
       }
     );
   }

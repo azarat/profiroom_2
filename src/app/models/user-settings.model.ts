@@ -13,16 +13,6 @@ export class UserSettingsModel {
   @Expose() description: string;
   @Expose() id: string;
 
-  @Expose() cardName: string;
-  @Expose() cardSurname: string;
-  @Expose() cardPhone: string;
-  @Expose() cardNumber1: number;
-  @Expose() cardNumber2: number;
-  @Expose() cardNumber3: number;
-  @Expose() cardNumber4: number;
-  @Expose() expirationDate: number;
-  @Expose() cvv: number;
-
   @Expose() oldPassword: string;
   @Expose() newPassword: string;
   @Expose() copyNewPassword: string;

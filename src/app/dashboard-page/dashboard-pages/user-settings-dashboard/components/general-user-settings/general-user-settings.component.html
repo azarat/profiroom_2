@@ -6,3 +6,18 @@
 <app-additional-education-user-settings *ngIf="userSettingsModel" [userSettings]="userSettingsModel"></app-additional-education-user-settings>
 <button type="submit" class="btn save-all" (click)="updateSettings()" *ngIf="userSettingsModel">сохранить изменения</button>
 
+
+<div class="error-message" *ngIf="succesMessage">
+    <div class="error-message__info-block">
+        <div class="error-message__icon"><img src="/assets/images/svg/error-message-icon.svg" alt=""></div>
+        <div class="error-message__text">
+        <p class="accent">Успех</p>
+        </div>
+        <div class="btns-wrapper">
+        <div class="btn accent" (click)="closeErrorMessage()">Закрыть</div>
+        </div>
+        <div class="error-message__close" (click)="closeErrorMessage()"></div>
+    </div>
+</div>
+  
+
