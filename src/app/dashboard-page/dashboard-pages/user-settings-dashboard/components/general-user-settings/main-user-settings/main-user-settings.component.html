@@ -7,7 +7,7 @@
     <div class="top-block">
       <div class="user-avatar" >
         <h3 class="block-title">Аватар</h3>
-        
+
           <div>
             <input type="file" id="file" class="input-file" #fileInput (change)="avatarUpload($event)" >
             <label for="file" class="img-wrapper">
@@ -24,17 +24,17 @@
       <div class="full-name-block">
         <div class="fields">
           <h5 class="fields-title">Имя</h5>
-          <input class="fields-value" 
+          <input class="fields-value"
            type="text"
            required
            knifeAlphanumeric
            #firstName="ngModel"
            name="firstName"
-           placeholder="Имя" 
+           placeholder="Имя"
            [(ngModel)]="userSettingsModel.name"
            minlength="2"
            maxlength="15"
-           (change)="onFilterChange(firstName)"
+
           >
           <div *ngIf="firstName.control.touched && firstName.control.status === 'INVALID'" class="alert-danger">
             <p>Поле заполнено неверно</p>
@@ -42,15 +42,15 @@
         </div>
         <div class="fields">
           <h5 class="fields-title"> Фамилия</h5>
-          <input class="fields-value" 
-            type="text" 
+          <input class="fields-value"
+            type="text"
             required
             knifeAlphanumeric
             #surname="ngModel"
             name="surname"
-            placeholder="Фамилия" 
+            placeholder="Фамилия"
             [(ngModel)]="userSettingsModel.surname"
-            minlength="2" 
+            minlength="2"
             maxlength="15"
           >
           <div *ngIf="surname.control.touched && surname.control.status === 'INVALID'" class="alert-danger">

@@ -50,9 +50,9 @@ export class CreateServiceComponent implements OnInit {
   setCurrentStep(step: number) {
     this.currentStep = step;
   }
-  goToStep(stepIndex: number) {
 
-    if (this.currentStep >= stepIndex ) {
+  public goToStep(stepIndex: number) {
+    if (this.userService.step >= stepIndex ) {
       this.userService.step = stepIndex;
     }
   }

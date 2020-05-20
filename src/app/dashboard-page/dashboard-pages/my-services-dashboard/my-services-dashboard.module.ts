@@ -11,7 +11,6 @@ import { MatFormFieldModule, MatAutocompleteModule, MatCheckboxModule,
   MatIconModule, MatTooltipModule, MatSelectModule, MatButtonModule,
   MatInputModule, MatChipsModule, MatSlideToggleModule, MatTabsModule } from '@angular/material';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { DragDropDirective } from './directives/drag-drop.directive';
 
 import { FileClass } from './classes/file.class';
 import { HighlightJsModule, HIGHLIGHT_JS } from 'angular-highlight-js';
@@ -35,6 +34,7 @@ import { TooltipDirective } from './directives/tooltip.directive';
 import { OutsideTolltiDirective } from './directives/outside-tooltip.directive';
 
 import { CustomFormsModule } from 'ng2-validation'
+import { DragDropModule } from 'src/app/shared/directives/drag-drop/drag-drop.module';
 
 const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
 
@@ -55,7 +55,7 @@ const servicesRoutes: Routes = [
     MyServicesHomeComponent,
     CreateServiceComponent,
     FirstStepServiceCreationComponent,
-    DragDropDirective,
+
     SecondStepCreationComponent,
     ThirdStepCreationComponent,
     ThirdStepExtraOptionsComponent,
@@ -66,6 +66,8 @@ const servicesRoutes: Routes = [
     OutsideTolltiDirective
   ],
   imports: [
+
+    DragDropModule,
     // ---- angular
     CommonModule,
     LocalizeRouterModule.forChild(servicesRoutes),

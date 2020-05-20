@@ -36,6 +36,7 @@ import { ProjectsFilterComponent } from './components/collocutors-list/projects-
 import { ProjectBriefFillingComponent } from './components/project-breef-filling/project-brief-filling.component';
 import { MessageListComponent } from './components/message-list/message-list.component';
 import { RateDealComponent } from './components/rate-deal/rate-deal.component';
+import { DragDropModule } from '../shared/directives/drag-drop/drag-drop.module';
 
 
 
@@ -70,6 +71,7 @@ import { RateDealComponent } from './components/rate-deal/rate-deal.component';
     FormsModule,
     ReactiveFormsModule,
     FontAwesomeModule,
+    DragDropModule,
 
     DataFormatModule,
     FileSizeModule,

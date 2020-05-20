@@ -62,11 +62,10 @@
         opacity: 0.5;
       }
       &:last-child {
-
         height: 83px;
         // background: #000;
         // background: #3f60fb;
-        background: #C3CCF2;
+        background: #c3ccf2;
         box-shadow: 0px 9px 21px rgba(128, 152, 213, 0.1);
         border-radius: 8px;
         display: flex;
@@ -82,7 +81,7 @@
       .step-order {
         position: absolute;
         left: -42px;
-        top: 50%;
+        top: 22%;
         width: 26px;
         height: 26px;
         border-radius: 50%;
@@ -102,7 +101,6 @@
         /* Dropshadow 1 */
         box-shadow: 0px 7px 64px rgba(0, 0, 0, 0.07);
         z-index: 2;
-
       }
       &:before {
         content: "";
@@ -113,7 +111,6 @@
         background: #e5e8ed;
         border-radius: 2px;
         top: -10%;
-
       }
       &:after {
         content: "";
@@ -124,15 +121,27 @@
         background: #e5e8ed;
         border-radius: 2px;
         bottom: -10%;
+      }
+      &:first-child {
+        &:before {
+          top: 0;
+          height: 50%;
+          display: none;
+        }
+        &:after {
+          height: 90%;
+        }
+      }
+      &:last-child {
+        .step-order {
+          top: 50%;
+        }
 
-      }
-      &:first-child:before {
-        top: 0;
-        height: 50%;
-      }
-      &:last-child:after {
-        bottom: 0;
-        height: 50%;
+        &:after {
+          display: none;
+          bottom: 0;
+          height: 50%;
+        }
       }
       &.dev {
         & > * {
@@ -140,13 +149,13 @@
         }
         cursor: pointer;
         .step-order {
-          background: #659AF3;
-          color: #FFFFFF;
+          background: #659af3;
+          color: #ffffff;
           border: 3px solid #fff;
           line-height: 20px;
         }
         &:before {
-          background: #AECCFF;
+          background: #aeccff;
         }
       }
       &.done {
@@ -155,14 +164,14 @@
         }
         cursor: pointer;
         .step-order {
-          background: #659AF3;
-          color: #FFFFFF;
+          background: #659af3;
+          color: #ffffff;
           border: 3px solid #fff;
           line-height: 20px;
           font-size: 0;
           &:before {
             position: absolute;
-            content: '\e901';
+            content: "\e901";
             font-family: icoMoon;
             font-family: icoMoon;
             font-size: 7px;
@@ -173,15 +182,14 @@
           }
         }
         &:before {
-          background: #AECCFF;
+          background: #aeccff;
         }
         &:after {
-          background: #AECCFF;
+          background: #aeccff;
         }
 
         &:last-child() {
-          background: #C3CCF2;
-          
+          background: #c3ccf2;
         }
       }
     }
@@ -196,74 +204,70 @@
   }
 }
 .step-detail::ng-deep {
-form {
-
-
-
-
-  ngb-popover-window {
-    border: none;
-    &.popover {
-      background: #ffffff;
-      box-shadow: 0px 15px 21px rgba(128, 152, 213, 0.5);
-      border-radius: 8px;
-      padding: 18px 23px 19px 28px;
-      left: 14px !important;
-      top: -5px !important;
-      z-index: 2;
-      max-width: 323px;
-
-      &:before {
-        content: "";
-        position: absolute;
-        left: -9px;
-        top: 50%;
-        width: 22px;
-        height: 22px;
+  form {
+    ngb-popover-window {
+      border: none;
+      &.popover {
         background: #ffffff;
-        -webkit-transform: translateY(-50%) rotate(47deg);
-        transform: translateY(-50%) rotate(47deg);
-        box-sizing: border-box;
-        z-index: -1;
+        box-shadow: 0px 15px 21px rgba(128, 152, 213, 0.5);
+        border-radius: 8px;
+        padding: 18px 23px 19px 28px;
+        left: 14px !important;
+        top: -5px !important;
+        z-index: 2;
+        max-width: 323px;
+
+        &:before {
+          content: "";
+          position: absolute;
+          left: -9px;
+          top: 50%;
+          width: 22px;
+          height: 22px;
+          background: #ffffff;
+          -webkit-transform: translateY(-50%) rotate(47deg);
+          transform: translateY(-50%) rotate(47deg);
+          box-sizing: border-box;
+          z-index: -1;
+        }
+
+        h3 {
+          font-family: "Source Sans Pro", sans-serif;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 18px;
+          color: #000000;
+          margin: 0;
+          background: transparent;
+          border: none;
+          padding: 0px 0 0 12px;
+        }
+        .arrow {
+          display: none;
+        }
+        .popover-body {
+          margin: 0;
+          font-family: "Source Sans Pro", sans-serif;
+          font-style: normal;
+          font-weight: normal;
+          font-size: 14px;
+          line-height: 18px;
+
+          color: #707683;
+        }
+        &.tag {
+          top: 15px !important;
+        }
       }
 
-      h3 {
-        font-family: "Source Sans Pro", sans-serif;
-        font-weight: 400;
-        font-size: 14px;
-        line-height: 18px;
-        color: #000000;
-        margin: 0;
-        background: transparent;
-        border: none;
-        padding: 0px 0 0 12px;
+      &.popover-select {
+        top: 25px !important;
       }
-      .arrow {
-        display: none;
+      &.popover-file {
+        top: -43px !important;
       }
-      .popover-body {
-        margin: 0;
-        font-family: "Source Sans Pro", sans-serif;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 14px;
-        line-height: 18px;
-
-        color: #707683;
-      }
-      &.tag {
-        top: 15px !important;
-      }
-    }
-
-    &.popover-select {
-      top: 25px !important;
-    }
-    &.popover-file {
-      top: -43px !important;
     }
   }
-}
 }
 
 @media (max-width: 1499px) {
@@ -274,14 +278,13 @@ form {
       h3 {
         margin-bottom: 22px;
       }
-      .hideStepOne{
-        .step:first-child{
+      .hideStepOne {
+        .step:first-child {
           display: none;
         }
       }
-      .hideStepTwo{
-
-        .step:nth-child(-n+2){
+      .hideStepTwo {
+        .step:nth-child(-n + 2) {
           display: none;
         }
       }
@@ -300,7 +303,7 @@ form {
         p {
           font-size: 14px;
           line-height: 20px;
-        }  
+        }
         .step-order {
           position: absolute;
           left: -42px;
@@ -320,7 +323,6 @@ form {
           background: #e5e8ed;
           border-radius: 2px;
           top: -10%;
-  
         }
         &:after {
           content: "";
@@ -331,7 +333,6 @@ form {
           background: #e5e8ed;
           border-radius: 2px;
           bottom: -10%;
-  
         }
         &:first-child:before {
           top: 0;
@@ -347,13 +348,13 @@ form {
           }
           cursor: pointer;
           .step-order {
-            background: #659AF3;
-            color: #FFFFFF;
+            background: #659af3;
+            color: #ffffff;
             border: 3px solid #fff;
             line-height: 20px;
           }
           &:before {
-            background: #AECCFF;
+            background: #aeccff;
           }
         }
         &.done {
@@ -362,14 +363,14 @@ form {
           }
           cursor: pointer;
           .step-order {
-            background: #659AF3;
-            color: #FFFFFF;
+            background: #659af3;
+            color: #ffffff;
             border: 3px solid #fff;
             line-height: 20px;
             font-size: 0;
             &:before {
               position: absolute;
-              content: '\e901';
+              content: "\e901";
               font-family: icoMoon;
               font-family: icoMoon;
               font-size: 7px;
@@ -380,15 +381,14 @@ form {
             }
           }
           &:before {
-            background: #AECCFF;
+            background: #aeccff;
           }
           &:after {
-            background: #AECCFF;
+            background: #aeccff;
           }
-  
+
           &:last-child() {
-            background: #C3CCF2;
-            
+            background: #c3ccf2;
           }
         }
       }
@@ -420,7 +420,7 @@ form {
         p {
           font-size: 13px;
           line-height: 18px;
-        }  
+        }
       }
       .step-detail {
         width: 100%;

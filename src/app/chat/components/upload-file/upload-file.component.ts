@@ -31,7 +31,6 @@ export class UploadFileComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log(this.collocutorData);
   }
 
   openFileLoader() {
@@ -52,7 +51,7 @@ export class UploadFileComponent implements OnInit {
     for (let index = 0; index < event.length; index++) {
       filesToUpload.push(event[index]);
     }
-    // // ------- put files in FormData -------//
+    // ------- put files in FormData -------//
     filesToUpload.forEach((el: any) => {
       formData.append(el.name, el, el.name);
     });
@@ -62,24 +61,16 @@ export class UploadFileComponent implements OnInit {
       .subscribe((res: []) => {
         res.forEach(el => {
           this.files.push(el);
+          console.log(this.files)
         });
         this.disabled = true;
       });
-
-
 
   }
 
   // --------------- delete files -----------------//
   deleteAttachment = (index: number) => {
-    // this.userOffersService.deleteFile({ id: index })
-    //   .subscribe((res: any) => {
-    //     if (res.status === 'ok') {
-    //       this.previewUrl = this.previewUrl.filter((obj: any) => {
-    //         return obj.id !== index;
-    //       });
-    //     }
-    //   });
+
   }
 
   sendMessage() {
