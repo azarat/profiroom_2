@@ -17,7 +17,7 @@
         <div class="error-message" *ngIf="mailForm.controls.oldMail.status === 'INVALID' && mailForm.controls.oldMail.value">
           Поле заполнено неверно 
         </div>
-        <div class="error-message" *ngIf="submitedMailForm && !mailForm.controls.oldMail.value">
+        <div class="error-message required" *ngIf="submitedMailForm && mailForm.controls.oldMail.value === ''">
           Это обязательное поле
         </div>
       </div>

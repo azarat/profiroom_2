@@ -2,13 +2,14 @@
 <app-categories-header></app-categories-header>
 
 <nav class="navigation-page" #stickyMenu [class.sticky]="sticky">
-  <div class="navigation-page__wrapper">
+  <div class="navigation-page__wrapper"  *ngIf="userData">
     <ul>
       <li (click)="scrollTo('about')">О фрилансере</li>
       <li (click)="scrollTo('education')" *ngIf="userTypeFreelancer">Образование</li>
       <li (click)="scrollTo('rating')">рейтинг</li>
       <li (click)="scrollTo('services')">услуги</li>
-      <li (click)="scrollTo('comments')">отзывы</li>
+      <li (click)="scrollTo('comments')" *ngIf="userTypeFreelancer && userData.comments_freelancer_count">отзывы</li>
+      <li (click)="scrollTo('comments')" *ngIf="!userTypeFreelancer && userData.comments_customer_count">отзывы</li>
     </ul>
   </div>
 </nav>
@@ -112,58 +113,61 @@
         </li>
       </ul>
     </section>
-    <section class="education" id="education" *ngIf="userTypeFreelancer && userData.education.length > 0">
-      <div class="section-title">Высшее образование</div>
-      <div class="education__wrapper">
-        <div class="education__info-block" *ngFor="let education of userData.education; let thisArr = index">
-
-          <div class="education__img-list" *ngIf="education.diploma_files.length; let i = index">
-            <ng-container *ngFor="let img of education.diploma_files; let i = index">
-              <div class="img-item"  (click)="showPopUp(i, thisArr, 'img')" [ngClass]="{open_popUp: clickedEducationImgs === thisArr && clickedSingleImg === i}">
-                <img src="{{img.link}}" alt="">
-                <div class="close-popUp" ></div>
-              </div>
-            </ng-container>
-          </div>
-
-          <div class="text-wrapper">
-            <div class="education__institution">{{ education.institution}}</div>
-            <div class="education__group">
-              <div class="education__specialty">{{ education.specialty}}</div>
-              <div class="education__years">{{ education.startEducation}} - {{ education.finishEducation}}</div>
+    <div class="education-wrapp" id="education" >
+      <section class="education" *ngIf="userTypeFreelancer && userData.education.length > 0">
+        <div class="section-title">Высшее образование</div>
+        <div class="education__wrapper">
+          <div class="education__info-block" *ngFor="let education of userData.education; let thisArr = index">
+  
+            <div class="education__img-list" *ngIf="education.diploma_files.length; let i = index">
+              <ng-container *ngFor="let img of education.diploma_files; let i = index">
+                <div class="img-item"  (click)="showPopUp(i, thisArr, 'img')" [ngClass]="{open_popUp: clickedEducationImgs === thisArr && clickedSingleImg === i}">
+                  <img src="{{img.link}}" alt="">
+                  <div class="close-popUp" ></div>
+                </div>
+              </ng-container>
             </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <section class="education" *ngIf="userTypeFreelancer && userData.additionalEducation.length > 0">
-      <div class="section-title">Дополнительное образование</div>
-      <div class="education__wrapper">
-        <div class="education__info-block" *ngFor="let education_item of userData.additionalEducation; let thisArr = index">
-
-          <div class="education__img-list" *ngIf="education_item.additional_diploma_files.length; let i = index">
-            <ng-container *ngFor="let img of education_item.additional_diploma_files; let i = index">
-              <div class="img-item"  (click)="showPopUp(i, thisArr, 'img')" [ngClass]="{open_popUp: clickedEducationImgs === thisArr
-                && clickedSingleImg === i}">
-                <img src="{{img.link}}" alt="">
-                <div class="close-popUp" ></div>
+  
+            <div class="text-wrapper">
+              <div class="education__institution">{{ education.institution}}</div>
+              <div class="education__group">
+                <div class="education__specialty">{{ education.specialty}}</div>
+                <div class="education__years">{{ education.startEducation}} - {{ education.finishEducation}}</div>
               </div>
-            </ng-container>
-          </div>
-
-          <div class="text-wrapper">
-            <div class="education__institution">{{ education_item.additionalInstitution}}</div>
-            <div class="education__group">
-              <div class="education__specialty">{{ education_item.courseName}}</div>
-              <div class="education__years">{{ education_item.startStudyYear}} - {{ education_item.endStudyYear}}</div>
             </div>
+  
           </div>
-
         </div>
-      </div>
-    </section>
+      </section>
+  
+      <section class="education" *ngIf="userTypeFreelancer && userData.additionalEducation.length > 0" >
+        <div class="section-title">Дополнительное образование</div>
+        <div class="education__wrapper">
+          <div class="education__info-block" *ngFor="let education_item of userData.additionalEducation; let thisArr = index">
+  
+            <div class="education__img-list" *ngIf="education_item.additional_diploma_files.length; let i = index">
+              <ng-container *ngFor="let img of education_item.additional_diploma_files; let i = index">
+                <div class="img-item"  (click)="showPopUp(i, thisArr, 'img')" [ngClass]="{open_popUp: clickedEducationImgs === thisArr
+                  && clickedSingleImg === i}">
+                  <img src="{{img.link}}" alt="">
+                  <div class="close-popUp" ></div>
+                </div>
+              </ng-container>
+            </div>
+  
+            <div class="text-wrapper">
+              <div class="education__institution">{{ education_item.additionalInstitution}}</div>
+              <div class="education__group">
+                <div class="education__specialty">{{ education_item.courseName}}</div>
+                <div class="education__years">{{ education_item.startStudyYear}} - {{ education_item.endStudyYear}}</div>
+              </div>
+            </div>
+  
+          </div>
+        </div>
+      </section>
+    </div>
+
     <section class="rating" id="rating">
       <div class="section-title">Общий рейтинг</div>
       <div class="rating__wrapper"  *ngIf="userTypeFreelancer">
@@ -201,14 +205,14 @@
         <div class="rating__info-block">
           <div class="rating__name">Средняя оценка</div>
           <div class="star-rating" [ngClass]="{'empty-rating': userData.averageRating.customer.averageMark == 0}">{{ userData.averageRating.customer.averageMark}}</div>
-          <span class="comments-count">( {{ userData.comments_freelancer_count}} отзывов):</span>
+          <span class="comments-count">( {{ userData.comments_customer_count}} отзывов):</span>
         </div>
       </div>
     </section>
     <app-user-page-services *ngIf="userData" [userData] = userData id="services"></app-user-page-services>
     <!-- <app-user-page-comments *ngIf="userData" [userData] = userData [userTypeFreelancer]=userTypeFreelancer id="comments"></app-user-page-comments> -->
 
-    <app-users-comments *ngIf="userData" [userData]="userData" [userRole]="userRole"></app-users-comments>
+    <app-users-comments *ngIf="userData" [userData]="userData" [userRole]="userRole" id="comments"></app-users-comments>
   </div>
 </div>
 

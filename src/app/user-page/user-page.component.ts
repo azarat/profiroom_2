@@ -95,7 +95,7 @@ export class UserPageComponent implements OnDestroy, OnInit  {
       duration: 1000
     };
     if (target === 'about' || target === 'education' ||
-     target === 'rating' || target === 'comments' || target === 'services' ) {
+     target === 'rating' || target === 'comments' || target === 'services' || target === "add-education" ) {
       config.offset = -70;
     }
     this._scrollToService.scrollTo(config);

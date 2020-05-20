@@ -399,8 +399,9 @@
       .compressed-statistic {
         width: 100%;
         & > div {
-          padding: 12px;
+          padding: 1em;
           min-height: 70px;
+          max-height: 70px;
           min-width: auto;
           &.laptop{
             display: flex;
@@ -418,15 +419,15 @@
           }
           p.value {
             font-size: 18px;
-            line-height: 18px;
+            line-height: 1em;;
             span {
               font-size: 18px;
-              line-height: 18px;
+              line-height: 1em;;
             }
           }
           p.title {
             font-size: 13px;
-            line-height: 13px;
+            line-height: 1em;
           }
         }
       }
