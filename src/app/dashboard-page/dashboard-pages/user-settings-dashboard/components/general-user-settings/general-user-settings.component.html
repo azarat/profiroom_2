@@ -7,16 +7,15 @@
 <button type="submit" class="btn save-all" (click)="updateSettings()" *ngIf="userSettingsModel">сохранить изменения</button>
 
 
-<div class="error-message" *ngIf="succesMessage">
-    <div class="error-message__info-block">
-        <div class="error-message__icon"><img src="/assets/images/svg/error-message-icon.svg" alt=""></div>
-        <div class="error-message__text">
-        <p class="accent">Успех</p>
+<div class="done-message" *ngIf="succesMessage">
+    <div class="done-message__info-block">
+        <div class="done-message__icon"><img src="/assets/images/svg/done.svg" alt=""></div>
+        <div class="done-message__text">
+            <p class="accent">Изменения успешно сохранены</p>
         </div>
         <div class="btns-wrapper">
-        <div class="btn accent" (click)="closeErrorMessage()">Закрыть</div>
         </div>
-        <div class="error-message__close" (click)="closeErrorMessage()"></div>
+        <div class="done-message__close" (click)="closeErrorMessage()"></div>
     </div>
 </div>
   

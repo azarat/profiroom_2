@@ -30,7 +30,7 @@ export class GeneralUserSettingsComponent implements OnInit {
     .subscribe(
       (res) => {
         // location.reload();
-        this.userSettingsService.onloadUserModelCopy$.next(this.userSettingsModel);
+        this.userSettingsService.onloadUserModelCopy$.next(cloneDeep(this.userSettingsModel));
         this.succesMessage = true;
       }
     );

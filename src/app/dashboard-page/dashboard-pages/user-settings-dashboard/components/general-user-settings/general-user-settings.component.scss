@@ -235,7 +235,7 @@
   }
 }
 
-.error-message {
+.done-message {
   position: fixed;
   top: 0;
   left: 0;
@@ -251,10 +251,10 @@
     height: auto;
     width: 100%;
     transform: translate(-50%, -50%);
-    max-width: 440px;
+    max-width: 350px;
     // max-height: 350px;
 
-    padding: 25px 35px;
+    padding: 55px 35px;
     background: #FFFFFF;
     box-shadow: 0px 15px 30px rgba(16, 27, 79, 0.15);
     border-radius: 10px;
@@ -262,24 +262,24 @@
   &__icon{
     display: flex;
     justify-content: center;
-    margin-bottom: 10px;
+    height: 58px;
+    width: 58px;
+    background-color: #29CC97;
+    border-radius: 50%;
+    border: 1px solid #fff;
+    position: relative;
+    box-shadow: 0px 7px 64px rgba(0, 0, 0, 0.07);
+    margin: 0 auto 15px;
   }
   &__text{
-    margin-bottom: 35px;
     p{
-      font-size: 16px;
-      line-height: 156%;
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 30px;
       text-align: center;
-      color: #707683;
-      margin: 0;
-      &.accent{
-        font-weight: 600;
-        font-size: 24px;
-        line-height: 28px;
-        text-align: center;
-        color: #F1A153;
-        margin-bottom: 15px;
-      }
+      color: #323C47;
+      margin: 0 auto;
+      width: 240px;
     }
   }
   &__close{
@@ -311,33 +311,6 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%) rotate(-45deg);
-    }
-  }
-  .btns-wrapper{
-    display: flex;
-    justify-content: space-between;
-    .btn{
-      font-weight: 600;
-      font-size: 14px;
-      line-height: 20px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: #707683;
-      padding: 11px 0;
-      border: 1px solid #707683;
-      background: #FFFFFF;
-      border-radius: 4px;
-      cursor: pointer;
-      max-width: 170px;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      &.accent{
-        background: #F1A153;
-        color: #fff;
-        border: 1px solid #F1A153;
-        box-shadow: 0px 5px 8px rgba(241, 161, 83, 0.35);
-      }
     }
   }
 }
