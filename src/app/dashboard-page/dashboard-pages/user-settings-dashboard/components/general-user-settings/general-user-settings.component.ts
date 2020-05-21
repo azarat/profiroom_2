@@ -37,7 +37,7 @@ export class GeneralUserSettingsComponent implements OnInit {
 
   }
 
-  public closeErrorMessage() {
+  public closePopUp() {
     this.succesMessage = false;
   }
 }

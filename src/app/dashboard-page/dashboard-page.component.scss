@@ -479,6 +479,11 @@
     color: #33596E;
     opacity: 0.5;
   }
+  .content-part{
+    &::before{
+      height: 140px;
+    }
+  }
 }
 
 @media (max-width: 1499px) {
