@@ -17,12 +17,12 @@
 
   &>div {
     box-sizing: border-box;
-    padding: 28px 30px 18px;
+    padding: 18px 30px 18px;
     background: #FFFFFF;
     box-shadow: 0px 4px 20px rgba(173, 182, 217, 0.17);
     border-radius: 10px;
     display: flex;
-    min-width: 256px;
+    width: calc(20% - 10px);
     align-items: center;
     .icon {
       width: 30px;
@@ -44,7 +44,7 @@
         opacity: 0.5;
         font-style: normal;
         font-weight: normal;
-        margin-top: 8px;
+        margin-top: 0;
       }
       &.inline{
         display: inline-block;
@@ -222,6 +222,7 @@
             font-size: 14px;
             line-height: 18px;
             color: #707683;
+            margin: 0;
           }
           &:first-child {
             display: block;
@@ -514,7 +515,7 @@
   }
 }
 
-@media (max-width: 1499px) {
+@media (max-width: 1699px) {
   .main-statistic {
     padding: 22px 22px 18px 15px;
     &>div {

@@ -21,6 +21,13 @@
     <section class="avatar">
       <div class="lines"></div>
       <div class="avatar-wrapper">
+        <div class="avatar-aura">
+          <img src="assets/images/images/aura_lvl2.svg" alt="user-lvl" *ngIf="user.rank_id === 0">
+          <img src="assets/images/images/aura_lvl2.svg" alt="user-lvl" *ngIf="user.rank_id === 1">
+          <img src="assets/images/images/aura_lvl2.svg" alt="user-lvl" *ngIf="user.rank_id === 2">
+          <img src="assets/images/images/aura_lvl2.svg" alt="user-lvl" *ngIf="user.rank_id === 3">
+          <img src="assets/images/images/aura_lvl2.svg" alt="user-lvl" *ngIf="user.rank_id === 4">
+        </div>
         <img [src]="user.avatar" alt="avatar" />
       </div>
       <p class="name">{{ user.name }} {{ user.surname}}</p>
