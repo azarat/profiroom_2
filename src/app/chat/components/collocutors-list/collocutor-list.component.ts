@@ -86,8 +86,9 @@ export class CollocutorListComponent implements OnInit {
     this.chatService.getChatRooms(this.chatType)
     .subscribe((res: CollocutorInterface[]) => {
       // this.collocutors = res;
-      this.collocutors = this._sortMessagesByTime(res);
       console.log('list', res);
+      this.collocutors = this._sortMessagesByTime(res);
+
       this._isAnyChatOpen();
     });
   }
@@ -196,67 +197,6 @@ private _isAnyChatOpen() {
   }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-// // **** Get id of chatrooms or deals
-//   private _getChatInformation() {
-//     this.route.queryParams.subscribe((res: any) => {
-//       if (res.hasOwnProperty('offers_id')) {
-//         // If created new deal
-//         console.log('new deal',res);
-//         // this.collocutorData = res;
-//         // this.getCurrentRoom(res);
-//         this.getExistDeal(+res.id);
-
-//       } else if (res.hasOwnProperty('dealId')) {
-//         // If deal is already created
-//         this.getExistDeal(+res.dealId);
-//         // this._resetChat();
-//       } else if(res.hasOwnProperty('id') && this.chatType=== 'classic') {
-//         //  If classic chat and chat opened from user page
-//         this.newChatRoomData = res;
-
-//       }
-//     });
-//   }
-// // Get Data of new deal
-//   private getDealData(id: number) {
-
-//     this.dealService.getDealData(id)
-//     .pipe(filter((res: any) => !!res))
-//     .subscribe((res: any) => {
-//       console.log(res);
-//       this.collocutorService.setCollocutorInfo(res);
-//     })
-//   }
-
-//   // get exist Deal Data
-
-//   private getExistDeal(id: number) {
-//     this.dealService.getDealData(id)
-//     .subscribe((res: any)=> {
-//       console.log('NEWDATA', res)
-//       this.collocutorService.setCollocutorInfo(res);
-//     })
-//   }
-//   // Find current collocutor in list
-//   private _findChatRoom(id: number) {
-//     return this.collocutors.filter(el =>{
-//       return el.id === id
-//     });
-//   }
-
 //  If user role changed
   private _checkUserState() {
     this.userStateSubscription = this.userStateService.userState$
@@ -266,43 +206,6 @@ private _isAnyChatOpen() {
         this.collocutorService.setCollocutorInfo(null);
       });
   }
-
-
-
-// // Reset route from querryParams
-//   public openChat(userInfo) {
-//     this._openChat(userInfo);
-//   let translatedPath: any;
-//     if (this.chatType === 'work') {
-//       // clear router from params if click on anther deal
-//       translatedPath = this.localize.translateRoute('/dashboard/projects');
-//       this.router.navigate([translatedPath], {
-//         relativeTo: this.route,
-//         queryParams: {dealId: userInfo.id},
-//       });
-//     } else if(this.chatType === 'classic') {
-//       // clear router from params if click on anther chat
-//       translatedPath = this.localize.translateRoute('/dashboard/chat-room');
-//       this.router.navigate([translatedPath], {
-//         relativeTo: this.route,
-//         queryParams: {id: userInfo.id},
-//       });
-//     }
-
-//   }
-
-//   //  separate function to connect chatRoom
-//   private _openChat(userInfo) {
-//     // this.collocutorService.setCollocutorInfo(null);
-//     // setTimeout(()=> {
-
-//     // }, 100)
-//     // this.collocutorService.setCollocutorInfo(userInfo);
-//     // console.log('userInfo', userInfo);
-//     // this.currentRoom.emit(userInfo);
-//     this.socketService.openChat(userInfo.roomId);
-
-//   }
 
   private _pushNewMessage(arr, obj: any) {
     if (arr.length !== 0) {
@@ -327,23 +230,6 @@ private _isAnyChatOpen() {
     // this.collocutors = x;
     return x;
   }
-
-//   //  open deal After brief submitting
-
-//   private openDealAfterBriefSubmit() {
-//     this.route.queryParams
-//       .pipe(
-//         filter((res: any) => !!res),
-//       )
-//       .subscribe((res: any) => {
-//         if (res.hasOwnProperty('dealId')) {
-//           // let dealId = Number(res.dealId);
-//           const activeDeal = this.collocutors.find(collocutor => collocutor.id === +res.dealId);
-//           this._openChat(activeDeal);
-//         }
-
-//       });
-//   }
 
 
 }

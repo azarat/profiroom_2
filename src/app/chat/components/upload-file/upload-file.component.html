@@ -23,14 +23,14 @@
                 <img src="/assets/images/icons/files-type/{{ file.fileType | fileType }}.png" alt="">
             </div>
             <div class="file-info">
-                <p class="name">{{ file.filename }}</p>
+                <p class="name">{{ file.fileName }}</p>
                 <p class="size">{{ file.size | fileSize }}</p>
-                <span class="delete"></span>
+                <span class="delete-file"></span>
             </div>
         </div>
     </div>
     <div class="files-btn">
-        <button class="btn-sec"><span>Отмена</span></button>
+        <button class="btn-sec" (click)="closeWindow()"><span>Отмена</span></button>
         <button class="btn" (click)="sendMessage()"> <span>Загрузить</span></button>
     </div>
 </div>

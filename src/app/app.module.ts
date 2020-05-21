@@ -9,9 +9,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import 'reflect-metadata';
 import { FormsModule } from '@angular/forms';
 import { SocketService } from './core/services/socket.service';
-import { CalendarModule, DateAdapter } from 'angular-calendar';
-import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+
 import { SystemMessagesService } from './shared/modules/system-messages/services/system-messages.service';
+import { LocalizeRouterModule } from 'localize-router';
 
 
 @NgModule({
@@ -24,24 +24,10 @@ import { SystemMessagesService } from './shared/modules/system-messages/services
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
-    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
-    // NgxGalleryModule
-    // shareds
-    // RouterModule,
-    // LocalizeRouterModule,
-    // created
-    // HomePageModule,
-    // CatalogPageModule,
-    // DashboardPageModule,
-    // ErrorPageModule,
-    // AuthorizationPageModule,
-    // TranslateModule,
   ],
   exports: [
-    // NgxGalleryModule
   ],
   providers: [
-    // CategoryResolver
     SocketService,
     SystemMessagesService,
     Title

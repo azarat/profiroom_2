@@ -15,16 +15,16 @@
     <div class="swipe-block" [ngClass]="auth? 'left' : 'right'">
       <div class="inform">
         <h2>
-          <span class='registr-txt'>Впервые на сайте?</span>
-          <span class='login-txt'>Уже заходили</span>
+          <span class='registr-txt'>{{'auth-page.first-time' | translate}}</span>
+          <span class='login-txt'>{{'auth-page.was-here' | translate}}</span>
         </h2>
         <p>
-          <span class='registr-txt'>Добро пожаловать на лучшую платформу фриланса Who can!</span>
-          <span class='login-txt'>Будем рады видеть вас снова на лучшей платформе фриланса Whocan</span>
+          <span class='registr-txt'>{{'auth-page.wellcome-to-us' | translate}}</span>
+          <span class='login-txt'>{{'auth-page.wellcome-again' | translate}}</span>
         </p>
         <button mat-button class='swap-btn' type="button" (click)="swipeBtn()" [ngClass]="auth? 'login-btn': 'registr-btn'" >
-          <span class='login-btn-txt'>Войти</span>
-          <span class='registr-btn-txt'>Зарегистрироваться</span>
+          <span class='login-btn-txt'>{{'general.enter' | translate}}</span>
+          <span class='registr-btn-txt'>{{'auth-page.registrate' | translate}}</span>
         </button>
       </div>
 

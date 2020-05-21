@@ -36,7 +36,7 @@ export class MessengerComponent implements OnInit, OnDestroy {
   public isUserFreelancer: boolean = null;
   @Input() chatType: string;
   // @Input() deal: CollocutorInterface;
- 
+
   @Input() isFileLoaderVisible: boolean;
   @Output() isFileLoaderVisibleChange = new EventEmitter<boolean>();
 
@@ -58,7 +58,7 @@ export class MessengerComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.getDealData();
-    
+
 
 
     this.socketService.onMessage()
@@ -79,9 +79,7 @@ export class MessengerComponent implements OnInit, OnDestroy {
         this.typing = false;
         this.socketService.onTypingEvent('stopTyping', this.collocutorData.collocutorId);
       });
-    // console.log(this.collocutorData);
     this._isChatHidden();
-    
   }
 
   private getPrevMessages() {
@@ -170,7 +168,7 @@ export class MessengerComponent implements OnInit, OnDestroy {
   }
 
   private rateDeal() {
-    this.dealCanBeRated = this.collocutorData && this.collocutorData.status !== 'archived' && 
+    this.dealCanBeRated = this.collocutorData && this.collocutorData.status !== 'archived' &&
     (this.collocutorData.dealDone === 1 || this.collocutorData.canceled === 1)? true : null;
   }
 

@@ -15,6 +15,8 @@ import { ClickOutsideModule } from 'ng-click-outside';
 import { FinancePageComponent } from './finance-page.component';
 import { NgKnifeModule } from 'ng-knife';
 import { PaymentHistoryModule } from 'src/app/shared/modules/payment-history/payment-history.module';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 const routes: Routes = [
   {
@@ -38,6 +40,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     MatSelectModule,
     NgKnifeModule,
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
 
     // Pipes
     DataFormatModule,

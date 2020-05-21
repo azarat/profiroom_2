@@ -14,7 +14,6 @@ import {
 import {
   AuthentificationService
 } from 'src/app/core/services/auth.service';
-import { AuthService } from 'angularx-social-login';
 import {
   Router
 } from '@angular/router';
@@ -66,13 +65,12 @@ export class LoginPageComponent implements OnInit {
     this.authentificationService.authenticate(this.loginForm.value)
       .subscribe(
         (data: UserModel | any) => {
-          console.log(data);
           if (data !== null) {
             if (data === 'not verifired') {
               this.message = {
-                title: 'Подтвердите регистрацию!',
+                title: 'auth-page.sys-messages.submit-registration',
                 // tslint:disable-next-line:max-line-length
-                description: 'Для завершения регистрации, пожалуйста, подтвердите Вашу электронную почту в сообщении, которое было отправлено Вам на указанный при регистрации почтовый ящик.'
+                description: 'auth-page.sys-messages.submit-registration-text'
               };
             } else {
               const translatedPath: any = this.localize.translateRoute('/dashboard');
@@ -86,14 +84,14 @@ export class LoginPageComponent implements OnInit {
 
           if (error === 'Forbidden') {
             this.message = {
-              title: 'Подтвердите регистрацию!',
+              title: 'auth-page.sys-messages.finish-registration',
               // tslint:disable-next-line:max-line-length
-              description: 'Для завершения регистрации, пожалуйста, подтвердите Вашу электронную почту в сообщении, которое было отправлено Вам на указанный при регистрации почтовый ящик.'
+              description: 'auth-page.sys-messages.finish-registration-text'
             };
           } else if(error === 'Bad Request') {
             this.message = {
-              title: 'Ошибка',
-              description: 'Не верно указанные данные'
+              title: 'auth-page.sys-messages.erorr-message-title',
+              description: 'auth-page.sys-messages.wrong-data'
             };
           }
         });

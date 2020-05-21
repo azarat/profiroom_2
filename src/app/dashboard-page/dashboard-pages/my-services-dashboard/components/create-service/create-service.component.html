@@ -11,11 +11,11 @@
     </div>
   </div>
   <div class="step-detail">
-    <app-first-step-service-creation *ngIf="userService && userService.step === 1" [userService]="userService" (setCurrentStep)="setCurrentStep($event)"></app-first-step-service-creation>
-    <app-second-step-creation *ngIf="userService && userService.step === 2" [userService]="userService" (setCurrentStep)="setCurrentStep($event)"></app-second-step-creation>
-    <app-third-step-creation *ngIf="userService && userService.step === 3" [userService]="userService"></app-third-step-creation>
-    <app-fourth-step-creation *ngIf="userService && userService.step === 4" [userService]="userService"></app-fourth-step-creation>
-    <app-fifth-step-creation *ngIf="userService && userService.step === 5" [userService]="userService"></app-fifth-step-creation>
+    <app-first-step-service-creation *ngIf="userService && userService.step === 1" [userService]="userService" (setCurrentStep)="setCurrentStep($event)" (click)="goToStep(1)"></app-first-step-service-creation>
+    <app-second-step-creation *ngIf="userService && userService.step === 2" [userService]="userService" (setCurrentStep)="setCurrentStep($event)" (click)="goToStep(2)"></app-second-step-creation>
+    <app-third-step-creation *ngIf="userService && userService.step === 3" [userService]="userService" (setCurrentStep)="setCurrentStep($event)" (click)="goToStep(3)"></app-third-step-creation>
+    <app-fourth-step-creation *ngIf="userService && userService.step === 4" [userService]="userService" (setCurrentStep)="setCurrentStep($event)" (click)="goToStep(4)"></app-fourth-step-creation>
+    <app-fifth-step-creation *ngIf="userService && userService.step === 5" [userService]="userService" (setCurrentStep)="setCurrentStep($event)" (click)="goToStep(5)"></app-fifth-step-creation>
     <app-last-step-creation class="last" *ngIf="userService && userService.step === 6" [userService]="userService"></app-last-step-creation>
   </div>
 </div>

@@ -55,7 +55,6 @@ export class HomeUserSettingsComponent implements OnInit, ComponentCanDeactivate
     });
     
     this.titleService.setTitle('Настройки');
-    
   }
 
   //  ** load userServiceData from server

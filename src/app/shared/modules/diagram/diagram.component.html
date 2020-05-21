@@ -11,7 +11,7 @@
   <div class="chart">
     <div class="score">
       <!-- <ng-container *ngIf="maxInput"> -->
-      <div>{{ maxInput | thousandSeparator }}</div>
+      <div>{{ maxInput | thousandSeparator: 'thousant' }}</div>
       <div *ngFor="let el of stepsCount | reverse">{{ maxInput/maxStepCount * el | thousandSeparator: "thousand" }}</div>
       <div>
       </div>

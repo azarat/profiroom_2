@@ -55,6 +55,7 @@ export class BaseInterceptor implements HttpInterceptor {
         const error = err.error.message || err.statusText;
         if (err.status === 401) {
           this.authService.logOut();
+          location.reload();
         }
         return throwError(error);
       })

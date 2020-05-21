@@ -23,16 +23,6 @@ import { CategoriesListService } from './services/categories.service';
 
 export const url = new URL(location.href).origin;
 
-const gConfig = {
-  apiKey: 'AIzaSyCvUM_cRxpUTglNwMUcIFQdVsTtfLzIBtw',
-    authDomain: 'gigrum-6bd12.firebaseapp.com',
-    databaseURL: 'https://gigrum-6bd12.firebaseio.com',
-    projectId: 'gigrum-6bd12',
-    storageBucket: '',
-    messagingSenderId: '525258845420',
-    appId: '1:525258845420:web:635bceff56889f8ce949c9',
-    measurementId: 'G-4GNMQ0XZDM'
-};
 
 @NgModule({
   declarations: [],

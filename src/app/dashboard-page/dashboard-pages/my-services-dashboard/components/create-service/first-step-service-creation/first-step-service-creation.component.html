@@ -60,9 +60,7 @@
 
                 <ng-container *ngIf="previewUrl">
                     <div class="img-item" *ngFor="let imgUrl of previewUrl, let i = index" [ngClass]="{ 'main-photo': userService.offerMainImage === imgUrl.link}">
-                        <div class="delete-file" (click)="deleteAttachment(imgUrl.id)">
-
-                        </div>
+                        <div class="delete-file" (click)="deleteAttachment(imgUrl.id)"></div>
                         <img [src]="imgUrl.link" height="300" />
                         <div class="choose-as-main-photo" (click)="putAsMainPhoto(imgUrl.link)">сделать обложкой</div>
                     </div>
@@ -73,7 +71,7 @@
         С загруженных файлов, вы можете выбрать один для титульного изображения на странице." popoverTitle="Загрузка портфолио" placement="right" popoverClass="popover" closeDelay="200">
                     <div class="upload"></div>
                     <span>.JPG .PNG .GIF </span>
-                    <span>Перетащите файлы или </span>
+                    <span class="dr-dr-text">Перетащите файлы или </span>
                     <input type="file" id="file" multiple="true" class="input-file" #fileInput (change)="fileProgress($event.target.files)" />
                     <label for="file">кликните сюда</label>
                 </div>

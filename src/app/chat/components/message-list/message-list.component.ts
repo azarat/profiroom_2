@@ -18,14 +18,14 @@ export class MessageListComponent implements OnInit, AfterViewChecked, AfterView
   @Input() chatRoom: string;
   @Input() messagesList: any[];
   @Input() collocutorData: CollocutorListModel;
-  userId: any;
-  userAvatar: any;
-  messCheck = null;
-  isScrollDownBtn: boolean = null;
-  isShowMoreMessagesBtn: boolean = null;
-
+  public userId: any;
+  public userAvatar: any;
+  public messCheck = null;
+  public isScrollDownBtn: boolean = null;
+  public isShowMoreMessagesBtn: boolean = null;
   public typing: boolean = null;
   public typingUser: number;
+  public isMessages = true;
 
   constructor(
     private chatService: ChatService,
@@ -35,7 +35,6 @@ export class MessageListComponent implements OnInit, AfterViewChecked, AfterView
   ) {
     this.userId = (this.localStorageService.getItem('userId').value).toString();
     this.userAvatar = this.localStorageService.getItem('userImage').value;
-
   }
 
   @ViewChild('messagesWrap', { static: false }) messagesWrap: ElementRef;
@@ -88,6 +87,10 @@ export class MessageListComponent implements OnInit, AfterViewChecked, AfterView
     const cerOffset = firstMessage.offset().top - $('#messages-wrap').scrollTop() - 1;
     this.chatService.getPreviousMessages(this.collocutorData.roomId, this.messagesList.length, this.chatType)
       .subscribe(res => {
+        if(res[0].length === 0){
+          this.isMessages = null;
+          return;
+        }
         this.messagesList = this.filterArrayOnMessTypes(res[0]).concat(this.messagesList);
         $('#messages-wrap').scrollTop(firstMessage.offset().top - cerOffset);
       });
