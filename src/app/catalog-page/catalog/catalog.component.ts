@@ -53,7 +53,9 @@ export class CatalogComponent implements OnInit {
         this.catalogFilters.current_page = 1;
     //----------- устанавливаем параметры из ActivatedRoute.queryParams ------------//  
         this.GetOffersService.setFilters(qParams);
-        this.GetOffersService.getOffers(qParams);
+        this.catalogFilters = plainToClass(CatalogFiltersModel, qParams);
+        this.catalogFilters.online = (qParams.online === "true") ? true: false;
+        this.GetOffersService.getOffers(this.catalogFilters);
       }
     });
 

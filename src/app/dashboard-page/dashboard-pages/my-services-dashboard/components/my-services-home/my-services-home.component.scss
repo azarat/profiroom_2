@@ -328,6 +328,10 @@ mat-tab-group ::ng-deep {
 
 
 @media (max-width: 1499px) {
+  .wrap{
+    background: #fff;
+    border-radius: 5px;
+  }
   .add-service {
     width: calc(25% - 40px);
     max-height: 205px;

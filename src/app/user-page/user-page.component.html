@@ -2,7 +2,7 @@
 <app-categories-header></app-categories-header>
 
 <nav class="navigation-page" #stickyMenu [class.sticky]="sticky">
-    <<<<<<< HEAD <div class="navigation-page__wrapper" *ngIf="userData">
+    <div class="navigation-page__wrapper" *ngIf="userData">
         <ul>
             <li (click)="scrollTo('about')">О фрилансере</li>
             <li (click)="scrollTo('education')" *ngIf="userTypeFreelancer">Образование</li>
@@ -11,18 +11,8 @@
             <li (click)="scrollTo('comments')" *ngIf="userTypeFreelancer && userData.comments_freelancer_count">отзывы</li>
             <li (click)="scrollTo('comments')" *ngIf="!userTypeFreelancer && userData.comments_customer_count">отзывы</li>
         </ul>
-        </div>
-        =======
-        <div class="navigation-page__wrapper">
-            <ul>
-                <li (click)="scrollTo('about')">О фрилансере</li>
-                <li (click)="scrollTo('education')" *ngIf="userTypeFreelancer">Образование</li>
-                <li (click)="scrollTo('rating')">рейтинг</li>
-                <li (click)="scrollTo('services')">услуги</li>
-                <li (click)="scrollTo('comments')">отзывы</li>
-            </ul>
-        </div>
-        >>>>>>> master
+    </div>
+
 </nav>
 
 <div class="wrapper" *ngIf="userData">
@@ -127,67 +117,7 @@
                 </li>
             </ul>
         </section>
-        <section class="education" id="education" *ngIf="userTypeFreelancer && userData.education.length > 0">
-            <div class="section-title">Высшее образование</div>
-            <div class="education__wrapper">
-                <div class="education__info-block" *ngFor="let education of userData.education; let thisArr = index">
 
-                </div>
-            </div>
-        </section>
-        <section class="switching-user-types">
-            <div class="btns-wrapper">
-                <div class="btn btn-user-type" [ngClass]="{active: userTypeFreelancer}" (click)=choseUser(0)>Профиль фрилансера
-                </div>
-                <div class="btn btn-user-type" [ngClass]="{active: !userTypeFreelancer}" (click)=choseUser(1)>профиль заказчика
-                </div>
-            </div>
-            <div class="switching-user-types__text">*Каждый пользователь данной биржи может быть одновременно исполнителем и заказчиком, в зависимости от потребности. </div>
-        </section>
-        <section class="about-user">
-            <div class="about-user__wrapper">
-                <div class="about-user__info-block">
-                    <div class="about-user__title">Страна, город</div>
-                    <div class="about-user__value">{{userData.country}} <br> {{userData.city}}</div>
-                </div>
-                <div class="about-user__info-block">
-                    <div class="about-user__title">На сайте с</div>
-                    <div class="about-user__value">{{userData.email_verified_at | dateFormatPipe: 'dd.MM.yyyy' }}</div>
-                </div>
-                <div class="about-user__info-block fixed-width-block" *ngIf="userData.dealsCounts.EndedWorks > 0">
-                    <div class="about-user__title" *ngIf="userData.dealsCounts.EndedWorks ">Исполненных проектов</div>
-                    <div class="about-user__value">{{userData.dealsCounts.EndedWorks}}</div>
-                </div>
-                <div class="about-user__info-block fixed-width-block" *ngIf="!userTypeFreelancer && userData.dealsCounts.dealsAsCustomer > 0">
-                    <div class="about-user__title">Количество заказов</div>
-                    <div class="about-user__value">{{userData.dealsCounts.dealsAsCustomer}}</div>
-                </div>
-                <div class="about-user__info-block" *ngIf="userTypeFreelancer && userData.arbitration.freelancer > 0">
-                    <div class="about-user__title">Обращений в арбитраж</div>
-                    <div class="about-user__value">{{userData.arbitration.freelancer}}</div>
-                </div>
-                <div class="about-user__info-block" *ngIf="!userTypeFreelancer && userData.arbitration.customer > 0">
-                    <div class="about-user__title">Обращений в арбитраж</div>
-                    <div class="about-user__value">{{userData.arbitration.customer}}</div>
-                </div>
-                <div class="about-user__info-block">
-                    <div class="about-user__title">Время ответа</div>
-                    <div class="about-user__value">{{userData.answerTime}}</div>
-                </div>
-            </div>
-            <div class="about-user__description" *ngIf="userTypeFreelancer && userData.description != ''">
-                <p>{{userData.description}}</p>
-            </div>
-        </section>
-        <section class="languages" *ngIf="userData.language.length > 0">
-            <div class="section-title">Знание языков</div>
-            <ul class="languages__wrapper">
-                <li class="languages__info-block" *ngFor="let language of userData.language">
-                    <div class="languages__name">{{ language.langName}} </div>
-                    <div class="languages__lvl"> - {{ academicDegreesTranslations[language.langLevel-1]}}</div>
-                </li>
-            </ul>
-        </section>
         <div class="education-wrapp" id="education">
             <section class="education" *ngIf="userTypeFreelancer && userData.education.length > 0">
                 <div class="section-title">Высшее образование</div>
