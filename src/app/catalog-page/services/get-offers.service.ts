@@ -37,16 +37,6 @@ export class GetOffersService {
   getOffers(filters: CatalogFiltersModel | any) {
     this._offersList.next(null);
 
-    if(typeof (filters.online) === 'string'){
-      console.log('string');
-      console.log(filters.online);
-      filters.online = false;
-
-      if(filters.online === "true"){
-        filters.online = true;
-      }
-    }    
-
     this.http.post('/catalog', filters).subscribe((res: CatalogFiltersModel) => {
       this._offersList.next(res);
     });
@@ -54,19 +44,9 @@ export class GetOffersService {
 
   // tslint:disable-next-line: variable-name
   setFilters(PARAMSfilter: CatalogFiltersModel) {
+      
     this._filterValue = PARAMSfilter;
     this.filters.next(PARAMSfilter);
-
-
-    // if(typeof (PARAMSfilter.online) === 'string'){
-    //   console.log('string');
-    //   console.log(PARAMSfilter.online);
-    //   if(PARAMSfilter.online === "true"){
-    //     PARAMSfilter.online = true;
-    //   } else {
-    //     PARAMSfilter.online = false;
-    //   }
-    // PARAMSfilter.online = (PARAMSfilter.online === "true") ? true: false;
 
     this.pushFilters(PARAMSfilter);
   }

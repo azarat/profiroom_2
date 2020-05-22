@@ -22,11 +22,9 @@
       <div class="lines"></div>
       <div class="avatar-wrapper">
         <div class="avatar-aura">
-          <img src="assets/images/images/aura_lvl2.svg" alt="user-lvl" *ngIf="user.rank_id === 0">
-          <img src="assets/images/images/aura_lvl2.svg" alt="user-lvl" *ngIf="user.rank_id === 1">
-          <img src="assets/images/images/aura_lvl2.svg" alt="user-lvl" *ngIf="user.rank_id === 2">
-          <img src="assets/images/images/aura_lvl2.svg" alt="user-lvl" *ngIf="user.rank_id === 3">
-          <img src="assets/images/images/aura_lvl2.svg" alt="user-lvl" *ngIf="user.rank_id === 4">
+          <ng-container *ngFor="let lvl of [0,1,2,3,4]">
+            <img src="'assets/images/images/aura_lvl{{lvl}}.svg'" alt="user-lvl" *ngIf="user.rank_id === lvl">
+          </ng-container> 
         </div>
         <img [src]="user.avatar" alt="avatar" />
       </div>

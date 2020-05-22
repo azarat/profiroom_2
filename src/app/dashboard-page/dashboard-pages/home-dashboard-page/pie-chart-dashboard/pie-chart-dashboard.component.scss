@@ -19,7 +19,15 @@
         border: 40px solid #E9ECF1;;
     }
 }
-@media (max-width: 1499px) {
+.chart{
+    width: 271px;
+    height: auto;
+}
+@media (max-width: 1699px) {
+    .chart{
+        // width: 171px;
+        // height: 171px;
+    }
     .chart.zero {
         &:before {
             height: 13rem;

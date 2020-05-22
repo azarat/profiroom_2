@@ -19,7 +19,7 @@
 
         <div class="single-lang-wrapper" *ngFor="let arrayItem of userSettings.language; let i = index">
 
-          <!-- <div class="field-block"  *ngIf="userSettings.language">
+          <div class="field-block"  *ngIf="userSettings.language">
             <h5 class="fields-title">Язык</h5>
             <input class="fields-value" 
               type="text" 
@@ -33,7 +33,7 @@
             <div *ngIf="!langName.valid" class="alert-danger">
               <p>specialty must be at least 4 characters long.</p>
             </div>
-          </div> -->
+          </div>
 
           <div class="field-block language-level">
             <label class="block-title" for="langLevel">Уровень владения</label>

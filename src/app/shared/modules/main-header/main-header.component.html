@@ -19,7 +19,7 @@
         <nav *ngIf="pageName !== 'authoriz'">
           <a [routerLink]="''">{{'header.how_it_works' | translate}}</a>
           <a [routerLink]="['/catalog'] | localize">Каталог</a>
-          <a [routerLink]="''">Проэкты</a>
+          <a [routerLink]="''">Проекты</a>
         </nav>
         <div class="languages" >
           <button class="toggle-list" (click)='showLangList()' [ngClass]="{active: langList}">Изменить язык</button>
@@ -41,7 +41,7 @@
         <a [routerLink]="''">Главная</a>
         <a [routerLink]="''">{{'header.how_it_works' | translate}}</a>
         <a [routerLink]="['/catalog'] | localize">Каталог</a>
-        <a [routerLink]="''">Проэкты</a>
+        <a [routerLink]="''">Проекты</a>
       </nav>
     </div>
     <div class="auth" *ngIf="pageName !== 'authoriz'">
