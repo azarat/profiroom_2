@@ -38,9 +38,4 @@ export class MainUserSettingsComponent implements OnInit {
         this.userSettingsModel.avatar = res.avatar;
       });
   }
-
-  public onFilterChange(form: NgForm){
-        console.log(form);
-    }
-
 }

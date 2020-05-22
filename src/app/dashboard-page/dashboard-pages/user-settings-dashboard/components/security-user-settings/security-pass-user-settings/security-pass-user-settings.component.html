@@ -8,12 +8,9 @@
       <div class="fields">
         <div class="field-wrapper">
           <h5 class="fields-title">Старый пароль</h5>
-          <input class="fields-value" type="password" formControlName='oldPassword' maxlength="50">
-          <div class="succes-message" *ngIf="submitedPassForm && changePasswordResult" >
-            Ответ положительный. Пароль изменен
-          </div>
+          <input class="fields-value" formControlName='oldPassword' maxlength="50" (ngModelChange)='resetValidation()'>
           <div class="error-message" *ngIf="submitedPassForm && !changePasswordResult && passForm.controls.oldPassword.value" >
-            Ответ отрицательный. Пароль другой
+            Старый пароль введен неверно
           </div>
           <div class="error-message" *ngIf="submitedPassForm  && !passForm.controls.oldPassword.value">
             Это обязательное поле
@@ -25,7 +22,7 @@
 
         <div class="fields">
           <h5 class="fields-title">Новый пароль (если необходимо изменить)</h5>
-          <input class="fields-value new-passrord" type="password" placeholder="" formControlName="newPassword" required>
+          <input class="fields-value new-passrord"  placeholder="" formControlName="newPassword" required>
           <div class="pass-erorrs">
             <span
               [ngClass]="passForm.get('passwords.newPassword').hasError('required') || passForm.get('passwords.newPassword').hasError('hasNumber') ? 'unvalidated': 'validated'"></span>
@@ -59,7 +56,7 @@
           <h5 class="fields-title">Повторите новый пароль</h5>
           <input class="fields-value" type="password" placeholder="" formControlName="newPassword_confirmation">
           <div class="error-message" *ngIf="passForm.hasError('notSame', 'passwords')">
-            Новый пароль не совпадает
+            Пароли не совпадает
           </div>
           <div class="error-message" *ngIf="submitedPassForm && !passForm.get('passwords.newPassword_confirmation').value && !passForm.hasError('notSame', 'passwords')">
             Это обязательное поле
@@ -73,3 +70,16 @@
     <button class="save-all" type="submit">сохранить изменения</button>
   </div>
 </form>
+
+
+<div class="done-message" *ngIf="changePasswordResult">
+  <div class="done-message__info-block">
+      <div class="done-message__icon"><img src="/assets/images/svg/done.svg" alt=""></div>
+      <div class="done-message__text">
+          <p class="accent">Изменения успешно сохранены</p>
+      </div>
+      <div class="btns-wrapper">
+      </div>
+      <div class="done-message__close" (click)="toglePopUp()"></div>
+  </div>
+</div>

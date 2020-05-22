@@ -3,20 +3,23 @@
 // }
 
 h2 {
-  color: #000000;
+  color: #323C47;
   font-size: 36px;
   font-weight: 900;
   text-align: center;
   font-family: "Source Sans Pro", sans-serif;
+  margin: 0 auto 14px;
 }
 
 p {
-  color: #585858;
+  color: #99ACB7;
   font-size: 21px;
   line-height: 32px;
   font-weight: 300;
   text-align: center;
   font-family: "Source Sans Pro", sans-serif;
+  margin: 0 auto 20px;
+  max-width: 390px;
 }
 
 .form-control:focus {
@@ -155,13 +158,13 @@ input {
     border-radius: 8px;
     font-family: "Source Sans Pro", sans-serif;
   }
-
+}
+.social-login{
+  display: none;
 }
 
 @media (max-width: 1499px) {
-  .social-login{
-    display: none;
-  }
+
   h2{
     margin: 0 auto;
   }

@@ -26,6 +26,9 @@ export class LineChartDashboardComponent implements OnInit {
   @Input() chartLabels: string[];
   @Input() currentFinanceFilter: string;
 
+  public graphWidth = "400";
+  public graphHeight = "270";
+
   public lineChartData: ChartDataSets[] = [{
     // data: [65, 59, 80, 81, 56],
     label: 'Доход',

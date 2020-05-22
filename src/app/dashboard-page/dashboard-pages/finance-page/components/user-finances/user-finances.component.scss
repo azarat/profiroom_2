@@ -42,7 +42,7 @@
         align-items: center;
         box-sizing: border-box;
         min-height: 84px;
-        min-width: 273px;
+        width: calc(25% - 10px);
         &.laptop{
           display: none;
         }
@@ -60,7 +60,7 @@
           font-style: normal;
           font-weight: normal;
           font-size: 14px;
-          line-height: 24px;
+          line-height: 1em;
           text-transform: uppercase;
           color: #323c47;
           margin: 0;
@@ -68,7 +68,7 @@
             font-style: normal;
             font-weight: bold;
             font-size: 18px;
-            line-height: 24px;
+            line-height: 1em;
             color: #323c47;
           }
         }
@@ -76,7 +76,7 @@
           font-style: normal;
           font-weight: normal;
           font-size: 13px;
-          line-height: 24px;
+          line-height: 1em;
           color: #33596e;
           opacity: 0.5;
           margin: 0;
@@ -240,6 +240,7 @@
       display: flex;
       align-items: center;
       margin-bottom: 18px;
+      min-height: 84px;
       .icon {
         width: 30px;
         height: 30px;
@@ -254,7 +255,7 @@
         font-style: normal;
         font-weight: normal;
         font-size: 14px;
-        line-height: 24px;
+        line-height: 1em;
         text-transform: uppercase;
         color: #323c47;
         margin: 0;
@@ -262,7 +263,7 @@
           font-style: normal;
           font-weight: bold;
           font-size: 18px;
-          line-height: 24px;
+          line-height: 1em;
           color: #323c47;
         }
       }
@@ -270,7 +271,7 @@
         font-style: normal;
         font-weight: normal;
         font-size: 13px;
-        line-height: 24px;
+        line-height: 1em;
         color: #33596e;
         opacity: 0.5;
         margin: 0;
@@ -361,7 +362,7 @@
   }
   .laptop{display: none;}
 
-  @media (max-width: 1499px) {
+  @media (max-width: 1699px) {
     .laptop{display: block;}
     .wallet{
       display: none;
@@ -399,9 +400,10 @@
       .compressed-statistic {
         width: 100%;
         & > div {
-          padding: 12px;
+          padding: 1em;
           min-height: 70px;
-          min-width: auto;
+          max-height: 70px;
+          width: calc(20% - 10px);
           &.laptop{
             display: flex;
           }
@@ -418,15 +420,15 @@
           }
           p.value {
             font-size: 18px;
-            line-height: 18px;
+            line-height: 1em;;
             span {
               font-size: 18px;
-              line-height: 18px;
+              line-height: 1em;;
             }
           }
           p.title {
             font-size: 13px;
-            line-height: 13px;
+            line-height: 1em;
           }
         }
       }

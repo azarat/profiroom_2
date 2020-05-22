@@ -14,6 +14,7 @@ export interface UserDataInterface {
   customer_deals_count?: number;
   freelancer_deals_count?: number;
   comments_freelancer_count?: number;
+  comments_customer_count?: number;
   answerTime?: number;
   description?: string;
   comments_count?: number;

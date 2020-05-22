@@ -2,19 +2,21 @@
 
 
 h2 {
-  color: #000000;
+  color: #323C47;
   font-size: 36px;
   font-weight: 900;
   font-family: "Source Sans Pro", sans-serif;
   text-align: center;
+  margin: 0 0 18px;
 }
 
 p {
-  color: #585858;
+  color: #99ACB7;
   font-size: 21px;
   font-weight: 300;
   text-align: center;
   font-family: "Source Sans Pro", sans-serif;
+  margin: 0 0 50px;
 }
 
 .form-control:focus {
@@ -93,7 +95,7 @@ input {
 }
 
 .controls {
-  margin: 14px 0 40px;
+  margin: 0 0 40px;
   display: flex;
   justify-content: space-between;
   font-family: "Source Sans Pro", sans-serif;
@@ -133,11 +135,11 @@ input {
   // box-shadow: 0px 10px 20px rgba(80, 123, 252, 0.5);
   border-radius: 8px;
   }
-
 }
 
-@media (max-width: 1499px) {
-  .social-login{
-    display: none;
-  }
+.social-login{
+  display: none;
 }
+
+// @media (max-width: 1499px) {
+// }

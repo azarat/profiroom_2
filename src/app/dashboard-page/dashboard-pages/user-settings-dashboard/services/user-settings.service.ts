@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserSettingsService {
-
+  public onloadUserModelCopy$ = new Subject();
   constructor(
     private http: HttpClient
   ) { }
@@ -59,7 +59,7 @@ export class UserSettingsService {
   }
 
   public updateUserPassAccess( formData) {
-    return this.http.post<any>('/password/reset', formData);
+    return this.http.post<any>('/password/updatePass', formData);
   }
 
   public updateUserMailAccess( formData) {
