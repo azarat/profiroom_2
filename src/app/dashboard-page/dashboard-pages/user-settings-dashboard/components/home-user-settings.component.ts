@@ -32,7 +32,7 @@ export class HomeUserSettingsComponent implements OnInit, ComponentCanDeactivate
     // insert logic to check if there are pending changes here;
     // returning true will navigate without confirmation
     // returning false will show a confirm alert before navigating away
-    
+
     if(isEqual(this.onloadUserModelCopy, this.userSettingsModel)) {
       return true
     }
@@ -53,7 +53,7 @@ export class HomeUserSettingsComponent implements OnInit, ComponentCanDeactivate
     this.userSettingsService.onloadUserModelCopy$.subscribe((res: UserSettingsModel) => {
       this.onloadUserModelCopy = res;
     });
-    
+
     this.titleService.setTitle('Настройки');
   }
 

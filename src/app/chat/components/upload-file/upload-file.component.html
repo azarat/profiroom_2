@@ -3,8 +3,8 @@
     <div class="inform">
         <div class="img"></div>
         <div>
-            <h6>Загрузите файлы</h6>
-            <p>Перетащите сюда файл</p>
+            <h6>{{'file-loader.load-file' | translate}}</h6>
+            <p>{{'file-loader.put-file-here' | translate}}</p>
         </div>
 
     </div>
@@ -12,9 +12,9 @@
         <div class="dr-dp" appDragDrop (onFileDropped)="fileProgress($event)">
             <div class="upload"></div>
             <span>.JPG .PNG .GIF </span>
-            <span>Перетащите файлы или </span>
+            <span>{{'file-loader.drop-files' | translate}}&nbsp;</span>
             <input type="file" id="file" multiple="true" class="input-file" #fileInput (change)="fileProgress($event.target.files)" />
-            <label for="file">кликните сюда</label>
+            <label for="file">{{'file-loader.click-here' | translate}}</label>
         </div>
     </div>
     <div class="files-list" *ngIf="files">
@@ -30,7 +30,7 @@
         </div>
     </div>
     <div class="files-btn">
-        <button class="btn-sec" (click)="closeWindow()"><span>Отмена</span></button>
-        <button class="btn" (click)="sendMessage()"> <span>Загрузить</span></button>
+        <button class="btn-sec" (click)="closeWindow()"><span>{{'file-loader.cancel' | translate}}</span></button>
+        <button class="btn" (click)="sendMessage()"> <span>{{'file-loader.load' | translate}}</span></button>
     </div>
 </div>

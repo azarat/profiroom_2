@@ -1,55 +1,52 @@
 <div class="wrapper" *ngIf="user">
-  <header>
-    <a [routerLink]="'/' | localize" class="logo">whocan</a>
-    <div class="controls">
-      <app-system-messages [user]="user"></app-system-messages>
-      <section class="type-section">
-        <div class="switch" *ngIf="user.role_id !== 42">
-          <span (click)="changeUserType(1)" [ngClass]="{active: user.role_id === 1}">Фрилансер</span>
-          <div class="swp-btn" (click)="changeUserType()">
-            <span [ngClass]="{left: user.role_id === 1, right: user.role_id === 2 }"></span>
-          </div>
-          <span (click)="changeUserType(2)" [ngClass]="{active: user.role_id === 2}">Заказчик</span>
+    <header>
+        <a [routerLink]="'/' | localize" class="logo">whocan</a>
+        <div class="controls">
+            <app-system-messages [user]="user"></app-system-messages>
+            <section class="type-section">
+                <div class="switch" *ngIf="user.role_id !== 42">
+                    <span (click)="changeUserType(1)" [ngClass]="{active: user.role_id === 1}">{{'general.freelancer' | translate}}</span>
+                    <div class="swp-btn" (click)="changeUserType()">
+                        <span [ngClass]="{left: user.role_id === 1, right: user.role_id === 2 }"></span>
+                    </div>
+                    <span (click)="changeUserType(2)" [ngClass]="{active: user.role_id === 2}">{{'general.customer' | translate}}</span>
+                </div>
+            </section>
+            <section class="exit">
+                <button (click)="userExit()">{{'general.exit' | translate}}</button>
+            </section>
         </div>
-      </section>
-      <section class="exit">
-        <button (click)="userExit()">Выйти</button>
-      </section>
-    </div>
   </header>
-  <div class="side-bar" [ngClass]='{simplified: sideMenuClose}'>
+<div class="side-bar" [ngClass]='{simplified: sideMenuClose}'>
     <section class="avatar">
-      <div class="lines"></div>
-      <div class="avatar-wrapper">
-        <div class="avatar-aura">
-          <ng-container *ngFor="let lvl of [0,1,2,3,4]">
-            <img src="'assets/images/images/aura_lvl{{lvl}}.svg'" alt="user-lvl" *ngIf="user.rank_id === lvl">
-          </ng-container> 
+        <div class="lines"></div>
+        <div class="avatar-wrapper">
+            <div class="avatar-aura">
+              <ng-container *ngFor="let lvl of [0,1,2,3,4]">
+                <img src="'assets/images/images/aura_lvl{{lvl}}.svg'" alt="user-lvl" *ngIf="user.rank_id === lvl">
+              </ng-container> 
+            </div>
+            <img [src]="user.avatar" alt="avatar" />
         </div>
-        <img [src]="user.avatar" alt="avatar" />
-      </div>
-      <p class="name">{{ user.name }} {{ user.surname}}</p>
-      <div class="rating">
-        <app-star-rating [currentRating]="user.rating"></app-star-rating>
-      </div>
+        <p class="name">{{ user.name }} {{ user.surname}}</p>
+        <div class="rating">
+            <app-star-rating [currentRating]="user.rating"></app-star-rating>
+        </div>
     </section>
     <section class="menu">
-      <nav>
-        <ng-container *ngFor="let el of dashboardMenu">
-          <a class="{{el.class}}"
-            *ngIf="user.role_id === 1 && el.class !== 'catalog' && el.class !== 'arbitr' ||
+        <nav>
+            <ng-container *ngFor="let el of dashboardMenu">
+                <a class="{{el.class}}" *ngIf="user.role_id === 1 && el.class !== 'catalog' && el.class !== 'arbitr' ||
             user.role_id === 2 &&
             el.class !== 'services' && el.class !== 'arbitr' ||
             (user.role_id === 42 && el.class !== 'services' && el.class !== 'settings' && el.class !== 'projects')
-            "
-            [routerLink]="el.link | localize" [routerLinkActive]="'active'" (click)="openChat(el.class)"
-            [ngClass]="{ 'new-message': newMessage, 'new-work-message': newWorkMessage }"><span>{{ el.title }}</span></a>
-        </ng-container>
-      </nav>
+            " [routerLink]="el.link | localize" [routerLinkActive]="'active'" (click)="openChat(el.class)" [ngClass]="{ 'new-message': newMessage, 'new-work-message': newWorkMessage }"><span>{{ el.title | translate }}</span></a>
+            </ng-container>
+        </nav>
     </section>
     <div class="toggleMenuBtn" (click)='toggleSideMenu()'></div>
-  </div>
-  <div class="content-part">
+</div>
+<div class="content-part">
     <router-outlet></router-outlet>
-  </div>
+</div>
 </div>

@@ -1,12 +1,10 @@
 <div class="filters" (clickOutside)="hideMenu()">
-  <div class="current {{ currentType }}" (click)="toggleListOfTypes()"><span>{{ currentTypeName}}</span> <span
-      class="corner" [ngClass]="isListVisible? 'up': 'down'"></span></div>
-  <div class="types-list"
-    [ngClass]="{open: isListVisible=== true && isListVisible, 'hidden': isListVisible=== false && !isListVisible}">
-    <ul>
-      <li *ngFor="let el of projectTypes" class="{{ el.type }}" (click)="setProjectType(el.type, el.name)">
-        {{ el.name }}
-      </li>
-    </ul>
-  </div>
+    <div class="current {{ currentType }}" (click)="toggleListOfTypes()"><span>{{ currentTypeName}}</span> <span class="corner" [ngClass]="isListVisible? 'up': 'down'"></span></div>
+    <div class="types-list" [ngClass]="{open: isListVisible=== true && isListVisible, 'hidden': isListVisible=== false && !isListVisible}">
+        <ul>
+            <li *ngFor="let el of projectTypes" class="{{ el.type }}" (click)="setProjectType(el.type, el.name)">
+                {{ el.name | translate }}
+            </li>
+        </ul>
+    </div>
 </div>

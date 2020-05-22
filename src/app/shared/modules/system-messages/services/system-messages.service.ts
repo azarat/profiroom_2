@@ -11,14 +11,14 @@ export class SystemMessagesService {
   ) { }
 
   public systemMessagesList() {
-    return this.http.get('/bellNotice')
+    return this.http.get('/bellNotice');
   }
 
   public deleteSystemMessage(messageID) {
-    if(messageID !== 0) {
-      return this.http.post('/deleteBellNotice', {noticeId: messageID})
+    if (messageID !== 0) {
+      return this.http.post('/deleteBellNotice', {noticeId: messageID});
     } else {
-      return this.http.post('/deleteBellNotice', {all: true})
+      return this.http.post('/deleteBellNotice', {all: true});
     }
   }
 

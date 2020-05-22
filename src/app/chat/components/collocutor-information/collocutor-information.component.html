@@ -16,23 +16,23 @@
         <span class="line"></span>
         <div class="collocutor-main-info">
             <div>
-                <span>Страна</span>
+                <span>{{'user-fields.country' | translate}}</span>
                 <span>{{ collocutorData.country  }}</span>
             </div>
             <div>
-                <span>Среднее время ответа</span>
+                <span>{{'user-fields.answer-time' | translate}}</span>
                 <span>{{ collocutorData.answerTime }} час</span>
             </div>
             <div>
-                <span>Разговорный язык</span>
+                <span>{{'user-fields.speeking-language' | translate}}</span>
                 <span>{{ collocutorData.language }}</span>
             </div>
             <div>
-                <span>Выполнено заказов</span>
+                <span>{{'user-fields.compleated-deals' | translate}}</span>
                 <span>{{ collocutorData.endedWorks }}</span>
             </div>
             <div>
-                <span>Арбитраж</span>
+                <span>{{'user-fields.arbitr' | translate}}</span>
                 <span>{{ collocutorData.arbitration.all }}</span>
             </div>
         </div>
@@ -42,6 +42,6 @@
                 {{ collocutorData.description }}
             </p>
         </div>
-        <button class="btn-third" [ngClass]="isInformWrapped? 'open': 'close'" (click)="showAllInfo()">{{ wrapButtonText }}</button>
+        <button class="btn-third" [ngClass]="isInformWrapped? 'open': 'close'" (click)="showAllInfo()">{{ wrapButtonText | translate }}</button>
     </div>
 </section>

@@ -1,63 +1,63 @@
 <div class="wrapper">
-  <div class="container">
+    <div class="container">
 
-    <div class="hamburger-menu" [ngClass]="{open: hamburgerMenu}">
-      <label class="menu__btn" (click)="toggleHamburgerMenu()">
+        <div class="hamburger-menu" [ngClass]="{open: hamburgerMenu}">
+            <label class="menu__btn" (click)="toggleHamburgerMenu()">
         <span></span>
       </label>
 
-      <div class="blur-block" (click)="toggleHamburgerMenu()"></div>
-      <div class="mobile-menu">
-        <div class="login-block" *ngIf="!token">
-          <div >
-            <div class="login">
-              <a [routerLink]="'/auth' | localize" [queryParams]="{type: 'signin'}" role="button">Вход</a>
+            <div class="blur-block" (click)="toggleHamburgerMenu()"></div>
+            <div class="mobile-menu">
+                <div class="login-block" *ngIf="!token">
+                    <div>
+                        <div class="login">
+                            <a [routerLink]="'/auth' | localize" [queryParams]="{type: 'signin'}" role="button">{{'general.enter' | translate}}</a>
+                        </div>
+                        <a class="registrate" [routerLink]="'/auth' | localize" [queryParams]="{type: 'signup'}" role="button">{{'auth-page.registrate' | translate}}</a>
+                    </div>
+                </div>
+                <nav *ngIf="pageName !== 'authoriz'">
+                    <a [routerLink]="''">{{'header.how_it_works' | translate}}</a>
+                    <a [routerLink]="['/catalog'] | localize">{{'menu.catalog' | translate}}</a>
+                    <!-- <a [routerLink]="''">Проэкты</a> -->
+                </nav>
+                <div class="languages">
+                    <button class="toggle-list" (click)='showLangList()' [ngClass]="{active: langList}">{{'languages.change-language' | translate}}</button>
+                    <ul class="lang-list" [ngClass]="{open: langList}">
+                        <li>{{'languages.uk-full' | translate}}</li>
+                        <li>{{'languages.ru-full' | translate}}</li>
+                    </ul>
+                </div>
             </div>
-            <a class="registrate" [routerLink]="'/auth' | localize" [queryParams]="{type: 'signup'}" role="button">Зарегистрироваться</a>
-          </div>
-        </div>
-        <nav *ngIf="pageName !== 'authoriz'">
-          <a [routerLink]="''">{{'header.how_it_works' | translate}}</a>
-          <a [routerLink]="['/catalog'] | localize">Каталог</a>
-          <a [routerLink]="''">Проекты</a>
-        </nav>
-        <div class="languages" >
-          <button class="toggle-list" (click)='showLangList()' [ngClass]="{active: langList}">Изменить язык</button>
-          <ul class="lang-list" [ngClass]="{open: langList}">
-            <li>Украинский</li>
-            <li>Русский</li>
-          </ul>
-        </div>
-      </div>
 
-    </div>
-    <div class="logo">
-      <!-- <a [routerLink]="'' | localize"> <img src="assets/images/logo.svg" alt=""></a> -->
-      <a [routerLink]="'' | localize"> Whocan</a>
-    </div>
-    <div class="menu">
-
-      <nav *ngIf="pageName !== 'authoriz'">
-        <a [routerLink]="''">Главная</a>
-        <a [routerLink]="''">{{'header.how_it_works' | translate}}</a>
-        <a [routerLink]="['/catalog'] | localize">Каталог</a>
-        <a [routerLink]="''">Проекты</a>
-      </nav>
-    </div>
-    <div class="auth" *ngIf="pageName !== 'authoriz'">
-      <app-user-header-menu *ngIf="token"></app-user-header-menu>
-      <div *ngIf="!token">
-        <div class="login">
-          <a [routerLink]="'/auth' | localize" [queryParams]="{type: 'signin'}" role="button">Вход</a>
         </div>
-        <a class="registrate" [routerLink]="'/auth' | localize" [queryParams]="{type: 'signup'}" role="button">Зарегистрироваться</a>
-      </div>
+        <div class="logo">
+            <!-- <a [routerLink]="'' | localize"> <img src="assets/images/logo.svg" alt=""></a> -->
+            <a [routerLink]="'' | localize"> Whocan</a>
+        </div>
+        <div class="menu">
 
+            <nav *ngIf="pageName !== 'authoriz'">
+                <a [routerLink]="''">{{'menu.home' | translate}}</a>
+                <a [routerLink]="''">{{'header.how_it_works' | translate}}</a>
+                <a [routerLink]="['/catalog'] | localize">{{'menu.catalog' | translate}}</a>
+                <a [routerLink]="''">{{'menu.projects' | translate}}</a>
+            </nav>
+        </div>
+        <div class="auth" *ngIf="pageName !== 'authoriz'">
+            <app-user-header-menu *ngIf="token"></app-user-header-menu>
+            <div *ngIf="!token">
+                <div class="login">
+                    <a [routerLink]="'/auth' | localize" [queryParams]="{type: 'signin'}" role="button">{{'general.enter' | translate}}</a>
+                </div>
+                <a class="registrate" [routerLink]="'/auth' | localize" [queryParams]="{type: 'signup'}" role="button">{{'auth-page.registrate' | translate}}</a>
+            </div>
+
+        </div>
+        <div class="reset-pass" *ngIf="pageName === 'authoriz'">
+            <app-language></app-language>
+            <button class="btn" (click)="routeToMain()">{{'menu.go-home' | translate}}</button>
+        </div>
     </div>
-    <div class="reset-pass" *ngIf="pageName === 'authoriz'">
-      <app-language></app-language>
-      <button class="btn" (click)="routeToMain()">На главную</button>
-    </div>
-  </div>
 
 </div>

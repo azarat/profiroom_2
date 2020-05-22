@@ -1,137 +1,137 @@
-<div class="user" *ngIf="userFinance" [ngClass]="paymentsFullSize? 'modal': ''" >
+<div class="user" *ngIf="userFinance" [ngClass]="paymentsFullSize? 'modal': ''">
     <div class="statistic">
-      <!-- User finance statistic -->
-      <section class="compressed-statistic">
-        <div *ngFor="let el of allStatisticInfo, let i = index">
-          <div class="icon">
-            <img src="/assets/images/icons/finance/{{el.type}}.png" alt="">
-          </div>
-          <div class="data">
-            <p class="value">
-              <span *ngIf="el.type !== 'summ'">
+        <!-- User finance statistic -->
+        <section class="compressed-statistic">
+            <div *ngFor="let el of allStatisticInfo, let i = index">
+                <div class="icon">
+                    <img src="/assets/images/icons/finance/{{el.type}}.png" alt="">
+                </div>
+                <div class="data">
+                    <p class="value">
+                        <span *ngIf="el.type !== 'summ'">
                 {{ userFinance.purse[el.type] | thousandSeparator: "all"  }}
 
               </span>
-              <ng-container *ngIf="i >1">
-                 UAH
-              </ng-container>
+                        <ng-container *ngIf="i >1">
+                            UAH
+                        </ng-container>
 
-            </p>
-            <p class="title">&#32; {{ el.name }}</p>
-          </div>
-        </div>
+                    </p>
+                    <p class="title">&#32; {{ el.name | translate }}</p>
+                </div>
+            </div>
 
-        <div class="balance balance-copy laptop">
-          <div class="icon"><img src="/assets/images/icons/finance/current.png" alt=""></div>
-          <div class="data">
-            <p class="value"><span>{{ userFinance.purse.summ }}</span> UAH</p>
-            <p class="title">&#32; состояние счета</p>
-          </div>
-        </div>
+            <div class="balance balance-copy laptop">
+                <div class="icon"><img src="/assets/images/icons/finance/current.png" alt=""></div>
+                <div class="data">
+                    <p class="value"><span>{{ userFinance.purse.summ }}</span> UAH</p>
+                    <p class="title">&#32; {{'dashboard.cards-on-top.balance' | translate}}</p>
+                </div>
+            </div>
 
-      </section>
-      <section class="graphics">
-        <div class="graphic">
-          <div class="title">мой доход <span> (UAH)</span></div>
-          <app-diagram></app-diagram>
-        </div>
-        <div class="calendar" >
-          <app-calendar [userFinance]="userFinance.history"></app-calendar>
-          <div class="info">
-            <div>
-              <span>доход</span>
+        </section>
+        <section class="graphics">
+            <div class="graphic">
+                <div class="title">{{'dashboard.finances.my-profit' | translate}} <span> (UAH)</span></div>
+                <app-diagram></app-diagram>
             </div>
-            <div>
-              <span>вывод денег</span>
+            <div class="calendar">
+                <app-calendar [userFinance]="userFinance.history"></app-calendar>
+                <div class="info">
+                    <div>
+                        <span>{{'general.income' | translate}}</span>
+                    </div>
+                    <div>
+                        <span>{{'general.money-output' | translate}}</span>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </section>
-      <section class="paymenst" (clickOutside)="rollPaymentsList()" [ngClass]="paymentsFullSize? 'full-size': ''">
-        <div class="title">
-          <span>история платежей</span>  <span class="open" (click)="unrollPaymentsList()"></span>
-        </div>
-<!-- Paymants-history -->
-      <app-payment-history *ngIf="userFinance" [userFinance]="userFinance"></app-payment-history>
-      </section>
-      <div class="wallet wallet-section-copy laptop">
-        <div class="wallet-section ">
-          <div class="title">ввод и вывод денег</div>
-          <div class="form">
-            <div class="operation-type">
-              <mat-select [(ngModel)]="transactions.transactionType" [(value)]="transactions.transactionType">
-                <mat-option [value]="'deffault'" disabled  >Выберите операцию</mat-option>
-                <mat-option [value]="'input'">
-                  Ввести деньги
-                </mat-option>
-                <mat-option [value]="'output'">
-                  Вывести деньги
-                </mat-option>
-              </mat-select>
+        </section>
+        <section class="paymenst" (clickOutside)="rollPaymentsList()" [ngClass]="paymentsFullSize? 'full-size': ''">
+            <div class="title">
+                <span>{{'dashboard.payment-history.title' | translate}}</span> <span class="open" (click)="unrollPaymentsList()"></span>
             </div>
-            <div class="cash-form">
-              <div class="count">
-                <p>напишите сумму</p>
-                <div>
-                  <input [(ngModel)]="transactions.amount" id="count" type="text"><label for="count">
+            <!-- Paymants-history -->
+            <app-payment-history *ngIf="userFinance" [userFinance]="userFinance"></app-payment-history>
+        </section>
+        <div class="wallet wallet-section-copy laptop">
+            <div class="wallet-section ">
+                <div class="title">{{'dashboard.payment-history.input-output' | translate}}</div>
+                <div class="form">
+                    <div class="operation-type">
+                        <mat-select [(ngModel)]="transactions.transactionType" [(value)]="transactions.transactionType">
+                            <mat-option [value]="'deffault'" disabled>{{'dashboard.cash-box.choose-operation-type' | translate}}</mat-option>
+                            <mat-option [value]="'input'">
+                                {{'dashboard.cash-box.input-money' | translate}}
+                            </mat-option>
+                            <mat-option [value]="'output'">
+                                {{'dashboard.cash-box.output-money' | translate}}
+                            </mat-option>
+                        </mat-select>
+                    </div>
+                    <div class="cash-form">
+                        <div class="count">
+                            <p>{{'dashboard.cash-box.wright-summ' | translate}}</p>
+                            <div>
+                                <input [(ngModel)]="transactions.amount" id="count" type="text"><label for="count">
                     <span>UAH</span></label>
+                            </div>
+
+                        </div>
+
+
+                        <div class="password">
+                            <p>{{'dashboard.cash-box.ur-password' | translate}}</p>
+                            <input type="password" [(ngModel)]="transactions.password">
+                        </div>
+                        <button class="btn" type="submit" (click)="makePayment()">{{'general.success' | translate}}</button>
+                    </div>
                 </div>
 
-              </div>
-
-
-              <div class="password">
-                <p>ваш пароль</p>
-                <input type="password" [(ngModel)]="transactions.password">
-              </div>
-              <button class="btn" type="submit" (click)="makePayment()">Подтвердить</button>
             </div>
-          </div>
-
         </div>
-      </div>
     </div>
     <div class="wallet">
-      <div class="balance">
-        <div class="icon"><img src="/assets/images/icons/finance/current.png" alt=""></div>
-        <div class="data">
-          <p class="value"><span>{{ userFinance.purse.summ }}</span> UAH</p>
-          <p class="title">&#32; состояние счета</p>
+        <div class="balance">
+            <div class="icon"><img src="/assets/images/icons/finance/current.png" alt=""></div>
+            <div class="data">
+                <p class="value"><span>{{ userFinance.purse.summ }}</span> UAH</p>
+                <p class="title">&#32; {{'dashboard.cards-on-top.balance' | translate}}</p>
+            </div>
         </div>
-      </div>
-      <div class="wallet-section">
-        <div class="title">ввод и вывод денег</div>
-        <div class="form">
-          <div class="operation-type">
-            <mat-select [(ngModel)]="transactions.transactionType" [(value)]="transactions.transactionType">
-              <mat-option [value]="'deffault'" disabled  >Выберите операцию</mat-option>
-              <mat-option [value]="'input'">
-                Ввести деньги
-              </mat-option>
-              <mat-option [value]="'output'">
-                Вывести деньги
-              </mat-option>
-            </mat-select>
-          </div>
-          <div class="cash-form">
-            <div class="count">
-              <p>напишите сумму</p>
-              <div>
-                <input [(ngModel)]="transactions.amount" id="count" type="text"><label for="count">
+        <div class="wallet-section">
+            <div class="title">{{'dashboard.payment-history.input-output' | translate}}</div>
+            <div class="form">
+                <div class="operation-type">
+                    <mat-select [(ngModel)]="transactions.transactionType" [(value)]="transactions.transactionType">
+                        <mat-option [value]="'deffault'" disabled>{{'dashboard.cash-box.choose-operation-type' | translate}}</mat-option>
+                        <mat-option [value]="'input'">
+                            {{'dashboard.cash-box.input-money' | translate}}
+                        </mat-option>
+                        <mat-option [value]="'output'">
+                            {{'dashboard.cash-box.output-money' | translate}}
+                        </mat-option>
+                    </mat-select>
+                </div>
+                <div class="cash-form">
+                    <div class="count">
+                        <p>{{'dashboard.cash-box.wright-summ' | translate}}</p>
+                        <div>
+                            <input [(ngModel)]="transactions.amount" id="count" type="text"><label for="count">
                   <span>UAH</span></label>
-              </div>
+                        </div>
 
+                    </div>
+
+
+                    <div class="password">
+                        <p>{{'dashboard.cash-box.ur-password' | translate}}</p>
+                        <input type="password" [(ngModel)]="transactions.password">
+                    </div>
+                    <button class="btn" type="submit" (click)="makePayment()">{{'general.success' | translate}}</button>
+                </div>
             </div>
 
-
-            <div class="password">
-              <p>ваш пароль</p>
-              <input type="password" [(ngModel)]="transactions.password">
-            </div>
-            <button class="btn" type="submit" (click)="makePayment()">Подтвердить</button>
-          </div>
         </div>
-
-      </div>
     </div>
-  </div>
+</div>

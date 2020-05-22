@@ -1,4 +1,3 @@
-
 .chart.zero {
     position: relative;
     canvas {
@@ -16,7 +15,8 @@
         top: 0;
         left: 50%;
         transform: translateX(-50%);
-        border: 40px solid #E9ECF1;;
+        border: 40px solid #E9ECF1;
+        ;
     }
 }
 .chart{
@@ -25,8 +25,8 @@
 }
 @media (max-width: 1699px) {
     .chart{
-        // width: 171px;
-        // height: 171px;
+        width: 211px;
+        height: 211px;
     }
     .chart.zero {
         &:before {
