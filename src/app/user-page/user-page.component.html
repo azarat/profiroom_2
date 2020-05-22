@@ -2,217 +2,300 @@
 <app-categories-header></app-categories-header>
 
 <nav class="navigation-page" #stickyMenu [class.sticky]="sticky">
-  <div class="navigation-page__wrapper"  *ngIf="userData">
-    <ul>
-      <li (click)="scrollTo('about')">О фрилансере</li>
-      <li (click)="scrollTo('education')" *ngIf="userTypeFreelancer">Образование</li>
-      <li (click)="scrollTo('rating')">рейтинг</li>
-      <li (click)="scrollTo('services')">услуги</li>
-      <li (click)="scrollTo('comments')" *ngIf="userTypeFreelancer && userData.comments_freelancer_count">отзывы</li>
-      <li (click)="scrollTo('comments')" *ngIf="!userTypeFreelancer && userData.comments_customer_count">отзывы</li>
-    </ul>
-  </div>
+    <<<<<<< HEAD <div class="navigation-page__wrapper" *ngIf="userData">
+        <ul>
+            <li (click)="scrollTo('about')">О фрилансере</li>
+            <li (click)="scrollTo('education')" *ngIf="userTypeFreelancer">Образование</li>
+            <li (click)="scrollTo('rating')">рейтинг</li>
+            <li (click)="scrollTo('services')">услуги</li>
+            <li (click)="scrollTo('comments')" *ngIf="userTypeFreelancer && userData.comments_freelancer_count">отзывы</li>
+            <li (click)="scrollTo('comments')" *ngIf="!userTypeFreelancer && userData.comments_customer_count">отзывы</li>
+        </ul>
+        </div>
+        =======
+        <div class="navigation-page__wrapper">
+            <ul>
+                <li (click)="scrollTo('about')">О фрилансере</li>
+                <li (click)="scrollTo('education')" *ngIf="userTypeFreelancer">Образование</li>
+                <li (click)="scrollTo('rating')">рейтинг</li>
+                <li (click)="scrollTo('services')">услуги</li>
+                <li (click)="scrollTo('comments')">отзывы</li>
+            </ul>
+        </div>
+        >>>>>>> master
 </nav>
 
 <div class="wrapper" *ngIf="userData">
-  <div class="content">
-    <section class="general-information" id="about">
-      <div class="general-information__avatar">
-        <img [src]="userData.avatar" alt="user avatar">
-      </div>
-      <div class="general-information__wrapper">
-        <div class="general-information__name"><span>{{userData.name}} {{userData.surname}}</span> </div>
-        <!-- <div class="general-information__online"><span [ngClass]="{online: userData.online}">{{userData.online}}</span></div> -->
+    <div class="content">
+        <section class="general-information" id="about">
+            <div class="general-information__avatar">
+                <img [src]="userData.avatar" alt="user avatar">
+            </div>
+            <div class="general-information__wrapper">
+                <div class="general-information__name"><span>{{userData.name}} {{userData.surname}}</span> </div>
+                <!-- <div class="general-information__online"><span [ngClass]="{online: userData.online}">{{userData.online}}</span></div> -->
 
-        <div class="general-information__online">
-          <span class="online" *ngIf="userData.online">Oнлайн</span>
-          <span class="offline" *ngIf="!userData.online">Офлайн</span>
-        </div>
-
-        <div class="general-information__lvl">Уровень: <span class="value">{{lvlTranslation[userData.rank_id]}}</span></div>
-      </div>
-      <div class="general-information__wrapper" *ngIf="userTypeFreelancer">
-        <div class="general-information__available">Статус доступности:
-          <span class="value free" *ngIf="!userData.busy">не загружен(-а)</span>
-          <span class="value" *ngIf="userData.busy">загружен(-а)</span>
-        </div>
-        <div class="general-information__inProcess">Проектов в работе: <span class="value">{{userData.dealsCounts.inProgressOffers}}</span></div>
-        <div class="general-information__awaiting">Проектов в очереди: <span class="value">{{userData.dealsCounts.QueuedOffers}}</span></div>
-      </div>
-      <div class="general-information__actions">
-
-        <div *ngIf="currentUserId !== userData.id" class="action tooltip" data-title="Написать сообщение" (click)="openChat(userData.id)" >
-          <a >
-            <img src="assets/images/svg/service-page/envelope.svg" alt="" class="default-img">
-            <img src="assets/images/svg/service-page/envelope-hov.svg" alt="" class="hover-img">
-          </a>
-        </div>
-        <div class="action tooltip" data-title="Добавить к избранным" *ngIf="userTypeFreelancer">
-          <a href="">
-            <img src="assets/images/svg/service-page/heart.svg" alt="" class="default-img">
-            <img src="assets/images/svg/service-page/heart-hov.svg" alt="" class="hover-img">
-          </a>
-        </div>
-        <div *ngIf="currentUserId !== userData.id" class="action tooltip" data-title="Пожаловаться">
-          <a href="">
-            <img src="assets/images/svg/service-page/auction.svg" alt="" class="default-img">
-            <img src="assets/images/svg/service-page/auction-hov.svg" alt="" class="hover-img">
-          </a>
-        </div>
-
-      </div>
-    </section>
-    <section class="switching-user-types">
-      <div class="btns-wrapper">
-        <div class="btn btn-user-type" [ngClass]="{active: userTypeFreelancer}" (click)=choseUser(0) >Профиль фрилансера</div>
-        <div class="btn btn-user-type" [ngClass]="{active: !userTypeFreelancer}" (click)=choseUser(1)>профиль заказчика</div>
-      </div>
-      <div class="switching-user-types__text">*Каждый пользователь данной биржи может быть одновременно исполнителем и заказчиком, в зависимости от потребности. </div>
-    </section>
-    <section class="about-user">
-      <div class="about-user__wrapper">
-        <div class="about-user__info-block">
-          <div class="about-user__title">Страна, город</div>
-          <div class="about-user__value">{{userData.country}} <br> {{userData.city}}</div>
-        </div>
-        <div class="about-user__info-block">
-          <div class="about-user__title">На сайте с</div>
-          <div class="about-user__value">{{userData.email_verified_at  | dateFormatPipe: 'dd.MM.yyyy' }}</div>
-        </div>
-        <div class="about-user__info-block fixed-width-block" *ngIf="userData.dealsCounts.EndedWorks > 0">
-          <div class="about-user__title" *ngIf="userData.dealsCounts.EndedWorks ">Исполненных проектов</div>
-          <div class="about-user__value">{{userData.dealsCounts.EndedWorks}}</div>
-        </div>
-        <div class="about-user__info-block fixed-width-block" *ngIf="!userTypeFreelancer && userData.dealsCounts.dealsAsCustomer > 0"> 
-          <div class="about-user__title">Количество заказов</div>
-          <div class="about-user__value">{{userData.dealsCounts.dealsAsCustomer}}</div>
-        </div>
-        <div class="about-user__info-block" *ngIf="userTypeFreelancer && userData.arbitration.freelancer > 0">
-          <div class="about-user__title">Обращений в арбитраж</div>
-          <div class="about-user__value">{{userData.arbitration.freelancer}}</div>
-        </div>
-        <div class="about-user__info-block" *ngIf="!userTypeFreelancer && userData.arbitration.customer > 0">
-          <div class="about-user__title">Обращений в арбитраж</div>
-          <div class="about-user__value">{{userData.arbitration.customer}}</div>
-        </div>
-        <div class="about-user__info-block">
-          <div class="about-user__title">Время ответа</div>
-          <div class="about-user__value">{{userData.answerTime}}</div>
-        </div>
-      </div>
-      <div class="about-user__description" *ngIf="userTypeFreelancer && userData.description != ''">
-        <p>{{userData.description}}</p>
-      </div>
-    </section>
-    <section class="languages" *ngIf="userData.language.length > 0">
-      <div class="section-title">Знание языков</div>
-      <ul class="languages__wrapper">
-        <li class="languages__info-block" *ngFor="let language of userData.language">
-          <div class="languages__name">{{ language.langName}} </div>
-          <div class="languages__lvl"> - {{ academicDegreesTranslations[language.langLevel-1]}}</div>
-        </li>
-      </ul>
-    </section>
-    <div class="education-wrapp" id="education" >
-      <section class="education" *ngIf="userTypeFreelancer && userData.education.length > 0">
-        <div class="section-title">Высшее образование</div>
-        <div class="education__wrapper">
-          <div class="education__info-block" *ngFor="let education of userData.education; let thisArr = index">
-  
-            <div class="education__img-list" *ngIf="education.diploma_files.length; let i = index">
-              <ng-container *ngFor="let img of education.diploma_files; let i = index">
-                <div class="img-item"  (click)="showPopUp(i, thisArr, 'img')" [ngClass]="{open_popUp: clickedEducationImgs === thisArr && clickedSingleImg === i}">
-                  <img src="{{img.link}}" alt="">
-                  <div class="close-popUp" ></div>
+                <div class="general-information__online">
+                    <span class="online" *ngIf="userData.online">Oнлайн</span>
+                    <span class="offline" *ngIf="!userData.online">Офлайн</span>
                 </div>
-              </ng-container>
+
+                <div class="general-information__lvl">Уровень: <span class="value">{{lvlTranslation[userData.rank_id]}}</span>
+                </div>
             </div>
-  
-            <div class="text-wrapper">
-              <div class="education__institution">{{ education.institution}}</div>
-              <div class="education__group">
-                <div class="education__specialty">{{ education.specialty}}</div>
-                <div class="education__years">{{ education.startEducation}} - {{ education.finishEducation}}</div>
-              </div>
+            <div class="general-information__wrapper" *ngIf="userTypeFreelancer">
+                <div class="general-information__available">Статус доступности:
+                    <span class="value free" *ngIf="!userData.busy">не загружен(-а)</span>
+                    <span class="value" *ngIf="userData.busy">загружен(-а)</span>
+                </div>
+                <div class="general-information__inProcess">Проектов в работе: <span class="value">{{userData.dealsCounts.inProgressOffers}}</span></div>
+                <div class="general-information__awaiting">Проектов в очереди: <span class="value">{{userData.dealsCounts.QueuedOffers}}</span></div>
             </div>
-  
-          </div>
-        </div>
-      </section>
-  
-      <section class="education" *ngIf="userTypeFreelancer && userData.additionalEducation.length > 0" >
-        <div class="section-title">Дополнительное образование</div>
-        <div class="education__wrapper">
-          <div class="education__info-block" *ngFor="let education_item of userData.additionalEducation; let thisArr = index">
-  
-            <div class="education__img-list" *ngIf="education_item.additional_diploma_files.length; let i = index">
-              <ng-container *ngFor="let img of education_item.additional_diploma_files; let i = index">
-                <div class="img-item"  (click)="showPopUp(i, thisArr, 'img')" [ngClass]="{open_popUp: clickedEducationImgs === thisArr
+            <div class="general-information__actions">
+
+                <div *ngIf="currentUserId !== userData.id" class="action tooltip" data-title="Написать сообщение" (click)="openChat(userData.id)">
+                    <a>
+                        <img src="assets/images/svg/service-page/envelope.svg" alt="" class="default-img">
+                        <img src="assets/images/svg/service-page/envelope-hov.svg" alt="" class="hover-img">
+                    </a>
+                </div>
+                <div class="action tooltip" data-title="Добавить к избранным" *ngIf="userTypeFreelancer">
+                    <a href="">
+                        <img src="assets/images/svg/service-page/heart.svg" alt="" class="default-img">
+                        <img src="assets/images/svg/service-page/heart-hov.svg" alt="" class="hover-img">
+                    </a>
+                </div>
+                <div *ngIf="currentUserId !== userData.id" class="action tooltip" data-title="Пожаловаться">
+                    <a href="">
+                        <img src="assets/images/svg/service-page/auction.svg" alt="" class="default-img">
+                        <img src="assets/images/svg/service-page/auction-hov.svg" alt="" class="hover-img">
+                    </a>
+                </div>
+
+            </div>
+        </section>
+        <section class="switching-user-types">
+            <div class="btns-wrapper">
+                <div class="btn btn-user-type" [ngClass]="{active: userTypeFreelancer}" (click)=choseUser(0)>Профиль филансера
+                </div>
+                <div class="btn btn-user-type" [ngClass]="{active: !userTypeFreelancer}" (click)=choseUser(1)>профиль заказчика
+                </div>
+            </div>
+            <div class="switching-user-types__text">*Каждый пользователь данной биржи может быть одновременно исполнителем и заказчиком, в зависимости от потребности. </div>
+        </section>
+        <section class="about-user">
+            <div class="about-user__wrapper">
+                <div class="about-user__info-block">
+                    <div class="about-user__title">Страна, город</div>
+                    <div class="about-user__value">{{userData.country}} <br> {{userData.city}}</div>
+                </div>
+                <div class="about-user__info-block">
+                    <div class="about-user__title">На сайте с</div>
+                    <div class="about-user__value">{{userData.email_verified_at | dateFormatPipe: 'dd.MM.yyyy' }}</div>
+                </div>
+                <div class="about-user__info-block fixed-width-block" *ngIf="userData.dealsCounts.EndedWorks > 0">
+                    <div class="about-user__title" *ngIf="userData.dealsCounts.EndedWorks ">Исполненных проектов</div>
+                    <div class="about-user__value">{{userData.dealsCounts.EndedWorks}}</div>
+                </div>
+                <div class="about-user__info-block fixed-width-block" *ngIf="!userTypeFreelancer && userData.dealsCounts.dealsAsCustomer > 0">
+                    <div class="about-user__title">Количество заказов</div>
+                    <div class="about-user__value">{{userData.dealsCounts.dealsAsCustomer}}</div>
+                </div>
+                <div class="about-user__info-block" *ngIf="userTypeFreelancer && userData.arbitration.freelancer > 0">
+                    <div class="about-user__title">Обращений в арбитраж</div>
+                    <div class="about-user__value">{{userData.arbitration.freelancer}}</div>
+                </div>
+                <div class="about-user__info-block" *ngIf="!userTypeFreelancer && userData.arbitration.customer > 0">
+                    <div class="about-user__title">Обращений в арбитраж</div>
+                    <div class="about-user__value">{{userData.arbitration.customer}}</div>
+                </div>
+                <div class="about-user__info-block">
+                    <div class="about-user__title">Время ответа</div>
+                    <div class="about-user__value">{{userData.answerTime}}</div>
+                </div>
+            </div>
+            <div class="about-user__description" *ngIf="userTypeFreelancer && userData.description != ''">
+                <p>{{userData.description}}</p>
+            </div>
+        </section>
+        <section class="languages" *ngIf="userData.language.length > 0">
+            <div class="section-title">Знание языков</div>
+            <ul class="languages__wrapper">
+                <li class="languages__info-block" *ngFor="let language of userData.language">
+                    <div class="languages__name">{{ language.langName}} </div>
+                    <div class="languages__lvl"> - {{ academicDegreesTranslations[language.langLevel-1]}}</div>
+                </li>
+            </ul>
+        </section>
+        <section class="education" id="education" *ngIf="userTypeFreelancer && userData.education.length > 0">
+            <div class="section-title">Высшее образование</div>
+            <div class="education__wrapper">
+                <div class="education__info-block" *ngFor="let education of userData.education; let thisArr = index">
+
+                </div>
+            </div>
+        </section>
+        <section class="switching-user-types">
+            <div class="btns-wrapper">
+                <div class="btn btn-user-type" [ngClass]="{active: userTypeFreelancer}" (click)=choseUser(0)>Профиль фрилансера
+                </div>
+                <div class="btn btn-user-type" [ngClass]="{active: !userTypeFreelancer}" (click)=choseUser(1)>профиль заказчика
+                </div>
+            </div>
+            <div class="switching-user-types__text">*Каждый пользователь данной биржи может быть одновременно исполнителем и заказчиком, в зависимости от потребности. </div>
+        </section>
+        <section class="about-user">
+            <div class="about-user__wrapper">
+                <div class="about-user__info-block">
+                    <div class="about-user__title">Страна, город</div>
+                    <div class="about-user__value">{{userData.country}} <br> {{userData.city}}</div>
+                </div>
+                <div class="about-user__info-block">
+                    <div class="about-user__title">На сайте с</div>
+                    <div class="about-user__value">{{userData.email_verified_at | dateFormatPipe: 'dd.MM.yyyy' }}</div>
+                </div>
+                <div class="about-user__info-block fixed-width-block" *ngIf="userData.dealsCounts.EndedWorks > 0">
+                    <div class="about-user__title" *ngIf="userData.dealsCounts.EndedWorks ">Исполненных проектов</div>
+                    <div class="about-user__value">{{userData.dealsCounts.EndedWorks}}</div>
+                </div>
+                <div class="about-user__info-block fixed-width-block" *ngIf="!userTypeFreelancer && userData.dealsCounts.dealsAsCustomer > 0">
+                    <div class="about-user__title">Количество заказов</div>
+                    <div class="about-user__value">{{userData.dealsCounts.dealsAsCustomer}}</div>
+                </div>
+                <div class="about-user__info-block" *ngIf="userTypeFreelancer && userData.arbitration.freelancer > 0">
+                    <div class="about-user__title">Обращений в арбитраж</div>
+                    <div class="about-user__value">{{userData.arbitration.freelancer}}</div>
+                </div>
+                <div class="about-user__info-block" *ngIf="!userTypeFreelancer && userData.arbitration.customer > 0">
+                    <div class="about-user__title">Обращений в арбитраж</div>
+                    <div class="about-user__value">{{userData.arbitration.customer}}</div>
+                </div>
+                <div class="about-user__info-block">
+                    <div class="about-user__title">Время ответа</div>
+                    <div class="about-user__value">{{userData.answerTime}}</div>
+                </div>
+            </div>
+            <div class="about-user__description" *ngIf="userTypeFreelancer && userData.description != ''">
+                <p>{{userData.description}}</p>
+            </div>
+        </section>
+        <section class="languages" *ngIf="userData.language.length > 0">
+            <div class="section-title">Знание языков</div>
+            <ul class="languages__wrapper">
+                <li class="languages__info-block" *ngFor="let language of userData.language">
+                    <div class="languages__name">{{ language.langName}} </div>
+                    <div class="languages__lvl"> - {{ academicDegreesTranslations[language.langLevel-1]}}</div>
+                </li>
+            </ul>
+        </section>
+        <div class="education-wrapp" id="education">
+            <section class="education" *ngIf="userTypeFreelancer && userData.education.length > 0">
+                <div class="section-title">Высшее образование</div>
+                <div class="education__wrapper">
+                    <div class="education__info-block" *ngFor="let education of userData.education; let thisArr = index">
+
+                        <div class="education__img-list" *ngIf="education.diploma_files.length; let i = index">
+                            <ng-container *ngFor="let img of education.diploma_files; let i = index">
+                                <div class="img-item" (click)="showPopUp(i, thisArr, 'img')" [ngClass]="{open_popUp: clickedEducationImgs === thisArr && clickedSingleImg === i}">
+                                    <img src="{{img.link}}" alt="">
+                                    <div class="close-popUp"></div>
+                                </div>
+                            </ng-container>
+                        </div>
+
+                        <div class="text-wrapper">
+                            <div class="education__institution">{{ education.institution}}</div>
+                            <div class="education__group">
+                                <div class="education__specialty">{{ education.specialty}}</div>
+                                <div class="education__years">{{ education.startEducation}} - {{ education.finishEducation}}</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <section class="education" *ngIf="userTypeFreelancer && userData.additionalEducation.length > 0">
+                <div class="section-title">Дополнительное образование</div>
+                <div class="education__wrapper">
+                    <div class="education__info-block" *ngFor="let education_item of userData.additionalEducation; let thisArr = index">
+
+                        <div class="education__img-list" *ngIf="education_item.additional_diploma_files.length; let i = index">
+                            <ng-container *ngFor="let img of education_item.additional_diploma_files; let i = index">
+                                <div class="img-item" (click)="showPopUp(i, thisArr, 'img')" [ngClass]="{open_popUp: clickedEducationImgs === thisArr
                   && clickedSingleImg === i}">
-                  <img src="{{img.link}}" alt="">
-                  <div class="close-popUp" ></div>
+                                    <img src="{{img.link}}" alt="">
+                                    <div class="close-popUp"></div>
+                                </div>
+                            </ng-container>
+                        </div>
+
+                        <div class="text-wrapper">
+                            <div class="education__institution">{{ education_item.additionalInstitution}}</div>
+                            <div class="education__group">
+                                <div class="education__specialty">{{ education_item.courseName}}</div>
+                                <div class="education__years">{{ education_item.startStudyYear}} - {{ education_item.endStudyYear}}
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
-              </ng-container>
-            </div>
-  
-            <div class="text-wrapper">
-              <div class="education__institution">{{ education_item.additionalInstitution}}</div>
-              <div class="education__group">
-                <div class="education__specialty">{{ education_item.courseName}}</div>
-                <div class="education__years">{{ education_item.startStudyYear}} - {{ education_item.endStudyYear}}</div>
-              </div>
-            </div>
-  
-          </div>
+            </section>
         </div>
-      </section>
+
+        <section class="rating" id="rating">
+            <div class="section-title">Общий рейтинг</div>
+            <div class="rating__wrapper" *ngIf="userTypeFreelancer">
+                <div class="rating__info-block">
+                    <div class="rating__name">Качество услуг</div>
+                    <div class="star-rating" [ngClass]="{'empty-rating': userData.averageRating.freelancer.qualityMark == 0}">
+                        {{ userData.averageRating.freelancer.qualityMark}}</div>
+                </div>
+                <div class="rating__info-block">
+                    <div class="rating__name">Срок исполнения</div>
+                    <div class="star-rating" [ngClass]="{'empty-rating': userData.averageRating.freelancer.termMark == 0}">
+                        {{ userData.averageRating.freelancer.termMark}}</div>
+                </div>
+                <div class="rating__info-block">
+                    <div class="rating__name">Вежливость фрилансера</div>
+                    <div class="star-rating" [ngClass]="{'empty-rating': userData.averageRating.freelancer.politenessMark == 0}">
+                        {{ userData.averageRating.freelancer.politenessMark}}</div>
+                </div>
+                <div class="rating__info-block">
+                    <div class="rating__name">Средняя оценка</div>
+                    <div class="star-rating" [ngClass]="{'empty-rating': userData.averageRating.freelancer.averageMark == 0}">
+                        {{ userData.averageRating.freelancer.averageMark}}</div>
+                    <span class="comments-count">( {{ userData.comments_freelancer_count}} отзывов):</span>
+                </div>
+            </div>
+            <div class="rating__wrapper" *ngIf="!userTypeFreelancer">
+                <div class="rating__info-block">
+                    <div class="rating__name">Постановка задачи</div>
+                    <div class="star-rating" [ngClass]="{'empty-rating': userData.averageRating.customer.taskClarity == 0}">
+                        {{ userData.averageRating.customer.taskClarity}}</div>
+                </div>
+                <div class="rating__info-block">
+                    <div class="rating__name">Чёткость требований</div>
+                    <div class="star-rating" [ngClass]="{'empty-rating': userData.averageRating.customer.requirementsClarity == 0}">
+                        {{ userData.averageRating.customer.requirementsClarity}}</div>
+                </div>
+                <div class="rating__info-block">
+                    <div class="rating__name">Контактность</div>
+                    <div class="star-rating" [ngClass]="{'empty-rating': userData.averageRating.customer.contactLevel == 0}">
+                        {{ userData.averageRating.customer.contactLevel}}</div>
+                </div>
+                <div class="rating__info-block">
+                    <div class="rating__name">Средняя оценка</div>
+                    <div class="star-rating" [ngClass]="{'empty-rating': userData.averageRating.customer.averageMark == 0}">
+                        {{ userData.averageRating.customer.averageMark}}</div>
+                    <span class="comments-count">( {{ userData.comments_customer_count}} отзывов):</span>
+                </div>
+            </div>
+        </section>
+        <app-user-page-services *ngIf="userData" [userData]=userData id="services"></app-user-page-services>
+        <!-- <app-user-page-comments *ngIf="userData" [userData] = userData [userTypeFreelancer]=userTypeFreelancer id="comments"></app-user-page-comments> -->
+
+        <app-users-comments *ngIf="userData" [userData]="userData" [userRole]="userRole" id="comments"></app-users-comments>
     </div>
-
-    <section class="rating" id="rating">
-      <div class="section-title">Общий рейтинг</div>
-      <div class="rating__wrapper"  *ngIf="userTypeFreelancer">
-        <div class="rating__info-block">
-          <div class="rating__name">Качество услуг</div>
-          <div class="star-rating" [ngClass]="{'empty-rating': userData.averageRating.freelancer.qualityMark == 0}">{{ userData.averageRating.freelancer.qualityMark}}</div>
-        </div>
-        <div class="rating__info-block">
-          <div class="rating__name">Срок исполнения</div>
-          <div class="star-rating" [ngClass]="{'empty-rating': userData.averageRating.freelancer.termMark == 0}">{{ userData.averageRating.freelancer.termMark}}</div>
-        </div>
-        <div class="rating__info-block">
-          <div class="rating__name">Вежливость фрилансера</div>
-          <div class="star-rating" [ngClass]="{'empty-rating': userData.averageRating.freelancer.politenessMark == 0}">{{ userData.averageRating.freelancer.politenessMark}}</div>
-        </div>
-        <div class="rating__info-block">
-          <div class="rating__name">Средняя оценка</div>
-          <div class="star-rating" [ngClass]="{'empty-rating': userData.averageRating.freelancer.averageMark == 0}">{{ userData.averageRating.freelancer.averageMark}}</div>
-          <span class="comments-count">( {{ userData.comments_freelancer_count}} отзывов):</span>
-        </div>
-      </div>
-      <div class="rating__wrapper"  *ngIf="!userTypeFreelancer">
-        <div class="rating__info-block">
-          <div class="rating__name">Постановка задачи</div>
-          <div class="star-rating" [ngClass]="{'empty-rating': userData.averageRating.customer.taskClarity == 0}">{{ userData.averageRating.customer.taskClarity}}</div>
-        </div>
-        <div class="rating__info-block">
-          <div class="rating__name">Чёткость требований</div>
-          <div class="star-rating" [ngClass]="{'empty-rating': userData.averageRating.customer.requirementsClarity == 0}">{{ userData.averageRating.customer.requirementsClarity}}</div>
-        </div>
-        <div class="rating__info-block">
-          <div class="rating__name">Контактность</div>
-          <div class="star-rating" [ngClass]="{'empty-rating': userData.averageRating.customer.contactLevel == 0}">{{ userData.averageRating.customer.contactLevel}}</div>
-        </div>
-        <div class="rating__info-block">
-          <div class="rating__name">Средняя оценка</div>
-          <div class="star-rating" [ngClass]="{'empty-rating': userData.averageRating.customer.averageMark == 0}">{{ userData.averageRating.customer.averageMark}}</div>
-          <span class="comments-count">( {{ userData.comments_customer_count}} отзывов):</span>
-        </div>
-      </div>
-    </section>
-    <app-user-page-services *ngIf="userData" [userData] = userData id="services"></app-user-page-services>
-    <!-- <app-user-page-comments *ngIf="userData" [userData] = userData [userTypeFreelancer]=userTypeFreelancer id="comments"></app-user-page-comments> -->
-
-    <app-users-comments *ngIf="userData" [userData]="userData" [userRole]="userRole" id="comments"></app-users-comments>
-  </div>
 </div>
-

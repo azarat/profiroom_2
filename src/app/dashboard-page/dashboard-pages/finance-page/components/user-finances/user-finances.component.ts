@@ -33,8 +33,6 @@ export class UserFinancesComponent implements OnInit {
     this.userFinanceService.getUserFinanceData()
       .subscribe((res: any) => {
         this.userFinance = res;
-        console.log(this.userFinance);
-
       });
   }
 

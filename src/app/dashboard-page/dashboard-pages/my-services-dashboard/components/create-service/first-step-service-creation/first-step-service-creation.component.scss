@@ -320,7 +320,7 @@ form::ng-deep {
 .items {
   display: flex;
   flex-wrap: wrap;
-  justify-content: end;
+  justify-content: flex-start;
   .img-item {
     width: 198px;
     height: 198px;

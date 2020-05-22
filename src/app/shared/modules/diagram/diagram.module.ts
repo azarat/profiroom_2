@@ -4,6 +4,7 @@ import { DiagramComponent } from './diagram.component';
 import { ArrReverceModule } from '../../pipes/arr-reverse/arr-reverse.module';
 import { ThousandSeparatorModule } from '../../pipes/thousand-separator/thousand-separator.module';
 import { MonthPipeModule } from '../../pipes/month-pipe/month-pipe.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 
@@ -14,6 +15,7 @@ import { MonthPipeModule } from '../../pipes/month-pipe/month-pipe.module';
     ArrReverceModule,
     ThousandSeparatorModule,
     MonthPipeModule,
+    TranslateModule
   ],
   exports: [
     DiagramComponent,

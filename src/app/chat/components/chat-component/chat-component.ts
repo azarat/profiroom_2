@@ -6,6 +6,7 @@ import { filter } from 'rxjs/operators';
 import { CollocutorInterface } from '../../interfaces/collocutor.interface';
 import { UserStateService } from 'src/app/dashboard-page/services/user-state.service';
 import { CollocutorService } from '../../services/collocutor.service';
+import { untilDestroyed } from 'ngx-take-until-destroy';
 
 @Component({
   selector: 'app-chat',
@@ -34,12 +35,7 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.getDealData();
-    // this._subscribeUserStateChanges();
-    // this.isChat = true;
-
     this.subscribeCollocutorList();
-    // this.openNewDeal();
-    
     this._dealUpdating();
   }
   ngOnDestroy(): void {
@@ -47,46 +43,14 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.collocutorService.setCollocutorInfo(null);
   }
 
-  // oen new chat vs delay to reset massager template
-  // getCurrentRoom(userInfo) {
-  //   this.collocutorData = null;
-  //   setTimeout(() => {
-  //     this.collocutorData = userInfo;
-  //     // this.newDealId = userInfo;
-  //   }, 100);
-  // }
-
   private subscribeCollocutorList() {
     this.socketService.subscribeOnCollocutorList(this.chatType);
   }
-
-  // open brief feeling if is new and chat after sending brief
-  // private openNewDeal() {
-  //   this.route.queryParams
-  //     .subscribe((res: any) => {
-  //       if (res.hasOwnProperty('offers_id')) {
-  //         console.log('new deal',res);
-  //         // this.collocutorData = res;
-  //         this.getCurrentRoom(res);
-  //       } else if (res.hasOwnProperty('dealId')) {
-  //         this._resetChat();
-  //       }
-  //     });
-  // }
 
   public resetChat(event) {
     this._resetChat();
   }
 
-  // private _subscribeUserStateChanges() {
-  //   this.userStateService.userState$
-  //   .subscribe(
-  //     res => {
-  //       this._resetChat();
-  //     }
-  //   );
-
-  // }
 
   private _resetChat() {
     this.isChat = null;
@@ -97,6 +61,7 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   private getDealData() {
     this.collocutorService.collocutorData$
+    .pipe(untilDestroyed(this))
     .subscribe(res => {
       this.collocutorData = res;
     });

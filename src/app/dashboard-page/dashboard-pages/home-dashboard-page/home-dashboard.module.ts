@@ -11,6 +11,7 @@ import { PieChartDashboardComponent } from './pie-chart-dashboard/pie-chart-dash
 import { UsersCommentsModule } from 'src/app/shared/modules/users-comments/users-comments.module';
 import { FreelacerAchivesComponent } from './freelacer-achives/freelacer-achives.component';
 import { ThousandSeparatorModule } from 'src/app/shared/pipes/thousand-separator/thousand-separator.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 
@@ -34,6 +35,7 @@ const dashboardPageRoutes: Routes = [
     CommonModule,
     LocalizeRouterModule.forChild(dashboardPageRoutes),
     RouterModule.forChild(dashboardPageRoutes),
+    TranslateModule,
     // MatSlideToggleModule,
     // MatIconModule,
     // MatBadgeModule,

@@ -1,18 +1,18 @@
 export const compressedFinanceInfoConst = [
   {
-    name: 'кол-во выполненных заказов',
+    name: 'dashboard.cards-on-top.compleated-deals',
     type: 'deals_done_count'
   },
   {
-    name: 'кол-во всех заказчиков',
+    name: 'dashboard.cards-on-top.customers-quantity',
     type: 'dealers_count'
   },
   {
-    name: 'замороженные средства',
+    name: 'dashboard.cards-on-top.freezed-money',
     type: 'hold'
   },
   {
-    name: 'выведенные средства',
+    name: 'dashboard.cards-on-top.output-cesh',
     type: 'withdrawn'
   }
 

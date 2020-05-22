@@ -1,11 +1,11 @@
 export const onlineCont = [
 
     {
-        name: 'Онлайн',
+        name: 'general.online',
         type: 'online'
     },
     {
-        name: 'Офлайн',
+        name: 'general.offline',
         type: 'offline'
     }
 ]

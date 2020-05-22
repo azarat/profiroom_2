@@ -3,41 +3,30 @@
         <app-main-header [pageName]="'authoriz'"></app-main-header>
     </div>
     <div class='login-form auth-form'>
-      <div class="form log">
-        <app-login-page></app-login-page>
-      </div>
+        <div class="form log">
+            <app-login-page></app-login-page>
+        </div>
     </div>
     <div class='registr-form auth-form'>
         <div class="form reg">
-          <app-registration-page></app-registration-page>
+            <app-registration-page></app-registration-page>
         </div>
     </div>
     <div class="swipe-block" [ngClass]="auth? 'left' : 'right'">
-      <div class="inform">
-        <h2>
-          <span class='registr-txt'>{{'auth-page.first-time' | translate}}</span>
-          <span class='login-txt'>{{'auth-page.was-here' | translate}}</span>
-        </h2>
-        <p>
-          <span class='registr-txt'>{{'auth-page.wellcome-to-us' | translate}}</span>
-          <span class='login-txt'>{{'auth-page.wellcome-again' | translate}}</span>
-        </p>
-        <button mat-button class='swap-btn' type="button" (click)="swipeBtn()" [ngClass]="auth? 'login-btn': 'registr-btn'" >
-          <span class='login-btn-txt'>{{'general.enter' | translate}}</span>
-          <span class='registr-btn-txt'>{{'auth-page.registrate' | translate}}</span>
-        </button>
-      </div>
-
+        <div class="inform">
+            <h2>
+                <span class='registr-txt'>{{'auth-page.first-time' | translate}}</span>
+                <span class='login-txt'>{{'auth-page.was-here' | translate}}</span>
+            </h2>
+            <p>
+                <span class='registr-txt'>{{'auth-page.wellcome-to-us' | translate}}</span>
+                <span class='login-txt'>{{'auth-page.wellcome-again' | translate}}</span>
+            </p>
+            <button mat-button class='swap-btn' type="button" (click)="swipeBtn()" [ngClass]="auth? 'login-btn': 'registr-btn'">
+        <span class='login-btn-txt'>{{'general.enter' | translate}}</span>
+        <span class='registr-btn-txt'>{{'auth-page.registrate' | translate}}</span>
+      </button>
+        </div>
     </div>
-    <!-- <div class="docs">
-      <div class='links'>
-        <a >Условия и соглашения</a>
-        <a >Политика конфиденциальности</a>
-        <a >Карта сайта</a>
-      </div>
-      <div class="copyr">
-        Copyright {{ year }}, Who can.  All rights reserved — Designed by Thecube.studio
-      </div>
-    </div> -->
-  </div>
-  <app-inform-popup *ngIf="message" [(message)] ="message"></app-inform-popup>
+</div>
+<app-inform-popup *ngIf="message" [(message)]="message"></app-inform-popup>

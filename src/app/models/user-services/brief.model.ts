@@ -10,4 +10,7 @@ export class Brief {
   @Type(() => BriefAnswerVariants) briefAnswerVariants: BriefAnswerVariants[];
   @Expose() briefMultiAnswers: any;
   @Expose() briefAnswer: any;
+  @Expose() multi_answers: any;
+  @Expose() answers: any;
+
 }

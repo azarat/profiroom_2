@@ -10,6 +10,7 @@ import { filter, first, takeUntil, debounceTime } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { CollocutorInterface } from '../../interfaces/collocutor.interface';
 import { CollocutorService } from '../../services/collocutor.service';
+import { untilDestroyed } from 'ngx-take-until-destroy';
 
 
 // declare var $: any;
@@ -86,7 +87,6 @@ export class MessengerComponent implements OnInit, OnDestroy {
     this.chatService.getPreviousMessages(this.collocutorData.roomId, 0, this.chatType)
       .subscribe((res: any) => {
         this.messagesList = this.filterArrayOnMessTypes(res[0]);
-        console.log('MessagesList', this.messagesList )
       });
   }
 
@@ -147,29 +147,33 @@ export class MessengerComponent implements OnInit, OnDestroy {
 
   // Close chat if deal is done
   private _isChatHidden() {
-    this.collocutorData && (this.collocutorData.workEnded === 1 || this.collocutorData.dealDone === 1) ? this.chatHided = true : this.chatHided = null;
+    this.collocutorData && (
+      this.collocutorData.workEnded === 1 ||
+      this.collocutorData.dealDone === 1 ) ? this.chatHided = true : this.chatHided = null;
   }
 
   private getDealData() {
     this.collocutorService.collocutorData$
+    .pipe(untilDestroyed(this))
     .subscribe(res => {
       this.collocutorData = res;
       this.getPrevMessages();
       this.checkIsUserFreelancer();
-      console.log('collocutorData', this.collocutorData)
       this.hideMessageInput();
       this.rateDeal();
     });
   }
 
   private hideMessageInput() {
-    this.canChatting = this.collocutorData && this.chatType === 'work' && this.collocutorData.early_closing === 1 || this.collocutorData && this.collocutorData.dealDone === 1
-    || this.collocutorData && this.collocutorData.dealCanceled === 1  || this.collocutorData && this.collocutorData.workEnded === 1 ? null : true;
+    this.canChatting = this.collocutorData && this.chatType === 'work' && this.collocutorData.early_closing === 1 ||
+    this.collocutorData && this.collocutorData.dealDone === 1 ||
+    this.collocutorData && this.collocutorData.dealCanceled === 1  ||
+    this.collocutorData && this.collocutorData.workEnded === 1 ? null : true;
   }
 
   private rateDeal() {
     this.dealCanBeRated = this.collocutorData && this.collocutorData.status !== 'archived' &&
-    (this.collocutorData.dealDone === 1 || this.collocutorData.canceled === 1)? true : null;
+    (this.collocutorData.dealDone === 1 || this.collocutorData.canceled === 1) ? true : null;
   }
 
 //  Check is user Freelancer
