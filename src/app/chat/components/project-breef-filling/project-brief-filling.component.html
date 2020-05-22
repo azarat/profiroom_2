@@ -1,10 +1,10 @@
 <div class="wrapper" *ngIf="offerBrief">
     <section class="title">
-        Брииф
+        {{'chat.work_chat.deal-filter.brief' | translate}}
     </section>
     <section class="brief">
         <h3 class="title">
-            <a href="/">Дизайн веб-сайтов с мобильным адаптивом</a>
+            <a href="/">{{'chat.work_chat.brief-filling.title' | translate}}</a>
         </h3>
 
         <form class="questions" [formGroup]="briefForm">
@@ -26,7 +26,7 @@
             <li *ngFor="let variant of briefItem.answers, let j = index">
               <input [ngClass]="briefItem.multi_answers === 0? 'radioButton ': 'tgl tgl-classic'"
               name="radio-{{ i }}" value="{{variant.answer }}" id="{{ i + '-' + j }}"
-              [required]="briefItem.answer_required === '1'" 
+              [required]="briefItem.answer_required === '1'"
               (change)="onCheckChange($event, briefItem.title)"
               [type]="briefItem.multi_answers === 0? 'radio': 'checkbox'">
 
@@ -38,8 +38,8 @@
             </div>
 </div>
 <div class="btns">
-    <button class="btn-sec" (click)="deleteBrief()">отменить</button>
-    <button class="btn" (click)="sendBrief()">отправить</button>
+    <button class="btn-sec" (click)="deleteBrief()">{{'general.cancel' | translate}}</button>
+    <button class="btn" (click)="sendBrief()">{{'general.send' | translate}}</button>
 </div>
 </form>
 </section>
@@ -48,12 +48,12 @@
     <span class="hide" (click)="returnToBrief()"></span>
     <div class="icon"></div>
     <div class="info">
-        <p class="title">Вы не заполнили бриф до конца, мы не можем его сохранить</p>
-        <p class="description">Экономте своё время, для того, чтобы Вам заново не заполнять бриф, дозаполните его сейчас </p>
+        <p class="title">{{'chat.work_chat.brief-filling.info.title' | translate}}</p>
+        <p class="description">{{'chat.work_chat.brief-filling.info.subtitle' | translate}}</p>
     </div>
     <div class="controls">
-        <button class="exit-brief" (click)="confirmDeleteBrief()"> <span>отказаться</span></button>
-        <button class="return-to-brief" (click)="returnToBrief()"> <span>заполнить</span></button>
+        <button class="exit-brief" (click)="confirmDeleteBrief()"> <span>{{'chat.work_chat.brief-filling.cancel' | translate}}</span></button>
+        <button class="return-to-brief" (click)="returnToBrief()"> <span>{{'chat.work_chat.brief-filling.fill' | translate}}</span></button>
     </div>
 </div>
 

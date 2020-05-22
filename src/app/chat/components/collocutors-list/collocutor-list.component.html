@@ -21,12 +21,9 @@
                     <p class="date" *ngIf="collocutor.message.length !== 0">
                         {{ collocutor.message[0].dateTime | dateFormatPipe: 'dd.MM HH:mm' }}
                     </p>
-
-
                     <p class="date" *ngIf="collocutor.message.length === 0">
                         {{ collocutor.created_at | dateFormatPipe: 'dd.MM HH:mm' }}
                     </p>
-
                     <div class="message-preview">
                         <div class="photo">
                             <img [src]="collocutor.collocutorAva" alt="collocutor-photo" />
@@ -37,7 +34,7 @@
                             <p class="collocutor-message" *ngIf="collocutors[i].message.length !== 0 && chatType !== 'work'">
                                 <span *ngIf="userId == collocutor.message[0].author">Вы: </span>
                                 <span *ngIf="collocutor.message[0].type === 'string'">{{ collocutor.message[0].message }}</span>
-                                <span *ngIf="collocutor.message[0].type === 'file'">Файл</span>
+                                <span *ngIf="collocutor.message[0].type === 'file'">{{'general.file' | translate}}</span>
                             </p>
                             <p *ngIf="chatType == 'work'"> {{ collocutor.offers_title }}</p>
                         </div>

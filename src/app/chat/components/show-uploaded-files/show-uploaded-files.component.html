@@ -1,15 +1,8 @@
 <div class="files-folder">
     <div class="folder-btn" (click)="showFiles()" [ngClass]="{ active: isUploadFilesVisible }"></div>
     <div class="files-list" *ngIf="isUploadFilesVisible">
-
-        <!-- <div class="title">
-      <span class="type">Тип</span>
-      <span class="name">Название</span>
-      <span class="date">Дата</span>
-      <span class="download">Скачать</span>
-    </div> -->
         <div class="list-wrap">
-            <p class="empty" *ngIf="files.length === 0">Нету загруженных файлов</p>
+            <p class="empty" *ngIf="files.length === 0">{{'chat.file.empty' | translate}}</p>
             <div class="list">
                 <div class="file" *ngFor="let file of files">
                     <span class="type"> <img src="/assets/images/icons/files-type/{{file.fileType | fileType }}.png" alt=""> </span>

@@ -22,6 +22,7 @@ export class HomeUserSettingsComponent implements OnInit {
     private titleService: Title
   ) { }
 
+
   ngOnInit() {
     this.getUserService();
     this.titleService.setTitle('Настройки');

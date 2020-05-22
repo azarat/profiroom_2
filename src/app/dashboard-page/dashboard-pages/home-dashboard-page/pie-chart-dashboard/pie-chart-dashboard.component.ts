@@ -1,8 +1,19 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input
+} from '@angular/core';
 import * as Chart from 'chart.js';
-import { TranslateService } from '@ngx-translate/core';
-import { filter, first } from 'rxjs/operators';
-import { UserModel } from 'src/app/models/user.model';
+import {
+  TranslateService
+} from '@ngx-translate/core';
+import {
+  filter,
+  first
+} from 'rxjs/operators';
+import {
+  UserModel
+} from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-pie-chart-dashboard',
@@ -22,7 +33,7 @@ export class PieChartDashboardComponent implements OnInit {
 
   constructor(
     private translate: TranslateService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.translateCompleatedToolTip();
@@ -37,14 +48,12 @@ export class PieChartDashboardComponent implements OnInit {
     this.chart = new Chart('user-doughnut-chart', {
       type: 'doughnut',
       data: {
-        labels: [ this.compleatedDeals, this.inProgress, this.falledDeals],
-        datasets: [
-          {
-            data: this.user.pieChart,
-            backgroundColor: ['#4285F4', '#5DDFA9', '#FF9090'],
-            fill: false
-          },
-        ]
+        labels: [this.compleatedDeals, this.inProgress, this.falledDeals],
+        datasets: [{
+          data: this.user.pieChart,
+          backgroundColor: ['#4285F4', '#5DDFA9', '#FF9090'],
+          fill: false
+        }, ]
       },
       options: {
         legend: {
@@ -86,31 +95,31 @@ export class PieChartDashboardComponent implements OnInit {
     this.zeroDeals = true;
     let amaunt = 0
     this.user.pieChart.forEach(el => {
-      return amaunt +=el
-    })
-    amaunt === 0? this.zeroDeals = true : this.zeroDeals = null
+      return amaunt += el;
+    });
+    amaunt === 0 ? this.zeroDeals = true : this.zeroDeals = null
     this.dealsAmountInside = amaunt.toString();
   }
 
   private putTextInside() {
     Chart.pluginService.register({
       beforeDraw: (chart: any) => {
-        var width = this.chart.chart.width,
-        height = this.chart.chart.height,
-        ctx = this.chart.chart.ctx;
+        const width = this.chart.chart.width;
+        const height = this.chart.chart.height;
+        const ctx = this.chart.chart.ctx;
 
         ctx.restore();
-        var fontSize = (height / 173).toFixed(2);
-        ctx.font = fontSize + "em Source Sans Pro, sans-serif";
-        ctx.textBaseline = "middle";
-    
-        var text = this.dealsAmountInside,
-            textX = Math.round((width - ctx.measureText(text).width) / 2),
-            textY = height / 2.2;
-        var textNext = "всего",
-            textXNext = Math.round((width - ctx.measureText(textNext).width) / 2),
-            textYNext = height / 1.8;
-    
+        const fontSize = (height / 173).toFixed(2);
+        ctx.font = fontSize + 'em Source Sans Pro, sans-serif';
+        ctx.textBaseline = 'middle';
+
+        const text = this.dealsAmountInside;
+        const textX = Math.round((width - ctx.measureText(text).width) / 2);
+        const textY = height / 2.2;
+        const textNext = 'всего';
+        const textXNext = Math.round((width - ctx.measureText(textNext).width) / 2);
+        const  textYNext = height / 1.8;
+
         ctx.fillText(text, textX, textY);
         ctx.fillText(textNext, textXNext, textYNext);
         ctx.save();

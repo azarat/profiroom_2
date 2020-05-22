@@ -1,14 +1,14 @@
 <div class="inform" *ngIf="collocutorData">
     <div class="tools" *ngIf="canDealBePayed || canDealBeStarted || isCancelButton || isArbiterBtn || isFinishDealButton">
-        <h6>Действия</h6>
-        <button *ngIf="canDealBePayed" class="btn" (click)="holdDealMoney()">Зарезирвировать оплату</button>
-        <button *ngIf="canDealBeStarted" class="btn" (click)="goToWork()">Приступить к работе</button>
-        <button (click)="cancelWork()" *ngIf="isCancelButton">отменить работу</button>
-        <button *ngIf="isArbiterBtn" (click)="callArbiter()">обратиться в арбитраж</button>
-        <button *ngIf="isFinishDealButton" (click)="finishWork()">Завершить работу</button>
+        <h6>{{'chat.work_chat.offer-data.title-moves' | translate}}</h6>
+        <button *ngIf="canDealBePayed" class="btn" (click)="holdDealMoney()">{{'chat.work_chat.offer-data.hold-money' | translate}}</button>
+        <button *ngIf="canDealBeStarted" class="btn" (click)="goToWork()">{{'chat.work_chat.offer-data.start-work' | translate}}</button>
+        <button (click)="cancelWork()" *ngIf="isCancelButton">{{'chat.work_chat.offer-data.cancel-deal' | translate}}</button>
+        <button *ngIf="isArbiterBtn" (click)="callArbiter()">{{'chat.work_chat.offer-data.call-arbiter' | translate}}</button>
+        <button *ngIf="isFinishDealButton" (click)="finishWork()">{{'chat.work_chat.offer-data.finish-work' | translate}}</button>
     </div>
     <div class="timer" *ngIf="collocutorData.workStarted === 1 && collocutorData.moneyHolden !==0 && collocutorData.dealDone !== 1">
-        <h6>Кол-во дней до завершения заказа</h6>
+        <h6>{{'chat.work_chat.offer-data.days-to-finish' | translate}}</h6>
         <div class="clock">
             <div> <span>{{ thousand }}</span> </div>
             <div> <span>{{ hundred }}</span> </div>
@@ -22,11 +22,11 @@
 
         <p class="subtitle">{{ collocutorData.offers_title }}</p>
         <div class="main-info">
-            <p><span>Кол-во правок: </span><span>{{ collocutorData.changes}}</span></p>
-            <p><span>Срок исполнения: </span><span>{{ collocutorData.term }} дней</span></p>
+            <p><span>{{'chat.work_chat.offer-data.changes' | translate}} </span><span>{{ collocutorData.changes}}</span></p>
+            <p><span>{{'chat.work_chat.offer-data.time-to-do' | translate}} </span><span>{{ collocutorData.term }} дней</span></p>
         </div>
         <div class="extra-features">
-            <p>Коммерческое использование</p>
+            <p>{{'chat.work_chat.offer-data.commercial' | translate}}</p>
             <ng-container *ngIf="collocutorData.extra_features && collocutorData.extra_features.length > 0">
                 <p *ngFor="let el of collocutorData.extra_features">{{ el.title }}</p>
             </ng-container>
@@ -35,7 +35,7 @@
     </div>
 
     <div class="history" *ngIf="collocutorData.brief !== 0 && collocutorData.brief !== '0'">
-        <h6 class="history-title">История</h6>
+        <h6 class="history-title">{{'chat.work_chat.offer-data.history' | translate}}</h6>
         <div class="history-items">
             <div class="history-item" *ngFor="let el of collocutorData.history">
                 <div class="logo-icon">
@@ -49,5 +49,3 @@
         </div>
     </div>
 </div>
-
-<!-- 'chat.work_chat.history.' -->

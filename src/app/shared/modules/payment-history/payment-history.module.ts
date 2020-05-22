@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PaymentHistoryComponent } from './payment-history.component';
 import { DataFormatModule } from '../../pipes/data-format/data-format.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 
@@ -9,7 +10,8 @@ import { DataFormatModule } from '../../pipes/data-format/data-format.module';
   declarations: [PaymentHistoryComponent],
   imports: [
     CommonModule,
-    DataFormatModule
+    DataFormatModule,
+    TranslateModule
   ],
   exports: [
     PaymentHistoryComponent

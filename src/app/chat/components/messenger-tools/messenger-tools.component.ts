@@ -1,11 +1,9 @@
 import {
   Component,
   OnInit,
-  Input
+  Input,
+  OnDestroy
 } from '@angular/core';
-import {
-  CollocutorListModel
-} from 'src/app/models/chat/collocutors-list.model';
 import {
   ChatService
 } from '../../services/chat.service';
@@ -24,13 +22,14 @@ import { trigger } from '@angular/animations';
 import { DealService } from '../../services/deal.service';
 import { CollocutorService } from '../../services/collocutor.service';
 import { ErrorChatMessageService } from '../../services/error-chat-message.service';
+import { untilDestroyed } from 'ngx-take-until-destroy';
 
 @Component({
   selector: 'app-messenger-tools',
   templateUrl: './messenger-tools.component.html',
   styleUrls: ['./messenger-tools.component.scss']
 })
-export class MessengerToolsComponent implements OnInit {
+export class MessengerToolsComponent implements OnInit, OnDestroy {
 
   public collocutorData: CollocutorInterface;
   // public deal: CollocutorInterface;
@@ -56,16 +55,17 @@ export class MessengerToolsComponent implements OnInit {
     private localStorageService: LocalStorageService,
     private dealService: DealService,
     private socketService: SocketService,
-    private collocutorService: CollocutorService, 
+    private collocutorService: CollocutorService,
     private errorChatMessagesService: ErrorChatMessageService
-  ) {}
+  ) { }
+  ngOnDestroy(): void {
+  }
 
   ngOnInit() {
     // this.getDeal();
     this.socketService.subscribeDeal();
     this.getDealData();
     // this._dealUpdating();
-    
   }
 
 
@@ -87,8 +87,8 @@ export class MessengerToolsComponent implements OnInit {
 
   private getDealData() {
     this.collocutorService.collocutorData$
+      .pipe(untilDestroyed(this))
       .subscribe((res: any) => {
-        console.log('updated deal', res);
         this.collocutorData = res;
         if (this.collocutorData) {
           this.convertPackagePrice();
@@ -157,25 +157,28 @@ export class MessengerToolsComponent implements OnInit {
   }
 
   private freelancerStartWorking() { // check does freelancer cen start working
-    console.log('freelancer', this.isUserFreelancer); 
-    this.canDealBeStarted = this.isUserFreelancer && this.collocutorData.workStarted !== 1 && this.collocutorData.early_closing !== 1 
-    && this.collocutorData.status !== 'arbiter' 
+    console.log('freelancer', this.isUserFreelancer);
+    this.canDealBeStarted = this.isUserFreelancer && this.collocutorData.workStarted !== 1 && this.collocutorData.early_closing !== 1
+      && this.collocutorData.status !== 'arbiter'
       && this.collocutorData.moneyHolden === 1 && this.collocutorData.status !== 'archived' ? true : null;
   }
 
   private cenDealBeCanceled() {
-    this.isCancelButton = this.collocutorData.early_closing !== 1 && this.collocutorData.dealDone !== 1 && this.collocutorData.status !== 'arbiter' 
+    this.isCancelButton = this.collocutorData.early_closing !== 1 && this.collocutorData.dealDone !== 1
+    && this.collocutorData.status !== 'arbiter'
       && this.collocutorData.brief === 1 && this.collocutorData.status !== 'archived' ? true : null;
   }
 
   private cenDealBeFinished() {
-    this.isFinishDealButton = this.isUserFreelancer && this.collocutorData.status !== 'arbiter'  && this.collocutorData.moneyHolden === 1 && this.collocutorData.early_closing !== 1
+    this.isFinishDealButton = this.isUserFreelancer && this.collocutorData.status !== 'arbiter'
+    && this.collocutorData.moneyHolden === 1 && this.collocutorData.early_closing !== 1
       && this.collocutorData.workStarted === 1 && this.collocutorData.workEnded !== 1 && this.collocutorData.dealDone !== 1 ? true : null;
   }
 
   private isArbiterBtnVisible() {
-    this.isArbiterBtn = this.collocutorData.moneyHolden === 1 && this.collocutorData.status !== 'arbiter' && this.collocutorData.dealDone !== 1 
-    && this.collocutorData.workEnded !== 1 ? true : null
+    this.isArbiterBtn = this.collocutorData.moneyHolden === 1 && this.collocutorData.status !== 'arbiter'
+    && this.collocutorData.dealDone !== 1
+      && this.collocutorData.workEnded !== 1 ? true : null;
   }
 
 
@@ -184,7 +187,7 @@ export class MessengerToolsComponent implements OnInit {
 
   public goToWork() {
 
-    
+
     this.dealService.startWork(this.collocutorData.id)
       .subscribe(res => {
         console.log(res);
@@ -193,10 +196,10 @@ export class MessengerToolsComponent implements OnInit {
   }
 
   public cancelWork() {
-    let message = {
+    const message = {
       type: 'cancel',
       colocutorId: this.collocutorData.id
-    }
+    };
 
     this.errorChatMessagesService.setErrorMessage(message);
 
@@ -211,7 +214,7 @@ export class MessengerToolsComponent implements OnInit {
 
   public callArbiter() {
     this.dealService.callToArbiter(this.collocutorData.id)
-    .subscribe(res => console.log(res));
+      .subscribe(res => console.log(res));
   }
 
 }

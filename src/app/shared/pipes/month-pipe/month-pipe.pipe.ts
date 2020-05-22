@@ -7,7 +7,8 @@ import * as moment from 'moment';
 export class MonthPipePipe implements PipeTransform {
 
   transform(value: Date | moment.Moment, dateFormat: string): any {
-    const currentLang = moment().locale('ru');
+    const lang = localStorage.getItem('LOCALIZE_DEFAULT_LANGUAGE');
+    const currentLang = moment().locale(lang);
     return currentLang.localeData().monthsShort(moment(value));
   }
 

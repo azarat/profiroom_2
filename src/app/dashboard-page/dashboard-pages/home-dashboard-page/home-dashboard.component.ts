@@ -3,6 +3,8 @@ import { UserService } from 'src/app/core/services/user.service';
 import { UserModel } from 'src/app/models/user.model';
 import { plainToClass } from 'class-transformer';
 import { Title } from '@angular/platform-browser';
+import { TranslateService } from '@ngx-translate/core';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home-dashboard',
@@ -14,14 +16,21 @@ export class HomeDashboardComponent implements OnInit {
 
   constructor(
     private userService: UserService,
+    private translate: TranslateService,
     private titleService: Title
   ) { }
 
   ngOnInit() {
+    this.setTitle();
     this.defineCurrentUser();
-    this.titleService.setTitle('Dashboard')
   }
-
+  private setTitle() {
+    this.translate.get('syte-title.dashboard')
+      .pipe(first())
+      .subscribe(res => {
+        this.titleService.setTitle(res);
+      });
+  }
   private defineCurrentUser() {
     this.userService.getDashboardRes()
       .subscribe((res: any) => {

@@ -17,6 +17,7 @@ import { NgKnifeModule } from 'ng-knife';
 import { PaymentHistoryModule } from 'src/app/shared/modules/payment-history/payment-history.module';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { TranslateModule } from '@ngx-translate/core';
 
 const routes: Routes = [
   {
@@ -31,6 +32,7 @@ const routes: Routes = [
     CommonModule,
     LocalizeRouterModule.forChild(routes),
     RouterModule.forChild(routes),
+    TranslateModule,
 
     CalendarSharedModule,
     PaymentHistoryModule,

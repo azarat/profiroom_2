@@ -11,6 +11,7 @@ import { MatSelectModule } from '@angular/material';
 import { StarRatingModule } from '../shared/modules/star-rating/star-rating.module';
 import { SystemMessagesModule } from '../shared/modules/system-messages/system-messages.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 const routes: Routes = [
@@ -67,6 +68,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     LocalizeRouterModule.forChild(routes),
+    TranslateModule,
     RouterModule.forChild(routes),
     MatSlideToggleModule,
     FormsModule,

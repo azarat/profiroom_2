@@ -1,27 +1,27 @@
 export const projectTypesConst = [
 
   {
-    name: 'Все',
+    name: 'chat.work_chat.deal-filter.all',
     type: 'all'
   },
   {
-    name: 'Бриф',
+    name: 'chat.work_chat.deal-filter.brief',
     type: 'new'
   },
   {
-    name: 'Новые',
+    name: 'chat.work_chat.deal-filter.new',
     type: 'sentBrief'
   },
   {
-    name: 'В процессе',
+    name: 'chat.work_chat.deal-filter.in-proccess',
     type: 'inProgress'
   },
   {
-    name: 'Архив',
+    name: 'chat.work_chat.deal-filter.archive',
     type: 'archived'
   },
   {
-    name: 'Арбитраж',
+    name: 'chat.work_chat.deal-filter.arbitr',
     type: 'arbiter'
   },
 ];

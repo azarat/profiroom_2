@@ -23,11 +23,7 @@ export class ProjectsFilterComponent implements OnInit {
 
   public toggleListOfTypes() {
     this.isListVisible = !this.isListVisible ? true : !this.isListVisible;
-    // if (!this.isListVisible) {
-    //   this.isListVisible = true;
-    // } else {
-    //   this.isListVisible = !this.isListVisible;
-    // }
+
   }
 
   public setProjectType(type: string, name: string) {

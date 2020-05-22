@@ -20,10 +20,6 @@ export class UsersCommentsComponent implements OnInit {
     id: number,
     name: string,
     value: string;
-  } = {
-      id: 0,
-      name: 'Положительные',
-      value: 'positive'
   };
   public commentsCount: number;
   public id;
@@ -31,12 +27,12 @@ export class UsersCommentsComponent implements OnInit {
   public tabs = [
     {
       id: 0,
-      name: 'Положительные',
+      name: 'comments.positive-comments',
       value: 'positive'
     },
     {
       id: 1,
-      name: 'Отрицательные',
+      name: 'comments.negative-comments',
       value: 'negative'
     }
   ];
@@ -64,6 +60,7 @@ export class UsersCommentsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.currentTab = this.tabs[0];
     this.findCurrentRoute();
     this.authorizatedUserId = +(this.localStorageService.getItem('userId').value);
   }

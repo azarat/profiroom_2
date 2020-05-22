@@ -28,7 +28,6 @@ export class UserHeaderMenuComponent implements OnInit {
   ngOnInit() {
     this.userService.getMinUserData()
       .subscribe((res: any) => {
-        // console.log(res);
         this.user = plainToClass(UserModel, res);
         this._checkUserState();
       });
