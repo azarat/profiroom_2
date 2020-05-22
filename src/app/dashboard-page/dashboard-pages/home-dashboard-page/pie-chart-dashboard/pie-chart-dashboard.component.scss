@@ -8,8 +8,8 @@
         position: absolute;
         box-sizing: border-box;
         content: '';
-        height: 100%;
-        width: 12rem;
+        height: 14rem;
+        width: 14rem;
         border-radius: 50%;
         background: transparent;
         top: 0;
@@ -21,7 +21,11 @@
 }
 .chart{
     width: 271px;
-    height: auto;
+    height: 271px;
+    &:before{
+        height: 271px;
+        width: 271px;
+    }
 }
 @media (max-width: 1699px) {
     .chart{
