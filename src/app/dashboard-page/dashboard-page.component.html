@@ -16,24 +16,20 @@
                 <button (click)="userExit()">{{'general.exit' | translate}}</button>
             </section>
         </div>
-        <!-- </div> -->
     </header>
     <div class="side-bar" [ngClass]='{simplified: sideMenuClose}'>
         <section class="avatar">
             <div class="lines"></div>
             <div class="avatar-wrapper">
                 <div class="avatar-aura">
-                    <img src="assets/images/images/aura_lvl2.svg" alt="user-lvl" *ngIf="user.rank_id === 0">
-                    <img src="assets/images/images/aura_lvl2.svg" alt="user-lvl" *ngIf="user.rank_id === 1">
-                    <img src="assets/images/images/aura_lvl2.svg" alt="user-lvl" *ngIf="user.rank_id === 2">
-                    <img src="assets/images/images/aura_lvl2.svg" alt="user-lvl" *ngIf="user.rank_id === 3">
-                    <img src="assets/images/images/aura_lvl2.svg" alt="user-lvl" *ngIf="user.rank_id === 4">
+                    <ng-container *ngFor="let lvl of [0,1,2,3,4]">
+                        <img src="'assets/images/images/aura_lvl{{lvl}}.svg'" alt="user-lvl" *ngIf="user.rank_id === lvl">
+                    </ng-container>
                 </div>
-                <img [src]="user.avatar" alt="avatar" />
-            </div>
-            <p class="name">{{ user.name }} {{ user.surname}}</p>
-            <div class="rating">
-                <app-star-rating [currentRating]="user.rating"></app-star-rating>
+                <p class="name">{{ user.name }} {{ user.surname}}</p>
+                <div class="rating">
+                    <app-star-rating [currentRating]="user.rating"></app-star-rating>
+                </div>
             </div>
         </section>
         <section class="menu">

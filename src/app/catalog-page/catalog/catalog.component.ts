@@ -42,18 +42,23 @@ export class CatalogComponent implements OnInit {
       this.catalogFilters = plainToClass(CatalogFiltersModel, Params);
       this.catalogFilters.subCategory = Params.subCategory;
       this.category = Params.category;
+      this.GetOffersService.getOffers(this.catalogFilters);
     });
 
     //----------- проверка наличия каких либо парметров в queryParams ------------//  
     this._route.queryParams.subscribe(qParams => {
+      console.log('qp ', qParams);
       if (qParams && (Object.keys(qParams).length === 0)) {
     //----------- используем даные (категория, подкатегория) из ActivatedRoute.params ------------//  
         this.GetOffersService.getOffers(this.catalogFilters);
+        console.log('pusto  ', qParams);
       } else {
         this.catalogFilters.current_page = 1;
     //----------- устанавливаем параметры из ActivatedRoute.queryParams ------------//  
         this.GetOffersService.setFilters(qParams);
-        this.GetOffersService.getOffers(qParams);
+        this.catalogFilters = plainToClass(CatalogFiltersModel, qParams);
+        this.catalogFilters.online = (qParams.online === "true") ? true: false;
+        this.GetOffersService.getOffers(this.catalogFilters);
       }
     });
 

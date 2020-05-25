@@ -225,6 +225,9 @@
       }
     }
     .message-preview {
+      .message-information{
+        width: calc(100% - 45px);
+      }
       .photo {
         margin-right: 15px;
       }

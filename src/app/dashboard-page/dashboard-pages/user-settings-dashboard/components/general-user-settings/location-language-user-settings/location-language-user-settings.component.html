@@ -19,21 +19,20 @@
 
         <div class="single-lang-wrapper" *ngFor="let arrayItem of userSettings.language; let i = index">
 
-          <!-- <div class="field-block"  *ngIf="userSettings.language">
+          <div class="field-block"  *ngIf="userSettings.language">
             <h5 class="fields-title">Язык</h5>
-            <input class="fields-value" 
+            <input class="fields-value"
+              [(ngModel)]="userSettings.language[i].langName"
+              #langName="ngModel"
+              [pattern]="unamePattern"
               type="text" 
-              knifeAlphanumeric 
-              [(ngModel)]="userSettings.language[i].langName" 
-              #langName="ngModel" 
-              maxlength="15"
-              minlength="4"  
-              required
-              [ngClass] = "{not_Valid: !langName.valid}">
-            <div *ngIf="!langName.valid" class="alert-danger">
-              <p>specialty must be at least 4 characters long.</p>
+              [ngClass] = "{not_Valid: !langName.valid && langName.control.touched}"
+              required            
+            >
+            <div *ngIf="langName.control.touched && langName.control.status === 'INVALID'" class="alert-danger">
+              <p>Поле заполнено неверно. Спецсимволов запрещены</p>
             </div>
-          </div> -->
+          </div>
 
           <div class="field-block language-level">
             <label class="block-title" for="langLevel">Уровень владения</label>

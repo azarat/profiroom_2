@@ -9,7 +9,20 @@ import { UserSettingsModel } from 'src/app/models/user-settings.model';
 export class BirthdayUserSettingsComponent implements OnInit {
   days = [];
   month = [];
-  // year: number = 1996;
+  public monthTranslate = [
+    'Январь',
+    'Февраль',
+    'Март',
+    'Апрель',
+    'Май',
+    'Июнь',
+    'Июль',
+    'Август',
+    'Сентябрь',
+    'Октябрь',
+    'Ноябрь',
+    'Декабрь'
+  ];
 
   public maxDays: number;
 

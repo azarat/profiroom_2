@@ -8,7 +8,7 @@
       <div class="fields">
         <div class="field-wrapper">
           <h5 class="fields-title">Старый пароль</h5>
-          <input class="fields-value" formControlName='oldPassword' maxlength="50" (ngModelChange)='resetValidation()'>
+          <input class="fields-value" type="password" formControlName='oldPassword' maxlength="50" (ngModelChange)='resetValidation()'>
           <div class="error-message" *ngIf="submitedPassForm && !changePasswordResult && passForm.controls.oldPassword.value" >
             Старый пароль введен неверно
           </div>
@@ -22,7 +22,7 @@
 
         <div class="fields">
           <h5 class="fields-title">Новый пароль (если необходимо изменить)</h5>
-          <input class="fields-value new-passrord"  placeholder="" formControlName="newPassword" required>
+          <input class="fields-value new-passrord" type="password" placeholder="" formControlName="newPassword" required>
           <div class="pass-erorrs">
             <span
               [ngClass]="passForm.get('passwords.newPassword').hasError('required') || passForm.get('passwords.newPassword').hasError('hasNumber') ? 'unvalidated': 'validated'"></span>

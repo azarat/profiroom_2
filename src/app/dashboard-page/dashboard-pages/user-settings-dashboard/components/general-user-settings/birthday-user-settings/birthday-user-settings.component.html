@@ -9,7 +9,7 @@
   <div class="month">
     <mat-select name="month" id=""  [(ngModel)]="userSettingsModel.birthDay.month" (ngModelChange)="filterChanhe()">
       <ng-container *ngFor="let month of month, let i = index">
-        <mat-option [value]="month">{{ month }}</mat-option>
+        <mat-option [value]="month">{{ monthTranslate[month - 1] }}</mat-option>
       </ng-container>
     </mat-select>
   </div>
