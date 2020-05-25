@@ -23,7 +23,6 @@ import { NotificationsUserSettingsComponent } from './components/notifications-u
 import { SecurityUserSettingsComponent } from './components/security-user-settings/security-user-settings.component';
 import { SecurityPassUserSettingsComponent } from './components/security-user-settings/security-pass-user-settings/security-pass-user-settings.component';
 import { SecurityMailUserSettingsComponent } from './components/security-user-settings/security-mail-user-settings/security-mail-user-settings.component';
-import { OnlyNumberDirective } from './directives/onlyletters.directive';
 import { TranslateModule } from '@ngx-translate/core';
 
 
@@ -73,9 +72,6 @@ const servicesRoutes: Routes = [
     SecurityUserSettingsComponent,
     SecurityPassUserSettingsComponent,
     SecurityMailUserSettingsComponent,
-
-
-    OnlyNumberDirective
   ],
   imports: [
     CommonModule,
