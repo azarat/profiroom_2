@@ -19,16 +19,18 @@
         ;
     }
 }
-.chart{
+
+.chart {
     width: 271px;
     height: 271px;
-    &:before{
+    &:before {
         height: 271px;
         width: 271px;
     }
 }
+
 @media (max-width: 1699px) {
-    .chart{
+    .chart {
         width: 211px;
         height: 211px;
     }

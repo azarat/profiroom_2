@@ -43,9 +43,9 @@
                 <mat-form-field>
                     <mat-label>{{'auth-page.registr.repeat-password' | translate}}</mat-label>
                     <input matInput type="password" [type]="hideS ? 'password' : 'text'" formControlName="password_confirmation" required />
-                    <button class="pass" mat-icon-button matSuffix (click)="hideS = !hideS" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideS" [style.color]="hideS ? '#DBDBDB': '#000'">
+                    <span class="pass" mat-icon-button matSuffix (click)="hideS = !hideS" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideS" [style.color]="hideS ? '#DBDBDB': '#000'">
             <mat-icon>{{hideS ? 'visibility_off' : 'visibility'}}</mat-icon>
-          </button>
+          </span>
                     <mat-error *ngIf="registrationForm.get('password_confirmation').hasError('required')">{{'auth-page.login.put-password' | translate}}
                     </mat-error>
                     <mat-error *ngIf="registrationForm.get('password_confirmation').hasError('NoPassswordMatch')">

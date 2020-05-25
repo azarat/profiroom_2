@@ -1,21 +1,18 @@
 <div class="step-wrapper" *ngIf="userService && titlePosition">
     <form #form="ngForm" (ngSubmit)="goNextStep(form)">
-        <h3>1. Титульная информация</h3>
+        <h3>{{'dashboard.create-service.first-step.title' | translate}}</h3>
 
-        <h5>Название услуги</h5>
-        <!-- ngbPopover="Оно должно отражать суть вашего предложения
-    и описывать услугу, которую вы готовы выполнить."
-      popoverTitle="Введите название услуги" placement="right" popoverClass="popover" closeDelay="200" -->
+        <h5>{{'dashboard.create-service.first-step.subtitle' | translate}}</h5>
         <mat-form-field floatLabel="always" class="service-title" appearance="outline" maxlength="70">
-            <textarea name="title" #serviceTit [(ngModel)]="userService.title" matInput required maxlength="70" tooltip="Введите название услуги" tooltipDescription="Оно должно отражать суть вашего предложения
-    и описывать услугу, которую вы готовы выполнить." placement="{{titlePosition}}"></textarea>
-            <mat-hint align="end">{{ serviceTit.value.length }} из 70 максимально</mat-hint>
+            <textarea name="title" #serviceTit [(ngModel)]="userService.title" matInput required maxlength="70" tooltip="{{'dashboard.create-service.first-step.tool-tip.name-title' | translate}}" tooltipDescription="{{'dashboard.create-service.first-step.tool-tip.name-subtitle' | translate}}"
+                placement="{{titlePosition}}"></textarea>
+            <mat-hint align="end">{{ serviceTit.value.length }}&nbsp;{{'dashboard.create-service.first-step.min-title-length' | translate}}</mat-hint>
         </mat-form-field>
         <div class="service-selects">
             <div class="category">
-                <h5>Категория Вашей деятельности</h5>
+                <h5>{{'dashboard.create-service.first-step.category-title' | translate}}</h5>
                 <mat-form-field appearance="outline">
-                    <mat-select (ngModelChange)="loadSubcategoryFilter($event)" [(ngModel)]="userService.category" name="category" required tooltipDescription="Это позволит покупателям быстро найти Вашу услугу." tooltip="Выберите категорию, наиболее подходящую для Вашей услуги"
+                    <mat-select (ngModelChange)="loadSubcategoryFilter($event)" [(ngModel)]="userService.category" name="category" required tooltipDescription="{{'dashboard.create-service.first-step.tool-tip.category-subtitle' | translate}}" tooltip="{{'dashboard.create-service.first-step.tool-tip.category-title' | translate}}"
                         placement="right">
                         <mat-option *ngFor="let category of categoryList" [value]="category.link">
                             {{ category.name }}
@@ -25,9 +22,10 @@
             </div>
 
             <div class="subcat" *ngIf="userService.category">
-                <h5>Подкатегория Вашей деятельности</h5>
+                <h5>{{'dashboard.create-service.first-step.subcategory-title' | translate}}</h5>
                 <mat-form-field appearance="outline">
-                    <mat-select required [(ngModel)]="userService.subCategory" name="subCategory" tooltipDescription="Это позволит покупателям быстро найти Вашу услугу." tooltip="Выберите подкатегорию, наиболее подходящую для Вашей услуги" placement="right">
+                    <mat-select required [(ngModel)]="userService.subCategory" name="subCategory" tooltipDescription="{{'dashboard.create-service.first-step.tool-tip.subcategory-description' | translate}}" tooltip="{{'dashboard.create-service.first-step.tool-tip.subcategory-title' | translate}}"
+                        placement="right">
                         <mat-option *ngFor="let subcategory of sub_categories" [value]="subcategory.link">
                             {{ subcategory.name }}
                         </mat-option>
@@ -37,9 +35,10 @@
         </div>
 
         <div class="tags">
-            <h5>Ключевые слова для поиска вашей услуги</h5>
+            <h5>{{'dashboard.create-service.first-step.tags-title' | translate}}</h5>
 
-            <mat-form-field class="example-chip-list" appearance="outline" ngbPopover="Это поможет заказчикам найти Вас во время поиска." popoverTitle="Введите теги" placement="right" popoverClass="popover" closeDelay="200">
+            <mat-form-field class="example-chip-list" appearance="outline" ngbPopover="{{'dashboard.create-service.first-step.tool-tip.tag-subtitle' | translate}}" popoverTitle="{{'dashboard.create-service.first-step.tool-tip.tag-title' | translate}}" placement="right"
+                popoverClass="popover" closeDelay="200">
                 <mat-chip-list #chipList aria-label="Fruit selection">
                     <mat-chip *ngFor="let tag of tags" [selectable]="selectable" color="silver" [removable]="removable" (removed)="remove(tag)">
                         {{tag.tag}}
@@ -53,7 +52,7 @@
         </div>
 
         <div class="portfolio">
-            <h5>Загрузка портфолио</h5>
+            <h5>{{'dashboard.create-service.first-step.portfolio-title' | translate}}</h5>
 
             <div class="items">
 
@@ -62,25 +61,25 @@
                     <div class="img-item" *ngFor="let imgUrl of previewUrl, let i = index" [ngClass]="{ 'main-photo': userService.offerMainImage === imgUrl.link}">
                         <div class="delete-file" (click)="deleteAttachment(imgUrl.id)"></div>
                         <img [src]="imgUrl.link" height="300" />
-                        <div class="choose-as-main-photo" (click)="putAsMainPhoto(imgUrl.link)">сделать обложкой</div>
+                        <div class="choose-as-main-photo" (click)="putAsMainPhoto(imgUrl.link)">{{'dashboard.create-service.first-step.main-photo-btn' | translate}}</div>
                     </div>
 
                 </ng-container>
 
-                <div class="dr-dp" appDragDrop (onFileDropped)="fileProgress($event)" ngbPopover="Добавьте запоминающийся контент в свою галерею, чтобы отличаться от конкурентов.
-        С загруженных файлов, вы можете выбрать один для титульного изображения на странице." popoverTitle="Загрузка портфолио" placement="right" popoverClass="popover" closeDelay="200">
+                <div class="dr-dp" appDragDrop (onFileDropped)="fileProgress($event)" ngbPopover="{{'dashboard.create-service.first-step.tool-tip.file-loader-subtitle' | translate}}" popoverTitle="{{'dashboard.create-service.first-step.tool-tip.file-loader-title' | translate}}"
+                    placement="right" popoverClass="popover" closeDelay="200">
                     <div class="upload"></div>
                     <span>.JPG .PNG .GIF </span>
-                    <span class="dr-dr-text">Перетащите файлы или </span>
+                    <span class="dr-dr-text">{{'file-loader.drop-files' | translate}}</span>
                     <input type="file" id="file" multiple="true" class="input-file" #fileInput (change)="fileProgress($event.target.files)" />
-                    <label for="file">кликните сюда</label>
+                    <label for="file">{{'file-loader.click-here' | translate}}</label>
                 </div>
             </div>
         </div>
         <div class="form-butons">
-            <button (click)="quite()" class="back">выйти</button>
+            <button (click)="quite()" class="back">{{'general.exit' | translate}}</button>
             <button class="save" type="submit">
-        сохранить и продолжить
+              {{'dashboard.create-service.save-and-next' | translate}}
       </button>
         </div>
     </form>

@@ -1,25 +1,25 @@
 export  const serviceCreationSteps = [
   {
-    title: 'Титульная информация',
-    description: 'Успех выбора Вашей услуги зависит насколько качественно и точно Вы назовёте услуги и заполните критерии поиска.'
+    title: 'dashboard.offer-steps.first.title',
+    description: 'dashboard.offer-steps.first.description'
   },
   {
-    title: 'Описание услуги',
-    description: 'Опишите услугу, которую вы предлагаете, как можно подробнее.'
+    title: 'dashboard.offer-steps.second.title',
+    description: 'dashboard.offer-steps.second.description'
   },
   {
-    title: 'Пакеты и цены',
-    description: 'Предложите покупателю три пакета услуг по разной цене.'
+    title: 'dashboard.offer-steps.third.title',
+    description: 'dashboard.offer-steps.third.description'
   },
   {
-    title: 'Часто задаваемые вопросы',
-    description: 'Составьте список часто задаваемых вопросов от клиентов.'
+    title: 'dashboard.offer-steps.forth.title',
+    description: 'dashboard.offer-steps.forth.description'
   },
   {
-    title: 'Бриф',
-    description: 'Добавьте вопросы для заказчика, которые предоставят Вам необходимую информацию, чтобы Вы могли приступить к заказу.'
+    title: 'dashboard.offer-steps.fifth.title',
+    description: 'dashboard.offer-steps.fifth.description'
   },
   {
-    title: 'Готово к публикации!',
+    title: 'dashboard.offer-steps.last.title!',
   }
 ];

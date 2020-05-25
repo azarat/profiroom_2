@@ -11,7 +11,8 @@ import { FormsModule } from '@angular/forms';
 import { SocketService } from './core/services/socket.service';
 
 import { SystemMessagesService } from './shared/modules/system-messages/services/system-messages.service';
-import { LocalizeRouterModule } from 'localize-router';
+import { LocalizeRouterModule, LocalizeRouterService } from 'localize-router';
+import { TranslateService, TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -24,6 +25,9 @@ import { LocalizeRouterModule } from 'localize-router';
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
+    TranslateModule,
+    LocalizeRouterModule
+
   ],
   exports: [
   ],
