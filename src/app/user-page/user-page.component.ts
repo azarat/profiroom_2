@@ -29,6 +29,7 @@ export class UserPageComponent implements OnDestroy, OnInit  {
 
   public clickedEducationImgs = null;
   public clickedSingleImg = null;
+  public openEducationImgs = null;
   public userTypeFreelancer = 1;
   public userRole: string = 'Freelancer';
 
@@ -139,18 +140,11 @@ export class UserPageComponent implements OnDestroy, OnInit  {
   }
 
   // img pop-up
-  public showPopUp(i, thisArr, text) {
+  public showPopUp(i, thisArrNumber, kindOfImgs) {
     // this.windowScrolling.disable();
-    if(this.clickedEducationImgs !== thisArr) {
-      this.clickedEducationImgs = thisArr
-    } else {
-      this.clickedEducationImgs =false;
-    }
-    if(this.clickedSingleImg !== i) {
-      this.clickedSingleImg = i
-    } else {
-      this.clickedSingleImg =false;
-    }
+    this.clickedEducationImgs = this.clickedEducationImgs !== thisArrNumber? thisArrNumber: false;
+    this.clickedSingleImg = this.clickedSingleImg !== i? i: false;
+    this.openEducationImgs = kindOfImgs? true: false;
   }
 
   // switching user types

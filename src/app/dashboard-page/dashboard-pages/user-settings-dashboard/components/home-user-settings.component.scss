@@ -39,7 +39,7 @@ h1{
   }
 }
 :host::ng-deep {
-  .fields{
+  .fields, .field-block{
     position: relative;
     .alert-danger{
       background: transparent;
@@ -49,10 +49,15 @@ h1{
       line-height: 16px;
       color: #FD1F3A;
       position: absolute;
+      p{
+        margin-bottom: 0;
+        white-space: nowrap;}
     }
   }
   .fields-value{
     outline: none;
+    border: 1px solid transparent;
+    max-height: 50px;
     &.ng-valid[type=text]{
       border: 1px solid transparent;
     }

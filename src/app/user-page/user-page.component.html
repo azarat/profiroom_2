@@ -126,7 +126,7 @@
 
                         <div class="education__img-list" *ngIf="education.diploma_files.length; let i = index">
                             <ng-container *ngFor="let img of education.diploma_files; let i = index">
-                                <div class="img-item" (click)="showPopUp(i, thisArr, 'img')" [ngClass]="{open_popUp: clickedEducationImgs === thisArr && clickedSingleImg === i}">
+                                <div class="img-item" (click)="showPopUp(i, thisArr, true)" [ngClass]="{open_popUp: clickedEducationImgs === thisArr && clickedSingleImg === i && openEducationImgs}">
                                     <img src="{{img.link}}" alt="">
                                     <div class="close-popUp"></div>
                                 </div>
@@ -148,12 +148,12 @@
             <section class="education" *ngIf="userTypeFreelancer && userData.additionalEducation.length > 0">
                 <div class="section-title">Дополнительное образование</div>
                 <div class="education__wrapper">
-                    <div class="education__info-block" *ngFor="let education_item of userData.additionalEducation; let thisArr = index">
+                    <div class="education__info-block" *ngFor="let education_item of userData.additionalEducation; let thisAddArr = index">
 
                         <div class="education__img-list" *ngIf="education_item.additional_diploma_files.length; let i = index">
                             <ng-container *ngFor="let img of education_item.additional_diploma_files; let i = index">
-                                <div class="img-item" (click)="showPopUp(i, thisArr, 'img')" [ngClass]="{open_popUp: clickedEducationImgs === thisArr
-                  && clickedSingleImg === i}">
+                                <div class="img-item" (click)="showPopUp(i, thisAddArr, false)" [ngClass]="{open_popUp: clickedEducationImgs === thisAddArr
+                  && clickedSingleImg === i && !openEducationImgs}">
                                     <img src="{{img.link}}" alt="">
                                     <div class="close-popUp"></div>
                                 </div>

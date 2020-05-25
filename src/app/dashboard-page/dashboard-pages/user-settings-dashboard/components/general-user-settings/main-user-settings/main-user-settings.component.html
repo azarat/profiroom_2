@@ -25,35 +25,34 @@
         <div class="fields">
           <h5 class="fields-title">Имя</h5>
           <input class="fields-value"
-           type="text"
-           required
-           
-           #firstName="ngModel"
-           name="firstName"
-           placeholder="Имя"
-           [(ngModel)]="userSettingsModel.name"
-           minlength="2"
-           maxlength="15"
+            [(ngModel)]="userSettingsModel.name"
+            #firstName="ngModel"
+            [pattern]="unamePattern"
+            name="firstName"
+            placeholder="Имя"
+            type="text"
+            required
           >
-          <div *ngIf="firstName.control.touched && firstName.control.status === 'INVALID'" class="alert-danger">
+          <!-- <div *ngIf="firstName.control.touched && firstName.control.status === 'INVALID'" class="alert-danger">
             <p>Поле заполнено неверно</p>
+          </div> -->
+          <div [hidden]="firstName.valid || firstName.untouched" class="alert-danger">
+            Поле заполнено неверно. Спецсимволов запрещены
           </div>
         </div>
         <div class="fields">
           <h5 class="fields-title"> Фамилия</h5>
           <input class="fields-value"
-            type="text"
-            required
-            
+            [(ngModel)]="userSettingsModel.surname"
             #surname="ngModel"
+            [pattern]="unamePattern"
             name="surname"
             placeholder="Фамилия"
-            [(ngModel)]="userSettingsModel.surname"
-            minlength="2"
-            maxlength="15"
+            type="text"
+            required
           >
           <div *ngIf="surname.control.touched && surname.control.status === 'INVALID'" class="alert-danger">
-            <p>Поле заполнено неверно</p>
+            <p>Поле заполнено неверно. Спецсимволов запрещены</p>
           </div>
         </div>
       </div>
