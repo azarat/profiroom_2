@@ -39,6 +39,7 @@ const routes: Routes = [
   },
   {
     path: ':category/:subCategory',
+    pathMatch: 'prefix',
     component: CatalogComponent,
     resolve: { items: OffersResolver },
   }

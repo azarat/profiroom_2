@@ -1,8 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ErrorPageComponent } from './error-page/error-page.component';
-import { DashboardPageComponent } from './dashboard-page/dashboard-page.component';
-import { HomePageComponent } from './home-page/home-page.component';
 import { UnauthorisatedGuard } from './core/guards/unauthorisated.guard';
 import { AuthorisatedGuard } from './core/guards/authorisated.guard';
 import { LocalizeRouterModule } from 'localize-router';
@@ -12,7 +9,6 @@ import { LocalizeRouterModule } from 'localize-router';
 export const routes: Routes = [
   {
     path: '',
-    pathMatch: 'full',
     loadChildren: () => import('./home-page/home-page.module').then(m => m.HomePageModule),
   },
   {
@@ -39,10 +35,10 @@ export const routes: Routes = [
     path: 'user/:id',
     loadChildren: () => import('./user-page/user-page.module').then(m => m.UserPageModule)
   },
-  {
-    path: '**',
-    redirectTo: ''
-  },
+  // {
+  //   path: '**',
+  //   redirectTo: ''
+  // },
   // {
   //   path: '404',
   //   loadChildren: () => import('./error-page/error-page.module').then(m => m.ErrorPageModule)

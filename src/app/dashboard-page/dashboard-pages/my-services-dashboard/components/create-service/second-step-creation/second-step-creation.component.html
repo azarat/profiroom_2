@@ -1,21 +1,19 @@
 <div class="step-wrapper">
-  <form #form="ngForm" (ngSubmit)="nextStep(form)">
-    <h3>2. Описание услуги</h3>
+    <form #form="ngForm" (ngSubmit)="nextStep(form)">
+        <h3>{{'dashboard.create-service.second-step.title' | translate}}</h3>
 
-    <h5>Опишите услугу как можно подробнее</h5>
-    <div class="form-group" [ngClass]="{'error': (characterLength !== 0 && characterLength <= 100 && characterLength !== null) || characterLength >=500 && submited}">
+        <h5>{{'dashboard.create-service.second-step.subtitle' | translate}}</h5>
+        <div class="form-group" [ngClass]="{'error': (characterLength !== 0 && characterLength <= 100 && characterLength !== null) || characterLength >=500 && submited}">
 
-      <quill-editor [modules]="config" [(ngModel)]="userService.description" name="editor" placeholder="" 
-      (onContentChanged)="onEditorCreated($event)" ngbPopover="Проявите оригинальность:  добавьте аргументы в свою пользу, дайте гарантии,
-        предоставьте бонусы и т.Д. чтобы покупатель выбрал именно Вашу услугу." popoverTitle="Опишите услугу, которую вы предлагаете, как можно подробнее." 
-        placement="right" popoverClass="popover" maxlength="500" closeDelay="200"></quill-editor>
-      <span class="notify" *ngIf="submited && characterLength <= 100 || characterLength === null">Минимум 100 символов </span>
-      <span class="notify" *ngIf="submited && characterLength > 100 && characterLength !== null">{{this.characterLength}} из 500</span>
-    </div>
+            <quill-editor [modules]="config" [(ngModel)]="userService.description" name="editor" placeholder="" (onContentChanged)="onEditorCreated($event)" ngbPopover="{{'dashboard.create-service.second-step.tool-tip.subtitle' | translate}}" popoverTitle="{{'dashboard.create-service.second-step.tool-tip.title' | translate}}"
+                placement="right" popoverClass="popover" maxlength="500" closeDelay="200"></quill-editor>
+            <span class="notify" *ngIf="submited && characterLength <= 100 || characterLength === null">М{{'dashboard.create-service.second-step.minimal-error' | translate}}</span>
+            <span class="notify" *ngIf="submited && characterLength > 100 && characterLength !== null">{{this.characterLength}}&nbsp;{{'dashboard.create-service.second-step.max-error' | translate}}</span>
+        </div>
 
-    <div class="form-butons">
-      <button class="back" (click)="quite()">выйти</button>
-      <button class="save" type="submit">сохранить и продолжить</button>
-    </div>
-  </form>
+        <div class="form-butons">
+            <button class="back" (click)="quite()">{{'general.exit' | translate}}</button>
+            <button class="save" type="submit">{{'dashboard.create-service.save-and-next' | translate}}</button>
+        </div>
+    </form>
 </div>

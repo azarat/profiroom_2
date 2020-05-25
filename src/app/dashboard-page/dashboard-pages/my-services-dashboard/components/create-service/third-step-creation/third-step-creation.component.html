@@ -1,165 +1,161 @@
 <div class="step-wrapper">
-  <form #form="ngForm" (ngSubmit)="nextStep(form)">
-    <div class="form-title">
-      <h3>3. Пакеты услуг и цены</h3>
-      <div class="pckg-swap">
-        <input class="tgl tgl-swp" id="cb2" type="checkbox" name="change-pack-val" [(ngModel)]="userService.allPackages" />
-        <label class="tgl-btn" for="cb2"></label>
-        <span>3 пакета</span>
-      </div>
-    </div>
-
-    <!-------------------- main options -------------------->
-    <div class="offer-packages">
-
-      <!-------------------- block hiden 2 pack -------------------->
-      <div class="show-all-pack" *ngIf="userService.allPackages !== true">
-        <h4>Оформите услуги в трёх ценовых вариантах</h4>
-        <p>
-          Расширьте свои возможности
-        </p>
-        <button class="btn" (click)="openAllPackages()">открыть</button>
-      </div>
-
-      <!-------------------- packages-name -------------------->
-      <div class="package-name line">
-        <div>
-
+    <form #form="ngForm" (ngSubmit)="nextStep(form)">
+        <div class="form-title">
+            <h3>3. Пакеты услуг и цены</h3>
+            <div class="pckg-swap">
+                <input class="tgl tgl-swp" id="cb2" type="checkbox" name="change-pack-val" [(ngModel)]="userService.allPackages" />
+                <label class="tgl-btn" for="cb2"></label>
+                <span>3 пакета</span>
+            </div>
         </div>
-        <div>
-          <h6>
-            Базовый
-          </h6>
-        </div>
-        <div>
-          <h6>
-            Стандарт
-          </h6>
-        </div>
-        <div>
-          <h6>
-            Премиум
-          </h6>
-        </div>
-      </div>
-      <!--------------------packages-title -------------------->
-      <div class="packages-titles line" outsideTooltip="Заголовок" outsideTooltipDescription="Дайте вашему пакету броский заголовок, который описывает, что он включает.
+
+        <!-------------------- main options -------------------->
+        <div class="offer-packages">
+
+            <!-------------------- block hiden 2 pack -------------------->
+            <div class="show-all-pack" *ngIf="userService.allPackages !== true">
+                <h4>Оформите услуги в трёх ценовых вариантах</h4>
+                <p>
+                    Расширьте свои возможности
+                </p>
+                <button class="btn" (click)="openAllPackages()">открыть</button>
+            </div>
+
+            <!-------------------- packages-name -------------------->
+            <div class="package-name line">
+                <div>
+
+                </div>
+                <div>
+                    <h6>
+                        Базовый
+                    </h6>
+                </div>
+                <div>
+                    <h6>
+                        Стандарт
+                    </h6>
+                </div>
+                <div>
+                    <h6>
+                        Премиум
+                    </h6>
+                </div>
+            </div>
+            <!--------------------packages-title -------------------->
+            <div class="packages-titles line" outsideTooltip="Заголовок" outsideTooltipDescription="Дайте вашему пакету броский заголовок, который описывает, что он включает.
       Например: 2D или 3D обложка, версия для печати" placement="right">
-        <div class="packages-title title">
-          <p>Название услуги</p>
+                <div class="packages-title title">
+                    <p>Название услуги</p>
 
-        </div>
-        <div class="packages-title" *ngFor="let package of packagesTypes; index as x" [ngClass]="{ 'field-required': title.invalid && submited }">
-          <div class="textarea">
-            <textarea [(ngModel)]="userService.packagesTitle[package +'Title']" name="title_{{ package }}" rows="2" [maxlength]="35" #title="ngModel"
-              [required]="(x == 0 && !userService.allPackages) || (userService.allPackages ) && submited"
+                </div>
+                <div class="packages-title" *ngFor="let package of packagesTypes; index as x" [ngClass]="{ 'field-required': title.invalid && submited }">
+                    <div class="textarea">
+                        <textarea [(ngModel)]="userService.packagesTitle[package +'Title']" name="title_{{ package }}" rows="2" [maxlength]="35" #title="ngModel" [required]="(x == 0 && !userService.allPackages) || (userService.allPackages ) && submited"></textarea>
+                    </div>
+                </div>
 
-              ></textarea>
-          </div>
-        </div>
-
-      </div>
-      <!-------------------- Descriptions -------------------->
-      <div class="packages-description line" outsideTooltip="Описание" outsideTooltipDescription="Подведите итог, что этот пакет предлагает покупателям, и почему вы включили эти предметы в свой пакет.
+            </div>
+            <!-------------------- Descriptions -------------------->
+            <div class="packages-description line" outsideTooltip="Описание" outsideTooltipDescription="Подведите итог, что этот пакет предлагает покупателям, и почему вы включили эти предметы в свой пакет.
       Вы можете использовать максимум 100 символов.
       Например: этот пакет «Полный дизайн логотипа» включает в себя стандартный дизайн логотипа с 4 ревизиями и исходный файл." placement="right">
-        <div class="description-title title">
-          <p>
-            Краткое описание
-          </p>
-        </div>
-        <div class="textarea-wrap" *ngFor="let package of packagesTypes; let x = index">
-          <textarea name="{{package + 'Description'}}" id="" [ngClass]="{ 'field-required': description.invalid && submited }" [(ngModel)]="userService.packagesDescriptions[package + 'Description']" #description="ngModel" [maxlength]="270"
-            [required]="(x == 0 && !userService.allPackages) || (userService.allPackages ) && submited"></textarea>
-        </div>
-      </div>
-      <!--------------------Time to Do -------------------->
-      <div class="package-deadlines line" outsideTooltip="Срок реализации или вполнения" outsideTooltipDescription="Время доставки - это количество времени, которое вы должны проработать с посылкой, начиная с момента, когда покупатель размещает заказ.
-      Установите время доставки, которое имеет смысл для вас, основываясь на совокупном времени, которое у вас уходит на создание каждой части пакета." placement="right">
-        <div class="deadline-title title">
-          <p>
-            Сроки (дней)
-          </p>
-        </div>
-
-        <div *ngFor="let package of packagesTypes; let x = index" [ngClass]="{ 'field-required': timeTodo.invalid && submited }">
-          <div class="input-wrap">
-            <input name="{{package + 'Term'}}" type="text" knifeOnlyNumbers maxlength="3" [(ngModel)]="userService.packagesTerms[package + 'Term']" #timeTodo="ngModel"
-              [required]="(x == 0 && !userService.allPackages) || (userService.allPackages ) && submited">
-          </div>
-        </div>
-      </div>
-
-      <!-------------------- packages changes -------------------->
-      <div class="packages-changes line" outsideTooltip="Правки" outsideTooltipDescription="Выберите количество правок, которые вы предлагаете в этом пакете." placement="right">
-        <div class="packages-change title">
-          <p>Кол-во правок</p>
-        </div>
-
-        <div *ngFor="let package of packagesTypes; let x = index" [ngClass]="{ 'field-required': changes.invalid && submited }">
-          <div class="select-wrap">
-            <mat-select [(ngModel)]="userService.packagesChanges[package + 'Changes']" name="{{package + 'Changes'}}" #changes="ngModel" [required]="(x == 0 && !userService.allPackages) || (userService.allPackages )">
-              <mat-option *ngFor="let change of changesArrayCounter(); let i = index" [value]="change">
-                {{ change }}
-              </mat-option>
-            </mat-select>
-          </div>
-        </div>
-      </div>
-      <!--------------------package price -------------------->
-      <div class="package-deadlines line">
-        <div class="deadline-title title">
-          <p>
-            Цена
-          </p>
-        </div>
-
-        <div *ngFor="let package of packagesTypes; let x = index" [ngClass]="{ 'field-required': packagePrice.invalid && submited }">
-          <div class="input-wrap">
-            <input  type="number" knifeOnlyNumbers maxlength="7" #packagePrice="ngModel" [required]="(x == 0 && !userService.allPackages) || (userService.allPackages ) && submited" [(ngModel)]="userService.packagesPrices[package + 'Price']"
-              name="{{package + 'Price'}}" [min]="250" (ngModelChange)="priceChange($event, package)" placeholder="min 250">
-          </div>
-        </div>
-      </div>
-      <!--------------------add options -------------------->
-      <form #f="ngForm" class="package-options extra" >
-        <div class="added-option line" *ngFor="let arrayItem of userService.main_options; let i = index" outsideTooltip="Дополнительная опция" outsideTooltipDescription="Вы добавили опцию, дайте ей название и отметьте галочкой, чтобы покупатель видел  какому пакету услуг Вы относите данну опцию. " placement="right">
-          <div class="option-title" [ngClass]="{ 'field-required': mainOptonTitle.invalid && submited }">
-            <div class="input-wrap">
-              <input type="text" [(ngModel)]="userService.main_options[i].title" required #mainOptonTitle="ngModel" name="main_option_title_{{i}}" placeholder="Название опции" maxlength="15">
+                <div class="description-title title">
+                    <p>
+                        Краткое описание
+                    </p>
+                </div>
+                <div class="textarea-wrap" *ngFor="let package of packagesTypes; let x = index">
+                    <textarea name="{{package + 'Description'}}" id="" [ngClass]="{ 'field-required': description.invalid && submited }" [(ngModel)]="userService.packagesDescriptions[package + 'Description']" #description="ngModel" [maxlength]="270" [required]="(x == 0 && !userService.allPackages) || (userService.allPackages ) && submited"></textarea>
+                </div>
             </div>
-            <i class="material-icons delete-pack" (click)="deleteMainOption(i)">delete</i>
-            <!-- <span >delete</span> -->
-          </div>
-          <div class="checkbox-wrap" *ngFor="let package of packagesTypes">
-            <input class="tgl tgl-classic" id="{{ package }}_{{ i }}" type="checkbox" name="main-option-{{ package }}-{{i}}" [(ngModel)]="userService.main_options[i][package]">
-            <label for="{{ package }}_{{ i }}"></label>
-          </div>
-        </div>
-        <div class="add-option " *ngIf=" !userService.main_options || userService.main_options.length < 10" outsideTooltip="Добавьте разные опции к заказу" outsideTooltipDescription="Это может быть срочность или повышенный объём заказа, или сопутствующие услуги 
-        ( напр., “Подберу изображение к статье”, “Предварительный аудит сайта”, “Плюс три черновых варианта лого на выбор”). 
+            <!--------------------Time to Do -------------------->
+            <div class="package-deadlines line" outsideTooltip="Срок реализации или вполнения" outsideTooltipDescription="Время доставки - это количество времени, которое вы должны проработать с посылкой, начиная с момента, когда покупатель размещает заказ.
+      Установите время доставки, которое имеет смысл для вас, основываясь на совокупном времени, которое у вас уходит на создание каждой части пакета." placement="right">
+                <div class="deadline-title title">
+                    <p>
+                        Сроки (дней)
+                    </p>
+                </div>
+
+                <div *ngFor="let package of packagesTypes; let x = index" [ngClass]="{ 'field-required': timeTodo.invalid && submited }">
+                    <div class="input-wrap">
+                        <input name="{{package + 'Term'}}" type="text" knifeOnlyNumbers maxlength="3" [(ngModel)]="userService.packagesTerms[package + 'Term']" #timeTodo="ngModel" [required]="(x == 0 && !userService.allPackages) || (userService.allPackages ) && submited">
+                    </div>
+                </div>
+            </div>
+
+            <!-------------------- packages changes -------------------->
+            <div class="packages-changes line" outsideTooltip="Правки" outsideTooltipDescription="Выберите количество правок, которые вы предлагаете в этом пакете." placement="right">
+                <div class="packages-change title">
+                    <p>Кол-во правок</p>
+                </div>
+
+                <div *ngFor="let package of packagesTypes; let x = index" [ngClass]="{ 'field-required': changes.invalid && submited }">
+                    <div class="select-wrap">
+                        <mat-select [(ngModel)]="userService.packagesChanges[package + 'Changes']" name="{{package + 'Changes'}}" #changes="ngModel" [required]="(x == 0 && !userService.allPackages) || (userService.allPackages )">
+                            <mat-option *ngFor="let change of changesArrayCounter(); let i = index" [value]="change">
+                                {{ change }}
+                            </mat-option>
+                        </mat-select>
+                    </div>
+                </div>
+            </div>
+            <!--------------------package price -------------------->
+            <div class="package-deadlines line">
+                <div class="deadline-title title">
+                    <p>
+                        Цена
+                    </p>
+                </div>
+
+                <div *ngFor="let package of packagesTypes; let x = index" [ngClass]="{ 'field-required': packagePrice.invalid && submited }">
+                    <div class="input-wrap">
+                        <input type="number" knifeOnlyNumbers maxlength="7" #packagePrice="ngModel" [required]="(x == 0 && !userService.allPackages) || (userService.allPackages ) && submited" [(ngModel)]="userService.packagesPrices[package + 'Price']" name="{{package + 'Price'}}"
+                            [min]="250" (ngModelChange)="priceChange($event, package)" placeholder="min 250">
+                    </div>
+                </div>
+            </div>
+            <!--------------------add options -------------------->
+            <form #f="ngForm" class="package-options extra">
+                <div class="added-option line" *ngFor="let arrayItem of userService.main_options; let i = index" outsideTooltip="Дополнительная опция" outsideTooltipDescription="Вы добавили опцию, дайте ей название и отметьте галочкой, чтобы покупатель видел  какому пакету услуг Вы относите данну опцию. "
+                    placement="right">
+                    <div class="option-title" [ngClass]="{ 'field-required': mainOptonTitle.invalid && submited }">
+                        <div class="input-wrap">
+                            <input type="text" [(ngModel)]="userService.main_options[i].title" required #mainOptonTitle="ngModel" name="main_option_title_{{i}}" placeholder="Название опции" maxlength="15">
+                        </div>
+                        <i class="material-icons delete-pack" (click)="deleteMainOption(i)">delete</i>
+                        <!-- <span >delete</span> -->
+                    </div>
+                    <div class="checkbox-wrap" *ngFor="let package of packagesTypes">
+                        <input class="tgl tgl-classic" id="{{ package }}_{{ i }}" type="checkbox" name="main-option-{{ package }}-{{i}}" [(ngModel)]="userService.main_options[i][package]">
+                        <label for="{{ package }}_{{ i }}"></label>
+                    </div>
+                </div>
+                <div class="add-option " *ngIf=" !userService.main_options || userService.main_options.length < 10" outsideTooltip="Добавьте разные опции к заказу" outsideTooltipDescription="Это может быть срочность или повышенный объём заказа, или сопутствующие услуги
+        ( напр., “Подберу изображение к статье”, “Предварительный аудит сайта”, “Плюс три черновых варианта лого на выбор”).
         Добавление в услуге опций позволит разнообразить Ваше предложение и увеличит среднюю стоимость заказа." placement="right">
 
-          <button [disabled]="!f.valid" class="add btn-third" (click)="addMainOptin()">
+                    <button [disabled]="!f.valid" class="add btn-third" (click)="addMainOptin()">
             <i class="material-icons">
               add_circle_outline
             </i>
-            <span>Добавить опцию</span>
+            <span>{{'dashboard.create-service.forth-step.add-option' | translate}}</span>
           </button>
+                </div>
+            </form>
         </div>
-      </form>
-    </div>
-    <!-------------------- Extra Options -------------------->
-    <div class="extra-packages-wrap">
+        <!-------------------- Extra Options -------------------->
+        <div class="extra-packages-wrap">
 
-      <app-third-step-extra-options *ngIf="userService" [userService]="userService" [submited]="submited"></app-third-step-extra-options>
+            <app-third-step-extra-options *ngIf="userService" [userService]="userService" [submited]="submited"></app-third-step-extra-options>
 
 
-    </div>
+        </div>
 
-    <div class="form-butons">
-      <button (click)="quite()" class="back">вернться назад</button>
-      <button class="save" type="submit">сохранить и продолжить</button>
-    </div>
-  </form>
+        <div class="form-butons">
+            <button (click)="quite()" class="back">{{'dashboard.create-service.go-back' | translate}}</button>
+            <button class="save" type="submit">{{'dashboard.create-service.save-and-next' | translate}}</button>
+        </div>
+    </form>
 </div>

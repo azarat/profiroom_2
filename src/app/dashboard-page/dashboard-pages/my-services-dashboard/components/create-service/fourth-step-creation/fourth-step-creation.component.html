@@ -1,11 +1,11 @@
 <div class="step-wrapper">
     <form #form="ngForm" (ngSubmit)="nextStep(form)">
-        <h3>4. Часто задаваемые вопросы</h3>
+        <h3>{{'dashboard.create-service.forth-step.title' | translate}}</h3>
         <div class="form-group">
             <div *ngFor="let item of userService.offer_faq; let i = index">
-                <div class="faq-item" [ngClass]="{ hiddenItem: showedItem !== i+1 }" [style.borderColor]="showedItem !== i+1  && (!question.valid || !answer.valid)? '#f44336': '#dce0e6'" outsideTooltip="Добавьте часто задаваемые вопросы. " outsideTooltipDescription="Составьте список часто задаваемых вопросов 
-      от клиентов. Постарайтесь ничего не упустить, чтобы не тратить своё время и время покупателя.
-      Впишите вопрос, а за ним ниже ответ." placement="right">
+                <div class="faq-item" [ngClass]="{ hiddenItem: showedItem !== i+1 }" [style.borderColor]="showedItem !== i+1
+                && (!question.valid || !answer.valid)? '#f44336': '#dce0e6'" outsideTooltip="{{'dashboard.create-service.forth-step.tool-tip.title' | translate}}" outsideTooltipDescription="{{'dashboard.create-service.forth-step.tool-tip.subtitle' | translate}}"
+                    placement="right">
                     <div class="item-question">
                         <h6>{{ i+1 }}.
                             <ng-container *ngIf="userService.offer_faq[i].question">
@@ -18,16 +18,16 @@
                   (click)="deleteFaqItem(i)">delete</i></button>
                         </div>
                         <div class="question-title" [ngClass]="{ 'field-required': !question.valid && submited }">
-                            <input type="text" required placeholder="Напишите вопрос" #question="ngModel" name="question-{{ i }}" maxlength="45" [(ngModel)]="userService.offer_faq[i].question">
+                            <input type="text" required placeholder="{{'dashboard.create-service.forth-step.placeholder-question' | translate}}" #question="ngModel" name="question-{{ i }}" maxlength="45" [(ngModel)]="userService.offer_faq[i].question">
                         </div>
                     </div>
                     <div class="item-unswer" [ngClass]="{ 'field-error': !answer.valid && submited }">
-                        <quill-editor required [modules]="config" #answer="ngModel" [(ngModel)]="userService.offer_faq[i].answer" name="editor-{{i}}" placeholder="Ответьте на вышезаданный вопрос"></quill-editor>
+                        <quill-editor required [modules]="config" #answer="ngModel" [(ngModel)]="userService.offer_faq[i].answer" name="editor-{{i}}" placeholder="{{'dashboard.create-service.forth-step.placeholder-answer' | translate}}"></quill-editor>
                     </div>
                 </div>
                 <div class="options" *ngIf="showedItem === i+1">
-                    <button type="button" class="btn-sec" [disabled]="userService.offer_faq.length === 1" (click)="showedItem = null">отменить</button>
-                    <button type="button" [disabled]="(question.invalid || answer.invalid)" class="btn" (click)="hideItem()">Добавить</button>
+                    <button type="button" class="btn-sec" [disabled]="userService.offer_faq.length === 1" (click)="showedItem = null">{{'general.cancel' | translate}}</button>
+                    <button type="button" [disabled]="(question.invalid || answer.invalid)" class="btn" (click)="hideItem()">{{'general.add' | translate}}</button>
                 </div>
             </div>
             <div class="add-item">
@@ -35,13 +35,13 @@
           <i class="material-icons">
             add_circle_outline
           </i>
-          <span>Добавить опцию</span>
+          <span>{{'dashboard.create-service.forth-step.add-option' | translate}}</span>
         </button>
             </div>
         </div>
         <div class="form-butons">
-            <button (click)="quite()" class="back">выйти</button>
-            <button class="save" type="submit">сохранить и продолжить</button>
+            <button (click)="quite()" class="back">{{'general.exit' | translate}}</button>
+            <button class="save" type="submit">{{'dashboard.create-service.save-and-next' | translate}}</button>
         </div>
     </form>
 </div>

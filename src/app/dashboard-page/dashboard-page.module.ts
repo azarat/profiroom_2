@@ -25,6 +25,7 @@ const routes: Routes = [
       },
       {
         path: 'home',
+        pathMatch: 'prefix',
         loadChildren: () => import('./dashboard-pages/home-dashboard-page/home-dashboard.module').then(m => m.HomeDashboardPageModule)
         // component: HomeDashboardComponent
       },

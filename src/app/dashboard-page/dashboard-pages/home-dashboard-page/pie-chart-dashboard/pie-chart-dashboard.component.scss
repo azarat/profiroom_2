@@ -20,7 +20,15 @@
     }
 }
 
+// .chart {
+//     width: 271px;
+//     height: 271px;
+// }
 @media (max-width: 1499px) {
+    .chart {
+        width: 171px;
+        height: 171px;
+    }
     .chart.zero {
         &:before {
             height: 13rem;

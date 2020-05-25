@@ -71,6 +71,7 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
+    LanguageModule,
     LocalizeRouterModule.forChild(routes),
     TranslateModule,
     RouterModule.forChild(routes),
@@ -85,7 +86,7 @@ const routes: Routes = [
     SocialLoginModule,
 
     // created
-    LanguageModule,
+
     MainHeaderModule,
     InformPopupModule,
 
