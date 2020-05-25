@@ -11,7 +11,7 @@
         <div class="succes-message" *ngIf="submitedMailForm && changeMailResult" >
           E-mail изменен
         </div>
-        <div class="error-message" *ngIf="submitedMailForm && !changeMailResult">
+        <div class="error-message statusFailed" *ngIf="submitedMailForm && !changeMailResult">
           E-mail неизменен
         </div>
         <div class="error-message" *ngIf="mailForm.controls.oldMail.status === 'INVALID' && mailForm.controls.oldMail.value">
@@ -35,16 +35,16 @@
 
       <div class="fields">
         <h5 class="fields-title">Введите текущий пароль</h5>
-        <input class="fields-value" type="text" formControlName="password" name="password">
+        <input class="fields-value" type="password" formControlName="password" name="password">
         <!-- <div class="error-message" *ngIf="submitedMailForm && changeMailResult">
           Ответ отрицательный. Этот пароль не твой
         </div> -->
         <div class="error-message" *ngIf="submitedMailForm && mailForm.controls.password.value === ''">
           Это обязательное поле
         </div>
-        <div class="error-message" *ngIf="submitedMailForm && !changeMailResult && mailForm.controls.password.value !== ''">
+        <!-- <div class="error-message" *ngIf="submitedMailForm && !changeMailResult && mailForm.controls.password.value !== ''">
           Поле заполнено неверно
-        </div>
+        </div> -->
       </div>
 
     </div>

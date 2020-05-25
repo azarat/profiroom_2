@@ -7,7 +7,7 @@
 <button type="submit" class="btn save-all" (click)="updateSettings()" *ngIf="userSettingsModel">сохранить изменения</button>
 
 
-<div class="done-message" *ngIf="succesMessage">
+<div class="done-message" *ngIf="succesMessage" (click)="closePopUp()">
     <div class="done-message__info-block">
         <div class="done-message__icon"><img src="/assets/images/svg/done.svg" alt=""></div>
         <div class="done-message__text">

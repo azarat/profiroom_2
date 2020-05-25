@@ -140,8 +140,11 @@
     line-height: 1.125;
     font-family: Roboto, "Helvetica Neue", sans-serif;
     &.required{
-      background-color: #fff;
+      background-color: #EBEEFF;
       z-index: 9;
+    }
+    &.statusFailed{
+      z-index: -1;
     }
   }
   .succes-message{
