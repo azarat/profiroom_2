@@ -35,8 +35,8 @@ export const url = new URL(location.href).origin;
         provide: TranslateLoader,
         useFactory: (createTranslateLoader),
           deps: [HttpClient],
+      },
       }
-    }
     ),
     LocalizeRouterModule.forRoot(routes, {
       parser: {
@@ -70,5 +70,6 @@ export class CoreModule { }
 
 
 export function createTranslateLoader(http: HttpClient) {
+  console.log('url', url)
   return new TranslateHttpLoader(http, url + '/assets/i18n/', '.json');
 }

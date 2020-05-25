@@ -23,6 +23,8 @@ import { NotificationsUserSettingsComponent } from './components/notifications-u
 import { SecurityUserSettingsComponent } from './components/security-user-settings/security-user-settings.component';
 import { SecurityPassUserSettingsComponent } from './components/security-user-settings/security-pass-user-settings/security-pass-user-settings.component';
 import { SecurityMailUserSettingsComponent } from './components/security-user-settings/security-mail-user-settings/security-mail-user-settings.component';
+import { OnlyNumberDirective } from './directives/onlyletters.directive';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 // ------- guard functional -------
@@ -67,9 +69,13 @@ const servicesRoutes: Routes = [
     AdditionalEducationUserSettingsComponent,
     NotificationsUserSettingsComponent,
 
+
     SecurityUserSettingsComponent,
     SecurityPassUserSettingsComponent,
-    SecurityMailUserSettingsComponent
+    SecurityMailUserSettingsComponent,
+
+
+    OnlyNumberDirective
   ],
   imports: [
     CommonModule,
@@ -78,7 +84,7 @@ const servicesRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     NgKnifeModule,
-
+    TranslateModule,
     // -----matherials
     MatTabsModule,
     MatSelectModule,

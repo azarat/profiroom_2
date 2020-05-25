@@ -56,12 +56,12 @@ export class FirstStepServiceCreationComponent implements OnInit {
   @Input() userService: UserServiceModel;
 
   ngOnInit() {
-    console.log('width',window.innerWidth)
+    console.log('width', window.innerWidth)
 
     if(window.innerWidth >=768) {
-      this.titlePosition = 'right'
+      this.titlePosition = 'right';
     } else {
-      this.titlePosition = 'botom'
+      this.titlePosition = 'botom';
     }
 
     this.userOffersService.getCategories()
