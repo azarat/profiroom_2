@@ -26,6 +26,7 @@
                         <img src="'assets/images/images/aura_lvl{{lvl}}.svg'" alt="user-lvl" *ngIf="user.rank_id === lvl">
                     </ng-container>
                 </div>
+                <img [src]="user.avatar" alt="avatar" />
                 <p class="name">{{ user.name }} {{ user.surname}}</p>
                 <div class="rating">
                     <app-star-rating [currentRating]="user.rating"></app-star-rating>

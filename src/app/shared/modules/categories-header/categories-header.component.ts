@@ -18,11 +18,11 @@ export class CategoriesHeaderComponent implements OnInit {
     private categoriesListService: CategoriesListService,
     private _route: ActivatedRoute,
   ) {
-    // this.categoriesListService.getCategories();
-    // console.log(this._route);
-    if(this._route.snapshot.routeConfig.path === ""){
-      this.noHover = true;
-    }
+    this._route.data.subscribe(Params => {
+      if(Params.localizeRouter.path === "catalog"){
+        this.noHover = true;
+      }
+    });
   }
 
   ngOnInit() {

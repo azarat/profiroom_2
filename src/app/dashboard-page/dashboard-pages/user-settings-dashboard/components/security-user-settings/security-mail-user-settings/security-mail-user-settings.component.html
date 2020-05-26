@@ -25,7 +25,7 @@
       <div class="fields">
         <h5 class="fields-title">Ваш новый e-mail</h5>
         <input class="fields-value" type="text" formControlName="newMail" maxlength="45">
-        <div class="error-message" *ngIf="mailForm.controls.newMail.status === 'INVALID' && mailForm.controls.newMail.value">
+        <div class="error-message" *ngIf="!mailForm.controls.newMail.untouched && mailForm.controls.newMail.status === 'INVALID' && mailForm.controls.newMail.value">
           Поле заполнено неверно
         </div>
         <div class="error-message" *ngIf="submitedMailForm && !mailForm.controls.newMail.value">

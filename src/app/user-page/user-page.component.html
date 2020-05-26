@@ -164,7 +164,8 @@
                             <div class="education__institution">{{ education_item.additionalInstitution}}</div>
                             <div class="education__group">
                                 <div class="education__specialty">{{ education_item.courseName}}</div>
-                                <div class="education__years">{{ education_item.startStudyYear}} - {{ education_item.endStudyYear}}
+                                <div class="education__years">
+                                    {{ monthTranslate[education_item.startStudyMonth]}} {{ education_item.startStudyYear}} - <span *ngIf="education_item.startStudyMonth !== 0 && education_item.endStudyYear !== 0">{{ monthTranslate[education_item.endStudyMonth]}}</span> <span *ngIf="education_item.endStudyYear !== 0">{{ education_item.endStudyYear}}</span><span *ngIf="education_item.endStudyYear === 0"> (Данные засекречены)</span>
                                 </div>
                             </div>
                         </div>
