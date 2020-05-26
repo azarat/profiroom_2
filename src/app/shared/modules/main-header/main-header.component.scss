@@ -113,7 +113,20 @@ nav {
     height: 30px;
   }
 }
-
+@media (max-width: 1499px) {
+  .wrapper{
+    max-width: 1110px;
+    margin: 0 auto;
+    .container{
+      padding: 5px 0px;
+    }
+  }
+}
+@media (max-width: 1360px) {
+  .wrapper{
+    max-width: 1010px;
+  }
+}
 @media (max-width: 1199.98px) {
   nav {
     a {
