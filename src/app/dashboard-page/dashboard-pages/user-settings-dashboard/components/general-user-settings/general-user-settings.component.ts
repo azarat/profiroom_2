@@ -16,7 +16,8 @@ export class GeneralUserSettingsComponent implements OnInit {
 
   @Input() userSettingsModel: UserSettingsModel;
   public mainSettingsFrom: FormGroup;
-  public succesMessage = false;
+  public succesRessult = false;
+  public popUpStatus = false;
 
   constructor(
     private userSettingsService: UserSettingsService,
@@ -31,13 +32,14 @@ export class GeneralUserSettingsComponent implements OnInit {
       (res) => {
         // location.reload();
         this.userSettingsService.onloadUserModelCopy$.next(cloneDeep(this.userSettingsModel));
-        this.succesMessage = true;
+        this.succesRessult = true;
+        this.togglePopUp();
       }
     );
 
   }
 
-  public closePopUp() {
-    this.succesMessage = false;
+  public togglePopUp() {
+    this.popUpStatus = !this.popUpStatus;
   }
 }

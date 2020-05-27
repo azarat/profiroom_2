@@ -69,9 +69,6 @@ import {
   SecurityMailUserSettingsComponent
 } from './components/security-user-settings/security-mail-user-settings/security-mail-user-settings.component';
 import {
-  OnlyNumberDirective
-} from './directives/onlyletters.directive';
-import {
   TranslateModule
 } from '@ngx-translate/core';
 import { MonthPipeModule } from 'src/app/shared/pipes/month-pipe/month-pipe.module';
@@ -122,10 +119,6 @@ const servicesRoutes: Routes = [{
     SecurityUserSettingsComponent,
     SecurityPassUserSettingsComponent,
     SecurityMailUserSettingsComponent,
-
-
-
-    OnlyNumberDirective
   ],
   imports: [
     CommonModule,

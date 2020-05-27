@@ -583,3 +583,23 @@ $orbit-color: $gray;
 
   }
 }
+
+@media (max-width: 360px) {
+  .orbit {
+    &.small {
+      // top: 18%;
+      left: 20%;
+    }
+  
+    &.medium {
+      left: 8%;
+      top: 10%;
+    }
+  
+    &.large {
+      top: 20%;
+      left: 17%;
+    }
+
+  }
+}

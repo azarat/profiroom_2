@@ -6,10 +6,10 @@
         <ul>
             <li (click)="scrollTo('about')">О фрилансере</li>
             <li (click)="scrollTo('education')" *ngIf="userTypeFreelancer">Образование</li>
-            <li (click)="scrollTo('rating')">рейтинг</li>
-            <li (click)="scrollTo('services')">услуги</li>
-            <li (click)="scrollTo('comments')" *ngIf="userTypeFreelancer && userData.comments_freelancer_count">отзывы</li>
-            <li (click)="scrollTo('comments')" *ngIf="!userTypeFreelancer && userData.comments_customer_count">отзывы</li>
+            <li (click)="scrollTo('rating')">{{'ranks.rating' | translate}}</li>
+            <li (click)="scrollTo('services')">{{'general.services' | translate}}</li>
+            <li (click)="scrollTo('comments')" *ngIf="userTypeFreelancer && userData.comments_freelancer_count">{{'general.comments' | translate}}</li>
+            <li (click)="scrollTo('comments')" *ngIf="!userTypeFreelancer && userData.comments_customer_count">{{'general.comments' | translate}}</li>
         </ul>
     </div>
 
@@ -26,20 +26,20 @@
                 <!-- <div class="general-information__online"><span [ngClass]="{online: userData.online}">{{userData.online}}</span></div> -->
 
                 <div class="general-information__online">
-                    <span class="online" *ngIf="userData.online">Oнлайн</span>
-                    <span class="offline" *ngIf="!userData.online">Офлайн</span>
+                    <span class="online" *ngIf="userData.online">{{'general.online' | translate}}</span>
+                    <span class="offline" *ngIf="!userData.online">{{'general.offline' | translate}}</span>
                 </div>
 
-                <div class="general-information__lvl">Уровень: <span class="value">{{lvlTranslation[userData.rank_id]}}</span>
+                <div class="general-information__lvl">{{'general.level' | translate}}: <span class="value">{{lvlTranslation[userData.rank_id]}}</span>
                 </div>
             </div>
             <div class="general-information__wrapper" *ngIf="userTypeFreelancer">
-                <div class="general-information__available">Статус доступности:
-                    <span class="value free" *ngIf="!userData.busy">не загружен(-а)</span>
-                    <span class="value" *ngIf="userData.busy">загружен(-а)</span>
+                <div class="general-information__available">{{'user-page.accessibility-status' | translate}}:
+                    <span class="value free" *ngIf="!userData.busy">{{'user-page.user-free' | translate}}</span>
+                    <span class="value" *ngIf="userData.busy">{{'user-page.user-busy' | translate}}</span>
                 </div>
-                <div class="general-information__inProcess">Проектов в работе: <span class="value">{{userData.dealsCounts.inProgressOffers}}</span></div>
-                <div class="general-information__awaiting">Проектов в очереди: <span class="value">{{userData.dealsCounts.QueuedOffers}}</span></div>
+                <div class="general-information__inProcess">{{'user-page.projects-in-progress' | translate}}: <span class="value">{{userData.dealsCounts.inProgressOffers}}</span></div>
+                <div class="general-information__awaiting">{{'user-page.projects-awaiting' | translate}}: <span class="value">{{userData.dealsCounts.QueuedOffers}}</span></div>
             </div>
             <div class="general-information__actions">
 
@@ -66,41 +66,41 @@
         </section>
         <section class="switching-user-types">
             <div class="btns-wrapper">
-                <div class="btn btn-user-type" [ngClass]="{active: userTypeFreelancer}" (click)=choseUser(0)>Профиль филансера
+                <div class="btn btn-user-type" [ngClass]="{active: userTypeFreelancer}" (click)=choseUser(0)>{{'user-page.btn-freelancer-profile' | translate}}
                 </div>
-                <div class="btn btn-user-type" [ngClass]="{active: !userTypeFreelancer}" (click)=choseUser(1)>профиль заказчика
+                <div class="btn btn-user-type" [ngClass]="{active: !userTypeFreelancer}" (click)=choseUser(1)>{{'user-page.btn-customer-profile' | translate}}
                 </div>
             </div>
-            <div class="switching-user-types__text">*Каждый пользователь данной биржи может быть одновременно исполнителем и заказчиком, в зависимости от потребности. </div>
+            <div class="switching-user-types__text">{{'user-page.help-message' | translate}}</div>
         </section>
         <section class="about-user">
             <div class="about-user__wrapper">
                 <div class="about-user__info-block">
-                    <div class="about-user__title">Страна, город</div>
+                    <div class="about-user__title">{{'general.country' | translate}}, {{'general.city' | translate}}</div>
                     <div class="about-user__value">{{userData.country}} <br> {{userData.city}}</div>
                 </div>
                 <div class="about-user__info-block">
-                    <div class="about-user__title">На сайте с</div>
+                    <div class="about-user__title">{{'general.registration-date' | translate}}</div>
                     <div class="about-user__value">{{userData.email_verified_at | dateFormatPipe: 'dd.MM.yyyy' }}</div>
                 </div>
                 <div class="about-user__info-block fixed-width-block" *ngIf="userData.dealsCounts.EndedWorks > 0">
-                    <div class="about-user__title" *ngIf="userData.dealsCounts.EndedWorks ">Исполненных проектов</div>
+                    <div class="about-user__title" *ngIf="userData.dealsCounts.EndedWorks ">{{'user-page.ended-works' | translate}}</div>
                     <div class="about-user__value">{{userData.dealsCounts.EndedWorks}}</div>
                 </div>
                 <div class="about-user__info-block fixed-width-block" *ngIf="!userTypeFreelancer && userData.dealsCounts.dealsAsCustomer > 0">
-                    <div class="about-user__title">Количество заказов</div>
+                    <div class="about-user__title">{{'user-page.number-of-orders' | translate}}</div>
                     <div class="about-user__value">{{userData.dealsCounts.dealsAsCustomer}}</div>
                 </div>
                 <div class="about-user__info-block" *ngIf="userTypeFreelancer && userData.arbitration.freelancer > 0">
-                    <div class="about-user__title">Обращений в арбитраж</div>
+                    <div class="about-user__title">{{'user-page.arbitration-appeals' | translate}}</div>
                     <div class="about-user__value">{{userData.arbitration.freelancer}}</div>
                 </div>
                 <div class="about-user__info-block" *ngIf="!userTypeFreelancer && userData.arbitration.customer > 0">
-                    <div class="about-user__title">Обращений в арбитраж</div>
+                    <div class="about-user__title">{{'user-page.arbitration-appeals' | translate}}</div>
                     <div class="about-user__value">{{userData.arbitration.customer}}</div>
                 </div>
                 <div class="about-user__info-block">
-                    <div class="about-user__title">Время ответа</div>
+                    <div class="about-user__title">{{'user-fields.answer-time' | translate}}</div>
                     <div class="about-user__value">{{userData.answerTime}}</div>
                 </div>
             </div>
@@ -109,7 +109,7 @@
             </div>
         </section>
         <section class="languages" *ngIf="userData.language.length > 0">
-            <div class="section-title">Знание языков</div>
+            <div class="section-title">{{'user-page.knowledge-of-languages' | translate}}</div>
             <ul class="languages__wrapper">
                 <li class="languages__info-block" *ngFor="let language of userData.language">
                     <div class="languages__name">{{ language.langName}} </div>
@@ -120,7 +120,7 @@
 
         <div class="education-wrapp" id="education">
             <section class="education" *ngIf="userTypeFreelancer && userData.education.length > 0">
-                <div class="section-title">Высшее образование</div>
+                <div class="section-title">{{'general.education' | translate}}</div>
                 <div class="education__wrapper">
                     <div class="education__info-block" *ngFor="let education of userData.education; let thisArr = index">
 
@@ -146,7 +146,7 @@
             </section>
 
             <section class="education" *ngIf="userTypeFreelancer && userData.additionalEducation.length > 0">
-                <div class="section-title">Дополнительное образование</div>
+                <div class="section-title">{{'general.additional-education' | translate}}</div>
                 <div class="education__wrapper">
                     <div class="education__info-block" *ngFor="let education_item of userData.additionalEducation; let thisAddArr = index">
 
@@ -164,7 +164,8 @@
                             <div class="education__institution">{{ education_item.additionalInstitution}}</div>
                             <div class="education__group">
                                 <div class="education__specialty">{{ education_item.courseName}}</div>
-                                <div class="education__years">{{ education_item.startStudyYear}} - {{ education_item.endStudyYear}}
+                                <div class="education__years">
+                                    {{ monthTranslate[education_item.startStudyMonth]}} {{ education_item.startStudyYear}} - <span *ngIf="education_item.startStudyMonth !== 0 && education_item.endStudyYear !== 0">{{ monthTranslate[education_item.endStudyMonth]}}</span> <span *ngIf="education_item.endStudyYear !== 0">{{ education_item.endStudyYear}}</span><span *ngIf="education_item.endStudyYear === 0"> ({{'general.comments' | translate}})</span>
                                 </div>
                             </div>
                         </div>
@@ -175,51 +176,51 @@
         </div>
 
         <section class="rating" id="rating">
-            <div class="section-title">Общий рейтинг</div>
+            <div class="section-title">{{'user-page.general-raiting' | translate}}</div>
             <div class="rating__wrapper" *ngIf="userTypeFreelancer">
                 <div class="rating__info-block">
-                    <div class="rating__name">Качество услуг</div>
+                    <div class="rating__name">{{'raitings.service-quality' | translate}}</div>
                     <div class="star-rating" [ngClass]="{'empty-rating': userData.averageRating.freelancer.qualityMark == 0}">
                         {{ userData.averageRating.freelancer.qualityMark}}</div>
                 </div>
                 <div class="rating__info-block">
-                    <div class="rating__name">Срок исполнения</div>
+                    <div class="rating__name">{{'raitings.period-of-execution' | translate}}</div>
                     <div class="star-rating" [ngClass]="{'empty-rating': userData.averageRating.freelancer.termMark == 0}">
                         {{ userData.averageRating.freelancer.termMark}}</div>
                 </div>
                 <div class="rating__info-block">
-                    <div class="rating__name">Вежливость фрилансера</div>
+                    <div class="rating__name">{{'raitings.politness-of-freelancer' | translate}}</div>
                     <div class="star-rating" [ngClass]="{'empty-rating': userData.averageRating.freelancer.politenessMark == 0}">
                         {{ userData.averageRating.freelancer.politenessMark}}</div>
                 </div>
                 <div class="rating__info-block">
-                    <div class="rating__name">Средняя оценка</div>
+                    <div class="rating__name">{{'raitings.average-rating' | translate}}</div>
                     <div class="star-rating" [ngClass]="{'empty-rating': userData.averageRating.freelancer.averageMark == 0}">
                         {{ userData.averageRating.freelancer.averageMark}}</div>
-                    <span class="comments-count">( {{ userData.comments_freelancer_count}} отзывов):</span>
+                    <span class="comments-count">( {{ userData.comments_freelancer_count}} {{'general.comments' | translate}}):</span>
                 </div>
             </div>
             <div class="rating__wrapper" *ngIf="!userTypeFreelancer">
                 <div class="rating__info-block">
-                    <div class="rating__name">Постановка задачи</div>
+                    <div class="rating__name">{{'raitings.task-clarity' | translate}}</div>
                     <div class="star-rating" [ngClass]="{'empty-rating': userData.averageRating.customer.taskClarity == 0}">
                         {{ userData.averageRating.customer.taskClarity}}</div>
                 </div>
                 <div class="rating__info-block">
-                    <div class="rating__name">Чёткость требований</div>
+                    <div class="rating__name">{{'raitings.requirements-clarity' | translate}}</div>
                     <div class="star-rating" [ngClass]="{'empty-rating': userData.averageRating.customer.requirementsClarity == 0}">
                         {{ userData.averageRating.customer.requirementsClarity}}</div>
                 </div>
                 <div class="rating__info-block">
-                    <div class="rating__name">Контактность</div>
+                    <div class="rating__name">{{'raitings.contact-level' | translate}}</div>
                     <div class="star-rating" [ngClass]="{'empty-rating': userData.averageRating.customer.contactLevel == 0}">
                         {{ userData.averageRating.customer.contactLevel}}</div>
                 </div>
                 <div class="rating__info-block">
-                    <div class="rating__name">Средняя оценка</div>
+                    <div class="rating__name">{{'raitings.average-rating' | translate}}</div>
                     <div class="star-rating" [ngClass]="{'empty-rating': userData.averageRating.customer.averageMark == 0}">
                         {{ userData.averageRating.customer.averageMark}}</div>
-                    <span class="comments-count">( {{ userData.comments_customer_count}} отзывов):</span>
+                    <span class="comments-count">( {{ userData.comments_customer_count}} {{'general.comments' | translate}}):</span>
                 </div>
             </div>
         </section>
