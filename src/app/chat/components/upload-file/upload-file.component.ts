@@ -61,7 +61,6 @@ export class UploadFileComponent implements OnInit {
       .subscribe((res: []) => {
         res.forEach(el => {
           this.files.push(el);
-          console.log(this.files)
         });
         this.disabled = true;
       });

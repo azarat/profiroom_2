@@ -5,7 +5,7 @@
             <div class="pckg-swap">
                 <input class="tgl tgl-swp" id="cb2" type="checkbox" name="change-pack-val" [(ngModel)]="userService.allPackages" />
                 <label class="tgl-btn" for="cb2"></label>
-                <span>3 пакета</span>
+                <span>{{'dashboard.create-service.third-step.all-packages' | translate}}</span>
             </div>
         </div>
 
@@ -14,11 +14,11 @@
 
             <!-------------------- block hiden 2 pack -------------------->
             <div class="show-all-pack" *ngIf="userService.allPackages !== true">
-                <h4>Оформите услуги в трёх ценовых вариантах</h4>
+                <h4>{{'dashboard.create-service.third-step.description-block.title' | translate}}</h4>
                 <p>
-                    Расширьте свои возможности
+                    {{'dashboard.create-service.third-step.description-block.subtitle' | translate}}
                 </p>
-                <button class="btn" (click)="openAllPackages()">открыть</button>
+                <button class="btn" (click)="openAllPackages()">{{'general.open' | translate}}</button>
             </div>
 
             <!-------------------- packages-name -------------------->
@@ -28,25 +28,25 @@
                 </div>
                 <div>
                     <h6>
-                        Базовый
+                        {{'packages.basic' | translate}}
                     </h6>
                 </div>
                 <div>
                     <h6>
-                        Стандарт
+                        {{'packages.standart' | translate}}
                     </h6>
                 </div>
                 <div>
                     <h6>
-                        Премиум
+                        {{'packages.premium' | translate}}
                     </h6>
                 </div>
             </div>
             <!--------------------packages-title -------------------->
-            <div class="packages-titles line" outsideTooltip="Заголовок" outsideTooltipDescription="Дайте вашему пакету броский заголовок, который описывает, что он включает.
-      Например: 2D или 3D обложка, версия для печати" placement="right">
+            <div class="packages-titles line" outsideTooltip="{{'dashboard.create-service.third-step.main-form.tool-tip.offer-name-title' | translate}}" outsideTooltipDescription="{{'dashboard.create-service.third-step.main-form.tool-tip.offer-name-subtitle' | translate}}"
+                placement="right">
                 <div class="packages-title title">
-                    <p>Название услуги</p>
+                    <p>{{'dashboard.create-service.third-step.main-form.offer-name' | translate}}</p>
 
                 </div>
                 <div class="packages-title" *ngFor="let package of packagesTypes; index as x" [ngClass]="{ 'field-required': title.invalid && submited }">
@@ -57,12 +57,11 @@
 
             </div>
             <!-------------------- Descriptions -------------------->
-            <div class="packages-description line" outsideTooltip="Описание" outsideTooltipDescription="Подведите итог, что этот пакет предлагает покупателям, и почему вы включили эти предметы в свой пакет.
-      Вы можете использовать максимум 100 символов.
-      Например: этот пакет «Полный дизайн логотипа» включает в себя стандартный дизайн логотипа с 4 ревизиями и исходный файл." placement="right">
+            <div class="packages-description line" outsideTooltip="{{'dashboard.create-service.third-step.main-form.tool-tip.description-title' | translate}}" outsideTooltipDescription="{{'dashboard.create-service.third-step.main-form.tool-tip.description-subtitle' | translate}}"
+                placement="right">
                 <div class="description-title title">
                     <p>
-                        Краткое описание
+                        {{'dashboard.create-service.third-step.main-form.description' | translate}}
                     </p>
                 </div>
                 <div class="textarea-wrap" *ngFor="let package of packagesTypes; let x = index">
@@ -70,11 +69,11 @@
                 </div>
             </div>
             <!--------------------Time to Do -------------------->
-            <div class="package-deadlines line" outsideTooltip="Срок реализации или вполнения" outsideTooltipDescription="Время доставки - это количество времени, которое вы должны проработать с посылкой, начиная с момента, когда покупатель размещает заказ.
-      Установите время доставки, которое имеет смысл для вас, основываясь на совокупном времени, которое у вас уходит на создание каждой части пакета." placement="right">
+            <div class="package-deadlines line" outsideTooltip="{{'dashboard.create-service.third-step.main-form.tool-tip.time-to-do-title' | translate}}" outsideTooltipDescription="{{'dashboard.create-service.third-step.main-form.tool-tip.time-to-do-subtitle' | translate}}"
+                placement="right">
                 <div class="deadline-title title">
                     <p>
-                        Сроки (дней)
+                        {{'dashboard.create-service.third-step.main-form.time-to-do' | translate}}
                     </p>
                 </div>
 
@@ -86,9 +85,10 @@
             </div>
 
             <!-------------------- packages changes -------------------->
-            <div class="packages-changes line" outsideTooltip="Правки" outsideTooltipDescription="Выберите количество правок, которые вы предлагаете в этом пакете." placement="right">
+            <div class="packages-changes line" outsideTooltip="{{'dashboard.create-service.third-step.main-form.tool-tip.changes-title' | translate}}" outsideTooltipDescription="{{'dashboard.create-service.third-step.main-form.tool-tip.changes-subtitle' | translate}}"
+                placement="right">
                 <div class="packages-change title">
-                    <p>Кол-во правок</p>
+                    <p>{{'dashboard.create-service.third-step.main-form.changes' | translate}}</p>
                 </div>
 
                 <div *ngFor="let package of packagesTypes; let x = index" [ngClass]="{ 'field-required': changes.invalid && submited }">
@@ -105,7 +105,7 @@
             <div class="package-deadlines line">
                 <div class="deadline-title title">
                     <p>
-                        Цена
+                        {{'dashboard.create-service.third-step.main-form.price' | translate}}
                     </p>
                 </div>
 
@@ -118,11 +118,11 @@
             </div>
             <!--------------------add options -------------------->
             <form #f="ngForm" class="package-options extra">
-                <div class="added-option line" *ngFor="let arrayItem of userService.main_options; let i = index" outsideTooltip="Дополнительная опция" outsideTooltipDescription="Вы добавили опцию, дайте ей название и отметьте галочкой, чтобы покупатель видел  какому пакету услуг Вы относите данну опцию. "
+                <div class="added-option line" *ngFor="let arrayItem of userService.main_options; let i = index" outsideTooltip="{{'dashboard.create-service.third-step.main-form.add-option.tool-tip-title' | translate}}" outsideTooltipDescription="{{'dashboard.create-service.third-step.main-form.add-option.tool-tip-subtitle' | translate}}"
                     placement="right">
                     <div class="option-title" [ngClass]="{ 'field-required': mainOptonTitle.invalid && submited }">
                         <div class="input-wrap">
-                            <input type="text" [(ngModel)]="userService.main_options[i].title" required #mainOptonTitle="ngModel" name="main_option_title_{{i}}" placeholder="Название опции" maxlength="15">
+                            <input type="text" [(ngModel)]="userService.main_options[i].title" required #mainOptonTitle="ngModel" name="main_option_title_{{i}}" placeholder="{{'dashboard.create-service.third-step.main-form.add-option.title' | translate}}" maxlength="15">
                         </div>
                         <i class="material-icons delete-pack" (click)="deleteMainOption(i)">delete</i>
                         <!-- <span >delete</span> -->
@@ -132,15 +132,14 @@
                         <label for="{{ package }}_{{ i }}"></label>
                     </div>
                 </div>
-                <div class="add-option " *ngIf=" !userService.main_options || userService.main_options.length < 10" outsideTooltip="Добавьте разные опции к заказу" outsideTooltipDescription="Это может быть срочность или повышенный объём заказа, или сопутствующие услуги
-        ( напр., “Подберу изображение к статье”, “Предварительный аудит сайта”, “Плюс три черновых варианта лого на выбор”).
-        Добавление в услуге опций позволит разнообразить Ваше предложение и увеличит среднюю стоимость заказа." placement="right">
+                <div class="add-option " *ngIf=" !userService.main_options || userService.main_options.length < 10" outsideTooltip="{{'dashboard.create-service.third-step.main-form.tool-tip.add-option-title' | translate}}" outsideTooltipDescription="{{'dashboard.create-service.third-step.main-form.tool-tip.add-option-subtitle' | translate}}"
+                    placement="right">
 
                     <button [disabled]="!f.valid" class="add btn-third" (click)="addMainOptin()">
             <i class="material-icons">
               add_circle_outline
             </i>
-            <span>{{'dashboard.create-service.forth-step.add-option' | translate}}</span>
+            <span>{{'dashboard.create-service.third-step.add-option' | translate}}</span>
           </button>
                 </div>
             </form>

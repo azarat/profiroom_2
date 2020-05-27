@@ -48,8 +48,7 @@ export class ThirdStepCreationComponent implements OnInit {
       basicPrice: Validators.min(300),
       advancedPrice: Validators.min(300),
       premiumPrice : Validators.min(300),
-      
-    })
+    });
    }
 
   changesArrayCounter() {
@@ -88,8 +87,10 @@ export class ThirdStepCreationComponent implements OnInit {
       return;
     }
 
-    if( Number(this.userService.packagesPrices.advancedPrice) < 250 && Number(this.userService.packagesPrices.basicPrice) < 250 && Number(this.userService.packagesPrices.premiumPrice) < 250 ){
-      return
+    if( Number(this.userService.packagesPrices.advancedPrice) < 250 &&
+    Number(this.userService.packagesPrices.basicPrice) < 250 &&
+    Number(this.userService.packagesPrices.premiumPrice) < 250 ) {
+      return;
     }
     this.userOffersService.updateService(this.userService)
       .pipe(filter((res: any) => !!res))
@@ -122,7 +123,7 @@ export class ThirdStepCreationComponent implements OnInit {
 
 
   public priceChange(event, _package: string) {
-    if(!(Number(event) > 0)){
+    if (!(Number(event) > 0)) {
       this.userService.packagesPrices[_package + 'Price'] = null;
     }
   }

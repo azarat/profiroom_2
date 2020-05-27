@@ -24,7 +24,7 @@
             <div class="subcat" *ngIf="userService.category">
                 <h5>{{'dashboard.create-service.first-step.subcategory-title' | translate}}</h5>
                 <mat-form-field appearance="outline">
-                    <mat-select required [(ngModel)]="userService.subCategory" name="subCategory" tooltipDescription="{{'dashboard.create-service.first-step.tool-tip.subcategory-description' | translate}}" tooltip="{{'dashboard.create-service.first-step.tool-tip.subcategory-title' | translate}}"
+                    <mat-select required [(ngModel)]="userService.subCategory" name="subCategory" tooltipDescription="{{'dashboard.create-service.first-step.tool-tip.subcategory-subcategory' | translate}}" tooltip="{{'dashboard.create-service.first-step.tool-tip.subcategory-title' | translate}}"
                         placement="right">
                         <mat-option *ngFor="let subcategory of sub_categories" [value]="subcategory.link">
                             {{ subcategory.name }}

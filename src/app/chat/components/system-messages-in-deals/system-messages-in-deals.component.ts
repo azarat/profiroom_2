@@ -78,8 +78,6 @@ export class SystemMessagesInDealsComponent implements OnInit {
   public goToWork() {
     this.dealService.startWork(this.collocutorData.id)
       .subscribe(res => {
-        // console.log(res);
-        // this.resetDealData(this.collocutorData.id)
       });
   }
 
@@ -98,22 +96,13 @@ export class SystemMessagesInDealsComponent implements OnInit {
   }
 
   public submitDealCancel() {
-    this.dealService.submitDealCancel(this.collocutorData.id)
-      .subscribe(res => {
-        // this.resetDealData(this.collocutorData.id)
-      });
+    this.dealService.submitDealCancel(this.collocutorData.id);
   }
 
   public submitFinishWork() {
-    this.dealService.submitFinishDeal(this.collocutorData.id)
-      .subscribe(res => {
-        // this.resetDealData(this.collocutorData.id)
-      });
+    this.dealService.submitFinishDeal(this.collocutorData.id);
   }
   public cancelFinishDeal() {
     this.dealService.cancelFinishDeal(this.collocutorData.id)
-      .subscribe(res => {
-        // this.resetDealData(this.collocutorData.id)
-      });
   }
 }
