@@ -46,6 +46,7 @@
         </div>
         <div class="auth" *ngIf="pageName !== 'authoriz'">
             <app-user-header-menu *ngIf="token"></app-user-header-menu>
+            <app-language></app-language>
             <div *ngIf="!token">
                 <div class="login">
                     <a [routerLink]="'/auth' | localize" [queryParams]="{type: 'signin'}" role="button">{{'general.enter' | translate}}</a>

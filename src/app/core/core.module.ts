@@ -36,6 +36,7 @@ export const url = new URL(location.href).origin;
         useFactory: (createTranslateLoader),
           deps: [HttpClient],
       },
+      useDefaultLang: true
       }
     ),
     LocalizeRouterModule.forRoot(routes, {
@@ -45,9 +46,9 @@ export const url = new URL(location.href).origin;
             new LocalizeRouterHttpLoader(translate, location, settings, http, url + '/assets/locales.json'),
         deps: [TranslateService, Location, LocalizeRouterSettings, HttpClient, ],
       },
-      alwaysSetPrefix: false
-    }
-    ),
+      // alwaysSetPrefix: false,
+      useCachedLang: true,
+    }),
     ScrollToModule.forRoot()
   ],
   providers: [

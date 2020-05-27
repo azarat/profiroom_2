@@ -12,6 +12,7 @@ import { StarRatingModule } from '../shared/modules/star-rating/star-rating.modu
 import { SystemMessagesModule } from '../shared/modules/system-messages/system-messages.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
+import { LanguageModule } from '../shared/modules/language/language.module';
 
 
 const routes: Routes = [
@@ -74,6 +75,7 @@ const routes: Routes = [
     MatSlideToggleModule,
     FormsModule,
     ReactiveFormsModule,
+    LanguageModule,
 
     MatIconModule,
     MatBadgeModule,
