@@ -35,14 +35,14 @@ export const routes: Routes = [
     path: 'user/:id',
     loadChildren: () => import('./user-page/user-page.module').then(m => m.UserPageModule)
   },
-  // {
-  //   path: '**',
-  //   redirectTo: ''
-  // },
-  // {
-  //   path: '404',
-  //   loadChildren: () => import('./error-page/error-page.module').then(m => m.ErrorPageModule)
-  // }
+  {
+    path: '**',
+    redirectTo: ''
+  },
+  {
+    path: '404',
+    loadChildren: () => import('./error-page/error-page.module').then(m => m.ErrorPageModule)
+  }
 
 ];
 

@@ -13,6 +13,7 @@ import { SocketService } from './core/services/socket.service';
 import { SystemMessagesService } from './shared/modules/system-messages/services/system-messages.service';
 import { LocalizeRouterModule, LocalizeRouterService } from 'localize-router';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
+import { LanguageModule } from './shared/modules/language/language.module';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { TranslateService, TranslateModule } from '@ngx-translate/core';
     BrowserAnimationsModule,
     FormsModule,
     TranslateModule,
-    LocalizeRouterModule
+    LocalizeRouterModule,
+    LanguageModule
 
   ],
   exports: [

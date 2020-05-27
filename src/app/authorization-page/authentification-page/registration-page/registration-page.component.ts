@@ -106,9 +106,9 @@ export class RegistrationPageComponent implements OnInit {
 
         CustomValidators.patternValidator(/\d/, { hasNumber: true }),
         // // 3. check whether the entered password has upper case letter
-        CustomValidators.patternValidator(/[A-Z]/, { hasCapitalCase: true }),
+        CustomValidators.patternValidator(/\u/, { hasCapitalCase: true }),
         // // 4. check whether the entered password has a lower-case letter
-        CustomValidators.patternValidator(/[a-z]/, { hasSmallCase: true }),
+        CustomValidators.patternValidator(/\l/, { hasSmallCase: true }),
         // // 5. check whether the entered password has a special character
         // tslint:disable-next-line: max-line-length
         CustomValidators.patternValidator( /^(?=.*[!@#\$%\^&\*])/, { hasSpecialCharacters: true }),

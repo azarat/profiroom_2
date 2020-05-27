@@ -9,7 +9,10 @@ export class MonthPipePipe implements PipeTransform {
   transform(value: Date | moment.Moment, dateFormat: string): any {
     const lang = localStorage.getItem('LOCALIZE_DEFAULT_LANGUAGE');
     const currentLang = moment().locale(lang);
-    return currentLang.localeData().monthsShort(moment(value));
+    if ( dateFormat === 'MM' ) {
+      return currentLang.localeData().monthsShort(moment(value));
+    } else if (dateFormat === 'MMMM') {
+      return currentLang.localeData().months(moment(value));
+    }
   }
-
 }

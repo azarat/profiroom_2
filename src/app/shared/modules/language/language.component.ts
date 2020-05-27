@@ -30,15 +30,17 @@ export class LanguageComponent implements OnInit {
     private _router: Router,
 
   ) {
-    // this.localize.parser.urlPrefix = false;
+    this.translate.setDefaultLang('uk');
   }
 
 
   ngOnInit() {
-    this.translate.setDefaultLang('uk');
 
-    this.activeLang = this.localize.parser.defaultLang;
-    console.log(this.activeLang );
+    this.activeLang = this.localize.parser.getLocationLang();
+    console.log(console.log(this.activeLang))
+    // let locales = this.localize.parser.locales;
+
+    // console.log(locales );
     // this.translate.setDefaultLang(cachedLanguage || languageOfBrowser || firstLanguageFromConfig);
   }
 
