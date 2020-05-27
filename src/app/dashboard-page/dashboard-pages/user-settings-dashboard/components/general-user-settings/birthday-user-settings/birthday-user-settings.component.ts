@@ -24,9 +24,7 @@ export class BirthdayUserSettingsComponent implements OnInit {
     'Декабрь'
   ];
 
-  public maxDays: number;
-
-  leapYear: boolean = false;
+  public maxDays: number; 
 
   @Input() userSettingsModel: UserSettingsModel;
 
@@ -45,9 +43,11 @@ export class BirthdayUserSettingsComponent implements OnInit {
     }
   }
   createMontArray() {
-    for (let i = 1; i <= 12; i++) {
-      this.month.push(i);
-    }
+    // for (let i = 1; i <= 12; i++) {
+    //   this.month.push(i);
+    // }
+
+    this.month = new Array(12);
   }
 
   createArrayYear() {
