@@ -25,7 +25,7 @@ export class ShowUploadedFilesComponent implements OnInit {
   }
 
   showFiles() {
-    if (this.isUploadFilesVisible === null) {
+    if (!this.isUploadFilesVisible ) {
       this.isUploadFilesVisible = true;
     } else {
       this.isUploadFilesVisible = !this.isUploadFilesVisible;

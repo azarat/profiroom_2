@@ -20,6 +20,6 @@ export  const serviceCreationSteps = [
     description: 'dashboard.offer-steps.fifth.description'
   },
   {
-    title: 'dashboard.offer-steps.last.title!',
+    title: 'dashboard.offer-steps.last.title',
   }
 ];

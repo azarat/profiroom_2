@@ -1,231 +1,227 @@
-<h4>дополнительно к пакетам услуг </h4>
+<h4>{{'dashboard.create-service.third-step.extra-form.title' | translate}}</h4>
 <div class="extra-packages">
-  <!-------------------- Options Items   -------------------->
+    <!-------------------- Options Items   -------------------->
 
-  <!--------------------  Deadlines -------------------->
-  <div class="time-option">
-    <div class="option-wrap" outsideTooltip="Установите цену для более быстрой доставки" outsideTooltipDescription="Очень быстрое время доставки должно быть короче вашего основного времени доставки." placement="right">
-      <div class="checkbox">
-        <input type="checkbox" name="time-to-do" class="tgl-classic" [(ngModel)]="userService.compressedDeadlines.publishCompressedDeadlines" id="time-to-do">
-        <label for="time-to-do"></label>
-        <span class="options-name">Сжатые сроки</span>
-      </div>
-      <div class="options" *ngIf="userService.allPackages !== true">
-        <span>Сделаю за</span>
-        <div [style.borderColor]="name.invalid ? '#f44336': '#dce0e6'">
-          <div class=" select-wrap-extra">
-            <mat-select #name="ngModel" [(ngModel)]="userService.compressedDeadlines.basicCompressedDays" [required]="userService.compressedDeadlines.publishCompressedDeadlines" name="basicCompressedDays">
-              <mat-option *ngFor="let days of changesArrayCounter(); let i = index" [value]="days">
-                {{ days }} дня
-              </mat-option>
-            </mat-select>
-          </div>
-        </div>
-        <div class="price" [style.borderColor]="name.invalid ? '#f44336': '#dce0e6'">
-          <input type="text" knifeOnlyNumbers maxlength="4" [(ngModel)]="userService.compressedDeadlines.basicCompressedPrice" #name="ngModel" [required]="userService.compressedDeadlines.publishCompressedDeadlines" name="basicCompressedPrice"> <span
-            class="money">UAH</span>
-        </div>
-      </div>
-      <button type="button" class="show-pack-options" [ngClass]="optionsVisible ? 'up' : 'down'" (click)="showOptions()" *ngIf="userService.allPackages"></button>
-    </div>
-    <!-------------------- Exta Options if All Packages -------------------->
-    <div class="all-types" *ngIf="userService.allPackages" [ngClass]="optionsVisible ? 'open' : 'closed'" outsideTooltip="Установите цену для более быстрой доставки" outsideTooltipDescription="Очень быстрое время доставки должно быть короче вашего основного времени доставки." placement="right">
-      <div>
-        <div>
-          <div class="extraoption-title">Базовый</div>
-          <div class="options">
-            <span>Сделаю за</span>
-            <div [style.borderColor]="name.invalid ? '#f44336': '#dce0e6'">
-              <div class=" select-wrap-extra">
-                <mat-select [(ngModel)]="userService.compressedDeadlines.basicCompressedDays" #name="ngModel" [required]="userService.compressedDeadlines.publishCompressedDeadlines && userService.allPackages" name="basicCompressedDays">
-                  <mat-option *ngFor="let days of changesArrayCounter(); let i = index" [value]="days">
-                    {{ days }} дня
-                  </mat-option>
-                </mat-select>
-              </div>
+    <!--------------------  Deadlines -------------------->
+    <div class="time-option">
+        <div class="option-wrap" outsideTooltip="{{'dashboard.create-service.third-step.extra-form.tool-tip.price-title' | translate}}" outsideTooltipDescription="{{'dashboard.create-service.third-step.extra-form.tool-tip.price-subtitle' | translate}}" placement="right">
+            <div class="checkbox">
+                <input type="checkbox" name="time-to-do" class="tgl-classic" [(ngModel)]="userService.compressedDeadlines.publishCompressedDeadlines" id="time-to-do">
+                <label for="time-to-do"></label>
+                <span class="options-name">{{'dashboard.create-service.third-step.extra-form.terms' | translate}}</span>
             </div>
-            <div class="price" [style.borderColor]="name.invalid ? '#f44336': '#dce0e6'">
-              <input type="text" knifeOnlyNumbers maxlength="4" #name="ngModel" [required]="userService.compressedDeadlines.publishCompressedDeadlines && userService.allPackages" [(ngModel)]="userService.compressedDeadlines.basicCompressedPrice"
-                name="basicCompressedPrice">
-              <span class="money">UAH</span>
-            </div>
-          </div>
-        </div>
-        <div>
-          <div class="extraoption-title">Стандарт</div>
-          <div class="options">
-            <span>Сделаю за</span>
-            <div [style.borderColor]="name.invalid ? '#f44336': '#dce0e6'">
-              <div class=" select-wrap-extra">
-                <mat-select [(ngModel)]="userService.compressedDeadlines.advancedCompressedDays" #name="ngModel" [required]="userService.compressedDeadlines.publishCompressedDeadlines && userService.allPackages" name="advancedCompressedDays">
-                  <mat-option *ngFor="let days of changesArrayCounter(); let i = index" [value]="days">
-                    {{ days }} дня
-                  </mat-option>
-                </mat-select>
-              </div>
-            </div>
-            <div class="price" [style.borderColor]="name.invalid ? '#f44336': '#dce0e6'">
-              <input type="text" knifeOnlyNumbers maxlength="4" name="advancedCompressedPrice" #name="ngModel" [required]="userService.compressedDeadlines.publishCompressedDeadlines && userService.allPackages"
-                [(ngModel)]="userService.compressedDeadlines.advancedCompressedPrice"> <span class="money">UAH</span>
-            </div>
-          </div>
-        </div>
-        <div>
-          <div class="extraoption-title">Премиум</div>
-          <div class="options">
-            <span>Сделаю за</span>
-            <div [style.borderColor]="name.invalid ? '#f44336': '#dce0e6'">
-              <div class=" select-wrap-extra">
-                <mat-select name="premiumCompressedDays" #name="ngModel" [required]="userService.compressedDeadlines.publishCompressedDeadlines && userService.allPackages" [(ngModel)]="userService.compressedDeadlines.premiumCompressedDays">
-                  <mat-option *ngFor="let days of changesArrayCounter(); let i = index" [value]="days">
-                    {{ days }} дня
-                  </mat-option>
-                </mat-select>
-              </div>
-            </div>
-            <div class="price" [style.borderColor]="name.invalid ? '#f44336': '#dce0e6'">
-              <input type="text" knifeOnlyNumbers maxlength="4" name="premiumCompressedPrice" #name="ngModel" [required]="userService.compressedDeadlines.publishCompressedDeadlines && userService.allPackages"
-                [(ngModel)]="userService.compressedDeadlines.premiumCompressedPrice"> <span class="money">UAH</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-------------------- //** deadlines -------------------->
-
-  <!-------------------- extra changes  -------------------->
-  <div class="deffault-field">
-    <div class="option-wrap" outsideTooltip="Дополнительная редакция" outsideTooltipDescription="Установите цену для дополнительной ревизии." placement="right">
-      <div class="checkbox">
-        <input type="checkbox" name="useExtraOfferChanges" [(ngModel)]="userService.extraOfferChanges.publishExtraOfferChanges" class="tgl-classic" id="extra-changes">
-        <label for="extra-changes"></label>
-        <span class="options-name">Дополнительные правки</span>
-      </div>
-      <div class="options">
-        <span>Сделаю за</span>
-        <div [style.borderColor]="extraChangesDays.invalid ? '#f44336': '#dce0e6'">
-          <div class=" select-wrap-extra">
-            <mat-select name="extraOfferChanges" [required]="userService.extraOfferChanges.publishExtraOfferChanges" [(ngModel)]="userService.extraOfferChanges.extraChangesDays" #extraChangesDays="ngModel">
-              <mat-option *ngFor="let days of changesArrayCounter(); let i = index" [value]="days">
-                {{ days }} дня
-              </mat-option>
-            </mat-select>
-          </div>
-        </div>
-        <div class="price" [style.borderColor]="extraChangesPrice.invalid ? '#f44336': '#dce0e6'">
-          <input type="text" name="extraChangesPrice" knifeOnlyNumbers [required]="userService.extraOfferChanges.publishExtraOfferChanges" #extraChangesPrice="ngModel" [(ngModel)]="userService.extraOfferChanges.extraChangesPrice" maxlength="4"> <span
-            class="money">UAH</span>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- //** extra changes -->
-  <!--  commercila use -->
-  <div class="deffault-field">
-    <div class="option-wrap">
-      <div class="checkbox">
-        <input type="checkbox" name="useCommercialOffer" class="tgl-classic" id="commercial-use" [(ngModel)]="userService.commercialOffer.publishCommercialOffer">
-        <label for="commercial-use"></label>
-        <span class="options-name">Коммерческое использование</span>
-      </div>
-      <div class="options commercial">
-        <span>Сделаю за</span>
-        <div class="price" [style.borderColor]="name.invalid ? '#f44336': '#dce0e6'">
-          <input type="text" knifeOnlyNumbers maxlength="4" #name="ngModel" [required]="userService.commercialOffer.publishCommercialOffer" 
-          [(ngModel)]="userService.commercialOffer.priceForCommercialOffer" name="priceForCommercialOffer"> <span
-            class="money">UAH</span>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-
-  <!-- Add extra Option -->
-  <form #addOptionForm="ngForm" class="secondary-extra-options">
-    <div class="secondary-extra-options-item" *ngFor="let option of userService.extra_features; let j = index" [ngClass]="{ rolled: expandedOption !== j+1 }">
-      <div class="display-option" *ngIf="userService.extra_features.length > 0 && expandedOption !== j + 1 ">
-        <div class="display-title">
-          <!-- extra option bar -->
-          <div class="deffault-field extra-option-preview">
-
-
-            <div class="option-wrap">
-
-              <i class="material-icons create" (click)="changeOption(j+1)">create</i>
-              <i class="material-icons delete-pack" (click)="deleteExtraOption(j)">delete</i>
-              <div class="checkbox">
-                <input type="checkbox" name="publish-option-{{j}}" class="tgl-classic" id="publish-extra-option-{{ j }}" #name="ngModel" [(ngModel)]="userService.extra_features[j].optionPublish">
-                <label for="publish-extra-option-{{ j }}"></label>
-                <span class="options-name">{{ userService.extra_features[j].optionTitle }}</span>
-              </div>
-              <div class="options">
-                <span>Сделаю за</span>
-                <div [style.borderColor]="name.invalid && submited ? '#f44336': '#dce0e6'">
-                  <div class="select-wrap-extra">
-
-                    {{ userService.extra_features[j].optionCountDays }} дня
-                  </div>
+            <div class="options" *ngIf="userService.allPackages !== true">
+                <span>{{'dashboard.create-service.third-step.extra-form.made-by' | translate}}</span>
+                <div [style.borderColor]="name.invalid ? '#f44336': '#dce0e6'">
+                    <div class=" select-wrap-extra">
+                        <mat-select #name="ngModel" [(ngModel)]="userService.compressedDeadlines.basicCompressedDays" [required]="userService.compressedDeadlines.publishCompressedDeadlines" name="basicCompressedDays">
+                            <mat-option *ngFor="let days of changesArrayCounter(); let i = index" [value]="days">
+                                {{ days }}&nbsp;{{'dashboard.create-service.third-step.extra-form.days' | translate}}
+                            </mat-option>
+                        </mat-select>
+                    </div>
                 </div>
-                <div class="price" [style.borderColor]="name.invalid && submited ? '#f44336': '#dce0e6'">
-                  {{ userService.extra_features[j].optionPrice }} <span class="money">UAH</span>
+                <div class="price" [style.borderColor]="name.invalid ? '#f44336': '#dce0e6'">
+                    <input type="text" knifeOnlyNumbers maxlength="4" [(ngModel)]="userService.compressedDeadlines.basicCompressedPrice" #name="ngModel" [required]="userService.compressedDeadlines.publishCompressedDeadlines" name="basicCompressedPrice">                    <span class="money">UAH</span>
                 </div>
-              </div>
             </div>
-          </div>
+            <button type="button" class="show-pack-options" [ngClass]="optionsVisible ? 'up' : 'down'" (click)="showOptions()" *ngIf="userService.allPackages"></button>
         </div>
-      </div>
-      <div class="option-creation" [ngClass]="{ expanded: expandedOption === j+1 }">
-        <div class="extra-option-title">
-          <h5>Название опции</h5>
-          <div [style.borderColor]="name.invalid && submited ? '#f44336': '#dce0e6'">
-            <input type="text" #name="ngModel" name="optionTitle-{{j}}" [(ngModel)]="userService.extra_features[j].optionTitle" required>
-          </div>
-
-        </div>
-        <div class="extra-option-description">
-          <h5>Описание </h5>
-          <div [style.borderColor]="name.invalid && submited ? '#f44336': '#dce0e6'">
-            <textarea name="optionDescription" [(ngModel)]="userService.extra_features[j].optionDescription" name="optionDescription-{{j}}" #name="ngModel" required></textarea>
-          </div>
-
-        </div>
-        <div>
-          <div class="deffault-field extra-option">
-            <div class="option-wrap">
-
-              <div class="options">
-                <span>Сделаю за</span>
-                <div [style.borderColor]="name.invalid && submited ? '#f44336': '#dce0e6'">
-                  <div class=" select-wrap-extra">
-                    <mat-select name="optionPrice-{{j}}" required [(ngModel)]="userService.extra_features[j].optionCountDays" #name="ngModel">
-                      <mat-option *ngFor="let days of changesArrayCounter(); let i = index" [value]="days">
-                        {{ days }} дня
-                      </mat-option>
-                    </mat-select>
-                  </div>
+        <!-------------------- Exta Options if All Packages -------------------->
+        <div class="all-types" *ngIf="userService.allPackages" [ngClass]="optionsVisible ? 'open' : 'closed'" outsideTooltip="{{'dashboard.create-service.third-step.extra-form.tool-tip.term-title' | translate}}" outsideTooltipDescription="{{'dashboard.create-service.third-step.extra-form.tool-tip.term-subtitle' | translate}}"
+            placement="right">
+            <div>
+                <div>
+                    <div class="extraoption-title">{{'packages.basic' | translate}}</div>
+                    <div class="options">
+                        <span>{{'dashboard.create-service.third-step.extra-form.made-by' | translate}}</span>
+                        <div [style.borderColor]="name.invalid ? '#f44336': '#dce0e6'">
+                            <div class=" select-wrap-extra">
+                                <mat-select [(ngModel)]="userService.compressedDeadlines.basicCompressedDays" #name="ngModel" [required]="userService.compressedDeadlines.publishCompressedDeadlines && userService.allPackages" name="basicCompressedDays">
+                                    <mat-option *ngFor="let days of changesArrayCounter(); let i = index" [value]="days">
+                                        {{ days }}&nbsp;{{'dashboard.create-service.third-step.extra-form.days' | translate}}
+                                    </mat-option>
+                                </mat-select>
+                            </div>
+                        </div>
+                        <div class="price" [style.borderColor]="name.invalid ? '#f44336': '#dce0e6'">
+                            <input type="text" knifeOnlyNumbers maxlength="4" #name="ngModel" [required]="userService.compressedDeadlines.publishCompressedDeadlines && userService.allPackages" [(ngModel)]="userService.compressedDeadlines.basicCompressedPrice" name="basicCompressedPrice">
+                            <span class="money">UAH</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="price" [style.borderColor]="name.invalid && submited ? '#f44336': '#dce0e6'">
-                  <input type="text" name="optionPerTime-{{j}}" [(ngModel)]="userService.extra_features[j].optionPrice" #name="ngModel" required knifeOnlyNumbers maxlength="4">
-                  <span class="money">UAH</span>
+                <div>
+                    <div class="extraoption-title">{{'packages.standart' | translate}}</div>
+                    <div class="options">
+                        <span>{{'dashboard.create-service.third-step.extra-form.made-by' | translate}}</span>
+                        <div [style.borderColor]="name.invalid ? '#f44336': '#dce0e6'">
+                            <div class=" select-wrap-extra">
+                                <mat-select [(ngModel)]="userService.compressedDeadlines.advancedCompressedDays" #name="ngModel" [required]="userService.compressedDeadlines.publishCompressedDeadlines && userService.allPackages" name="advancedCompressedDays">
+                                    <mat-option *ngFor="let days of changesArrayCounter(); let i = index" [value]="days">
+                                        {{ days }}&nbsp;{{'dashboard.create-service.third-step.extra-form.days' | translate}}
+                                    </mat-option>
+                                </mat-select>
+                            </div>
+                        </div>
+                        <div class="price" [style.borderColor]="name.invalid ? '#f44336': '#dce0e6'">
+                            <input type="text" knifeOnlyNumbers maxlength="4" name="advancedCompressedPrice" #name="ngModel" [required]="userService.compressedDeadlines.publishCompressedDeadlines && userService.allPackages" [(ngModel)]="userService.compressedDeadlines.advancedCompressedPrice">                            <span class="money">UAH</span>
+                        </div>
+                    </div>
                 </div>
-              </div>
+                <div>
+                    <div class="extraoption-title">{{'packages.premium' | translate}}</div>
+                    <div class="options">
+                        <span>{{'dashboard.create-service.third-step.extra-form.made-by' | translate}}</span>
+                        <div [style.borderColor]="name.invalid ? '#f44336': '#dce0e6'">
+                            <div class=" select-wrap-extra">
+                                <mat-select name="premiumCompressedDays" #name="ngModel" [required]="userService.compressedDeadlines.publishCompressedDeadlines && userService.allPackages" [(ngModel)]="userService.compressedDeadlines.premiumCompressedDays">
+                                    <mat-option *ngFor="let days of changesArrayCounter(); let i = index" [value]="days">
+                                        {{ days }}&nbsp;{{'dashboard.create-service.third-step.extra-form.days' | translate}}
+                                    </mat-option>
+                                </mat-select>
+                            </div>
+                        </div>
+                        <div class="price" [style.borderColor]="name.invalid ? '#f44336': '#dce0e6'">
+                            <input type="text" knifeOnlyNumbers maxlength="4" name="premiumCompressedPrice" #name="ngModel" [required]="userService.compressedDeadlines.publishCompressedDeadlines && userService.allPackages" [(ngModel)]="userService.compressedDeadlines.premiumCompressedPrice">                            <span class="money">UAH</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </form>
+    <!-------------------- //** deadlines -------------------->
 
-  <!---------- Add Extra field to secondary option ------->
-  <div class="add-option secondary-optins" *ngIf=" !userService.extra_features || userService.extra_features.length < 10">
-    <!-- [disabled]="packagesForm.controls['extraOptions'].invalid" -->
-    <button class="add btn-third" [disabled]="addOptionForm.invalid" (click)="addExtraOptin()">
+    <!-------------------- extra changes  -------------------->
+    <div class="deffault-field">
+        <div class="option-wrap" outsideTooltip="{{'dashboard.create-service.third-step.extra-form.tool-tip.extra-changes-title' | translate}}" outsideTooltipDescription="{{'dashboard.create-service.third-step.extra-form.tool-tip.extra-changes-subtitle' | translate}}"
+            placement="right">
+            <div class="checkbox">
+                <input type="checkbox" name="useExtraOfferChanges" [(ngModel)]="userService.extraOfferChanges.publishExtraOfferChanges" class="tgl-classic" id="extra-changes">
+                <label for="extra-changes"></label>
+                <span class="options-name">{{'dashboard.create-service.third-step.extra-form.extra-changes' | translate}}</span>
+            </div>
+            <div class="options">
+                <span>{{'dashboard.create-service.third-step.extra-form.made-by' | translate}}</span>
+                <div [style.borderColor]="extraChangesDays.invalid ? '#f44336': '#dce0e6'">
+                    <div class=" select-wrap-extra">
+                        <mat-select name="extraOfferChanges" [required]="userService.extraOfferChanges.publishExtraOfferChanges" [(ngModel)]="userService.extraOfferChanges.extraChangesDays" #extraChangesDays="ngModel">
+                            <mat-option *ngFor="let days of changesArrayCounter(); let i = index" [value]="days">
+                                {{ days }}&nbsp;{{'dashboard.create-service.third-step.extra-form.days' | translate}}
+                            </mat-option>
+                        </mat-select>
+                    </div>
+                </div>
+                <div class="price" [style.borderColor]="extraChangesPrice.invalid ? '#f44336': '#dce0e6'">
+                    <input type="text" name="extraChangesPrice" knifeOnlyNumbers [required]="userService.extraOfferChanges.publishExtraOfferChanges" #extraChangesPrice="ngModel" [(ngModel)]="userService.extraOfferChanges.extraChangesPrice" maxlength="4">                    <span class="money">UAH</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //** extra changes -->
+    <!--  commercila use -->
+    <div class="deffault-field">
+        <div class="option-wrap">
+            <div class="checkbox">
+                <input type="checkbox" name="useCommercialOffer" class="tgl-classic" id="commercial-use" [(ngModel)]="userService.commercialOffer.publishCommercialOffer">
+                <label for="commercial-use"></label>
+                <span class="options-name">{{'dashboard.create-service.third-step.extra-form.commercial' | translate}}</span>
+            </div>
+            <div class="options commercial">
+                <span>{{'dashboard.create-service.third-step.extra-form.made-by' | translate}}</span>
+                <div class="price" [style.borderColor]="name.invalid ? '#f44336': '#dce0e6'">
+                    <input type="text" knifeOnlyNumbers maxlength="4" #name="ngModel" [required]="userService.commercialOffer.publishCommercialOffer" [(ngModel)]="userService.commercialOffer.priceForCommercialOffer" name="priceForCommercialOffer">
+                    <span class="money">UAH</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- Add extra Option -->
+    <form #addOptionForm="ngForm" class="secondary-extra-options">
+        <div class="secondary-extra-options-item" *ngFor="let option of userService.extra_features; let j = index" [ngClass]="{ rolled: expandedOption !== j+1 }">
+            <div class="display-option" *ngIf="userService.extra_features.length > 0 && expandedOption !== j + 1 ">
+                <div class="display-title">
+                    <!-- extra option bar -->
+                    <div class="deffault-field extra-option-preview">
+
+
+                        <div class="option-wrap">
+
+                            <i class="material-icons create" (click)="changeOption(j+1)">create</i>
+                            <i class="material-icons delete-pack" (click)="deleteExtraOption(j)">delete</i>
+                            <div class="checkbox">
+                                <input type="checkbox" name="publish-option-{{j}}" class="tgl-classic" id="publish-extra-option-{{ j }}" #name="ngModel" [(ngModel)]="userService.extra_features[j].optionPublish">
+                                <label for="publish-extra-option-{{ j }}"></label>
+                                <span class="options-name">{{ userService.extra_features[j].optionTitle }}</span>
+                            </div>
+                            <div class="options">
+                                <span>{{'dashboard.create-service.third-step.extra-form.made-by' | translate}}</span>
+                                <div [style.borderColor]="name.invalid && submited ? '#f44336': '#dce0e6'">
+                                    <div class="select-wrap-extra">
+
+                                        {{ userService.extra_features[j].optionCountDays }}&nbsp;{{'dashboard.create-service.third-step.extra-form.days' | translate}}
+                                    </div>
+                                </div>
+                                <div class="price" [style.borderColor]="name.invalid && submited ? '#f44336': '#dce0e6'">
+                                    {{ userService.extra_features[j].optionPrice }} <span class="money">UAH</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="option-creation" [ngClass]="{ expanded: expandedOption === j+1 }">
+                <div class="extra-option-title">
+                    <h5>{{'dashboard.create-service.third-step.extra-form.option-title' | translate}}</h5>
+                    <div [style.borderColor]="name.invalid && submited ? '#f44336': '#dce0e6'">
+                        <input type="text" #name="ngModel" name="optionTitle-{{j}}" [(ngModel)]="userService.extra_features[j].optionTitle" required>
+                    </div>
+
+                </div>
+                <div class="extra-option-description">
+                    <h5>{{'dashboard.create-service.third-step.extra-form.option-description' | translate}} </h5>
+                    <div [style.borderColor]="name.invalid && submited ? '#f44336': '#dce0e6'">
+                        <textarea name="optionDescription" [(ngModel)]="userService.extra_features[j].optionDescription" name="optionDescription-{{j}}" #name="ngModel" required></textarea>
+                    </div>
+
+                </div>
+                <div>
+                    <div class="deffault-field extra-option">
+                        <div class="option-wrap">
+
+                            <div class="options">
+                                <span>{{'dashboard.create-service.third-step.extra-form.made-by' | translate}}</span>
+                                <div [style.borderColor]="name.invalid && submited ? '#f44336': '#dce0e6'">
+                                    <div class=" select-wrap-extra">
+                                        <mat-select name="optionPrice-{{j}}" required [(ngModel)]="userService.extra_features[j].optionCountDays" #name="ngModel">
+                                            <mat-option *ngFor="let days of changesArrayCounter(); let i = index" [value]="days">
+                                                {{ days }}&nbsp;{{'dashboard.create-service.third-step.extra-form.days' | translate}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </div>
+                                </div>
+                                <div class="price" [style.borderColor]="name.invalid && submited ? '#f44336': '#dce0e6'">
+                                    <input type="text" name="optionPerTime-{{j}}" [(ngModel)]="userService.extra_features[j].optionPrice" #name="ngModel" required knifeOnlyNumbers maxlength="4">
+                                    <span class="money">UAH</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!---------- Add Extra field to secondary option ------->
+    <div class="add-option secondary-optins" *ngIf=" !userService.extra_features || userService.extra_features.length < 10">
+        <!-- [disabled]="packagesForm.controls['extraOptions'].invalid" -->
+        <button class="add btn-third" [disabled]="addOptionForm.invalid" (click)="addExtraOptin()">
       <i class="material-icons">
         add_circle_outline
       </i>
-      <span>Добавить опцию</span>
+      <span>{{'dashboard.create-service.third-step.extra-form.add-option' | translate}}</span>
     </button>
-  </div>
+    </div>
 </div>
