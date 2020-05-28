@@ -40,7 +40,7 @@
               <label class="block-title" for="langLevel">{{'user-settings.language-level' | translate}}</label>
               <mat-select name="langLevel" id="langLevel" [(ngModel)]="userSettings.language[i].langLevel">
                 <ng-container *ngFor="let langLevel of languagesLevel">
-                  <mat-option [value]="langLevel">{{ languageTranslates[langLevel-1] }}</mat-option>
+                  <mat-option [value]="langLevel">{{ languageTranslates[langLevel-1] | translate}}</mat-option>
                 </ng-container>
               </mat-select>
             </div>
