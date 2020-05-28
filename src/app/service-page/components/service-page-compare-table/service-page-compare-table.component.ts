@@ -22,26 +22,26 @@ export class ServicePageCompareTableComponent implements OnInit {
   ];
   public services = [
     {
-      serviceName: 'Название услуги',
+      serviceName: 'service-page.compare-tab-service-name',
       serviceValue: 'title',
       centerMode: 0
     },
     {
-      serviceName: 'Краткое описание',
+      serviceName: 'service-page.compare-tab-short-description',
       serviceValue: 'description',
       centerMode: 0
     },
     {
-      serviceName: 'Срок выполнения',
+      serviceName: 'service-page.compare-deadline',
       serviceValue: 'term',
       centerMode: 1,
-      extraWord: " дней"
+      extraWord: "general.days"
     },
     {
-      serviceName: 'Кол-во правок',
+      serviceName: 'service-page.compare-number-of-edits',
       serviceValue: 'changes',
       centerMode: 1,
-      extraWord: " правок"
+      extraWord: "service-page.corrections"
     }
   ];
 

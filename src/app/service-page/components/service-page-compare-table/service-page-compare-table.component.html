@@ -1,21 +1,20 @@
 <section class="compare">
   <h4 class="section-title">
-    Сравните и выберите вариант пакета услуг
+    {{'service-page.compare-title' | translate}}
   </h4>
   <div class="table" *ngIf="offerData">
     <div class="table-titles">
       <div class="table-cell"></div>
-      <div class="table-cell" >Базовый</div>
-      <div class="table-cell" *ngIf="offerData.allPackages">Стандарт</div>
-      <div class="table-cell" *ngIf="offerData.allPackages">Премиум</div>
+      <div class="table-cell" >{{'packages.basic' | translate}}</div>
+      <div class="table-cell" *ngIf="offerData.allPackages">{{'packages.premium' | translate}}</div>
+      <div class="table-cell" *ngIf="offerData.allPackages">{{'packages.standart' | translate}}</div>
     </div>
-
 
     <ng-container *ngIf="offerData.allPackages">
       <div class="table-item" *ngFor="let service of services">
-        <div class="table-cell title-cell">{{service.serviceName}}</div>
+        <div class="table-cell title-cell">{{ service.serviceName | translate }}</div>
         <ng-container *ngFor="let package of packages">
-          <div class="table-cell" [ngClass] = "{'centerMode extra-options': service.centerMode}">{{ offerData[package][service.serviceValue] }}{{ service.extraWord}}</div>
+          <div class="table-cell" [ngClass] = "{'centerMode extra-options': service.centerMode}">{{ offerData[package][service.serviceValue] }} {{ 'service-page.' + service.extraWord | translate }}</div>
         </ng-container>
       </div>
       <div class="table-item" *ngFor="let option of offerData.main_options">
@@ -28,11 +27,11 @@
         </ng-container>
       </div>
       <div class="table-item">
-        <div class="table-cell title-cell">Цена</div>
+        <div class="table-cell title-cell">{{'packages.price' | translate}}</div>
         <ng-container *ngFor="let package of packages">
           <div class="table-cell centerMode">
             {{ offerData[package].price }} ₴
-            <div class="btn-buy-package" (click)="goCheckout(package)">выбрать</div>
+            <div class="btn-buy-package" (click)="goCheckout(package)">{{'general.choose' | translate}}</div>
           </div>
         </ng-container>
       </div>
@@ -40,9 +39,9 @@
 
     <ng-container *ngIf="!offerData.allPackages">
       <div class="table-item" *ngFor="let service of services">
-        <div class="table-cell title-cell">{{service.serviceName}}</div>
+        <div class="table-cell title-cell">{{ service.serviceName | translate }}</div>
         <ng-container>
-          <div class="table-cell" [ngClass] = "{'centerMode extra-options': service.centerMode}">{{ offerData.basic[service.serviceValue] }}{{ service.extraWord}}</div>
+          <div class="table-cell" [ngClass] = "{'centerMode extra-options': service.centerMode}">{{ offerData.basic[service.serviceValue] }} {{ service.extraWord | translate }}</div>
         </ng-container>
       </div>
       <div class="table-item" *ngFor="let option of offerData.main_options">
@@ -55,11 +54,11 @@
         </ng-container>
       </div>
       <div class="table-item">
-        <div class="table-cell title-cell">Цена</div>
+        <div class="table-cell title-cell">{{'general.price' | translate}}</div>
         <ng-container>
           <div class="table-cell centerMode">
             {{ offerData.basic.price }} ₴
-            <div class="btn-buy-package" (click)="goCheckout('basic')">выбрать</div>
+            <div class="btn-buy-package" (click)="goCheckout('basic')">{{'general.choose' | translate}}</div>
           </div>
         </ng-container>
       </div>

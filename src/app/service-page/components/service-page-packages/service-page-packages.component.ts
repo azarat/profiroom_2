@@ -27,13 +27,13 @@ export class ServicePagePackagesComponent implements OnInit {
   public currentTab: any = 0;
   public tabs = [
     {
-      name: 'базовый'
+      name: 'packages.basic'
     },
     {
-      name: 'стандарт'
+      name: 'packages.premium'
     },
     {
-      name: 'премиум'
+      name: 'packages.standart'
     }
   ];
   public packages = [

@@ -1,6 +1,6 @@
 <section class="about-offer">
   <h4 class="section-title">
-    О фрилансере
+    {{'general.about-freelancer' | translate}}
   </h4>
   <div class="top-section">
     <div class="photo">
@@ -10,13 +10,13 @@
     </div>
     <div class="offer-info">
       <span class="offer-name" [routerLink]="['/user', offerData.user.id] | localize">{{ offerData.user.name }} {{ offerData.user.surname }}</span>
-      <div class="offer-status">Уровень: {{ offerData.user.rank_id }}</div>
+      <div class="offer-status">{{'general.level' | translate}}: {{lvlTranslation[offerData.user.rank_id]  | translate}}</div>
       <div class="user-rating-wrap">
         <p class="star-rating" [ngClass]="{'empty-rating': offerData.rating === 0}">{{ offerData.rating }}<span class="user-comments">({{ convertedNumberOfComments }} отзывов)</span></p>
       </div>
       <div class="onlineStatus ">
-        <span class="online" *ngIf="offerData.user.online">Oнлайн</span>
-        <span class="offline" *ngIf="!offerData.user.online">Офлайн</span>
+        <span class="online" *ngIf="offerData.user.online">{{'general.online' | translate}}</span>
+        <span class="offline" *ngIf="!offerData.user.online">{{'general.offline' | translate}}</span>
       </div>
     </div>
     <div class="actions">
@@ -48,23 +48,23 @@
   </div>
   <div class="main-info">
     <div class="info-item">
-      <p class="title">Страна</p>
+      <p class="title">{{'general.country' | translate}}</p>
       <p class="text">{{ offerData.user.country }}</p>
     </div>
     <div class="info-item" >
-      <p class="title">На сайте с</p>
+      <p class="title">{{'general.registration-date' | translate}}</p>
       <p class="text" *ngIf="offerData.created_at">{{ offerData.created_at }}</p>
     </div>
     <div class="info-item">
-      <p class="title">Время ответа</p>
+      <p class="title">{{'service-page.answer-time' | translate}}</p>
       <p class="text">{{ offerData.user.answerTime }} </p>
     </div>
     <div class="info-item">
-      <p class="title">Обращений в арбитраж</p>
+      <p class="title">{{'user-page.arbitration-appeals' | translate}}</p>
       <p class="text">{{ offerData.user.arbitration.freelancer }}</p>
     </div>
     <div class="info-item">
-      <p class="title">Проектов в работе</p>
+      <p class="title">{{'user-page.projects-in-progress' | translate}}</p>
       <p class="text">{{ offerData.user.inProgressOffers }}</p>
     </div>
   </div>

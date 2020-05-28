@@ -1,6 +1,6 @@
 <section class="another-services"  *ngIf="offerData.user.userOffers.length">
   <h4 class="section-title">
-    Другие услуги фрилансера <span *ngIf="offerData.user.userOfferCount > 4">({{showedOffersCount}} из {{offerData.user.userOfferCount}})</span>
+    {{'service-page.another-services' | translate}} <span *ngIf="offerData.user.userOfferCount > 4">({{showedOffersCount}} {{'general.of' | translate}} {{offerData.user.userOfferCount}})</span>
   </h4>
   <div class="cards-list" *ngIf="offerData">
     <ng-container *ngFor="let offer of offerData.user.userOffers; let i = index">
@@ -13,14 +13,14 @@
           <p class="card-description__about" (click)="openOffer(offer.id)">{{offer.title}}</p>
           <div class="card-description__bottom">
             <div class="star-rating" [ngClass]="{'empty-rating': offer.rating === 0}">{{offer.rating}}</div>
-            <div class="card-description__comments"><a>({{offer.comments_count}} отзывов)</a></div>
+            <div class="card-description__comments"><a>({{offer.comments_count}} {{'general.comments' | translate}})</a></div>
           </div>
   
         </div>
         <div class="card-bottom">
           <div class="card-bottom__like" [class.liked]="offer.liked"></div>
           <div class="card-bottom__price">
-            от
+            {{'general.from' | translate}}
             <span>{{offer.minPrice}}</span>
           </div>
         </div>
@@ -28,7 +28,7 @@
     </ng-container>
   </div>
   <div class="btn-wrapper" *ngIf="offerData.user.userOfferCount > 4">
-    <div class="btn-watch-more" [routerLink]="['/user', offerData.user_id]">больше услуг в профиле</div>
+    <div class="btn-watch-more" [routerLink]="['/user', offerData.user_id]">{{'service-page.more-services' | translate}}</div>
   </div>
 </section>
 

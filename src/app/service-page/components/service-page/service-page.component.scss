@@ -228,6 +228,7 @@
     box-sizing: border-box;
     margin-right: 17px;
     position: relative;
+    z-index: 9;
     cursor: pointer;
     &.tooltip {
       opacity: 1;

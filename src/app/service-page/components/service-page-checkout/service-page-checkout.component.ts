@@ -56,19 +56,18 @@ export class ServicePageCheckoutComponent implements OnInit {
       price?: number;
     } [];
   } = {};
-
   public packages = [
     {
       name: 'basic',
-      translate: 'Базовый'
+      translate: 'packages.basic'
     },
     {
       name: 'advanced',
-      translate: 'Стандарт'
+      translate: 'packages.premium'
     },
     {
       name: 'premium',
-      translate: 'Премиум'
+      translate: 'packages.standart'
     }
   ];
 

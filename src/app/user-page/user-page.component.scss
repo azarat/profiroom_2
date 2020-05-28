@@ -442,6 +442,7 @@
   &__group {
     display: flex;
     width: fit-content;
+    flex-wrap: wrap;
   }
   &__specialty {
     color: #707683;
