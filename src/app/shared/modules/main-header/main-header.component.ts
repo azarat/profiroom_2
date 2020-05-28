@@ -47,4 +47,7 @@ export class MainHeaderComponent implements OnInit {
   public showLangList() {
     this.langList = !this.langList;
   }
+  public userExited() {
+    this.token = null;
+  }
 }

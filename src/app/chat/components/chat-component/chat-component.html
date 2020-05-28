@@ -12,7 +12,7 @@
     </section>
     <section class="collocutors-tools">
         <!-- right chat bar -->
-        <app-messenger-tools *ngIf="chatType === 'work' && collocutorData"></app-messenger-tools>
+        <app-messenger-tools *ngIf="chatType === 'work' && collocutorData" (noMoney)="openPayment($event)"></app-messenger-tools>
         <app-collocutor-information *ngIf="chatType === 'classic' && collocutorData">
         </app-collocutor-information>
 
@@ -22,4 +22,5 @@
         <app-upload-file [(isFileLoaderVisible)]="isFileLoaderVisible" [collocutorData]="collocutorData" (uploadedBreefFiles)="uploadedBriefFiles" [chatType]="chatType"></app-upload-file>
     </section>
     <app-chat-errors></app-chat-errors>
+    <app-make-payment *ngIf="moneyRequired" [(moneyRequired)]="moneyRequired"></app-make-payment>
 </section>

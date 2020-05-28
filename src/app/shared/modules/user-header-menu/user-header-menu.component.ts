@@ -45,7 +45,6 @@ export class UserHeaderMenuComponent implements OnInit {
   logOut() {
     this.localStorageService.removeItem('token');
     this.localStorageService.setItem('userId', null);
-
     this.userIdChange.emit(null);
   }
 

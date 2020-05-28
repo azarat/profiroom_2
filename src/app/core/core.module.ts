@@ -20,6 +20,7 @@ import { AuthorisatedGuard } from './guards/authorisated.guard';
 import { OffersService } from './services/offers.service';
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 import { CategoriesListService } from './services/categories.service';
+import { CustomLocalizeService } from './services/custom-localize.service';
 
 export const url = new URL(location.href).origin;
 
@@ -46,12 +47,12 @@ export const url = new URL(location.href).origin;
             new LocalizeRouterHttpLoader(translate, location, settings, http, url + '/assets/locales.json'),
         deps: [TranslateService, Location, LocalizeRouterSettings, HttpClient, ],
       },
-      // alwaysSetPrefix: false,
-      useCachedLang: true,
+      alwaysSetPrefix: false,
     }),
     ScrollToModule.forRoot()
   ],
   providers: [
+    CustomLocalizeService,
     OffersService,
     {
       provide: HTTP_INTERCEPTORS,
@@ -71,6 +72,5 @@ export class CoreModule { }
 
 
 export function createTranslateLoader(http: HttpClient) {
-  console.log('url', url)
   return new TranslateHttpLoader(http, url + '/assets/i18n/', '.json');
 }

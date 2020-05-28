@@ -23,7 +23,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   // var if exit from unWritten brief
   public exitFromBriefPopUpVisible: boolean = null;
   public isChat = true;
-
+  public moneyRequired = null;
 
   constructor(
     private chatService: ChatService,
@@ -73,5 +73,10 @@ export class ChatComponent implements OnInit, OnDestroy {
       this.collocutorService.setCollocutorInfo(res);
     });
   }
+
+  public openPayment(e) {
+    this.moneyRequired = e;
+  }
+
 
 }

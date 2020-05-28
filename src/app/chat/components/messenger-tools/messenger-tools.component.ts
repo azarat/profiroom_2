@@ -2,7 +2,9 @@ import {
   Component,
   OnInit,
   Input,
-  OnDestroy
+  OnDestroy,
+  EventEmitter,
+  Output
 } from '@angular/core';
 import {
   ChatService
@@ -30,6 +32,8 @@ import { untilDestroyed } from 'ngx-take-until-destroy';
   styleUrls: ['./messenger-tools.component.scss']
 })
 export class MessengerToolsComponent implements OnInit, OnDestroy {
+
+  @Output() noMoney = new EventEmitter<{  }>();
 
   public collocutorData: CollocutorInterface;
   // public deal: CollocutorInterface;
@@ -146,8 +150,10 @@ export class MessengerToolsComponent implements OnInit, OnDestroy {
 
   public holdDealMoney() {
     this.dealService.holdMoney(this.collocutorData.id)
-      .subscribe(res => {
-        // this.resetDealData(this.collocutorData.id)
+      .subscribe((res: any) => {
+        if( res.message === 'not enough money') {
+          this.noMoney.emit(res.amount);
+        }
       });
   }
 
