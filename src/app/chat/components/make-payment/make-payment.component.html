@@ -1,0 +1,46 @@
+<div class="payment-wrap">
+    <div class="notification" *ngIf="!initPayment" (clickOutside)="closePopUp()">
+        <button type="button" class="close-box" (click)="closePopUp()">&#215;</button>
+
+        <img src="/assets/images/icons/attention.png" alt="attention">
+
+        <p class="title">
+            Не достаточно денег, чтобы оплатить услугу
+        </p>
+
+        <p class="description">
+            Для оплаты услуги не хватает {{ moneyRequired }} грн
+        </p>
+        <div class="controls">
+            <button class="cancel-popup" (click)="closePopUp()"> Отмена</button>
+            <button class="submit-popup" (click)="openPaymentMenu()"> Внести деньги</button>
+        </div>
+
+    </div>
+    <div *ngIf="!initPayment" class="payment">
+        <button type="button" class="close-box" (click)="closePopUp()">&#215;</button>
+        <div class="title">Ввод денег</div>
+
+        <form #form="ngForm" *ngIf="!errorMessage">
+            <div class="amount">
+                <p>Сумма</p>
+                <div>
+                    <span>{{ moneyRequired | thousandSeparator: 'space' }}</span><span>UAH</span>
+                </div>
+
+            </div>
+            <div class="input-field">
+                <label for="password">ваш пароль</label>
+                <input type="password" id="password" name="password" minlength="8" required [(ngModel)]="transaction.password" [ngClass]="{ invalid: submited && form.controls['password'].invalid }">
+            </div>
+            <div class="controls">
+                <button class="cancel-popup">Отмена</button>
+                <button class="submit-payment" type="submit" (click)="makePayment(form)">Внести деньги</button>
+            </div>
+        </form>
+        <div class="error" *ngIf="errorMessage">
+            <p>Не верный пароль</p>
+            <button class="submit-popup" (click)="tryPayAgain()">вернуться</button>
+        </div>
+    </div>
+</div>

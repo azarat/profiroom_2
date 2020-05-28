@@ -5,8 +5,6 @@ import { UserModel } from 'src/app/models/user.model';
 
 @Injectable()
 
-
-
 export class UserService {
   private user = new BehaviorSubject(null);
   public user$: Observable<UserModel>;

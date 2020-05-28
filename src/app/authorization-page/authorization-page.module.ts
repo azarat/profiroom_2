@@ -34,7 +34,7 @@ const routes: Routes = [
     component: ResetPasswordPageComponent
   },
   {
-    path: 'new-pass',
+    path: '',
     canActivateChild: [PassResetGuard],
     component: SetNewPassComponent
   }

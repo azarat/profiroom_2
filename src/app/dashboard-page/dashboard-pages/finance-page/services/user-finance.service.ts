@@ -25,13 +25,19 @@ export class UserFinanceService {
   }
 
   public makePayment(userData) {
-    this.http.post('/payment', userData)
-      .subscribe((res: any) => {
-        this.ranLiqPay(res);
-      });
+    return this.http.post('/payment', userData);
+      // .subscribe((res: any) => {
+      //   if (res.message === 'fail') {
+      //     return res;
+      //   } else {
+      //     this.ranLiqPay(res);
+      //     return true;
+      //   }
+
+      // });
   }
 
-  private ranLiqPay(res) {
+  public ranLiqPay(res) {
     LiqPayCheckout.init({
       data: res.data,
       signature: res.signature,

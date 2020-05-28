@@ -37,6 +37,7 @@ import { ProjectBriefFillingComponent } from './components/project-breef-filling
 import { MessageListComponent } from './components/message-list/message-list.component';
 import { RateDealComponent } from './components/rate-deal/rate-deal.component';
 import { DragDropModule } from '../shared/directives/drag-drop/drag-drop.module';
+import { MakePaymentComponent } from './components/make-payment/make-payment.component';
 
 
 
@@ -58,6 +59,7 @@ import { DragDropModule } from '../shared/directives/drag-drop/drag-drop.module'
     RateDealComponent,
     ProjectBriefFillingComponent,
     MessengerComponent,
+    MakePaymentComponent,
 
     // Directives
 
