@@ -48,6 +48,20 @@ export class UserPageComponent implements OnDestroy, OnInit  {
     'Опытный',
     'Мастер джедай'
   ];
+  public monthTranslate = [
+    'Январь',
+    'Февраль',
+    'Март',
+    'Апрель',
+    'Май',
+    'Июнь',
+    'Июль',
+    'Август',
+    'Сентябрь',
+    'Октябрь',
+    'Ноябрь',
+    'Декабрь'
+  ];
   @ViewChild('stickyMenu', {static: false}) menuElement: ElementRef;
 
   private id: any = null;

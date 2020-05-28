@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { UserSettingsModel } from 'src/app/models/user-settings.model';
 import { UserSettingsService } from '../../../services/user-settings.service';
 // import { FormGroup } from '@angular/forms';
@@ -8,9 +8,10 @@ import { UserSettingsService } from '../../../services/user-settings.service';
   templateUrl: './education-user-settings.component.html',
   styleUrls: ['./education-user-settings.component.scss']
 })
-export class EducationUserSettingsComponent implements OnInit {
+export class EducationUserSettingsComponent implements OnInit, OnChanges  {
 
   @Input() userSettings: UserSettingsModel;
+  @Input() closeAfterSaveSettings = false;
 
   private educationId: number;
   // public educationForm: FormGroup;
@@ -42,7 +43,11 @@ export class EducationUserSettingsComponent implements OnInit {
     
     // this.openItem = this.userSettings.education.length;
     this.openItem = null;
-    console.log(this.openItem);
+    console.log(this.closeAfterSaveSettings);
+  }
+  ngOnChanges() {
+    console.log(this.closeAfterSaveSettings);
+    this.closeAfterSaveSettings ? this.openItem = null: this.openItem = this.userSettings.education.length;
   }
 
   // --------------- create education-item -----------------//

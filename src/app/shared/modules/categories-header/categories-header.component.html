@@ -5,6 +5,7 @@
       <h3 class="category-name" >
         <a class="category" [routerLink]="['/catalog', category.link] | localize" >{{category.name}}</a>
       </h3>
+      
       <div class="subcategories-list">
         <ul class="subcategory-group" *ngFor="let group of category.groups;">
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { UserSettingsModel } from 'src/app/models/user-settings.model';
 import { UserSettingsService } from '../../../services/user-settings.service';
 
@@ -7,9 +7,10 @@ import { UserSettingsService } from '../../../services/user-settings.service';
   templateUrl: './additional-education-user-settings.component.html',
   styleUrls: ['./additional-education-user-settings.component.scss']
 })
-export class AdditionalEducationUserSettingsComponent implements OnInit {
+export class AdditionalEducationUserSettingsComponent implements OnInit, OnChanges {
 
   @Input() userSettings: UserSettingsModel;
+  @Input() closeAfterSaveSettings = false;
   public submited = false;
   public month = [];
   public monthTranslate = [
@@ -48,6 +49,12 @@ export class AdditionalEducationUserSettingsComponent implements OnInit {
     this.openItem = null;
     console.log(this.openItem);
   }
+
+  ngOnChanges() {
+    console.log(this.closeAfterSaveSettings);
+    this.closeAfterSaveSettings ? this.openItem = null: this.openItem = this.userSettings.education.length;
+  }
+
   createMonthArray() {
     for (let i = 1; i <= 12; i++) {
       this.month.push(i);

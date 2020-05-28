@@ -73,6 +73,7 @@
                   </label>
                   <mat-select name="endEducationMonth" id="endEducationMonth"
                     [(ngModel)]="userSettings.additionalEducation[i].endStudyMonth">
+                    <mat-option [value] = 0> - </mat-option>
                     <ng-container *ngFor="let endStudyMonth of month">
                       <mat-option [value]="endStudyMonth">{{ monthTranslate[endStudyMonth - 1] }}</mat-option>
                     </ng-container>

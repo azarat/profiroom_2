@@ -242,6 +242,10 @@
     line-height: 24px;
     color: #ffffff;
     margin: 0 auto 8px;
+    position: relative;
+    width: max-content;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .menu {

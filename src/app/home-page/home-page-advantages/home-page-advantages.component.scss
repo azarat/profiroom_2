@@ -370,6 +370,7 @@
     flex-wrap: wrap;
     &>div {
       margin-top: 0;
+      // min-height: 570px;
     }
   }
   .main-info {
@@ -425,12 +426,18 @@
   .features{
     flex-direction: column;
     width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    height: 550px;
     &-column{
+      height: auto;
       &:first-child{
         bottom: 0;
+        justify-content: flex-start;
       }
       &:last-child{
         margin-bottom: 30px;
+        justify-content: flex-start;
       }
     }
   }

@@ -65,6 +65,8 @@ export interface UserDataInterface {
     courseName?: string;
     startStudyYear?: number;
     endStudyYear?: number;
+    startStudyMonth?: number;
+    endStudyMonth?: number;
     additional_diploma_files?: [{
       link?: string;
     }]
