@@ -1,65 +1,65 @@
 <div class="inform_section">
     <div class="inform_section__title">
-        <h3>О себе</h3>
+        <h3>{{'user-settings.about-user' | translate}}</h3>
     </div>
     <div class="inform_section__fields">
         <form #form="ngForm">
             <div class="top-block">
                 <div class="user-avatar">
-                    <h3 class="block-title">Аватар</h3>
+                    <h3 class="block-title">{{'general.avatar' | translate}}</h3>
 
                     <div>
                         <input type="file" id="file" class="input-file" #fileInput (change)="avatarUpload($event)">
                         <label for="file" class="img-wrapper">
-              <div class="ava-block">
-                <div class="img-block">
-                    <img [src]="userSettingsModel.avatar" alt="">
-                  </div>
-                  <div class="sub-btn"></div>
-              </div>
-            </label>
+                            <div class="ava-block">
+                                <div class="img-block">
+                                    <img [src]="userSettingsModel.avatar" alt="">
+                                </div>
+                                <div class="sub-btn"></div>
+                            </div>
+                        </label>
                     </div>
 
                 </div>
                 <div class="full-name-block">
                     <div class="fields">
-                        <h5 class="fields-title">Имя</h5>
+                        <h5 class="fields-title">{{'general.name' | translate}}</h5>
                         <input class="fields-value" [(ngModel)]="userSettingsModel.name" #firstName="ngModel" [pattern]="unamePattern" name="firstName" placeholder="Имя" type="text" required>
                         <!-- <div *ngIf="firstName.control.touched && firstName.control.status === 'INVALID'" class="alert-danger">
             <p>Поле заполнено неверно</p>
           </div> -->
                         <div [hidden]="firstName.valid || firstName.untouched" class="alert-danger">
-                            Поле заполнено неверно. Спецсимволов запрещены
+                            <p>{{'user-settings.alert-incorrect-symbols' | translate}}</p>
                         </div>
                     </div>
                     <div class="fields">
-                        <h5 class="fields-title"> Фамилия</h5>
+                        <h5 class="fields-title"> {{'general.surname' | translate}}</h5>
                         <input class="fields-value" [(ngModel)]="userSettingsModel.surname" #surname="ngModel" [pattern]="unamePattern" name="surname" placeholder="Фамилия" type="text" required>
                         <div *ngIf="surname.control.touched && surname.control.status === 'INVALID'" class="alert-danger">
-                            <p>Поле заполнено неверно. Спецсимволов запрещены</p>
+                            <p>{{'user-settings.alert-incorrect-symbols' | translate}}</p>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="gender-block radio-btns">
-                <h3 class="block-title">Пол</h3>
+                <h3 class="block-title">{{'general.gender' | translate}}</h3>
                 <input type="radio" id="male" class="radioButton" name="gender" value="male" [(ngModel)]="userSettingsModel.gender">
                 <label for="male"></label>
-                <h5 class="radio-title">Мужской</h5>
+                <h5 class="radio-title">{{'general.gender-male' | translate}}</h5>
 
                 <input type="radio" id="female" class="radioButton" name="gender" value="female" [(ngModel)]="userSettingsModel.gender">
                 <label for="female"></label>
-                <h5 class="radio-title">Женский</h5>
+                <h5 class="radio-title">{{'general.gender-female' | translate}}</h5>
             </div>
             <div class="birthday-block">
-                <div class="block-title">Дата рождения</div>
+                <div class="block-title">{{'user-settings.date-of-birth' | translate}}</div>
                 <!-- <input class="fields-value" type="text" [(ngModel)]="dashboardSettings.description"> -->
                 <app-birthday-user-settings *ngIf="userSettingsModel" [userBirthDay]="userSettingsModel.birthDay"></app-birthday-user-settings>
             </div>
-            <h5 class="fields-title">Расскажите о себе</h5>
+            <h5 class="fields-title">{{'user-settings.tell-about-yourself' | translate}}</h5>
             <mat-form-field floatLabel="always" class="about_me-block">
                 <textarea class="fields-value" #serviceDescription name="description" [(ngModel)]="userSettingsModel.description" cols="45" matInput maxlength="1200"></textarea>
-                <mat-hint align="end">{{ serviceDescription.value.length }} из 1200 максимально</mat-hint>
+                <mat-hint align="end">{{ serviceDescription.value.length }} {{'user-settings.max-symbols1200' | translate}}</mat-hint>
             </mat-form-field>
         </form>
     </div>
