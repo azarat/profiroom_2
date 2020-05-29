@@ -41,50 +41,12 @@
     <div class="wrapper">
         <div class="get-start__wrap">
             <div class="top">
-                <h3 class="get-start__title">Готовы начать?</h3>
-                <p class="get-start__text">Создайте аккаунт и находите лучших фрилансеров для своего бизнеса. </p>    
+                <h3 class="get-start__title">{{'home-page.get-start-subtitle' | translate}}</h3>
+                <p class="get-start__text">{{'home-page.get-start-title' | translate}}</p>    
             </div>
-            <a class="btn" [routerLink]="['/auth'] | localize">Создать аккаунт</a>
+            <a class="btn" [routerLink]="['/auth'] | localize">{{'home-page.get-start-btn' | translate}}</a>
         </div>
     </div>
 </section>
-<footer class="footer">
-    <div class="wrapper">
-        <div class="columns-list">
-            <div class="column column-info">
-                <h4>gigrum</h4>
-                <p>oнлайн биржа фрилансеров для бизнеса</p>
-            </div>
-            <ul class="column">
-                <li class="column-title">Категории</li>
-                <li class="column-item"><a [routerLink]="['/catalog', 'Design-Art'] | localize">Графика и Дизайн </a></li>
-                <li class="column-item"><a [routerLink]="['/catalog', 'Webprogramming'] | localize">Вёрстка и Разработка </a></li>
-                <li class="column-item"><a [routerLink]="['/catalog', 'WorkingwithTexts'] | localize">Копирайтинг и Переводы </a></li>
-                <li class="column-item"><a [routerLink]="['/catalog', 'Marketing', 'SEOsiteaudit'] | localize">SЕО и Аналитика </a></li>
-                <li class="column-item"><a [routerLink]="['/catalog', 'Marketing'] | localize">Интернет маркетинг </a></li>
-                <li class="column-item"><a [routerLink]="['/catalog', 'Audio-Video'] | localize">Видио и Анимация </a></li>
-            </ul>
-            <ul class="column">
-                <li class="column-title">Поддержка</li>
-                <li class="column-item"><a>Центр поддержки </a></li>
-                <li class="column-item"><a>Вопросы </a></li>
-                <li class="column-item"><a>Условия соглашения </a></li>
-                <li class="column-item"><a>Отказ от ответственности </a></li>
-                <li class="column-item"><a>Политика конфиденциальности </a></li>
-            </ul>
-            <ul class="column">
-                <li class="column-title">Gigrum</li>
-                <li class="column-item"><a>Как это работает </a></li>
-                <li class="column-item"><a>Вопросы </a></li>
-                <li class="column-item"><a>Блог </a></li>
-            </ul>
-        </div>
-        <div class="copyright">
-            <span>© Gigrum, все права защищены, 2019</span>
-        </div>
-    </div>
-    <div class="arrows">
-        <img class="arrow" src="assets/images/home-page/gray-line.svg" alt="">
-        <img class="arrow" src="assets/images/home-page/gray-line2.svg" alt="">
-    </div>
-</footer>
+
+<app-footer></app-footer>

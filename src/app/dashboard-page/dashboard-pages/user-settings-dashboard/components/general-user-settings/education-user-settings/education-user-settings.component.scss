@@ -293,7 +293,7 @@ button {
     margin-right: 3%;
     margin-bottom: 20px;
     position: relative;
-    button.delete-file {
+    .delete-photo {
       position: absolute;
       height: 24px;
       width: 24px;
@@ -313,6 +313,8 @@ button {
         content: "\e900";
         font-size: 18px;
         font-family: "icomoon";
+        left: 50%;
+        top: 50%;
         transform: translate(-50%, -50%);
         color: red;
       }

@@ -4,6 +4,8 @@
   background: #f1f2f4;
   font-family: Source Sans Pro;
   font-weight: normal;
+
+  padding-bottom: 120px;
 }
 .section-title {
   font-weight: 600;
@@ -569,6 +571,12 @@
   font-size: 16px;
   line-height: 20px;
   color: #99ACB7;
+}
+
+:host::ng-deep{
+  .footer{
+    background-color: #f1f2f4!important;
+  }
 }
 
 @media (max-width: 1499px) {

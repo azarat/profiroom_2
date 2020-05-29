@@ -105,6 +105,18 @@ export class EducationUserSettingsComponent implements OnInit, OnChanges  {
       }
       this.userSettings.education[i].diploma.push(this.previewUrl);
     });
+
+    
+  }
+
+  public deleteDiplomaPhoto(imgName, institutIndex, imgIndex){
+    
+    this.userSettingsService.deleteFile({link: imgName})
+    .subscribe((res: any) => {
+      console.log(res);
+      this.userSettings.education[institutIndex].diploma.splice(imgIndex, 1);
+    });
+
   }
 
   // --------------- open single item -----------------//

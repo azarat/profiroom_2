@@ -15,7 +15,7 @@ export class UserSettingsService {
     return this.http.post('/loadAva', files);
   }
 
-  // ------ education avatar -------
+  // ------ education -------
   newEducationId() {
     return this.http.post('/newEducation', '');
   }
@@ -26,13 +26,13 @@ export class UserSettingsService {
   uploadDiplomaPhotos(files) {
     return this.http.post('/loadDiplomaFiles', files);
   }
-  deleteFile(id) {
-    return this.http.post('/deleteDiplomaFiles', id);
+  deleteFile(imgName) {
+    return this.http.post('/deleteDiplomaFiles', imgName);
   }
 
 
 
-  // ------ Additional education avatar -------
+  // ------ Additional education -------
   newAdditioanlEducationId() {
     return this.http.post('/newAdditionalEducation', '');
   }

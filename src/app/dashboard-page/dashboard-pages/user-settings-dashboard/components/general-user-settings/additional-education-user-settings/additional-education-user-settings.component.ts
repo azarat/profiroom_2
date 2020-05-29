@@ -114,6 +114,16 @@ export class AdditionalEducationUserSettingsComponent implements OnInit, OnChang
 
   }
 
+  public deleteDiplomaPhoto(imgName, institutIndex, imgIndex){
+    
+    this.userSettingsService.deleteFile({link: imgName})
+    .subscribe((res: any) => {
+      console.log(res);
+      this.userSettings.additionalEducation[institutIndex].additionalDiploma.splice(imgIndex, 1);
+    });
+
+  }
+
   chooseItem(i) {
     if (this.openItem === i ) {
       this.openItem = null;

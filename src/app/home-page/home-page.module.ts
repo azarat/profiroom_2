@@ -16,6 +16,7 @@ import { HomePageSupportComponent } from './home-page-support/home-page-support.
 import { HomePageSupportPersonalComponent } from './home-page-support/home-page-support-personal/home-page-support-personal.component';
 import { CategoriesHeaderModule } from '../shared/modules/categories-header/categories-header.module';
 import { TranslateModule } from '@ngx-translate/core';
+import { FooterModule } from '../shared/modules/footer/footer.module';
 // import { HomePageSupportPersonalComponent } from './home-page-support/home-page-support-personal/home-page-support-personal.component';
 
 const routes: Routes = [
@@ -50,7 +51,8 @@ const routes: Routes = [
     MainHeaderModule,
     MatExpansionModule,
     ChatModule,
-    CategoriesHeaderModule
+    CategoriesHeaderModule,
+    FooterModule
   ]
 })
 export class HomePageModule { }
