@@ -98,6 +98,9 @@
 }
 input[type=checkbox].tgl-classic + label{
   background: #fbfcfd;
+  &:before{
+    vertical-align: baseline;
+  }
 }
 .pckg-swap {
   display: flex;

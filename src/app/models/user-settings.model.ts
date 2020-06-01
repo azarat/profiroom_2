@@ -91,6 +91,7 @@ export class UserNotifications {
   @Expose() reservationFinancial: boolean;
   @Expose() deadlines: boolean;
   @Expose() orderFeedback: boolean;
+  @Expose() lvlChanges: boolean;
 }
 
 
