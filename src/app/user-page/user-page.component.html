@@ -30,7 +30,7 @@
                     <span class="offline" *ngIf="!userData.online">{{'general.offline' | translate}}</span>
                 </div>
 
-                <div class="general-information__lvl">{{'general.level' | translate}}: <span class="value">{{lvlTranslation[userData.rank_id]}}</span>
+                <div class="general-information__lvl">{{'general.level' | translate}}: <span class="value">{{lvlTranslation[userData.rank_id]  | translate}}</span>
                 </div>
             </div>
             <div class="general-information__wrapper" *ngIf="userTypeFreelancer">
@@ -165,7 +165,7 @@
                             <div class="education__group">
                                 <div class="education__specialty">{{ education_item.courseName}}</div>
                                 <div class="education__years">
-                                    {{ monthTranslate[education_item.startStudyMonth]}} {{ education_item.startStudyYear}} - <span *ngIf="education_item.startStudyMonth !== 0 && education_item.endStudyYear !== 0">{{ monthTranslate[education_item.endStudyMonth]}}</span> <span *ngIf="education_item.endStudyYear !== 0">{{ education_item.endStudyYear}}</span><span *ngIf="education_item.endStudyYear === 0"> ({{'general.comments' | translate}})</span>
+                                    {{ monthTranslate[education_item.startStudyMonth]}} {{ education_item.startStudyYear}} - <span *ngIf="education_item.startStudyMonth !== 0 && education_item.endStudyYear !== 0">{{ monthTranslate[education_item.endStudyMonth]}}</span> <span *ngIf="education_item.endStudyYear !== 0">{{ education_item.endStudyYear}}</span><span *ngIf="education_item.endStudyYear === 0"> {{'user-page.unknown-completion' | translate}}</span>
                                 </div>
                             </div>
                         </div>
@@ -179,7 +179,7 @@
             <div class="section-title">{{'user-page.general-raiting' | translate}}</div>
             <div class="rating__wrapper" *ngIf="userTypeFreelancer">
                 <div class="rating__info-block">
-                    <div class="rating__name">{{'raitings.service-quality' | translate}}</div>
+                    <div class="rating__name">{{'raitings.services-quality' | translate}}</div>
                     <div class="star-rating" [ngClass]="{'empty-rating': userData.averageRating.freelancer.qualityMark == 0}">
                         {{ userData.averageRating.freelancer.qualityMark}}</div>
                 </div>

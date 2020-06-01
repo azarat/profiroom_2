@@ -40,13 +40,9 @@ export class EducationUserSettingsComponent implements OnInit, OnChanges  {
   ngOnInit() {
     this.createYearsFinished(1960);
     this.createYears(2020);
-    
-    // this.openItem = this.userSettings.education.length;
     this.openItem = null;
-    console.log(this.closeAfterSaveSettings);
   }
   ngOnChanges() {
-    console.log(this.closeAfterSaveSettings);
     this.closeAfterSaveSettings ? this.openItem = null: this.openItem = this.userSettings.education.length;
   }
 

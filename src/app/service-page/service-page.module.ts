@@ -19,6 +19,9 @@ import { UsersCommentsModule } from 'src/app/shared/modules/users-comments/users
 import { MatCheckboxModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ServicePageCheckoutComponent } from './components/service-page-checkout/service-page-checkout.component';
+import {
+  TranslateModule
+} from '@ngx-translate/core';
 
 const routes: Routes = [
   {
@@ -52,6 +55,7 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     UsersCommentsModule,
+    TranslateModule,
   ],
   exports: [
     ServicePageComponent,

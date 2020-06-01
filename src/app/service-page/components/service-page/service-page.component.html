@@ -5,13 +5,13 @@
   <!-- <nav class="navigation_page" #stickyMenu [ngClass] = "{'sticky': sticky}"> -->
   <div class="wrapper">
     <ul>
-      <li (click)="scrollTo('portfolio')">Портфолио</li>
-      <li (click)="scrollTo('compare-table')">пакеты и услуги</li>
-      <li (click)="scrollTo('description')">описание</li>
-      <li (click)="scrollTo('rating')">рейтинг</li>
-      <li (click)="scrollTo('comments')">отзывы</li>
-      <li (click)="scrollTo('questions')">Вопросы и ответы</li>
-      <li (click)="scrollTo('about-offer')">О фрилансере</li>
+      <li (click)="scrollTo('portfolio')">{{'service-page.portfolio' | translate}}</li>
+      <li (click)="scrollTo('compare-table')">{{'service-page.packages-and-services' | translate}}</li>
+      <li (click)="scrollTo('description')">{{'general.description' | translate}}</li>
+      <li (click)="scrollTo('rating')">{{'general.rating' | translate}}</li>
+      <li (click)="scrollTo('comments')">{{'general.comments' | translate}}</li>
+      <li (click)="scrollTo('questions')">{{'service-page.questions' | translate}}</li>
+      <li (click)="scrollTo('about-offer')">{{'general.about-freelancer' | translate}}</li>
     </ul>
   </div>
 </nav>
@@ -20,7 +20,7 @@
 
   <div class="bread-crumbs" *ngIf='!step2'>
     <ul *ngIf="offerData">
-      <li><a [routerLink]="['/'] | localize">Главная</a></li>
+      <li><a [routerLink]="['/'] | localize">{{'menu.home' | translate}}</a></li>
       <li><a [routerLink]="['/catalog', offerData.category] | localize">{{ offerData.category }}</a></li>
       <li><a>{{ offerData.title }}</a></li>
     </ul>
@@ -41,7 +41,7 @@
             <div class="user-rating-wrap">
               <span class="star-rating" [ngClass]="{'empty-rating': offerData.rating == 0}">{{ offerData.rating }}</span>
             </div>
-            <span class="user-comments">({{ convertedNumberOfComments }} отзывов)</span>
+            <span class="user-comments">({{ convertedNumberOfComments }} {{'general.comments' | translate}})</span>
           </div>
         </div>
 
@@ -77,7 +77,7 @@
       <app-ngx-gallery [offerData]="offerData" *ngIf="offerData" id="portfolio"></app-ngx-gallery>
 
       <div class="about-offer" id="description">
-        <h4>Описание услуги</h4>
+        <h4>{{'service-page.description' | translate}}</h4>
         <div class="about-offer__text" [innerHTML]="offerData.description"></div>
       </div>
 
@@ -86,33 +86,33 @@
 
       <section class="offer-rating" id="rating">
         <h4 class="section-title">
-          Рейтинг услуги “{{ offerData.title }}”
+          {{'service-page.service-rating' | translate}} <span>“{{ offerData.title }}”</span> 
         </h4>
         <div class="rating-type">
-          <div class="rating-type_name">Качество услуги</div>
+          <div class="rating-type_name">{{'raitings.service-quality' | translate}}</div>
           <div class="rating-type_numeral">
             <span class="star-rating" [ngClass]="{'empty-rating': offerData.averageRating.qualityMark === 0}">{{ offerData.averageRating.qualityMark }}</span>
           </div>
         </div>
         <div class="rating-type">
-          <div class="rating-type_name">Срок исполнения</div>
+          <div class="rating-type_name">{{'raitings.period-of-execution' | translate}}</div>
           <div class="rating-type_numeral">
             <span class="star-rating" [ngClass]="{'empty-rating': offerData.averageRating.qualityMark === 0}">{{ offerData.averageRating.termMark }}</span>
           </div>
         </div>
         <div class="rating-type">
-          <div class="rating-type_name">Вежливость фрилансера</div>
+          <div class="rating-type_name">{{'raitings.politness-of-freelancer' | translate}}</div>
           <div class="rating-type_numeral">
             <span class="star-rating" [ngClass]="{'empty-rating': offerData.averageRating.qualityMark === 0}">{{ offerData.averageRating.politenessMark }}</span>
           </div>
         </div>
 
         <div class="rating-type average">
-          <div class="rating-type_name">Средняя оценка</div>
+          <div class="rating-type_name">{{'raitings.average-rating' | translate}}</div>
           <div class="rating-type_numeral">
             <span class="star-rating" [ngClass]="{'empty-rating': offerData.averageRating.qualityMark === 0}">{{ offerData.averageRating.averageMark }}</span>
           </div>
-          <span class="comments-count">( {{ offerData.comments_count}} отзывов)</span>
+          <span class="comments-count">( {{ offerData.comments_count}} {{'general.comments' | translate}})</span>
         </div>
       </section>
 
@@ -138,12 +138,12 @@
     <div class="error-message__info-block">
       <div class="error-message__icon"><img src="/assets/images/svg/error-message-icon.svg" alt=""></div>
       <div class="error-message__text">
-        <p class="accent">Вы не можите заказать услугу пока не авторизируетесь</p>
-        <p>Зарегистрируйтесь если вы ещё этого не сделали</p>
+        <p class="accent">{{'service-page.description1' | translate}}</p>
+        <p>{{'service-page.description2' | translate}}</p>
       </div>
       <div class="btns-wrapper">
-        <div class="btn" [routerLink]="'/auth' | localize">Авторизируйтесь</div>
-        <div class="btn accent" (click)="closeErrorMessage()">Закрыть</div>
+        <div class="btn" [routerLink]="'/auth' | localize">{{'general.authorize' | translate}}</div>
+        <div class="btn accent" (click)="closeErrorMessage()">{{'general.close' | translate}}</div>
       </div>
       <div class="error-message__close" (click)="closeErrorMessage()"></div>
     </div>

@@ -112,6 +112,7 @@
     margin-right: 17px;
     position: relative;
     cursor: pointer;
+    z-index: 9;
     &.tooltip {
       opacity: 1;
       &:before {

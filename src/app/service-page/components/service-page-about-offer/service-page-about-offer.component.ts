@@ -12,6 +12,14 @@ export class ServicePageAboutOfferComponent implements OnInit {
   @Input() offerData: OfferDataInterface;
   public convertedNumberOfComments;
 
+  public lvlTranslation = [
+    'ranks.zero.title',
+    'ranks.first.title',
+    'ranks.second.title',
+    'ranks.third.title',
+    'ranks.forth.title'
+  ];
+
   constructor(
     private servicePageService: ServicePageService
   ) { }

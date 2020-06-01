@@ -42,11 +42,11 @@ export class UserPageComponent implements OnDestroy, OnInit  {
     'Доктор наук'
   ];
   public lvlTranslation = [
-    'Стартовый',
-    'Начинающий',
-    'Уверенный',
-    'Опытный',
-    'Мастер джедай'
+    'ranks.zero.title',
+    'ranks.first.title',
+    'ranks.second.title',
+    'ranks.third.title',
+    'ranks.forth.title'
   ];
   public monthTranslate = [
     'Январь',

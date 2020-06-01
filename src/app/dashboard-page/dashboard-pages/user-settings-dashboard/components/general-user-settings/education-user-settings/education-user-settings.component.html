@@ -9,21 +9,21 @@
         <div class="single-education-block" *ngFor="let arrayItem of userSettings.education; let i = index">
 
          <div class="field-block">
-            <h5 class="fields-title">Учебное заведение</h5>
+            <h5 class="fields-title">{{'user-settings.institution-name' | translate}}</h5>
             <input
               class="fields-value"
               type="text"
               required
               #institution="ngModel"
-              minlength="4"
+              minlength="3"
               name="institution-{{i}}"
-              placeholder="Учебное заведение"
+              placeholder="{{'user-settings.institution-name' | translate}}"
               [(ngModel)]="userSettings.education[i].institution"
               [ngClass] = "{not_Valid: !institution.valid}"
             >
 
             <div *ngIf="!institution.valid" class="alert-danger">
-              <p>institution must be at least 4 characters long.</p>
+              <p>{{'user-settings.alert-min-length3' | translate}}</p>
             </div>
 
           </div>
@@ -31,7 +31,7 @@
           <div class="toggle_block" [ngClass]="{ hidden: openItem !== i+ 1}">
             <div class="academicBlock">
               <div class="field-block academic-degrees service-selects">
-                <label class="block-title" for="academicDegree">Учёная степень</label>
+                <label class="block-title" for="academicDegree">{{'user-settings.academic-degree' | translate}}</label>
                 <mat-select name="academicDegree" id="academicDegree"
                   [(ngModel)]="userSettings.education[i].academicDegree">
                   <ng-container *ngFor="let academicDegree of academicDegrees">
@@ -41,7 +41,7 @@
               </div>
 
               <div class="field-block">
-                <h5 class="fields-title">Специальность</h5>
+                <h5 class="fields-title">{{'user-settings.specialty' | translate}}</h5>
                 <input
                   class="fields-value"
                   type="text"
@@ -49,13 +49,13 @@
                   #specialty="ngModel"
                   minlength="4"
                   name="specialty-{{i}}"
-                  placeholder="Специальность"
+                  placeholder="{{'user-settings.specialty' | translate}}"
                   [(ngModel)]="userSettings.education[i].specialty"
                   [ngClass] = "{not_Valid: !specialty.valid}"
 
                   >
                   <div *ngIf="!specialty.valid" class="alert-danger">
-                    <p>specialty must be at least 4 characters long.</p>
+                    <p>{{'user-settings.alert-min-length3' | translate}}</p>
                   </div>
               </div>
 
@@ -63,7 +63,7 @@
 
             <div class="studyPeriod">
               <div class="field-block service-selects">
-                <label class="block-title" for="startEducation">Год старта</label>
+                <label class="block-title" for="startEducation">{{'user-settings.education-start' | translate}}</label>
                 <mat-select name="startEducation" id="startEducation"
                   [(ngModel)]="userSettings.education[i].startEducation" (selectionChange)="createYearsFinished($event.value)">
                   <ng-container *ngFor="let startEducation of yearsArr">
@@ -72,7 +72,7 @@
                 </mat-select>
               </div>
               <div class="field-block service-selects">
-                <label class="block-title" for="finishEducation">Год окончания</label>
+                <label class="block-title" for="finishEducation">{{'user-settings.education-end' | translate}}</label>
                 <mat-select name="finishEducation" id="finishEducation" (selectionChange)="createYears($event.value)"
                   [(ngModel)]="userSettings.education[i].finishEducation">
                   <ng-container *ngFor="let finishEducation of yearsFinishArr">
@@ -95,7 +95,7 @@
             <div class="add-photos">
               <input type="file" id="diplomaFiles-{{i}}"  class="input-file" #file name="file"
                 (change)="fileProgress($event.target.files, userSettings.education[i].id, i)" />
-              <label for="diplomaFiles-{{i}}">Загрузить файл/фото диплома</label>
+              <label for="diplomaFiles-{{i}}">{{'user-settings.onload-diploma' | translate}}</label>
             </div>
 
             <button type="button" class="change">
@@ -111,7 +111,7 @@
         <div class="add-education">
           <button class="add btn-third" type="submit">
             <i class="material-icons">add_circle_outline</i>
-            <span>Добавить образование</span>
+            <span>{{'user-settings.add-education' | translate}}</span>
           </button>
         </div>
 
