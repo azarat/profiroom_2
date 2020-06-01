@@ -27,9 +27,9 @@ export class UserPageComponent implements OnDestroy, OnInit  {
   openModalWindow: boolean = false;
   imagePointer: number;
 
-  public clickedEducationImgs = null;
-  public clickedSingleImg = null;
-  public openEducationImgs = null;
+  public clickedImgsArr = null;   //індекс масиву серед ынших картинок 
+  public clickedImg = null;       //індекс картинки в масиві до одного навчання
+  public imgTypeEducation = null;      //картина відноситься до "вищої освіти" чи да "додаткової освіти"
   public userTypeFreelancer = 1;
   public userRole: string = 'Freelancer';
 
@@ -155,10 +155,16 @@ export class UserPageComponent implements OnDestroy, OnInit  {
 
   // img pop-up
   public showPopUp(i, thisArrNumber, kindOfImgs) {
-    // this.windowScrolling.disable();
-    this.clickedEducationImgs = this.clickedEducationImgs !== thisArrNumber? thisArrNumber: false;
-    this.clickedSingleImg = this.clickedSingleImg !== i? i: false;
-    this.openEducationImgs = kindOfImgs? true: false;
+    this.windowScrolling.disable();
+    this.clickedImgsArr = this.clickedImgsArr !== thisArrNumber? thisArrNumber: false;
+    if(this.clickedImg !== i) {
+      this.clickedImg = i;
+      this.windowScrolling.disable();
+    } else {
+      this.clickedImg = null;
+      this.windowScrolling.enable();
+    }
+    this.imgTypeEducation = kindOfImgs? true: false;
   }
 
   // switching user types

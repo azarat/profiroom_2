@@ -18,7 +18,7 @@ export const routes: Routes = [
   {
     path: 'auth',
     canActivateChild: [AuthorisatedGuard],
-    data: { skipRouteLocalization: true },
+    // data: { skipRouteLocalization: true },
     // pathMatch: 'prefix',
     loadChildren: () => import('./authorization-page/authorization-page.module').then(m => m.AuthorizationPageModule)
   },

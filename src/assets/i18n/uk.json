@@ -545,6 +545,8 @@
 	"service-page.description": "Опис послуги",
 	"service-page.final-price": "кінцева вартість",
 	"service-page.more-services": "більше послуг в профілі",
+	"service-page.nonAuthorized-subtitle": "Неавторизовані користувачі не можуть замовити послугу",
+	"service-page.nonAuthorized-title": "Помилка авторизації",
 	"service-page.not-authorized-message1": "Ви не можите замовити послугу поки не авторизуєтес",
 	"service-page.not-authorized-message2": "Увійдіть якщо ви ще цього не зробили",
 	"service-page.order-service": "Замовити послугу",

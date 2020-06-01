@@ -44,7 +44,7 @@
                 <h3 class="get-start__title">{{'home-page.get-start-subtitle' | translate}}</h3>
                 <p class="get-start__text">{{'home-page.get-start-title' | translate}}</p>    
             </div>
-            <a class="btn" [routerLink]="['/auth'] | localize">{{'home-page.get-start-btn' | translate}}</a>
+            <a class="btn" [routerLink]="['/auth'] | localize" [queryParams]="{type: 'signup'}" role="button">{{'home-page.get-start-btn' | translate}}</a>
         </div>
     </div>
 </section>

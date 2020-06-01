@@ -92,7 +92,7 @@
               </ng-container>
             </div>
 
-            <div class="add-photos">
+            <div class="add-photos" *ngIf="userSettings.education[i].diploma && userSettings.education[i].diploma.length < 5">
               <input type="file" id="diplomaFiles-{{i}}"  class="input-file" #file name="file"
                 (change)="fileProgress($event.target.files, userSettings.education[i].id, i)" />
               <label for="diplomaFiles-{{i}}">{{'user-settings.onload-diploma' | translate}}</label>

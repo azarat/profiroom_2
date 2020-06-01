@@ -29,7 +29,7 @@
             <div class="field-block" *ngIf="userSettings.language">
               <h5 class="fields-title">{{'user-settings.language' | translate}}</h5>
               <input class="fields-value" [(ngModel)]="userSettings.language[i].langName" #langName="ngModel"
-                [pattern]="unamePattern" type="text" name='langName'
+                [pattern]="unamePattern" type="text" name='langName_{{i}}'
                 [ngClass]="{not_Valid: !langName.valid && langName.control.touched}" required>
               <div *ngIf="langName.control.touched && langName.control.status === 'INVALID'" class="alert-danger">
                 <p>{{'user-settings.alert-required' | translate}}</p>

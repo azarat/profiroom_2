@@ -139,7 +139,7 @@ export class EducationUserSettingsComponent implements OnInit, OnChanges  {
   // --------------- create years finish array-----------------//
   createYearsFinished(limit) {
     this.yearsFinishArr = [];
-    for (let i = limit; i <= 2019; i++) {
+    for (let i = limit; i <= 2027; i++) {
       this.yearsFinishArr.push(i);
     }
   }

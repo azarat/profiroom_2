@@ -47,11 +47,9 @@ export class AdditionalEducationUserSettingsComponent implements OnInit, OnChang
     this.createMonthArray();
     // this.openItem = this.userSettings.additionalEducation.length;
     this.openItem = null;
-    console.log(this.openItem);
   }
 
   ngOnChanges() {
-    console.log(this.closeAfterSaveSettings);
     this.closeAfterSaveSettings ? this.openItem = null: this.openItem = this.userSettings.education.length;
   }
 
