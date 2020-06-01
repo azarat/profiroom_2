@@ -19,7 +19,7 @@ export class CategoriesHeaderComponent implements OnInit {
     private _route: ActivatedRoute,
   ) {
     this._route.data.subscribe(Params => {
-      if(Params.localizeRouter.path === "catalog"){
+      if(Params.localizeRouter && Params.localizeRouter.path === 'catalog'){
         this.noHover = true;
       }
     });

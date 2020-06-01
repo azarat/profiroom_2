@@ -31,6 +31,9 @@ export class LanguageComponent implements OnInit {
 
   ) {
     // this.translate.setDefaultLang('uk');
+    // const url = this._router.url;
+
+    // console.log(url);
   }
 
 
