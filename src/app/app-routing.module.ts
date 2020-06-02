@@ -6,7 +6,7 @@ import { LocalizeRouterModule } from 'localize-router';
 
 
 
-export const routes: Routes = [
+export const appRoutes: Routes = [
   {
     path: '',
     loadChildren: () => import('./home-page/home-page.module').then(m => m.HomePageModule),
@@ -18,7 +18,6 @@ export const routes: Routes = [
   {
     path: 'auth',
     canActivateChild: [AuthorisatedGuard],
-    // data: { skipRouteLocalization: true },
     // pathMatch: 'prefix',
     loadChildren: () => import('./authorization-page/authorization-page.module').then(m => m.AuthorizationPageModule)
   },
@@ -49,8 +48,8 @@ export const routes: Routes = [
 
 @NgModule({
   imports: [
-    LocalizeRouterModule.forChild(routes),
-    RouterModule.forRoot(routes)
+    // LocalizeRouterModule.forChild(routes),
+    RouterModule.forRoot(appRoutes)
   ],
   exports: [RouterModule]
 })

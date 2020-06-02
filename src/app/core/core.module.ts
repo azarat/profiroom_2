@@ -4,7 +4,7 @@ import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common
 import { BaseInterceptor } from './interceptors/base-interceptor';
 import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
 import { LocalizeRouterModule, LocalizeParser, LocalizeRouterSettings } from 'localize-router';
-import { routes } from '../app-routing.module';
+import { appRoutes } from '../app-routing.module';
 import {Location} from '@angular/common';
 import {LocalizeRouterHttpLoader} from 'localize-router-http-loader';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
@@ -40,14 +40,14 @@ export const url = new URL(location.href).origin;
       useDefaultLang: true
       }
     ),
-    LocalizeRouterModule.forRoot(routes, {
+    LocalizeRouterModule.forRoot(appRoutes, {
       parser: {
         provide: LocalizeParser,
         useFactory: (translate: TranslateService, location: Location, settings: LocalizeRouterSettings, http: HttpClient, ) =>
             new LocalizeRouterHttpLoader(translate, location, settings, http, url + '/assets/locales.json'),
         deps: [TranslateService, Location, LocalizeRouterSettings, HttpClient, ],
       },
-      alwaysSetPrefix: false,
+      // alwaysSetPrefix: false,
     }),
     ScrollToModule.forRoot()
   ],

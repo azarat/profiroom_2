@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FinanceInterface } from '../../interfaces/finance.interface';
-import { FormControl } from '@angular/forms';
+import { FormControl, NgForm } from '@angular/forms';
 import { compressedFinanceInfoConst } from '../../consts/compressed-finance-info.const';
 import { UserFinanceService } from '../../services/user-finance.service';
 
@@ -20,7 +20,8 @@ export class UserFinancesComponent implements OnInit {
   public paymentsFullSize =  false;
   public userCashMoves: any[];
   public allStatisticInfo: any[] = compressedFinanceInfoConst;
-
+  public submited: boolean = null;
+  public errorMessage: boolean = null;
   constructor(
     private userFinanceService: UserFinanceService
   ) { }
@@ -38,8 +39,21 @@ export class UserFinancesComponent implements OnInit {
 
 
 
-  makePayment() {
-    this.userFinanceService.makePayment(this.transactions);
+  makePayment(form: NgForm) {
+    this.submited = true;
+    if (form.invalid) {
+      return;
+    }
+    this.userFinanceService.makePayment(this.transactions)
+    .subscribe((res: any) => {
+      if (res.message === 'fail') {
+        this.errorMessage = true;
+      } else {
+        this.userFinanceService.ranLiqPay(res);
+      }
+
+
+  });
   }
 
  public unrollPaymentsList() {
@@ -48,6 +62,10 @@ export class UserFinancesComponent implements OnInit {
 
   public rollPaymentsList() {
     this.paymentsFullSize = false;
+  }
+
+  public tryPayAgain() {
+    this.errorMessage = null;
   }
 
 }

@@ -4,7 +4,7 @@
     </section>
     <section class="brief">
         <h3 class="title">
-            <a href="/">{{'chat.work_chat.brief-filling.title' | translate}}</a>
+            <a [routerLink]="'/service' | localize" [queryParams]="{offerId: offerBrief[0].offers_id}">{{ collocutorData.offers_title }}</a>
         </h3>
 
         <form class="questions" [formGroup]="briefForm">

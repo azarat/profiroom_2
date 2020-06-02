@@ -1,4 +1,4 @@
 {
-    "locales": ["ru", "en", "uk"],
-    "prefix": "ROUTES"
+    "locales": ["uk", "ru"],
+    "prefix": ""
 }

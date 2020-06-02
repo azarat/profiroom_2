@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { LocalizeRouterService } from 'localize-router';
 import { ActivatedRoute, Router } from '@angular/router';
+import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 
 @Component({
   selector: 'app-language',
@@ -28,9 +29,13 @@ export class LanguageComponent implements OnInit {
     private _route: ActivatedRoute,
     // tslint:disable-next-line: variable-name
     private _router: Router,
+    private localStorageService: LocalStorageService
 
   ) {
-    // this.translate.setDefaultLang('uk');
+    this.translate.setDefaultLang('uk');
+    const url = this._router.url;
+
+    // console.log(url);
   }
 
 
@@ -45,6 +50,8 @@ export class LanguageComponent implements OnInit {
   }
 
   setLanguage(language: string) {
+    // this.localStorageService.setItem('userLanguage', language);
+    localStorage.setItem('userLanguage', language);
     this.localize.changeLanguage(language);
   }
 
