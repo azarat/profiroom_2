@@ -12,6 +12,7 @@ import {
 import {
   Router
 } from '@angular/router';
+import { LocalStorageService } from './core/services/local-storage.service';
 
 @Component({
   selector: 'app-root',
@@ -25,7 +26,8 @@ export class AppComponent implements OnInit {
   constructor(
     private translate: TranslateService,
     private localize: LocalizeRouterService,
-    private router: Router
+    private router: Router,
+    private localStorageService: LocalStorageService
   ) {
 
 
@@ -34,16 +36,31 @@ export class AppComponent implements OnInit {
 
   }
   ngOnInit() {
-    this.translate.addLangs(['uk', 'ru']);
-    this.translate.setDefaultLang('uk');
 
-    const browserLang = this.translate.getBrowserLang();
-    const lang = (browserLang.match(/uk|ru/)) ? browserLang : 'uk';
-
+    const userLang = this.localStorageService.getItem('userLanguage').value;
     const url = this.router.url;
+    if(userLang !== 'uk') {
+      let translatedPath: any = this.localize.translateRoute('about/me');
 
-    console.log(url);
-    this.localize.changeLanguage(lang);
+      // do something with translated path
+      // e.g. this.router.navigate([translatedPath]);
+    }
+    // const url = this.router.url;
+    // if(url.match(/uk/)) {
+    //   console.log('da')
+    // }
+    // this.translate.addLangs(['uk', 'ru']);
+    // this.translate.setDefaultLang('uk');
+
+    // const browserLang = this.translate.getBrowserLang();
+
+
+    // // const lang = (browserLang.match(/uk|ru/)) ? browserLang : 'uk';
+
+
+
+    // console.log(url);
+    // // this.localize.changeLanguage('uk');
     }
   }
 

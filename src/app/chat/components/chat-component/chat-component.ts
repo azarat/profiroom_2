@@ -76,6 +76,7 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   public openPayment(e) {
     this.moneyRequired = e;
+    console.log(e)
   }
 
 

@@ -151,7 +151,7 @@ export class MessengerToolsComponent implements OnInit, OnDestroy {
   public holdDealMoney() {
     this.dealService.holdMoney(this.collocutorData.id)
       .subscribe((res: any) => {
-        if( res.message === 'not enough money') {
+        if ( res.message === 'not enough money') {
           this.noMoney.emit(res.amount);
         }
       });

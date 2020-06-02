@@ -12,5 +12,6 @@ export class Brief {
   @Expose() briefAnswer: any;
   @Expose() multi_answers: any;
   @Expose() answers: any;
+  @Expose() offers_id: number;
 
 }

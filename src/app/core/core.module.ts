@@ -44,10 +44,10 @@ export const url = new URL(location.href).origin;
       parser: {
         provide: LocalizeParser,
         useFactory: (translate: TranslateService, location: Location, settings: LocalizeRouterSettings, http: HttpClient, ) =>
-            new LocalizeRouterHttpLoader(translate, location, settings, http),
+            new LocalizeRouterHttpLoader(translate, location, settings, http, url + '/assets/locales.json'),
         deps: [TranslateService, Location, LocalizeRouterSettings, HttpClient, ],
       },
-      alwaysSetPrefix: false,
+      // alwaysSetPrefix: false,
     }),
     ScrollToModule.forRoot()
   ],
