@@ -113,7 +113,7 @@
             <ul class="languages__wrapper">
                 <li class="languages__info-block" *ngFor="let language of userData.language">
                     <div class="languages__name">{{ language.langName}} </div>
-                    <div class="languages__lvl"> - {{ academicDegreesTranslations[language.langLevel-1]}}</div>
+                    <div class="languages__lvl"> - {{ languageTranslates[language.langLevel-1] | translate}}</div>
                 </li>
             </ul>
         </section>

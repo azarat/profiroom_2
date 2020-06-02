@@ -35,7 +35,7 @@
                 <mat-select name="academicDegree" id="academicDegree"
                   [(ngModel)]="userSettings.education[i].academicDegree">
                   <ng-container *ngFor="let academicDegree of academicDegrees">
-                    <mat-option [value]="academicDegree">{{ academicDegreesTranslations[academicDegree-1] }}</mat-option>
+                    <mat-option [value]="academicDegree">{{ academicDegreesTranslations[academicDegree-1]  | translate}}</mat-option>
                   </ng-container>
                 </mat-select>
               </div>

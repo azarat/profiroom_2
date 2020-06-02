@@ -26,11 +26,11 @@ export class EducationUserSettingsComponent implements OnInit, OnChanges  {
 
   public academicDegrees = [1, 2, 3, 4, 5];
   public academicDegreesTranslations = [
-    'Бакалавр',
-    'Магистр',
-    'Аспирант',
-    'Кандидат наук',
-    'Доктор наук'
+    "academicDegrees.lvl1",
+    "academicDegrees.lvl2",
+    "academicDegrees.lvl3",
+    "academicDegrees.lvl4",
+    "academicDegrees.lvl5"
   ];
 
   constructor(

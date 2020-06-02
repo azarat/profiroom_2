@@ -34,12 +34,20 @@ export class UserPageComponent implements OnDestroy, OnInit  {
   public userRole: string = 'Freelancer';
 
   public currentUserId: number;
+
   public academicDegreesTranslations = [
-    'Бакалавр',
-    'Магистр',
-    'Аспирант',
-    'Кандидат наук',
-    'Доктор наук'
+    "academicDegrees.lvl1",
+    "academicDegrees.lvl2",
+    "academicDegrees.lvl3",
+    "academicDegrees.lvl4",
+    "academicDegrees.lvl5"
+  ];
+  public languageTranslates = [
+    'general.language-lvl.1-lvl',
+    'general.language-lvl.2-lvl',
+    'general.language-lvl.3-lvl',
+    'general.language-lvl.4-lvl',
+    'general.language-lvl.5-lvl'
   ];
   public lvlTranslation = [
     'ranks.zero.title',
