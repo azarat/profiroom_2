@@ -22,6 +22,7 @@ import { ServicePageCheckoutComponent } from './components/service-page-checkout
 import {
   TranslateModule
 } from '@ngx-translate/core';
+import { FooterModule } from '../shared/modules/footer/footer.module';
 
 const routes: Routes = [
   {
@@ -56,6 +57,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     UsersCommentsModule,
     TranslateModule,
+    FooterModule
   ],
   exports: [
     ServicePageComponent,

@@ -29,7 +29,7 @@
             <div class="field-block" *ngIf="userSettings.language">
               <h5 class="fields-title">{{'user-settings.language' | translate}}</h5>
               <input class="fields-value" [(ngModel)]="userSettings.language[i].langName" #langName="ngModel"
-                [pattern]="unamePattern" type="text" name='langName'
+                [pattern]="unamePattern" type="text" name='langName_{{i}}'
                 [ngClass]="{not_Valid: !langName.valid && langName.control.touched}" required>
               <div *ngIf="langName.control.touched && langName.control.status === 'INVALID'" class="alert-danger">
                 <p>{{'user-settings.alert-required' | translate}}</p>
@@ -38,7 +38,7 @@
 
             <div class="field-block language-level">
               <label class="block-title" for="langLevel">{{'user-settings.language-level' | translate}}</label>
-              <mat-select name="langLevel" id="langLevel" [(ngModel)]="userSettings.language[i].langLevel">
+              <mat-select name="langLevel_{{i}}" id="langLevel" [(ngModel)]="userSettings.language[i].langLevel">
                 <ng-container *ngFor="let langLevel of languagesLevel">
                   <mat-option [value]="langLevel">{{ languageTranslates[langLevel-1] | translate}}</mat-option>
                 </ng-container>

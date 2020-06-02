@@ -12,6 +12,7 @@
     &::after{
         content: "";
         position: absolute;
+        
         z-index: 0;
         top: -70px;
         right: 0px;
@@ -24,13 +25,14 @@
     width: calc(33% - 36px);
     margin: 0 18px 64px;
     text-decoration: none;
+    z-index: 9;
 }
 .freelancer-item{
     background: #FFFFFF;
     box-shadow: 0px 0px 40px rgba(128, 152, 213, 0.2);
     border-radius: 16px;
     z-index: 9;
-
+    height: 100%;
     padding: 23px 29px 26px;
     &__top{
         margin-bottom: 14px;

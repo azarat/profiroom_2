@@ -215,7 +215,7 @@
       width: 107px;
       height: 107px;
       border-radius: 50%;
-      margin-bottom: 8px;
+      margin-bottom: 30px;
       position: relative;
       img {
         height: 100%;
@@ -229,8 +229,8 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 160%;
-      height: 160%;
+      width: 175%;
+      height: 175%;
     }
   }
 
@@ -241,11 +241,11 @@
     font-size: 17px;
     line-height: 24px;
     color: #ffffff;
-    margin: 0 auto 8px;
+    margin: 15px auto 8px;
     position: relative;
     width: max-content;
-    left: 50%;
-    transform: translateX(-50%);
+    // left: 50%;
+    // transform: translateX(-50%);
   }
 
   .menu {
@@ -494,13 +494,13 @@
   .side-bar {
     height: 100vh;
     z-index: 0;
+
     .name {
       font-size: 14px;
       line-height: 24px;
     }
-  
     .menu {
-      padding: 35px 25px;  
+      padding: 25px;  
       a {
         width: 48%;
         height: 79px;
@@ -537,6 +537,13 @@
             height: 7px;
           }
         }
+      }
+    }
+    .avatar{
+      min-height: 240px;
+      height: 240px;
+      &:before{
+        height: 325px;
       }
     }
   }

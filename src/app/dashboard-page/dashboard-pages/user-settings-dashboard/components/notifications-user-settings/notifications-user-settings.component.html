@@ -1,13 +1,13 @@
 <div class="inform_section">
     <form #form="ngForm" (ngSubmit)="updateSettings(form)">
         <div class="inform_section__title">
-            <h3>Все уведомления по электронной почте</h3>
+            <h3>{{'service-page.notification-title1' | translate}}</h3>
         </div>
         <div class="inform_section__fields">
             <div class="inputs-wrapper">
 
                 <div class="field-block">
-                    <p class="fields-text">Подпишитесь на электронные письма, чтобы узнавать что происходит, когда вы находитесь вне сети. Рассылку можно изменить в любое время.</p>
+                    <p class="fields-text">{{'service-page.notification-text' | translate}}</p>
                     <div class="pckg-swap">
                         <input class="tgl tgl-swp" id="cb2" type="checkbox" name="notificationsAll" [(ngModel)]="userSettingsModel.userNotifications.notificationsAll" (change)="chouseAll()" />
                         <label class="tgl-btn" for="cb2"></label>
@@ -18,7 +18,7 @@
         </div>
 
         <div class="inform_section__title">
-            <h3>Базовые уведомления</h3>
+            <h3>{{'service-page.notification-title2' | translate}}</h3>
         </div>
         <div class="inform_section__fields">
             <div class="inputs-wrapper">
@@ -28,19 +28,25 @@
                     <div class="checkbox">
                         <input type="checkbox" name="privateMessages" class="tgl-classic" [(ngModel)]="userSettingsModel.userNotifications.privateMessages" id="private-messages">
                         <label for="private-messages"></label>
-                        <span class="options-name">Новые личные сообщения</span>
+                        <span class="options-name">{{'service-page.notification-new-private' | translate}}</span>
                     </div>
 
                     <div class="checkbox">
                         <input type="checkbox" name="newOrders" class="tgl-classic" [(ngModel)]="userSettingsModel.userNotifications.newOrders" id="new-orders">
                         <label for="new-orders"></label>
-                        <span class="options-name">Новые заказы</span>
+                        <span class="options-name">{{'service-page.notification-new-order' | translate}}</span>
+                    </div>
+
+                    <div class="checkbox">
+                        <input type="checkbox" name="lvlChanges" class="tgl-classic" [(ngModel)]="userSettingsModel.userNotifications.lvlChanges" id="lvlChanges">
+                        <label for="lvlChanges"></label>
+                        <span class="options-name">{{'service-page.notification-change-lvl' | translate}}</span>
                     </div>
 
                     <div class="checkbox">
                         <input type="checkbox" name="serviceNotifications" class="tgl-classic" [(ngModel)]="userSettingsModel.userNotifications.serviceNotifications" id="service-notifications">
                         <label for="service-notifications"></label>
-                        <span class="options-name">Сервисные уведомления</span>
+                        <span class="options-name">{{'service-page.notification-new-service' | translate}}</span>
                     </div>
 
                 </div>
@@ -49,7 +55,7 @@
         </div>
 
         <div class="inform_section__title">
-            <h3>проектные уведомления</h3>
+            <h3>{{'service-page.notification-title3' | translate}}</h3>
         </div>
         <div class="inform_section__fields">
             <div class="inputs-wrapper">
@@ -59,25 +65,25 @@
                     <div class="checkbox">
                         <input type="checkbox" name="messagesActiveProject" class="tgl-classic" [(ngModel)]="userSettingsModel.userNotifications.messagesActiveProject" id="messages-active-project">
                         <label for="messages-active-project"></label>
-                        <span class="options-name">Новые сообщения в активном проекте</span>
+                        <span class="options-name">{{'service-page.notification-new-message-in-project' | translate}}</span>
                     </div>
 
                     <div class="checkbox">
                         <input type="checkbox" name="reservationFinancial" class="tgl-classic" [(ngModel)]="userSettingsModel.userNotifications.reservationFinancial" id="reservation-financial">
                         <label for="reservation-financial"></label>
-                        <span class="options-name">Резервирование  финансовых средств</span>
+                        <span class="options-name">{{'service-page.notification-reservation-of-funds' | translate}}</span>
                     </div>
 
                     <div class="checkbox">
                         <input type="checkbox" name="deadlines" class="tgl-classic" [(ngModel)]="userSettingsModel.userNotifications.deadlines" id="deadlines">
                         <label for="deadlines"></label>
-                        <span class="options-name">Вышедшие сроки</span>
+                        <span class="options-name">{{'service-page.notification-deadlines' | translate}}</span>
                     </div>
 
                     <div class="checkbox">
                         <input type="checkbox" name="orderFeedback" class="tgl-classic" [(ngModel)]="userSettingsModel.userNotifications.orderFeedback" id="order-feedback">
                         <label for="order-feedback"></label>
-                        <span class="options-name">Отзыв к заказу</span>
+                        <span class="options-name">{{'service-page.notification-order-feedback' | translate}}</span>
                     </div>
 
                 </div>

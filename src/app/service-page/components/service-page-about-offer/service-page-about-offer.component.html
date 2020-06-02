@@ -47,23 +47,23 @@
     </div>
   </div>
   <div class="main-info">
-    <div class="info-item">
+    <div class="info-item" *ngIf="offerData.user.country">
       <p class="title">{{'general.country' | translate}}</p>
       <p class="text">{{ offerData.user.country }}</p>
     </div>
-    <div class="info-item" >
+    <div class="info-item" *ngIf="offerData.created_at">
       <p class="title">{{'general.registration-date' | translate}}</p>
       <p class="text" *ngIf="offerData.created_at">{{ offerData.created_at }}</p>
     </div>
-    <div class="info-item">
+    <div class="info-item" *ngIf="offerData.user.answerTime">
       <p class="title">{{'service-page.answer-time' | translate}}</p>
       <p class="text">{{ offerData.user.answerTime }} </p>
     </div>
-    <div class="info-item">
+    <div class="info-item" *ngIf="offerData.user.arbitration.freelancer">
       <p class="title">{{'user-page.arbitration-appeals' | translate}}</p>
       <p class="text">{{ offerData.user.arbitration.freelancer }}</p>
     </div>
-    <div class="info-item">
+    <div class="info-item" *ngIf="offerData.user.inProgressOffers">
       <p class="title">{{'user-page.projects-in-progress' | translate}}</p>
       <p class="text">{{ offerData.user.inProgressOffers }}</p>
     </div>
