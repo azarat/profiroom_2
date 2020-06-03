@@ -35,13 +35,13 @@ export class ServicePageCompareTableComponent implements OnInit {
       serviceName: 'service-page.compare-deadline',
       serviceValue: 'term',
       centerMode: 1,
-      extraWord: "general.days"
+      extraWord: "days"
     },
     {
       serviceName: 'service-page.compare-number-of-edits',
       serviceValue: 'changes',
       centerMode: 1,
-      extraWord: "service-page.corrections"
+      extraWord: "corrections"
     }
   ];
 

@@ -13,7 +13,7 @@ export class ServicePagePackagesComponent implements OnInit {
 
   // tslint:disable-next-line: no-output-on-prefix
   @Output() checkoutState = new EventEmitter<any>();
-  @Output() scrollToCompare = new EventEmitter<any>();
+  @Output() scrollToThis = new EventEmitter<any>();
 
   private token: any = null;
   public openFeatures = false;
@@ -79,8 +79,8 @@ export class ServicePagePackagesComponent implements OnInit {
     this.openFeatures = !this.openFeatures;
   }
 
-  public goCompareTable() {
-    this.scrollToCompare.emit();
+  public scrollToElement(id) {
+    this.scrollToThis.emit(id);
   }
 
   public goCheckout(packageType) {

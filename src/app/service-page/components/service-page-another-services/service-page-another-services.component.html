@@ -28,7 +28,7 @@
     </ng-container>
   </div>
   <div class="btn-wrapper" *ngIf="offerData.user.userOfferCount > 4">
-    <div class="btn-watch-more" [routerLink]="['/user', offerData.user_id]">{{'service-page.more-services' | translate}}</div>
+    <a class="btn-watch-more" [routerLink]="['/user', offerData.user_id]">{{'service-page.more-services' | translate}}</a>
   </div>
 </section>
 
