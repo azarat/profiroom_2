@@ -14,7 +14,7 @@ import { ServicePagePackagesComponent } from './components/service-page-packages
 import { ServicePageAnotherServicesComponent } from './components/service-page-another-services/service-page-another-services.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { ServicePageCompareTableComponent } from './components/service-page-compare-table/service-page-compare-table.component';
-import { ServicePageEarlierViewedComponent } from './components/service-page-earlier-viewed/service-page-earlier-viewed.component';
+import { ServicePageSimilarOffersComponent } from './components/service-page-similar-offers/service-page-similar-offers.component';
 import { UsersCommentsModule } from 'src/app/shared/modules/users-comments/users-comments.module';
 import { MatCheckboxModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -40,7 +40,7 @@ const routes: Routes = [
     ServicePagePackagesComponent,
     ServicePageAnotherServicesComponent,
     ServicePageCompareTableComponent,
-    ServicePageEarlierViewedComponent,
+    ServicePageSimilarOffersComponent,
     ServicePageCheckoutComponent,
     // PackagesComponent
   ],

@@ -231,3 +231,20 @@
     }
   }
 }
+
+@media (max-width: 1024px) {
+  .card{
+    width: calc(33.3% - 30px);
+    margin: 0 15px 0;
+    &-description {
+      padding: 8px 10px;
+      &__about{
+        font-size: 16px;
+        line-height: 20px;
+      }
+    }
+  }
+  .btn-watch-more{
+    margin: 40px auto 40px;
+  }
+}

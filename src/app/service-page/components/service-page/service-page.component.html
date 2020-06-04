@@ -117,10 +117,9 @@
         </div>
       </section>
 
-      <!-- <app-service-page-comments [offerData]="offerData" *ngIf="offerData" id="comments"></app-service-page-comments> -->
-      <!-- <app-users-comments *ngIf="offerData" [userData]="offerData" [userRole]="''"></app-users-comments> -->
-      <!-- <app-service-page-questions [offerData]="offerData" *ngIf="offerData"  id="questions"></app-service-page-questions> -->
-      <!-- <app-service-page-about-offer [offerData]="offerData" *ngIf="offerData" id="about-offer"></app-service-page-about-offer> -->
+      <app-users-comments *ngIf="offerData" [userData]="offerData" [userRole]="''"></app-users-comments>
+      <app-service-page-questions [offerData]="offerData" *ngIf="offerData"  id="questions"></app-service-page-questions>
+      <app-service-page-about-offer [offerData]="offerData" *ngIf="offerData" id="about-offer"></app-service-page-about-offer>
     </div>
     <div class="choose-packet">
       <div class="running-block">
@@ -129,7 +128,7 @@
       </div>
     </div>
     <app-service-page-another-services [offerData]="offerData" *ngIf="offerData"></app-service-page-another-services>
-    <app-service-page-earlier-viewed [similarOffers]="similarOffers" [offerData]="offerData" *ngIf="similarOffers && offerData"></app-service-page-earlier-viewed>
+    <app-service-page-similar-offers [similarOffers]="similarOffers" [offerData]="offerData" *ngIf="similarOffers && offerData"></app-service-page-similar-offers>
   </div>
   <div class="checkout-block" *ngIf='step2' (scrollToThis)="scrollTo('checkout-top')">
     <app-service-page-checkout [offerData]="offerData" [chosenOnOfferPage]="chosenOnOfferPage" (checkoutHidden)="hideCheckout()"></app-service-page-checkout>
@@ -149,4 +148,4 @@
     </div>
   </div>
 </div>
-<!-- <app-footer *ngIf="offerData"></app-footer> -->
+<app-footer *ngIf="offerData"></app-footer>
