@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ServicePageEarlierViewedComponent } from './service-page-earlier-viewed.component';
+import { ServicePageSimilarOffersComponent } from './service-page-similar-offers.component';
 
 describe('ServicePageEarlierViewedComponent', () => {
-  let component: ServicePageEarlierViewedComponent;
-  let fixture: ComponentFixture<ServicePageEarlierViewedComponent>;
+  let component: ServicePageSimilarOffersComponent;
+  let fixture: ComponentFixture<ServicePageSimilarOffersComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ServicePageEarlierViewedComponent ]
+      declarations: [ ServicePageSimilarOffersComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ServicePageEarlierViewedComponent);
+    fixture = TestBed.createComponent(ServicePageSimilarOffersComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

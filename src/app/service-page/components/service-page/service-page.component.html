@@ -128,7 +128,7 @@
       </div>
     </div>
     <app-service-page-another-services [offerData]="offerData" *ngIf="offerData"></app-service-page-another-services>
-    <app-service-page-earlier-viewed [similarOffers]="similarOffers" [offerData]="offerData" *ngIf="similarOffers && offerData"></app-service-page-earlier-viewed>
+    <app-service-page-similar-offers [similarOffers]="similarOffers" [offerData]="offerData" *ngIf="similarOffers && offerData"></app-service-page-similar-offers>
   </div>
   <div class="checkout-block" *ngIf='step2' (scrollToThis)="scrollTo('checkout-top')">
     <app-service-page-checkout [offerData]="offerData" [chosenOnOfferPage]="chosenOnOfferPage" (checkoutHidden)="hideCheckout()"></app-service-page-checkout>
@@ -148,4 +148,4 @@
     </div>
   </div>
 </div>
-<!-- <app-footer *ngIf="offerData"></app-footer> -->
+<app-footer *ngIf="offerData"></app-footer>
