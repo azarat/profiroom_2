@@ -47,11 +47,9 @@ export class AdditionalEducationUserSettingsComponent implements OnInit, OnChang
     this.createMonthArray();
     // this.openItem = this.userSettings.additionalEducation.length;
     this.openItem = null;
-    console.log(this.openItem);
   }
 
   ngOnChanges() {
-    console.log(this.closeAfterSaveSettings);
     this.closeAfterSaveSettings ? this.openItem = null: this.openItem = this.userSettings.education.length;
   }
 
@@ -111,6 +109,16 @@ export class AdditionalEducationUserSettingsComponent implements OnInit, OnChang
     this.userSettings.deleteAdditionalEducation(i);
 
     this.userSettingsService.deleteAdditioanlEducationID(educationId).subscribe((res: any) => {});
+
+  }
+
+  public deleteDiplomaPhoto(imgName, institutIndex, imgIndex){
+    
+    this.userSettingsService.deleteFile({link: imgName})
+    .subscribe((res: any) => {
+      console.log(res);
+      this.userSettings.additionalEducation[institutIndex].additionalDiploma.splice(imgIndex, 1);
+    });
 
   }
 

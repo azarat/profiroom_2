@@ -1,5 +1,6 @@
 .wrapper {
   width: 100%;
+  min-height: 90%;
   margin: 0 auto;
   background: #f1f2f4;
   font-family: Source Sans Pro;
@@ -66,7 +67,7 @@
   max-width: 1045px;
   margin: 0 auto;
   background-color: #fff;
-  padding: 80px 30px 1px;
+  padding: 80px 30px 100px;
 }
 
 .back-to-list {
@@ -569,6 +570,12 @@
   font-size: 16px;
   line-height: 20px;
   color: #99ACB7;
+}
+
+:host::ng-deep{
+  .footer{
+    margin-top: -100px!important;
+  }
 }
 
 @media (max-width: 1499px) {

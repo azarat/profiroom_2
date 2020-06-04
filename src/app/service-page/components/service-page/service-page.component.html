@@ -124,22 +124,22 @@
     </div>
     <div class="choose-packet">
       <div class="running-block">
-        <app-service-page-packages [offerData]="offerData" [offerId]="offerId" *ngIf="offerData" (checkoutState)="openCheckout($event)" (scrollToCompare)="scrollTo('compare-table')">
+        <app-service-page-packages [offerData]="offerData" [offerId]="offerId" *ngIf="offerData" (checkoutState)="openCheckout($event)" (scrollToThis)="scrollTo('compare-table')">
         </app-service-page-packages>
       </div>
     </div>
     <app-service-page-another-services [offerData]="offerData" *ngIf="offerData"></app-service-page-another-services>
     <app-service-page-earlier-viewed [similarOffers]="similarOffers" [offerData]="offerData" *ngIf="similarOffers && offerData"></app-service-page-earlier-viewed>
   </div>
-  <div class="checkout-block" *ngIf='step2'>
+  <div class="checkout-block" *ngIf='step2' id="checkout-top" (scrollToThis)="scrollTo('checkout-top')">
     <app-service-page-checkout [offerData]="offerData" [chosenOnOfferPage]="chosenOnOfferPage" (checkoutHidden)="hideCheckout()"></app-service-page-checkout>
   </div>
   <div class="error-message" *ngIf="messageNotAuthorized">
     <div class="error-message__info-block">
       <div class="error-message__icon"><img src="/assets/images/svg/error-message-icon.svg" alt=""></div>
       <div class="error-message__text">
-        <p class="accent">{{'service-page.description1' | translate}}</p>
-        <p>{{'service-page.description2' | translate}}</p>
+        <p class="accent">{{'service-page.nonAuthorized-title' | translate}}</p>
+        <p>{{'service-page.nonAuthorized-subtitle' | translate}}</p>
       </div>
       <div class="btns-wrapper">
         <div class="btn" [routerLink]="'/auth' | localize">{{'general.authorize' | translate}}</div>
@@ -149,3 +149,4 @@
     </div>
   </div>
 </div>
+<app-footer *ngIf="offerData"></app-footer>

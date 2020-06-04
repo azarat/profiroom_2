@@ -14,7 +14,7 @@
       <div class="table-item" *ngFor="let service of services">
         <div class="table-cell title-cell">{{ service.serviceName | translate }}</div>
         <ng-container *ngFor="let package of packages">
-          <div class="table-cell" [ngClass] = "{'centerMode extra-options': service.centerMode}">{{ offerData[package][service.serviceValue] }} {{ 'service-page.' + service.extraWord | translate }}</div>
+          <div class="table-cell" [ngClass] = "{'centerMode extra-options': service.centerMode}">{{ offerData[package][service.serviceValue] }}  <ng-container *ngIf="service.extraWord">{{ 'service-page.' + service.extraWord | translate }}</ng-container></div>
         </ng-container>
       </div>
       <div class="table-item" *ngFor="let option of offerData.main_options">

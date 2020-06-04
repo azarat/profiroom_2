@@ -26,11 +26,11 @@ export class EducationUserSettingsComponent implements OnInit, OnChanges  {
 
   public academicDegrees = [1, 2, 3, 4, 5];
   public academicDegreesTranslations = [
-    'Бакалавр',
-    'Магистр',
-    'Аспирант',
-    'Кандидат наук',
-    'Доктор наук'
+    "academicDegrees.lvl1",
+    "academicDegrees.lvl2",
+    "academicDegrees.lvl3",
+    "academicDegrees.lvl4",
+    "academicDegrees.lvl5"
   ];
 
   constructor(
@@ -105,6 +105,18 @@ export class EducationUserSettingsComponent implements OnInit, OnChanges  {
       }
       this.userSettings.education[i].diploma.push(this.previewUrl);
     });
+
+    
+  }
+
+  public deleteDiplomaPhoto(imgName, institutIndex, imgIndex){
+    
+    this.userSettingsService.deleteFile({link: imgName})
+    .subscribe((res: any) => {
+      console.log(res);
+      this.userSettings.education[institutIndex].diploma.splice(imgIndex, 1);
+    });
+
   }
 
   // --------------- open single item -----------------//
@@ -127,7 +139,7 @@ export class EducationUserSettingsComponent implements OnInit, OnChanges  {
   // --------------- create years finish array-----------------//
   createYearsFinished(limit) {
     this.yearsFinishArr = [];
-    for (let i = limit; i <= 2019; i++) {
+    for (let i = limit; i <= 2027; i++) {
       this.yearsFinishArr.push(i);
     }
   }

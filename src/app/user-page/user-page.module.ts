@@ -14,6 +14,7 @@ import {
 
 import { MatTabsModule} from '@angular/material';
 import { DataFormatModule } from '../shared/pipes/data-format/data-format.module';
+import { FooterModule } from '../shared/modules/footer/footer.module';
 
 const routes: Routes = [
   {
@@ -36,6 +37,7 @@ const routes: Routes = [
     UsersCommentsModule,
     DataFormatModule,
     TranslateModule,
+    FooterModule,
     // -----material's
     MatTabsModule
   ],

@@ -113,7 +113,7 @@
             <ul class="languages__wrapper">
                 <li class="languages__info-block" *ngFor="let language of userData.language">
                     <div class="languages__name">{{ language.langName}} </div>
-                    <div class="languages__lvl"> - {{ academicDegreesTranslations[language.langLevel-1]}}</div>
+                    <div class="languages__lvl"> - {{ languageTranslates[language.langLevel-1] | translate}}</div>
                 </li>
             </ul>
         </section>
@@ -126,7 +126,7 @@
 
                         <div class="education__img-list" *ngIf="education.diploma_files.length; let i = index">
                             <ng-container *ngFor="let img of education.diploma_files; let i = index">
-                                <div class="img-item" (click)="showPopUp(i, thisArr, true)" [ngClass]="{open_popUp: clickedEducationImgs === thisArr && clickedSingleImg === i && openEducationImgs}">
+                                <div class="img-item" (click)="showPopUp(i, thisArr, true)" [ngClass]="{open_popUp: clickedImgsArr === thisArr && clickedImg === i && imgTypeEducation}">
                                     <img src="{{img.link}}" alt="">
                                     <div class="close-popUp"></div>
                                 </div>
@@ -152,8 +152,8 @@
 
                         <div class="education__img-list" *ngIf="education_item.additional_diploma_files.length; let i = index">
                             <ng-container *ngFor="let img of education_item.additional_diploma_files; let i = index">
-                                <div class="img-item" (click)="showPopUp(i, thisAddArr, false)" [ngClass]="{open_popUp: clickedEducationImgs === thisAddArr
-                  && clickedSingleImg === i && !openEducationImgs}">
+                                <div class="img-item" (click)="showPopUp(i, thisAddArr, false)" [ngClass]="{open_popUp: clickedImgsArr === thisAddArr
+                  && clickedImg === i && !imgTypeEducation}">
                                     <img src="{{img.link}}" alt="">
                                     <div class="close-popUp"></div>
                                 </div>
@@ -230,3 +230,5 @@
         <app-users-comments *ngIf="userData" [userData]="userData" [userRole]="userRole" id="comments"></app-users-comments>
     </div>
 </div>
+
+<app-footer *ngIf="userData"></app-footer>

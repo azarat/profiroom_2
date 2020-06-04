@@ -69,9 +69,9 @@ export class NgxGalleryComponent implements OnInit {
     this.offerData.files.forEach(item => {
       this.galleryImages.push(
         {
-          big: 'http://194.28.103.239/Backend/public/storage/offerFiles' + '/big/' + item,
-          medium: 'http://194.28.103.239/Backend/public/storage/offerFiles' + '/medium/' + item,
-          small: 'http://194.28.103.239/Backend/public/storage/offerFiles' +'/small/' + item,
+          big: 'http://dev.thecubetest.site/Backend/public/storage/offerFiles' + '/big/' + item,
+          medium: 'http://dev.thecubetest.site/Backend/public/storage/offerFiles' + '/medium/' + item,
+          small: 'http://dev.thecubetest.site/Backend/public/storage/offerFiles' +'/small/' + item,
         }
       );
     });

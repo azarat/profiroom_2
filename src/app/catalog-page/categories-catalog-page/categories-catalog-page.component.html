@@ -22,7 +22,7 @@
     <div class="subcategories-list" *ngIf="subcategoriesList">
       <div class="subcategory-full" *ngFor="let sub_category of subcategoriesList.sub_categories">
         <div class="subcategory-full-img" [routerLink]="['/catalog', subcategoriesList.link , sub_category.link] | localize">
-          <img [src]="'https://www.thecubetest.site/Backend/storage/app' + sub_category.img" alt="{{ sub_category.name }}">
+          <img [src]="sub_category.img" alt="{{ sub_category.name }}">
         </div>
         <a [routerLink]="['/catalog', subcategoriesList.link , sub_category.link] | localize">
           <h2 class="subcategory-full-title">{{ sub_category.name }} </h2>
@@ -31,3 +31,5 @@
     </div>
   </div>
 </div>
+
+<app-footer></app-footer>

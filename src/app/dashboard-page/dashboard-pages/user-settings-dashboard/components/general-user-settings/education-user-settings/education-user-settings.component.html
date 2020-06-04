@@ -35,7 +35,7 @@
                 <mat-select name="academicDegree" id="academicDegree"
                   [(ngModel)]="userSettings.education[i].academicDegree">
                   <ng-container *ngFor="let academicDegree of academicDegrees">
-                    <mat-option [value]="academicDegree">{{ academicDegreesTranslations[academicDegree-1] }}</mat-option>
+                    <mat-option [value]="academicDegree">{{ academicDegreesTranslations[academicDegree-1]  | translate}}</mat-option>
                   </ng-container>
                 </mat-select>
               </div>
@@ -87,12 +87,12 @@
               <ng-container *ngFor="let diplomaPhoto of userSettings.education[i].diploma; let x = index">
                 <div  class="img-item" *ngIf="diplomaPhoto != null" >
                   <img  [src]="diplomaPhoto" height="300" />
-                  <!-- <div class="delete-photo" (click)=""></div> -->
+                  <div class="delete-photo" (click)="deleteDiplomaPhoto(diplomaPhoto, i, x)"></div>
                 </div>
               </ng-container>
             </div>
 
-            <div class="add-photos">
+            <div class="add-photos" *ngIf="userSettings.education[i].diploma && userSettings.education[i].diploma.length < 5">
               <input type="file" id="diplomaFiles-{{i}}"  class="input-file" #file name="file"
                 (change)="fileProgress($event.target.files, userSettings.education[i].id, i)" />
               <label for="diplomaFiles-{{i}}">{{'user-settings.onload-diploma' | translate}}</label>

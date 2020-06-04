@@ -5,6 +5,9 @@
   padding: 16px 27px;
   margin: 50px auto;
   width: fit-content;
+  &.noShadow{
+    box-shadow: none;
+  }
 }
 
 .pagination{

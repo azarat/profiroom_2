@@ -23,6 +23,7 @@ import { FormsModule } from '@angular/forms';
 import { MatSelectModule, MatInputModule, MatCheckboxModule, MatRadioModule } from '@angular/material';
 import { CategoriesListService } from '../core/services/categories.service';
 import { CatalogPaginationComponent } from './catalog/catalog-pagination/catalog-pagination.component';
+import { FooterModule } from '../shared/modules/footer/footer.module';
 
 
 
@@ -64,7 +65,8 @@ const routes: Routes = [
     MatSelectModule,
     MatInputModule,
     MatCheckboxModule,
-    MatRadioModule
+    MatRadioModule,
+    FooterModule
   ],
   exports: [
     CatalogHomePageComponent
