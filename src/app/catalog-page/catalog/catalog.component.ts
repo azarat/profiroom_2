@@ -47,11 +47,9 @@ export class CatalogComponent implements OnInit {
 
     //----------- проверка наличия каких либо парметров в queryParams ------------//  
     this._route.queryParams.subscribe(qParams => {
-      console.log('qp ', qParams);
       if (qParams && (Object.keys(qParams).length === 0)) {
     //----------- используем даные (категория, подкатегория) из ActivatedRoute.params ------------//  
         this.GetOffersService.getOffers(this.catalogFilters);
-        console.log('pusto  ', qParams);
       } else {
         this.catalogFilters.current_page = 1;
     //----------- устанавливаем параметры из ActivatedRoute.queryParams ------------//  

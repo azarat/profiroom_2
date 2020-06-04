@@ -12,7 +12,9 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 export class ServicePageCompareTableComponent implements OnInit {
   
   @Output() checkoutState = new EventEmitter<any>();
+  @Output() scrollToThis = new EventEmitter<any>();
   @Input() offerData: OfferDataInterface;
+
   private token: any = null;
   private allowCheckout = null;
   public packages = [
@@ -91,5 +93,9 @@ export class ServicePageCompareTableComponent implements OnInit {
         this.extraFeaturesForm.addControl(el.title, this.fb.control(null));
       }
     });
+  }
+  
+  public scrollToElement(id) {
+    this.scrollToThis.emit(id);
   }
 }

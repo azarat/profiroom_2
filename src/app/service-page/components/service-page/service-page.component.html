@@ -16,12 +16,13 @@
   </div>
 </nav>
 
-<div class="wrapper">
+<div class="wrapper" id="page-top">
 
   <div class="bread-crumbs" *ngIf='!step2'>
     <ul *ngIf="offerData">
       <li><a [routerLink]="['/'] | localize">{{'menu.home' | translate}}</a></li>
       <li><a [routerLink]="['/catalog', offerData.category] | localize">{{ offerData.category }}</a></li>
+      <li><a [routerLink]="['/catalog', offerData.category, offerData.subCategory] | localize">{{ offerData.subCategory }}</a></li>
       <li><a>{{ offerData.title }}</a></li>
     </ul>
   </div>
@@ -81,7 +82,7 @@
         <div class="about-offer__text" [innerHTML]="offerData.description"></div>
       </div>
 
-      <app-service-page-compare-table [offerData]="offerData" *ngIf="offerData" id="compare-table" (checkoutState)="openCheckout($event)">
+      <app-service-page-compare-table [offerData]="offerData" *ngIf="offerData" id="compare-table" (checkoutState)="openCheckout($event)" (scrollToThis)="scrollTo($event)">
       </app-service-page-compare-table>
 
       <section class="offer-rating" id="rating">
@@ -117,21 +118,20 @@
       </section>
 
       <!-- <app-service-page-comments [offerData]="offerData" *ngIf="offerData" id="comments"></app-service-page-comments> -->
-      <app-users-comments *ngIf="offerData" [userData]="offerData" [userRole]="''"></app-users-comments>
-      <app-service-page-questions [offerData]="offerData" *ngIf="offerData"  id="questions"></app-service-page-questions>
-      <app-service-page-about-offer [offerData]="offerData" *ngIf="offerData" id="about-offer">
-      </app-service-page-about-offer>
+      <!-- <app-users-comments *ngIf="offerData" [userData]="offerData" [userRole]="''"></app-users-comments> -->
+      <!-- <app-service-page-questions [offerData]="offerData" *ngIf="offerData"  id="questions"></app-service-page-questions> -->
+      <!-- <app-service-page-about-offer [offerData]="offerData" *ngIf="offerData" id="about-offer"></app-service-page-about-offer> -->
     </div>
     <div class="choose-packet">
       <div class="running-block">
-        <app-service-page-packages [offerData]="offerData" [offerId]="offerId" *ngIf="offerData" (checkoutState)="openCheckout($event)" (scrollToThis)="scrollTo('compare-table')">
+        <app-service-page-packages [offerData]="offerData" [offerId]="offerId" *ngIf="offerData" (checkoutState)="openCheckout($event)" (scrollToThis)="scrollTo($event)">
         </app-service-page-packages>
       </div>
     </div>
     <app-service-page-another-services [offerData]="offerData" *ngIf="offerData"></app-service-page-another-services>
     <app-service-page-earlier-viewed [similarOffers]="similarOffers" [offerData]="offerData" *ngIf="similarOffers && offerData"></app-service-page-earlier-viewed>
   </div>
-  <div class="checkout-block" *ngIf='step2' id="checkout-top" (scrollToThis)="scrollTo('checkout-top')">
+  <div class="checkout-block" *ngIf='step2' (scrollToThis)="scrollTo('checkout-top')">
     <app-service-page-checkout [offerData]="offerData" [chosenOnOfferPage]="chosenOnOfferPage" (checkoutHidden)="hideCheckout()"></app-service-page-checkout>
   </div>
   <div class="error-message" *ngIf="messageNotAuthorized">
@@ -149,4 +149,4 @@
     </div>
   </div>
 </div>
-<app-footer *ngIf="offerData"></app-footer>
+<!-- <app-footer *ngIf="offerData"></app-footer> -->

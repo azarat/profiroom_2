@@ -162,3 +162,11 @@
     }
   }
 }
+@media (max-width: 1024px) {
+  .table {
+    margin-bottom: 60px;
+    &::after {
+      display: none;
+    }
+  }
+}

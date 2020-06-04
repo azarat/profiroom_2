@@ -43,17 +43,20 @@ export class NgxGalleryComponent implements OnInit {
         thumbnailsMargin: 8,
         thumbnailMargin: 8
       },
-      // max-width 800
       {
         breakpoint: 1500,
         width: '630px',
         height: '480px',
         imagePercent: 80,
-
       },
-      // max-width 400
       {
-        breakpoint: 400,
+        breakpoint: 1024,
+        width: '690px',
+        height: '530px',
+        imagePercent: 90,
+      },
+      {
+        breakpoint: 767,
         preview: false
       }
     ];

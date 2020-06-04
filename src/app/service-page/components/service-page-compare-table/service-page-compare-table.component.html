@@ -31,7 +31,7 @@
         <ng-container *ngFor="let package of packages">
           <div class="table-cell centerMode">
             {{ offerData[package].price }} ₴
-            <div class="btn-buy-package" (click)="goCheckout(package)">{{'general.choose' | translate}}</div>
+            <div class="btn-buy-package" (click)="goCheckout(package); scrollToElement('page-top')">{{'general.choose' | translate}}</div>
           </div>
         </ng-container>
       </div>
