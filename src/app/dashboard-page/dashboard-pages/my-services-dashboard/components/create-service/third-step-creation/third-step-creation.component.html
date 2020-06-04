@@ -11,20 +11,18 @@
 
         <!-------------------- main options -------------------->
         <div class="offer-packages">
-
-            <!-------------------- block hiden 2 pack -------------------->
-            <div class="show-all-pack" *ngIf="userService.allPackages !== true">
+            <!-------------------- block hidden 2 pack -------------------->
+            <div class="show-all-pack" *ngIf="userService.allPackages === 0 || userService.allPackages === false ">
                 <h4>{{'dashboard.create-service.third-step.description-block.title' | translate}}</h4>
                 <p>
                     {{'dashboard.create-service.third-step.description-block.subtitle' | translate}}
                 </p>
-                <button class="btn" (click)="openAllPackages()">{{'general.open' | translate}}</button>
+                <button class="btn" type="button" (click)="openAllPackages()">{{'general.open' | translate}}</button>
             </div>
 
             <!-------------------- packages-name -------------------->
             <div class="package-name line">
                 <div>
-
                 </div>
                 <div>
                     <h6>
@@ -43,21 +41,23 @@
                 </div>
             </div>
             <!--------------------packages-title -------------------->
-            <div class="packages-titles line" outsideTooltip="{{'dashboard.create-service.third-step.main-form.tool-tip.offer-name-title' | translate}}" outsideTooltipDescription="{{'dashboard.create-service.third-step.main-form.tool-tip.offer-name-subtitle' | translate}}"
+            <div class="packages-titles line" outsideTooltip="{{'dashboard.create-service.third-step.main-form.tool-tip.offer-name-title' | translate}}"
+                 outsideTooltipDescription="{{'dashboard.create-service.third-step.main-form.tool-tip.offer-name-subtitle' | translate}}"
                 placement="right">
                 <div class="packages-title title">
                     <p>{{'dashboard.create-service.third-step.main-form.offer-name' | translate}}</p>
-
                 </div>
                 <div class="packages-title" *ngFor="let package of packagesTypes; index as x" [ngClass]="{ 'field-required': title.invalid && submited }">
                     <div class="textarea">
-                        <textarea [(ngModel)]="userService.packagesTitle[package +'Title']" name="title_{{ package }}" rows="2" [maxlength]="35" #title="ngModel" [required]="(x == 0 && !userService.allPackages) || (userService.allPackages ) && submited"></textarea>
+                        <textarea [(ngModel)]="userService.packagesTitle[package +'Title']" name="title_{{ package }}"
+                                  rows="2" [maxlength]="35" #title="ngModel" [required]="(x == 0 && !userService.allPackages) || (userService.allPackages ) && submited"></textarea>
                     </div>
                 </div>
 
             </div>
             <!-------------------- Descriptions -------------------->
-            <div class="packages-description line" outsideTooltip="{{'dashboard.create-service.third-step.main-form.tool-tip.description-title' | translate}}" outsideTooltipDescription="{{'dashboard.create-service.third-step.main-form.tool-tip.description-subtitle' | translate}}"
+            <div class="packages-description line" outsideTooltip="{{'dashboard.create-service.third-step.main-form.tool-tip.description-title' | translate}}"
+                 outsideTooltipDescription="{{'dashboard.create-service.third-step.main-form.tool-tip.description-subtitle' | translate}}"
                 placement="right">
                 <div class="description-title title">
                     <p>
@@ -65,11 +65,14 @@
                     </p>
                 </div>
                 <div class="textarea-wrap" *ngFor="let package of packagesTypes; let x = index">
-                    <textarea name="{{package + 'Description'}}" id="" [ngClass]="{ 'field-required': description.invalid && submited }" [(ngModel)]="userService.packagesDescriptions[package + 'Description']" #description="ngModel" [maxlength]="270" [required]="(x == 0 && !userService.allPackages) || (userService.allPackages ) && submited"></textarea>
+                    <textarea name="{{package + 'Description'}}" id="" [ngClass]="{ 'field-required': description.invalid && submited }"
+                              [(ngModel)]="userService.packagesDescriptions[package + 'Description']" #description="ngModel" [maxlength]="270"
+                              [required]="(x == 0 && !userService.allPackages) || (userService.allPackages ) && submited"></textarea>
                 </div>
             </div>
             <!--------------------Time to Do -------------------->
-            <div class="package-deadlines line" outsideTooltip="{{'dashboard.create-service.third-step.main-form.tool-tip.time-to-do-title' | translate}}" outsideTooltipDescription="{{'dashboard.create-service.third-step.main-form.tool-tip.time-to-do-subtitle' | translate}}"
+            <div class="package-deadlines line" outsideTooltip="{{'dashboard.create-service.third-step.main-form.tool-tip.time-to-do-title' | translate}}"
+                 outsideTooltipDescription="{{'dashboard.create-service.third-step.main-form.tool-tip.time-to-do-subtitle' | translate}}"
                 placement="right">
                 <div class="deadline-title title">
                     <p>
@@ -79,13 +82,15 @@
 
                 <div *ngFor="let package of packagesTypes; let x = index" [ngClass]="{ 'field-required': timeTodo.invalid && submited }">
                     <div class="input-wrap">
-                        <input name="{{package + 'Term'}}" type="text" knifeOnlyNumbers maxlength="3" [(ngModel)]="userService.packagesTerms[package + 'Term']" #timeTodo="ngModel" [required]="(x == 0 && !userService.allPackages) || (userService.allPackages ) && submited">
+                        <input name="{{package + 'Term'}}" type="text" knifeOnlyNumbers maxlength="3" [(ngModel)]="userService.packagesTerms[package + 'Term']"
+                               #timeTodo="ngModel" [required]="(x == 0 && !userService.allPackages) || (userService.allPackages ) && submited">
                     </div>
                 </div>
             </div>
 
             <!-------------------- packages changes -------------------->
-            <div class="packages-changes line" outsideTooltip="{{'dashboard.create-service.third-step.main-form.tool-tip.changes-title' | translate}}" outsideTooltipDescription="{{'dashboard.create-service.third-step.main-form.tool-tip.changes-subtitle' | translate}}"
+            <div class="packages-changes line" outsideTooltip="{{'dashboard.create-service.third-step.main-form.tool-tip.changes-title' | translate}}"
+                 outsideTooltipDescription="{{'dashboard.create-service.third-step.main-form.tool-tip.changes-subtitle' | translate}}"
                 placement="right">
                 <div class="packages-change title">
                     <p>{{'dashboard.create-service.third-step.main-form.changes' | translate}}</p>
@@ -111,28 +116,36 @@
 
                 <div *ngFor="let package of packagesTypes; let x = index" [ngClass]="{ 'field-required': packagePrice.invalid && submited }">
                     <div class="input-wrap">
-                        <input type="number" knifeOnlyNumbers maxlength="7" #packagePrice="ngModel" [required]="(x == 0 && !userService.allPackages) || (userService.allPackages ) && submited" [(ngModel)]="userService.packagesPrices[package + 'Price']" name="{{package + 'Price'}}"
+                        <input type="number" knifeOnlyNumbers maxlength="7" #packagePrice="ngModel"
+                               [required]="(x == 0 && !userService.allPackages) || (userService.allPackages ) && submited"
+                               [(ngModel)]="userService.packagesPrices[package + 'Price']" name="{{package + 'Price'}}"
                             [min]="250" (ngModelChange)="priceChange($event, package)" placeholder="min 250">
                     </div>
                 </div>
             </div>
             <!--------------------add options -------------------->
             <form #f="ngForm" class="package-options extra">
-                <div class="added-option line" *ngFor="let arrayItem of userService.main_options; let i = index" outsideTooltip="{{'dashboard.create-service.third-step.main-form.add-option.tool-tip-title' | translate}}" outsideTooltipDescription="{{'dashboard.create-service.third-step.main-form.add-option.tool-tip-subtitle' | translate}}"
+                <div class="added-option line" *ngFor="let arrayItem of userService.main_options; let i = index"
+                     outsideTooltip="{{'dashboard.create-service.third-step.main-form.add-option.tool-tip-title' | translate}}"
+                     outsideTooltipDescription="{{'dashboard.create-service.third-step.main-form.add-option.tool-tip-subtitle' | translate}}"
                     placement="right">
                     <div class="option-title" [ngClass]="{ 'field-required': mainOptonTitle.invalid && submited }">
                         <div class="input-wrap">
-                            <input type="text" [(ngModel)]="userService.main_options[i].title" required #mainOptonTitle="ngModel" name="main_option_title_{{i}}" placeholder="{{'dashboard.create-service.third-step.main-form.add-option.title' | translate}}" maxlength="15">
+                            <input type="text" [(ngModel)]="userService.main_options[i].title" required #mainOptonTitle="ngModel"
+                                   name="main_option_title_{{i}}" placeholder="{{'dashboard.create-service.third-step.main-form.add-option.title' | translate}}" maxlength="15">
                         </div>
                         <i class="material-icons delete-pack" (click)="deleteMainOption(i)">delete</i>
                         <!-- <span >delete</span> -->
                     </div>
                     <div class="checkbox-wrap" *ngFor="let package of packagesTypes">
-                        <input class="tgl tgl-classic" id="{{ package }}_{{ i }}" type="checkbox" name="main-option-{{ package }}-{{i}}" [(ngModel)]="userService.main_options[i][package]">
+                        <input class="tgl tgl-classic" id="{{ package }}_{{ i }}" type="checkbox" name="main-option-{{ package }}-{{i}}"
+                               [(ngModel)]="userService.main_options[i][package]">
                         <label for="{{ package }}_{{ i }}"></label>
                     </div>
                 </div>
-                <div class="add-option " *ngIf=" !userService.main_options || userService.main_options.length < 10" outsideTooltip="{{'dashboard.create-service.third-step.main-form.tool-tip.add-option-title' | translate}}" outsideTooltipDescription="{{'dashboard.create-service.third-step.main-form.tool-tip.add-option-subtitle' | translate}}"
+                <div class="add-option " *ngIf=" !userService.main_options || userService.main_options.length < 10"
+                     outsideTooltip="{{'dashboard.create-service.third-step.main-form.tool-tip.add-option-title' | translate}}"
+                     outsideTooltipDescription="{{'dashboard.create-service.third-step.main-form.tool-tip.add-option-subtitle' | translate}}"
                     placement="right">
 
                     <button [disabled]="!f.valid" class="add btn-third" (click)="addMainOptin()">

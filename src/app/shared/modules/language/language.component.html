@@ -1,6 +1,10 @@
-<button (click)="setLanguage('ru')">
-RU
-</button>
-<button (click)="setLanguage('uk')">
-UA
-</button>
+<div class="language-box" (clickOutside)="hideMenu()">
+  <div class="current-language" (click)="showMenu()">
+    <span>{{ activeLang }}</span>
+    <div class="language-menu"
+         [ngClass]="{'open': menuVisible === true && menuVisible,  'hide': menuVisible === false}">
+      <p *ngFor="let el of languages" (click)="setLanguage(el.code)" > {{ el.text }}</p>
+    </div>
+  </div>
+
+</div>
