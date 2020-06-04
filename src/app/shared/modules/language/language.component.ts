@@ -12,6 +12,7 @@ import { LocalStorageService } from 'src/app/core/services/local-storage.service
 export class LanguageComponent implements OnInit {
 
   public activeLang;
+  public menuVisible: boolean = null;
   public languages = [{
       text: 'ru',
       code: 'ru'
@@ -36,6 +37,7 @@ export class LanguageComponent implements OnInit {
     const url = this._router.url;
 
     // console.log(url);
+    this.activeLang = this.localize.parser.currentLang;
   }
 
 
@@ -49,10 +51,23 @@ export class LanguageComponent implements OnInit {
     // this.translate.setDefaultLang(cachedLanguage || languageOfBrowser || firstLanguageFromConfig);
   }
 
-  setLanguage(language: string) {
+  public setLanguage(language: string) {
     // this.localStorageService.setItem('userLanguage', language);
     localStorage.setItem('userLanguage', language);
     this.localize.changeLanguage(language);
+    this.activeLang = language;
+    this.hideMenu();
+  }
+
+  public hideMenu() {
+    this.menuVisible = false;
+  }
+
+  public showMenu() {
+    if (this.menuVisible === null) {
+      return this.menuVisible = true;
+    }
+    this.menuVisible = !this.menuVisible;
   }
 
 }

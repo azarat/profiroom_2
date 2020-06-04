@@ -38,7 +38,7 @@ export class ThirdStepCreationComponent implements OnInit {
   @Output() public setCurrentStep = new EventEmitter();
 
   ngOnInit() {
-    this.userService.allPackages = false;
+    // this.userService.allPackages = false;
 
     // this.priceControlbasicPrice = new FormControl("", [ Validators.min(300)])
     // this.priceControladvancedPrice = new FormControl("", [ Validators.min(300)])
@@ -87,7 +87,7 @@ export class ThirdStepCreationComponent implements OnInit {
       return;
     }
 
-    if( Number(this.userService.packagesPrices.advancedPrice) < 250 &&
+    if ( Number(this.userService.packagesPrices.advancedPrice) < 250 &&
     Number(this.userService.packagesPrices.basicPrice) < 250 &&
     Number(this.userService.packagesPrices.premiumPrice) < 250 ) {
       return;

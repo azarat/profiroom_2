@@ -21,7 +21,7 @@
                             <input type="text" required placeholder="{{'dashboard.create-service.forth-step.placeholder-question' | translate}}" #question="ngModel" name="question-{{ i }}" maxlength="45" [(ngModel)]="userService.offer_faq[i].question">
                         </div>
                     </div>
-                    <div class="item-unswer" [ngClass]="{ 'field-error': !answer.valid && submited }">
+                    <div class="item-answer" [ngClass]="{ 'field-error': !answer.valid && submited }">
                         <quill-editor required [modules]="config" #answer="ngModel" [(ngModel)]="userService.offer_faq[i].answer" name="editor-{{i}}" placeholder="{{'dashboard.create-service.forth-step.placeholder-answer' | translate}}"></quill-editor>
                     </div>
                 </div>

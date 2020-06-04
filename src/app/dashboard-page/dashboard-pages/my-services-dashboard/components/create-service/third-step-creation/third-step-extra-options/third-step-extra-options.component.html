@@ -6,7 +6,8 @@
     <div class="time-option">
         <div class="option-wrap" outsideTooltip="{{'dashboard.create-service.third-step.extra-form.tool-tip.price-title' | translate}}" outsideTooltipDescription="{{'dashboard.create-service.third-step.extra-form.tool-tip.price-subtitle' | translate}}" placement="right">
             <div class="checkbox">
-                <input type="checkbox" name="time-to-do" class="tgl-classic" [(ngModel)]="userService.compressedDeadlines.publishCompressedDeadlines" id="time-to-do">
+                <input type="checkbox" name="publishCompressedDeadlines" class="tgl-classic"
+                       [(ngModel)]="userService.compressedDeadlines.publishCompressedDeadlines" id="time-to-do">
                 <label for="time-to-do"></label>
                 <span class="options-name">{{'dashboard.create-service.third-step.extra-form.terms' | translate}}</span>
             </div>
@@ -96,7 +97,8 @@
         <div class="option-wrap" outsideTooltip="{{'dashboard.create-service.third-step.extra-form.tool-tip.extra-changes-title' | translate}}" outsideTooltipDescription="{{'dashboard.create-service.third-step.extra-form.tool-tip.extra-changes-subtitle' | translate}}"
             placement="right">
             <div class="checkbox">
-                <input type="checkbox" name="useExtraOfferChanges" [(ngModel)]="userService.extraOfferChanges.publishExtraOfferChanges" class="tgl-classic" id="extra-changes">
+                <input type="checkbox" name="publishExtraOfferChanges"
+                       [(ngModel)]="userService.extraOfferChanges.publishExtraOfferChanges" class="tgl-classic" id="extra-changes">
                 <label for="extra-changes"></label>
                 <span class="options-name">{{'dashboard.create-service.third-step.extra-form.extra-changes' | translate}}</span>
             </div>
@@ -122,7 +124,8 @@
     <div class="deffault-field">
         <div class="option-wrap">
             <div class="checkbox">
-                <input type="checkbox" name="useCommercialOffer" class="tgl-classic" id="commercial-use" [(ngModel)]="userService.commercialOffer.publishCommercialOffer">
+                <input type="checkbox" name="useCommercialOffer" class="tgl-classic" id="commercial-use"
+                       [(ngModel)]="userService.commercialOffer.publishCommercialOffer">
                 <label for="commercial-use"></label>
                 <span class="options-name">{{'dashboard.create-service.third-step.extra-form.commercial' | translate}}</span>
             </div>
@@ -217,7 +220,7 @@
     <!---------- Add Extra field to secondary option ------->
     <div class="add-option secondary-optins" *ngIf=" !userService.extra_features || userService.extra_features.length < 10">
         <!-- [disabled]="packagesForm.controls['extraOptions'].invalid" -->
-        <button class="add btn-third" [disabled]="addOptionForm.invalid" (click)="addExtraOptin()">
+        <button class="add btn-third" [disabled]="addOptionForm.invalid" (click)="addExtraOption()">
       <i class="material-icons">
         add_circle_outline
       </i>

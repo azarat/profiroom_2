@@ -22,7 +22,7 @@ export class SecondStepCreationComponent implements OnInit {
   characterLength: number = null;
   descriptionForm: FormGroup;
   translatedPath: any = this.localize.translateRoute('/dashboard/my-services');
-  public submited: boolean = null;
+  public submitted: boolean = null;
   public editor;
   constructor(
     private userOffersService: UserOffersService,
@@ -42,7 +42,7 @@ export class SecondStepCreationComponent implements OnInit {
     // this.editor = event;
   }
   nextStep = (form: NgForm) => {
-    this.submited = true;
+    this.submitted = true;
 
     if (this.characterLength < 100 || this.characterLength > 500) {
       return;

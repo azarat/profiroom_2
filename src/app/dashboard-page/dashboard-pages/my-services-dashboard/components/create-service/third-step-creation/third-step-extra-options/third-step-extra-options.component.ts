@@ -15,7 +15,7 @@ export class ThirdStepExtraOptionsComponent implements OnInit {
   @Input() userService: UserServiceModel;
   @Input() submited: boolean;
   ngOnInit() {
-    this.setDefaultCheckboxes();
+    // this.setDefaultCheckboxes();
   }
 
   changesArrayCounter() {
@@ -27,7 +27,7 @@ export class ThirdStepExtraOptionsComponent implements OnInit {
   }
     // *********************** Extra optins functions *******************//
 
-    addExtraOptin() {
+    addExtraOption() {
       this.userService.extra_features.push({
         optionPublish: true,
         optionTitle: null,
@@ -55,11 +55,11 @@ export class ThirdStepExtraOptionsComponent implements OnInit {
     showOptions() {
       this.optionsVisible = !this.optionsVisible;
     }
-    
-    private setDefaultCheckboxes() {
-      this.userService.commercialOffer.publishCommercialOffer = false;
-      this.userService.extraOfferChanges.publishExtraOfferChanges = false;
-      this.userService.compressedDeadlines.publishCompressedDeadlines
-       = false;
-    }
+
+    // private setDefaultCheckboxes() {
+    //   this.userService.commercialOffer.publishCommercialOffer = false;
+    //   this.userService.extraOfferChanges.publishExtraOfferChanges = false;
+    //   this.userService.compressedDeadlines.publishCompressedDeadlines
+    //    = false;
+    // }
 }
