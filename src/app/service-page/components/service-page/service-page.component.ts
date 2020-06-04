@@ -18,7 +18,7 @@ import { Title } from '@angular/platform-browser';
   templateUrl: './service-page.component.html',
   styleUrls: ['./service-page.component.scss']
 })
-export class ServicePageComponent implements OnInit {
+export class ServicePageComponent {
   public offerData: OfferDataInterface = null;
   catalogSubscription: Subscription;
   // tslint:disable-next-line: variable-name
@@ -67,9 +67,9 @@ export class ServicePageComponent implements OnInit {
   }
 
 
-  ngOnInit() {
-    // this.offerDataService.dataChange
-  }
+  // ngOnInit() {
+  //   // this.offerDataService.dataChange
+  // }
 
   getOfferData(offerId: { offerId: string }) {
     this.servicePageService.loadOfferDate(offerId)
@@ -107,7 +107,7 @@ export class ServicePageComponent implements OnInit {
     this.servicePageService.similarOffers(offerId)
       .subscribe((res: any) => {
 
-      this.similarOffers = res;
+      this.similarOffers = res.similarOffers;
       // console.log(this.similarOffers);
     });
   }

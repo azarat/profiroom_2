@@ -14,7 +14,7 @@ export class ServicePageAnotherServicesComponent implements OnInit {
   @Input() offerData: OfferDataInterface;
 
   private breakPointValue: number;
-  public laptopScreen = false;
+
   public showedOffersCount = 0;
 
   constructor(
@@ -25,11 +25,11 @@ export class ServicePageAnotherServicesComponent implements OnInit {
 
   ngOnInit() {
     this.breakPointValue = window.innerWidth;
-    if(this.breakPointValue < 1499) {
-      this.laptopScreen = true;
+    if(this.breakPointValue < 1499 && this.breakPointValue > 1023) {
       this.offersCounting(4);
+    } else if (this.breakPointValue < 1024) {
+      this.offersCounting(3);
     } else {
-      this.laptopScreen= false
       this.offersCounting(5);
     }
   }
