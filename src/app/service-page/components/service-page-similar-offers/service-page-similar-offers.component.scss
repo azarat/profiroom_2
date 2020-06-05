@@ -238,3 +238,23 @@
     }
   }
 }
+@media (max-width: 1024px) {
+  .cards-list{
+    margin: 0 -15px 0 -35px;
+  }
+  .card{
+    width: calc(40% - 30px);
+    margin: 0 30px 30px;
+  }
+  .card-preview__bg{
+    height: 180px;
+  }
+  .card-description{
+    padding: 6px 10px 10px;
+    height: 110px;
+    &__about{
+      font-size: 16px;
+      line-height: 20px;
+    }
+  }
+}

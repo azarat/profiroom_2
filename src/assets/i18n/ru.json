@@ -518,6 +518,7 @@
 	"packages.basic": "Базовый",
 	"packages.premium": "Премиум",
 	"packages.standart": "Стандарт",
+	"packages.price": "Цена",
 	"payment.need-such-amount": "Для оплаты услуги не хватает ",
 	"payment.not-enaught-money": "Не достаточно денег, чтобы оплатить услугу",
 	"raitings.average-rating": "Средняя оценка",

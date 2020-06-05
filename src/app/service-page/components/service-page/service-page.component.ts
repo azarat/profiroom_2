@@ -18,7 +18,7 @@ import { Title } from '@angular/platform-browser';
   templateUrl: './service-page.component.html',
   styleUrls: ['./service-page.component.scss']
 })
-export class ServicePageComponent implements OnInit {
+export class ServicePageComponent {
   public offerData: OfferDataInterface = null;
   catalogSubscription: Subscription;
   // tslint:disable-next-line: variable-name
@@ -28,8 +28,8 @@ export class ServicePageComponent implements OnInit {
   public sticky = false;
   elementPosition: any;
 
-  public messageNotAuthorized: boolean;
 
+  public messageNotAuthorized: boolean;
   public step2 = false;
   public chosenOnOfferPage: string;
 
@@ -67,16 +67,16 @@ export class ServicePageComponent implements OnInit {
   }
 
 
-  ngOnInit() {
-    // this.offerDataService.dataChange
-  }
+  // ngOnInit() {
+  //   // this.offerDataService.dataChange
+  // }
 
   getOfferData(offerId: { offerId: string }) {
     this.servicePageService.loadOfferDate(offerId)
     .pipe(filter((res: any) => !! res))
     .subscribe(offerData => {
       this.offerData = offerData.userOffer;
-      console.log(this.offerData);
+
       this.formateCommentCount();
       this.titleService.setTitle('Gigrum | ' +  this.offerData.title);
     });
@@ -107,7 +107,7 @@ export class ServicePageComponent implements OnInit {
     this.servicePageService.similarOffers(offerId)
       .subscribe((res: any) => {
 
-      this.similarOffers = res;
+      this.similarOffers = res.similarOffers;
       // console.log(this.similarOffers);
     });
   }
@@ -120,7 +120,6 @@ export class ServicePageComponent implements OnInit {
   @HostListener('window:scroll')
   handleScroll() {
     const windowScroll = window.pageYOffset;
-    // if (windowScroll >= this.elementPosition){
     if (windowScroll >= 113) {
       this.sticky = true;
     } else {
@@ -142,6 +141,8 @@ export class ServicePageComponent implements OnInit {
       config.offset = -80;
     } else if (target === 'portfolio') {
       config.offset = -105;
+    } else if (target === 'page-top') {
+      config.offset = -150;
     }
     this._scrollToService.scrollTo(config);
   }

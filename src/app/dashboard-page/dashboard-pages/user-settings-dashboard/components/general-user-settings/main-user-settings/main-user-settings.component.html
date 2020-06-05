@@ -25,9 +25,6 @@
                     <div class="fields">
                         <h5 class="fields-title">{{'general.name' | translate}}</h5>
                         <input class="fields-value" [(ngModel)]="userSettingsModel.name" #firstName="ngModel" [pattern]="unamePattern" name="firstName" placeholder="Имя" type="text" required>
-                        <!-- <div *ngIf="firstName.control.touched && firstName.control.status === 'INVALID'" class="alert-danger">
-            <p>Поле заполнено неверно</p>
-          </div> -->
                         <div [hidden]="firstName.valid || firstName.untouched" class="alert-danger">
                             <p>{{'user-settings.alert-incorrect-symbols' | translate}}</p>
                         </div>

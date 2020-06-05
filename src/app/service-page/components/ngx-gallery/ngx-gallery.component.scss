@@ -9,40 +9,14 @@
     .ngx-gallery-image.ngx-gallery-active{
       z-index: 1;
     }
-    // .ngx-gallery-active{
-    //   .ngx-gallery-arrow-wrapper{
-    //     width: 55px;
-    //     height: 55px;
-    //     background-color: transparent;
-    //     top: 50%;
-    //     transform: translateY(-50%);
-    //     .ngx-gallery-icon{
-    //       border-radius: 50%;
-    //       background: rgba(255, 255, 255, 0.9);
-    //       border: 1px solid rgba(128, 152, 213, 0.2);
-    //       box-sizing: border-box;
-    //       box-shadow: 10px 10px 16px rgba(128, 152, 213, 0.25);
-    //     }
-    //     .fa-arrow-circle-right:before{
-    //       content: '';
-    //     }
-    //     .fa-arrow-circle-left:before{
-    //       content: '';
-    //     }
-    //     &.ngx-gallery-arrow-right{
-    //       right: 45px;
-    //     }
-    //     &.ngx-gallery-arrow-left{
-    //       left: 45px;
-    //     }
-    //   }
-    // }
     .ngx-gallery-arrow-wrapper{
       width: 42px;
       height: 100.2%;
       background-color: #fff;
       z-index: 9;
       &.ngx-gallery-arrow-left{
+        left: -1px;
+        border: 1px solid #F2F5FB;
         .ngx-gallery-icon::after{
           transform: translate(-30%, -50%) rotate(135deg);
         }
@@ -51,6 +25,8 @@
         }
       }
       &.ngx-gallery-arrow-right{
+        right: -1px;
+        border: 1px solid #F2F5FB;
         .ngx-gallery-icon::after{
           transform: translate(-70%, -50%) rotate(-45deg);
         }
@@ -119,7 +95,6 @@
         }
       }
       .ngx-gallery-close{
-        // background-color: black;
         display: none;
       }
     }
@@ -138,7 +113,6 @@
     content: "";
     position: absolute;
     background: rgba(255, 255, 255, 0.77);
-    // background-image: url(/assets/images/svg/service-page/full-size.svg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: auto;
@@ -166,31 +140,6 @@
     width: max-content;
     margin-bottom: 20px;
     ::ng-deep {
-      // .ngx-gallery-active{
-      //   .ngx-gallery-arrow-wrapper{
-      //     width: 30px;
-      //     height: 30px;
-      //     .ngx-gallery-icon{
-      //       border-radius: 50%;
-      //       background: rgba(255, 255, 255, 0.9);
-      //       border: 1px solid rgba(128, 152, 213, 0.2);
-      //       box-sizing: border-box;
-      //       box-shadow: 10px 10px 16px rgba(128, 152, 213, 0.25);
-      //     }
-      //     .fa-arrow-circle-right:before{
-      //       content: '';
-      //     }
-      //     .fa-arrow-circle-left:before{
-      //       content: '';
-      //     }
-      //     &.ngx-gallery-arrow-right{
-      //       right: 45px;
-      //     }
-      //     &.ngx-gallery-arrow-left{
-      //       left: 45px;
-      //     }
-      //   }
-      // }
       .ngx-gallery-arrow-wrapper{
         width: 30px;
         .ngx-gallery-icon{
@@ -244,7 +193,6 @@
           }
         }
         .ngx-gallery-close{
-          // background-color: black;
           display: none;
         }
       }
@@ -263,7 +211,6 @@
       content: "";
       position: absolute;
       background: rgba(255, 255, 255, 0.77);
-      // background-image: url(/assets/images/svg/service-page/full-size.svg);
       background-position: center;
       background-repeat: no-repeat;
       background-size: auto;
@@ -282,4 +229,9 @@
       }
     }
   }
+}
+
+@media (max-width: 1024px) {
+
+
 }

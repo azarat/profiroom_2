@@ -69,7 +69,7 @@ export class FifthStepCreationComponent implements OnInit {
   }
 
   onFiltersChange(e: string, i: number) {
-    if (this.userService.offerbrief[i].briefAnswerType === 'radio' && this.userService.offerbrief[i].briefMultiAnswers === undefined) {
+    if (this.userService.offerbrief[i].briefAnswerType === 'radio' && this.userService.offerbrief[i].briefMultianswers === undefined) {
       this.userService.offerbrief[i].briefAnswerVariants = [
         {
           answerVariant: null

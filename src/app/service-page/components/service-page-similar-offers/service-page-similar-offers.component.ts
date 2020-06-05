@@ -6,11 +6,11 @@ import { SimilarOffersInterface } from 'src/app/shared/interfaces/similar-offers
 import { OfferDataInterface } from 'src/app/shared/interfaces/offer-date.interface';
 
 @Component({
-  selector: 'app-service-page-earlier-viewed',
-  templateUrl: './service-page-earlier-viewed.component.html',
-  styleUrls: ['./service-page-earlier-viewed.component.scss']
+  selector: 'app-service-page-similar-offers',
+  templateUrl: './service-page-similar-offers.component.html',
+  styleUrls: ['./service-page-similar-offers.component.scss']
 })
-export class ServicePageEarlierViewedComponent implements OnInit {
+export class ServicePageSimilarOffersComponent{
 
   public id;
   @Input() similarOffers: any;
@@ -19,9 +19,8 @@ export class ServicePageEarlierViewedComponent implements OnInit {
     private route: ActivatedRoute,
     private localize: LocalizeRouterService,
     private router: Router,
-  ) { }
+  ) {}
 
-  ngOnInit() {}
   openOffer(offerID) {
     const translatedPath: any = this.localize.translateRoute('/service');
 

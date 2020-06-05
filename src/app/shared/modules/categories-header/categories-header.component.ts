@@ -19,10 +19,9 @@ export class CategoriesHeaderComponent implements OnInit {
     private _route: ActivatedRoute,
   ) {
     this._route.data.subscribe(Params => {
-      console.log(Params);
-      // if(Params.localizeRouter.path === "catalog"){
-      //   this.noHover = true;
-      // }
+      if(!Params.localizeRouter.path || Params.localizeRouter.path === "catalog" && Object.keys(Params).length === 1){
+        this.noHover = true;
+      }
     });
   }
 
@@ -31,7 +30,6 @@ export class CategoriesHeaderComponent implements OnInit {
     .subscribe(res => {
       this.categoriesList = res;
     });
-    // this.hoverStatus.emit(true);
   }
 
 }

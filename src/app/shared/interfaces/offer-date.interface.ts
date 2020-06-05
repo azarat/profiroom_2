@@ -51,6 +51,7 @@ export interface OfferDataInterface {
     }
   };
   category: string;
+  subCategory: string;
   comments?: [{
     mark?: number;
     commentText?: string;
