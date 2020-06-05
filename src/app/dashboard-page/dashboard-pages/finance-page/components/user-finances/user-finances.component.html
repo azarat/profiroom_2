@@ -98,7 +98,7 @@
         </div>
         <div class="wallet-section">
             <div class="title">{{'dashboard.payment-history.input-output' | translate}}</div>
-            <div class="form">
+            <form class="form" #form="ngForm">
                 <div class="operation-type">
                     <mat-select [(ngModel)]="transactions.transactionType" [(value)]="transactions.transactionType">
                         <mat-option [value]="'deffault'" disabled>{{'dashboard.cash-box.choose-operation-type' | translate}}</mat-option>
@@ -125,9 +125,9 @@
                         <p>{{'dashboard.cash-box.ur-password' | translate}}</p>
                         <input type="password" [(ngModel)]="transactions.password">
                     </div>
-                    <button class="btn" type="submit" (click)="makePayment()">{{'general.success' | translate}}</button>
+                    <button class="btn" type="submit" (click)="makePayment(form)">{{'general.success' | translate}}</button>
                 </div>
-            </div>
+            </form>
 
         </div>
     </div>
