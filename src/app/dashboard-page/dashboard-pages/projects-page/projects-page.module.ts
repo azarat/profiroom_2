@@ -8,6 +8,7 @@ import { ChatModule } from 'src/app/chat/chat.module';
 const dashboardPageRoutes: Routes = [
   {
     path: '',
+    pathMatch:'full',
     component: ProjectsPageComponent,
   }
 ];

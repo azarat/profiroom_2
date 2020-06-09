@@ -1,6 +1,5 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { InfoMessageInterface } from '../../interfaces/info-message.interface';
-import { EventEmitter } from 'events';
 
 @Component({
   selector: 'app-inform-popup',

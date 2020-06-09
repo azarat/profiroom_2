@@ -198,15 +198,14 @@ input[type=number] {
     }
 
     .textarea {
-      width: 90%;
-      margin: auto;
-      height: 90%;
+      width: 100%;
+      height: 100%;
       // padding: 10px;
     }
 
     textarea {
       resize: none;
-      padding: 0;
+      padding: 10px;
       border: none;
       height: 100%;
       outline: none;
@@ -218,11 +217,14 @@ input[type=number] {
           font-weight: normal;
           font-size: 14px;
           line-height: 18px;
+          &.submited.ng-invalid {
+            border: 1px solid #f44336;
+          }
     }
 
     .input-wrap {
-      padding: 10px 10px 10px 20px;
-      width: 90%;
+      
+      width: 100%;
       height: 100%;
       // margin: auto;
       display: flex;
@@ -231,6 +233,8 @@ input[type=number] {
 
       input {
         width: 100%;
+        box-sizing: border-box;
+        padding: 10px 10px 10px 20px;
         font-family: Source Sans Pro, sans-serif;
         font-style: normal;
         font-weight: normal;
@@ -240,11 +244,14 @@ input[type=number] {
         text-align: center;
         border: none;
         outline: none;
+        &.submited.ng-invalid {
+          border: 1px solid #f44336;
+        }
       }
     }
 
     .select-wrap {
-      padding: 0 20px 0 10px;
+      
 
       .mat-select {
         height: 60px;
@@ -257,10 +264,11 @@ input[type=number] {
         font-weight: normal;
         font-size: 16px;
         line-height: 21px;
-        /* identical to box height, or 131% */
-
-
         color: #323C47;
+        padding: 0 20px 0 10px;
+        &.submited.ng-invalid {
+          border: 1px solid #f44336;
+        }
       }
     }
 
@@ -352,7 +360,7 @@ input[type=number] {
 
       .packages-title {
         .textarea {
-          height: 80%;
+          height: 100%;
           font-family: Source Sans Pro, sans-serif;
           font-style: normal;
           font-weight: normal;
@@ -373,7 +381,12 @@ input[type=number] {
         border-right: 1px solid #dce0e6;
         padding: 10px;
         box-sizing: border-box;
-
+        &.description-wrapper{
+          padding: 0;
+          textarea {
+            padding: 10px;
+          }
+        }
         textarea {
           // padding: 10px;
           box-sizing: border-box;

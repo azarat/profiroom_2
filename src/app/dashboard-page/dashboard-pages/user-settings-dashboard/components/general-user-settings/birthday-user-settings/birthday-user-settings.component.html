@@ -2,7 +2,7 @@
     <div class="day">
         <mat-select name="day" [(ngModel)]="userBirthDay.day" (ngModelChange)="onFilterChanhe()">
             <ng-container *ngFor="let day of days, let i = index">
-                <mat-option *ngIf="days" [value]="i">{{ i+1 }}</mat-option>
+                <mat-option *ngIf="days" [value]="i+1">{{ i+1 }}</mat-option>
             </ng-container>
         </mat-select>
     </div>
@@ -10,7 +10,7 @@
 
         <mat-select name="month" id="" [(ngModel)]="userBirthDay.month" (ngModelChange)="onFilterChanhe()">
             <ng-container *ngFor="let month of month, let i = index">
-                <mat-option [value]="i">{{ (i+1).toString() | monthPipe: 'MMMM' }}</mat-option>
+                <mat-option [value]="i+1">{{ (i+1).toString() | monthPipe: 'MMMM' }}</mat-option>
             </ng-container>
         </mat-select>
     </div>

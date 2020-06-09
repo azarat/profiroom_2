@@ -229,7 +229,7 @@
 	"dashboard.create-service.forth-step.tool-tip.title": "Добавьте часто задаваемые вопросы. ",
 	"dashboard.create-service.save-and-next": "сохранить и продолжить",
 	"dashboard.create-service.second-step.max-error": "с 500 максимально",
-	"dashboard.create-service.second-step.minimal-error": "100 минимум",
+	"dashboard.create-service.second-step.minimal-error": "/100 минимум",
 	"dashboard.create-service.second-step.subtitle": "Опишите услугу как можно подробнее",
 	"dashboard.create-service.second-step.title": "2. Описание услуги",
 	"dashboard.create-service.second-step.tool-tip.subtitle": "Проявите оригинальность:  добавьте аргументы в свою пользу, дайте гарантии, предоставьте бонусы и т.Д. чтобы покупатель выбрал именно Вашу услугу.",

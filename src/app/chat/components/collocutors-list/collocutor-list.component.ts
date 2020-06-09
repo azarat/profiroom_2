@@ -170,6 +170,8 @@ export class CollocutorListComponent implements OnInit, OnDestroy {
       });
   }
 
+
+  //  Clearing route on brief 
   //  If user role changed
   private _checkUserState() {
     this.userStateSubscription = this.userStateService.userState$
@@ -178,6 +180,11 @@ export class CollocutorListComponent implements OnInit, OnDestroy {
         this.currentUserState = res;
         this._getChatRooms();
         this.collocutorService.setCollocutorInfo(null);
+        const translatedPath = this.localize.translateRoute('/dashboard/projects');
+        // if
+        this.router.navigate([translatedPath], {
+          relativeTo: this.route,
+        });
       });
   }
 

@@ -9,7 +9,7 @@
                     <div class="item-question">
                         <h6>{{ i+1 }}.
                             <ng-container *ngIf="userService.offer_faq[i].question">
-                                {{ userService.offer_faq[i].question.substr(0, 45) }}</ng-container>
+                                {{ userService.offer_faq[i].question.substr(0, 80) }}</ng-container>
                         </h6>
                         <div class="item-options">
                             <button type="button" class="change"><i class="material-icons create"
@@ -18,7 +18,7 @@
                   (click)="deleteFaqItem(i)">delete</i></button>
                         </div>
                         <div class="question-title" [ngClass]="{ 'field-required': !question.valid && submited }">
-                            <input type="text" required placeholder="{{'dashboard.create-service.forth-step.placeholder-question' | translate}}" #question="ngModel" name="question-{{ i }}" maxlength="45" [(ngModel)]="userService.offer_faq[i].question">
+                            <input type="text" required placeholder="{{'dashboard.create-service.forth-step.placeholder-question' | translate}}" #question="ngModel" name="question-{{ i }}" maxlength="80" [(ngModel)]="userService.offer_faq[i].question">
                         </div>
                     </div>
                     <div class="item-answer" [ngClass]="{ 'field-error': !answer.valid && submited }">
