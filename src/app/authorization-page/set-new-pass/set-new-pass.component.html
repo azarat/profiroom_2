@@ -32,7 +32,7 @@
                             </li>
                         </ul>
                     </div>
-                    <button class="pass" mat-icon-button matSuffix (click)="hideF = !hideF" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideF" [style.color]="hideF ? '#DBDBDB': '#000'">
+                    <button class="pass" type="button" mat-icon-button matSuffix (click)="hideF = !hideF" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideF" [style.color]="hideF ? '#DBDBDB': '#000'">
             <mat-icon>{{hideF ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
                     <mat-error *ngIf="registrationForm.get('password').hasError('required')">{{'auth-page.login.put-password' | translate}}</mat-error>

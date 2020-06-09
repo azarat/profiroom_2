@@ -33,7 +33,7 @@ export class LanguageComponent implements OnInit {
     private localStorageService: LocalStorageService
 
   ) {
-    this.translate.setDefaultLang('uk');
+    // this.translate.setDefaultLang('uk');
     const url = this._router.url;
 
     // console.log(url);

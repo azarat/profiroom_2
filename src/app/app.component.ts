@@ -36,15 +36,22 @@ export class AppComponent implements OnInit {
 
   }
   ngOnInit() {
-
     const userLang = this.localStorageService.getItem('userLanguage').value;
     const url = this.router.url;
-    if(userLang !== 'uk') {
-      let translatedPath: any = this.localize.translateRoute('about/me');
-
-      // do something with translated path
-      // e.g. this.router.navigate([translatedPath]);
+    // console.log(window.location.href)
+    console.log(url);
+    if (userLang == null) {
+      // LOCALIZE_DEFAULT_LANGUAGE
+      console.log('ss');
+      // this.localStorageService.setItem('LOCALIZE_DEFAULT_LANGUAGE', 'uk');
+      // const path: string = this.localize.translateRoute(url).toString();
+      // this.router.navigateByUrl(path);
+      // this.localize.changeLanguage('uk');
+      // this.translate.currentLang = 'uk';
+      // this.translate.setDefaultLang('uk');
+      // this.localize.parser.defaultLang = 'uk';
     }
+
     // const url = this.router.url;
     // if(url.match(/uk/)) {
     //   console.log('da')

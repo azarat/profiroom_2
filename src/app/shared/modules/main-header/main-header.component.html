@@ -17,7 +17,7 @@
                     </div>
                 </div>
                 <nav *ngIf="pageName !== 'authoriz'">
-                    <a [routerLink]="''">{{'header.how_it_works' | translate}}</a>
+                    <a [routerLink]="'/' | localize">{{'header.how_it_works' | translate}}</a>
                     <a [routerLink]="['/catalog'] | localize">{{'menu.catalog' | translate}}</a>
                     <!-- <a [routerLink]="''">Проэкты</a> -->
                 </nav>
@@ -33,15 +33,15 @@
         </div>
         <div class="logo">
             <!-- <a [routerLink]="'' | localize"> <img src="assets/images/logo.svg" alt=""></a> -->
-            <a [routerLink]="'' | localize"> Whocan</a>
+            <a [routerLink]="'/' | localize"> Whocan</a>
         </div>
         <div class="menu">
 
             <nav *ngIf="pageName !== 'authoriz'">
-                <a [routerLink]="''">{{'menu.home' | translate}}</a>
-                <a [routerLink]="''">{{'header.how_it_works' | translate}}</a>
+                <a [routerLink]="'/' | localize">{{'menu.home' | translate}}</a>
+                <a [routerLink]="'/' | localize">{{'header.how_it_works' | translate}}</a>
                 <a [routerLink]="['/catalog'] | localize">{{'menu.catalog' | translate}}</a>
-                <a [routerLink]="''">{{'menu.projects' | translate}}</a>
+                <!-- <a [routerLink]="'' | localize">{{'menu.projects' | translate}}</a> -->
             </nav>
         </div>
         <div class="auth" *ngIf="pageName !== 'authoriz'">
