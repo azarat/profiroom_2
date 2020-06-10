@@ -11,6 +11,7 @@ import { MatChipInputEvent } from '@angular/material/chips';
 import { COMMA, ENTER, SPACE, TAB } from '@angular/cdk/keycodes';
 import { UserOffersService } from '../../../services/user-offers.service';
 import { LocalizeRouterService } from 'localize-router';
+import { SiteLocaleService } from 'src/app/core/services/site-locale.service';
 
 
 @Component({
@@ -37,7 +38,7 @@ export class FirstStepServiceCreationComponent implements OnInit {
   translatedPath: any = this.localize.translateRoute('/dashboard/my-services');
 
   titlePosition: string;
-
+  public currentLang: string = null;
 
 
 
@@ -51,6 +52,7 @@ export class FirstStepServiceCreationComponent implements OnInit {
     private _route: ActivatedRoute,
     private activatedRoute: ActivatedRoute,
     private localize: LocalizeRouterService,
+    private siteLocaleService: SiteLocaleService
   ) { }
 
   @Input() userService: UserServiceModel;
@@ -80,9 +82,18 @@ export class FirstStepServiceCreationComponent implements OnInit {
       this.previewUrl = this.userService.files;
     }
     this.tags = this.userService.tags;
+    this.subscribeLang();
   }
   // tslint:disable-next-line: use-lifecycle-interface
   ngOnDestroy() { }
+
+  private subscribeLang() {
+    this.siteLocaleService.currentLang$
+    .pipe(filter((res: any) => !!res))
+    .subscribe(res => {
+      this.currentLang = res;
+    })
+  }
 
   // tslint:disable-next-line: variable-name
   public loadSubcategoryFilter = (category: string) => {

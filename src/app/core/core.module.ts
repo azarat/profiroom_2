@@ -49,16 +49,17 @@ export const url = new URL(location.href).origin;
         deps: [TranslateService, Location, LocalizeRouterSettings, HttpClient, ],
       },
       // defaultLangFunction: (
-      //   languages: ['uk', 'ru']) => {
-      //     const userLang = localStorage.getItem('userLanguage');
-      //     if (userLang == null  ) {
-      //       console.log(null);
-      //       return 'uk';
-      //     } else {
-      //       console.log(userLang);
-      //       return 'ru';
-      //     }
-      //   },
+      //   languages: ['uk', 'ru']) => 'uk'
+        // {
+          // const userLang = localStorage.getItem('userLanguage');
+          // if (userLang == null  ) {
+          //   console.log(null);
+          //   return 'uk';
+          // } else {
+          //   console.log(userLang);
+          //   return 'ru';
+          // }
+        // },
       // alwaysSetPrefix: false,
 
     }),

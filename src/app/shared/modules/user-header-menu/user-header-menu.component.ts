@@ -41,6 +41,9 @@ export class UserHeaderMenuComponent implements OnInit {
       this.menuOpen = !this.menuOpen;
     }
   }
+  public hideMenu() {
+    this.menuOpen = false;
+  }
 
   logOut() {
     this.localStorageService.removeItem('token');

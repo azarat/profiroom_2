@@ -68,10 +68,13 @@ export class SystemMessagesInDealsComponent implements OnInit {
   }
 
   private checkIsUserFreelancer() {
-    const userId = Number(this.localStorageService.getItem('userId').value);
-    if (this.collocutorData.freelancer_id === userId) {
-      this.isUserFreelancer = true;
+    if(this.collocutorData) {
+      const userId = Number(this.localStorageService.getItem('userId').value);
+      if (this.collocutorData.freelancer_id === userId) {
+        this.isUserFreelancer = true;
+      }
     }
+    
   }
 
 
@@ -103,6 +106,7 @@ export class SystemMessagesInDealsComponent implements OnInit {
     this.dealService.submitFinishDeal(this.collocutorData.id);
   }
   public cancelFinishDeal() {
+    console.log(this.collocutorData.id)
     this.dealService.cancelFinishDeal(this.collocutorData.id)
   }
 }

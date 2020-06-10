@@ -23,6 +23,8 @@ import {
 import {
   InfoMessageInterface
 } from 'src/app/shared/interfaces/info-message.interface';
+import { LocalStorageService } from 'src/app/core/services/local-storage.service';
+import { LocalizeRouterService } from 'localize-router';
 
 export class CustomValidators {
 
@@ -53,9 +55,13 @@ export class RegistrationPageComponent implements OnInit {
     hideF = true;
     hideS = true;
     message: InfoMessageInterface | boolean;
+    currentLanguage
+
   constructor(
     private fb: FormBuilder,
-    private autServ: AuthentificationService
+    private autServ: AuthentificationService,
+    private localStorageService: LocalStorageService,
+    private localize: LocalizeRouterService
   ) { }
 
   static passwordMatchValidator(control: AbstractControl) {
@@ -73,6 +79,13 @@ export class RegistrationPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.initializeForm();
+  }
+  public getCurrentLang() {
+    const changedLang = this.localStorageService.getItem('userLanguage').value;
+    const defaultLanguage = this.localize.parser.getLocationLang().toString();
+   
+    this.currentLanguage = changedLang === null ? defaultLanguage : changedLang.toString();
+
   }
 
   registrate() {
@@ -116,6 +129,7 @@ export class RegistrationPageComponent implements OnInit {
         CustomValidators.patternValidator(/(?=.{8,100})/, { minLengthCharacters: true })])
   ],
       agreed: [null, [Validators.required]],
+      currentLang: this.currentLanguage,
       password_confirmation: [null, Validators.required]
     }, {
       validator: RegistrationPageComponent.passwordMatchValidator

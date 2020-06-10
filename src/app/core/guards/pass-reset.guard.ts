@@ -7,6 +7,7 @@ import { AuthentificationService } from '../services/auth.service';
 
 export class PassResetGuard implements CanActivate {
   token: string | boolean = null;
+
   constructor(
     private router: Router,
     private localize: LocalizeRouterService,
@@ -23,10 +24,11 @@ export class PassResetGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     if (this.token !== null) {
+    //   const redirectToAuthPath: any = this.localize.translateRoute('auth/new-password');
+    // this.router.navigate([redirectToAuthPath]);
       return true;
     }
-    const redirectToAuthPath: any = this.localize.translateRoute('/dashboard');
-    this.router.navigate([redirectToAuthPath]);
+    
     return false;
 
 

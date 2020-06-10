@@ -5,6 +5,7 @@
       {{ collocutorData.collocutorName }} {{ collocutorData.collocutorSurname }} </a>
             <span *ngIf="collocutorData.collocutorOnline == true">{{'general.online' | translate}}</span>
             <span *ngIf="collocutorData.collocutorOnline === false">{{'general.offline' | translate}}</span>
+         
         </div>
         <div class="massager-tools">
             <app-show-uploaded-files [chatRoom]="collocutorData.roomId"></app-show-uploaded-files>
