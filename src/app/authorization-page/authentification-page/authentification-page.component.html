@@ -2,8 +2,10 @@
     <div class="nav-menu">
         <app-main-header [pageName]="'authoriz'"></app-main-header>
     </div>
-    <div class='login-form auth-form'>
+    <div>
+         <div class='login-form auth-form'>
         <div class="form log">
+
             <app-login-page></app-login-page>
         </div>
     </div>
@@ -12,6 +14,8 @@
             <app-registration-page></app-registration-page>
         </div>
     </div>
+    </div>
+
     <div class="swipe-block" [ngClass]="auth? 'left' : 'right'">
         <div class="inform">
             <h2>

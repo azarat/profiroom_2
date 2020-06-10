@@ -147,6 +147,7 @@
   max-width: 860px;
   margin-top: 50px;
   font-family: "Source Sans Pro", sans-serif;
+  position: relative;
   &-name {
     font-style: normal;
     font-weight: bold;
@@ -435,8 +436,15 @@
 }
 
 .choose-packet{
-  width: 42%;
-  position: relative;
+  // width: 42%;
+  // position: relative;
+
+  position: absolute;
+  right: -640px;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+
   .running-block{
     width: 480px;
     height: auto;
@@ -621,8 +629,9 @@ app-service-page-checkout{
 
   //got
   .choose-packet{
-    width: 42%;
-    position: relative;
+    // width: 42%;
+    // position: relative;
+    right: -490px;
     .running-block{
       width: 390px;
       top: 55px;
@@ -750,9 +759,9 @@ app-service-page-checkout{
     max-width: 630px;
   }
   .choose-packet{
-    width: 36%;
+    width: auto;
     max-width: 370px;
-    position: relative;
+    right: -390px;
     .running-block{
       width: 345px;
       margin: 70px 0 30px;
@@ -801,6 +810,12 @@ app-service-page-checkout{
     padding: 0 15px;
   }
 
+  .section-title{
+    font-size: 18px;
+    line-height: 23px;
+    margin: 40px 0 15px;
+  }
+
   .navigation-page{
     display: none;
   }
@@ -842,6 +857,35 @@ app-service-page-checkout{
     &__text{
       font-size: 16px;
       line-height: 20px;
+    }
+
+  }
+  .choose-packet{
+    display: block;
+    position: relative;
+    right: 0;
+    height: auto;
+    .running-block{
+      width: auto;
+      margin: 0px 0 30px;
+      margin-left: auto;
+    }
+  }
+
+  .offer-rating{
+    .rating-type{
+      margin-bottom: 8px;
+    }
+    .rating-type_name{
+      font-size: 14px;
+      line-height: 18px;
+      width: 100%;
+    }
+    .rating-type_numeral{
+      align-items: center;
+    }
+    .comments-count{
+      white-space: nowrap;
     }
   }
 }

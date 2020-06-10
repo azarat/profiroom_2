@@ -27,6 +27,7 @@ import { FooterModule } from '../shared/modules/footer/footer.module';
 
 
 
+
 const routes: Routes = [
   {
     path: '',

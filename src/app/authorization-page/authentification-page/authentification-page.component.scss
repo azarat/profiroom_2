@@ -225,7 +225,7 @@
 
     .swap-btn {
       height: 53px;
-      background: #3c7eea;  
+      background: #3c7eea;
       border-radius: 4px;
       border: 1px solid #fff;
       color: #ffffff;
@@ -422,15 +422,15 @@
       }
 
 
-     
+
 
       .mat-form-field-label-wrapper {
         line-height: normal;
       }
     }
-   
+
     .ng-valid {
-      
+
       .mat-form-field-label-wrapper {
         line-height: normal;
       }
@@ -624,5 +624,62 @@
 
   .social-login{
     display: none;
+  }
+}
+
+@media (max-width: 1360px) {
+  .auth-pg{
+    .swipe-block{
+      .inform{
+        h2{
+          font-size: 24px;
+        }
+        p{
+          font-size: 16px;
+          line-height: 22px;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 1024px) {
+  .auth-pg{
+    .swipe-block{
+      .inform{
+        h2{
+          font-size: 28px;
+          line-height: 1em;
+          margin: 0 0 18px;
+        }
+        p{
+          font-size: 18px;
+          line-height: 25px;
+          margin: 0 0 30px;
+        }
+        .swap-btn{
+          height: 43px;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .auth-pg{
+    &.login .login-form{
+      width: 100%;
+    }
+    .swipe-block.right{
+      display: none;
+    }
+  }
+  .auth-pg{
+    &.registr .registr-form{
+      width: 100%;
+    }
+    .swipe-block.left{
+      display: none;
+    }
   }
 }
