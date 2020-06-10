@@ -45,7 +45,7 @@ export class CollocutorListComponent implements OnInit, OnDestroy {
 
   private querrySubscription: Subscription;
   private userStateSubscription: Subscription;
-  private currentUserState: number; // 1=> free, 2=> cusxtomer
+  private currentUserState: number = null; // 1=> free, 2=> cusxtomer
   constructor(
     private chatService: ChatService,
     private socketService: SocketService,
@@ -172,19 +172,28 @@ export class CollocutorListComponent implements OnInit, OnDestroy {
 
 
   //  Clearing route on brief 
-  //  If user role changed
   private _checkUserState() {
     this.userStateSubscription = this.userStateService.userState$
       .pipe(untilDestroyed(this))
       .subscribe(res => {
-        this.currentUserState = res;
-        this._getChatRooms();
+        if(!this.currentUserState) {
+          this.currentUserState = res;
+          this._getChatRooms();
         this.collocutorService.setCollocutorInfo(null);
-        const translatedPath = this.localize.translateRoute('/dashboard/projects');
-        // if
+        } else {
+          this._getChatRooms();
+          this.collocutorService.setCollocutorInfo(null);
+          const translatedPath = this.localize.translateRoute('/dashboard/projects');
+        
         this.router.navigate([translatedPath], {
           relativeTo: this.route,
         });
+        }
+        
+        // this._getChatRooms();
+        // this.collocutorService.setCollocutorInfo(null);
+
+        
       });
   }
 
