@@ -595,7 +595,7 @@ app-service-page-checkout{
       margin-bottom: 6px;
     }
   }
-  
+
   //got
   .about-offer {
     margin-bottom: 40px;
@@ -618,7 +618,7 @@ app-service-page-checkout{
       bottom: -20px;
     }
   }
-  
+
   //got
   .choose-packet{
     width: 42%;
@@ -630,7 +630,7 @@ app-service-page-checkout{
       margin-left: auto;
     }
   }
-  
+
   .error-message {
     position: fixed;
     top: 0;
@@ -649,7 +649,7 @@ app-service-page-checkout{
       transform: translate(-50%, -50%);
       max-width: 440px;
       // max-height: 350px;
-  
+
       padding: 25px 35px;
       background: #FFFFFF;
       box-shadow: 0px 15px 30px rgba(16, 27, 79, 0.15);
@@ -763,7 +763,6 @@ app-service-page-checkout{
 @media (max-width: 1024px) {
   .wrapper {
     max-width: 690px;
-    margin: 0 auto;
   }
   .choose-packet{
     display: none;
@@ -789,6 +788,60 @@ app-service-page-checkout{
     }
     &::after {
       display: none;
+    }
+  }
+}
+
+
+@media (max-width: 767.987px) {
+
+  .wrapper{
+    max-width: 420px;
+    width: 100%;
+    padding: 0 15px;
+  }
+
+  .navigation-page{
+    display: none;
+  }
+
+  .bread-crumbs{
+    display: none;
+  }
+  .description{
+    &-name{
+      font-size: 18px;
+      line-height: 23px;
+      margin-bottom: 18px;
+    }
+
+    .actions{
+      .action{
+        display: none;
+        &:nth-child(2){
+          display: block;
+        }
+      }
+    }
+  }
+  .user{
+    &-avatar{
+      min-width: 40px;
+      min-height: 40px;
+    }
+    &-name{
+      font-size: 16px;
+    }
+  }
+  .about-offer{
+    h4{
+      font-size: 18px;
+      line-height: 23px;
+      margin-bottom: 4px;
+    }
+    &__text{
+      font-size: 16px;
+      line-height: 20px;
     }
   }
 }
