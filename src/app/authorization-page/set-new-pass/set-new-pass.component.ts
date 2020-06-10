@@ -69,14 +69,14 @@ export class SetNewPassComponent implements OnInit {
       .subscribe(res => {
         if (res.message === 'This password reset token is invalid.') {
           this.message = {
-            title: 'Ошибка',
-            description: 'Время сессии истекло'
+            title: 'auth-page.sys-messages.erorr-message-title',
+            description: 'auth-page.sys-messages.session-ended'
           };
 
         } else {
           this.message = {
-            title: 'Смена успешна',
-            description: 'Можете войти используя новый пароль'
+            title: 'auth-page.sys-messages.change-succes',
+            description: 'auth-page.sys-messages.change-succes-description'
           };
           setTimeout(() => {
             this.router.navigate([this.routeAuthPage]);
@@ -86,8 +86,8 @@ export class SetNewPassComponent implements OnInit {
       },
         erorr => {
           this.message = {
-            title: 'Ошибка',
-            description: 'Время сессии истекло'
+            title: 'auth-page.sys-messages.erorr-message-title',
+            description: 'auth-page.sys-messages.session-ended'
           };
         }
       );

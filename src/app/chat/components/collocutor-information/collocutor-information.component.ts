@@ -1,8 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { ChatService } from '../../services/chat.service';
 import { CollocutorInformationModel } from 'src/app/models/chat/collocutor-information.model';
 import { plainToClass } from 'class-transformer';
-import { CommetnsCountTransformerService } from 'src/app/core/services/comments-count-transformer.service';
+import { CommentsCountTransformerService } from 'src/app/core/services/comments-count-transformer.service';
+import { CollocutorService } from '../../services/collocutor.service';
+import { CollocutorInterface } from '../../interfaces/collocutor.interface';
+import { untilDestroyed } from 'ngx-take-until-destroy';
 
 const n = 5750;
 
@@ -11,31 +14,39 @@ const n = 5750;
   templateUrl: './collocutor-information.component.html',
   styleUrls: ['./collocutor-information.component.scss']
 })
-export class CollocutorInformationComponent implements OnInit {
+export class CollocutorInformationComponent implements OnInit, OnDestroy {
 
-  // collocutorRaiting = 4;
+  // collocutorRating = 4;
   public collocutorAllComments = null;
-  public isInformWraped: boolean = false;
+  public isInformWrapped: boolean = false;
   public wrapButtonText: string = 'развернуть';
 
-  @Input() collocutorData;
-  public collocutor;
+  public collocutorData: CollocutorInterface;
   constructor(
     private chatService: ChatService,
-    private commentsCountTransformerService: CommetnsCountTransformerService
+    private commentsCountTransformerService: CommentsCountTransformerService,
+    private collocutorService: CollocutorService
   ) { }
 
   ngOnInit() {
-    this.chatService.getCollocutorInformation(this.collocutorData.collocutorId)
-    .subscribe((res: any) => {
 
-      this.collocutor = plainToClass(CollocutorInformationModel, res.user)
-      this.collocutorAllComments = this.commentsCountTransformerService.transformCommentsVlalue(this.collocutor.comments_count);
+    this.getCollocutorData();
+  }
+  ngOnDestroy() {}
+
+  private getCollocutorData() {
+    this.collocutorService.collocutorData$
+    .pipe(untilDestroyed(this))
+    .subscribe(res => {
+      this.collocutorData = res;
+      this.collocutorAllComments = this.commentsCountTransformerService.transformCommentsValue(
+        this.collocutorData.negative_comments_count + this.collocutorData.positive_comments_count
+        );
     });
   }
 
   public showAllInfo() {
-    this.isInformWraped = !this.isInformWraped;
-    this.wrapButtonText = this.isInformWraped === true ? 'свернуть' : 'развернуть';
+    this.isInformWrapped = !this.isInformWrapped;
+    this.wrapButtonText = this.isInformWrapped === true ? 'general.roll' : 'general.unroll';
   }
 }

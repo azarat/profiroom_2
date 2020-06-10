@@ -1,34 +1,26 @@
-<section class="wrapper" [ngClass]="{'attention': exitFromBreefPopUpVisible}" *ngIf="isChat">
-  <section class="collocutors">
-    <app-collocutors-list [chatType]="chatType" (currentRoom)="getCurrentRoom($event)"></app-collocutors-list>
-  </section>
-  <section class="messager" *ngIf="collocutorData">
-    <!-- messager -->
-    <app-messager *ngIf="collocutorData && chatType === 'classic'  || collocutorData && deal && collocutorData.breef == 1 && chatType === 'work'" [collocutorData]="collocutorData"
-      [chatType]="chatType" [(isFileLoaderVisible)]="isFileLoaderVisible" [deal]="deal" ></app-messager>
-<!-- breef -->
-    <app-project-breef-filling
-    *ngIf="(collocutorData && collocutorData.breef == 0) && chatType === 'work'"
-      [collocutorData]="collocutorData"
-      [(exitFromBreefPopUpVisible)]="exitFromBreefPopUpVisible"
-      (resetChat)="resetChat($event)"
-      >
-    </app-project-breef-filling>
+<section class="wrapper" [ngClass]="{'attention': exitFromBriefPopUpVisible}" *ngIf="isChat">
+    <section class="collocutors">
+        <app-collocutor-list [chatType]="chatType"></app-collocutor-list>
+    </section>
+    <section class="messager" *ngIf="collocutorData">
+        <!-- messager -->
+        <app-messenger *ngIf="collocutorData && chatType === 'classic'  || collocutorData && collocutorData.brief == 1 && chatType === 'work'" [chatType]="chatType" [(isFileLoaderVisible)]="isFileLoaderVisible"></app-messenger>
+        <!-- breef -->
+        <app-project-brief-filling *ngIf="collocutorData && collocutorData.brief == 0 && chatType === 'work'" [(exitFromBriefPopUpVisible)]="exitFromBriefPopUpVisible" (resetChat)="resetChat($event)">
+        </app-project-brief-filling>
 
+    </section>
+    <section class="collocutors-tools">
+        <!-- right chat bar -->
+        <app-messenger-tools *ngIf="chatType === 'work' && collocutorData" (noMoney)="openPayment($event)"></app-messenger-tools>
+        <app-collocutor-information *ngIf="chatType === 'classic' && collocutorData">
+        </app-collocutor-information>
 
-  </section>
-  <section class="collocutors-tools">
-    <!-- right chat bar -->
-    <app-messager-tools *ngIf="chatType === 'work' && collocutorData" [collocutorData]="collocutorData"></app-messager-tools>
-    <app-collocutor-information *ngIf="chatType === 'classic' && collocutorData" [collocutorData]="collocutorData">
-    </app-collocutor-information>
-
-  </section>
-  <!-- file loader -->
-  <section class="file-loader" *ngIf="isFileLoaderVisible && collocutorData">
-    <app-upload-file [(isFileLoaderVisible)]="isFileLoaderVisible" [collocutorData]="collocutorData"
-    (uploadedBreefFiles)="uploadedBreefFiles"
-      [chatType]="chatType"></app-upload-file>
-  </section>
-
+    </section>
+    <!-- file loader -->
+    <section class="file-loader" *ngIf="isFileLoaderVisible && collocutorData">
+        <app-upload-file [(isFileLoaderVisible)]="isFileLoaderVisible" [collocutorData]="collocutorData" (uploadedBreefFiles)="uploadedBriefFiles" [chatType]="chatType"></app-upload-file>
+    </section>
+    <app-chat-errors></app-chat-errors>
+    <app-make-payment *ngIf="moneyRequired" [(moneyRequired)]="moneyRequired"></app-make-payment>
 </section>

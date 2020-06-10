@@ -1,0 +1,35 @@
+<app-main-header></app-main-header>
+<app-categories-header></app-categories-header>
+
+<div class="wrapper">
+  <div class="bread-crumbs">
+    <ul *ngIf="subcategoriesList">
+      <li><a [routerLink]="['/'] | localize">Главная</a></li>
+      <li><a [routerLink]="['/catalog'] | localize">Каталог</a></li>
+      <li><a [routerLink]="['/catalog', subcategoriesList.link] | localize">{{ subcategoriesList.name }}</a></li>
+    </ul>
+  </div>
+  <h2 class="category-title" *ngIf="subcategoriesList">{{ subcategoriesList.name }}</h2>
+  <div class="catalo-page__wrapper">
+    <div class="sidebar">
+      <ul class="sidebar__subcategories-list" *ngIf="subcategoriesList">
+        <li class="sidebar__subcategories" *ngFor="let sub_categories of subcategoriesList.sub_categories"><a
+            [routerLink]="['/catalog', subcategoriesList.link , sub_categories.link] | localize">{{ sub_categories.name }}</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="subcategories-list" *ngIf="subcategoriesList">
+      <div class="subcategory-full" *ngFor="let sub_category of subcategoriesList.sub_categories">
+        <div class="subcategory-full-img" [routerLink]="['/catalog', subcategoriesList.link , sub_category.link] | localize">
+          <img [src]="sub_category.img" alt="{{ sub_category.name }}">
+        </div>
+        <a [routerLink]="['/catalog', subcategoriesList.link , sub_category.link] | localize">
+          <h2 class="subcategory-full-title">{{ sub_category.name }} </h2>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

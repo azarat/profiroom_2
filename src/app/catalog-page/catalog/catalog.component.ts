@@ -8,6 +8,7 @@ import { Subscription, pipe, Observable } from 'rxjs';
 import { OffersListInterface } from 'src/app/shared/interfaces/offers-list.interface';
 import { plainToClass } from 'class-transformer';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-catalog',
@@ -18,7 +19,6 @@ export class CatalogComponent implements OnInit {
 
   public catalogFilters: CatalogFiltersModel;
   public category;
-  public href;
 
   public currentQueryParams;
   public pagesArr = [];
@@ -34,41 +34,37 @@ export class CatalogComponent implements OnInit {
     private GetOffersService: GetOffersService,
     // tslint:disable-next-line: variable-name
     private _route: ActivatedRoute,
-    private router: Router
+    private router: Router, 
+    private titleService: Title
   ) {
-    // --------------check url params value---------------
+
     this._route.params.subscribe(Params => {
-      console.log("Params", Object.keys(Params).length );
       this.catalogFilters = plainToClass(CatalogFiltersModel, Params);
       this.catalogFilters.subCategory = Params.subCategory;
-      if(Object.keys(Params).length <= 2) {
-        this.GetOffersService.getOffers(this.catalogFilters);
-      } else{
-
-
-
-
-      }
-      
-      // ------- value of category for breadcrumbs
       this.category = Params.category;
+      this.GetOffersService.getOffers(this.catalogFilters);
     });
 
-    // --------------check queryParams value---------------
+    //----------- проверка наличия каких либо парметров в queryParams ------------//  
     this._route.queryParams.subscribe(qParams => {
-      console.log("qParams", qParams);
       if (qParams && (Object.keys(qParams).length === 0)) {
-        this.catalogFilters.current_page = 1;
-        this.GetOffersService.setFilters(this.catalogFilters);
+    //----------- используем даные (категория, подкатегория) из ActivatedRoute.params ------------//  
         this.GetOffersService.getOffers(this.catalogFilters);
       } else {
-        this.GetOffersService.getOffers(qParams);
-
+        this.catalogFilters.current_page = 1;
+    //----------- устанавливаем параметры из ActivatedRoute.queryParams ------------//  
+        this.GetOffersService.setFilters(qParams);
+        this.catalogFilters = plainToClass(CatalogFiltersModel, qParams);
+        this.catalogFilters.online = (qParams.online === "true") ? true: false;
+        this.GetOffersService.getOffers(this.catalogFilters);
       }
     });
+
   }
 
   ngOnInit() {
+
+    this.titleService.setTitle('Каталог');
 
     this.GetOffersService.offersList.subscribe(data => {
       this.offersList = data;
@@ -76,8 +72,6 @@ export class CatalogComponent implements OnInit {
         this.pagesToShow();
       }
     });
-
-    this.href = this.router.url;
   }
 
   pagesToShow() {
@@ -92,6 +86,5 @@ export class CatalogComponent implements OnInit {
       this.pagesArr.push(i);
     }
   }
-
 }
 

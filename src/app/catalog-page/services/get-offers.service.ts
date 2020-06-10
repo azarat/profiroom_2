@@ -21,8 +21,6 @@ export class GetOffersService {
   private filters = new BehaviorSubject(this._filterValue);
   public filterVaraibles: Observable<CatalogFiltersModel>;
 
-  baseUrl = 'http://localhost:4200/ru/catalog/Programming/Javascript';
-
   constructor(
     private http: HttpClient,
     // tslint:disable-next-line: variable-name
@@ -38,17 +36,19 @@ export class GetOffersService {
 
   getOffers(filters: CatalogFiltersModel | any) {
     this._offersList.next(null);
+
     this.http.post('/catalog', filters).subscribe((res: CatalogFiltersModel) => {
       this._offersList.next(res);
     });
   }
 
   // tslint:disable-next-line: variable-name
-  setFilters(_filters: CatalogFiltersModel) {
-    this._filterValue = _filters;
-    this.filters.next(_filters);
+  setFilters(PARAMSfilter: CatalogFiltersModel) {
+      
+    this._filterValue = PARAMSfilter;
+    this.filters.next(PARAMSfilter);
 
-    this.pushFilters(_filters);
+    this.pushFilters(PARAMSfilter);
   }
 
   pushFilters(getfilters?: CatalogFiltersModel) {
@@ -66,9 +66,4 @@ export class GetOffersService {
       queryParamsHandling: 'merge'
     });
   }
-
-
-  // list(urlOrFilter?: string | object): Observable<Page<CatalogFiltersModel>> {
-  //   return queryPaginated<CatalogFiltersModel>(this.http, this.baseUrl, urlOrFilter);
-  // }
 }

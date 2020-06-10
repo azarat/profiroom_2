@@ -37,6 +37,7 @@ export class FilterComponent implements OnInit {
 
 
   onFilterChange() {
+    console.log(this.catalogFilters);
     this._getOffersService.setFilters(this.catalogFilters);
   }
 
@@ -72,7 +73,7 @@ export class FilterComponent implements OnInit {
         }
       }
     });
-    this._getOffersService.setFilters(this.catalogFilters);
+    // this._getOffersService.setFilters(this.catalogFilters);
   }
 
 }

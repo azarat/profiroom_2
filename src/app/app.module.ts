@@ -1,16 +1,19 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule, appRoutes } from './app-routing.module';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import 'reflect-metadata';
 import { FormsModule } from '@angular/forms';
-import { SocketService } from './chat/services/socket.service';
-import { CalendarModule, DateAdapter } from 'angular-calendar';
-import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { SocketService } from './core/services/socket.service';
+
+import { SystemMessagesService } from './shared/modules/system-messages/services/system-messages.service';
+import { LocalizeRouterModule, LocalizeRouterService } from 'localize-router';
+import { TranslateService, TranslateModule } from '@ngx-translate/core';
+import { LanguageModule } from './shared/modules/language/language.module';
 
 
 @NgModule({
@@ -23,25 +26,17 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
-    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
-    // NgxGalleryModule
-    // shareds
-    // RouterModule,
-    // LocalizeRouterModule,
-    // created
-    // HomePageModule,
-    // CatalogPageModule,
-    // DashboardPageModule,
-    // ErrorPageModule,
-    // AuthorizationPageModule,
-    // TranslateModule,
+    TranslateModule,
+    LocalizeRouterModule.forChild(appRoutes),
+    LanguageModule
+
   ],
   exports: [
-    // NgxGalleryModule
   ],
   providers: [
-    // CategoryResolver
-    SocketService
+    SocketService,
+    SystemMessagesService,
+    Title
   ],
   bootstrap: [AppComponent]
 })

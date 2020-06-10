@@ -20,6 +20,7 @@ import { LoginPageComponent } from './authentification-page/login-page/login-pag
 import { RegistrationPageComponent } from './authentification-page/registration-page/registration-page.component';
 import { SetNewPassComponent } from './set-new-pass/set-new-pass.component';
 import { PassResetGuard } from '../core/guards/pass-reset.guard';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 const routes: Routes = [
@@ -33,7 +34,7 @@ const routes: Routes = [
     component: ResetPasswordPageComponent
   },
   {
-    path: 'new-pass',
+    path: '',
     canActivateChild: [PassResetGuard],
     component: SetNewPassComponent
   }
@@ -70,7 +71,9 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
+    LanguageModule,
     LocalizeRouterModule.forChild(routes),
+    TranslateModule,
     RouterModule.forChild(routes),
     FormsModule,
     ReactiveFormsModule,
@@ -83,7 +86,7 @@ const routes: Routes = [
     SocialLoginModule,
 
     // created
-    LanguageModule,
+
     MainHeaderModule,
     InformPopupModule,
 

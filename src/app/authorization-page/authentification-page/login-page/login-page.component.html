@@ -2,38 +2,38 @@
   <div class="container">
     <div class="row">
       <div class="">
-        <h2>Войти в личный кабинет</h2>
-        <p class="text">Рады видеть вас снова</p>
+        <h2>{{'auth-page.login.title' | translate}}</h2>
+        <p class="text">{{'auth-page.login.subtitle' | translate}}</p>
         <form #form="ngForm" [formGroup]="loginForm" (ngSubmit)="authenticate()">
 
           <mat-form-field >
               <mat-label>Email</mat-label>
             <input matInput type="email" name="email"  formControlName="email" required>
 
-            <mat-error *ngIf="loginForm.get('email').hasError('required')">{{ "Введите email" }}</mat-error>
-            <mat-error *ngIf="loginForm.get('email').hasError('email')">{{
-                  "Не корректный email"
-                }}</mat-error>
+            <mat-error *ngIf="loginForm.get('email').hasError('required')">{{'auth-page.login.put-mail' | translate}}</mat-error>
+            <mat-error *ngIf="loginForm.get('email').hasError('email')">
+                  "{{'auth-page.login.wrong-mail' | translate}}"
+                </mat-error>
           </mat-form-field>
 
           <mat-form-field>
             <input class="pass" matInput [type]="hide ? 'password' : 'text'" name="password" formControlName="password" required>
-            <mat-label>Пароль</mat-label>
+            <mat-label>{{'general.password' | translate}}</mat-label>
 
             <span class="show-pass" (click)="hide = !hide" [style.color]="hide ? '#DBDBDB': '#000'">
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </span>
-            <mat-error *ngIf="loginForm.get('password').hasError('required')">{{ "Введите пароль" }}</mat-error>
+            <mat-error *ngIf="loginForm.get('password').hasError('required')">{{'auth-page.login.put-password' | translate}}</mat-error>
           </mat-form-field>
           <section class="controls">
-              <mat-checkbox  class="remember-me" formControlName="foreignComp">Чужой комппьютер</mat-checkbox>
-              <a [routerLink]="['/auth/reset-pass' | localize ]">Не помню пароль</a>
+              <mat-checkbox  class="remember-me" formControlName="foreignComp">{{'auth-page.login.alient-pc' | translate}}</mat-checkbox>
+              <a [routerLink]="['/auth/reset-pass' | localize ]">{{'auth-page.login.forgot-pass' | translate}}</a>
           </section>
 
           <section  class="submit">
 
             <button class="btn" type="submit"  >
-                Войти
+              {{'general.enter' | translate}}
             </button>
 
 
