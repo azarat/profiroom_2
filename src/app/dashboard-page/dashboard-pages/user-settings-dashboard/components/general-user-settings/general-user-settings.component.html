@@ -2,7 +2,21 @@
 
 <app-main-user-settings *ngIf="userSettingsModel" [userSettingsModel]="userSettingsModel"></app-main-user-settings>
 <app-location-language-user-settings *ngIf="userSettingsModel" [userSettings]="userSettingsModel"></app-location-language-user-settings>
-<app-education-user-settings *ngIf="userSettingsModel" [userSettings]="userSettingsModel"></app-education-user-settings>
-<app-additional-education-user-settings *ngIf="userSettingsModel" [userSettings]="userSettingsModel"></app-additional-education-user-settings>
+<app-education-user-settings *ngIf="userSettingsModel" [userSettings]="userSettingsModel" [closeAfterSaveSettings] = "succesRessult"></app-education-user-settings>
+<app-additional-education-user-settings *ngIf="userSettingsModel" [userSettings]="userSettingsModel" [closeAfterSaveSettings] = "succesRessult"></app-additional-education-user-settings>
 <button type="submit" class="btn save-all" (click)="updateSettings()" *ngIf="userSettingsModel">сохранить изменения</button>
+
+
+<div class="done-message" *ngIf="popUpStatus" (click)="togglePopUp()">
+    <div class="done-message__info-block">
+        <div class="done-message__icon"><img src="/assets/images/svg/done.svg" alt=""></div>
+        <div class="done-message__text">
+            <p class="accent">{{'user-settings.done-message' | translate}}</p>
+        </div>
+        <div class="btns-wrapper">
+        </div>
+        <div class="done-message__close" (click)="togglePopUp()"></div>
+    </div>
+</div>
+  
 

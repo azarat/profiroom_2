@@ -52,7 +52,7 @@
       line-height: 20px;
       color: #4E5051;
     }
-    .user-raiting-wrapp{
+    .user-rating-wrap{
       width: fit-content;
       text-align: right;
       position: relative;
@@ -67,7 +67,7 @@
         color: #99acb7;
       }
     }
-    .star-raiting{
+    .star-rating{
       margin: 10px 0 10px;
     }
     .onlineStatus{
@@ -112,7 +112,9 @@
     margin-right: 17px;
     position: relative;
     cursor: pointer;
+    z-index: 9;
     &.tooltip {
+      opacity: 1;
       &:before {
         display: block;
         position: absolute;
@@ -206,6 +208,7 @@
       font-weight: 600;
       margin: 0;
       margin-bottom: 10px;
+      text-transform: capitalize;
     }
     .text{
       font-weight: normal;
@@ -226,3 +229,32 @@
   color: #4E5051;
   margin-bottom: 15px;
 }
+
+
+@media (max-width: 1499px) {
+  .section-title{
+    margin-bottom: 25px;
+  }
+  .main-info{
+    margin-bottom: 20px;
+    .info-item{
+      width: auto;
+      &:nth-child(4){
+        width: auto;
+      }
+      &:nth-child(5){
+        width: auto;
+      }
+    }
+  }
+  .about-offer{
+    font-size: 16px;
+    line-height: 21px;
+    margin-bottom: 40px;
+  }
+}
+
+@media (max-width: 1024px) {
+
+}
+

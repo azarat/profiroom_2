@@ -1,0 +1,78 @@
+<div class="wrapper">
+    <div class="main-info">
+        <div class="main-info__wrap">
+            <h3 class="section__subtitle">{{'home-page.advantages-subtitle' | translate}}</h3>
+            <h2 class="section__title">{{'home-page.advantages-title' | translate}}</h2>
+            <p class="main-info__text">
+                {{'home-page.advantages-text' | translate}}
+            </p>
+            <a class="btn colored" [routerLink]="['/auth'] | localize" >{{'home-page.advantages-btn' | translate}}</a>
+        </div>
+    </div>
+    <div class="features">
+        <!-- <div class="features-wrap"> -->
+            <div class="features-column">
+                <div class="features-item__wrapper" [ngClass]="{openTab: activeTab === 0}">
+                    <div class="features-item">
+                        <div class="features-item__top" (click)="toggleTab(0)">
+                            <div class="features-item__icon"><img src="assets/images/icons/advantages/payment-protection.svg" alt=""></div>
+                            <h4 class="features-item__title">{{'home-page.advantages-item1' | translate}}</h4>
+                        </div>
+                        <p class="features-item__text">
+                            {{'home-page.advantages-item1-text' | translate}}
+                        </p>
+                    </div>
+                </div>
+                <div class="features-item__wrapper" [ngClass]="{openTab: activeTab === 1}">
+                    <div class="features-item">
+                        <div class="features-item__top" (click)="toggleTab(1)">
+                            <div class="features-item__icon"><img src="assets/images/icons/advantages/opacity.svg" alt=""></div>
+                            <h4 class="features-item__title">{{'home-page.advantages-item2' | translate}}</h4>
+                        </div>
+                        <p class="features-item__text">
+                            {{'home-page.advantages-item2-text' | translate}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="features-column">
+                <div class="features-item__wrapper" [ngClass]="{openTab: activeTab === 2}">
+                    <div class="features-item">
+                        <div class="features-item__top" (click)="toggleTab(2)"> 
+                            <div class="features-item__icon"><img src="assets/images/icons/advantages/quick-payouts.svg" alt=""></div>
+                            <h4 class="features-item__title">{{'home-page.advantages-item3' | translate}}</h4>
+                        </div>
+                        <p class="features-item__text">
+                            {{'home-page.advantages-item3-text' | translate}}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="features-item__wrapper" [ngClass]="{openTab: activeTab === 3}">
+                    <div class="features-item">
+                        <div class="features-item__top" (click)="toggleTab(3)">
+                            <div class="features-item__icon"><img src="assets/images/icons/advantages/cashback.svg" alt=""></div>
+                            <h4 class="features-item__title">{{'home-page.advantages-item4' | translate}}</h4>
+                        </div>
+                        <p class="features-item__text">
+                            {{'home-page.advantages-item4-text' | translate}}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="features-item__wrapper" [ngClass]="{openTab: activeTab === 4}">
+                    <div class="features-item">
+                        <div class="features-item__top" (click)="toggleTab(4)">
+                            <div class="features-item__icon"><img src="assets/images/icons/advantages/convenient-system.svg" alt=""></div>
+                            <h4 class="features-item__title"> {{'home-page.advantages-item5' | translate}}</h4>
+                        </div>
+                        <p class="features-item__text">
+                            {{'home-page.advantages-item5-text' | translate}}
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    <!-- </div> -->
+</div>

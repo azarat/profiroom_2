@@ -31,11 +31,9 @@
       overflow: hidden;
       cursor: pointer;
       img{
+        object-fit: cover;
         width: 100%;
-        height: auto;
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
+        height: 100%;
       }
     }
   }
@@ -148,5 +146,105 @@
         }
       }
     }
+  }
+}
+
+.btn-watch-more{
+  margin: 30px auto 50px;
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  color: #3C7EEA;
+  cursor: pointer;
+  text-transform: uppercase;
+  width: fit-content;
+  position: relative;
+  padding-right: 20px;
+  display: block;
+  &:hover {
+    color: #5695FD;
+  }
+  &:active{
+    color: #1666EA;
+  }
+  &::after{
+    content: '';
+    background-image: url(/assets/images/svg/user/blue-arrow-down.svg);
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%) rotate(-90deg);
+    width: 12px;
+    height: 7px;
+  }
+}
+
+
+@media (max-width: 1499px) {
+  .another-services{
+    margin-bottom: 40px;
+  }
+  .section-title{
+    margin-bottom: 25px;
+  }
+  .cards-list {
+    margin: 0 -15px 0;
+  }
+  .card {
+    width: calc(25% - 30px);
+    margin: 0 15px 15px;
+    &-preview {
+      &__bg {
+        height: 155px;
+      }
+    }
+    &-description {
+      padding: 10px;
+      height: 90px;
+      &__about{
+        font-size: 16px;
+        line-height: 20px;
+      }
+    }
+    &-bottom {
+      height: 37px;
+    }
+  }
+}
+
+@media (max-width: 1360px) {
+  .card {
+    &-preview {
+      &__bg {
+        height: 140px;
+      }
+    }
+    &-description {
+      padding: 10px;
+      &__about{
+        font-size: 14px;
+        line-height: 18px;
+      }
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .card{
+    width: calc(33.3% - 30px);
+    margin: 0 15px 0;
+    &-description {
+      padding: 8px 10px;
+      &__about{
+        font-size: 16px;
+        line-height: 20px;
+      }
+    }
+  }
+  .btn-watch-more{
+    margin: 40px auto 40px;
   }
 }

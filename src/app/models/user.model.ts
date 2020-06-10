@@ -14,23 +14,28 @@ export class UserModel {
   @Expose() name: string;
   @Expose() surname: string;
   @Expose() avatar: string;
-  @Expose() purse: null;
-  @Expose() raiting: number;
+  @Expose() purse: any;
+  @Expose() rating: number;
   // tslint:disable-next-line: variable-name
   @Expose() rank_id: number;
   // tslint:disable-next-line: variable-name
   @Expose() role_id: number;
   // tslint:disable-next-line: variable-name
   @Expose() updated_at: any;
+  @Expose() busy: any;
+  @Expose() dealsCounts: any;
+  @Expose() allDealsPerYears: number[];
+  @Expose() allDealsperMonths: number[];
+  @Expose() achivements: any;
+  @Expose() pieChart: number[];
 
   @Type(() => UserServiceModel) userservice: UserServiceModel[];
 
 
   constructor(
     private http: HttpClient
-  ){
+  ) {}
 
-  }
   public deleteService(id) {
     return this.http.delete('/deleteOffer?' + 'offerId=' + id);
   }

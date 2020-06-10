@@ -8,76 +8,48 @@ import { UserSettingsModel } from 'src/app/models/user-settings.model';
 })
 export class BirthdayUserSettingsComponent implements OnInit {
   days = [];
-  mounth = [];
-  // year: number = 1996;
+  month = [];
 
   public maxDays: number;
 
-  leapYear: boolean = false;
-
-  @Input() userSettingsModel: UserSettingsModel;
+  @Input() userBirthDay: {day, month, year};
 
   constructor() {}
 
   ngOnInit() {
     this.createArrayYear();
-    this.filterChanhe();
-    this.createDayArray();
-    this.createMountArray();
+    this.onFilterChanhe();
+    this.createMontArray();
   }
 
-  createDayArray() {
-    for (let i = 1; i <= 31; i++) {
-      this.days.push(i);
-    }
-  }
-  createMountArray() {
-    for (let i = 1; i <= 12; i++) {
-      this.mounth.push(i);
-    }
+  createMontArray() {
+    this.month = new Array(12);
   }
 
   createArrayYear() {
-    let today = new Date();
-    let year = today.getFullYear();
+    let year = new Date().getFullYear();
+
     const years = [];
+
     for (let i = 1980; i <= year - 8; i++) {
       years.push(i);
     }
     return years;
   }
 
-  filterChanhe() {
+  public onFilterChanhe() {
     this._daysFilter();
   }
 
-  private get userMonthBirdth() {
-    return this.userSettingsModel.birthDay.month;
-  }
-  private get useYearBirdth() {
-    return this.userSettingsModel.birthDay.year;
+  private _daysFilter() {
+    console.log(this.userBirthDay);
+    this.getMontDaysCount(this.userBirthDay.month + 1, this.userBirthDay.year);
   }
 
-  private _daysFilter() {
-    if (
-      this.userMonthBirdth === 4 ||
-      this.userMonthBirdth === 6 ||
-      this.userMonthBirdth === 9 ||
-      this.userMonthBirdth === 11
-    ) {
-      return (this.maxDays = 30);
-    } else if (
-      Number(this.userMonthBirdth) === 2 &&
-      Number(this.userSettingsModel.birthDay.year) % 4 === 0
-    ) {
-      return (this.maxDays = 29);
-    } else if (
-      Number(this.userMonthBirdth) === 2 &&
-      Number(this.userSettingsModel.birthDay.year) % 4 !== 0
-    ) {
-      return (this.maxDays = 28);
-    } else {
-      return (this.maxDays = 31);
-    }
+  private getMontDaysCount(month: number, year: number) {
+    this.days = null;
+    const maxDays: number = new Date(year, month, 0).getDate();
+    this.days = new Array(maxDays);
   }
+
 }

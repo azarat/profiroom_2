@@ -1,0 +1,51 @@
+<div class="inform" *ngIf="collocutorData">
+    <div class="tools" *ngIf="canDealBePayed || canDealBeStarted || isCancelButton || isArbiterBtn || isFinishDealButton">
+        <h6>{{'chat.work_chat.offer-data.title-moves' | translate}}</h6>
+        <button *ngIf="canDealBePayed" class="btn" (click)="holdDealMoney()">{{'chat.work_chat.offer-data.hold-money' | translate}}</button>
+        <button *ngIf="canDealBeStarted" class="btn" (click)="goToWork()">{{'chat.work_chat.offer-data.start-work' | translate}}</button>
+        <button (click)="cancelWork()" *ngIf="isCancelButton">{{'chat.work_chat.offer-data.cancel-deal' | translate}}</button>
+        <button *ngIf="isArbiterBtn" (click)="callArbiter()">{{'chat.work_chat.offer-data.call-arbiter' | translate}}</button>
+        <button *ngIf="isFinishDealButton" (click)="finishWork()">{{'chat.work_chat.offer-data.finish-work' | translate}}</button>
+    </div>
+    <div class="timer" *ngIf="collocutorData.workStarted === 1 && collocutorData.moneyHolden !==0 && collocutorData.dealDone !== 1">
+        <h6>{{'chat.work_chat.offer-data.days-to-finish' | translate}}</h6>
+        <div class="clock">
+            <div> <span>{{ thousand }}</span> </div>
+            <div> <span>{{ hundred }}</span> </div>
+            <div> <span>{{ tens }}</span> </div>
+            <div> <span>{{ singleNum }}</span> </div>
+        </div>
+    </div>
+    <div class="package {{ collocutorData.package }}">
+        <h6 class="title">{{ 'chat.work_chat.deal_info.packageType_' + collocutorData.package | translate }}</h6>
+        <p class="price">{{packagePrice}} UAH</p>
+
+        <p class="subtitle">{{ collocutorData.offers_title }}</p>
+        <div class="main-info">
+            <p><span>{{'chat.work_chat.offer-data.changes' | translate}} </span><span>{{ collocutorData.changes}}</span></p>
+            <p><span>{{'chat.work_chat.offer-data.time-to-do' | translate}} </span><span>{{ collocutorData.term }} дней</span></p>
+        </div>
+        <div class="extra-features">
+            <p>{{'chat.work_chat.offer-data.commercial' | translate}}</p>
+            <ng-container *ngIf="collocutorData.extra_features && collocutorData.extra_features.length > 0">
+                <p *ngFor="let el of collocutorData.extra_features">{{ el.title }}</p>
+            </ng-container>
+
+        </div>
+    </div>
+
+    <div class="history" *ngIf="collocutorData.brief !== 0 && collocutorData.brief !== '0'">
+        <h6 class="history-title">{{'chat.work_chat.offer-data.history' | translate}}</h6>
+        <div class="history-items">
+            <div class="history-item" *ngFor="let el of collocutorData.history">
+                <div class="logo-icon">
+                    <img [src]="'/assets/images/icons/deals-icons/' + el.answer + '.png'" alt="system-icon">
+                </div>
+                <div>
+                    <div class="time">{{ el.created_at | date: 'dd.MM.yyyy HH:mm' }}</div>
+                    <div class="description">{{ 'chat.work_chat.history.' + el.answer | translate }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,32 +1,3 @@
-.inform_section{
-  display: flex;
-  border-bottom: 1px solid #EBEEFF;
-  &__title{
-    padding: 50px 30px;
-    width: 25%;
-    h3{
-      margin: 0;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 14px;
-      line-height: 143%;
-      text-transform: uppercase;
-      color: #323C47;
-    }
-  }
-  &__fields{
-    padding: 50px 0 50px;
-    width: 75%;
-  }
-}
-
-.inputs-wrapper{
-  max-width: 630px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
 .block-title{
   font-family: 'Source Sans Pro';
   font-style: normal;
@@ -56,7 +27,7 @@
     line-height: 20px;
     color: #323C47;
     margin: 0;
-    margin-bottom: 3px;
+    margin-bottom: 8px;
   }
   &-value{
     font-style: normal;
@@ -91,9 +62,7 @@
     }
   }
 }
-.field-block-multiple{
-  max-width: 630px;
-}
+
 .academicBlock{
   display: flex;
   justify-content: space-between;
@@ -324,7 +293,7 @@ button {
     margin-right: 3%;
     margin-bottom: 20px;
     position: relative;
-    button.delete-file {
+    .delete-photo {
       position: absolute;
       height: 24px;
       width: 24px;
@@ -344,6 +313,8 @@ button {
         content: "\e900";
         font-size: 18px;
         font-family: "icomoon";
+        left: 50%;
+        top: 50%;
         transform: translate(-50%, -50%);
         color: red;
       }
@@ -366,5 +337,3 @@ button {
     padding: 2px;
   }
 }
-
-

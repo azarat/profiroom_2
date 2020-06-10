@@ -132,6 +132,17 @@ form::ng-deep {
     }
   }
 
+  .notify {
+    font-family: Source Sans Pro, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 18px;
+    display: block;
+    text-align: right;
+    color: #33596E;
+    opacity: 0.5;
+  }
   // .service-selects {
   //   .mat-form-field-infix {
   //     border-top: none;
@@ -289,7 +300,7 @@ quill-editor::ng-deep {
 
 // -----------------buttons ----------------------//
 
-.form-butons {
+.form-buttons {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -383,4 +394,23 @@ ngb-popover-window {
   // &.popover-file {
   //   top: -43px !important;
   // }
+}
+
+@media (max-width: 1499px) {
+  .step-wrapper > form{
+    width: 100%;
+  }
+    // ---------------------------file upload form ---------------------------
+  .items {
+    justify-content: flex-start;
+  }
+  .form-butons {
+    button {
+      font-size: 13px;
+      padding: 10px 24px;
+      &:first-of-type{
+        padding: 10px 24px;
+      }
+    }
+  }
 }

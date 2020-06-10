@@ -1,5 +1,6 @@
 .wrapper {
   width: 100%;
+  min-height: 90%;
   margin: 0 auto;
   background: #f1f2f4;
   font-family: Source Sans Pro;
@@ -23,12 +24,12 @@
   box-shadow: 0px 4px 4px rgba(128, 152, 213, 0.1);
   position: absolute;
   width: 100%;
-  top: 137px;
+  // top: 137px;
   &.sticky {
     position: fixed;
     top: 0;
     overflow: hidden;
-    z-index: 10;
+    z-index: 2000;
     width: 100%;
   }
   ul {
@@ -66,7 +67,7 @@
   max-width: 1045px;
   margin: 0 auto;
   background-color: #fff;
-  padding: 80px 30px 1px;
+  padding: 80px 30px 100px;
 }
 
 .back-to-list {
@@ -178,12 +179,12 @@
     .value {
       color: #ff647c;
       font-weight: 600;
-      &.load {
+      &.free {
         color: #38cb8e;
       }
     }
   }
-  &__inProces {
+  &__inProcess {
     margin-top: 16px;
   }
   // &__awaiting {}
@@ -198,7 +199,9 @@
       margin-right: 17px;
       position: relative;
       cursor: pointer;
+      z-index: 10;
       &.tooltip {
+        opacity: 1;
         &:before {
           display: block;
           position: absolute;
@@ -408,7 +411,7 @@
   }
 }
 
-.aducation {
+.education{
   margin-bottom: 35px;
   &__wrapper {
     display: flex;
@@ -434,11 +437,13 @@
   &__institution {
     font-weight: 600;
     margin-bottom: 6px;
+    margin-right: 5px;
     width: fit-content;
   }
   &__group {
     display: flex;
     width: fit-content;
+    flex-wrap: wrap;
   }
   &__specialty {
     color: #707683;
@@ -449,6 +454,7 @@
   }
   &__img-list{
     display: flex;
+    flex-wrap: wrap;
     .img-item{
       position: static;
       width: 160px;
@@ -520,7 +526,7 @@
   }
 }
 
-.raiting {
+.rating {
   margin-bottom: 30px;
   border-bottom: 1px solid #f1f2f4;
   &__wrapper {
@@ -550,7 +556,7 @@
     font-weight: 600;
     color: #707683;
   }
-  &__commnets {
+  &__comments {
     font-weight: normal;
     color: #99ACB7;
     line-height: 20px;
@@ -564,4 +570,53 @@
   font-size: 16px;
   line-height: 20px;
   color: #99ACB7;
+}
+
+:host::ng-deep{
+  .footer{
+    margin-top: -100px!important;
+  }
+}
+
+@media (max-width: 1499px) {
+  .content {
+    max-width: 1110px;
+  }
+}
+
+@media (max-width: 1360px) {
+  .content {
+    max-width: 1010px;
+  }
+  .general-information {
+
+    &__avatar {
+      margin-right: 30px;
+    }
+    &__online {
+      span::before {
+        width: 9px;
+        height: 9px;
+      }
+    }
+    // &__lvl {}
+    &__available {
+      font-size: 14px;
+      line-height: 18px;
+    }
+    &__inProcess {
+      font-size: 14px;
+      line-height: 18px;
+    }
+    &__awaiting {
+      font-size: 14px;
+      line-height: 18px;
+    }
+  }
+  .switching-user-types{
+    &__text{
+      font-size: 14px;
+      line-height: 18px;
+    }
+  }
 }

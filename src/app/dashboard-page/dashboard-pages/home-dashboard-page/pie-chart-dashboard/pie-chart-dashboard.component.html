@@ -1,2 +1,6 @@
-<canvas baseChart [data]="data" width='310px' height='192px'
- [chartType]="pieChartType" ></canvas>
+<div class="chart" [hidden]="!chart" [ngClass]="{ zero: zeroDeals }">
+    <canvas id="user-doughnut-chart" height='212px'></canvas>
+</div>
+
+
+<!-- width='310px' height='192px' -->

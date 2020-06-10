@@ -1,27 +1,28 @@
 <app-main-header></app-main-header>
 <app-categories-header></app-categories-header>
 
-<nav class="navigation_page" #stickyMenu [class.sticky]="sticky" *ngIf='!step2'>
+<nav class="navigation-page" #stickyMenu [class.sticky]="sticky" *ngIf='!step2'>
   <!-- <nav class="navigation_page" #stickyMenu [ngClass] = "{'sticky': sticky}"> -->
   <div class="wrapper">
     <ul>
-      <li (click)="scrollTo('portfolio')">Портфолио</li>
-      <li (click)="scrollTo('compare-table')">пакеты и услуги</li>
-      <li (click)="scrollTo('description')">описание</li>
-      <li (click)="scrollTo('rating')">рейтинг</li>
-      <li (click)="scrollTo('comments')">отзывы</li>
-      <li (click)="scrollTo('questions')">Вопросы и ответы</li>
-      <li (click)="scrollTo('about-offer')">О фрилансере</li>
+      <li (click)="scrollTo('portfolio')">{{'service-page.portfolio' | translate}}</li>
+      <li (click)="scrollTo('compare-table')">{{'service-page.packages-and-services' | translate}}</li>
+      <li (click)="scrollTo('description')">{{'general.description' | translate}}</li>
+      <li (click)="scrollTo('rating')">{{'general.rating' | translate}}</li>
+      <li (click)="scrollTo('comments')">{{'general.comments' | translate}}</li>
+      <li (click)="scrollTo('questions')">{{'service-page.questions' | translate}}</li>
+      <li (click)="scrollTo('about-offer')">{{'general.about-freelancer' | translate}}</li>
     </ul>
   </div>
 </nav>
 
-<div class="wrapper">
+<div class="wrapper" id="page-top">
 
   <div class="bread-crumbs" *ngIf='!step2'>
     <ul *ngIf="offerData">
-      <li><a [routerLink]="['/'] | localize">Главная</a></li>
+      <li><a [routerLink]="['/'] | localize">{{'menu.home' | translate}}</a></li>
       <li><a [routerLink]="['/catalog', offerData.category] | localize">{{ offerData.category }}</a></li>
+      <li><a [routerLink]="['/catalog', offerData.category, offerData.subCategory] | localize">{{ offerData.subCategory }}</a></li>
       <li><a>{{ offerData.title }}</a></li>
     </ul>
   </div>
@@ -38,22 +39,22 @@
           <div class="user-text">
             <a [routerLink]="['/user', offerData.user_id] | localize" class="user-name">{{ offerData.user.name }}
               {{ offerData.user.surname }}</a>
-            <div class="user-raiting-wrapp">
-              <span class="star-raiting">{{ offerData.raiting }}</span>
+            <div class="user-rating-wrap">
+              <span class="star-rating" [ngClass]="{'empty-rating': offerData.rating == 0}">{{ offerData.rating }}</span>
             </div>
-            <span class="user-comments">({{ convertedNumberOfComments }} отзывов)</span>
+            <span class="user-comments">({{ convertedNumberOfComments }} {{'general.comments' | translate}})</span>
           </div>
         </div>
 
         <div class="actions">
           <div class="action tooltip" data-title="Смотреть профиль">
-            <a href="">
+            <a [routerLink]="['/user', offerData.user_id] | localize">
               <img src="assets/images/svg/service-page/shape.svg" alt="" class="default-img">
               <img src="assets/images/svg/service-page/shape-hov.svg" alt="" class="hover-img">
             </a>
           </div>
           <div class="action tooltip" data-title="Написать сообщение">
-            <a href="">
+            <a (click)="openChat(offerData.user_id)">
               <img src="assets/images/svg/service-page/envelope.svg" alt="" class="default-img">
               <img src="assets/images/svg/service-page/envelope-hov.svg" alt="" class="hover-img">
             </a>
@@ -77,60 +78,74 @@
       <app-ngx-gallery [offerData]="offerData" *ngIf="offerData" id="portfolio"></app-ngx-gallery>
 
       <div class="about-offer" id="description">
-        <h4>Описание услуги</h4>
-        <p>{{ offerData.description }}</p>
+        <h4>{{'service-page.description' | translate}}</h4>
+        <div class="about-offer__text" [innerHTML]="offerData.description"></div>
       </div>
 
-      <app-service-page-compare-table [offerData]="offerData" *ngIf="offerData" id="compare-table">
+      <app-service-page-compare-table [offerData]="offerData" *ngIf="offerData" id="compare-table" (checkoutState)="openCheckout($event)" (scrollToThis)="scrollTo($event)">
       </app-service-page-compare-table>
 
-      <section class="offer-raiting" id="rating">
+      <section class="offer-rating" id="rating">
         <h4 class="section-title">
-          Рейтинг услуги “Дизайн сайтов”
+          {{'service-page.service-rating' | translate}} <span>“{{ offerData.title }}”</span> 
         </h4>
-        <div class="raiting-type">
-          <div class="raiting-type_name">Качество услуги</div>
-          <div class="raiting-type_numeral">
-            <span class="raiting-type_number">{{ offerData.averageRaiting.qualityMark }}</span>
+        <div class="rating-type">
+          <div class="rating-type_name">{{'raitings.service-quality' | translate}}</div>
+          <div class="rating-type_numeral">
+            <span class="star-rating" [ngClass]="{'empty-rating': offerData.averageRating.qualityMark === 0}">{{ offerData.averageRating.qualityMark }}</span>
           </div>
         </div>
-        <div class="raiting-type">
-          <div class="raiting-type_name">Срок исполнения</div>
-          <div class="raiting-type_numeral">
-            <span class="raiting-type_number">{{ offerData.averageRaiting.termMark }}</span>
+        <div class="rating-type">
+          <div class="rating-type_name">{{'raitings.period-of-execution' | translate}}</div>
+          <div class="rating-type_numeral">
+            <span class="star-rating" [ngClass]="{'empty-rating': offerData.averageRating.qualityMark === 0}">{{ offerData.averageRating.termMark }}</span>
           </div>
         </div>
-        <div class="raiting-type">
-          <div class="raiting-type_name">Вежливость фрилансера</div>
-          <div class="raiting-type_numeral">
-            <span class="raiting-type_number">{{ offerData.averageRaiting.politenessMark }}</span>
+        <div class="rating-type">
+          <div class="rating-type_name">{{'raitings.politness-of-freelancer' | translate}}</div>
+          <div class="rating-type_numeral">
+            <span class="star-rating" [ngClass]="{'empty-rating': offerData.averageRating.qualityMark === 0}">{{ offerData.averageRating.politenessMark }}</span>
           </div>
         </div>
 
-        <div class="raiting-type average">
-          <div class="raiting-type_name">Средняя оценка</div>
-          <div class="raiting-type_numeral">
-            <span class="raiting-type_number">{{ offerData.averageRaiting.averageMark }}</span>
+        <div class="rating-type average">
+          <div class="rating-type_name">{{'raitings.average-rating' | translate}}</div>
+          <div class="rating-type_numeral">
+            <span class="star-rating" [ngClass]="{'empty-rating': offerData.averageRating.qualityMark === 0}">{{ offerData.averageRating.averageMark }}</span>
           </div>
-          <span class="comments-count">( {{ offerData.comments_count}} отзывов):</span>
+          <span class="comments-count">( {{ offerData.comments_count}} {{'general.comments' | translate}})</span>
         </div>
       </section>
 
-      <app-service-page-comments [offerData]="offerData" *ngIf="offerData" id="comments"></app-service-page-comments>
-      <app-service-page-questions [offerData]="offerData" *ngIf="offerData" id="questions"></app-service-page-questions>
-      <app-service-page-about-offer [offerData]="offerData" *ngIf="offerData" id="about-offer">
-      </app-service-page-about-offer>
+      <app-users-comments *ngIf="offerData" [userData]="offerData" [userRole]="''"></app-users-comments>
+      <app-service-page-questions [offerData]="offerData" *ngIf="offerData"  id="questions"></app-service-page-questions>
+      <app-service-page-about-offer [offerData]="offerData" *ngIf="offerData" id="about-offer"></app-service-page-about-offer>
     </div>
     <div class="choose-packet">
-      <div class="runing-block">
-        <app-service-page-packages [offerData]="offerData" [offerId]="offerId" *ngIf="offerData" (checkoutState)="openCheckout($event)" (scrollToCompare)="scrollTo('compare-table')">
+      <div class="running-block">
+        <app-service-page-packages [offerData]="offerData" [offerId]="offerId" *ngIf="offerData" (checkoutState)="openCheckout($event)" (scrollToThis)="scrollTo($event)">
         </app-service-page-packages>
       </div>
     </div>
     <app-service-page-another-services [offerData]="offerData" *ngIf="offerData"></app-service-page-another-services>
-    <app-service-page-earlier-viewed [similarOffers]="similarOffers" *ngIf="similarOffers"></app-service-page-earlier-viewed>
+    <app-service-page-similar-offers [similarOffers]="similarOffers" [offerData]="offerData" *ngIf="similarOffers && offerData"></app-service-page-similar-offers>
   </div>
-  <div class="checkout-block" *ngIf='step2'>
-    <app-service-page-checkout [offerData]="offerData" [chousenOnOfferPage]="chousenOnOfferPage" (checkoutHidden)="hideCheckout()"></app-service-page-checkout>
+  <div class="checkout-block" *ngIf='step2' (scrollToThis)="scrollTo('checkout-top')">
+    <app-service-page-checkout [offerData]="offerData" [chosenOnOfferPage]="chosenOnOfferPage" (checkoutHidden)="hideCheckout()"></app-service-page-checkout>
+  </div>
+  <div class="error-message" *ngIf="messageNotAuthorized">
+    <div class="error-message__info-block">
+      <div class="error-message__icon"><img src="/assets/images/svg/error-message-icon.svg" alt=""></div>
+      <div class="error-message__text">
+        <p class="accent">{{'service-page.nonAuthorized-title' | translate}}</p>
+        <p>{{'service-page.nonAuthorized-subtitle' | translate}}</p>
+      </div>
+      <div class="btns-wrapper">
+        <div class="btn" [routerLink]="'/auth' | localize">{{'general.authorize' | translate}}</div>
+        <div class="btn accent" (click)="closeErrorMessage()">{{'general.close' | translate}}</div>
+      </div>
+      <div class="error-message__close" (click)="closeErrorMessage()"></div>
+    </div>
   </div>
 </div>
+<app-footer *ngIf="offerData"></app-footer>

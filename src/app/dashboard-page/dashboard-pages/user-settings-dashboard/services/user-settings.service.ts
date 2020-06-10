@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserSettingsService {
-
+  public onloadUserModelCopy$ = new Subject();
   constructor(
     private http: HttpClient
   ) { }
@@ -15,7 +15,7 @@ export class UserSettingsService {
     return this.http.post('/loadAva', files);
   }
 
-  // ------ education avatar -------
+  // ------ education -------
   newEducationId() {
     return this.http.post('/newEducation', '');
   }
@@ -26,18 +26,18 @@ export class UserSettingsService {
   uploadDiplomaPhotos(files) {
     return this.http.post('/loadDiplomaFiles', files);
   }
-  deleteFile(id) {
-    return this.http.post('/deleteDiplomaFiles', id);
+  deleteFile(imgName) {
+    return this.http.post('/deleteDiplomaFiles', imgName);
   }
 
 
 
-  // ------ Additional education avatar -------
+  // ------ Additional education -------
   newAdditioanlEducationId() {
-    return this.http.post('/newAditionalEducation', '');
+    return this.http.post('/newAdditionalEducation', '');
   }
   deleteAdditioanlEducationID(id) {
-    return this.http.post('/deleteAditionalEducation', id);
+    return this.http.post('/deleteAdditionalEducation', id);
   }
   uploadAdditionalDiplomaPhotos(files) {
     return this.http.post('/loadAdditionalDiplomaFiles', files);

@@ -16,6 +16,8 @@ export class MainUserSettingsComponent implements OnInit {
   avaUrl: string;
   file: any;
 
+  public unamePattern = "^[a-zA-Zа-яА-ЯёЁЇїІіЄєҐґ'\s-]{3,15}$";
+
   constructor(
     private userSettingsService: UserSettingsService,
   ) { }
@@ -38,6 +40,7 @@ export class MainUserSettingsComponent implements OnInit {
         this.userSettingsModel.avatar = res.avatar;
       });
   }
-
-
+  public showStatus() {
+    console.log(this.mainSettingsFrom.controls);
+  }
 }

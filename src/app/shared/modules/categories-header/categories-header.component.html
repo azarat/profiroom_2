@@ -1,16 +1,17 @@
-<!-- <ul *ngIf="categorysList !== null"> -->
-<div class="categorys-list" *ngIf="categorysList" [ngClass]="{no_hover: noHover === true}">
+<!-- <ul *ngIf="categoriesList !== null"> -->
+<div class="categories-list" *ngIf="categoriesList" [ngClass]="{no_hover: noHover === true}">
   <div class="wrapper">
-    <ul class="categorie-wrapper" *ngFor="let category of categorysList.category" >
-      <h3 class="categorie-name" >
-        <a class="categorie" [routerLink]="['/catalog', category.link] | localize" >{{category.name}}</a>
+    <ul class="category-wrapper" *ngFor="let category of categoriesList.category" >
+      <h3 class="category-name" >
+        <a class="category" [routerLink]="['/catalog', category.link] | localize" >{{category.name}}</a>
       </h3>
-      <div class="subcategorys-list">
+      
+      <div class="subcategories-list">
         <ul class="subcategory-group" *ngFor="let group of category.groups;">
 
-          <h4 class="subcategory-group__name">{{group}}</h4>
+          <h4 class="sub_category-group__name">{{group}}</h4>
           <div *ngFor="let sub_category of category.sub_categories">
-            <a class="subcategorie" [routerLink]="['/catalog', category.link, sub_category.link] | localize"
+            <a class="subcategory" [routerLink]="['/catalog', category.link, sub_category.link] | localize"
               *ngIf="group === sub_category.group">
               {{sub_category.name}}
             </a>

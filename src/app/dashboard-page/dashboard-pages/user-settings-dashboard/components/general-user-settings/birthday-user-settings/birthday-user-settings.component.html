@@ -1,21 +1,22 @@
-<div class="data service-selects" *ngIf="userSettingsModel">
-  <div class="day">
-    <mat-select name="day"  [(ngModel)]="userSettingsModel.birthDay.day" (ngModelChange)="filterChanhe()">
-      <ng-container *ngFor="let day of days, let i = index">
-        <mat-option [value]="day" *ngIf="(i+1) <= maxDays">{{ day }}</mat-option>
-      </ng-container>
-    </mat-select>
-  </div>
-  <div class="mounth">
-    <mat-select name="month" id=""  [(ngModel)]="userSettingsModel.birthDay.month" (ngModelChange)="filterChanhe()">
-      <ng-container *ngFor="let month of mounth, let i = index">
-        <mat-option [value]="month">{{ month }}</mat-option>
-      </ng-container>
-    </mat-select>
-  </div>
-  <div class="year" >
-    <mat-select name="year" id="" [(ngModel)]="userSettingsModel.birthDay.year" (ngModelChange)="filterChanhe()" >
-      <mat-option [value]="year" *ngFor="let year of createArrayYear()">{{ year }}</mat-option>
-    </mat-select>
-  </div>
+<div class="data service-selects" *ngIf="userBirthDay">
+    <div class="day">
+        <mat-select name="day" [(ngModel)]="userBirthDay.day" (ngModelChange)="onFilterChanhe()">
+            <ng-container *ngFor="let day of days, let i = index">
+                <mat-option *ngIf="days" [value]="i">{{ i+1 }}</mat-option>
+            </ng-container>
+        </mat-select>
+    </div>
+    <div class="month">
+
+        <mat-select name="month" id="" [(ngModel)]="userBirthDay.month" (ngModelChange)="onFilterChanhe()">
+            <ng-container *ngFor="let month of month, let i = index">
+                <mat-option [value]="i">{{ (i+1).toString() | monthPipe: 'MMMM' }}</mat-option>
+            </ng-container>
+        </mat-select>
+    </div>
+    <div class="year">
+        <mat-select name="year" id="" [(ngModel)]="userBirthDay.year" (ngModelChange)="onFilterChanhe()">
+            <mat-option [value]="year" *ngFor="let year of createArrayYear()">{{ year }}</mat-option>
+        </mat-select>
+    </div>
 </div>

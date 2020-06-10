@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { UserSettingsModel } from 'src/app/models/user-settings.model';
 import { UserSettingsService } from '../../../services/user-settings.service';
 // import { FormGroup } from '@angular/forms';
@@ -8,9 +8,10 @@ import { UserSettingsService } from '../../../services/user-settings.service';
   templateUrl: './education-user-settings.component.html',
   styleUrls: ['./education-user-settings.component.scss']
 })
-export class EducationUserSettingsComponent implements OnInit {
+export class EducationUserSettingsComponent implements OnInit, OnChanges  {
 
   @Input() userSettings: UserSettingsModel;
+  @Input() closeAfterSaveSettings = false;
 
   private educationId: number;
   // public educationForm: FormGroup;
@@ -21,14 +22,15 @@ export class EducationUserSettingsComponent implements OnInit {
   previewUrl: any;
 
   public yearsArr = [];
-  public yearsFiltered = [];
+  public yearsFinishArr = [];
+
   public academicDegrees = [1, 2, 3, 4, 5];
   public academicDegreesTranslations = [
-    'Бакалавр',
-    'Магистр',
-    'Доцент',
-    'Профессор',
-    'Владыка ситхов'
+    "academicDegrees.lvl1",
+    "academicDegrees.lvl2",
+    "academicDegrees.lvl3",
+    "academicDegrees.lvl4",
+    "academicDegrees.lvl5"
   ];
 
   constructor(
@@ -36,19 +38,13 @@ export class EducationUserSettingsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.createYears();
-    this.openItem = this.userSettings.education.length;
-
-    // if (!this.userSettings.education.length) {
-    //   this.addEducation();
-    // }
-    // console.log(this.userSettings);
+    this.createYearsFinished(1960);
+    this.createYears(2020);
+    this.openItem = null;
   }
-
-  // --------------- change in field -----------------//
-  // onFilterChange() {
-
-  // }
+  ngOnChanges() {
+    this.closeAfterSaveSettings ? this.openItem = null: this.openItem = this.userSettings.education.length;
+  }
 
   // --------------- create education-item -----------------//
   addEducation() {
@@ -59,9 +55,9 @@ export class EducationUserSettingsComponent implements OnInit {
         if (this.educationId) {
           this.userSettings.education.push({
             id: this.educationId,
-            institution: 'Учебное заведение',
+            institution: '',
             academicDegree: 1,
-            specialty: 'Специальность',
+            specialty: '',
             startEducation: 1960,
             finishEducation: 1960,
             diploma: []
@@ -104,9 +100,23 @@ export class EducationUserSettingsComponent implements OnInit {
     .subscribe((res: any) => {
       this.previewUrl = res.diploma[0].url;
 
-
+      if(this.userSettings.education[i].diploma == undefined) {
+        this.userSettings.education[i].diploma = [];
+      }
       this.userSettings.education[i].diploma.push(this.previewUrl);
     });
+
+    
+  }
+
+  public deleteDiplomaPhoto(imgName, institutIndex, imgIndex){
+    
+    this.userSettingsService.deleteFile({link: imgName})
+    .subscribe((res: any) => {
+      console.log(res);
+      this.userSettings.education[institutIndex].diploma.splice(imgIndex, 1);
+    });
+
   }
 
   // --------------- open single item -----------------//
@@ -119,9 +129,18 @@ export class EducationUserSettingsComponent implements OnInit {
   }
 
   // --------------- create years array-----------------//
-  createYears() {
-    for (let i = 1960; i <= 2019; i++) {
+  createYears(limit) {
+    this.yearsArr = [];
+    for (let i = 1960; i <= limit; i++) {
       this.yearsArr.push(i);
+    }
+  }
+
+  // --------------- create years finish array-----------------//
+  createYearsFinished(limit) {
+    this.yearsFinishArr = [];
+    for (let i = limit; i <= 2027; i++) {
+      this.yearsFinishArr.push(i);
     }
   }
 

@@ -5,6 +5,7 @@ import { FormGroup, NgForm } from '@angular/forms';
 import { UserSettingsModel } from 'src/app/models/user-settings.model';
 import { filter } from 'rxjs/operators';
 import { timer } from 'rxjs';
+import cloneDeep from 'lodash/clonedeep';
 
 @Component({
   selector: 'app-general-user-settings',
@@ -15,6 +16,8 @@ export class GeneralUserSettingsComponent implements OnInit {
 
   @Input() userSettingsModel: UserSettingsModel;
   public mainSettingsFrom: FormGroup;
+  public succesRessult = false;
+  public popUpStatus = false;
 
   constructor(
     private userSettingsService: UserSettingsService,
@@ -23,16 +26,20 @@ export class GeneralUserSettingsComponent implements OnInit {
   ngOnInit( ) { }
 
   updateSettings() {
-    console.log(this.userSettingsModel);
-    // timer(200);
-
     this.userSettingsService.updateService(this.userSettingsModel)
     .pipe(filter((res: any) => !!res))
     .subscribe(
       (res) => {
-        location.reload();
+        // location.reload();
+        this.userSettingsService.onloadUserModelCopy$.next(cloneDeep(this.userSettingsModel));
+        this.succesRessult = true;
+        this.togglePopUp();
       }
     );
 
+  }
+
+  public togglePopUp() {
+    this.popUpStatus = !this.popUpStatus;
   }
 }

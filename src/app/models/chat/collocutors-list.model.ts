@@ -1,5 +1,5 @@
 import { Expose, Type } from 'class-transformer';
-import { CollocutorsLastMessageModel } from './collocutor-last-message.model';
+import { CollocutorLastMessageModel } from './collocutor-last-message.model';
 
 
 
@@ -11,10 +11,10 @@ export class CollocutorListModel {
   @Expose() offers_title: string;
   @Expose() collocutorId: number;
   // tslint:disable-next-line:variable-name
-  @Expose() freelanser_id: number;
-  @Expose() earlyСlosing: number;
+  @Expose() freelancer_id: number;
+  
   @Expose() collocutorAva: string;
-  @Expose() lastMesageDate: string;
+  @Expose() lastMessageDate: string;
   @Expose() collocutorName: string;
   @Expose() collocutorSurname: string;
   @Expose() unread: string;
@@ -24,9 +24,11 @@ export class CollocutorListModel {
   @Expose() amount: Date;
   @Expose() breef: any;
   @Expose() moneyHolded: number;
-
+  @Expose() canceled: number;
+  // @Expose() earlyClosing: number;
+  @Expose() earlyClosing: number;
   //  Last message model in chat collocutor list
-  @Type(() => CollocutorsLastMessageModel) message: CollocutorsLastMessageModel[];
+  @Type(() => CollocutorLastMessageModel) message: CollocutorLastMessageModel[];
 // {
 //   @Expose() author: number;
 //   @Expose() message: string;

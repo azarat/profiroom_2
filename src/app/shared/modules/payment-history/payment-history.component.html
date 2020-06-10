@@ -1,0 +1,46 @@
+<div class="paymenst-list">
+    <div class="title">
+        <span class="name">{{'dashboard.payment-history.contragent' | translate}}</span>
+        <span class="date">{{'dashboard.payment-history.date' | translate}}</span>
+        <span class="service">{{'dashboard.payment-history.service' | translate}}</span>
+        <span class="type">{{'dashboard.payment-history.type' | translate}}</span>
+        <span class="cash">{{'dashboard.payment-history.sum' | translate}}</span>
+    </div>
+    <div class="payment-items">
+        <div class="item" *ngFor="let payment of userCashMoves">
+            <div class="name">
+                <ng-container *ngIf="userId !== payment.dealer_id">
+                    <!-- recipient -->
+                    <div class="ava">
+                        <img [src]="payment.recipient.avatar" alt="user-avatar">
+                    </div>
+                    <span> {{ payment.recipient.name + ' ' +   payment.recipient.surname }}</span>
+                </ng-container>
+                <ng-container *ngIf="userId == payment.dealer_id">
+                    <!-- sender -->
+                    <div class="ava">
+                        <img [src]="payment.sender.avatar" alt="user-avatar">
+                    </div>
+                    <span> {{ payment.sender.name + ' ' +   payment.sender.surname }}</span>
+                </ng-container>
+
+            </div>
+            <div class="date">{{ payment.created_at | dateFormatPipe: 'dd.MM.yyyy' }}</div>
+            <div class="service">{{ payment.OffersTitle }}</div>
+            <div class="type ">
+                <ng-container *ngFor="let el of paymentsTypes">
+                    <ng-container *ngIf="el.type === payment.trnsactonType && userId !== payment.dealer_id">
+                        {{ el['name_recipient'] | translate }}
+                    </ng-container>
+                    <ng-container *ngIf="el.type === payment.trnsactonType && userId == payment.dealer_id">
+                        {{ el['name_sender'] | translate }}
+                    </ng-container>
+                </ng-container>
+            </div>
+            <div class="cash" [ngClass]="{ 'dealer': userId == payment.dealer_id }">
+                <span class="{{payment.trnsactonType}}">
+          <span class="output" *ngIf="payment.trnsactonType === 'output' || userId == payment.dealer_id && payment.trnsactonType === 'dealDone'">-</span>{{ payment.amount }}
+                </span> UAH</div>
+        </div>
+    </div>
+</div>

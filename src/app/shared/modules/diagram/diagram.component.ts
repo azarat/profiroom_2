@@ -72,11 +72,9 @@ export class DiagramComponent implements OnInit {
     this.heightValue = 'in';
     this.diagramService.getYearStatistic(year)
       .subscribe((res: any) => {
-        console.log(res);
         this.yearsCash = res[0].graph;
         this.getMaxInput(this.yearsCash);
         this.heightValue = 'out';
-        console.log(this.maxInput);
       });
   }
 }

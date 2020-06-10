@@ -4,7 +4,7 @@ import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common
 import { BaseInterceptor } from './interceptors/base-interceptor';
 import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
 import { LocalizeRouterModule, LocalizeParser, LocalizeRouterSettings } from 'localize-router';
-import { routes } from '../app-routing.module';
+import { appRoutes } from '../app-routing.module';
 import {Location} from '@angular/common';
 import {LocalizeRouterHttpLoader} from 'localize-router-http-loader';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
@@ -17,22 +17,13 @@ import { WindowScrollBlockService } from './services/window-scrolling.service';
 import { config } from 'process';
 
 import { AuthorisatedGuard } from './guards/authorisated.guard';
-import { CategorysListService } from './services/categorys.service';
 import { OffersService } from './services/offers.service';
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
+import { CategoriesListService } from './services/categories.service';
+import { CustomLocalizeService } from './services/custom-localize.service';
 
 export const url = new URL(location.href).origin;
 
-const gConfig = {
-  apiKey: 'AIzaSyCvUM_cRxpUTglNwMUcIFQdVsTtfLzIBtw',
-    authDomain: 'gigrum-6bd12.firebaseapp.com',
-    databaseURL: 'https://gigrum-6bd12.firebaseio.com',
-    projectId: 'gigrum-6bd12',
-    storageBucket: '',
-    messagingSenderId: '525258845420',
-    appId: '1:525258845420:web:635bceff56889f8ce949c9',
-    measurementId: 'G-4GNMQ0XZDM'
-};
 
 @NgModule({
   declarations: [],
@@ -44,21 +35,24 @@ const gConfig = {
       loader: {
         provide: TranslateLoader,
         useFactory: (createTranslateLoader),
-        deps: [HttpClient]
+          deps: [HttpClient],
+      },
+      useDefaultLang: true
       }
-    }
     ),
-    LocalizeRouterModule.forRoot(routes, {
+    LocalizeRouterModule.forRoot(appRoutes, {
       parser: {
         provide: LocalizeParser,
-        useFactory: (translate: TranslateService, location: Location, settings: LocalizeRouterSettings, http: HttpClient) =>
+        useFactory: (translate: TranslateService, location: Location, settings: LocalizeRouterSettings, http: HttpClient, ) =>
             new LocalizeRouterHttpLoader(translate, location, settings, http, url + '/assets/locales.json'),
-        deps: [TranslateService, Location, LocalizeRouterSettings, HttpClient]
-      }
+        deps: [TranslateService, Location, LocalizeRouterSettings, HttpClient, ],
+      },
+      // alwaysSetPrefix: false,
     }),
     ScrollToModule.forRoot()
   ],
   providers: [
+    CustomLocalizeService,
     OffersService,
     {
       provide: HTTP_INTERCEPTORS,
@@ -70,7 +64,7 @@ const gConfig = {
     LocalStorageService,
     UnauthorisatedGuard,
     AuthorisatedGuard,
-    CategorysListService,
+    CategoriesListService,
     WindowScrollBlockService,
   ]
 })

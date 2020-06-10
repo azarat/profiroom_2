@@ -69,7 +69,7 @@ form {
         padding: 0;
         margin: 0;
       }
-      .item-unswer {
+      .item-answer {
         height: 0;
         overflow: hidden;
       }
@@ -337,6 +337,24 @@ ngb-popover-window {
       font-size: 14px;
       line-height: 18px;
       color: #707683;
+    }
+  }
+}
+
+@media (max-width: 1499px) {
+  .step-wrapper {
+    padding-right: 10px;
+    &>form {
+      width: 100%;
+    }
+  }
+  .form-butons {
+    button {
+      font-size: 13px;
+      padding: 10px 24px;
+      &:first-of-type{
+        padding: 10px 24px;
+      }
     }
   }
 }

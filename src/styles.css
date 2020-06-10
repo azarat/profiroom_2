@@ -1,7 +1,104 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", 'Source Sans Pro' , sans-serif; }
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import '~open-iconic/font/css/open-iconic-bootstrap.css';
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", 'Source Sans Pro', sans-serif;
+    position: relative;
+}
+
 
 /* @import '~@fullcalendar/core/main.css';
 @import '~@fullcalendar/daygrid/main.css'; */
+
+.ng-tooltip {
+    position: absolute;
+    max-width: 370px;
+    font-size: 14px;
+    text-align: center;
+    background: #FFFFFF;
+    box-shadow: 0px 15px 21px rgba(128, 152, 213, 0.5);
+    border-radius: 8px;
+    padding: 18px 22px;
+    z-index: 1000;
+    opacity: 0;
+    box-sizing: border-box;
+}
+
+.ng-tooltip-outside {
+    max-width: 240px;
+    position: absolute;
+    font-size: 14px;
+    text-align: center;
+    background: #FFFFFF;
+    box-shadow: 0px 15px 21px rgba(128, 152, 213, 0.5);
+    border-radius: 8px;
+    padding: 18px 22px;
+    z-index: 1000;
+    opacity: 0;
+    box-sizing: border-box;
+}
+
+.ng-tooltip:after,
+.ng-tooltip-outside:after {
+    content: "";
+    position: absolute;
+    border-style: solid;
+}
+
+.ng-tooltip-top:after,
+.ng-tooltip-outside-top:after {
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 10px;
+    border-color: #FFFFFF transparent transparent transparent;
+    transform: translateX(-50%);
+}
+
+.ng-tooltip-bottom:after,
+.ng-tooltip-outside-bottom:after {
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 10px;
+    border-color: transparent transparent #FFFFFF transparent;
+    transform: translateX(-50%);
+}
+
+.ng-tooltip-right:after,
+.ng-tooltip-outside-right:after {
+    top: 50%;
+    right: 100%;
+    margin-top: -5px;
+    border-width: 10px;
+    border-color: transparent #FFFFFF transparent transparent;
+    transform: translateY(-50%);
+}
+
+.ng-tooltip p,
+.ng-tooltip-outside p {
+    font-family: Source Sans Pro, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 18px;
+    color: #707683;
+    margin-bottom: 12px;
+    text-align: left;
+}
+
+.ng-tooltip p:first-child,
+.ng-tooltip-outside p:first-child {
+    color: #000000;
+}
+
+.ng-tooltip-show {
+    opacity: 1;
+}

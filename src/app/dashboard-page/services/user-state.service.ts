@@ -9,15 +9,12 @@ import { HttpClient } from '@angular/common/http';
 export class UserStateService {
 
   // tslint:disable-next-line: variable-name
-  private _userState = new Subject<any>();
+  private _userState = new BehaviorSubject<any>(null);
   public userState$ = this._userState.asObservable();
 
   constructor(
     private http: HttpClient,
-  ) {
-    // this.http.get('userState')
-
-  }
+  ) {}
 
   public setUserState(state: number) {
     this._userState.next(state);

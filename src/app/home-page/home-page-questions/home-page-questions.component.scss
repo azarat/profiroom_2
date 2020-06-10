@@ -1,0 +1,492 @@
+.wrapper{
+  display: flex;
+}
+.main-info{
+  width: 50%;
+  &__text{
+    font-size: 24px;
+    line-height: 33px;
+    color: #707683;
+    margin-bottom: 45px;
+    p{
+      margin-bottom: 33px;
+      &:first-child{
+        max-width: 400px;
+      }
+      &:last-child{
+        max-width: 450px;
+      }
+    }
+  }
+  .btn{
+    width: fit-content;
+  }
+}
+.guestion-tabs{
+  width: 50%;
+  min-height: 750px;
+  .tabs{
+    color: #323C47;
+    max-width: 100%;
+    &-list{
+        max-width: 500px;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 4px;
+        .tab{
+            font-weight: 600;
+            font-size: 24px;
+            line-height: 30px;
+            margin-bottom: 10px;
+            letter-spacing: 0.2px;
+            cursor: pointer;
+            transition: all .4s;
+            &.active{
+                color: #3C7EEA;
+            }
+        }
+    }
+    &-slider{
+       width: 100%;
+       height: 5px;
+       border-bottom: 1px solid #3C7EEA;
+       .indicator{
+            position: relative;
+            bottom: -1px;
+            width: 200px;
+            max-width: 100%;
+            margin: 0;
+            height: 4px;
+            background: #428BFF;
+            border-radius: 1px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            transition: all 0.33s cubic-bezier(0.38, 0.8, 0.32, 1.07);
+            &.activeOne{
+                transform: translateX(0); 
+            }
+            &.activeTwo{
+                transform: translateX(calc(500px - 95%));
+            }
+       }
+    }
+    .tabs-text{
+        p{
+            font-size: 24px;
+            line-height: 33px;
+            letter-spacing: 0.5px;
+            margin: 0 0 22px;
+        }
+    }
+  }
+  position: relative;
+  &::after{
+    content: "";
+    position: absolute;
+    z-index: -2;
+    bottom: 26%;
+    right: -15%;
+    width: 140px;
+    height: 170px;
+    background-image: url(/assets/images/images/dots-advantages.svg);
+    background-repeat: no-repeat;
+  }
+}
+
+.question-wrap{
+  box-shadow: 0px 10px 40px rgba(128, 152, 213, 0.5);
+}
+
+.question-list {
+    width: auto;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+.question-item {
+  width: 100%;
+  border-bottom: 1px solid #EBEEFF;
+  background-color: #fff;
+  &__title {
+    position: relative;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 24px;
+    color: #4E5051;
+    margin: 0;
+    cursor: pointer;
+    padding: 27px 55px 27px;
+    .element-plus{
+      color: #3a4046;
+      position: absolute;
+      top: 50%;
+      right: 20px;
+      transform: translateY(-50%);
+      width: 25px;
+      height: 25px;
+      cursor: pointer;
+      &::after {
+        content: "";
+        width: 20px;
+        height: 4px;
+        background-color: #3a4046;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+        position: absolute;
+      }
+      &::before {
+        content: "";
+        width: 20px;
+        height: 4px;
+        background-color: #3a4046;
+        transform: translate(-50%, -50%) rotate(90deg);
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        transition: all .2s;
+      }
+    }
+  }
+  &__text {
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 30px;
+    color: #4E5051;
+    margin: 0;
+    font-family: "Source Sans Pro", sans-serif;
+    // padding: 0 100px 0 20px;
+    overflow: hidden;
+    // transition: all 0.3s;
+    padding: 0 32px 10px;
+  }
+  &.active {
+    .question-item__title {
+      &::before {
+        transform: rotate(-90deg);
+      }
+    }
+
+  }
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.mat-expansion-panel-header{
+  font-family: "Source Sans Pro", sans-serif;
+}
+.mat-expansion-panel-header-title{
+  color: #4E5051;
+}
+.mat-expansion-panel-spacing{
+  margin: 0;
+  .element-plus{
+    &::before{
+      transform: translate(-50%, -50%) rotate(0deg);
+      background-color: #005AED;
+    }
+    &::after{                                               
+      background-color: #005AED;
+    }
+  }
+}
+.mat-expansion-panel{
+  box-shadow: none!important;
+  &:last-child{
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }
+}
+.mat-expansion-panel-content{
+  font-family: "Source Sans Pro", sans-serif;
+}
+.mat-expansion-indicator{
+  display: none;
+  &::after{
+    display: none;
+  }
+}
+.mat-expansion-indicator::after{
+  display: none!important;
+}
+
+@media (max-width: 1499px) {
+  .main-info{
+    width: 50%;
+    &__text{
+      font-size: 16px;
+      line-height: 23px;
+      color: #707683;
+      margin-bottom: 30px;
+      p{
+        margin-bottom: 20px;
+        &:first-child{
+          max-width: 300px;
+        }
+        &:last-child{
+          max-width: 300px;
+        }
+      }
+    }
+    .section__title{
+      max-width: 350px;
+    }
+  }
+  .guestion-tabs{
+    width: 50%;
+    min-height: 600px;
+    .tabs{
+      max-width: 500px;
+      &-list{
+          max-width: 300px;
+          .tab{
+              font-size: 18px;
+              line-height: 23px;
+          }
+      }
+      &-slider{
+         .indicator{
+              width: 135px;
+              &.activeOne{
+                  transform: translateX(0); 
+              }
+              &.activeTwo{
+                  transform: translateX(calc(300px - 100%));
+              }
+         }
+      }
+    }
+    position: relative;
+    &::after{
+      content: "";
+      position: absolute;
+      z-index: -2;
+      bottom: 26%;
+      right: -15%;
+      width: 140px;
+      height: 170px;
+      background-image: url(/assets/images/images/dots-advantages.svg);
+      background-repeat: no-repeat;
+    }
+  }
+  .question-item {
+    &__title {
+      font-size: 18px;
+      line-height: 24px;
+      padding: 27px 40px 27px;
+      .element-plus{
+        width: 15px;
+        height: 15px;
+        &::after {
+          width: 15px;
+          height: 3px;
+        }
+        &::before {
+          width: 15px;
+          height: 3px;
+        }
+      }
+    }
+    &__text {
+      font-size: 16px;
+      line-height: 23px;
+      padding: 0 16px 0;
+    }
+    &.active {
+      .question-item__title {
+        &::before {
+          transform: rotate(-90deg);
+        }
+      }
+
+    }
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}
+
+@media (max-width: 1199.98px) {
+  .main-info{
+    width: 50%;
+    &__text{
+      font-size: 14px;
+      line-height: 20px;
+      color: #707683;
+      margin-bottom: 22px;
+      p{
+        margin-bottom: 20px;
+        &:first-child{
+          max-width: 250px;
+        }
+        &:last-child{
+          max-width: 250px;
+        }
+      }
+    }
+    .section__subtitle{
+      margin: 0 0 8px;
+    }
+    .section__title{
+      max-width: 350px;
+      margin: 0 0 20px;
+    }
+    .btn.outline{
+      padding: 13px 35px;
+    }
+  }
+  .guestion-tabs{
+    width: 50%;
+    min-height: 400px;
+    .tabs{
+      max-width: 320px;
+      &-list{
+          max-width: 320px;
+          .tab{
+            font-size: 16px;
+            line-height: 20px;
+            margin-bottom: 0;
+          }
+      }
+      &-slider{
+         .indicator{
+              width: 125px;
+              &.activeOne{
+                transform: translateX(0);
+                width: 110px;
+              }
+              &.activeTwo{
+                transform: translateX(calc(325px - 100%));
+                width: 135px;
+              }
+         }
+      }
+    }
+    position: relative;
+    &::after{
+      content: "";
+      position: absolute;
+      z-index: -2;
+      bottom: 23%;
+      right: -15%;
+      width: 100px;
+      height: 180px;
+      background-image: url(/assets/images/images/dots-advantages.svg);
+      background-repeat: no-repeat;
+    }
+  }
+  .question-item {
+    &__title {
+      font-size: 14px;
+      line-height: 18px;
+      padding: 17px 18px 18px;
+      .element-plus{
+        display: none;
+      }
+    }
+    &__text {
+      font-size: 14px;
+      line-height: 20px;
+      padding: 0;
+    }
+    &.active {
+      .question-item__title {
+        &::before {
+          transform: rotate(-90deg);
+        }
+      }
+      .mat-expansion-panel-body{
+        padding: 0 18px 16px;
+      }
+    }
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}
+
+@media (max-width: 767.98px) {
+  .wrapper{
+    flex-direction: column;
+  }
+  .main-info{
+    width: 100%;
+    &__text{
+      p{
+        margin-bottom: 20px;
+        &:first-child{
+          max-width: none;
+        }
+        &:last-child{
+          max-width: none;
+        }
+      }
+    }
+    .section__subtitle{
+      margin: 0 0 8px;
+    }
+    .section__title{
+      max-width: 270px;
+    }
+    .btn.outline{
+      display: none;
+    }
+  }
+  .guestion-tabs{
+    width: 100%;
+    min-height: max-content;
+    max-height: 430px;
+    position: relative;
+    transition: all .5s ease-in-out;
+    .tabs{
+      max-width: 320px;
+      &-list{
+          max-width: 320px;
+          .tab{
+            font-size: 16px;
+            line-height: 20px;
+            margin-bottom: 0;
+          }
+      }
+      &-slider{
+         .indicator{
+              width: 125px;
+              &.activeOne{
+                transform: translateX(0);
+                width: 110px;
+              }
+              &.activeTwo{
+                transform: translateX(calc(325px - 100%));
+                width: 135px;
+              }
+         }
+      }
+    }
+    position: relative;
+    &::after{
+      content: "";
+      position: absolute;
+      z-index: -2;
+      bottom: 23%;
+      right: -15%;
+      width: 100px;
+      height: 180px;
+      background-image: url(/assets/images/images/dots-advantages.svg);
+      background-repeat: no-repeat;
+    }
+  }
+}
+
+@media (max-width: 340px) {
+  .guestion-tabs{
+    .tabs-slider{
+      .indicator.activeTwo{
+        transform: translateX(calc(300px - 100%));
+        width: 125px;
+      }
+    }
+  }
+}

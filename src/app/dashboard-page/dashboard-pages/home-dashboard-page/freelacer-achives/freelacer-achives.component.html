@@ -1,0 +1,116 @@
+<div class="wrapper" *ngIf="achivements">
+    <h4>{{'dashboard.home-page.ranks.title' | translate}}
+        <!-- <button class="ask"></button> -->
+    </h4>
+
+    <div class="main-status">
+        <p>{{'dashboard.home-page.ranks.subtitle' | translate}}</p>
+        <div>
+            <div class="line-wrap">
+                <div *ngFor="let el of ranks" class="dot {{ el.class}}" [ngClass]="{'done': el.rank <= achivements.rank_id }">
+                    <span>
+            {{ el.title | translate}}
+          </span>
+                </div>
+                <div class="line">
+                    <div class="position" [style.width.%]="(achivements.rank_id * 25) + (achivements.nextLevelProgress * 0.25)">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--  -->
+    <div class="all-achive-types">
+        <h6>{{'das.ranks.rank-conditions-title' | translate}}</h6>
+
+        <div class="skills-level">
+            <div class="btns prev" *ngIf="((moveTo === 'next' || moveTo === null) && (achivements.rank_id !== 0 && achivements.rank_id !== 4))" (click)="moveCards('prev')"></div>
+            <div class="btns next" *ngIf="((moveTo == 'prev' && moveTo !== null) && (achivements.rank_id !== 0 && achivements.rank_id !== 4))" (click)="moveCards('next')"></div>
+            <div class="slides">
+
+                <div class="skills-level-items {{ moveTo}}" [ngClass]="{blocked: (achivements.rank_id === 0 || achivements.rank_id === 4) }">
+                    <ng-container *ngFor="let el of ranks, let i = index">
+                        <div class="skill" *ngIf="prevRank === i || currentRank === i ||  nextRank === i">
+                            <div class="skill-title">
+                                <span class="icon {{ el.class }}" [ngClass]="{'done' : el.rank <= currentRank }"></span>
+                                <!-- currentRank -->
+                                <span *ngIf="(currentRank === 0 || currentRank === 4 ) &&  currentRank === i ">
+                                  {{'das.ranks.u-get-lvl' | translate}}
+                </span>
+                                <span *ngIf="(currentRank > 0 && currentRank < 4) &&  currentRank === i">
+                                  {{'das.ranks.ur-lvl' | translate}}
+                </span>
+                                <!-- prevRank -->
+                                <span *ngIf="prevRank === i">
+                                  {{'das.ranks.prev-lvl' | translate}}
+                </span>
+
+                                <!-- nextRank -->
+                                <span *ngIf="nextRank === i">
+                                  {{'das.ranks.next-lvl' | translate}}
+                </span> &nbsp;"{{ el.title | translate }}"
+                            </div>
+                            <div class="skill-checkpoints ">
+                                <div class="checkpoint" *ngFor="let checkpoint of el.checkpoints">
+                                    <div class="name">
+                                        <span>{{ checkpoint.name | translate}}</span>
+                                        <span>{{'das.ranks.target' | translate}}</span>
+                                    </div>
+                                    <div class="checkpoint-progress {{ el.class }}">
+                                        <div class="status" [ngClass]="{ 'done': el.class === 'zero' || ((checkpoint.type === 'rating' && achivements.ratingProgress === 100
+                || checkpoint.type === 'deals' && achivements.successDealsProgress === 100 ) && nextRank === i ) || prevRank === i || currentRank === i || (currentRank === 0 && achivements[checkpoint.type]  === true) }">
+                                        </div>
+                                        <span class="current">
+                      <ng-container *ngIf="el.class === 'zero'">
+                        100%
+                      </ng-container>
+                      <ng-container *ngIf="i>1">
+                        <span *ngIf="checkpoint.type === 'days'">
+                          {{ achivements.termProgress }}
+                        </span>
+
+                    </ng-container>
+                    <ng-container *ngIf="i === 1">
+
+                        <span *ngIf="achivements[checkpoint.type]  === true">
+                          100%
+                        </span>
+                        <span *ngIf="achivements[checkpoint.type]  === false">
+                          0
+                        </span>
+                    </ng-container>
+                    <img *ngIf="checkpoint.type === 'rating'" src="/assets/images/icons/Star.png" alt="rating">
+                    </span>
+                    <div class="line">
+                        <ng-container *ngIf="prevRank != i">
+                            <span class="line-progress" *ngIf="checkpoint.type === 'rating'" [style.width.%]="achivements.ratingProgress"></span>
+                            <span class="line-progress" *ngIf="checkpoint.type === 'deals'" [style.width.%]="achivements.successDealsProgress"></span>
+                            <span class="line-progress" *ngIf="checkpoint.type == 'days'" [style.width.%]="(achivements.termProgress/checkpoint.target)*100"></span>
+                        </ng-container>
+
+                        <span class="line-progress" *ngIf="(prevRank === i || currentRank === i) && i !== 1" [style.width.%]="100"></span>
+
+                        <!-- for 1 rank -->
+                        <span class="line-progress" *ngIf="i == 1 && achivements[checkpoint.type]  === true" [style.width.%]="100"></span>
+                    </div>
+                    <span class="target">
+                      {{ checkpoint.target }}
+                    </span>
+                    <img *ngIf="checkpoint.type === 'rating'" src="/assets/images/icons/Star.png" alt="rating">
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+
+                    </ng-container>
+                </div>
+            </div>
+
+
+
+
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,77 @@
+<div class="wrapper">
+    <div class="main-info">
+        <div class="main-info__wrap">
+            <h3 class="section__subtitle">{{'home-page.how-work-subtitle' | translate}}</h3>
+            <h2 class="section__title">{{'home-page.how-work-title' | translate}}</h2>
+            <div class="tabs">
+                <div class="tabs-list">
+                    <div class="tab" [ngClass]="{active: activeTab === 0}" (click)="selectTab(0)">{{'home-page.how-work-for-customer' | translate}}</div>
+                    <div class="tab" [ngClass]="{active: activeTab === 1}" (click)="selectTab(1)">{{'home-page.how-work-for-freelancer' | translate}}</div>
+                </div>
+                <div class="tabs-slider">
+                    <div class="indicator" [ngClass]="{activeOne: activeTab === 0, activeTwo: activeTab === 1}"></div>
+                </div>
+                <div class="tabs-text" *ngIf="activeTab === 0">
+                    <p>{{'home-page.how-work-text' | translate}}</p>
+                    <p>{{'home-page.how-work-text2' | translate}}</p>
+                </div>
+                <div class="tabs-text" *ngIf="activeTab === 1">
+                    <p>{{'home-page.how-work-text3' | translate}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="steps" [ngClass]="{simpleBlock: activeTab === 0, elongatedBlock: activeTab === 1}">
+        <div class="steps-list" [ngClass]="{activeSLideOne: currentSlide === 0, activeSLideTwo: currentSlide === 1, activeSLideThree: currentSlide === 2, activeSLideFour: currentSlide === 3}">
+            <div class="step">
+                <div class="step-number">1</div>
+
+                <div class="flip-container" [ngClass]="{customer: activeTab === 0, freelancer: activeTab === 1}"ontouchstart="this.classList.toggle('hover');">
+                    <div class="flipper">
+                        <div class="step-img-wrap front"><img src="assets/images/images/step1.svg" alt=""></div>
+                        <div class="step-img-wrap back"><img src="assets/images/images/step1.svg" alt=""></div>
+                    </div>
+                </div> 
+                <div class="step-text" *ngIf="activeTab === 0">{{'home-page.how-work-item1-customer' | translate}}</div>
+                <div class="step-text" *ngIf="activeTab === 1">{{'home-page.how-work-item1-freelancer' | translate}}</div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="flip-container" [ngClass]="{customer: activeTab === 0, freelancer: activeTab === 1}"ontouchstart="this.classList.toggle('hover');">
+                    <div class="flipper">
+                        <div class="step-img-wrap front"><img src="assets/images/images/step2.1.svg" alt=""></div>
+                        <div class="step-img-wrap back"><img src="assets/images/images/step2.svg" alt=""></div>
+                    </div>
+                </div> 
+                <div class="step-text" *ngIf="activeTab === 0">{{'home-page.how-work-item2-customer' | translate}}</div>
+                <div class="step-text" *ngIf="activeTab === 1">{{'home-page.how-work-item2-freelancer' | translate}}</div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="flip-container" [ngClass]="{customer: activeTab === 0, freelancer: activeTab === 1}"ontouchstart="this.classList.toggle('hover');">
+                    <div class="flipper">
+                        <div class="step-img-wrap front"><img src="assets/images/images/step3.1.svg" alt=""></div>
+                        <div class="step-img-wrap back"><img src="assets/images/images/step3.svg" alt=""></div>
+                    </div>
+                </div> 
+                <div class="step-text" *ngIf="activeTab === 0">{{'home-page.how-work-item3-customer' | translate}}</div>
+                <div class="step-text" *ngIf="activeTab === 1">{{'home-page.how-work-item3-freelancer' | translate}}</div>
+            </div> 
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="flip-container" [ngClass]="{customer: activeTab === 0, freelancer: activeTab === 1}"ontouchstart="this.classList.toggle('hover');">
+                    <div class="flipper">
+                        <div class="step-img-wrap front"><img src="assets/images/images/step4.1.svg" alt=""></div>
+                        <div class="step-img-wrap back"><img src="assets/images/images/step4.svg" alt=""></div>
+                    </div>
+                </div> 
+                <div class="step-text" *ngIf="activeTab === 0">{{'home-page.how-work-item4-customer' | translate}}</div>
+                <div class="step-text" *ngIf="activeTab === 1">{{'home-page.how-work-item4-freelancer' | translate}}</div>
+            </div>
+        </div>
+        <div class="slider-navigation">
+            <button class="circle-btn right" [ngClass]="{disabled: currentSlide === 0}" (click)="decreaseSlide()"></button>
+            <button class="circle-btn left" [ngClass]="{disabled: currentSlide === 3}" (click)="increaseSlide()"></button>
+        </div>
+    </div>
+</div>

@@ -7,20 +7,9 @@ import { OfferDataInterface } from 'src/app/shared/interfaces/offer-date.interfa
   templateUrl: './service-page-questions.component.html',
   styleUrls: ['./service-page-questions.component.scss']
 })
-export class ServicePageQuestionsComponent implements OnInit {
-  panelOpenState = false;
-  btnNumber = 0;
+export class ServicePageQuestionsComponent {
 
   constructor() {}
   @Input() offerData: OfferDataInterface;
-  ngOnInit() {}
-
-  showfull(questionNumber) {
-    if (questionNumber !== this.btnNumber) {
-      this.btnNumber = questionNumber;
-    } else {
-      this.btnNumber = null;
-    }
-  }
 
 }

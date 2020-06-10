@@ -1,11 +1,10 @@
 import { Component, OnInit, AfterViewChecked, Input, ViewChild, ElementRef, AfterViewInit, ViewChildren, QueryList } from '@angular/core';
 import { ChatService } from '../../services/chat.service';
-import { messages } from '../consts/messages.const';
-import { MessageScrollerService } from '../../services/message-scroller/message-scroller.service';
+import { MessageScrollService } from '../../services/message-scroll/message-scroll.service';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 import { CollocutorListModel } from 'src/app/models/chat/collocutors-list.model';
 import * as $ from 'jquery';
-import { SocketService } from '../../services/socket.service';
+import { SocketService } from '../../../core/services/socket.service';
 
 @Component({
   selector: 'app-message-list',
@@ -19,30 +18,29 @@ export class MessageListComponent implements OnInit, AfterViewChecked, AfterView
   @Input() chatRoom: string;
   @Input() messagesList: any[];
   @Input() collocutorData: CollocutorListModel;
-  userId: any;
-  userAvatar: any;
-  messCheck = null;
-  isScrollDownBtn: boolean = null;
-  isShowMoreMessagesBtn: boolean = null;
-
+  public userId: any;
+  public userAvatar: any;
+  public messCheck = null;
+  public isScrollDownBtn: boolean = null;
+  public isShowMoreMessagesBtn: boolean = null;
   public typing: boolean = null;
   public typingUser: number;
+  public isMessages = true;
 
   constructor(
     private chatService: ChatService,
-    private messageScrollerService: MessageScrollerService,
+    private messageScrollService: MessageScrollService,
     private localStorageService: LocalStorageService,
-    private socetService: SocketService
+    private socketService: SocketService
   ) {
     this.userId = (this.localStorageService.getItem('userId').value).toString();
     this.userAvatar = this.localStorageService.getItem('userImage').value;
-
   }
 
   @ViewChild('messagesWrap', { static: false }) messagesWrap: ElementRef;
 
   ngOnInit() {
-    this.messageScrollerService.onMessageScrollBottom();
+    this.messageScrollService.onMessageScrollBottom();
     // this.typingEventListener();
     // console.log(this.messagesList);
     // console.log(this.collocutorData);
@@ -52,7 +50,7 @@ export class MessageListComponent implements OnInit, AfterViewChecked, AfterView
   }
 
   ngAfterViewChecked() {
-    this.messageScrollerService.scrollToBottom(this.messagesWrap);
+    this.messageScrollService.scrollToBottom(this.messagesWrap);
 
   }
 
@@ -63,15 +61,15 @@ export class MessageListComponent implements OnInit, AfterViewChecked, AfterView
     // }
 
     const x = event.target.scrollHeight - event.target.scrollTop;
-    this.messageScrollerService.onScroll(this.messagesWrap);
+    this.messageScrollService.onScroll(this.messagesWrap);
     if (x > event.target.clientHeight + 300) {
       this.isScrollDownBtn = true;
     } else {
       this.isScrollDownBtn = null;
     }
-    const isbreefVisible = this.messagesList[0].hasOwnProperty('breef');
+    const isBriefVisible = this.messagesList[0].hasOwnProperty('brief');
 
-    if (event.target.scrollTop === 0 && isbreefVisible !== true ) {
+    if (event.target.scrollTop === 0 && isBriefVisible !== true ) {
       this.isShowMoreMessagesBtn = true;
     } else {
       this.isShowMoreMessagesBtn = null;
@@ -89,6 +87,10 @@ export class MessageListComponent implements OnInit, AfterViewChecked, AfterView
     const cerOffset = firstMessage.offset().top - $('#messages-wrap').scrollTop() - 1;
     this.chatService.getPreviousMessages(this.collocutorData.roomId, this.messagesList.length, this.chatType)
       .subscribe(res => {
+        if(res[0].length === 0){
+          this.isMessages = null;
+          return;
+        }
         this.messagesList = this.filterArrayOnMessTypes(res[0]).concat(this.messagesList);
         $('#messages-wrap').scrollTop(firstMessage.offset().top - cerOffset);
       });

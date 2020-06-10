@@ -26,7 +26,7 @@ export class NgxGalleryComponent implements OnInit {
 
   ngOnInit() {
     if (this.offerData.files !== null) {
-      this.pushImagesToArrey();
+      this.pushImagesToArray();
     }
 
     this.galleryOptions = [
@@ -43,17 +43,20 @@ export class NgxGalleryComponent implements OnInit {
         thumbnailsMargin: 8,
         thumbnailMargin: 8
       },
-      // max-width 800
       {
-        breakpoint: 800,
-        width: '100%',
-        height: '600px',
+        breakpoint: 1500,
+        width: '630px',
+        height: '480px',
         imagePercent: 80,
-
       },
-      // max-width 400
       {
-        breakpoint: 400,
+        breakpoint: 1024,
+        width: '690px',
+        height: '530px',
+        imagePercent: 90,
+      },
+      {
+        breakpoint: 767,
         preview: false
       }
     ];
@@ -64,17 +67,27 @@ export class NgxGalleryComponent implements OnInit {
 
 
 
-  pushImagesToArrey = () => {
+  pushImagesToArray = () => {
 
     this.offerData.files.forEach(item => {
       this.galleryImages.push(
         {
-          big: 'https://www.thecubetest.site/Backend/storage/app/' + this.offerData.filesDirectory + '/big/' + item,
-          medium: 'https://www.thecubetest.site/Backend/storage/app/' + this.offerData.filesDirectory + '/medium/' + item,
-          small: 'https://www.thecubetest.site/Backend/storage/app/' + this.offerData.filesDirectory + '/small/' + item,
+          big: 'http://dev.thecubetest.site/Backend/public/storage/offerFiles' + '/big/' + item,
+          medium: 'http://dev.thecubetest.site/Backend/public/storage/offerFiles' + '/medium/' + item,
+          small: 'http://dev.thecubetest.site/Backend/public/storage/offerFiles' +'/small/' + item,
         }
       );
     });
+
+    // this.offerData.files.forEach(item => {
+    //   this.galleryImages.push(
+    //     {
+    //       big: 'https://www.thecubetest.site/Backend/storage/app/' + this.offerData.filesDirectory + '/big/' + item,
+    //       medium: 'https://www.thecubetest.site/Backend/storage/app/' + this.offerData.filesDirectory + '/medium/' + item,
+    //       small: 'https://www.thecubetest.site/Backend/storage/app/' + this.offerData.filesDirectory + '/small/' + item,
+    //     }
+    //   );
+    // });
 
   }
 }

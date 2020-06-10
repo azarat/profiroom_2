@@ -87,10 +87,18 @@ export class SecurityPassUserSettingsComponent implements OnInit {
       .subscribe(res => {
         if (this.submitedPassForm && res.message === 'succes') {
           this.changePasswordResult = true;
+          form.reset();
         } else {
           this.changePasswordResult = false;
           this.submitedPassForm = false;
         }
       });
+  }
+
+  public toglePopUp() {
+    this.changePasswordResult = !this.changePasswordResult;
+  }
+  public resetValidation() {
+    this.submitedPassForm = false;
   }
 }

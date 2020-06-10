@@ -1,6 +1,6 @@
 <div class="inform_section">
   <div class="inform_section__title">
-    <h3>Дополнительное Образование</h3>
+    <h3>{{'general.additional-education' | translate}}</h3>
   </div>
   <div class="inform_section__fields">
     <div class="field-block-multiple">
@@ -9,7 +9,7 @@
           *ngFor="let arrayItem of userSettings.additionalEducation; let i = index">
 
           <div class="field-block">
-            <h5 class="fields-title">Учебное заведение</h5>
+            <h5 class="fields-title">{{'user-settings.institution-name' | translate}}</h5>
             <input
               class="fields-value"
               type="text"
@@ -17,17 +17,18 @@
               #institution="ngModel"
               minlength="4"
               name="institution-{{i}}"
+              placeholder="{{'user-settings.institution-name' | translate}}"
               [(ngModel)]="userSettings.additionalEducation[i].additionalInstitution"
               [ngClass] = "{not_Valid: !institution.valid }"
             >
             <div *ngIf="!institution.valid " class="alert-danger">
-              <p>institution must be at least 4 characters long.</p>
+              <p>{{'user-settings.alert-min-length3' | translate}}</p>
             </div>
           </div>
 
           <div class="toggle_block" [ngClass]="{ hidden: openItem !== i+1 }">
             <div class="field-block">
-              <h5 class="fields-title">Название курсов</h5>
+              <h5 class="fields-title">{{'user-settings.course-name' | translate}}</h5>
               <input
                 class="fields-value"
                 type="text"
@@ -35,30 +36,31 @@
                 #specialty="ngModel"
                 minlength="4"
                 name="specialty-{{i}}"
+                placeholder="{{'user-settings.course-name' | translate}}"
                 [(ngModel)]="userSettings.additionalEducation[i].courseName"
                 [ngClass] = "{not_Valid: !specialty.valid}"
               >
               <div *ngIf="!specialty.valid" class="alert-danger">
-                <p>specialty must be at least 4 characters long.</p>
+                <p>{{'user-settings.alert-min-length3' | translate}}</p>
               </div>
             </div>
 
             <div class="studyPeriod">
               <div class="period-wrapper">
-                <div class="field-block service-selects mounthes">
-                  <label class="block-title" for="startEducation">Начало
+                <div class="field-block service-selects ">
+                  <label class="block-title" for="startEducation">{{'user-settings.education-start' | translate}}
                   </label>
-                  <mat-select name="startEducationMounth" id="startEducationMounth"
-                    [(ngModel)]="userSettings.additionalEducation[i].startStudyMounth">
-                    <ng-container *ngFor="let startEducationMounth of mounth">
-                      <mat-option [value]="startEducationMounth">{{ startEducationMounth }}</mat-option>
+                  <mat-select name="startEducationMonth" id="startEducationMonth"
+                    [(ngModel)]="userSettings.additionalEducation[i].startStudyMonth">
+                    <ng-container *ngFor="let startEducationMonth of month">
+                      <mat-option [value]="startEducationMonth">{{ monthTranslate[startEducationMonth - 1] }}</mat-option>
                     </ng-container>
                   </mat-select>
                 </div>
                 <div class="field-block service-selects">
                   <mat-select name="startEducationYear" id="startEducationYear"
-                    [(ngModel)]="userSettings.additionalEducation[i].startStudyYear">
-                    <ng-container *ngFor="let startYear of createYearArray()">
+                    [(ngModel)]="userSettings.additionalEducation[i].startStudyYear" (selectionChange)="createFinishYearArray($event.value)">
+                    <ng-container *ngFor="let startYear of yearsArr">
                       <mat-option [value]="startYear">{{ startYear }}</mat-option>
                     </ng-container>
                   </mat-select>
@@ -66,20 +68,22 @@
               </div>
 
               <div class="period-wrapper">
-                <div class="field-block service-selects mounthes">
-                  <label class="block-title" for="startEducation">Окончание
+                <div class="field-block service-selects monthes">
+                  <label class="block-title" for="startEducation">{{'user-settings.education-end' | translate}}
                   </label>
-                  <mat-select name="endEducationMounth" id="endEducationMounth"
-                    [(ngModel)]="userSettings.additionalEducation[i].endStudyMounth">
-                    <ng-container *ngFor="let endStudyMounth of mounth">
-                      <mat-option [value]="endStudyMounth">{{ endStudyMounth }}</mat-option>
+                  <mat-select name="endEducationMonth" id="endEducationMonth"
+                    [(ngModel)]="userSettings.additionalEducation[i].endStudyMonth">
+                    <mat-option [value] = 0> - </mat-option>
+                    <ng-container *ngFor="let endStudyMonth of month">
+                      <mat-option [value]="endStudyMonth">{{ monthTranslate[endStudyMonth - 1] }}</mat-option>
                     </ng-container>
                   </mat-select>
                 </div>
                 <div class="field-block service-selects">
                   <mat-select name="endEducationYear" id="endEducationYear"
-                    [(ngModel)]="userSettings.additionalEducation[i].endStudyYear">
-                    <ng-container *ngFor="let endStudyYear of createYearArray()">
+                    [(ngModel)]="userSettings.additionalEducation[i].endStudyYear" (selectionChange)="createYearArray($event.value)">
+                    <mat-option [value] = 0> - </mat-option>
+                    <ng-container *ngFor="let endStudyYear of yearsFinishArr">
                       <mat-option [value]="endStudyYear">{{ endStudyYear }}</mat-option>
                     </ng-container>
                   </mat-select>
@@ -91,14 +95,15 @@
               <ng-container *ngFor="let diplomaPhoto of userSettings.additionalEducation[i].additionalDiploma; let x = index">
                 <div  class="img-item" *ngIf="diplomaPhoto != null" >
                   <img  [src]="diplomaPhoto" height="300" />
+                  <div class="delete-photo" (click)="deleteDiplomaPhoto(diplomaPhoto, i, x)"></div>
                 </div>
               </ng-container>
             </div>
 
-            <div class="add-photos">
+            <div class="add-photos" *ngIf="userSettings.additionalEducation[i].additionalDiploma && userSettings.additionalEducation[i].additionalDiploma.length < 5">
               <input type="file" id="additionalDiplomaFiles-{{i}}" class="input-file" #file name="file"
                 (change)="fileProgress($event.target.files, userSettings.additionalEducation[i].id, i)" />
-              <label for="additionalDiplomaFiles-{{i}}">Загрузить файл/фото диплома</label>
+              <label for="additionalDiplomaFiles-{{i}}">{{'user-settings.onload-diploma' | translate}}</label>
             </div>
 
             <button type="button" class="delete-education">
@@ -111,11 +116,11 @@
 
         </div>
 
-        <button class="add-education add btn-tetraty" type="submit">
+        <button class="add-education add btn-third" type="submit">
           <i class="material-icons">
             add_circle_outline
           </i>
-          <span>Добавить образование</span>
+          <span>{{'user-settings.add-education' | translate}}</span>
         </button>
 
       </form>

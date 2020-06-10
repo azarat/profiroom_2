@@ -15,22 +15,41 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./third-step-creation.component.scss'],
 })
 export class ThirdStepCreationComponent implements OnInit {
-translatedPath: any = this.localize.translateRoute('/dashboard/my-services');
+
+  private translatedPath: any = this.localize.translateRoute('/dashboard/my-services');
   user;
   public submited = false;
   public packagesTypes = ['basic', 'advanced', 'premium'];
   showPackages = false;
   optionsVisible = false;
+  priceControlbasicPrice: FormControl;
+  priceControladvancedPrice: FormControl;
+  priceControlpremiumPrice: FormControl;
+
+  priceForm: FormGroup
   constructor(
     private userOffersService: UserOffersService,
     private localize: LocalizeRouterService,
     private router: Router,
+    private fb: FormBuilder
   ) { }
 
   @Input() userService: UserServiceModel;
   @Output() public setCurrentStep = new EventEmitter();
 
-  ngOnInit() { }
+  ngOnInit() {
+    // this.userService.allPackages = false;
+
+    // this.priceControlbasicPrice = new FormControl("", [ Validators.min(300)])
+    // this.priceControladvancedPrice = new FormControl("", [ Validators.min(300)])
+    // this.priceControlpremiumPrice = new FormControl("", [ Validators.min(300)])
+
+    this.priceForm = this.fb.group({
+      basicPrice: Validators.min(300),
+      advancedPrice: Validators.min(300),
+      premiumPrice : Validators.min(300),
+    });
+   }
 
   changesArrayCounter() {
     const changes = new Array();
@@ -67,6 +86,12 @@ translatedPath: any = this.localize.translateRoute('/dashboard/my-services');
     if (form.invalid) {
       return;
     }
+
+    if ( Number(this.userService.packagesPrices.advancedPrice) < 250 &&
+    Number(this.userService.packagesPrices.basicPrice) < 250 &&
+    Number(this.userService.packagesPrices.premiumPrice) < 250 ) {
+      return;
+    }
     this.userOffersService.updateService(this.userService)
       .pipe(filter((res: any) => !!res))
       .subscribe(res => {
@@ -96,4 +121,10 @@ translatedPath: any = this.localize.translateRoute('/dashboard/my-services');
     this.router.navigate([this.translatedPath]);
   }
 
+
+  public priceChange(event, _package: string) {
+    if (!(Number(event) > 0)) {
+      this.userService.packagesPrices[_package + 'Price'] = null;
+    }
+  }
 }

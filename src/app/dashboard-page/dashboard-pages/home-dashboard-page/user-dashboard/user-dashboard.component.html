@@ -1,78 +1,131 @@
 <div class="wrapper">
-  <section class="main-statistic">
-      <div class="main-statistic-item" *ngFor="let el of statsicArr, let i = index">
-        <div class="icon"></div>
-        <div>
-          <p>{{ user.purse[el.valueName] }}</p>
-          <p>{{ el.name }}</p>
-        </div>
-      </div>
-  </section>
-  <section class="charst-statistic">
-    <div class="charts">
-      <div>
-        <h5 class="title">
-            Показатели аккаунта
-        </h5>
-        <div class="chart-body">
-          <div class="acc-settings">
-            <div>
-              <span>
-                12
-              </span>
-              <span>
-                кол-во просмотров моего аккаунта
-              </span>
+    <section class="main-statistic">
+        <div class="main-statistic-item" *ngFor="let el of statsicArr, let i = index">
+            <div class="icon">
+                <img src="/assets/images/icons/finance/{{el.icon}}.png" alt="">
             </div>
             <div>
-              <span>
-                12
-              </span>
-              <span>
-                заказчиков откликнулось
-              </span>
+                <p [ngClass]="{inline: el.icon === 'current'}">{{ user.purse[el.valueName] }}</p><span *ngIf="el.icon === 'current'">UAH</span>
+                <p>{{ el.name | translate }}</p>
             </div>
-            <div>
-              <span>
-                12
+        </div>
+    </section>
+    <section class="charst-statistic" *ngIf="this.user.role_id === 1">
+        <div class="charts">
+            <div class="freelancer-status">
+                <h5 class="title">
+                    {{'dashboard.home-page.user-status' | translate}}
+                </h5>
+                <div class="chart-body">
+                    <div class="status">
+                        <p>{{'dashboard.home-page.user-availability' | translate}}
+                            <span class="work-status" [ngClass]="user.busy === 1? 'off': 'on'">
+                <ng-container *ngIf="user.busy === 1">{{'general.user-busy' | translate}}</ng-container>
+                <ng-container *ngIf="user.busy === 0">{{'general.user-free' | translate}}</ng-container>
               </span>
-              <span>
-                начато сотрудничество
-              </span>
+                        </p>
+                        <p>{{'dashboard.home-page.projects-in-process' | translate}} <span>{{ user.dealsCounts.inProgressOffers }}</span></p>
+                        <p>{{'dashboard.home-page.projects-in-queue' | translate}}<span>{{ user.dealsCounts.QueuedOffers }}</span></p>
+                    </div>
+                    <div class="status-toggle-block">
+                        <p>{{'dashboard.home-page.change-alailability-status' | translate}}</p>
+                        <div class="switch">
+                            <span (click)="changeWorkStatus(0)" [ngClass]="{active: user.busy === 0}">{{'general.user-free' | translate}}</span>
+                            <div class="swp-btn" (click)="changeWorkStatus()" [ngClass]="user.busy === 1? 'busy': ''">
+                                <span [ngClass]="{left: user.busy === 0, right: user.busy === 1 }"></span>
+                            </div>
+                            <span (click)="changeWorkStatus(1)" [ngClass]="{active: user.busy === 1}">{{'general.user-busy' | translate}}</span>
+                        </div>
+                        <a class="btn open-prifile" [routerLink]="['/user', user.purse.id] | localize">{{'general.show-profile' | translate}}</a>
+                    </div>
+
+                </div>
             </div>
-          </div>
-          <div class="filter-brns">
-            <button class="active" >День</button>
-            <button >Месяц</button>
-          </div>
+            <div class="request-settings">
+                <h5 class="title">
+                    {{'dashboard.cards-on-top.all-deals-by-all-time' | translate}}
+                </h5>
+                <div class="chart">
+                    <app-line-chart-dashboard [user]="user" [currentFinanceFilter]="currentFinanceFilter" [chartLabels]="chartLabels"></app-line-chart-dashboard>
+                </div>
+                <div class="filter-brns">
+                    <button (click)="changeDateFilter('M')" [ngClass]="{'active': currentFinanceFilter === 'M'  }">
+            <span>{{'general.time.month' | translate}}</span> </button>
+                    <button (click)="changeDateFilter('Y')" [ngClass]="{'active': currentFinanceFilter === 'Y'  }">
+            <span>{{'general.time.year' | translate}}</span> </button>
+                </div>
+            </div>
+            <div class="pie-chart" [ngClass]="{showLaptop: showPieChart}">
+                <h5 class="title">
+                    {{'dashboard.home-page.order-quantity' | translate}}
+                </h5>
+                <div class="chart-body">
+                    <app-pie-chart-dashboard [user]="user"></app-pie-chart-dashboard>
+                </div>
+                <div>
+                    <div class="compleated legend">
+                        <span class="line"></span><span>{{'dashboard.cards-on-top.compleated-deals' | translate}}</span>
+                    </div>
+                    <div class="in-progress legend">
+                        <span class="line"></span><span>{{'dashboard.home-page.projects-in-process' | translate}}</span>
+                    </div>
+                    <div class="droped legend">
+                        <span class="line"></span><span>{{'dashboard.home-page.lost-projects' | translate}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="statistic" [ngClass]="{showLaptop: !showPieChart}">
+                <h5 class="title">
+                    Показатели аккаунта
+                </h5>
+                <div class="ets-items">
+                    <div>
+                        <img src="/assets/images/icons/profile.png" alt="">
+                        <div class="description">
+                            <p>Мой профиль</p>
+                            <p>31 просмотров </p>
+                        </div>
+                    </div>
+                    <div>
+                        <img src="/assets/images/icons/deals-icons/brief.png" alt="">
+                        <div class="description">
+                            <p>Заказы</p>
+                            <p>5 брифов получено </p>
+                        </div>
+                    </div>
+                    <div>
+                        <img src="/assets/images/icons/deal-icon.png" alt="">
+                        <div class="description">
+                            <p>Сотрудничества</p>
+                            <p>2 проекта</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="btns_wrapper__laptop">
+                <button (click)=openPieChart(1) [ngClass]="{outline: !showPieChart}">{{'dashboard.home-page.accaunt-statistic' | translate}}</button>
+                <button (click)=openPieChart(0) [ngClass]="{outline: showPieChart}">{{'dashboard.home-page.order-quantity' | translate}}</button>
+            </div>
         </div>
-      </div>
-      <div class="request-settings">
-        <h5 class="title">
-          Кол-во заявок за время
-        </h5>
-        <div class="chart">
-           <app-line-chart-dashboard></app-line-chart-dashboard>
-        </div>
-        <div class="filter-brns">
-          <button class="active" >День</button>
-          <button >Месяц</button>
-        </div>
-      </div>
-      <div>
-        <h5 class="title">
-          Кол-во заказов
-        </h5>
-        <div class="chart-body">
-            <app-pie-chart-dashboard></app-pie-chart-dashboard>
-        </div>
-      </div>
-    </div>
-    <div class="achives">
 
-    </div>
 
+    </section>
+    <section class="ets">
+        <div class="comments-block">
+            <section class="comments">
+                <app-users-comments *ngIf="user" [userData]="user" [userRole]="userRole"></app-users-comments>
+            </section>
+            <section class="achives" *ngIf="this.user.role_id === 1">
+                <app-freelacer-achives *ngIf="user" [achivements]="user.achivements"></app-freelacer-achives>
+            </section>
+        </div>
 
-  </section>
-  <section class="ets"></section>
+        <div class="notify">
+            <button class="close"></button>
+            <img src="/assets/images/icons/notify-dashboard.png" alt="">
+            <h5>{{'general.congratulate' | translate}}, {{ user.name }}!</h5>
+            <p>{{'dashboard.home-page.new-skill-firstPart' | translate}} “Уверенный” {{'dashboard.home-page.new-skill-lastPart ' | translate}}</p>
+            <button class="more">{{'dashboard.home-page.show-details' | translate}}</button>
+        </div>
+    </section>
 </div>

@@ -1,0 +1,43 @@
+.chart.zero {
+    position: relative;
+    canvas {
+        // background: radial-gradient(circle at center, rgba(0,0,0,0) 0, rgba(0,0,0,0) 55%, rgba(0,0,0,0.2) 56%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0.2) 64%, rgba(0,0,0,0) 65%,rgba(0,0,0,0) 100%);
+        // background-size: contain;
+    }
+    &:before {
+        position: absolute;
+        box-sizing: border-box;
+        content: '';
+        height: 14rem;
+        width: 14rem;
+        border-radius: 50%;
+        background: transparent;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        border: 40px solid #E9ECF1;
+        ;
+    }
+}
+
+.chart {
+    width: 271px;
+    height: 271px;
+    &:before {
+        height: 271px;
+        width: 271px;
+    }
+}
+
+@media (max-width: 1699px) {
+    .chart {
+        width: 211px;
+        height: 211px;
+    }
+    .chart.zero {
+        &:before {
+            height: 13rem;
+            width: 13rem;
+        }
+    }
+}

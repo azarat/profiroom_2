@@ -1,0 +1,108 @@
+<section class="comments" *ngIf="userData && userData['negativeComments' + userRole].length +
+userData['positiveComments' + userRole].length > 0">
+    <div class="comments__top">
+        <div class="section-title">{{'comments.title' | translate}} <span>({{ userData['negativeComments' + userRole].length +
+        userData['positiveComments' + userRole].length }})</span></div>
+
+        <div class="tabs">
+            <ng-container *ngFor=" let tab of tabs, let i = index">
+                <div class="tab" (click)="toggleTab(tab)" [ngClass]="{active: currentTab.id === i}">
+                    {{ tab.name | translate }} ({{ userData[tab.value + 'Comments' + userRole].length }}) <span></span>
+                </div>
+            </ng-container>
+
+
+        </div>
+    </div>
+    <ng-container>
+        <div class="comment" *ngFor="let comment of userData[currentTab.value + 'Comments' + userRole ]; let parrentCommentIndex = index">
+
+            <h5 class="comment__service-name" *ngIf="comment.offers">
+                <a [routerLink]="'/service'| localize" [queryParams]="{ offerId: comment.offers.id }"> {{comment.offers.title}}</a>
+            </h5>
+            <button class="comment__answer" (click)="openComentForm(comment.id)" *ngIf="this.authorizatedUserId && ((userData.user_id == this.authorizatedUserId && pageType === 'service') ||
+           this.pageType === 'dashboard' || this.pageType === 'user' && this.authorizatedUserId === userData.id  )"></button>
+            <div class="comment__wrapp">
+                <div class="comment__wrapp_parrent">
+                    <div class="comment__img" *ngIf="comment.offers">
+                        <div class="comment__img-wrapper">
+                            <a [routerLink]="'/service'| localize" [queryParams]="{ offerId: comment.offers.id }">
+                                <img [src]="comment.offers.mainImage" alt="service img">
+                            </a>
+                        </div>
+                    </div>
+
+                    <a class="comment__avatar" [routerLink]="['/user', comment.author.id] | localize">
+                        <img [src]="comment.author.avatar" alt="user avatar">
+                    </a>
+                    <div class="comment__text-wrapper">
+                        <div class="comment__top">
+                            <a class="comment__name" [routerLink]="['/user', comment.author.id] | localize">{{comment.author.name}}
+                    {{comment.author.surname}}</a>
+                            <div class="comment__date">{{converDateToDMY(comment.created_at)}}</div>
+                        </div>
+                        <div class="comment__message">{{comment.commentText}}</div>
+                        <!-- Rating freelancer-->
+                        <div class="comment__rating" *ngIf="userRole === 'Freelancer'">
+                            <div class="comment__rating-item">
+                                <span>Качество</span>
+                                <div class="star-rating">{{comment.qualityMark}}</div>
+                            </div>
+                            <div class="comment__rating-item">
+                                <span>Срок</span>
+                                <div class="star-rating">{{comment.termMark}}</div>
+                            </div>
+                            <div class="comment__rating-item">
+                                <span>Вежливость</span>
+                                <div class="star-rating">{{comment.politenessMark}}</div>
+                            </div>
+                        </div>
+                        <!-- Rating customer -->
+                        <div class="comment__rating service-page__version" *ngIf="userRole === 'Customer'">
+                            <div class="comment__rating-item">
+                                <span>Постановка задачи</span>
+                                <div class="star-rating">{{comment.taskClarity}}</div>
+                            </div>
+                            <div class="comment__rating-item">
+                                <span>Чёткость требований</span>
+                                <div class="star-rating">{{comment.requirementsClarity}}</div>
+                            </div>
+                            <div class="comment__rating-item">
+                                <span>Контактность</span>
+                                <div class="star-rating">{{comment.contactLevel}}</div>
+                            </div>
+                        </div>
+                        <form #form="ngForm" class="comment-form" action="" *ngIf="commentFormOpen && commentFormOpen === comment.id" (clickOutside)="closeForm()" [exclude]="'button.comment__answer'">
+                            <label for="answer-area">Напишите ответ</label>
+                            <textarea name="comment" [(ngModel)]="commentForm.commentText" id="answer-area" cols="30" rows="10"></textarea>
+
+                            <button class="btn" type="submit" (click)="sendComment(parrentCommentIndex, currentTab.value + 'Comments'+ userRole)">Отправить</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="comment_child__wrapper" *ngIf="comment.childs.length !== 0">
+                    <ng-container *ngFor="let comment_child of comment.childs; let i = index">
+                        <div class="comment__wrapp_child" *ngIf="i === 0 || showAllChildComments === parrentCommentIndex">
+                            <a class="comment__avatar" [routerLink]="['/user', comment_child.author.id] | localize">
+                                <img [src]="comment_child.author.avatar" alt="ava">
+                            </a>
+                            <div class="comment__text-wrapper">
+                                <div class="comment__top">
+                                    <a class="comment__name" [routerLink]="['/user', comment_child.author.id] | localize">
+                        {{comment_child.author.name}} {{comment_child.author.surname}}
+                    </a>
+                                    <div class="comment__date">{{converDateToDMY(comment.created_at)}}</div>
+                                </div>
+                                <div class="comment__message">{{comment_child.commentText}}</div>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <div class="btn-show_more_comments" *ngIf="comment.childs.length > 1" (click)="showMoreChileComments(parrentCommentIndex)" [ngClass]="{open: showAllChildComments === parrentCommentIndex}">читать ответы</div>
+                </div>
+            </div>
+
+
+        </div>
+    </ng-container>
+</section>

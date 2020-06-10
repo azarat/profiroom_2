@@ -1,5 +1,52 @@
 <header>
 <app-main-header></app-main-header>
 </header>
-<br><br><br><br><br><br><br>
-<h1>Page in development</h1>
+<app-categories-header></app-categories-header>
+<div class="wrapper"></div>
+<section class="search">
+    <app-home-page-search></app-home-page-search>
+</section>
+<section class="advantages">
+    <div class="arrows">
+        <img class="arrow" src="assets/images/images/arow-advantages.svg" alt="">
+        <img class="arrow" src="assets/images/images/arow-advantages2.svg" alt="">
+    </div>
+    <app-home-page-advantages></app-home-page-advantages>
+</section>
+<section class="how-work">
+    <app-home-page-how-work></app-home-page-how-work>
+</section>
+<section class="find-specialist">
+    <div class="arrows">
+        <img class="arrow" src="assets/images/home-page/find-specialiset-line.svg" alt="">
+        <img class="arrow" src="assets/images/home-page/find-specialiset-line.svg" alt="">
+    </div>
+    <app-home-page-find-specialist></app-home-page-find-specialist>
+</section>
+
+<section class="question">
+    <div class="arrows">
+        <img class="arrow" src="assets/images/home-page/find-specialiset-line.svg" alt="">
+        <img class="arrow" src="assets/images/home-page/find-specialiset-line.svg" alt="">
+    </div>
+    <app-home-page-questions></app-home-page-questions>
+</section>
+<section class="app-news">
+    <app-home-page-app-news></app-home-page-app-news>
+</section>
+<section class="support">
+    <app-home-page-support></app-home-page-support>
+</section>
+<section class="get-start">
+    <div class="wrapper">
+        <div class="get-start__wrap">
+            <div class="top">
+                <h3 class="get-start__title">{{'home-page.get-start-subtitle' | translate}}</h3>
+                <p class="get-start__text">{{'home-page.get-start-title' | translate}}</p>    
+            </div>
+            <a class="btn" [routerLink]="['/auth'] | localize" [queryParams]="{type: 'signup'}" role="button">{{'home-page.get-start-btn' | translate}}</a>
+        </div>
+    </div>
+</section>
+
+<app-footer></app-footer>

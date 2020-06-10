@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LocalizeRouterModule } from 'localize-router';
-import { routes } from 'src/app/app-routing.module';
 import { RouterModule, Routes } from '@angular/router';
 
 
@@ -11,7 +10,6 @@ import { MatFormFieldModule, MatAutocompleteModule, MatCheckboxModule,
   MatIconModule, MatTooltipModule, MatSelectModule, MatButtonModule,
   MatInputModule, MatChipsModule, MatSlideToggleModule, MatTabsModule } from '@angular/material';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { DragDropDirective } from './directives/drag-drop.directive';
 
 import { FileClass } from './classes/file.class';
 import { HighlightJsModule, HIGHLIGHT_JS } from 'angular-highlight-js';
@@ -31,7 +29,12 @@ import { ThirdStepExtraOptionsComponent } from './components/create-service/thir
 import { FourthStepCreationComponent } from './components/create-service/fourth-step-creation/fourth-step-creation.component';
 import { FifthStepCreationComponent } from './components/create-service/fifth-step-creation/fifth-step-creation.component';
 import { LastStepCreationComponent } from './components/create-service/last-step-creation/last-step-creation.component';
+import { TooltipDirective } from './directives/tooltip.directive';
+import { OutsideTolltiDirective } from './directives/outside-tooltip.directive';
 
+import { CustomFormsModule } from 'ng2-validation'
+import { DragDropModule } from 'src/app/shared/directives/drag-drop/drag-drop.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
 
@@ -52,18 +55,23 @@ const servicesRoutes: Routes = [
     MyServicesHomeComponent,
     CreateServiceComponent,
     FirstStepServiceCreationComponent,
-    DragDropDirective,
+
     SecondStepCreationComponent,
     ThirdStepCreationComponent,
     ThirdStepExtraOptionsComponent,
     FourthStepCreationComponent,
     FifthStepCreationComponent,
-    LastStepCreationComponent
+    LastStepCreationComponent,
+    TooltipDirective,
+    OutsideTolltiDirective
   ],
   imports: [
+
+    DragDropModule,
     // ---- angular
     CommonModule,
     LocalizeRouterModule.forChild(servicesRoutes),
+    TranslateModule,
     RouterModule.forChild(servicesRoutes),
     FormsModule,
     ReactiveFormsModule,
@@ -88,7 +96,8 @@ const servicesRoutes: Routes = [
     MatChipsModule,
     MatTabsModule,
 
-    ClickOutsideModule
+    ClickOutsideModule,
+    CustomFormsModule
   ],
   exports: [
 

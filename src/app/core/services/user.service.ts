@@ -5,8 +5,6 @@ import { UserModel } from 'src/app/models/user.model';
 
 @Injectable()
 
-
-
 export class UserService {
   private user = new BehaviorSubject(null);
   public user$: Observable<UserModel>;
@@ -20,7 +18,11 @@ export class UserService {
         return this.http.get('/dashboard');
     }
 
-    public wrightTo(collocutorId) {
+    public wrightTo(collocutorId: number) {
       return this.http.post('/newChatRoom', {id: collocutorId});
+    }
+
+    public getMinUserData() {
+      return this.http.get('/getUserMinInfo');
     }
 }

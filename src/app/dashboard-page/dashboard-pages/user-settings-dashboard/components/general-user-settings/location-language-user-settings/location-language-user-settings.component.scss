@@ -1,31 +1,3 @@
-.inform_section{
-  display: flex;
-  border-bottom: 1px solid #EBEEFF;
-  &__title{
-    padding: 50px 30px;
-    width: 25%;
-    h3{
-      margin: 0;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 14px;
-      line-height: 143%;
-      text-transform: uppercase;
-      color: #323C47;
-    }
-  }
-  &__fields{
-    padding: 50px 0;
-    width: 75%;
-  }
-}
-
-.inputs-wrapper{
-  max-width: 630px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
 .field-block{
   width: 50%;
   display: flex;
@@ -159,7 +131,7 @@
     line-height: 20px;
     color: #323C47;
     margin: 0;
-    margin-bottom: 3px;
+    margin-bottom: 8px;
   }
   &-value{
     font-style: normal;

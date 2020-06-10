@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-projects-page',
@@ -8,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 export class ProjectsPageComponent implements OnInit {
 
   public chatType = 'work';
-  constructor() { }
+
+  constructor(
+    private titleService: Title
+  ) { }
 
   ngOnInit() {
+    // this.titleService.setTitle('Проекты');
   }
 
 }

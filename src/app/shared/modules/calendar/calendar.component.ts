@@ -5,13 +5,23 @@ import {
   Input,
   OnInit
 } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {
+  NgbModal
+} from '@ng-bootstrap/ng-bootstrap';
 import {
   CalendarEvent,
   CalendarView,
   CalendarDateFormatter
 } from 'angular-calendar';
-import { CustomDateFormatter } from './providers/custtom-week-day-formatter.provider';
+import {
+  CustomDateFormatter
+} from './providers/custtom-week-day-formatter.provider';
+import {
+  el
+} from 'date-fns/locale';
+import {
+  LocalStorageService
+} from 'src/app/core/services/local-storage.service';
 
 const colors: any = {
   red: {
@@ -32,19 +42,19 @@ const colors: any = {
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.scss'],
-  providers: [
-    {
-      provide: CalendarDateFormatter,
-      useClass: CustomDateFormatter,
-    },
-  ]
+  providers: [{
+    provide: CalendarDateFormatter,
+    useClass: CustomDateFormatter,
+  }, ]
 })
 export class CalendarComponent implements OnInit {
 
-  @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
+  @ViewChild('modalContent', {
+    static: true
+  }) modalContent: TemplateRef < any > ;
   @Input() userFinance;
 
-  locale = 'uk';
+  locale = localStorage.getItem('LOCALIZE_DEFAULT_LANGUAGE');
 
   view: CalendarView = CalendarView.Month;
 
@@ -62,7 +72,10 @@ export class CalendarComponent implements OnInit {
 
   activeDayIsOpen = true;
 
-  constructor(private modal: NgbModal) {
+  constructor(
+    private modal: NgbModal,
+    private localStorageService: LocalStorageService
+  ) {
 
   }
   ngOnInit() {
@@ -82,21 +95,67 @@ export class CalendarComponent implements OnInit {
 
     this.userFinance.forEach(element => {
       let event: string;
-      let type = '';
+      if (element.trnsactonType === ('hold' || 'dealCanceled')) {
+        return;
+      }
+
       if (element.income === 1) {
         event = 'input';
       } else {
         event = 'output';
-        type = '- ';
       }
-      eventsArr.push({ title: type + element.amount, start: new Date(element.created_at), cssClass: event });
-      return eventsArr;
+
+      if (eventsArr.length !== 0) {
+        const item = {
+          title: element.amount,
+          start: new Date(element.created_at),
+          cssClass: event
+        };
+        eventsArr.forEach(el => {
+          if (el.start.getDate() === item.start.getDate()) {
+            if (el.cssClass === item.cssClass) {
+              el.title = Number(el.title) + Number(item.title);
+
+            } else {
+              eventsArr.push({
+                title: element.amount,
+                start: new Date(element.created_at),
+                cssClass: event
+              });
+            }
+
+          } else {
+            eventsArr.push({
+              title: element.amount,
+              start: new Date(element.created_at),
+              cssClass: event
+            });
+          }
+        });
+      } else if (eventsArr.length === 0) {
+        const item = {
+          title: element.amount,
+          start: new Date(element.created_at),
+          cssClass: event
+        };
+        eventsArr.push({
+          title: element.amount,
+          start: new Date(element.created_at),
+          cssClass: event
+        });
+      }
+      // return eventsArr;
     });
+
     return eventsArr;
   }
 
-  eventClicked({ event }: { event: CalendarEvent }): void {
-    console.log( event);
+  eventClicked({
+    event
+  }: {
+    event: CalendarEvent
+  }): void {
+    // console.log( event);
   }
 
 }

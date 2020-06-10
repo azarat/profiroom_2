@@ -1,7 +1,7 @@
 export interface UserDataInterface {
   id: number | string;
   // role_id?: number | string;
-  load?: number;
+  busy?: number;
   online?: boolean;
   avatar?: string;
   name?: string;
@@ -14,13 +14,14 @@ export interface UserDataInterface {
   customer_deals_count?: number;
   freelancer_deals_count?: number;
   comments_freelancer_count?: number;
-  commentsсustomer_count?: number;
+  comments_customer_count?: number;
   answerTime?: number;
   description?: string;
   comments_count?: number;
   positive_comments_count?: number;
   negative_comments_count?: number;
   updated_at?: number;
+  user_id?: number;
   dealsCounts?: {
     inProgressOffers?: number;
     QueuedOffers?: number;
@@ -32,7 +33,7 @@ export interface UserDataInterface {
     customer?: number;
     all?: number;
   }
-  averageRaiting?: {
+  averageRating?: {
     freelancer?: {
       averageMark?: number;
       qualityMark?: number;
@@ -64,6 +65,11 @@ export interface UserDataInterface {
     courseName?: string;
     startStudyYear?: number;
     endStudyYear?: number;
+    startStudyMonth?: number;
+    endStudyMonth?: number;
+    additional_diploma_files?: [{
+      link?: string;
+    }]
   }];
   offers?: [{
     id?: number;
@@ -72,6 +78,7 @@ export interface UserDataInterface {
     description?: string;
     comments_count?: number;
     minPrice?: number;
+    rating?: number;
   }];
   positiveComments?: [{
     created_at?: string;
@@ -83,7 +90,7 @@ export interface UserDataInterface {
       name?: string;
       surname?: string;
       avatar?: string;
-      averageRaiting?: {
+      averageRating?: {
         averageMark?: number;
         qualityMark?: number;
         termMark?: number;
@@ -95,7 +102,7 @@ export interface UserDataInterface {
       title?: string;
       mainImage?: string;
       description?: string;
-      raiting?: number;
+      rating?: number;
     }];
     childs?: [{
       commentText?: string;
@@ -122,7 +129,7 @@ export interface UserDataInterface {
       name?: string;
       surname?: string;
       avatar?: string;
-      averageRaiting?: {
+      averageRating?: {
         averageMark?: number;
         qualityMark?: number;
         termMark?: number;
@@ -134,7 +141,7 @@ export interface UserDataInterface {
       title?: string;
       mainImage?: string;
       description?: string;
-      raiting?: number;
+      rating?: number;
     }];
     childs?: [{
       commentText?: string;
@@ -152,7 +159,7 @@ export interface UserDataInterface {
     }];
   }];
 
-  positiveCommentsСustomer?: [{
+  positiveCommentsCustomer?: [{
     created_at?: string;
     offers_id?: number;
     commentator_id?: number;
@@ -162,7 +169,7 @@ export interface UserDataInterface {
       name?: string;
       surname?: string;
       avatar?: string;
-      averageRaiting?: {
+      averageRating?: {
         averageMark?: number;
         requirementsClarity?: number;
         taskClarity?: number;
@@ -174,7 +181,7 @@ export interface UserDataInterface {
       title?: string;
       mainImage?: string;
       description?: string;
-      raiting?: number;
+      rating?: number;
     }];
     childs?: [{
       commentText?: string;
@@ -191,7 +198,7 @@ export interface UserDataInterface {
       }];
     }];
   }];
-  negativeCommentsСustomer?: [{
+  negativeCommentsCustomer?: [{
     offers_id?: number;
     commentator_id?: number;
     commentText?: string;
@@ -201,7 +208,7 @@ export interface UserDataInterface {
       name?: string;
       surname?: string;
       avatar?: string;
-      averageRaiting?: {
+      averageRating?: {
         averageMark?: number;
         requirementsClarity?: number;
         taskClarity?: number;
@@ -213,7 +220,7 @@ export interface UserDataInterface {
       title?: string;
       mainImage?: string;
       description?: string;
-      raiting?: number;
+      rating?: number;
     }];
     childs?: [{
       commentText?: string;

@@ -13,8 +13,9 @@ import {
 export class MounthChartSelectComponent implements OnInit {
 
   public currentData: {
-    month: number;
-    year: number
+    month: number,
+    year?: number,
+    day?: any
   };
 
   public minYear = 2017;
@@ -32,29 +33,30 @@ export class MounthChartSelectComponent implements OnInit {
   private getCurrentData() {
     this.currentData = {
       year: new Date().getFullYear(),
-      month: new Date().getMonth() + 1
+      month: new Date().getMonth() + 1,
+      day: null
     };
   }
 
-  public nextYear() {
-    this.currentData.year = this.currentData.year === this.curentYear ? this.curentYear : this.currentData.year + 1;
+
+  public changeYear(change: string) {
+    if (change === 'next') {
+      this.currentData.year = this.currentData.year === this.curentYear ? this.curentYear : this.currentData.year + 1;
+    } else if (change === 'prev') {
+      this.currentData.year = this.currentData.year === this.minYear ? this.minYear : this.currentData.year - 1;
+    }
     this.emitCurrentDate(this.currentData);
   }
 
-  public prevYear() {
-    this.currentData.year = this.currentData.year === this.minYear ? this.minYear : this.currentData.year - 1;
+  public changeMonth(change: string) {
+    if (change === 'next') {
+      this.currentData.month = this.currentData.month === 12 ? this.currentData.month = 1 : this.currentData.month + 1;
+    } else if (change === 'prev') {
+      this.currentData.month = this.currentData.month === 1 ? this.currentData.month = 12 : this.currentData.month - 1;
+    }
     this.emitCurrentDate(this.currentData);
   }
 
-  public nextMonth() {
-    this.currentData.month = this.currentData.month === 12 ? this.currentData.month = 1 : this.currentData.month + 1;
-    this.emitCurrentDate(this.currentData);
-  }
-
-  public prevMonth() {
-    this.currentData.month = this.currentData.month === 1 ? this.currentData.month = 12 : this.currentData.month - 1;
-    this.emitCurrentDate(this.currentData);
-  }
 
   private emitCurrentDate(date) {
     this.currentDateEmitting.emit(date);

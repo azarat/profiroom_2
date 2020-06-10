@@ -1,0 +1,294 @@
+.payment-wrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(224, 225, 249, 0.4);
+    backdrop-filter: blur(8px);
+    width: 100%;
+    height: 100%;
+    button.close-box {
+        width: 24px;
+        height: 24px;
+        border: none;
+        outline: none;
+        box-shadow: none;
+        position: absolute;
+        top: 14px;
+        right: 14px;
+        font-size: 34px;
+        line-height: 10px;
+        background: transparent;
+        color: rgb(138, 138, 138);
+        &:hover {
+            color: rgb(75, 75, 75);
+        }
+    }
+    .notification {
+        width: 30%;
+        height: 31%;
+        background: #FFFFFF;
+        box-shadow: 0px 15px 30px rgba(16, 27, 79, 0.15);
+        border-radius: 10px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 25px 35px;
+        background: #fff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        font-family: Source Sans Pro, sans-serif;
+        img {
+            margin: auto;
+        }
+        div {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 18px;
+            button {
+                // width: 160px;
+                font-weight: 700;
+                font-size: 14px;
+                line-height: 20px;
+                align-items: center;
+                text-align: center;
+                letter-spacing: 1px;
+                box-shadow: none;
+                border: none;
+                text-transform: uppercase;
+                background: transparent;
+                padding: 11px 38px;
+                border-radius: 4px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                &.cancel-popup {
+                    border: 1px solid #707683;
+                    box-sizing: border-box;
+                    opacity: 0.5;
+                    color: #707683;
+                    &:hover {
+                        opacity: 1;
+                    }
+                }
+                &.submit-popup {
+                    background: #F1A153;
+                    box-shadow: 0px 5px 8px rgba(241, 161, 83, 0.35);
+                    color: #fff;
+                    &:hover {
+                        background: transparent;
+                        border: 1px solid #F1A153;
+                        color: #F1A153;
+                        box-shadow: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.title {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 31px;
+    text-align: center;
+    color: #F1A153;
+    margin: 2px 0 14px;
+}
+
+.description {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 25px;
+    text-align: center;
+    color: #FF647C;
+    max-width: 356px;
+}
+
+.error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #323C47;
+    button {
+        // width: 160px;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 20px;
+        align-items: center;
+        text-align: center;
+        letter-spacing: 1px;
+        box-shadow: none;
+        border: none;
+        text-transform: uppercase;
+        background: transparent;
+        padding: 11px 38px;
+        border-radius: 4px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        outline: none;
+        &.submit-popup {
+            background: #F1A153;
+            box-shadow: 0px 5px 8px rgba(241, 161, 83, 0.35);
+            color: #fff;
+            &:hover {
+                background: transparent;
+                border: 1px solid #F1A153;
+                color: #F1A153;
+                box-shadow: none;
+            }
+        }
+    }
+}
+
+.payment {
+    width: 30%;
+    // height: 31%;
+    background: #FFFFFF;
+    box-shadow: 0px 15px 30px rgba(16, 27, 79, 0.15);
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 40px 35px 47px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    font-family: Source Sans Pro, sans-serif;
+    .title {
+        color: #323C47;
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 28px;
+    }
+    .amount {
+        margin-bottom: 18px;
+        p:first-of-type {
+            font-size: 13px;
+            line-height: 16px;
+            letter-spacing: 0.01em;
+            text-transform: uppercase;
+            color: #334D6E;
+            opacity: 0.5;
+            margin-bottom: 6px;
+        }
+        div {
+            height: 44px;
+            background: #F4F7FC;
+            border: 1px solid rgba(220, 224, 230, 0.1);
+            border-radius: 3px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            span:first-of-type {
+                padding-left: 14px;
+                text-align: left;
+                line-height: 40px;
+                font-size: 18px;
+                color: #323C47;
+            }
+            span:last-of-type {
+                width: 30%;
+                background: #E7EBF2;
+                border: 1px solid rgba(220, 224, 230, 0.1);
+                border-radius: 3px;
+                height: 100%;
+                text-align: center;
+                line-height: 40px;
+                font-size: 16px;
+                color: #323C47;
+            }
+        }
+    }
+    form {
+        width: 60%;
+        min-width: 270px;
+        .input-field {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 40px;
+            label {
+                font-size: 13px;
+                line-height: 16px;
+                letter-spacing: 0.01em;
+                text-transform: uppercase;
+                color: #334D6E;
+                opacity: 0.5;
+                margin-bottom: 6px;
+            }
+            input {
+                background: #F4F7FC;
+                border: 1px solid rgba(220, 224, 230, 0.1);
+                border-radius: 3px;
+                height: 43px;
+                padding-left: 14px;
+                outline: none;
+                &:focus {
+                    border: 1px solid rgba(220, 224, 230, 0.1);
+                    outline: none;
+                }
+                &.invalid {
+                    border-color: red;
+                }
+            }
+        }
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 18px;
+            button {
+                // width: 160px;
+                font-weight: 700;
+                font-size: 14px;
+                line-height: 20px;
+                align-items: center;
+                text-align: center;
+                letter-spacing: 1px;
+                box-shadow: none;
+                border: none;
+                text-transform: uppercase;
+                background: transparent;
+                padding: 11px 38px;
+                border-radius: 4px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                outline: none;
+                &:focus {}
+                &.cancel-popup {
+                    border: 1px solid #707683;
+                    box-sizing: border-box;
+                    opacity: 0.5;
+                    color: #707683;
+                    padding: 11px 14px;
+                    &:hover {
+                        opacity: 1;
+                    }
+                }
+                &.submit-payment {
+                    background: #3C7EEA;
+                    box-shadow: 0px 2px 4px rgba(60, 9, 179, 0.3);
+                    color: #fff;
+                    padding: 11px 20px;
+                    &:hover {
+                        background: transparent;
+                        border: 1px solid #3C7EEA;
+                        color: #3C7EEA;
+                        box-shadow: none;
+                    }
+                }
+            }
+        }
+    }
+}

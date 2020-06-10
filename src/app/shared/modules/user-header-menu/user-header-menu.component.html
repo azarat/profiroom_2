@@ -1,17 +1,19 @@
 <div class="user-menu" *ngIf="user" (click)="toggleMenu()">
-  <div>
-    <span>Привет, {{ user.name }}</span>
-    <div class="img">
-      <img [src]="user.avatar" alt="">
+    <div>
+        <span>{{'main-page.hello-user' | translate}}&nbsp; {{ user.name }}</span>
+        <div class="img">
+            <img [src]="user.avatar" alt="">
+        </div>
     </div>
-  </div>
-  <div class="menu" [ngClass]="menuOpen? 'open': 'close'">
-    <ul>
-      <li> <a *ngIf="isUserFreelancer" [routerLink]="'/dashboard'| localize">Дашбоард</a> </li>
-      <li> <a [routerLink]="'/dashboard/chat-room'| localize">чат</a> </li>
-      <li> <a [routerLink]="'/dashboard/projects'| localize">проэкты</a> </li>
-      <li> <a [routerLink]="'/dashboard/finance'| localize">финансы</a> </li>
-      <li (click)="logOut()">Выйти</li>
-    </ul>
-  </div>
+    <div class="menu" [ngClass]="menuOpen? 'open': 'close'">
+        <ul>
+            <li> <a [routerLink]="'/dashboard'| localize">{{'menu.dashboard' | translate}}</a> </li>
+            <li> <a [routerLink]="'/dashboard/finance'| localize">{{'menu.finances' | translate}}</a> </li>
+            <li> <a [routerLink]="'/dashboard/chat-room'| localize">{{'menu.chat' | translate}}</a> </li>
+            <li> <a [routerLink]="'/dashboard/projects'| localize">{{'menu.projects' | translate}}</a> </li>
+            <li> <a [routerLink]="'/dashboard/my-services'| localize">{{'menu.my-services' | translate}}</a> </li>
+            <li class="system-item arrow-top"> <a [routerLink]="'/dashboard/settings'| localize">{{'menu.settings' | translate}}</a> </li>
+            <li class="system-item" (click)="logOut()">{{'general.exit' | translate}}</li>
+        </ul>
+    </div>
 </div>

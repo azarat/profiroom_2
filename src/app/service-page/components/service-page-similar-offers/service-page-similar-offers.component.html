@@ -1,0 +1,33 @@
+<section class="early-viewed" *ngIf="similarOffers.length">
+  <h4 class="section-title">
+    {{'service-page.similar-title' | translate}} “{{ offerData.title }}”
+  </h4>
+  <div class="cards-list">
+
+      <div class="card" *ngFor="let offer of similarOffers">
+        <div class="card-preview__bg">
+          <img class="card-preview" [src]="offer.mainImage" (click)="openOffer(offer.id)">
+        </div>
+        <div class="card-description">
+
+          <p class="card-description__about" (click)="openOffer(offer.id)">{{offer.title}}</p>
+          <div class="card-description__bottom">
+            <div class="star-rating" [ngClass]="{'empty-rating': offer.averageRating.averageMark === 0}">{{offer.averageRating.averageMark}}</div>
+            <div class="card-description__comments"><a>({{offer.comments_count}} {{'general.comments' | translate}})</a></div>
+            <a class="card-description__ava" [routerLink]="['/user', offer.user.id] | localize"><img [src]="offer.user.avatar" alt="avatar">
+            </a>
+          </div>
+
+        </div>
+        <div class="card-bottom">
+          <div class="card-bottom__like"></div>
+          <div class="card-bottom__price">
+            {{'service-page.similar-start-from' | translate}}
+            <span>{{offer.minPrice}}</span>
+          </div>
+        </div>
+
+    </div>
+
+  </div>
+</section>

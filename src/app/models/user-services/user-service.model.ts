@@ -4,6 +4,7 @@ import {
 } from 'class-transformer';
 
 
+
 export class PackagesTitle {
   @Expose() basicTitle: string;
   @Expose() advancedTitle: string;
@@ -34,7 +35,7 @@ export class PackagesPrices {
   @Expose() premiumPrice: string;
 }
 export class CompressedDeadlines {
-  @Expose() publishCompressedDeadlines: boolean;
+  @Expose() publishCompressedDeadlines: number | boolean;
   @Expose() basicCompressedDays: string; // required    --- if  [useCompressedDeadlines]
   @Expose() basicCompressedPrice: string; // required   --- if  [useCompressedDeadlines]
   @Expose() advancedCompressedDays: string; // required ---- if  [useCompressedDeadlines && allPackages]
@@ -43,12 +44,12 @@ export class CompressedDeadlines {
   @Expose() premiumCompressedPrice: string; // required ---- if  [useCompressedDeadlines && allPackages]
 }
 export class ExtraOfferChanges {
-  @Expose() publishExtraOfferChanges: boolean;
+  @Expose() publishExtraOfferChanges: number | boolean;
   @Expose()  extraChangesDays: string; // required   --- if  [useExtraOfferChanges]
   @Expose()  extraChangesPrice: string; // required   --- if  [useExtraOfferChanges]
 }
 export class CommercialOffer {
-  @Expose() publishCommercialOffer: boolean;
+  @Expose() publishCommercialOffer: number | boolean;
   @Expose()  priceForCommercialOffer: string; // required   --- if  [useCommercialOffer]
 }
 export class MainOptions {
@@ -58,7 +59,7 @@ export class MainOptions {
   @Expose() premium: boolean;
 }
 export class ExtraFeatures {
-  @Expose() optionPublish: boolean;
+  @Expose() optionPublish: number | boolean;
   @Expose() optionTitle: string;
   @Expose() optionDescription: string;
   @Expose() optionPrice: string;
@@ -70,24 +71,25 @@ export class OfferFaq {
   @Expose() answer: string;
 }
 
-export class BreefAnswerVariants {
+export class BriefAnswerVariants {
   @Expose() answerVariant: string;
 }
-export class Breef {
-  @Expose() breefTitle: string;
-  @Expose() breefAnswerType: string;
-  @Expose() breefAnwerRequired: boolean;
-  @Type(() => BreefAnswerVariants) breefAnswerVariants: BreefAnswerVariants[];
-  @Expose() breefMultiAnswers: boolean;
+export class Brief {
+  @Expose() briefTitle: string;
+  @Expose() briefAnswerType: string;
+  @Expose() briefAnwerRequired: number | boolean;
+  @Type(() => BriefAnswerVariants) briefAnswerVariants: BriefAnswerVariants[];
+  @Expose() briefMultianswers: boolean;
+  @Expose() briefAnswer: any;
 }
 
 
 
 export class UserServiceModel {
   @Expose() offerId: string;
-  @Expose() published: boolean;
+  @Expose() published: number | boolean;
   @Expose() id: any;
-  @Expose() canPublish: boolean;
+  @Expose() canPublish: number | boolean;
   @Expose() title: string;
   @Expose() category: string;
   @Expose() subCategories: any;
@@ -102,7 +104,7 @@ export class UserServiceModel {
   @Expose() step: number;
   @Expose() files: any;
   @Expose() description: any;
-  @Expose() allPackages: boolean;
+  @Expose() allPackages: number | boolean;
   @Type(() => PackagesTitle) packagesTitle: PackagesTitle;
   @Type(() => PackagesDescriptions) packagesDescriptions: PackagesDescriptions;
   @Type(() => PackagesTerms) packagesTerms: PackagesTerms;
@@ -117,7 +119,7 @@ export class UserServiceModel {
   @Type(() => ExtraFeatures) extra_features: ExtraFeatures[];
   // tslint:disable-next-line: variable-name
   @Type(() => OfferFaq) offer_faq: OfferFaq[];
-  @Type(() => Breef) offerBreef: Breef[];
+  @Type(() => Brief) offerbrief: Brief[];
 
 
   // -------delete option------
@@ -132,8 +134,8 @@ export class UserServiceModel {
     this.offer_faq.splice(index, 1);
   }
 
-  public removeBreefItem(index: number) {
-    this.offerBreef.splice(index, 1);
+  public removeBriefItem(index: number) {
+    this.offerbrief.splice(index, 1);
   }
 
 }

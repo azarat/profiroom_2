@@ -10,13 +10,15 @@ export class LocationLanguageUserSettingsComponent implements OnInit {
 
   @Input() userSettings: UserSettingsModel;
 
+  public unamePattern = "^[a-zA-Zа-яА-ЯёЁЇїІіЄєҐґ'-()]{3,15}$";
+
   public languagesLevel = [1, 2, 3, 4, 5];
   public languageTranslates = [
-    'Начальный',
-    'Средний',
-    'Продвинутый',
-    'Свободно владею',
-    'Носитель'
+    'general.language-lvl.1-lvl',
+    'general.language-lvl.2-lvl',
+    'general.language-lvl.3-lvl',
+    'general.language-lvl.4-lvl',
+    'general.language-lvl.5-lvl'
   ];
 
   constructor() { }

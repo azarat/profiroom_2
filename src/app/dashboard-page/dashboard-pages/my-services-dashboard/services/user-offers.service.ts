@@ -14,7 +14,7 @@ export class UserOffersService {
     private http: HttpClient
   ) { }
 
- public getCategorys() {
+ public getCategories() {
     return this.http.get<any>('/categories');
   }
 

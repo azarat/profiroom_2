@@ -1,7 +1,8 @@
 import * as moment from 'moment';
 
 export function weekendArrayConvertFunction(arr: string[]) {
-  const currentLang = moment().locale('ru');
+  const language = localStorage.getItem('LOCALIZE_DEFAULT_LANGUAGE');
+  const currentLang = moment().locale(language);
   const weekendArr = [];
 
   arr.forEach((element) => {

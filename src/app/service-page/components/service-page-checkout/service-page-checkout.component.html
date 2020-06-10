@@ -1,23 +1,23 @@
-
+  
 <div class="service-page-checkout">
   <div class="main-block" *ngIf="offerData">
     <ul class="service-order-steps">
       <li class="single-step" (click)='goToOffer()'>
         <div class="single-step__status done"></div>
-        <h4>Выбор пакета услуг</h4>
+        <h4>{{'service-page.step-select-package' | translate}}</h4>
       </li>
       <li class="single-step">
         <div class="single-step__status dev">2</div>
-        <h4>Выбор дополнительных опций</h4>
+        <h4>{{'service-page.step-select-advanced-options' | translate}}</h4>
       </li>
       <li class="single-step">
-        <div class="single-step__status bref">3</div>
-        <h4>Заполнение брифа</h4>
+        <div class="single-step__status brief">3</div>
+        <h4>{{'service-page.step-brief-filling' | translate}}</h4>
       </li>
     </ul>
 
     <div class="additional-options" *ngIf="offerData">
-      <h3 class="additional-options__title">Добавить дополнительные опции к услуге?</h3>
+      <h3 class="additional-options__title">{{'service-page.checkout-title' | translate}}</h3>
       <h4 class="additional-options__name">{{offerData.title}}</h4>
 
       <form class="extra-features__form" [formGroup]="checkoutForm">
@@ -26,37 +26,37 @@
             <div class="extra-features__item" *ngIf="extra_term.package == currentPackage && extra_term.published">
               <mat-checkbox class="extra-features__checkbox" formControlName="extraTerms" name="extraTerms">
                 <div class="extra-features__text">
-                  <span class="extra-features__title">Сжатые сроки  - {{extra_term.count_days}} дней</span>
+                  <span class="extra-features__title">{{'service-page.short-time' | translate}}  - {{extra_term.count_days}} {{'general.days' | translate}}</span>
                 </div>
               </mat-checkbox>
-              <div class="extra-features__price">{{extra_term.price}} грн</div>
+              <div class="extra-features__price">{{extra_term.price}} UAH</div>
             </div>
           </ng-container>
           <div class="extra-features__item" *ngIf="offerData.extra_changes.published">
-            <mat-checkbox class="example-margin" formControlName="extraСhanges" name='extraСhanges'>
+            <mat-checkbox class="example-margin" formControlName="extraChanges" name='extraChanges'>
               <div class="extra-features__text">
-                <span class="extra-features__title">Дополнительные правки</span>
+                <span class="extra-features__title">{{'service-page.additional-edits' | translate}}</span>
               </div>
             </mat-checkbox>
-            <div class="extra-features__price">{{offerData.extra_changes.price}} грн</div>
+            <div class="extra-features__price">{{offerData.extra_changes.price}} UAH</div>
           </div>
           <div class="extra-features__item" *ngIf="offerData.extra_commercial.published">
             <mat-checkbox class="extra-features__checkbox" formControlName="extraCommercial" name='extraCommercial'>
               <div class="extra-features__text">
-                <span class="extra-features__title">Коммерческое использование</span>
+                <span class="extra-features__title">{{'service-page.commercial-use' | translate}}</span>
               </div>
             </mat-checkbox>
-            <div class="extra-features__price">{{offerData.extra_commercial.price}} грн</div>
+            <div class="extra-features__price">{{offerData.extra_commercial.price}} UAH</div>
           </div>
 
           <ng-container *ngFor="let extra_feature of offerData.extra_features; let i = index">
             <div class="extra-features__item extra-features__item-column"  *ngIf="extra_feature.published">
               <div class="extra-features__item-wrapper">
-                <mat-checkbox class="extra-features__checkbox" [formControlName]="extra_feature.title" name='extra_feature.titl'>
+                <mat-checkbox class="extra-features__checkbox" [formControlName]="extra_feature.title" name='extra_feature.title'>
                   <span class="extra-features__title">{{extra_feature.title}}</span>
                   
                 </mat-checkbox>
-                <div class="extra-features__price">{{extra_feature.price}} грн</div>
+                <div class="extra-features__price">{{extra_feature.price}} UAH</div>
               </div>
               <div class="extra-features__text">
                 <p class="extra-features__description">{{extra_feature.description}}</p>
@@ -66,24 +66,27 @@
           </ng-container>
 
         </ul>
-        <div class="btn-ceckout btn-checkoutForm" type="submit" (click)='chousenFeatures()'>добавить к услуге</div>
+        <div class="btn-checkout btn-checkoutForm" type="submit" (click)='chosenFeatures()'>{{'service-page.add-to-service' | translate}}</div>
       </form>
     </div>
   </div>
   <div class="final-services">
-    <h3 class="final-services__title">ваш выбор услуги</h3>
+    <h3 class="final-services__title">{{'service-page.your-choice-of-service' | translate}}</h3>
     <div class="final-services__wrapper">
       <div class="final-services__top">
-        <h4 class="additional-options__name">{{currentPackage}}</h4>
+        <ng-container *ngFor="let package of packages">
+          <h4 class="additional-options__name" *ngIf="package.name === currentPackage">{{package.translate | translate}}</h4>
+        </ng-container>
+        
         <div class="final-price__no-features">
-          <span class="final-price__text">Общая стоимость (без доп. опций)</span><span class="final-price__price">{{offerData[currentPackage].price}} UAH</span>
+          <span class="final-price__text">{{'service-page.total-cost-without--options' | translate}}</span><span class="final-price__price">{{offerData[currentPackage].price}} UAH</span>
         </div>
       </div>
       <div class="final-services__features">
 
         <div class="changes-term" >
-          <div>{{ outputDealData.changesFinal }} правок</div>
-          <div>{{ outputDealData.term }} дней выполнения</div>
+          <div>{{ outputDealData.changesFinal }} {{'service-page.corrections' | translate}}</div>
+          <div>{{ outputDealData.term }} {{'service-page.days-of-completion' | translate}}</div>
         </div>
 
         <ul class="option-list">
@@ -93,9 +96,9 @@
         </ul>
 
       </div>
-      <div class="final-services__extra-features" *ngIf="!noOneCheked">
+      <div class="final-services__extra-features" *ngIf="!noOneChecked">
 
-        <div class="extra-features-title">Дополнительные опции</div>
+        <div class="extra-features-title">{{'service-page.additional-options' | translate}}</div>
 
         <ul class="option-list" >
 
@@ -103,7 +106,7 @@
             <div class="extra-features__item" *ngIf="extra_term.package == currentPackage">
               <ng-container *ngIf="extraFeaturesResultArr[0]">
 
-                <span class="extra-features__title">Сжатые сроки</span>
+                <span class="extra-features__title">{{'service-page.short-time' | translate}}</span>
                 <div class="extra-features__price">{{extra_term.price}} <span>UAH</span></div>
 
               </ng-container>
@@ -111,11 +114,11 @@
           </ng-container>
 
           <div class="extra-features__item" *ngIf="extraFeaturesResultArr[2]">
-            <span class="extra-features__title">Дополнительные правки</span>
+            <span class="extra-features__title">{{'service-page.additional-edits' | translate}}</span>
             <div class="extra-features__price">{{offerData.extra_changes.price}} <span>UAH</span></div>
           </div>
           <div class="extra-features__item" *ngIf="extraFeaturesResultArr[1]">
-            <span class="extra-features__title">Коммерческое использование</span>
+            <span class="extra-features__title">{{'service-page.commercial-use' | translate}}</span>
             <div class="extra-features__price">{{offerData.extra_commercial.price}} <span>UAH</span></div>
           </div>
 
@@ -130,20 +133,24 @@
       </div>
       <div class="final-services__service-price">
         <div class="extra-features__item">
-          <span class="extra-features__title">Комиссия за сервис</span>
+          <span class="extra-features__title">{{'service-page.commision' | translate}}</span>
           <div class="extra-features__price">{{serviceCommission}} <span>UAH</span></div>
         </div>
       </div>
 
       <div class="final-price">
         <div class="final-price__wrapper">
-          <span class="final-price__title">конечная стоимость</span>
+          <span class="final-price__title">{{'service-page.final-price' | translate}}</span>
           <div class="final-price__price">{{finalSum}} <span>UAH</span></div>
         </div>
       </div>
 
       <div class="btn-wrapper"> 
-        <div class="btn-ceckout btn-accept-ceckout" type="submit" (click)="sendDealData()">Подтвердить заказ</div>
+        <div class="btn-checkout btn-accept-checkout" type="submit" (click)="sendDealData()">{{'service-page.submit-service' | translate}}</div>
+      </div>
+
+      <div class="info-subText">
+        <span>{{'service-page.submit-info-message' | translate}}</span>
       </div>
     </div>
   </div>

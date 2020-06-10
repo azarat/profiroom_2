@@ -1,0 +1,46 @@
+<div class="payment-wrap">
+    <div class="notification" *ngIf="!initPayment" (clickOutside)="closePopUp()">
+        <button type="button" class="close-box" (click)="closePopUp()">&#215;</button>
+
+        <img src="/assets/images/icons/attention.png" alt="attention">
+
+        <p class="title">
+            {{'payment.not-enaught-money' | translate}}
+        </p>
+
+        <p class="description">
+            {{'payment.need-such-amount' | translate}} &nbsp;{{ moneyRequired }} UAH
+        </p>
+        <div class="controls">
+            <button class="cancel-popup" (click)="closePopUp()"> {{'general.cancel' | translate}}</button>
+            <button class="submit-popup" (click)="openPaymentMenu()">{{'dashboard.cash-box.input-money' | translate}}</button>
+        </div>
+
+    </div>
+    <div *ngIf="!initPayment" class="payment">
+        <button type="button" class="close-box" (click)="closePopUp()">&#215;</button>
+        <div class="title">{{'dashboard.cash-box.input-money' | translate}}</div>
+
+        <form #form="ngForm" *ngIf="!errorMessage">
+            <div class="amount">
+                <p>{{'dashboard.cash-box.summ' | translate}}</p>
+                <div>
+                    <span>{{ moneyRequired | thousandSeparator: 'space' }}</span><span>UAH</span>
+                </div>
+
+            </div>
+            <div class="input-field">
+                <label for="password">{{'dashboard.cash-box.ur-password' | translate}}</label>
+                <input type="password" id="password" name="password" minlength="8" required [(ngModel)]="transaction.password" [ngClass]="{ invalid: submited && form.controls['password'].invalid }">
+            </div>
+            <div class="controls">
+                <button class="cancel-popup">{{'general.cancel' | translate}}</button>
+                <button class="submit-payment" type="submit" (click)="makePayment(form)">{{'dashboard.cash-box.send-money' | translate}}</button>
+            </div>
+        </form>
+        <div class="error" *ngIf="errorMessage">
+            <p>{{'dashboard.cash-box.wrong-pass' | translate}}</p>
+            <button class="submit-popup" (click)="tryPayAgain()">{{'general.back' | translate}}</button>
+        </div>
+    </div>
+</div>

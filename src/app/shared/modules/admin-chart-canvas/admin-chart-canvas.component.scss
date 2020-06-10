@@ -8,7 +8,22 @@
 
 .items,
 .chart {
-  width: 72%;
+  width: 76%;
+}
+
+.items.dayschart {
+  width: 100%;
+
+  .day-selected {
+    padding-right: 45px;
+    font-family: Source Sans Pro;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 16px;
+    text-transform: uppercase;
+    color: #707683;
+  }
 }
 
 .items {
@@ -149,11 +164,12 @@
 }
 
 .curent-statistic {
-  width: 19%;
-  margin-right: 56px;
+  width: 20.5%;
+  margin-right: 14px;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 
   .description {
     border: 1px solid #EBEFF2;
@@ -272,15 +288,18 @@
 // month 
 .chart-month-btns {
   position: relative;
+
   .select {
     position: absolute;
     bottom: -80px;
     right: 0;
   }
 }
+
 .show-select {
   display: flex;
   align-items: baseline;
+
   span {
     position: relative;
     font-family: Source Sans Pro, sans-serif;
@@ -291,14 +310,16 @@
     text-transform: uppercase;
     color: #707683;
     cursor: pointer;
+
     &:first-child {
       margin-right: 32px;
     }
+
     &:last-child {
       width: 14px;
       height: 14px;
       display: block;
-      
+
       &:after {
         position: absolute;
         content: "";
@@ -309,6 +330,81 @@
         right: 0;
         top: 50%;
         transform: translateY(-50%) rotate(-45deg);
+      }
+    }
+  }
+}
+
+
+//  calendar
+.wrapper ::ng-deep {
+  dl-date-time-picker {
+    width: 100%;
+    font-family: Source Sans Pro, sans-serif;
+
+    .dl-abdtp-view-label.dl-abdtp-up-button {
+      background: transparent;
+
+      font-style: normal;
+      font-weight: bold;
+      font-size: 14px;
+      line-height: 18px;
+      /* identical to box height */
+
+      text-align: center;
+      text-transform: uppercase;
+
+      color: #323C47;
+      span {
+        padding-left: 10px;
+      }
+    }
+
+    .dl-abdtp-right-button, .dl-abdtp-left-button {
+      background: transparent;
+    }
+    .dl-abdtp-day-view {
+      margin-top: 25px;
+    }
+    .align-items-center.no-gutters.dl-abdtp-col-label {
+      font-style: normal;
+      font-weight: bold;
+      font-size: 12px;
+      line-height: 15px;
+      text-align: center;
+      color: #707683;
+
+    }
+
+    .dl-abdtp-day-view>.no-gutters+div>div.no-gutters:first-of-type {
+      margin: 19px 0 24px;
+    }
+
+    .dl-abdtp-date-button.dl-abdtp-day {
+      padding: 13px 5px;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 13px;
+      line-height: 16px;
+      /* identical to box height */
+
+      text-align: center;
+
+      color: #707683;
+
+      &.dl-abdtp-selected {
+        color: #fff;
+        font-weight: 600;
+      }
+
+      // .no-gutters .no-gutters {
+      //   margin: 19px 0 24px;
+      // }
+      &.dl-abdtp-past,
+      &.dl-abdtp-future {
+        color: #99ACB7;
+        mix-blend-mode: normal;
+        opacity: 0.4;
       }
     }
   }

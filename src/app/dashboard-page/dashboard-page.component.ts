@@ -7,7 +7,7 @@ import { plainToClass } from 'class-transformer';
 
 import { UserModel } from '../models/user.model';
 import { LocalStorageService } from '../core/services/local-storage.service';
-import { SocketService } from '../chat/services/socket.service';
+import { SocketService } from '../core/services/socket.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserStateService } from './services/user-state.service';
 import { LocalizeRouterService } from 'localize-router';
@@ -27,6 +27,7 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
   private socket: string = null;
   public newMessage: boolean = null;
   public newWorkMessage: boolean = null;
+  public sideMenuClose = true;
 
   constructor(
     private authService: AuthentificationService,
@@ -36,7 +37,7 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
     private router: Router,
     private userStatseService: UserStateService,
     private localize: LocalizeRouterService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
   ) {
 
   }
@@ -46,7 +47,6 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
     this.defineCurrentUser();
     this.socetService.connect();
     this.checkNotifications();
-
   }
 
   ngAfterViewInit() {
@@ -54,13 +54,13 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
   }
 
   private defineCurrentUser() {
-    this.userService.getDashboardRes()
+    this.userService.getMinUserData()
       .subscribe((res: any) => {
-        this.user = plainToClass(UserModel, res[0]);
+        this.user = plainToClass(UserModel, res);
         this.userStatseService.setUserState(this.user.role_id);
         this.authService.saveUserId(this.user.id);
         this.localStorageService.setItem('userImage', this.user.avatar);
-        this.localStorageService.setItem('userRole', this.user.role_id);
+        this.userStatseService.setUserState(this.user.role_id);
         this.redirectToFinancesIfCustomer();
       });
   }
@@ -71,12 +71,11 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
 
   public openChat(link) {
     this.notifyShow(link);
+
   }
 
   notifyShow(link?: string) {
     const url = this.router.url;
-
-
 
     if (url.includes('chat-room') || link === 'chat') {
       this.newMessage = null;
@@ -103,9 +102,8 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
       this.userStatseService.toggleUserState()
         .subscribe((res: any) => {
           this.user.role_id = res.newRole;
-          this.localStorageService.setItem('userRole', res.newRole);
           this.userStatseService.setUserState(res.newRole);
-          this.redirectToFinancesIfCustomer();
+          // this.redirectToFinancesIfCustomer();
 
         });
     }
@@ -113,8 +111,8 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
 
   private redirectToFinancesIfCustomer() {
     const url = this.router.url;
-    if (this.user.role_id === 2 && url.includes('home')) {
-      const translatedPath: any = this.localize.translateRoute('/dashboard/finance');
+    if (this.user.role_id === 2 &&  url.includes('my-services')) {
+      const translatedPath: any = this.localize.translateRoute('/dashboard/home');
       this.router.navigate([translatedPath],
       {
         relativeTo: this.activatedRoute,
@@ -122,4 +120,7 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
     }
   }
 
+  public toggleSideMenu() {
+    this.sideMenuClose = !this.sideMenuClose;
+  }
 }

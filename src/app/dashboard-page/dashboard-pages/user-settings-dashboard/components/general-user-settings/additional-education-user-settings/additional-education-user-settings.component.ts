@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { UserSettingsModel } from 'src/app/models/user-settings.model';
 import { UserSettingsService } from '../../../services/user-settings.service';
 
@@ -7,12 +7,30 @@ import { UserSettingsService } from '../../../services/user-settings.service';
   templateUrl: './additional-education-user-settings.component.html',
   styleUrls: ['./additional-education-user-settings.component.scss']
 })
-export class AdditionalEducationUserSettingsComponent implements OnInit {
+export class AdditionalEducationUserSettingsComponent implements OnInit, OnChanges {
 
   @Input() userSettings: UserSettingsModel;
+  @Input() closeAfterSaveSettings = false;
   public submited = false;
-  public mounth = [];
+  public month = [];
+  public monthTranslate = [
+    'Январь',
+    'Февраль',
+    'Март',
+    'Апрель',
+    'Май',
+    'Июнь',
+    'Июль',
+    'Август',
+    'Сентябрь',
+    'Октябрь',
+    'Ноябрь',
+    'Декабрь'
+  ];
   public openItem: number;
+
+  public yearsArr = [];
+  public yearsFinishArr = [];
 
   files: any = [];
   previewUrl: any;
@@ -24,21 +42,38 @@ export class AdditionalEducationUserSettingsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.createMountArray();
-    this.openItem = this.userSettings.additionalEducation.length;
+    this.createYearArray(new Date().getFullYear()+5);
+    this.createFinishYearArray(1960);
+    this.createMonthArray();
+    // this.openItem = this.userSettings.additionalEducation.length;
+    this.openItem = null;
   }
-  createMountArray() {
+
+  ngOnChanges() {
+    this.closeAfterSaveSettings ? this.openItem = null: this.openItem = this.userSettings.education.length;
+  }
+
+  createMonthArray() {
     for (let i = 1; i <= 12; i++) {
-      this.mounth.push(i);
+      this.month.push(i);
     }
   }
-  createYearArray() {
-    const years = [];
-    const currentYear = new Date().getFullYear();
-    for (let i = 1960; i <= currentYear + 5; i++) {
-      years.push(i);
+  createYearArray(limit) {
+    if(limit === 0) return
+    this.yearsArr = [];
+    for (let i = 1960; i <= limit; i++) {
+      this.yearsArr.push(i);
     }
-    return years;
+    return this.yearsArr;
+  }
+
+  createFinishYearArray(limit) {
+    this.yearsFinishArr = [];
+    const currentYear = new Date().getFullYear();
+    for (let i = limit; i <= currentYear + 5; i++) {
+      this.yearsFinishArr.push(i);
+    }
+    return this.yearsFinishArr;
   }
 
   // --------------- create education-item -----------------//
@@ -49,11 +84,11 @@ export class AdditionalEducationUserSettingsComponent implements OnInit {
         if (this.additionalEducationId) {
           this.userSettings.additionalEducation.push({
             id: this.additionalEducationId,
-            additionalInstitution: 'Учебное заведение',
-            courseName: 'Название курсов',
-            startStudyMounth: 1,
+            additionalInstitution: '',
+            courseName: '',
+            startStudyMonth: 1,
             startStudyYear: 1960,
-            endStudyMounth: 1,
+            endStudyMonth: 1,
             endStudyYear: 1960,
             additionalDiploma: []
           });
@@ -72,9 +107,19 @@ export class AdditionalEducationUserSettingsComponent implements OnInit {
     };
 
     this.userSettings.deleteAdditionalEducation(i);
-    console.log('pre delete', this.userSettings.additionalEducation);
+
     this.userSettingsService.deleteAdditioanlEducationID(educationId).subscribe((res: any) => {});
-    console.log('after delete', this.userSettings.additionalEducation);
+
+  }
+
+  public deleteDiplomaPhoto(imgName, institutIndex, imgIndex){
+    
+    this.userSettingsService.deleteFile({link: imgName})
+    .subscribe((res: any) => {
+      console.log(res);
+      this.userSettings.additionalEducation[institutIndex].additionalDiploma.splice(imgIndex, 1);
+    });
+
   }
 
   chooseItem(i) {

@@ -8,6 +8,11 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { ChartsModule } from 'ng2-charts';
 import { LineChartDashboardComponent } from './line-chart-dashboard/line-chart-dashboard.component';
 import { PieChartDashboardComponent } from './pie-chart-dashboard/pie-chart-dashboard.component';
+import { UsersCommentsModule } from 'src/app/shared/modules/users-comments/users-comments.module';
+import { FreelacerAchivesComponent } from './freelacer-achives/freelacer-achives.component';
+import { ThousandSeparatorModule } from 'src/app/shared/pipes/thousand-separator/thousand-separator.module';
+import { TranslateModule } from '@ngx-translate/core';
+
 
 
 const dashboardPageRoutes: Routes = [
@@ -24,15 +29,20 @@ const dashboardPageRoutes: Routes = [
     AdminDashboardComponent,
     LineChartDashboardComponent,
     PieChartDashboardComponent,
+    FreelacerAchivesComponent,
   ],
   imports: [
     CommonModule,
     LocalizeRouterModule.forChild(dashboardPageRoutes),
     RouterModule.forChild(dashboardPageRoutes),
+    TranslateModule,
     // MatSlideToggleModule,
     // MatIconModule,
     // MatBadgeModule,
     ChartsModule,
+    UsersCommentsModule,
+    ThousandSeparatorModule,
+
   ],
   exports: [
   ]

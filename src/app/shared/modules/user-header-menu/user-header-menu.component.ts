@@ -14,8 +14,8 @@ export class UserHeaderMenuComponent implements OnInit {
 
   @Input() userId: string | number;
   @Output() userIdChange = new EventEmitter<any>();
-  user: UserModel;
-  menuOpen: boolean = null;
+  public user: UserModel = null;
+  public menuOpen: boolean = null;
   public isUserFreelancer: boolean;
 
 
@@ -26,15 +26,16 @@ export class UserHeaderMenuComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.userService.getDashboardRes()
+    this.userService.getMinUserData()
       .subscribe((res: any) => {
-        this.user = plainToClass(UserModel, res[0]);
+        this.user = plainToClass(UserModel, res);
+        this._checkUserState();
       });
-  this._checkUserState()
+
   }
 
   toggleMenu() {
-    if(this.menuOpen === null) {
+    if (this.menuOpen === null) {
       this.menuOpen = true;
     } else {
       this.menuOpen = !this.menuOpen;
@@ -44,21 +45,12 @@ export class UserHeaderMenuComponent implements OnInit {
   logOut() {
     this.localStorageService.removeItem('token');
     this.localStorageService.setItem('userId', null);
-
     this.userIdChange.emit(null);
   }
 
 
   private _checkUserState() {
-    this.localStorageService.getItem('userRole').value === 1 ? this.isUserFreelancer = true : this.isUserFreelancer = null;
-
-    // const state = this.localStorageService.getItem('userRole').value;
-    // console.log(state)
-    // if (state === '1') {
-    //   this.isUserFreelancer = true;
-    // } else if (state === '2') {
-    //   this.isUserFreelancer = null;
-    // }
+    this.user.role_id === 1 ? this.isUserFreelancer = true : this.isUserFreelancer = null;
   }
 
 }

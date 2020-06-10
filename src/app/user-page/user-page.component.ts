@@ -10,6 +10,8 @@ import {Location} from '@angular/common';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { WindowScrollBlockService } from '../core/services/window-scrolling.service';
+import { onlineCont } from '../shared/consts/online.const';
+import { LocalStorageService } from '../core/services/local-storage.service';
 
 @Component({
   selector: 'app-user-page',
@@ -21,26 +23,59 @@ export class UserPageComponent implements OnDestroy, OnInit  {
   public userData: UserDataInterface;
   sticky = false;
   elementPosition: any;
+  onlineModel = onlineCont;
+  openModalWindow: boolean = false;
+  imagePointer: number;
 
-  openModalWindow:boolean=false;
-  imagePointer:number;
-
-  public clickedEducationImgs = null;
-  public clickedSinglImg = null;
+  public clickedImgsArr = null;   //індекс масиву серед ынших картинок 
+  public clickedImg = null;       //індекс картинки в масиві до одного навчання
+  public imgTypeEducation = null;      //картина відноситься до "вищої освіти" чи да "додаткової освіти"
   public userTypeFreelancer = 1;
+  public userRole: string = 'Freelancer';
+
+  public currentUserId: number;
 
   public academicDegreesTranslations = [
-    'Начальный ',
-    'Ниже среднего',
-    'Средний ',
-    'Выше среднего',
-    'Князь тьмы'
+    "academicDegrees.lvl1",
+    "academicDegrees.lvl2",
+    "academicDegrees.lvl3",
+    "academicDegrees.lvl4",
+    "academicDegrees.lvl5"
+  ];
+  public languageTranslates = [
+    'general.language-lvl.1-lvl',
+    'general.language-lvl.2-lvl',
+    'general.language-lvl.3-lvl',
+    'general.language-lvl.4-lvl',
+    'general.language-lvl.5-lvl'
+  ];
+  public lvlTranslation = [
+    'ranks.zero.title',
+    'ranks.first.title',
+    'ranks.second.title',
+    'ranks.third.title',
+    'ranks.forth.title'
+  ];
+  public monthTranslate = [
+    'Январь',
+    'Февраль',
+    'Март',
+    'Апрель',
+    'Май',
+    'Июнь',
+    'Июль',
+    'Август',
+    'Сентябрь',
+    'Октябрь',
+    'Ноябрь',
+    'Декабрь'
   ];
   @ViewChild('stickyMenu', {static: false}) menuElement: ElementRef;
 
   private id: any = null;
   private destroy$ = new Subject<undefined>();
   private windowScrolling: WindowScrollBlockService;
+  public convertedDate = null;
 
   constructor(
     // tslint:disable-next-line: variable-name
@@ -52,28 +87,29 @@ export class UserPageComponent implements OnDestroy, OnInit  {
     private router: Router,
     private _windowScrollBlockService: WindowScrollBlockService,
     // tslint:disable-next-line: variable-name
-    private _location: Location
+    private _location: Location,
+    private localStorageService : LocalStorageService
   ) {
     this.windowScrolling = _windowScrollBlockService;
+  }
+
+  ngOnInit() {
     this.route.params.pipe(takeUntil(this.destroy$))
     .subscribe((params: Params) => {
       this.id = params;
       this.getUserData(this.id);
       window.scrollTo(0, 0);
     });
-    
-  }
 
-  ngOnInit() {}
+    this.currentUserId = Number(this.localStorageService.getItem('userId').value);
+  }
 
   getUserData(id: { id: number }) {
     this.userService.loadUserDate(id)
       .pipe(filter((res: any) => !!res))
       .subscribe(userData => {
-
         this.userData = userData.user;
       });
-      
   }
 
   scrollTo(target: string) {
@@ -81,8 +117,8 @@ export class UserPageComponent implements OnDestroy, OnInit  {
       target,
       duration: 1000
     };
-    if (target === 'about' || target === 'aducation' ||
-     target === 'rating' || target === 'comments' || target === 'services' ) {
+    if (target === 'about' || target === 'education' ||
+     target === 'rating' || target === 'comments' || target === 'services' || target === "add-education" ) {
       config.offset = -70;
     }
     this._scrollToService.scrollTo(config);
@@ -105,11 +141,17 @@ export class UserPageComponent implements OnDestroy, OnInit  {
 
 // Open ChatRoom ws this collocutor
   public openChat(userId) {
+    if (this.currentUserId === this.userData.id) {
+      return;
+    }
     this.currentUserService.wrightTo(userId)
-      .subscribe(res => {
-        if (res === 'ok') {
+      .subscribe((res: {id: number, roomId: string}) => {
+        if (res.id) {
           const translatedPath: any = this.localize.translateRoute('/dashboard/chat-room');
-          this.router.navigate([translatedPath]);
+          this.router.navigate([translatedPath], {
+            relativeTo: this.route,
+            queryParams: res
+          });
         }
       });
   }
@@ -120,28 +162,29 @@ export class UserPageComponent implements OnDestroy, OnInit  {
   }
 
   // img pop-up
-  public showPopUp(i, thisArr, text) {
-    // this.windowScrolling.disable();
-    if(this.clickedEducationImgs !== thisArr) {
-      this.clickedEducationImgs = thisArr
+  public showPopUp(i, thisArrNumber, kindOfImgs) {
+    this.windowScrolling.disable();
+    this.clickedImgsArr = this.clickedImgsArr !== thisArrNumber? thisArrNumber: false;
+    if(this.clickedImg !== i) {
+      this.clickedImg = i;
+      this.windowScrolling.disable();
     } else {
-      this.clickedEducationImgs =false;
+      this.clickedImg = null;
+      this.windowScrolling.enable();
     }
-    if(this.clickedSinglImg !== i) {
-      this.clickedSinglImg = i
-    } else {
-      this.clickedSinglImg =false;
-    }
+    this.imgTypeEducation = kindOfImgs? true: false;
   }
 
-  // switching user types     
-  // 0 - frilancer
+  // switching user types
+  // 0 - freelancer
   // 1 - customer
-  public chouseUser(x) {
-    if(x === 0) {
-      this.userTypeFreelancer = 1;
-    } else {
-      this.userTypeFreelancer = 0;
-    }
+  public choseUser(x) {
+    this.userTypeFreelancer = x === 0 ? 1 : 0;
+    this.userRole = x === 0 ? 'Freelancer' : 'Customer';
+    // pageType
+  }
+
+  public convertDateToDMY(x) {
+    return this.convertedDate = x.slice(0, x.indexOf(' '));
   }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { SocketService } from '../../services/socket.service';
+import { SocketService } from '../../../core/services/socket.service';
 import { ChatService } from '../../services/chat.service';
 import { FilesInterface } from '../../interfaces/files.interface';
 
@@ -25,7 +25,7 @@ export class ShowUploadedFilesComponent implements OnInit {
   }
 
   showFiles() {
-    if (this.isUploadFilesVisible === null) {
+    if (!this.isUploadFilesVisible ) {
       this.isUploadFilesVisible = true;
     } else {
       this.isUploadFilesVisible = !this.isUploadFilesVisible;

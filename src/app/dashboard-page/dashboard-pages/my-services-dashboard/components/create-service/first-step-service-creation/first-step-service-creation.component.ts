@@ -8,7 +8,7 @@ import { UserServiceModel } from 'src/app/models/user-services/user-service.mode
 import { filter, first } from 'rxjs/operators';
 import { untilDestroyed } from 'ngx-take-until-destroy';
 import { MatChipInputEvent } from '@angular/material/chips';
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { COMMA, ENTER, SPACE, TAB } from '@angular/cdk/keycodes';
 import { UserOffersService } from '../../../services/user-offers.service';
 import { LocalizeRouterService } from 'localize-router';
 
@@ -18,22 +18,29 @@ import { LocalizeRouterService } from 'localize-router';
   templateUrl: './first-step-service-creation.component.html',
   styleUrls: ['./first-step-service-creation.component.scss']
 })
+
 export class FirstStepServiceCreationComponent implements OnInit {
   public categoryList: CategoryInterface[] = [];
   public firstStepForm: FormGroup;
   public categories = [];
   // tslint:disable-next-line: variable-name
   public sub_categories = [];
-
+  // separatorKeysCodes = [ENTER, SPACE, TAB];
   files: any = [];
   previewUrl: any;
   visible = true;
   selectable = true;
   removable = true;
   addOnBlur = true;
-  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
+  readonly separatorKeysCodes: number[] = [ENTER, SPACE, TAB];
   tags: { tag: string }[] = [];
   translatedPath: any = this.localize.translateRoute('/dashboard/my-services');
+
+  titlePosition: string;
+
+
+
+
 
   constructor(
     private userOffersService: UserOffersService,
@@ -49,7 +56,15 @@ export class FirstStepServiceCreationComponent implements OnInit {
   @Input() userService: UserServiceModel;
 
   ngOnInit() {
-    this.userOffersService.getCategorys()
+    console.log('width', window.innerWidth)
+
+    if(window.innerWidth >=768) {
+      this.titlePosition = 'right';
+    } else {
+      this.titlePosition = 'botom';
+    }
+
+    this.userOffersService.getCategories()
       .pipe(
         filter((res: any) => !!res),
         first()

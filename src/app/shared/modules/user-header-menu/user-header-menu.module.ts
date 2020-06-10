@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { UserHeaderMenuComponent } from './user-header-menu.component';
 import { LocalizeRouterModule } from 'localize-router';
 import { RouterModule } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 
@@ -11,6 +12,7 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     LocalizeRouterModule,
+    TranslateModule,
     RouterModule,
   ],
   exports: [

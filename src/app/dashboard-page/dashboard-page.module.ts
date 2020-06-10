@@ -8,8 +8,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatBadgeModule } from '@angular/material/badge';
 import { HomeDashboardComponent } from './dashboard-pages/home-dashboard-page/home-dashboard.component';
 import { MatSelectModule } from '@angular/material';
-import { StarRaitingModule } from '../shared/modules/star-raiting/star-raiting.module';
+import { StarRatingModule } from '../shared/modules/star-rating/star-rating.module';
+import { SystemMessagesModule } from '../shared/modules/system-messages/system-messages.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
+import { LanguageModule } from '../shared/modules/language/language.module';
 
 
 const routes: Routes = [
@@ -23,6 +26,7 @@ const routes: Routes = [
       },
       {
         path: 'home',
+        pathMatch: 'prefix',
         loadChildren: () => import('./dashboard-pages/home-dashboard-page/home-dashboard.module').then(m => m.HomeDashboardPageModule)
         // component: HomeDashboardComponent
       },
@@ -42,14 +46,19 @@ const routes: Routes = [
       },
       {
         path: 'finance',
-        loadChildren: () => import('./dashboard-pages/finace-page/finace-page.module').then(m => m.FinacePageModule)
+        loadChildren: () => import('./dashboard-pages/finance-page/finance.module').then(m => m.FinancePageModule)
         // import('./dashboard-pages/my-services-dashboard/my-services-dashboard.module').then(m => m.MyServicesDashboardModule)
       },
       {
         path: 'settings',
         loadChildren: () => import('./dashboard-pages/user-settings-dashboard/user-settings-dashboard.module')
           .then(m => m.UserSettingsDashboardModule)
+      },
+      {
+        path: 'arbitration',
+        loadChildren: () => import('./dashboard-pages/arbitration-page/arbitration-page.module').then(m => m.ArbitrationPageModule)
       }
+
 
     ]
   }
@@ -61,16 +70,18 @@ const routes: Routes = [
   imports: [
     CommonModule,
     LocalizeRouterModule.forChild(routes),
+    TranslateModule,
     RouterModule.forChild(routes),
     MatSlideToggleModule,
     FormsModule,
     ReactiveFormsModule,
+    LanguageModule,
 
     MatIconModule,
     MatBadgeModule,
 
-    StarRaitingModule
-
+    StarRatingModule,
+    SystemMessagesModule
   ],
   exports: [
     DashboardPageComponent

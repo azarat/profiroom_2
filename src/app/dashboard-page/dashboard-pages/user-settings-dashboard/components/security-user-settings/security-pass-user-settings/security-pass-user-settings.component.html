@@ -1,22 +1,19 @@
 <form [formGroup]="passForm" (ngSubmit)="updatePass(passForm)" class="form-change-password">
   <div class="inform_section__title">
-    <h3>Смена пароля</h3>
+    <h3>{{'user-settings.change-password-title' | translate}}</h3>
   </div>
   <div class="inform_section__fields">
     <div class="inputs-wrapper">
 
       <div class="fields">
         <div class="field-wrapper">
-          <h5 class="fields-title">Старый пароль</h5>
-          <input class="fields-value" type="text" formControlName='oldPassword' maxlength="50">
-          <div class="succes-message" *ngIf="submitedPassForm && changePasswordResult" >
-            Ответ положительный. Пароль изменен
-          </div>
-          <div class="error-message" *ngIf="!submitedPassForm && !changePasswordResult && passForm.controls.oldPassword.value" >
-            Ответ отрицательный. Пароль другой
+          <h5 class="fields-title">{{'user-settings.old-password' | translate}}</h5>
+          <input class="fields-value" type="password" formControlName='oldPassword' maxlength="50" (ngModelChange)='resetValidation()'>
+          <div class="error-message" *ngIf="submitedPassForm && !changePasswordResult && passForm.controls.oldPassword.value" >
+            {{'user-settings.alert-oldpass-incorrect' | translate}}
           </div>
           <div class="error-message" *ngIf="submitedPassForm  && !passForm.controls.oldPassword.value">
-            Ответ отрицательный. Это поле вообще-то обезательное
+            {{'user-settings.alert-required' | translate}}
           </div>
         </div>
       </div>
@@ -24,8 +21,8 @@
       <form formGroupName="passwords" class="form-change-password-confirm">
 
         <div class="fields">
-          <h5 class="fields-title">Новый пароль (если необходимо изменить)</h5>
-          <input class="fields-value new-passrord" placeholder="" formControlName="newPassword" required>
+          <h5 class="fields-title">{{'user-settings.new-password' | translate}}</h5>
+          <input class="fields-value new-passrord" type="password" placeholder="" formControlName="newPassword" required>
           <div class="pass-erorrs">
             <span
               [ngClass]="passForm.get('passwords.newPassword').hasError('required') || passForm.get('passwords.newPassword').hasError('hasNumber') ? 'unvalidated': 'validated'"></span>
@@ -38,31 +35,26 @@
             <span
               [ngClass]="passForm.get('passwords.newPassword').hasError('required') || passForm.get('passwords.newPassword').hasError('minLengthCharacters') ? 'unvalidated': 'validated'"></span>
             <ul class="description" *ngIf="passForm.get('passwords.newPassword').invalid">
-              <li *ngIf="passForm.get('passwords.newPassword').hasError('hasNumber')">Должна быть минимум одна цифра
-              </li>
-              <li *ngIf="passForm.get('passwords.newPassword').hasError('hasSmallCase')">Должна быть минимум одна
-                маленькая буква a-z</li>
-              <li *ngIf="passForm.get('passwords.newPassword').hasError('hasCapitalCase')">Должна быть минимум одна
-                большая буква A-Z</li>
-              <li *ngIf="passForm.get('passwords.newPassword').hasError('hasSpecialCharacters')">Должна быть минимум
-                один спец символ</li>
-              <li *ngIf="passForm.get('passwords.newPassword').hasError('minLengthCharacters')">Пароль не меньше 8
-                символов</li>
+              <li *ngIf="passForm.get('passwords.newPassword').hasError('hasNumber')">{{'auth-page.password-field.numbers-required' | translate}}</li>
+              <li *ngIf="passForm.get('passwords.newPassword').hasError('hasSmallCase')">{{'auth-page.password-field.small-case' | translate}}</li>
+              <li *ngIf="passForm.get('passwords.newPassword').hasError('hasCapitalCase')">{{'auth-page.password-field.uppercase' | translate}}</li>
+              <li *ngIf="passForm.get('passwords.newPassword').hasError('hasSpecialCharacters')">{{'auth-page.password-field.specific-simbols' | translate}}</li>
+              <li *ngIf="passForm.get('passwords.newPassword').hasError('minLengthCharacters')">{{'auth-page.password-field.min-length' | translate}}</li>
             </ul>
           </div>
           <div class="error-message" *ngIf="submitedPassForm && !passForm.get('passwords.newPassword').value">
-            Ответ отрицательный. Это поле вообще-то обезательное
+            {{'user-settings.alert-required' | translate}}
           </div>
         </div>
 
         <div class="fields">
-          <h5 class="fields-title">Повторите новый пароль</h5>
-          <input class="fields-value" placeholder="" formControlName="newPassword_confirmation">
+          <h5 class="fields-title">{{'user-settings.repeat-new-password' | translate}}</h5>
+          <input class="fields-value" type="password" placeholder="" formControlName="newPassword_confirmation">
           <div class="error-message" *ngIf="passForm.hasError('notSame', 'passwords')">
-            Ответ отрицательный. Пароли не совпадают
+            {{'user-settings.repeat-new-password' | translate}}
           </div>
           <div class="error-message" *ngIf="submitedPassForm && !passForm.get('passwords.newPassword_confirmation').value && !passForm.hasError('notSame', 'passwords')">
-            Ответ отрицательный. Это поле вообще-то обезательное
+            {{'user-settings.alert-required' | translate}}
           </div>
         </div>
 
@@ -70,6 +62,19 @@
     </div>
   </div>
   <div class="form-butons">
-    <button class="save-all" type="submit">сохранить изменения</button>
+    <button class="save-all" type="submit">{{'user-settings.save-changes' | translate}}</button>
   </div>
 </form>
+
+
+<div class="done-message" *ngIf="changePasswordResult">
+  <div class="done-message__info-block">
+      <div class="done-message__icon"><img src="/assets/images/svg/done.svg" alt=""></div>
+      <div class="done-message__text">
+          <p class="accent">{{'user-settings.done-message' | translate}}</p>
+      </div>
+      <div class="btns-wrapper">
+      </div>
+      <div class="done-message__close" (click)="toglePopUp()"></div>
+  </div>
+</div>
