@@ -15,6 +15,7 @@ export class AuthentificationPageComponent implements OnInit {
   public message: InfoMessageInterface | boolean;
   public year = new Date().getFullYear();
   public animation: boolean = null;
+  public animationType: string = null;
 
   constructor(
     // tslint:disable-next-line: variable-name
@@ -46,10 +47,18 @@ export class AuthentificationPageComponent implements OnInit {
   }
   swipeBtn() {
       this.auth = !this.auth;
+      if (this.animation === true) {
+        return;
+      }
       this.animation = true;
+      this.animationType = 'forvard';
       setTimeout(() => {
         this.animation = null;
       }, 8000);
+
+      setTimeout(() => {
+        this.animationType = 'back';
+      }, 4000);
   }
   // varifyEmail( expires, id, signature) {
 

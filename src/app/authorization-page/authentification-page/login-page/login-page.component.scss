@@ -204,5 +204,13 @@ input {
     max-width: 420px;
     width: 100%;
     padding: 0 15px;
+    .controls{
+      label{
+        font-size: 12px;
+      }
+      a{
+        font-size: 12px;
+      }
+    }
   }
 }
