@@ -145,3 +145,33 @@
     }
   }
 }
+
+@media (max-width: 767.987px) {
+  .questions{
+    margin-bottom: 25px;
+    &:after{
+      display: none;
+    }
+    .question-list{
+      margin: 0 auto;
+      margin-bottom: 0;
+    }
+  }
+  .section-title{
+    font-size: 18px;
+    line-height: 23px;
+  }
+  .question-item {
+    &__title {
+      font-size: 14px;
+      line-height: 18px;
+    }
+    &__text {
+      font-size: 14px;
+      line-height: 18px;
+    }
+    .element-plus{
+      right: 10px;
+    }
+  }
+}

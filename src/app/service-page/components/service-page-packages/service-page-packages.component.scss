@@ -425,7 +425,7 @@
         .show-extra-features{
           font-size: 13px;
         }
-  
+
         &__list{
           padding: 0 15px 0;
           margin: 0 -15px;
@@ -441,7 +441,7 @@
         &__item{
           margin-bottom: 0;
         }
-  
+
         &__text{
           width: 100%;
           margin-left: 0px;
@@ -458,7 +458,7 @@
           line-height: 150%;
         }
       }
-    }  
+    }
     .btn-order-service {
       padding: 13px 0;
       font-size: 14px;
@@ -473,6 +473,39 @@
   }
 }
 
-// @media (max-width: 1499px) {
-
-// }
+@media (max-width: 767.987px) {
+  .btn-options{
+    display: none;
+  }
+  .tabs{
+    .tab{
+      font-size: 12px;
+    }
+    .tabContent{
+      padding: 10px 15px;
+      .main-info{
+        p{
+          font-size: 14px;
+        }
+        .changes-term{
+          span{
+            font-size: 14px;
+            &:last-child:before{
+              width: 18px;
+              height: 18px;
+              background-size: contain;
+            }
+            &:first-child:before{
+              width: 18px;
+              height: 18px;
+              background-size: contain;
+            }
+          }
+        }
+        .option-list li{
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}

@@ -82,12 +82,19 @@
         <div class="about-offer__text" [innerHTML]="offerData.description"></div>
       </div>
 
+      <div class="choose-packet">
+        <div class="running-block">
+          <app-service-page-packages [offerData]="offerData" [offerId]="offerId" *ngIf="offerData" (checkoutState)="openCheckout($event)" (scrollToThis)="scrollTo($event)">
+          </app-service-page-packages>
+        </div>
+      </div>
+
       <app-service-page-compare-table [offerData]="offerData" *ngIf="offerData" id="compare-table" (checkoutState)="openCheckout($event)" (scrollToThis)="scrollTo($event)">
       </app-service-page-compare-table>
 
       <section class="offer-rating" id="rating">
         <h4 class="section-title">
-          {{'service-page.service-rating' | translate}} <span>“{{ offerData.title }}”</span> 
+          {{'service-page.service-rating' | translate}} <span>“{{ offerData.title }}”</span>
         </h4>
         <div class="rating-type">
           <div class="rating-type_name">{{'raitings.service-quality' | translate}}</div>
@@ -121,12 +128,7 @@
       <app-service-page-questions [offerData]="offerData" *ngIf="offerData"  id="questions"></app-service-page-questions>
       <app-service-page-about-offer [offerData]="offerData" [loginedUserId]="loginedUserId" *ngIf="offerData" id="about-offer"></app-service-page-about-offer>
     </div>
-    <div class="choose-packet">
-      <div class="running-block">
-        <app-service-page-packages [offerData]="offerData" [offerId]="offerId" *ngIf="offerData" (checkoutState)="openCheckout($event)" (scrollToThis)="scrollTo($event)">
-        </app-service-page-packages>
-      </div>
-    </div>
+
     <app-service-page-another-services [offerData]="offerData" *ngIf="offerData"></app-service-page-another-services>
     <app-service-page-similar-offers [similarOffers]="similarOffers" [offerData]="offerData" *ngIf="similarOffers && offerData"></app-service-page-similar-offers>
   </div>

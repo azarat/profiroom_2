@@ -8,15 +8,15 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 export class SiteLocaleService {
 
-    private currentLang = new BehaviorSubject(null)
-    public currentLang$: Observable<string>
-    
+    private currentLang = new BehaviorSubject(null);
+    public currentLang$: Observable<string>;
+
     constructor(
     ) {
-        this. currentLang$ = this.currentLang.asObservable()
+        this. currentLang$ = this.currentLang.asObservable();
     }
 
-    public changeLangTo(lang) {
+    public changeLangTo(lang: string) {
         this.currentLang.next(lang);
     }
 
