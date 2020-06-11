@@ -196,4 +196,5 @@ export interface OfferDataInterface {
     price?: number;
     published?: number;
   }];
+  FilesLink?: any;
 }
