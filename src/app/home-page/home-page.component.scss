@@ -34,7 +34,7 @@ h1 {
       background: #fff;
       color: #4285f4;
       box-shadow: none;
-      
+
       &:hover{
         color: #5695FD;
         background: #fff;
@@ -192,7 +192,7 @@ h1 {
       position: absolute;
       z-index: 1;
       top: -80px;
-      left: 70px;  
+      left: 70px;
       width: 102px;
       height: 118px;
       background-image: url(/assets/images/images/dots-advantages.svg)
@@ -260,13 +260,13 @@ h1 {
       width: 75%;
       height: 105%;
       top: 0%;
-      left: -20%;  
+      left: -20%;
     }
     &::before{
       width: 85%;
       height: 95%;
       top: -50%;
-      right: -15%;  
+      right: -15%;
     }
   }
   .how-work{
@@ -560,15 +560,19 @@ h1 {
       .top{
         width: 100%;
       }
-    } 
+    }
     &__title{
       margin: 0 auto 5px;
       width: max-content;
       text-align: center;
+      max-width: 100%;
     }
     &__text{
       text-align: center;
       margin-bottom: 16px;
+      margin: 0 auto 10px;
+      width: max-content;
+
     }
     .btn{
       padding: 13px 35px;
