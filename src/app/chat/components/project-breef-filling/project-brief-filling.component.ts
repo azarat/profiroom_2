@@ -91,7 +91,6 @@ export class ProjectBriefFillingComponent implements OnInit {
       .pipe(filter((res: any) => !!res))
       .subscribe((res: any) => {
         this.offerBrief = res.brief;
-        console.log(this.offerBrief)
         this.createFormGroup();
       });
   }

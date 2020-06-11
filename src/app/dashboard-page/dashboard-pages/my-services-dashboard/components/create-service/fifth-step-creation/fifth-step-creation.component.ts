@@ -61,6 +61,7 @@ export class FifthStepCreationComponent implements OnInit {
       briefAnwerRequired: false,
       briefAnswerVariants: [],
       briefMultianswers: false,
+      briefMultiAnswers: false,
       briefAnswer: null
     }
     );

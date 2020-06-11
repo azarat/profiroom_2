@@ -36,7 +36,7 @@
                             </div>
                             <span (click)="changeWorkStatus(1)" [ngClass]="{active: user.busy === 1}">{{'general.user-busy' | translate}}</span>
                         </div>
-                        <a class="btn open-prifile" [routerLink]="['/user', user.purse.id] | localize">{{'general.show-profile' | translate}}</a>
+                        <a class="btn open-prifile" [routerLink]="['/user', user.id] | localize">{{'general.show-profile' | translate}}</a>
                     </div>
 
                 </div>

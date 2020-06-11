@@ -1,4 +1,4 @@
-<div class="user-menu" *ngIf="user" (click)="toggleMenu()">
+<div class="user-menu" *ngIf="user" (click)="toggleMenu()" (clickOutside)="hideMenu()">
     <div>
         <span>{{'main-page.hello-user' | translate}}&nbsp; {{ user.name }}</span>
         <div class="img">

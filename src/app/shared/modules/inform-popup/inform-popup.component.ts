@@ -1,6 +1,5 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { InfoMessageInterface } from '../../interfaces/info-message.interface';
-import { EventEmitter } from 'events';
 
 @Component({
   selector: 'app-inform-popup',
@@ -11,7 +10,7 @@ export class InformPopupComponent implements OnInit {
 
   @Input() message: InfoMessageInterface | any;
 
-  @Output() mesageChange = new EventEmitter();
+  @Output() messageChange = new EventEmitter();
 
 
   constructor() { }
@@ -20,7 +19,7 @@ export class InformPopupComponent implements OnInit {
   }
 
   closeInformPopUp() {
-    this.mesageChange.emit(this.message = null);
+    this.messageChange.emit(this.message = null);
   }
 
 }

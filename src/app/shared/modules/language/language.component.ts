@@ -3,6 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { LocalizeRouterService } from 'localize-router';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
+import { SiteLocaleService } from 'src/app/core/services/site-locale.service';
 
 @Component({
   selector: 'app-language',
@@ -30,14 +31,16 @@ export class LanguageComponent implements OnInit {
     private _route: ActivatedRoute,
     // tslint:disable-next-line: variable-name
     private _router: Router,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private siteLocaleService: SiteLocaleService
 
   ) {
-    this.translate.setDefaultLang('uk');
+    // this.translate.setDefaultLang('uk');
     const url = this._router.url;
 
     // console.log(url);
     this.activeLang = this.localize.parser.currentLang;
+    this.siteLocaleService.changeLangTo(this.activeLang);
   }
 
 
@@ -56,6 +59,7 @@ export class LanguageComponent implements OnInit {
     localStorage.setItem('userLanguage', language);
     this.localize.changeLanguage(language);
     this.activeLang = language;
+    this.siteLocaleService.changeLangTo(this.activeLang);
     this.hideMenu();
   }
 

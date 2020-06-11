@@ -15,10 +15,11 @@ import { TranslateModule } from '@ngx-translate/core';
 import { LanguageModule } from '../shared/modules/language/language.module';
 
 
-const routes: Routes = [
+const dashboardRoutes: Routes = [
   {
     path: '',
     component: DashboardPageComponent,
+    // pathMatch: 'full',
     children: [
       {
         path: '',
@@ -26,12 +27,13 @@ const routes: Routes = [
       },
       {
         path: 'home',
-        pathMatch: 'prefix',
+        pathMatch: 'full',
         loadChildren: () => import('./dashboard-pages/home-dashboard-page/home-dashboard.module').then(m => m.HomeDashboardPageModule)
         // component: HomeDashboardComponent
       },
       {
         path: 'projects',
+        pathMatch: 'full',
         loadChildren: () => import('./dashboard-pages/projects-page/projects-page.module').then(m => m.ProjectsPageModule)
       },
       {
@@ -69,9 +71,9 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
-    LocalizeRouterModule.forChild(routes),
+    LocalizeRouterModule.forChild(dashboardRoutes),
     TranslateModule,
-    RouterModule.forChild(routes),
+    RouterModule.forChild(dashboardRoutes),
     MatSlideToggleModule,
     FormsModule,
     ReactiveFormsModule,

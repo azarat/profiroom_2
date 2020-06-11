@@ -19,7 +19,9 @@ export class CategoriesHeaderComponent implements OnInit {
     private _route: ActivatedRoute,
   ) {
     this._route.data.subscribe(Params => {
-      if(!Params.localizeRouter.path || Params.localizeRouter.path === "catalog" && Object.keys(Params).length === 1){
+      console.log('Params', Params)
+      if(Params.localizeRouter && !Params.localizeRouter.path || Params.localizeRouter
+        && Params.localizeRouter.path === 'catalog' && Object.keys(Params).length === 1) {
         this.noHover = true;
       }
     });

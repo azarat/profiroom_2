@@ -80,6 +80,7 @@ export class Brief {
   @Expose() briefAnwerRequired: number | boolean;
   @Type(() => BriefAnswerVariants) briefAnswerVariants: BriefAnswerVariants[];
   @Expose() briefMultianswers: boolean;
+  @Expose() briefMultiAnswers: boolean;
   @Expose() briefAnswer: any;
 }
 

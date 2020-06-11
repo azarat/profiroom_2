@@ -1,7 +1,7 @@
 <div class="step-wrapper" *ngIf="userService && titlePosition">
     <form #form="ngForm" (ngSubmit)="goNextStep(form)">
         <h3>{{'dashboard.create-service.first-step.title' | translate}}</h3>
-
+        {{ this.currentLang }}
         <h5>{{'dashboard.create-service.first-step.subtitle' | translate}}</h5>
         <mat-form-field floatLabel="always" class="service-title" appearance="outline" maxlength="70">
             <textarea name="title" #serviceTit [(ngModel)]="userService.title" matInput required maxlength="70" tooltip="{{'dashboard.create-service.first-step.tool-tip.name-title' | translate}}" tooltipDescription="{{'dashboard.create-service.first-step.tool-tip.name-subtitle' | translate}}"
@@ -15,7 +15,7 @@
                     <mat-select (ngModelChange)="loadSubcategoryFilter($event)" [(ngModel)]="userService.category" name="category" required tooltipDescription="{{'dashboard.create-service.first-step.tool-tip.category-subtitle' | translate}}" tooltip="{{'dashboard.create-service.first-step.tool-tip.category-title' | translate}}"
                         placement="right">
                         <mat-option *ngFor="let category of categoryList" [value]="category.link">
-                            {{ category.name }}
+                            {{ category.name }} 
                         </mat-option>
                     </mat-select>
                 </mat-form-field>

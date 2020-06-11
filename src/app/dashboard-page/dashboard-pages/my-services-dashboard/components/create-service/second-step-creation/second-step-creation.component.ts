@@ -36,10 +36,9 @@ export class SecondStepCreationComponent implements OnInit {
   ngOnInit() { }
 
   onEditorCreated = ( event: any ) => {
-    // this.characterLength = event.editor.container.innerText.replace(/\s+/g, '').length;
-    console.log(event.editor.container)
-    this.characterLength = event.editor.container.innerText.length;
-    // this.editor = event;
+
+    this.characterLength = event.editor.container.innerText == '\n'? 0 : event.editor.container.innerText.length;
+
   }
   nextStep = (form: NgForm) => {
     this.submitted = true;

@@ -3,23 +3,16 @@
         <h3>{{'dashboard.create-service.second-step.title' | translate}}</h3>
 
         <h5>{{'dashboard.create-service.second-step.subtitle' | translate}}</h5>
-        <div class="form-group"
-             [ngClass]="{'error': (
+        <div class="form-group" [ngClass]="{'error': (
              (characterLength !== 0 && characterLength <= 100 && characterLength !== null) ||
              characterLength >500) && submitted}">
-            <quill-editor
-              [modules]="config"
-              [(ngModel)]="userService.description" name="editor"
-              placeholder=""
-              (onContentChanged)="onEditorCreated($event)"
-              ngbPopover="{{'dashboard.create-service.second-step.tool-tip.subtitle' | translate}}"
-              popoverTitle="{{'dashboard.create-service.second-step.tool-tip.title' | translate}}"
-              placement="right" popoverClass="popover" closeDelay="200">
+            <quill-editor [modules]="config" [(ngModel)]="userService.description" name="editor" placeholder="" (onContentChanged)="onEditorCreated($event)" ngbPopover="{{'dashboard.create-service.second-step.tool-tip.subtitle' | translate}}" popoverTitle="{{'dashboard.create-service.second-step.tool-tip.title' | translate}}"
+                placement="right" popoverClass="popover" closeDelay="200">
             </quill-editor>
-            <span class="notify" *ngIf="submited && characterLength <= 100 || characterLength === null">
-              {{'dashboard.create-service.second-step.minimal-error' | translate}}
+            <span class="notify" *ngIf="characterLength <= 100 || characterLength === null">
+                {{this.characterLength}}{{'dashboard.create-service.second-step.minimal-error' | translate}}
             </span>
-            <span class="notify" *ngIf="submited && characterLength > 100 && characterLength !== null">
+            <span class="notify" *ngIf="characterLength > 100 && characterLength !== null">
               {{this.characterLength}}&nbsp;{{'dashboard.create-service.second-step.max-error' | translate}}
             </span>
         </div>

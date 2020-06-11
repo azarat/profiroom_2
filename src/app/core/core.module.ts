@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { BaseInterceptor } from './interceptors/base-interceptor';
 import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
-import { LocalizeRouterModule, LocalizeParser, LocalizeRouterSettings } from 'localize-router';
+import {LocalizeRouterModule, LocalizeParser, LocalizeRouterSettings, ManualParserLoader} from 'localize-router';
 import { appRoutes } from '../app-routing.module';
 import {Location} from '@angular/common';
 import {LocalizeRouterHttpLoader} from 'localize-router-http-loader';
@@ -37,17 +37,31 @@ export const url = new URL(location.href).origin;
         useFactory: (createTranslateLoader),
           deps: [HttpClient],
       },
-      useDefaultLang: true
+
+      // useDefaultLang: true
       }
     ),
     LocalizeRouterModule.forRoot(appRoutes, {
       parser: {
         provide: LocalizeParser,
-        useFactory: (translate: TranslateService, location: Location, settings: LocalizeRouterSettings, http: HttpClient, ) =>
-            new LocalizeRouterHttpLoader(translate, location, settings, http, url + '/assets/locales.json'),
+        useFactory: (translate, location, settings) =>
+          new ManualParserLoader(translate, location, settings, ['uk', 'ru'], ''),
         deps: [TranslateService, Location, LocalizeRouterSettings, HttpClient, ],
       },
+      // defaultLangFunction: (
+      //   languages: ['uk', 'ru']) => 'uk'
+        // {
+          // const userLang = localStorage.getItem('userLanguage');
+          // if (userLang == null  ) {
+          //   console.log(null);
+          //   return 'uk';
+          // } else {
+          //   console.log(userLang);
+          //   return 'ru';
+          // }
+        // },
       // alwaysSetPrefix: false,
+
     }),
     ScrollToModule.forRoot()
   ],

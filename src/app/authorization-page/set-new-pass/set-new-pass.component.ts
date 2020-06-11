@@ -15,6 +15,7 @@ export class SetNewPassComponent implements OnInit {
   token: string = null;
   email: string = null;
   routeAuthPage: any = this.localize.translateRoute('/auth');
+
   constructor(
     private fb: FormBuilder,
     private autServ: AuthentificationService,
@@ -29,7 +30,7 @@ export class SetNewPassComponent implements OnInit {
         this.token = data.token;
         this.email = data.email;
       } else {
-        const redirectToAuthPath: any = this.localize.translateRoute('/dashboard');
+        const redirectToAuthPath: any = this.localize.translateRoute('');
         this.router.navigate([redirectToAuthPath]);
       }
     });
