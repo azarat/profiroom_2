@@ -92,7 +92,7 @@
       background: #f4f7fc;
     }
     &.extra-options{
-      padding: 25px 15px; 
+      padding: 25px 15px;
     }
     .btn-buy-package{
       background: #3C7EEA;
@@ -106,7 +106,7 @@
       letter-spacing: 1px;
       color: #FFFFFF;
       padding: 11px;
-      margin: 18px auto 15px; 
+      margin: 18px auto 15px;
       text-transform: uppercase;
       cursor: pointer;
     }
@@ -153,11 +153,11 @@
       font-size: 14px;
       line-height: 18px;
       &.extra-options{
-        padding: 15px; 
+        padding: 15px;
       }
       .btn-buy-package{
         padding: 11px 0;
-        margin: 15px auto 5px; 
+        margin: 15px auto 5px;
       }
     }
   }
@@ -169,4 +169,11 @@
       display: none;
     }
   }
+}
+
+@media (max-width: 767.987px) {
+  .compare{
+    display: none;
+  }
+
 }

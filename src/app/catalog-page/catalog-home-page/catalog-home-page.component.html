@@ -2,14 +2,25 @@
 <app-categories-header></app-categories-header>
 <div class="wrapper">
   <div class="catalog-categories" *ngIf="categoriesList">
-    <ul class="category" *ngFor="let category of categoriesList.category">
-      <h3 class="category-name">{{category.name}}</h3>
+    <ul class="category" *ngFor="let category of categoriesList.category; let x = index">
+      <div class="category-name_wrapper">
+        <h3 class="category-name" (click)="showSubCattegorys(x)">{{category['name_' + currentLang]}}</h3>
+        <div class="hide-subCattegorys open" (click)="showSubCattegorys(x)"></div>
+      </div>
 
-      <li class="subcategory-name"*ngFor="let sub_category of category.sub_categories">
-        <a [routerLink]="['/catalog', category.link, sub_category.link] | localize" class="subcategory">
-          {{sub_category.name}}
-        </a>
-      </li>
+
+
+      <div class="subcategory_wrapper" [ngClass]='{open: openedList === x}'>
+
+        <div class="hide-subCattegorys closed" (click)="showSubCattegorys(null)"></div>
+
+        <li class="subcategory-name"*ngFor="let sub_category of category.sub_categories">
+          <a [routerLink]="['/catalog', category.link, sub_category.link] | localize" class="subcategory">
+            {{sub_category['name_' + currentLang]}}
+          </a>
+        </li>
+      </div>
+
 
     </ul>
   </div>

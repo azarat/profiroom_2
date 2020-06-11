@@ -41,7 +41,8 @@ export class NgxGalleryComponent implements OnInit {
         previewInfinityMove: true,
         thumbnailsPercent: 19.5,
         thumbnailsMargin: 8,
-        thumbnailMargin: 8
+        thumbnailMargin: 8,
+        preview: false,
       },
       {
         breakpoint: 1500,
@@ -57,7 +58,21 @@ export class NgxGalleryComponent implements OnInit {
       },
       {
         breakpoint: 767,
-        preview: false
+        imagePercent: 100,
+        width: '400px',
+        height: '220px',
+        thumbnails : false,
+        preview: true
+      },
+      {
+        breakpoint: 430,
+        width: '360px',
+        height: '180px',
+      },
+      {
+        breakpoint: 380,
+        width: '290px',
+        height: '145px',
       }
     ];
     $('.fantom_full-size').on('click', () => {

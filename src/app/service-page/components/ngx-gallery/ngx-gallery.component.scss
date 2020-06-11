@@ -206,7 +206,7 @@
         }
       }
     }
-  
+
     .fantom_full-size{
       content: "";
       position: absolute;
@@ -231,7 +231,13 @@
   }
 }
 
-@media (max-width: 1024px) {
-
+@media (max-width: 767.987px) {
+  .gallery{
+    margin: 15px auto 15px;
+    .fantom_full-size{
+      top: 10px;
+      right: 40px;
+    }
+  }
 
 }
