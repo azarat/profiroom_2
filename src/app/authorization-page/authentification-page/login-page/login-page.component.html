@@ -4,7 +4,7 @@
       <div class="">
         <h2>{{'auth-page.login.title' | translate}}</h2>
         <p class="text">{{'auth-page.login.subtitle' | translate}}</p>
-        <form #form="ngForm" [formGroup]="loginForm" (ngSubmit)="authenticate()">
+        <form #form="ngForm" [formGroup]="loginForm" (ngSubmit)="authenticate()" >
 
           <mat-form-field >
               <mat-label>Email</mat-label>

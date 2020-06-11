@@ -31,7 +31,7 @@
     <div class="description" *ngIf="offerData">
       <h2 class="description-name">{{ offerData.title }}</h2>
 
-      <div class="container">
+      <div class="container user-infm">
         <div class="user" *ngIf="offerData">
           <a class="user-avatar" [routerLink]="['/user', offerData.user_id] | localize">
             <img [src]="offerData.user.avatar" alt="user avatar">
@@ -47,30 +47,30 @@
         </div>
 
         <div class="actions">
-          <div class="action tooltip" data-title="Смотреть профиль">
+          <div class="action tooltip" data-title="Смотреть профиль" >
             <a [routerLink]="['/user', offerData.user_id] | localize">
               <img src="assets/images/svg/service-page/shape.svg" alt="" class="default-img">
               <img src="assets/images/svg/service-page/shape-hov.svg" alt="" class="hover-img">
             </a>
           </div>
-          <div class="action tooltip" data-title="Написать сообщение">
+          <div class="action tooltip" data-title="Написать сообщение" *ngIf="loginedUserId !== offerData.user_id">
             <a (click)="openChat(offerData.user_id)">
               <img src="assets/images/svg/service-page/envelope.svg" alt="" class="default-img">
               <img src="assets/images/svg/service-page/envelope-hov.svg" alt="" class="hover-img">
             </a>
           </div>
-          <div class="action tooltip" data-title="Добавить к избранным">
+          <!-- <div class="action tooltip" data-title="Добавить к избранным">
             <a href="">
               <img src="assets/images/svg/service-page/heart.svg" alt="" class="default-img">
               <img src="assets/images/svg/service-page/heart-hov.svg" alt="" class="hover-img">
             </a>
-          </div>
-          <div class="action tooltip" data-title="Пожаловаться">
+          </div> -->
+          <!-- <div class="action tooltip" data-title="Пожаловаться">
             <a href="">
               <img src="assets/images/svg/service-page/auction.svg" alt="" class="default-img">
               <img src="assets/images/svg/service-page/auction-hov.svg" alt="" class="hover-img">
             </a>
-          </div>
+          </div> -->
         </div>
 
       </div>
@@ -119,7 +119,7 @@
 
       <app-users-comments *ngIf="offerData" [userData]="offerData" [userRole]="''"></app-users-comments>
       <app-service-page-questions [offerData]="offerData" *ngIf="offerData"  id="questions"></app-service-page-questions>
-      <app-service-page-about-offer [offerData]="offerData" *ngIf="offerData" id="about-offer"></app-service-page-about-offer>
+      <app-service-page-about-offer [offerData]="offerData" [loginedUserId]="loginedUserId" *ngIf="offerData" id="about-offer"></app-service-page-about-offer>
     </div>
     <div class="choose-packet">
       <div class="running-block">

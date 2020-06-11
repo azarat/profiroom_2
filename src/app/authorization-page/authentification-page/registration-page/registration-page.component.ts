@@ -55,7 +55,7 @@ export class RegistrationPageComponent implements OnInit {
     hideF = true;
     hideS = true;
     message: InfoMessageInterface | boolean;
-    currentLanguage
+    currentLanguage: string = null;
 
   constructor(
     private fb: FormBuilder,
@@ -78,15 +78,18 @@ export class RegistrationPageComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.initializeForm();
+    
+    this.getCurrentLang();
+    
   }
   public getCurrentLang() {
-    const changedLang = this.localStorageService.getItem('userLanguage').value;
-    const defaultLanguage = this.localize.parser.getLocationLang().toString();
-   
-    this.currentLanguage = changedLang === null ? defaultLanguage : changedLang.toString();
-
+    const changedLang: any = localStorage.getItem('userLanguage');
+    const defaultLanguage = this.localize.parser.getLocationLang();
+   console.log(defaultLanguage, changedLang )
+    this.currentLanguage = changedLang === null ? defaultLanguage : changedLang;
+    this.initializeForm();
   }
+ 
 
   registrate() {
 

@@ -18,7 +18,7 @@ import { Title } from '@angular/platform-browser';
   templateUrl: './service-page.component.html',
   styleUrls: ['./service-page.component.scss']
 })
-export class ServicePageComponent {
+export class ServicePageComponent implements OnInit {
   public offerData: OfferDataInterface = null;
   catalogSubscription: Subscription;
   // tslint:disable-next-line: variable-name
@@ -32,6 +32,7 @@ export class ServicePageComponent {
   public messageNotAuthorized: boolean;
   public step2 = false;
   public chosenOnOfferPage: string;
+  public loginedUserId: any = null;
 
   @ViewChild('stickyMenu', { static: false }) menuElement: ElementRef;
 
@@ -46,7 +47,8 @@ export class ServicePageComponent {
     private currentUserService: UserService,
     private localize: LocalizeRouterService,
     private router: Router,
-    private titleService: Title
+    private titleService: Title,
+    private localStorageService: LocalStorageService
 
   ) {
     this._route.queryParams
@@ -67,9 +69,15 @@ export class ServicePageComponent {
   }
 
 
-  // ngOnInit() {
-  //   // this.offerDataService.dataChange
-  // }
+  ngOnInit() {
+    // this.offerDataService.dataChange
+    this.getLoginedUserId() 
+  }
+
+  private getLoginedUserId () {
+    this.loginedUserId = this.localStorageService.getItem('userId').value;
+    console.log(this.loginedUserId )
+  }
 
   getOfferData(offerId: { offerId: string }) {
     this.servicePageService.loadOfferDate(offerId)

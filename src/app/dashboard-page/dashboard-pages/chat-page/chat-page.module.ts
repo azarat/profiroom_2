@@ -17,7 +17,7 @@ const servicesRoutes: Routes = [
   declarations: [ChatPageComponent, ],
   imports: [
     CommonModule,
-    LocalizeRouterModule.forChild(servicesRoutes),
+    LocalizeRouterModule.forRoot(servicesRoutes),
     RouterModule.forChild(servicesRoutes),
     ChatModule
   ]

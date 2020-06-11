@@ -20,30 +20,30 @@
       </div>
     </div>
     <div class="actions">
-      <div class="action tooltip" data-title="Смотреть профиль">
-        <a href="">
+      <div class="action tooltip" data-title="Смотреть профиль" >
+        <a [routerLink]="['/user', offerData.user_id] | localize">
           <img src="assets/images/svg/service-page/shape.svg" alt="" class="default-img">
           <img src="assets/images/svg/service-page/shape-hov.svg" alt="" class="hover-img">
         </a>
       </div>
-      <div class="action tooltip" data-title="Написать сообщение">
+      <div class="action tooltip" data-title="Написать сообщение" *ngIf="loginedUserId !== offerData.user_id">
         <a href="">
           <img src="assets/images/svg/service-page/envelope.svg" alt="" class="default-img">
           <img src="assets/images/svg/service-page/envelope-hov.svg" alt="" class="hover-img">
         </a>
       </div>
-      <div class="action tooltip" data-title="Добавить к избранным">
+      <!-- <div class="action tooltip" data-title="Добавить к избранным">
         <a href="">
           <img src="assets/images/svg/service-page/heart.svg" alt="" class="default-img">
           <img src="assets/images/svg/service-page/heart-hov.svg" alt="" class="hover-img">
         </a>
-      </div>
-      <div class="action tooltip" data-title="Пожаловаться">
+      </div> -->
+      <!-- <div class="action tooltip" data-title="Пожаловаться">
         <a href="">
           <img src="assets/images/svg/service-page/auction.svg" alt="" class="default-img">
           <img src="assets/images/svg/service-page/auction-hov.svg" alt="" class="hover-img">
         </a>
-      </div>
+      </div> -->
     </div>
   </div>
   <div class="main-info">

@@ -29,7 +29,6 @@ const dashboardRoutes: Routes = [
         path: 'home',
         pathMatch: 'full',
         loadChildren: () => import('./dashboard-pages/home-dashboard-page/home-dashboard.module').then(m => m.HomeDashboardPageModule)
-        // component: HomeDashboardComponent
       },
       {
         path: 'projects',
@@ -44,12 +43,10 @@ const dashboardRoutes: Routes = [
       {
         path: 'chat-room',
         loadChildren: () => import('./dashboard-pages/chat-page/chat-page.module').then(m => m.ChatPageModule)
-        // import('./dashboard-pages/my-services-dashboard/my-services-dashboard.module').then(m => m.MyServicesDashboardModule)
       },
       {
         path: 'finance',
         loadChildren: () => import('./dashboard-pages/finance-page/finance.module').then(m => m.FinancePageModule)
-        // import('./dashboard-pages/my-services-dashboard/my-services-dashboard.module').then(m => m.MyServicesDashboardModule)
       },
       {
         path: 'settings',
@@ -60,8 +57,6 @@ const dashboardRoutes: Routes = [
         path: 'arbitration',
         loadChildren: () => import('./dashboard-pages/arbitration-page/arbitration-page.module').then(m => m.ArbitrationPageModule)
       }
-
-
     ]
   }
 ];
