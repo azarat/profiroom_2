@@ -44,7 +44,7 @@
                 </mat-checkbox>
               </div>
             </ng-container>
-            <div class="extra-features__item" *ngIf="offerData.extra_changes.published">
+            <div class="extra-features__item" *ngIf="offerData.extra_changes && offerData.extra_changes.published">
               <mat-checkbox class="extra-features__checkbox" formControlName="extraChanges">
                 <div class="extra-features__text">
                   <span class="extra-features__title">{{'service-page.additional-edits' | translate}}</span>
@@ -52,7 +52,7 @@
                 </div>
               </mat-checkbox>
             </div>
-            <div class="extra-features__item" *ngIf="offerData.extra_commercial.published">
+            <div class="extra-features__item" *ngIf="offerData.extra_commercial && offerData.extra_commercial.published">
               <mat-checkbox class="extra-features__checkbox" formControlName="extraCommercial">
                 <div class="extra-features__text">
                   <span class="extra-features__title">{{'service-page.commercial-use' | translate}}</span>
@@ -62,7 +62,7 @@
             </div>
 
             <ng-container *ngFor="let extra_feature of offerData.extra_features">
-              <div class="extra-features__item" *ngIf="extra_feature.published">
+              <div class="extra-features__item" *ngIf="extra_feature && extra_feature.published">
                 <mat-checkbox class="extra-features__checkbox" [formControlName]="extra_feature.title">
                   <div class="extra-features__text">
                     <span class="extra-features__title">{{extra_feature.title}}</span>
