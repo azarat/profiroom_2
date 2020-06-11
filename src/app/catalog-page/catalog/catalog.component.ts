@@ -34,8 +34,8 @@ export class CatalogComponent implements OnInit {
     private GetOffersService: GetOffersService,
     // tslint:disable-next-line: variable-name
     private _route: ActivatedRoute,
-    private router: Router, 
-    private titleService: Title
+    private router: Router,
+    private titleService: Title,
   ) {
 
     this._route.params.subscribe(Params => {
@@ -45,14 +45,14 @@ export class CatalogComponent implements OnInit {
       this.GetOffersService.getOffers(this.catalogFilters);
     });
 
-    //----------- проверка наличия каких либо парметров в queryParams ------------//  
+    //----------- проверка наличия каких либо парметров в queryParams ------------//
     this._route.queryParams.subscribe(qParams => {
       if (qParams && (Object.keys(qParams).length === 0)) {
-    //----------- используем даные (категория, подкатегория) из ActivatedRoute.params ------------//  
+    //----------- используем даные (категория, подкатегория) из ActivatedRoute.params ------------//
         this.GetOffersService.getOffers(this.catalogFilters);
       } else {
         this.catalogFilters.current_page = 1;
-    //----------- устанавливаем параметры из ActivatedRoute.queryParams ------------//  
+    //----------- устанавливаем параметры из ActivatedRoute.queryParams ------------//
         this.GetOffersService.setFilters(qParams);
         this.catalogFilters = plainToClass(CatalogFiltersModel, qParams);
         this.catalogFilters.online = (qParams.online === "true") ? true: false;

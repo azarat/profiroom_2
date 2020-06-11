@@ -6,15 +6,15 @@
     <ul *ngIf="subcategoriesList">
       <li><a [routerLink]="['/'] | localize">Главная</a></li>
       <li><a [routerLink]="['/catalog'] | localize">Каталог</a></li>
-      <li><a [routerLink]="['/catalog', subcategoriesList.link] | localize">{{ subcategoriesList.name }}</a></li>
+      <li><a [routerLink]="['/catalog', subcategoriesList.link] | localize">{{ subcategoriesList['name_' + currentLang] }}</a></li>
     </ul>
   </div>
-  <h2 class="category-title" *ngIf="subcategoriesList">{{ subcategoriesList.name }}</h2>
+  <h2 class="category-title" *ngIf="subcategoriesList">{{ subcategoriesList['name_' + currentLang] }}</h2>
   <div class="catalo-page__wrapper">
     <div class="sidebar">
       <ul class="sidebar__subcategories-list" *ngIf="subcategoriesList">
         <li class="sidebar__subcategories" *ngFor="let sub_categories of subcategoriesList.sub_categories"><a
-            [routerLink]="['/catalog', subcategoriesList.link , sub_categories.link] | localize">{{ sub_categories.name }}</a>
+            [routerLink]="['/catalog', subcategoriesList.link , sub_categories.link] | localize">{{ sub_categories['name_' + currentLang] }}</a>
         </li>
       </ul>
     </div>
@@ -22,10 +22,10 @@
     <div class="subcategories-list" *ngIf="subcategoriesList">
       <div class="subcategory-full" *ngFor="let sub_category of subcategoriesList.sub_categories">
         <div class="subcategory-full-img" [routerLink]="['/catalog', subcategoriesList.link , sub_category.link] | localize">
-          <img [src]="sub_category.img" alt="{{ sub_category.name }}">
+          <img [src]="sub_category.img" alt="{{ sub_category['name_' + currentLang] }}">
         </div>
         <a [routerLink]="['/catalog', subcategoriesList.link , sub_category.link] | localize">
-          <h2 class="subcategory-full-title">{{ sub_category.name }} </h2>
+          <h2 class="subcategory-full-title">{{ sub_category['name_' + currentLang] }} </h2>
         </a>
       </div>
     </div>
