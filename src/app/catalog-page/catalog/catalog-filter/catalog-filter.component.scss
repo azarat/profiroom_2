@@ -8,6 +8,9 @@
 .filters-list {
   display: flex;
 }
+.mobile-filters-block_wrapper{
+  display: none;
+}
 .mob-filter{
   display: none;
 }
@@ -511,8 +514,7 @@
   }
 
   .mobile-filters-block_wrapper{
-    // max-width: 290px;
-    // margin: 0 auto;
+    display: block;
   }
 
   .mobile-filters-block{
