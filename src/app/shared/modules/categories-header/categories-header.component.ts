@@ -22,7 +22,6 @@ export class CategoriesHeaderComponent implements OnInit, OnDestroy {
     private siteLocalService: SiteLocaleService
   ) {
     this._route.data.subscribe(Params => {
-      console.log('Params', Params)
       if(Params.localizeRouter && !Params.localizeRouter.path || Params.localizeRouter
         && Params.localizeRouter.path === 'catalog' && Object.keys(Params).length === 1) {
         this.noHover = true;

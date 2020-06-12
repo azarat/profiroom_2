@@ -1,7 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { CatalogFiltersModel } from 'src/app/models/catalog-filter/filter.model';
 import { GetOffersService } from '../../services/get-offers.service';
 import { OffersListInterface } from 'src/app/shared/interfaces/offers-list.interface';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-catalog-pagination',
@@ -11,8 +12,14 @@ import { OffersListInterface } from 'src/app/shared/interfaces/offers-list.inter
 export class CatalogPaginationComponent implements OnInit {
 
   @Input() catalogFilters: CatalogFiltersModel;
+  @Output() uploadedOfers = new EventEmitter();
+
   public pagesArr = [];
   offersList: OffersListInterface;
+
+  private currentPage = 1;
+  private curentFilters: CatalogFiltersModel;
+  loader = null;
 
   constructor(
     private getOffersService: GetOffersService,
@@ -24,10 +31,14 @@ export class CatalogPaginationComponent implements OnInit {
         this.offersList = data;
       }
       if (this.offersList) {
-          this.pagesToShow();
-        }
+        this.pagesToShow();
+      }
     });
-
+    this.getOffersService.filterVaraibles
+    .subscribe((res: any) => {
+      this.curentFilters = res;
+      console.log(this.curentFilters);
+    });
   }
 
   onPrevPage() {
@@ -78,6 +89,20 @@ export class CatalogPaginationComponent implements OnInit {
     for (let i = a - 1; i < b; i++ ) {
       this.pagesArr.push(i);
     }
+
+  }
+
+  public loadMore() {
+    this.currentPage++;
+    this.loader = false;
+    console.log(this.curentFilters);
+    this.curentFilters.page = this.currentPage;
+
+    this.getOffersService.loadMoreOffers(this.curentFilters)
+    .subscribe((res: any) => {
+      this.loader = true;
+      this.uploadedOfers.emit(res);
+    });
 
   }
 }

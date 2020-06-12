@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { GetOffersService } from '../../services/get-offers.service';
 import { OffersListInterface } from 'src/app/shared/interfaces/offers-list.interface';
 import { Subscription } from 'rxjs';
@@ -13,7 +13,7 @@ import { LocalizeRouterService } from 'localize-router';
 export class ItemsComponent implements OnInit {
   public subcategory;
   public id;
-  offersList: OffersListInterface;
+  @Input() offersList: OffersListInterface;
 
   catalogSubscription: Subscription;
 
@@ -29,9 +29,7 @@ export class ItemsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.GetOffersService.offersList.subscribe(data => {
-      this.offersList = data;
-    });
+
   }
 
   openOffer(offerid) {

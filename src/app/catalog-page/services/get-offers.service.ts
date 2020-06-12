@@ -6,6 +6,7 @@ import { CatalogFiltersModel } from 'src/app/models/catalog-filter/filter.model'
 
 import { OffersListInterface } from '../../shared/interfaces/offers-list.interface';
 import { ActivatedRoute, Router } from '@angular/router';
+import { plainToClass } from 'class-transformer';
 // import { queryPaginated, Page } from '../catalog/catalog.component';
 
 @Injectable()
@@ -21,6 +22,10 @@ export class GetOffersService {
   private filters = new BehaviorSubject(this._filterValue);
   public filterVaraibles: Observable<CatalogFiltersModel>;
 
+  // tslint:disable-next-line: variable-name
+  private _loader = new BehaviorSubject(null);
+  public loader$: Observable<boolean>;
+
   constructor(
     private http: HttpClient,
     // tslint:disable-next-line: variable-name
@@ -30,6 +35,7 @@ export class GetOffersService {
   ) {
     this.offersList = this._offersList.asObservable();
     this.filterVaraibles = this.filters.asObservable();
+    this.loader$ = this._loader.asObservable();
   }
 
   // -------- main functions in catalog ----------------//
@@ -44,7 +50,7 @@ export class GetOffersService {
 
   // tslint:disable-next-line: variable-name
   setFilters(PARAMSfilter: CatalogFiltersModel) {
-      
+
     this._filterValue = PARAMSfilter;
     this.filters.next(PARAMSfilter);
 
@@ -66,4 +72,9 @@ export class GetOffersService {
       queryParamsHandling: 'merge'
     });
   }
+
+  public loadMoreOffers(_filters) {
+    return this.http.post('/catalog', _filters);
+  }
+
 }

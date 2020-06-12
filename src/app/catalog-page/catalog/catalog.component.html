@@ -12,8 +12,8 @@
   </div>
   <h2 class="section-title" *ngIf="offersList">{{ offersList.name }}</h2>
   <app-filter [catalogFilters]="catalogFilters"></app-filter>
-  <app-items></app-items>
-  <app-catalog-pagination [catalogFilters]="catalogFilters"></app-catalog-pagination>
+  <app-items [offersList]="offersList"></app-items>
+  <app-catalog-pagination [catalogFilters]="catalogFilters" (uploadedOfers)="getedOffers($event)"></app-catalog-pagination>
 </div>
 
 <app-footer *ngIf="offersList"></app-footer>
