@@ -12,6 +12,7 @@ export class EducationUserSettingsComponent implements OnInit, OnChanges  {
 
   @Input() userSettings: UserSettingsModel;
   @Input() closeAfterSaveSettings = false;
+  @Input() formSubmitted: boolean;
 
   private educationId: number;
   // public educationForm: FormGroup;

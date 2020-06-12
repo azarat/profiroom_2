@@ -48,7 +48,8 @@ export class ServicePageComponent implements OnInit {
     private localize: LocalizeRouterService,
     private router: Router,
     private titleService: Title,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private userService: UserService
 
   ) {
     this._route.queryParams
@@ -74,8 +75,13 @@ export class ServicePageComponent implements OnInit {
     this.getLoginedUserId() 
   }
 
+ 
+
   private getLoginedUserId () {
-    this.loginedUserId = this.localStorageService.getItem('userId').value;
+    this.userService.user$
+    .subscribe(res => {
+      this.loginedUserId = res;
+    })
     console.log(this.loginedUserId )
   }
 

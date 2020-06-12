@@ -87,9 +87,9 @@ export class NgxGalleryComponent implements OnInit {
     this.offerData.files.forEach(item => {
       this.galleryImages.push(
         {
-          big: item,
-          medium: item,
-          small: item,
+          big: this.offerData.FilesLink + '/big/' + item,
+          medium: this.offerData.FilesLink + '/medium/' + item,
+          small: this.offerData.FilesLink +'/small/' + item,
         }
       );
     });

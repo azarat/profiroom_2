@@ -50,22 +50,24 @@
             <span *ngIf="tags.length > 0">{{ tags.length }} из 5 тем</span>
         </div>
 
-        <div class="portfolio">
+        <div class="portfolio"
+        outsideTooltipOnHover="{{'dashboard.create-service.first-step.tool-tip.file-loader-title' | translate}}" 
+            outsideTooltipHoverDescription="{{'dashboard.create-service.first-step.tool-tip.file-loader-subtitle' | translate}}" placement="right"
+        >
+            
             <h5>{{'dashboard.create-service.first-step.portfolio-title' | translate}}</h5>
 
-            <div class="items">
-
-
+            <div class="items" >
                 <ng-container *ngIf="previewUrl">
-                    <div class="img-item" *ngFor="let imgUrl of previewUrl, let i = index" [ngClass]="{ 'main-photo': userService.offerMainImage === imgUrl.link}">
+                    <div class="img-item" *ngFor="let imgUrl of previewUrl, let i = index" [ngClass]="{ 'main-photo': userService.mainImage == imgUrl.link}">
                         <div class="delete-file" (click)="deleteAttachment(imgUrl.id)"></div>
                         <img [src]="imgUrl.link" height="300" />
-                        <div class="choose-as-main-photo" (click)="putAsMainPhoto(imgUrl.link)">{{'dashboard.create-service.first-step.main-photo-btn' | translate}}</div>
+                        <div class="choose-as-main-photo" (click)="putAsMainPhoto(imgUrl.link)">{{'dashboard.create-service.first-step.main-photo-btn' | translate}} </div>
                     </div>
 
                 </ng-container>
 
-                <div class="dr-dp" appDragDrop (onFileDropped)="fileProgress($event)" ngbPopover="{{'dashboard.create-service.first-step.tool-tip.file-loader-subtitle' | translate}}" popoverTitle="{{'dashboard.create-service.first-step.tool-tip.file-loader-title' | translate}}"
+                <div class="dr-dp" appDragDrop (onFileDropped)="fileProgress($event)" 
                     placement="right" popoverClass="popover" closeDelay="200">
                     <div class="upload"></div>
                     <span>.JPG .PNG .GIF </span>

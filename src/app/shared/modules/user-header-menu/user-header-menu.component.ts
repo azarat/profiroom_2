@@ -4,6 +4,7 @@ import { UserModel } from 'src/app/models/user.model';
 import { plainToClass } from 'class-transformer';
 import { AuthentificationService } from 'src/app/core/services/auth.service';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-user-header-menu',
@@ -26,12 +27,18 @@ export class UserHeaderMenuComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.userService.getMinUserData()
-      .subscribe((res: any) => {
-        this.user = plainToClass(UserModel, res);
-        this._checkUserState();
-      });
+    this.userService.getMinUserData();
+    this.subscribeUserData();
 
+  }
+
+  private subscribeUserData() {
+    this.userService.user$
+    .pipe(filter((res: any) => !!res))
+    .subscribe((res: any) => {
+      this.user = plainToClass(UserModel, res);
+      this._checkUserState();
+    });
   }
 
   toggleMenu() {
