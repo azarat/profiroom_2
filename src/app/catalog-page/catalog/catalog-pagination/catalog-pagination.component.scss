@@ -20,17 +20,20 @@
     align-items: center;
     justify-content: center;
 
-    width: 28px;
+    width: auto;
     height: 28px;
+    min-width: 28px;
     margin: 0 4px;
-    border-radius: 2.85px;
+    border-radius: 6px;
+    overflow: hidden;
 
     font-weight: 600;
     font-size: 18px;
     line-height: 28px;
-    font-family: Source Sans Pro;
+    font-family: 'Source Sans Pro', sans-serif;
     color: #AAB2C0;
     cursor: pointer;
+
     a{
       text-decoration: none;
       color: #AAB2C0;
@@ -38,10 +41,14 @@
       width: 100%;
       height: 100%;
       text-align: center;
+      border: none;
+      line-height: 26px;
+      padding: 0 12px;
     }
     &:hover{
       background: #0077FF;
       a{
+        background-color: transparent;
         color: #FFFFFF;
       }
     }
@@ -61,12 +68,16 @@
     a{
       color: #FFFFFF;
       position: relative;
+      background: transparent;
     }
     img{
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
+    }
+    &:hover{
+      // background-color: transparent;
     }
   }
   .next-item img {
