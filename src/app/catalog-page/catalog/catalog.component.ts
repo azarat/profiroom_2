@@ -23,7 +23,7 @@ export class CatalogComponent implements OnInit {
   public currentQueryParams;
   public pagesArr = [];
 
-  offersList: OffersListInterface;
+  offersList: OffersListInterface | any;
 
   catalogSubscription: Subscription;
 
@@ -72,6 +72,7 @@ export class CatalogComponent implements OnInit {
         this.pagesToShow();
       }
     });
+    this.subscribeOffers();
   }
 
   pagesToShow() {
@@ -85,6 +86,16 @@ export class CatalogComponent implements OnInit {
     for (let i = a - 1; i < b; i++ ) {
       this.pagesArr.push(i);
     }
+  }
+
+  private subscribeOffers() {
+    this.GetOffersService.offersList.subscribe(data => {
+      this.offersList = data;
+    });
+  }
+
+  public getedOffers(arr: any) {
+    this.offersList = this.offersList.concat(arr);
   }
 }
 
