@@ -11,6 +11,8 @@ import { SocketService } from '../core/services/socket.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserStateService } from './services/user-state.service';
 import { LocalizeRouterService } from 'localize-router';
+import { BehaviorSubject } from 'rxjs';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -29,6 +31,8 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
   public newWorkMessage: boolean = null;
   public sideMenuClose = true;
 
+
+
   constructor(
     private authService: AuthentificationService,
     private userService: UserService,
@@ -45,6 +49,7 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.notifyShow();
     this.defineCurrentUser();
+    this.subscribeUserMinData();
     this.socetService.connect();
     this.checkNotifications();
   }
@@ -55,7 +60,13 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
 
   private defineCurrentUser() {
     this.userService.getMinUserData()
-      .subscribe((res: any) => {
+
+  }
+
+  private subscribeUserMinData() {
+    this.userService.user$
+    .pipe(filter((res) => !!res))     
+     .subscribe((res: any) => {
         this.user = plainToClass(UserModel, res);
         this.userStatseService.setUserState(this.user.role_id);
         this.authService.saveUserId(this.user.id);
@@ -63,6 +74,7 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
         this.userStatseService.setUserState(this.user.role_id);
         this.redirectToFinancesIfCustomer();
       });
+
   }
 
   userExit = () => {

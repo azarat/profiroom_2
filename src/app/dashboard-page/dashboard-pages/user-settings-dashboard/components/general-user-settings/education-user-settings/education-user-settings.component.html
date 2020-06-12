@@ -19,10 +19,10 @@
               name="institution-{{i}}"
               placeholder="{{'user-settings.institution-name' | translate}}"
               [(ngModel)]="userSettings.education[i].institution"
-              [ngClass] = "{not_Valid: !institution.valid}"
+              [ngClass] = "{'not_Valid': !institution.valid && formSubmitted}"
             >
 
-            <div *ngIf="!institution.valid" class="alert-danger">
+            <div *ngIf="!institution.valid && formSubmitted" class="alert-danger">
               <p>{{'user-settings.alert-min-length3' | translate}}</p>
             </div>
 
@@ -51,10 +51,10 @@
                   name="specialty-{{i}}"
                   placeholder="{{'user-settings.specialty' | translate}}"
                   [(ngModel)]="userSettings.education[i].specialty"
-                  [ngClass] = "{not_Valid: !specialty.valid}"
+                  [ngClass] = "{not_Valid: !specialty.valid && formSubmitted}"
 
                   >
-                  <div *ngIf="!specialty.valid" class="alert-danger">
+                  <div *ngIf="!specialty.valid && formSubmitted" class="alert-danger">
                     <p>{{'user-settings.alert-min-length3' | translate}}</p>
                   </div>
               </div>

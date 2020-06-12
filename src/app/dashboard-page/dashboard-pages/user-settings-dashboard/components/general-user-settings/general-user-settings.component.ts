@@ -6,6 +6,7 @@ import { UserSettingsModel } from 'src/app/models/user-settings.model';
 import { filter } from 'rxjs/operators';
 import { timer } from 'rxjs';
 import cloneDeep from 'lodash/clonedeep';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-general-user-settings',
@@ -18,14 +19,20 @@ export class GeneralUserSettingsComponent implements OnInit {
   public mainSettingsFrom: FormGroup;
   public succesRessult = false;
   public popUpStatus = false;
+  public submitted: boolean = null;
 
   constructor(
     private userSettingsService: UserSettingsService,
+    private userService: UserService
   ) { }
 
   ngOnInit( ) { }
 
   updateSettings() {
+    this.submitted = true;
+     if(this.userSettingsModel.language.length == 1 && (this.userSettingsModel.language[0].langName === null )) {
+      this.userSettingsModel.language = [];
+     }
     this.userSettingsService.updateService(this.userSettingsModel)
     .pipe(filter((res: any) => !!res))
     .subscribe(
@@ -33,6 +40,7 @@ export class GeneralUserSettingsComponent implements OnInit {
         // location.reload();
         this.userSettingsService.onloadUserModelCopy$.next(cloneDeep(this.userSettingsModel));
         this.succesRessult = true;
+        this.userService.getMinUserData();
         this.togglePopUp();
       }
     );

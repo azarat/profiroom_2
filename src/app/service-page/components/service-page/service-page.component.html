@@ -84,7 +84,7 @@
 
       <div class="choose-packet">
         <div class="running-block">
-          <app-service-page-packages [offerData]="offerData" [offerId]="offerId" *ngIf="offerData" (checkoutState)="openCheckout($event)" (scrollToThis)="scrollTo($event)">
+          <app-service-page-packages [offerData]="offerData" [offerId]="offerId" *ngIf="offerData && offerData.user_id !== loginedUserId.id" (checkoutState)="openCheckout($event)" (scrollToThis)="scrollTo($event)">
           </app-service-page-packages>
         </div>
       </div>

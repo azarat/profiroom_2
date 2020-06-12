@@ -35,6 +35,7 @@ import { OutsideTolltiDirective } from './directives/outside-tooltip.directive';
 import { CustomFormsModule } from 'ng2-validation'
 import { DragDropModule } from 'src/app/shared/directives/drag-drop/drag-drop.module';
 import { TranslateModule } from '@ngx-translate/core';
+import { OutsideTolltipHoverDirective } from './directives/outside-tooltip.-hover.directive';
 
 const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
 
@@ -63,7 +64,8 @@ const servicesRoutes: Routes = [
     FifthStepCreationComponent,
     LastStepCreationComponent,
     TooltipDirective,
-    OutsideTolltiDirective
+    OutsideTolltiDirective,
+    OutsideTolltipHoverDirective
   ],
   imports: [
 

@@ -7,7 +7,7 @@ import { UserModel } from 'src/app/models/user.model';
 
 export class UserService {
   private user = new BehaviorSubject(null);
-  public user$: Observable<UserModel>;
+  public user$: Observable<UserModel> = this.user.asObservable();
 
     constructor(
         private http: HttpClient,
@@ -23,6 +23,9 @@ export class UserService {
     }
 
     public getMinUserData() {
-      return this.http.get('/getUserMinInfo');
+      this.http.get('/getUserMinInfo')
+      .subscribe((res: any) => {
+        this.user.next(res);
+      })
     }
 }

@@ -23,7 +23,9 @@ export class LocationLanguageUserSettingsComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.createLAngFieldsIfAMpty();
+  }
 
   deleteMainOption(index: number) {
     this.userSettings.removeLanguage(index);
@@ -35,5 +37,15 @@ export class LocationLanguageUserSettingsComponent implements OnInit {
         langLevel: 1
       }
     );
+  }
+  private createLAngFieldsIfAMpty() {
+    if(this.userSettings.language.length === 0 ) {
+      let lang = {
+        langName: null,
+        langLevel: 1
+      }
+      this.userSettings.language.push(lang)
+    
+    }
   }
 }
