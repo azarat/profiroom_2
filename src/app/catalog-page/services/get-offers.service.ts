@@ -42,10 +42,10 @@ export class GetOffersService {
 
   getOffers(filters: CatalogFiltersModel | any) {
     this._offersList.next(null);
-
     this.http.post('/catalog', filters).subscribe((res: CatalogFiltersModel) => {
       this._offersList.next(res);
     });
+    this.filters.next(filters);
   }
 
   // tslint:disable-next-line: variable-name

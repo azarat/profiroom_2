@@ -34,4 +34,4 @@
   </ul>
 
 </div>
-<button class="load-more" (click) = 'loadMore()'> Догрузить еще 12 </button>
+<button class="load-more" (click)='loadMore()' *ngIf="offersList && offersList.total > 12"> Догрузить еще 12 </button>

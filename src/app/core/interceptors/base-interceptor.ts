@@ -35,7 +35,7 @@ export class BaseInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable < HttpEvent < any >> {
     // http://194.28.103.239/
-    // const url = 'http://dev.thecubetest.site/Backend/api';
+    const url = 'http://dev.thecubetest.site/Backend/api';
 
     // const url = 'http://test.thecubetest.site/Backend/api';
 

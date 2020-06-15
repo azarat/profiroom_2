@@ -5,12 +5,12 @@
     <ul *ngIf="catalogFilters.subCategory && offersList">
       <li><a [routerLink]="['/'] | localize">Главная</a></li>
       <li><a [routerLink]="['/' + 'catalog/' + category] | localize">{{ category }}</a></li>
-      <li><a>{{ offersList.name }}</a></li>
+      <li><a>{{ offersList['name_' + currentLang] }}</a></li>
 
     </ul>
           <!-- <li><a [routerLink]="['/catalog', subcategoriesList.link] | localize">{{ subcategory }}</a></li> -->
   </div>
-  <h2 class="section-title" *ngIf="offersList">{{ offersList.name }}</h2>
+  <h2 class="section-title" *ngIf="offersList">{{ offersList['name_' + currentLang] }}</h2>
   <app-filter [catalogFilters]="catalogFilters"></app-filter>
   <app-items [offersList]="offersList"></app-items>
   <app-catalog-pagination [catalogFilters]="catalogFilters" (uploadedOfers)="getedOffers($event)"></app-catalog-pagination>

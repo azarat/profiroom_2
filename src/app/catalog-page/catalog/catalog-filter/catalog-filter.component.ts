@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit } from '@angular/core';
 import { CatalogFiltersModel } from 'src/app/models/catalog-filter/filter.model';
 
 import { GetOffersService } from '../../services/get-offers.service';
+import { WindowScrollBlockService } from 'src/app/core/services/window-scrolling.service';
 
 @Component({
   selector: 'app-filter',
@@ -25,13 +26,17 @@ export class FilterComponent implements OnInit {
     LangBr: 'Беларусский',
   };
 
+  private windowScrolling: WindowScrollBlockService;
   @Input() catalogFilters: CatalogFiltersModel;
   // public catalogFilters: CatalogFiltersModel;
 
   constructor(
     // tslint:disable-next-line: variable-name
     public _getOffersService: GetOffersService,
-  ) {}
+    private _windowScrollBlockService: WindowScrollBlockService,
+  ) {
+    this.windowScrolling = _windowScrollBlockService;
+  }
 
   ngOnInit() {
   }
@@ -84,5 +89,6 @@ export class FilterComponent implements OnInit {
 
   public toggleMobFilters() {
     this.showMobilesFilters = !this.showMobilesFilters;
+    this.showMobilesFilters ? this.windowScrolling.disable() : this.windowScrolling.enable();
   }
 }
