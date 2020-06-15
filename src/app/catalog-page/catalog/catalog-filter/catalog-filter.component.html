@@ -1,4 +1,12 @@
 <div class="wrapper">
+
+  <div class="show-filters" (click)='toggleMobFilters()'>
+    <div class="show-filters_img-wrapper">
+      <img src="/assets/images/icons/show-filters.svg" alt="">
+    </div>
+    <span>ФИЛЬТР</span>
+  </div>
+
   <form class="filters-list">
 
     <!-- <div class="filter f-required">
@@ -38,7 +46,6 @@
               (ngModelChange)="onFilterChange()" type="text" name="maxPrice" #typeMaxPrice="ngModel">
           </div>
         </div>
-
       </div>
     </div>
 
@@ -86,7 +93,7 @@
       </div>
     </div>
 
-    <div class="filter f-optional">
+    <!-- <div class="filter f-optional">
       <div class="filter-title" (click)="showFullFilter(4)">
         <p>фильтра поиска</p>
         <div class="filter-title-arrow" [ngClass]="{open: fliterOpen === 4}"></div>
@@ -142,7 +149,7 @@
           <div class="f-btn" (click)="showFullFilter(null)">Закрыть</div>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <div class="filter-switch f-required">
       <div class="pckg-swap ">
@@ -156,11 +163,88 @@
 
     </div>
 
+    <div class="mobile-filters-block" [ngClass]="{open: showMobilesFilters}">
+
+      <div class="mobile-filters-block_wrapper">
+        <div class="mobile-filters-top">
+          <div class="go-back" (click)='toggleMobFilters()'>ФИЛЬТР</div>
+        </div>
+
+        <div class="mob-filter">
+          <div class="mob-filter-title" (click)="showFullFilter(1)">
+            <p>Бюджет</p>
+          </div>
+          <div class="mob-filter-values-wrapper prices">
+            <div class="mob-filter-section">
+              <label class="mob-filter-text" for="price-mn">От</label>
+              <input class="inputs" matInput number placeholder="UAH" [(ngModel)]="catalogFilters.minPrice"
+                (ngModelChange)="onFilterChange()" type="text" name="minPrice" #typeMinPrice="ngModel">
+            </div>
+            <div class="mob-filter-section">
+              <label class="mob-filter-text" for="price-mx">До</label>
+              <input class="inputs" matInput number placeholder="UAH" [(ngModel)]="catalogFilters.maxPrice"
+                (ngModelChange)="onFilterChange()" type="text" name="maxPrice" #typeMaxPrice="ngModel">
+            </div>
+          </div>
+        </div>
+
+        <div class="mob-filter">
+          <div class="mob-filter-title" (click)="showFullFilter(1)">
+            <p>Срок выполнения</p>
+          </div>
+          <div class="mob-filter-values-wrapper">
+            <mat-radio-group class="filter-values-wrapper f-radio" [(ngModel)]="catalogFilters.maxTerm"
+              (ngModelChange)="onFilterChange()" name='maxTerm' #maxTerm="ngModel">
+              <div class="mob-filter-values">
+                <mat-radio-button class="filter-text" value="">None</mat-radio-button>
+              </div>
+              <div class="mob-filter-values">
+                <mat-radio-button class="filter-text" value="1">Экспресс за 24 часа</mat-radio-button>
+              </div>
+              <div class="mob-filter-values">
+                <mat-radio-button class="filter-text" value="3">До 3 дней</mat-radio-button>
+              </div>
+              <div class="mob-filter-values">
+                <mat-radio-button class="filter-text" value="7">До 7 дней</mat-radio-button>
+              </div>
+              <div class="mob-filter-values">
+                <mat-radio-button class="filter-text" value="30">До месяца</mat-radio-button>
+              </div>
+              <div class="mob-filter-values">
+                <mat-radio-button class="filter-text" value="99">Любое время</mat-radio-button>
+              </div>
+            </mat-radio-group>
+          </div>
+        </div>
+
+        <div class="mob-filter">
+          <div class="mob-filter-title" (click)="showFullFilter(1)">
+            <p>Сервис включает</p>
+          </div>
+          <section class="mob-filter-values-wrapper f-checkboxs">
+            <div class="mob-filter-values">
+              <mat-checkbox class="mob-filter-text" [(ngModel)]="catalogFilters.commercial" (ngModelChange)="onFilterChange()"
+              name='commercial' #commercial="ngModel">Коммерческое использование</mat-checkbox>
+            </div>
+            <div class="mob-filter-values">
+              <mat-checkbox class="mob-filter-text" [(ngModel)]="catalogFilters.confidentiality"
+              (ngModelChange)="onFilterChange()" name='confidentiality' #confidentiality="ngModel">Конфиденциальность</mat-checkbox>
+            </div>
+            <div class="mob-filter-values">
+              <mat-checkbox class="mob-filter-text" [(ngModel)]="catalogFilters.agreement" (ngModelChange)="onFilterChange()"
+              name='agreement' #agreement="ngModel">Контракты и соглашения</mat-checkbox>
+            </div>
+          </section>
+        </div>
+      </div>
+
+    </div>
+
   </form>
 
-  <div class="filter-chips" *ngIf="catalogFilters">
+  <!-- <div class="filter-chips" *ngIf="catalogFilters">
     <div class="filter-chips-list">
-      <!-- <ng-container *ngFor='let filter of catalogFilters | keyvalue'>
+      <ng-container *ngFor='let filter of catalogFilters | keyvalue'>
         <div class="filter-chips-val" *ngIf="
                           filter.value !== undefined &&
                           filter.value !== false &&
@@ -187,9 +271,9 @@
 
           </button>
         </div>
-      </ng-container> -->
+      </ng-container>
     </div>
 
-  </div>
+  </div> -->
 
 </div>

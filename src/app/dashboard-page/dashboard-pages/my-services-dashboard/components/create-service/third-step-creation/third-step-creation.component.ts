@@ -26,7 +26,7 @@ export class ThirdStepCreationComponent implements OnInit {
   priceControladvancedPrice: FormControl;
   priceControlpremiumPrice: FormControl;
 
-  priceForm: FormGroup
+  priceForm: FormGroup;
   constructor(
     private userOffersService: UserOffersService,
     private localize: LocalizeRouterService,

@@ -12,6 +12,7 @@ export class FilterComponent implements OnInit {
 
   // private catalogFilters: CatalogFiltersModel
   public fliterOpen = null;
+  public showMobilesFilters = false;
   public filterTranslations = {
     online: 'Онлайн',
     PSD: 'PSD',
@@ -37,8 +38,10 @@ export class FilterComponent implements OnInit {
 
 
   onFilterChange() {
-    console.log(this.catalogFilters);
-    this._getOffersService.setFilters(this.catalogFilters);
+    setTimeout(() => {
+      console.log(this.catalogFilters);
+      this._getOffersService.setFilters(this.catalogFilters);
+    }, 1000);
   }
 
   clearTerms() {
@@ -73,7 +76,10 @@ export class FilterComponent implements OnInit {
         }
       }
     });
-    // this._getOffersService.setFilters(this.catalogFilters);
+    this._getOffersService.setFilters(this.catalogFilters);
   }
 
+  public toggleMobFilters() {
+    this.showMobilesFilters = !this.showMobilesFilters;
+  }
 }
