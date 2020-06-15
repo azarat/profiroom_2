@@ -45,7 +45,6 @@ export class CatalogHomePageComponent implements OnInit, OnDestroy {
 
   public showSubCattegorys(index) {
     this.openedList = index;
-    console.log(this.openedList)
   }
 
   ngOnDestroy(): void {}

@@ -27,7 +27,7 @@ export class UserPageComponent implements OnDestroy, OnInit  {
   openModalWindow: boolean = false;
   imagePointer: number;
 
-  public clickedImgsArr = null;   //індекс масиву серед ынших картинок 
+  public clickedImgsArr = null;   //індекс масиву серед ынших картинок
   public clickedImg = null;       //індекс картинки в масиві до одного навчання
   public imgTypeEducation = null;      //картина відноситься до "вищої освіти" чи да "додаткової освіти"
   public userTypeFreelancer = 1;
@@ -165,7 +165,7 @@ export class UserPageComponent implements OnDestroy, OnInit  {
   public showPopUp(i, thisArrNumber, kindOfImgs) {
     this.windowScrolling.disable();
     this.clickedImgsArr = this.clickedImgsArr !== thisArrNumber? thisArrNumber: false;
-    if(this.clickedImg !== i) {
+    if (this.clickedImg !== i) {
       this.clickedImg = i;
       this.windowScrolling.disable();
     } else {
