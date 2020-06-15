@@ -33,7 +33,7 @@ export class HomeUserSettingsComponent implements OnInit, ComponentCanDeactivate
     // returning true will navigate without confirmation
     // returning false will show a confirm alert before navigating away
 
-    if(isEqual(this.onloadUserModelCopy, this.userSettingsModel)) {
+    if (isEqual(this.onloadUserModelCopy, this.userSettingsModel)) {
       return true
     }
     return false

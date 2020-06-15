@@ -309,9 +309,12 @@
       top: 0;
 
       border: 1px solid #323C47;
-      padding: 13px 73px;
+      padding: 13px 0;
       border-radius: 8px;
-      margin-top: 30px;
+      margin-top: 20px;
+      max-width: 200px;
+      width: 100%;
+      text-align: center;
     }
 
   }
@@ -717,12 +720,8 @@
 }
 
 @media (max-width: 767px) {
-  p.text{
-    margin: 0;
-  }
-
   .auth-pg{
-    min-height: 700px;
+    min-height: 640px;
     .slides-wrapper{
       width: 100%;
       display: flex;
@@ -769,6 +768,7 @@
       }
       label{
         white-space: normal;
+        font-size: 12px;
       }
     }
     .mat-form-field-infix{
@@ -821,35 +821,35 @@
       left: calc(100% - 40px);
       opacity: 0;
     }
-}
-@-webkit-keyframes back {
-  0% {
-      -webkit-transform: rotate(0deg);
-      left: 0;
   }
-  25% { /* note that rotation from 0 to 20 deg happens in 25% time = 0.45 seconds. */
-      -webkit-transform: rotate(180deg);
+  @-webkit-keyframes back {
+    0% {
+        -webkit-transform: rotate(0deg);
+        left: 0;
+    }
+    25% { /* note that rotation from 0 to 20 deg happens in 25% time = 0.45 seconds. */
+        -webkit-transform: rotate(180deg);
+    }
+    50% {
+      -webkit-transform: rotate(360deg);
+    }
+    75% {
+        -webkit-transform: rotate(540deg);
+    }
+    100% {
+      -webkit-transform: rotate(720deg);
+      left: calc(100% - 40px);
+      opacity: 0;
+    }
   }
-  50% {
-    -webkit-transform: rotate(360deg);
-  }
-  75% {
-      -webkit-transform: rotate(540deg);
-  }
-  100% {
-    -webkit-transform: rotate(720deg);
-    left: calc(100% - 40px);
-    opacity: 0;
-  }
-}
 
-@keyframes textAnimation {
-  from {
-    width: 100px;
+  @keyframes textAnimation {
+    from {
+      width: 100px;
+    }
+    to {
+      width: 0;
+    }
   }
-  to {
-    width: 0;
-  }
-}
 
 }

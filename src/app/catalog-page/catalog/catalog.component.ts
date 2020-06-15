@@ -9,6 +9,9 @@ import { OffersListInterface } from 'src/app/shared/interfaces/offers-list.inter
 import { plainToClass } from 'class-transformer';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
+import { SiteLocaleService } from 'src/app/core/services/site-locale.service';
+import { filter } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-catalog',
@@ -22,8 +25,8 @@ export class CatalogComponent implements OnInit {
 
   public currentQueryParams;
   public pagesArr = [];
-
-  offersList: OffersListInterface | any;
+  public currentLang: string = null;
+  public offersList: OffersListInterface | any;
 
   catalogSubscription: Subscription;
 
@@ -36,6 +39,7 @@ export class CatalogComponent implements OnInit {
     private _route: ActivatedRoute,
     private router: Router,
     private titleService: Title,
+    private siteLocalService: SiteLocaleService
   ) {
 
     this._route.params.subscribe(Params => {
@@ -59,11 +63,10 @@ export class CatalogComponent implements OnInit {
         this.GetOffersService.getOffers(this.catalogFilters);
       }
     });
-
   }
 
   ngOnInit() {
-
+    this.subscribeLang();
     this.titleService.setTitle('Каталог');
 
     this.GetOffersService.offersList.subscribe(data => {
@@ -71,8 +74,10 @@ export class CatalogComponent implements OnInit {
       if (this.offersList) {
         this.pagesToShow();
       }
+      console.log(this.offersList);
     });
     this.subscribeOffers();
+
   }
 
   pagesToShow() {
@@ -95,7 +100,19 @@ export class CatalogComponent implements OnInit {
   }
 
   public getedOffers(arr: any) {
-    this.offersList = this.offersList.concat(arr);
+    console.log(this.offersList.data);
+    console.log(arr.data);
+    this.offersList.data = this.offersList.data.concat(arr.data);
+  }
+
+
+  private subscribeLang() {
+    this.siteLocalService.currentLang$
+    .pipe(filter((res: any) => !!res))
+    .subscribe((res: any) => {
+      this.currentLang = res;
+    });
+    console.log(this.currentLang)
   }
 }
 
