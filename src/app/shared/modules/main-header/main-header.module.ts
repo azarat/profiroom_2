@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { LanguageModule } from '../language/language.module';
 import { UserHeaderMenuModule } from '../user-header-menu/user-header-menu.module';
+import { SystemMessagesModule } from '../system-messages/system-messages.module';
 
 
 
@@ -22,7 +23,8 @@ import { UserHeaderMenuModule } from '../user-header-menu/user-header-menu.modul
     LocalizeRouterModule,
     TranslateModule,
     LanguageModule,
-    UserHeaderMenuModule
+    UserHeaderMenuModule,
+    SystemMessagesModule
   ]
 })
 export class MainHeaderModule { }

@@ -42,7 +42,7 @@ export class AppComponent implements OnInit {
     console.log(url);
     if (userLang == null) {
       // LOCALIZE_DEFAULT_LANGUAGE
-      console.log('ss');
+      
       // this.localStorageService.setItem('LOCALIZE_DEFAULT_LANGUAGE', 'uk');
       // const path: string = this.localize.translateRoute(url).toString();
       // this.router.navigateByUrl(path);

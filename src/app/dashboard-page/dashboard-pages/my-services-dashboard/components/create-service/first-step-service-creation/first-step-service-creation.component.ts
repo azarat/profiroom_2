@@ -20,7 +20,7 @@ import { SiteLocaleService } from 'src/app/core/services/site-locale.service';
   styleUrls: ['./first-step-service-creation.component.scss']
 })
 
-export class FirstStepServiceCreationComponent implements OnInit {
+export class FirstStepServiceCreationComponent implements OnInit{
   public categoryList: CategoryInterface[] = [];
   public firstStepForm: FormGroup;
   public categories = [];
@@ -39,7 +39,6 @@ export class FirstStepServiceCreationComponent implements OnInit {
 
   titlePosition: string;
   public currentLang: string = null;
-
 
 
 
@@ -85,7 +84,8 @@ export class FirstStepServiceCreationComponent implements OnInit {
     this.subscribeLang();
   }
   // tslint:disable-next-line: use-lifecycle-interface
-  ngOnDestroy() { }
+  ngOnDestroy() {
+   }
 
   private subscribeLang() {
     this.siteLocaleService.currentLang$

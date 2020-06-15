@@ -77,6 +77,14 @@ export class FifthStepCreationComponent implements OnInit {
         {
           answerVariant: null
         }];
+    } else if(this.userService.offerbrief[i].briefAnswerType === 'radio' && !this.userService.offerbrief[i].briefAnswerVariants) {
+      this.userService.offerbrief[i].briefAnswerVariants = [
+        {
+          answerVariant: null
+        },
+        {
+          answerVariant: null
+        }];
     } else if (this.userService.offerbrief[i].briefAnswerVariants.length === 0) {
       this.userService.offerbrief[i].briefAnswerVariants.push(
         {
@@ -86,7 +94,7 @@ export class FifthStepCreationComponent implements OnInit {
           answerVariant: null
         }
       );
-    }
+    } 
   }
 
   addBriefAnswers(i: number) {

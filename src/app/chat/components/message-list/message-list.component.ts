@@ -44,6 +44,8 @@ export class MessageListComponent implements OnInit, AfterViewChecked, AfterView
     // this.typingEventListener();
     // console.log(this.messagesList);
     // console.log(this.collocutorData);
+    this.typingEventListener();
+
   }
   ngAfterViewInit(): void {
     // this._checkOnUnreadedMessages();
@@ -53,6 +55,7 @@ export class MessageListComponent implements OnInit, AfterViewChecked, AfterView
     this.messageScrollService.scrollToBottom(this.messagesWrap);
 
   }
+
 
   public onScroll(event) {
 
@@ -119,4 +122,20 @@ export class MessageListComponent implements OnInit, AfterViewChecked, AfterView
   //     this.messageScrollerService.disableAutoScroll();
   //   }
   // }
+
+  private typingEventListener() {
+    this.socketService.onTypingListener()
+      .subscribe((res: any) => {
+        this.typingUser = res;
+        this.typing = true;
+      });
+    this.typingStoppedEventListener();
+  }
+  private typingStoppedEventListener() {
+    this.socketService.onStopTypingListener()
+      .subscribe((res: any) => {
+        this.typingUser = res;
+        this.typing = null;
+      });
+  }
 }

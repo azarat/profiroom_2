@@ -239,6 +239,7 @@
 	"dashboard.create-service.third-step.description-block.subtitle": "Розширте свої можливості",
 	"dashboard.create-service.third-step.description-block.title": "Оформіть послуги в трьох цінових варіантах",
 	"dashboard.create-service.third-step.extra-form.add-option": "Додати опцію",
+	"dashboard.create-service.third-step.extra-form.remove-option": "видалити опцію",
 	"dashboard.create-service.third-step.extra-form.commercial": "Комерційне використання",
 	"dashboard.create-service.third-step.extra-form.days": "дня",
 	"dashboard.create-service.third-step.extra-form.extra-changes": "Додаткові зміни",

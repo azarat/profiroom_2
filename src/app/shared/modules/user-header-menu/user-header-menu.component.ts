@@ -5,6 +5,7 @@ import { plainToClass } from 'class-transformer';
 import { AuthentificationService } from 'src/app/core/services/auth.service';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 import { filter } from 'rxjs/operators';
+import { SocketService } from 'src/app/core/services/socket.service';
 
 @Component({
   selector: 'app-user-header-menu',
@@ -23,7 +24,8 @@ export class UserHeaderMenuComponent implements OnInit {
   constructor(
     private userService: UserService,
     private authService: AuthentificationService,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private socketService: SocketService
   ) { }
 
   ngOnInit() {
@@ -37,6 +39,7 @@ export class UserHeaderMenuComponent implements OnInit {
     .pipe(filter((res: any) => !!res))
     .subscribe((res: any) => {
       this.user = plainToClass(UserModel, res);
+      this.socketService.connect();
       this._checkUserState();
     });
   }

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MassageListComponent } from './message-list.component';
+import { MessageListComponent } from './message-list.component';
 
 describe('MessageListComponent', () => {
-  let component: MassageListComponent;
-  let fixture: ComponentFixture<MassageListComponent>;
+  let component: MessageListComponent;
+  let fixture: ComponentFixture<MessageListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MassageListComponent ]
+      declarations: [ MessageListComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MassageListComponent);
+    fixture = TestBed.createComponent(MessageListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
