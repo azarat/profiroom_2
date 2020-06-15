@@ -8,16 +8,22 @@
   border-radius: 5px;
 }
 .main-statistic {
+
+  button{
+    display: none;
+  }
+  padding: 18px 16px 18px;
+}
+.main-statistic .main-statistic-carousel{
   display: flex;
   justify-content: space-between;
-  padding: 22px 22px 18px 15px;
   box-sizing: border-box;
   width: 100%;
   &>* {
     font-family: Source Sans Pro, sans-serif;
   }
 
-  &>div {
+  .main-statistic-item,  .slick-track .slick-slide {
     box-sizing: border-box;
     padding: 18px 30px 18px;
     background: #FFFFFF;
@@ -26,6 +32,7 @@
     display: flex;
     width: calc(20% - 10px);
     align-items: center;
+    outline: none;
     .icon {
       width: 30px;
       height: 30px;
@@ -764,5 +771,90 @@
   }
   .ets {
     margin-top: 30px;
+  }
+  .main-statistic{
+    display: block;
+    width: 100%;
+    padding: 22px 32px 18px 32px;
+    position: relative;
+    button{
+      background-color: transparent;
+      border: none;
+      width: 14px;
+      height: 14px;
+      outline: none;
+      position: absolute;
+
+      top: 45%;
+      transform: translateY(-50%);
+      &:after{
+        position: absolute;
+        content: "";
+        min-width: 14px;
+        min-height: 14px;
+        border-bottom: 2px solid #4285F4;
+        border-right: 2px solid #4285F4;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      &.btn-next{
+        left: 0px;
+        &:after{
+          transform: rotate(135deg) translate(-30%, -50%);
+        }
+      }
+      &.btn-prev{
+        right: 8px;
+        &:after{
+          transform: rotate(-45deg) translate(-20%, -80%);
+        }
+      }
+    }
+  }
+  .main-statistic .main-statistic-carousel{
+    .main-statistic-item,  .slick-track .slick-slide {
+      padding: 14px 13px 14px;
+      border-radius: 10px;
+      width: auto;
+      margin: 0 4px;
+      .icon {
+        width: 25px;
+        height: 25px;
+        margin-right: 15px;
+        img{
+          display: block;
+          object-fit: cover;
+          height: 100%;
+        }
+      }
+      .main-statistic-item_text{
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .main-statistic-item_description{
+        width: 100%;
+
+      }
+      p {
+        font-size: 14px;
+        &:last-of-type {
+          font-size: 14px;
+          line-height: 14px;
+          color: #33596E;
+          opacity: 0.5;
+          font-style: normal;
+          font-weight: normal;
+          margin-top: 0;
+        }
+      }
+      span{
+        display: inline-block;
+        padding-left: 6px;
+        line-height: 12px;
+        font-size: 14px;
+        padding-left: 6px;
+      }
+    }
   }
 }

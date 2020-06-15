@@ -1,14 +1,23 @@
 <div class="wrapper">
     <section class="main-statistic">
-        <div class="main-statistic-item" *ngFor="let el of statsicArr, let i = index">
+
+        <ngx-slick-carousel #slickModal="slick-carousel" [config]="slideConfig" class="main-statistic-carousel">
+
+          <div class="main-statistic-item" *ngFor="let el of statsicArr, let i = index">
             <div class="icon">
                 <img src="/assets/images/icons/finance/{{el.icon}}.png" alt="">
             </div>
-            <div>
+            <div class="main-statistic-item_text">
                 <p [ngClass]="{inline: el.icon === 'current'}">{{ user.purse[el.valueName] }}</p><span *ngIf="el.icon === 'current'">UAH</span>
-                <p>{{ el.name | translate }}</p>
+                <p class="main-statistic-item_description">{{ el.name | translate }}</p>
             </div>
-        </div>
+          </div>
+
+        </ngx-slick-carousel>
+
+        <button class="btn-next" (click)="next()"></button>
+        <button class="btn-prev" (click)="prev()"></button>
+
     </section>
     <section class="charst-statistic" *ngIf="this.user.role_id === 1">
         <div class="charts">

@@ -12,6 +12,7 @@ import { UsersCommentsModule } from 'src/app/shared/modules/users-comments/users
 import { FreelacerAchivesComponent } from './freelacer-achives/freelacer-achives.component';
 import { ThousandSeparatorModule } from 'src/app/shared/pipes/thousand-separator/thousand-separator.module';
 import { TranslateModule } from '@ngx-translate/core';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 
 
@@ -42,7 +43,7 @@ const dashboardPageRoutes: Routes = [
     ChartsModule,
     UsersCommentsModule,
     ThousandSeparatorModule,
-
+    SlickCarouselModule
   ],
   exports: [
   ]
