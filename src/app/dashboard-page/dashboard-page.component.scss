@@ -500,7 +500,7 @@
       line-height: 24px;
     }
     .menu {
-      padding: 25px;  
+      padding: 25px;
       a {
         width: 48%;
         height: 79px;
@@ -510,7 +510,7 @@
         }
         span {
           line-height: 18px;
-          font-size: 12px; 
+          font-size: 12px;
           letter-spacing: 0.6px;
           margin-bottom: 12px;
         }
@@ -530,7 +530,7 @@
             height: 7px;
           }
         }
-  
+
         &.projects.new-work-message:not(.active) {
           &:after {
             width: 7px;
@@ -576,7 +576,7 @@
         height: 100%;
         nav{
           a{
-            width: 100%; 
+            width: 100%;
             max-width: 51px;
             max-height: 51px;
             &::before{
@@ -602,7 +602,7 @@
             span{display: none;}
           }
         }
-      } 
+      }
       .avatar {
         min-height: 210px;
         height: 210px;
@@ -665,4 +665,8 @@
       z-index: -1;
     }
   }
+}
+
+@media (max-width: 1024px) {
+
 }

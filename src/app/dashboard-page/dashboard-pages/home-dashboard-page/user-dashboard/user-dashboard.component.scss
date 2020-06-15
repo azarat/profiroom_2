@@ -38,7 +38,7 @@
       font-size: 18px;
       line-height: 14px;
       color: #323C47;
-        
+
       &:last-of-type {
         font-size: 14px;
         line-height: 14px;
@@ -80,7 +80,7 @@
       letter-spacing: 0.15px;
       font-variant: small-caps;
       color: #323C47;
-      padding: 22px 20px; 
+      padding: 22px 20px;
       background: #F4F7FC;
       margin: 0;
       text-transform: uppercase;
@@ -240,7 +240,7 @@
         }
         &.compleated {
            span{
-          &:first-child  { 
+          &:first-child  {
             background: #4285F4;
           }
         }
@@ -310,7 +310,7 @@
       letter-spacing: 0.15px;
       font-variant: small-caps;
       color: #323C47;
-      padding: 22px 20px; 
+      padding: 22px 20px;
       background: #F4F7FC;
       margin: 0;
       text-transform: uppercase;
@@ -461,7 +461,7 @@
 }
 .achives {
   width: 100%;
-  
+
 }
 
 .switch {
@@ -558,7 +558,7 @@
       h5.title {
         font-size: 14px;
         line-height: 22px;
-        padding: 12px 20px; 
+        padding: 12px 20px;
       }
       .freelancer-status {
         min-width: 280px;
@@ -600,7 +600,7 @@
       }
       .btns_wrapper__laptop{
         display: flex;
-        justify-content: space-between; 
+        justify-content: space-between;
         background-color: transparent;
         position: absolute;
         top: 0;
@@ -682,7 +682,7 @@
           }
         }
       }
-  
+
     }
   }
   .comments{
@@ -695,5 +695,74 @@
     .notify{
       display: none;
     }
+  }
+}
+
+@media (max-width: 1024px) {
+  .charst-statistic{
+    .charts{
+      flex-wrap: wrap;
+      margin-bottom: 15px;
+      .freelancer-status{
+        max-width: none;
+        min-width: auto;
+        width: 40%;
+        height: auto;
+        .chart-body{
+          .chart{
+            position: fixed;
+            &.zero ::ng-deep{
+              .chartjs-render-monitor{
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+              }
+            }
+          }
+        }
+      }
+      .request-settings{
+        width: calc(60% - 30px);
+      }
+      .btns_wrapper__laptop{
+        display: none;
+      }
+      .pie-chart{
+        width: calc(50% - 15px);
+        max-width: none;
+        min-width: 280px;
+        margin-top: 16px;
+        margin-right: 0;
+        h5{
+          display: block;
+        }
+
+
+      }
+      .statistic{
+        margin-top: 17px;
+        min-width: auto;
+        width: calc(50% - 15px);
+        h5{
+          display: block;
+        }
+        .description{
+          h5, p{
+            font-size: 16px;
+            line-height: 20px;
+          }
+        }
+        .ets-items{
+          padding: 26px 50px 0;
+        }
+      }
+      .showLaptop{
+        display: block;
+      }
+    }
+
+  }
+  .ets {
+    margin-top: 30px;
   }
 }

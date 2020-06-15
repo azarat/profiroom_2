@@ -368,4 +368,101 @@
   }
 }
 
-// e906
+@media (max-width: 1024px) {
+  .wrapper {
+    margin-top: 17px;
+    padding-bottom: 26px;
+    h4 {
+      padding-top: 25px;
+      padding: 13px;
+    }
+    .main-status {
+      padding: 0 20px;
+
+      p {
+        margin-top: 14px;
+      }
+
+      .line-wrap {
+        height: 40px;
+        .dot {
+          width: 40px;
+          &:after {
+            background-size: 50%;
+          }
+        }
+
+        .line {
+          height: 5px;
+        }
+      }
+    }
+
+    .all-achive-types {
+      h6 {
+        margin: 60px auto 35px;
+      }
+
+      .skills-level {
+        flex-wrap: wrap;
+        .btns {
+          position: absolute;
+          width: 30px;
+          height: 30px;
+          background: #1565d8;
+          box-shadow: 0px 10px 20px rgba(80, 123, 252, 0.5);
+          border-radius: 50%;
+          top: 50%;
+          transform: translateY(-50%);
+          cursor: pointer;
+          z-index: 20;
+          &:before {
+            position: absolute;
+            content: "";
+            top: 50%;
+            left: 50%;
+            background-image: url(/assets/images/icons/white-chevron-right.png);
+            background-size: cover;
+            height: 13px;
+            width: 6px;
+            transform: translate(-50%, -50%);
+          }
+          &.next {
+            right: -15px;
+          }
+          &.prev {
+            left: -15px;
+            &:before {
+              transform: translate(-50%, -50%) rotate(180deg);
+            }
+          }
+        }
+      }
+      .skills-level-items {
+        flex-wrap: wrap;
+        &:not(.blocked) {
+          transform: translateX(-50.4%);
+
+        }
+      }
+
+      .skill {
+        padding: 28px 36px 38px;
+        margin-right: 0;
+        margin-bottom: 15px;
+        min-width: auto;
+        width: 100%;
+        .skill-title {
+          font-size: 18px;
+          line-height: 20px;
+          margin-bottom: 30px;
+          .icon {
+            width: 38px;
+            height: 38px;
+          }
+        }
+      }
+    }
+  }
+
+}
