@@ -54,7 +54,18 @@ export class UserDashboardComponent implements OnInit, AfterViewInit {
   public slideConfig = {
     slidesToShow: 3,
     slidesToScroll: 1,
-    'arrows': false
+    'arrows': false,
+    'responsive': [
+      {
+        'breakpoint': 767,
+        'settings': {
+        'slidesToShow': 1,
+        'centerMode': true,
+        'centerPadding': '60px',
+        'variableWidth': true
+        }
+      }
+    ]
   };
 
   ngOnInit() {
