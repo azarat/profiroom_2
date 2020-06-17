@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, Renderer2 } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, NgForm } from '@angular/forms';
 import { UserServiceModel } from 'src/app/models/user-services/user-service.model';
 
@@ -24,16 +24,20 @@ export class SecondStepCreationComponent implements OnInit {
   translatedPath: any = this.localize.translateRoute('/dashboard/my-services');
   public submitted: boolean = null;
   public editor;
+  private tooltip: HTMLElement;
+
   constructor(
     private userOffersService: UserOffersService,
     private router: Router,
     private localize: LocalizeRouterService,
+    private renderer: Renderer2
   ) { }
 
   @Input() userService: UserServiceModel;
   @Output() public setCurrentStep = new EventEmitter();
 
-  ngOnInit() { }
+  ngOnInit() {
+   }
 
   onEditorCreated = ( event: any ) => {
 

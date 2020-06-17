@@ -43,10 +43,13 @@ export class FilterComponent implements OnInit {
 
 
   onFilterChange() {
+
     setTimeout(() => {
-      console.log(this.catalogFilters);
+      if(Number(this.catalogFilters.minPrice) > Number(this.catalogFilters.maxPrice)) {
+        this.catalogFilters.maxPrice = null;
+      }
       this._getOffersService.setFilters(this.catalogFilters);
-    }, 1000);
+    }, 2000);
   }
 
   clearTerms() {

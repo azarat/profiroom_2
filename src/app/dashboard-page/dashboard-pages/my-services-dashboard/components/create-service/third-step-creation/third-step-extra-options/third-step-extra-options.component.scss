@@ -30,3 +30,16 @@
     width: 100%;
   }
 }
+.material-icons {
+  font-size: 18px;
+}
+button.hide-option{
+  display: flex;
+  align-items: center;
+  span {
+    font-size: 12px;
+    line-height: 20px;
+    font-weight: 500;
+    margin-left: 10px;
+  }
+}

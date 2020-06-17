@@ -31,6 +31,8 @@ export class CatalogFiltersModel  {
   @Expose() LangUkr?: boolean;
   @Expose() LangRus?: boolean;
   @Expose() LangBr?: boolean;
+  @Expose() extraTerms?: boolean;
+  @Expose() extraChanges?: boolean;
 
   // @Expose() online: boolean;
   // @Expose() filterBy: string;

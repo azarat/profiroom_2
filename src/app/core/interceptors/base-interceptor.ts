@@ -19,13 +19,15 @@ import {
   AuthentificationService
 } from '../services/auth.service';
 import { LocalStorageService } from '../services/local-storage.service';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class BaseInterceptor implements HttpInterceptor {
 
   constructor(
     private authService: AuthentificationService,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private router: Router
   ) {}
 
   intercept(
@@ -36,6 +38,17 @@ export class BaseInterceptor implements HttpInterceptor {
     const url = 'http://dev.thecubetest.site/Backend/api';
 
     // const url = 'http://test.thecubetest.site/Backend/api';
+
+    let url;
+     if(location.origin === 'http://localhost:4200') {
+      url = 'http://test.thecubetest.site/Backend/api'
+
+      // url = 'http://dev.thecubetest.site/Backend/api';
+    } else {
+      url =  location.origin + '/Backend/api'
+    };
+
+
     const token = this.localStorageService.getItem('token').value;
     if (req.url.indexOf('http' || 'https') !== 0) {
       req = req.clone({

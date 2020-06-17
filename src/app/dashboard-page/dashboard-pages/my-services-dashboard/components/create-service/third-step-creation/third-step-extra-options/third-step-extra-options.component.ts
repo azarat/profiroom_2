@@ -37,7 +37,14 @@ export class ThirdStepExtraOptionsComponent implements OnInit {
       });
       if (this.userService.extra_features.length > 1) {
         this.expandedOption = this.userService.extra_features.length;
+      } else {
+        this.expandedOption = this.userService.extra_features.length;
       }
+    }
+
+    public hideExtraOption(id) {
+      this.userService.removeExtraOption(id);
+      this.expandedOption = null;
     }
 
     deleteExtraOption(index: number) {

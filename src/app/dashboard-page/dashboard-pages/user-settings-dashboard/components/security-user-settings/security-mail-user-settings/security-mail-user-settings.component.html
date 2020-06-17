@@ -23,7 +23,7 @@
       </div>
 
       <div class="fields">
-        <h5 class="fields-title">{{'user-settings.alert-required' | translate}}</h5>
+        <h5 class="fields-title">{{'user-settings.new-mail' | translate}}</h5>
         <input class="fields-value" type="text" formControlName="newMail" maxlength="45">
         <div class="error-message" *ngIf="!mailForm.controls.newMail.untouched && mailForm.controls.newMail.status === 'INVALID' && mailForm.controls.newMail.value">
           {{'user-settings.field-invalid' | translate}}

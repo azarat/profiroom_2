@@ -195,7 +195,12 @@
                 <div>
                     <div class="deffault-field extra-option">
                         <div class="option-wrap">
-
+                            <button class="add btn-third hide-option" (click)="hideExtraOption(j)">
+                                <i class="material-icons">
+                                    remove_circle_outline
+                                </i>
+                                <span>{{'dashboard.create-service.third-step.extra-form.remove-option' | translate}}</span>
+                              </button>
                             <div class="options">
                                 <span>{{'dashboard.create-service.third-step.extra-form.made-by' | translate}}</span>
                                 <div [style.borderColor]="name.invalid && submited ? '#f44336': '#dce0e6'">

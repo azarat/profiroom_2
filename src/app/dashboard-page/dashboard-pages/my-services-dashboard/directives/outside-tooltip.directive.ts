@@ -41,11 +41,14 @@ export class OutsideTolltiDirective {
     this.renderer.addClass(this.tooltip, 'ng-tooltip-show');
   }
   private hide() {
-    this.renderer.removeClass(this.tooltip, 'ng-tooltip-show');
-    window.setTimeout(() => {
-      this.renderer.removeChild(document.body, this.tooltip);
-      this.tooltip = null;
-    }, 500);
+    if(this.tooltip) {
+      window.setTimeout(() => {
+        this.renderer.removeClass(this.tooltip, 'ng-tooltip-show');
+        this.renderer.removeChild(document.body, this.tooltip);
+        this.tooltip = null;
+      }, 500);
+    }
+
   }
 
   private create() {

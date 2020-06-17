@@ -239,6 +239,7 @@
 	"dashboard.create-service.third-step.description-block.subtitle": "Расширьте свои возможности",
 	"dashboard.create-service.third-step.description-block.title": "Оформите услуги в трёх ценовых вариантах",
 	"dashboard.create-service.third-step.extra-form.add-option": "Добавить опцию",
+	"dashboard.create-service.third-step.extra-form.remove-option": "Убрать опцию",
 	"dashboard.create-service.third-step.extra-form.commercial": "Коммерческое использование",
 	"dashboard.create-service.third-step.extra-form.days": "дня",
 	"dashboard.create-service.third-step.extra-form.extra-changes": "Дополнительные правки",

@@ -43,6 +43,7 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
     private userStatseService: UserStateService,
     private localize: LocalizeRouterService,
     private activatedRoute: ActivatedRoute,
+    private socketService: SocketService
   ) {
 
   }
@@ -51,8 +52,7 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
     this.notifyShow();
     this.defineCurrentUser();
     this.subscribeUserMinData();
-    this.socetService.connect();
-    this.checkNotifications();
+    
   }
 
   ngAfterViewInit() {
@@ -69,6 +69,8 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
     .pipe(filter((res) => !!res))
      .subscribe((res: any) => {
         this.user = plainToClass(UserModel, res);
+        this.socketService.connect();
+        // this.checkNotifications();
         this.userStatseService.setUserState(this.user.role_id);
         this.authService.saveUserId(this.user.id);
         this.localStorageService.setItem('userImage', this.user.avatar);

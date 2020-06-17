@@ -9,6 +9,8 @@ export class OutsideTolltipHoverDirective {
   @Input('outsideTooltipOnHover') tooltipTitle: string;
   // tslint:disable-next-line: no-input-rename
   @Input('outsideTooltipHoverDescription') tooltipDescription: string;
+  @Input('popoverVisible') popoverVisible: boolean;
+
   @Input() placement: string;
   private tooltip: HTMLElement;
   private delay = '500';
@@ -23,6 +25,7 @@ export class OutsideTolltipHoverDirective {
   public clickOutside = new EventEmitter<MouseEvent>();
 
   @HostListener('document:mouseover', ['$event', '$event.target']) onHover(event: MouseEvent, targetElement: HTMLElement): void {
+
     const clickedInside = this.el.nativeElement.contains(targetElement);
     if (clickedInside == true) {
       if(!this.tooltip) {
@@ -30,7 +33,11 @@ export class OutsideTolltipHoverDirective {
       }
      
     } else if(clickedInside == false) {
-      if (this.tooltip) { this.hide() }
+      if (this.tooltip) { 
+        setTimeout(() => {
+          this.hide()
+        }, 500)
+         }
     }
 
 
@@ -45,14 +52,21 @@ export class OutsideTolltipHoverDirective {
     this.setPosition();
     this.renderer.addClass(this.tooltip, 'ng-tooltip-show');
   }
+
   private hide() {
-    this.renderer.removeClass(this.tooltip, 'ng-tooltip-show');
-      this.renderer.removeChild(document.body, this.tooltip);
-      this.tooltip = null;
+    // setTimeout(()=>{
+      if(this.tooltip) {
+        this.renderer.removeClass(this.tooltip, 'ng-tooltip-show');
+        this.renderer.removeChild(document.body, this.tooltip);
+        this.tooltip = null;
+      }
+      
+    // }, 500)
+
 
   }
 
-  private create() {
+  private create() { 
     this.tooltip = this.renderer.createElement('div');
     let title = this.renderer.createElement('p');
     let description = this.renderer.createElement('p');
