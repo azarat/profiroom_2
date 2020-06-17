@@ -466,3 +466,77 @@
   }
 
 }
+
+@media (max-width: 767.98px) {
+  .wrapper{
+    .all-achive-types{
+      padding: 0 0px;
+      .skill{
+        padding: 20px 10px 20px;
+        .skill-checkpoints{
+          .checkpoint{
+            padding-right: 10px;
+          }
+        }
+        .skill-title{
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+      }
+      .skills-level-items{
+        &:not(.blocked) {
+          transform: translateX(0);
+
+        }
+      }
+      .skills-level{
+        .btns{
+          display: none;
+        }
+      }
+      h6{
+        margin: 20px auto 20px;
+        font-size: 18px;
+      }
+    }
+    .main-status{
+      overflow: hidden;
+      & > div{
+        position: relative;
+        min-height: 80px;
+        margin: 0 -15px;
+      }
+      .line-wrap{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        &.currentRankOne{
+          left: 0;
+        }
+        &.currentRankTwo{
+          left: -100px;
+        }
+        &.currentRankThree{
+          left: -200px;
+        }
+        &.currentRankFour{
+          left: -300px;
+        }
+
+        .dot-wrapper{
+          min-width: 100px;
+          display: flex;
+          justify-content: center;
+        }
+        .line{
+          width: calc(100% - 60px);
+          left: 30px;
+          min-width: 400px;
+          transform: translate(0%, -50%);
+        }
+      }
+    }
+  }
+}
