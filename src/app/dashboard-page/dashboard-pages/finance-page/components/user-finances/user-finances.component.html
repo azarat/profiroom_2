@@ -30,27 +30,27 @@
           </ngx-slick-carousel>
 
 
-          <button class="btn-next" (click)="next()"></button>
-          <button class="btn-prev" (click)="prev()"></button>
+          <button class="btn-next" (click)="prev()"></button>
+          <button class="btn-prev" (click)="next()"></button>
 
 
         </section>
         <section class="graphics">
-            <div class="graphic">
-                <div class="title">{{'dashboard.finances.my-profit' | translate}} <span> (UAH)</span></div>
-                <app-diagram></app-diagram>
-            </div>
-            <div class="calendar">
-                <app-calendar [userFinance]="userFinance.history"></app-calendar>
-                <div class="info">
-                    <div>
-                        <span>{{'general.income' | translate}}</span>
-                    </div>
-                    <div>
-                        <span>{{'general.money-output' | translate}}</span>
-                    </div>
-                </div>
-            </div>
+          <div class="graphic">
+              <div class="title">{{'dashboard.finances.my-profit' | translate}} <span> (UAH)</span></div>
+              <app-diagram></app-diagram>
+          </div>
+        </section>
+        <section class="calendar-wrap">
+          <app-calendar [userFinance]="userFinance.history"></app-calendar>
+          <div class="info">
+              <div>
+                  <span>{{'general.income' | translate}}</span>
+              </div>
+              <div>
+                  <span>{{'general.money-output' | translate}}</span>
+              </div>
+          </div>
         </section>
         <section class="paymenst" (clickOutside)="rollPaymentsList()" [ngClass]="paymentsFullSize? 'full-size': ''">
             <div class="title">
