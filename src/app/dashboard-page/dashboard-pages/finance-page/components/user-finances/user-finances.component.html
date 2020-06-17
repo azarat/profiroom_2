@@ -2,32 +2,37 @@
     <div class="statistic">
         <!-- User finance statistic -->
         <section class="compressed-statistic">
-            <div *ngFor="let el of allStatisticInfo, let i = index">
-                <div class="icon">
-                    <img src="/assets/images/icons/finance/{{el.type}}.png" alt="">
-                </div>
-                <div class="data">
-                    <p class="value">
-                        <span *ngIf="el.type !== 'summ'">
-                {{ userFinance.purse[el.type] | thousandSeparator: "all"  }}
 
-              </span>
-                        <ng-container *ngIf="i >1">
-                            UAH
-                        </ng-container>
-
-                    </p>
-                    <p class="title">&#32; {{ el.name | translate }}</p>
-                </div>
+          <ngx-slick-carousel #slickModal="slick-carousel" [config]="slideConfig" class="main-statistic-carousel">
+            <div class="statistic-item" *ngFor="let el of allStatisticInfo, let i = index">
+              <div class="icon">
+                  <img src="/assets/images/icons/finance/{{el.type}}.png" alt="">
+              </div>
+              <div class="data">
+                  <p class="value">
+                      <span *ngIf="el.type !== 'summ'">
+                        {{ userFinance.purse[el.type] | thousandSeparator: "all"  }}
+                      </span>
+                      <ng-container *ngIf="i >1">
+                          UAH
+                      </ng-container>
+                  </p>
+                  <p class="title">&#32; {{ el.name | translate }}</p>
+              </div>
             </div>
-
-            <div class="balance balance-copy laptop">
+            <div class="statistic-item balance balance-copy laptop">
                 <div class="icon"><img src="/assets/images/icons/finance/current.png" alt=""></div>
                 <div class="data">
                     <p class="value"><span>{{ userFinance.purse.summ }}</span> UAH</p>
                     <p class="title">&#32; {{'dashboard.cards-on-top.balance' | translate}}</p>
                 </div>
             </div>
+          </ngx-slick-carousel>
+
+
+          <button class="btn-next" (click)="next()"></button>
+          <button class="btn-prev" (click)="prev()"></button>
+
 
         </section>
         <section class="graphics">

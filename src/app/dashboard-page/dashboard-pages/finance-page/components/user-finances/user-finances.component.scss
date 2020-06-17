@@ -34,7 +34,13 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        &>div {
+        .main-statistic-carousel{
+          display: flex;
+          justify-content: space-between;
+          box-sizing: border-box;
+          width: 100%;
+        }
+        .statistic-item {
             padding: 20px 30px;
             background: #ffffff;
             box-shadow: 0px 4px 20px rgba(173, 182, 217, 0.17);
@@ -82,6 +88,9 @@
                 opacity: 0.5;
                 margin: 0;
             }
+        }
+        button{
+          display: none;
         }
     }
     .graphics {
@@ -406,7 +415,7 @@
         flex-wrap: wrap;
         .compressed-statistic {
             width: 100%;
-            &>div {
+            .statistic-item {
                 padding: 1em;
                 min-height: 70px;
                 max-height: 70px;
@@ -528,4 +537,18 @@
     .statistic .paymenst {
         width: 73%;
     }
+}
+@media (max-width: 1024px) {
+
+  .statistic{
+    .compressed-statistic{
+      .statistic-item {
+        width: auto;
+        margin: 0 4px;
+      }
+    }
+  }
+  .statistic .paymenst {
+      width: 73%;
+  }
 }
