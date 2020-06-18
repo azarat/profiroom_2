@@ -195,3 +195,176 @@
 }
 // @media (max-width: 1360px) {
 // }
+@media (max-width: 1024px) {
+  .top-block{
+    max-width: 425px;
+    margin: 0 auto 10px;
+  }
+  .user-avatar{
+    .img-wrapper{
+      .img-block{
+        width: 105px;
+        height: 105px;
+      }
+    }
+  }
+  .inform_section{
+    flex-direction: row!important;
+    align-items: flex-start;
+    &__title{
+      width: 20%;
+      padding: 30px 21px;
+      position: absolute;
+      h3{
+        font-size: 12px;
+      }
+    }
+    &__fields{
+      width: 100%;
+      padding: 30px 0 10px;
+    }
+  }
+  .full-name-block{
+    margin-left: 30px;
+    .fields{
+      margin-bottom: 11px;
+      &-title{
+        font-size: 14px;
+        line-height: 20px;
+        margin-bottom: 3px;
+      }
+      &-value{
+        font-size: 14px;
+        line-height: 20px;
+        padding: 10px;
+      }
+    }
+  }
+  .gender-block{
+    max-width: 425px;
+    margin: 0 auto 20px;
+    .block-title{
+      margin-bottom: 0;
+    }
+  }
+  .birthday-block{
+    max-width: 425px;
+    margin: 0 auto 10px;
+  }
+  .about_me-block{
+    max-width: 425px;
+    margin: 0 auto 10px;
+    display: block;
+  }
+  .fields-title{
+    font-size: 14px;
+    max-width: 425px;
+    margin: 30px auto 10px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .inform_section{
+    overflow: hidden;
+    &__title{
+      width: auto;
+    }
+  }
+  .top-block{
+    width: 100%;
+    max-width: 425px;
+    margin: 0 auto 10px;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+  .user-avatar{
+    .img-wrapper{
+      .img-block{
+        width: 125px;
+        height: 125px;
+      }
+    }
+  }
+  .inform_section{
+    flex-direction: column!important;
+    align-items: flex-start;
+    &__title{
+      padding: 30px 15px 20px;
+      position: relative;
+    }
+    &__fields{
+      width: 100%;
+      padding: 0px 15px 10px;
+    }
+  }
+  .full-name-block{
+    margin-left: 0;
+    .fields{
+      margin-bottom: 11px;
+      &-title{
+        font-size: 14px;
+        line-height: 20px;
+        margin-bottom: 3px;
+      }
+      &-value{
+        font-size: 14px;
+        line-height: 20px;
+        padding: 10px;
+      }
+    }
+  }
+  .gender-block{
+    max-width: 425px;
+    margin: 0 auto 20px;
+    .block-title{
+      margin-bottom: 0;
+    }
+  }
+  .birthday-block{
+    max-width: 425px;
+    margin: 20px  auto 10px;
+  }
+  .about_me-block{
+    max-width: 425px;
+    margin: 0 auto 10px;
+    display: block;
+  }
+  .fields-title{
+    font-size: 14px;
+    max-width: 425px;
+    margin: 20px auto 10px;
+  }
+  .gender-block{
+    margin-bottom: 5px;
+    .block-title{
+      margin-bottom: 25px;
+    }
+    .radio-title{
+      font-size: 14px;
+      line-height: 20px;
+      margin-right: 20px;
+    }
+    .radioButton + label {
+      padding: 0 0 0 25px;
+    }
+  }
+  .about_me-block{
+    max-width: none;
+    .fields-value{
+      max-height: 140px;
+      font-size: 14px;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+  }
+  ::ng-deep{
+    .about_me-block{
+      .fields-value{
+        height: 90px;
+      }
+    }
+  }
+
+}
+

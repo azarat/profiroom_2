@@ -81,3 +81,29 @@
     color: #323c47;
   }
 }
+
+@media (max-width: 1024px) {
+  .data > div{
+    margin-right: 20px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .data{
+    justify-content: space-between;
+    & > div{
+      height: auto;
+      margin-right: 5px;
+      min-width: 80px;
+      max-width: 100px;
+      &.month {
+        min-width: 110px;
+      }
+    }
+  }
+  .service-selects{
+    mat-select{
+      padding: 9px 6px 10px 12px;
+    }
+  }
+}

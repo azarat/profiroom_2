@@ -25,6 +25,7 @@ export class UserFinancesComponent implements OnInit, AfterViewInit {
   public allStatisticInfo: any[] = compressedFinanceInfoConst;
   public submited: boolean = null;
   public errorMessage: boolean = null;
+
   constructor(
     private userFinanceService: UserFinanceService
   ) { }
@@ -37,10 +38,10 @@ export class UserFinancesComponent implements OnInit, AfterViewInit {
       {
         'breakpoint': 767,
         'settings': {
-        'slidesToShow': 1,
-        'centerMode': true,
-        'centerPadding': '60px',
-        'variableWidth': true
+          'slidesToShow': 1,
+          'centerMode': true,
+          'centerPadding': '0px',
+          'variableWidth': true
         }
       }
     ]
@@ -90,18 +91,21 @@ export class UserFinancesComponent implements OnInit, AfterViewInit {
   }
 
   @HostListener('window:resize', ['$event'])
-  getScreenSize(event ? ) {
+  getScreenSize(event?: Event) {
 
 
       if (window.innerWidth > 1024) {
-        if (this.slickModal.initialized) {
-          this.slickModal.unslick();
-          console.log('unslick');
+        if(this.slickModal) {
+          if (this.slickModal.initialized) {
+            this.slickModal.unslick();
+            console.log('unslick');
+          }
+        } else if (!this.slickModal.initialized) {
+          this.slickModal.initSlick();
+          console.log('slick');
         }
-      } else if (!this.slickModal.initialized) {
-        this.slickModal.initSlick();
-        console.log('slick');
-      }
+        }
+
 
   }
 
