@@ -1,7 +1,8 @@
 import {
   Component,
   OnInit,
-  Input
+  Input,
+  HostListener
 } from '@angular/core';
 import {
   ChartDataSets,
@@ -26,8 +27,7 @@ export class LineChartDashboardComponent implements OnInit {
   @Input() chartLabels: string[];
   @Input() currentFinanceFilter: string;
 
-  public graphWidth = "400";
-  public graphHeight = "270";
+  public mobileGraph = false;
 
   public lineChartData: ChartDataSets[] = [{
     // data: [65, 59, 80, 81, 56],
@@ -97,10 +97,23 @@ export class LineChartDashboardComponent implements OnInit {
 
   ngOnInit() {
     this.getDataForChart();
+    this.getScreenSize();
   }
 
   private getDataForChart() {
     this.lineChartData[0].data = this.currentFinanceFilter === 'M' ? this.user.allDealsperMonths : this.user.allDealsPerYears;
+  }
+
+  @HostListener('window:resize', ['$event'])
+  getScreenSize(event ? ) {
+    if (this.lineChartData !== undefined) {
+
+      if (window.innerWidth < 768) {
+        this.mobileGraph = true;
+      } else {
+        this.mobileGraph = false;
+      }
+    }
   }
 
 }

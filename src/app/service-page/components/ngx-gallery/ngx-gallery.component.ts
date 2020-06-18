@@ -42,7 +42,6 @@ export class NgxGalleryComponent implements OnInit {
         thumbnailsPercent: 19.5,
         thumbnailsMargin: 8,
         thumbnailMargin: 8,
-        preview: false,
       },
       {
         breakpoint: 1500,

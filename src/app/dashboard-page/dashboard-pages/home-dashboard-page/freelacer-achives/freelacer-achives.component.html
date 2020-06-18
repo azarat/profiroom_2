@@ -6,12 +6,16 @@
     <div class="main-status">
         <p>{{'dashboard.home-page.ranks.subtitle' | translate}}</p>
         <div>
-            <div class="line-wrap">
-                <div *ngFor="let el of ranks" class="dot {{ el.class}}" [ngClass]="{'done': el.rank <= achivements.rank_id }">
+            <div class="line-wrap"  [ngClass]="{currentRankOne: achivements.rank_id === 0, currentRankTwo: achivements.rank_id === 1, currentRankThree: achivements.rank_id === 2, currentRankFour: achivements.rank_id >= 3}">
+
+                <div class="dot-wrapper" *ngFor="let el of ranks">
+                  <div  class="dot {{ el.class}}" [ngClass]="{'done': el.rank <= achivements.rank_id }">
                     <span>
-            {{ el.title | translate}}
-          </span>
+                      {{ el.title | translate}}
+                    </span>
+                  </div>
                 </div>
+
                 <div class="line">
                     <div class="position" [style.width.%]="(achivements.rank_id * 25) + (achivements.nextLevelProgress * 0.25)">
                     </div>

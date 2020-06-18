@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, HostListener, AfterViewInit } from '@angular/core';
 import { FinanceInterface } from '../../interfaces/finance.interface';
 import { FormControl, NgForm } from '@angular/forms';
 import { compressedFinanceInfoConst } from '../../consts/compressed-finance-info.const';
 import { UserFinanceService } from '../../services/user-finance.service';
+import { SlickCarouselComponent } from 'ngx-slick-carousel';
 
 @Component({
   selector: 'app-user-finances',
   templateUrl: './user-finances.component.html',
   styleUrls: ['./user-finances.component.scss']
 })
-export class UserFinancesComponent implements OnInit {
+export class UserFinancesComponent implements OnInit, AfterViewInit {
+
+  @ViewChild('slickModal', {static: false}) slickModal: SlickCarouselComponent;
 
   public userFinance: FinanceInterface;
   public transactions = {
@@ -26,9 +29,27 @@ export class UserFinancesComponent implements OnInit {
     private userFinanceService: UserFinanceService
   ) { }
 
+  public slideConfig = {
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    'arrows': false,
+    'responsive': [
+      {
+        'breakpoint': 767,
+        'settings': {
+        'slidesToShow': 1,
+        'centerMode': true,
+        'centerPadding': '60px',
+        'variableWidth': true
+        }
+      }
+    ]
+  };
+
   ngOnInit() {
     this.getFinanceData();
   }
+  ngAfterViewInit() {this.getScreenSize()}
 
   getFinanceData() {
     this.userFinanceService.getUserFinanceData()
@@ -66,6 +87,30 @@ export class UserFinancesComponent implements OnInit {
 
   public tryPayAgain() {
     this.errorMessage = null;
+  }
+
+  @HostListener('window:resize', ['$event'])
+  getScreenSize(event ? ) {
+
+
+      if (window.innerWidth > 1024) {
+        if (this.slickModal.initialized) {
+          this.slickModal.unslick();
+          console.log('unslick');
+        }
+      } else if (!this.slickModal.initialized) {
+        this.slickModal.initSlick();
+        console.log('slick');
+      }
+
+  }
+
+  next() {
+    this.slickModal.slickNext();
+  }
+
+  prev() {
+    this.slickModal.slickPrev();
   }
 
 }
