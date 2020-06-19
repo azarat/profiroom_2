@@ -12,9 +12,13 @@
                     <span (click)="changeUserType(2)" [ngClass]="{active: user.role_id === 2}">{{'general.customer' | translate}}</span>
                 </div>
             </section>
+            <a [routerLink]="['/'] | localize" class="to-main">{{'menu.home' | translate}}</a>
             <section class="exit">
                 <button (click)="userExit()">{{'general.exit' | translate}}</button>
             </section>
+        </div>
+        <div class="hamburger-menu" (click)="toggleMobileSideMenu()" [ngClass]='{active: mobileMenuOpen}'>
+          <span></span>
         </div>
     </header>
     <div class="side-bar" [ngClass]='{simplified: sideMenuClose}'>
@@ -33,7 +37,7 @@
                 </div>
             </div>
         </section>
-        <section class="menu">
+        <section class="menu" [ngClass]='{open: mobileMenuOpen}'>
             <nav>
                 <ng-container *ngFor="let el of dashboardMenu">
                     <a class="{{el.class}}" *ngIf="

@@ -31,6 +31,7 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
   public newMessage: boolean = null;
   public newWorkMessage: boolean = null;
   public sideMenuClose = true;
+  public mobileMenuOpen = false;
 
 
 
@@ -73,7 +74,7 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
 
   private subscribeUserMinData() {
     this.userService.user$
-    .pipe(filter((res) => !!res))     
+    .pipe(filter((res) => !!res))
      .subscribe((res: any) => {
         this.user = plainToClass(UserModel, res);
         this.socketService.connect();
@@ -144,5 +145,8 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
 
   public toggleSideMenu() {
     this.sideMenuClose = !this.sideMenuClose;
+  }
+  public toggleMobileSideMenu() {
+    this.mobileMenuOpen = !this.mobileMenuOpen;
   }
 }

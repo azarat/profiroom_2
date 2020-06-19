@@ -74,7 +74,7 @@ export class SystemMessagesInDealsComponent implements OnInit {
         this.isUserFreelancer = true;
       }
     }
-    
+
   }
 
 

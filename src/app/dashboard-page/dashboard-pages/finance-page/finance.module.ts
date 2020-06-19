@@ -18,6 +18,7 @@ import { PaymentHistoryModule } from 'src/app/shared/modules/payment-history/pay
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { TranslateModule } from '@ngx-translate/core';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 const routes: Routes = [
   {
@@ -42,6 +43,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     MatSelectModule,
     NgKnifeModule,
+    SlickCarouselModule,
     CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
 
     // Pipes

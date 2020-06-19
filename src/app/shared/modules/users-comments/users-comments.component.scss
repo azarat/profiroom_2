@@ -150,7 +150,7 @@
       border: 1px solid #5695FD;
 
       &:before {
-       
+
       }
       &:after {
          background: #5695FD
@@ -408,6 +408,56 @@
         position: relative;
         right: 20px;
       }
+    }
+  }
+}
+
+@media (max-width: 767.98px) {
+  .comments{
+    &__top{
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 0 12px 12px;
+      height: auto;
+    }
+    .section-title{
+      margin: 12px 0;
+    }
+    .tab{
+      padding: 10px 13px 10px 10px;
+    }
+  }
+  .comment{
+    padding: 20px 0px 13px;
+    &__wrapp_parrent{
+      flex-wrap: wrap;
+      margin-bottom: 0px;
+    }
+    &__top{
+      margin-top: 12px;
+    }
+    &__service-name{
+      margin: 0 0 20px;
+    }
+    &__name{
+      font-size: 16px;
+      line-height: 20px;
+    }
+    &__text-wrapper{
+      flex-direction: column;
+    }
+    &__rating{
+      margin-bottom: 10px;
+    }
+    &__message{
+      font-size: 16px;
+      line-height: 20px;
+      margin-top: 12px;
+      margin-bottom: 12px;
+    }
+    &__answer{
+      top: 65px;
+      right: 0px;
     }
   }
 }

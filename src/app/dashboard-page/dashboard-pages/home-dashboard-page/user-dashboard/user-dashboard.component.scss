@@ -8,16 +8,22 @@
   border-radius: 5px;
 }
 .main-statistic {
+
+  button{
+    display: none;
+  }
+  padding: 18px 16px 18px;
+}
+.main-statistic .main-statistic-carousel{
   display: flex;
   justify-content: space-between;
-  padding: 22px 22px 18px 15px;
   box-sizing: border-box;
   width: 100%;
   &>* {
     font-family: Source Sans Pro, sans-serif;
   }
 
-  &>div {
+  .main-statistic-item,  .slick-track .slick-slide {
     box-sizing: border-box;
     padding: 18px 30px 18px;
     background: #FFFFFF;
@@ -26,6 +32,7 @@
     display: flex;
     width: calc(20% - 10px);
     align-items: center;
+    outline: none;
     .icon {
       width: 30px;
       height: 30px;
@@ -38,7 +45,7 @@
       font-size: 18px;
       line-height: 14px;
       color: #323C47;
-        
+
       &:last-of-type {
         font-size: 14px;
         line-height: 14px;
@@ -80,7 +87,7 @@
       letter-spacing: 0.15px;
       font-variant: small-caps;
       color: #323C47;
-      padding: 22px 20px; 
+      padding: 22px 20px;
       background: #F4F7FC;
       margin: 0;
       text-transform: uppercase;
@@ -240,7 +247,7 @@
         }
         &.compleated {
            span{
-          &:first-child  { 
+          &:first-child  {
             background: #4285F4;
           }
         }
@@ -310,7 +317,7 @@
       letter-spacing: 0.15px;
       font-variant: small-caps;
       color: #323C47;
-      padding: 22px 20px; 
+      padding: 22px 20px;
       background: #F4F7FC;
       margin: 0;
       text-transform: uppercase;
@@ -461,7 +468,7 @@
 }
 .achives {
   width: 100%;
-  
+
 }
 
 .switch {
@@ -558,7 +565,7 @@
       h5.title {
         font-size: 14px;
         line-height: 22px;
-        padding: 12px 20px; 
+        padding: 12px 20px;
       }
       .freelancer-status {
         min-width: 280px;
@@ -600,7 +607,7 @@
       }
       .btns_wrapper__laptop{
         display: flex;
-        justify-content: space-between; 
+        justify-content: space-between;
         background-color: transparent;
         position: absolute;
         top: 0;
@@ -650,6 +657,7 @@
       min-width: 310px;
       width: auto;
       margin-right: 17px;
+
       h5 {
         display: none;
       }
@@ -682,7 +690,7 @@
           }
         }
       }
-  
+
     }
   }
   .comments{
@@ -695,5 +703,228 @@
     .notify{
       display: none;
     }
+  }
+}
+
+@media (max-width: 1024px) {
+  .charst-statistic{
+    height: auto;
+    .charts{
+      flex-wrap: wrap;
+      margin-bottom: 15px;
+      .freelancer-status{
+        max-width: none;
+        min-width: auto;
+        width: 40%;
+        height: auto;
+        .chart-body{
+          .chart{
+            position: fixed;
+            &.zero ::ng-deep{
+              .chartjs-render-monitor{
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+              }
+            }
+          }
+        }
+      }
+      .request-settings{
+        width: calc(60% - 30px);
+      }
+      .btns_wrapper__laptop{
+        display: none;
+      }
+      .pie-chart{
+        width: calc(50% - 15px);
+        max-width: none;
+        min-width: 280px;
+        margin-top: 16px;
+        margin-right: 0;
+        h5{
+          display: block;
+        }
+        &_description-wrapper{
+          width: max-content;
+          margin: 0 auto;
+        }
+      }
+      .statistic{
+        margin-top: 17px;
+        min-width: auto;
+        width: calc(50% - 15px);
+        h5{
+          display: block;
+        }
+        .ets-items{
+          padding: 26px 50px 0;
+          .description{
+            h5, p{
+              font-size: 16px;
+              line-height: 20px;
+            }
+          }
+        }
+      }
+      .showLaptop{
+        display: block;
+      }
+    }
+
+  }
+  .ets {
+    margin-top: 30px;
+  }
+  .main-statistic{
+    display: block;
+    width: 100%;
+    padding: 22px 32px 18px 32px;
+    position: relative;
+    button{
+      background-color: transparent;
+      border: none;
+      width: 14px;
+      height: 14px;
+      outline: none;
+      position: absolute;
+      display: block;
+      top: 50%;
+      transform: translateY(-50%);
+      &:after{
+        position: absolute;
+        content: "";
+        min-width: 14px;
+        min-height: 14px;
+        border-bottom: 2px solid #4285F4;
+        border-right: 2px solid #4285F4;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      &.btn-next{
+        left: 0px;
+        &:after{
+          transform: rotate(135deg) translate(-50%, 0%)
+        }
+      }
+      &.btn-prev{
+        right: 8px;
+        &:after{
+          transform: rotate(-45deg) translate(-20%, -80%);
+        }
+      }
+    }
+  }
+  .main-statistic .main-statistic-carousel{
+    .main-statistic-item,  .slick-track .slick-slide {
+      padding: 14px 13px 14px;
+      border-radius: 10px;
+      width: auto;
+      margin: 0 4px;
+      border: 1px solid #EBEEFF;
+      box-shadow: none;
+      .icon {
+        width: 22px;
+        height: 22px;
+        margin-right: 9px;
+        img{
+          display: block;
+          object-fit: cover;
+          height: 100%;
+        }
+      }
+      .main-statistic-item_text{
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .main-statistic-item_description{
+        width: 100%;
+
+      }
+      p {
+        font-size: 14px;
+        &:last-of-type {
+          font-size: 14px;
+          line-height: 14px;
+
+          white-space: nowrap;
+        }
+      }
+      span{
+        display: inline-block;
+        padding-left: 6px;
+        line-height: 12px;
+        font-size: 14px;
+        padding-left: 6px;
+      }
+    }
+  }
+}
+
+@media (max-width: 767.98px) {
+  .charst-statistic{
+    margin-left: 0;
+    height: auto;
+    .charts{
+      margin-bottom: 15px;
+      .freelancer-status{
+        width: 100%;
+        .status{
+          padding: 23px 35px 20px;
+        }
+        .status-toggle-block{
+          margin: 0 15px;
+          a.open-prifile{
+            margin: 36px 0 19px;
+          }
+        }
+      }
+      .request-settings{
+        width: 100%;
+        margin: 0;
+        .chart{
+          padding: 20px 15px 20px 20px;
+        }
+      }
+      .btns_wrapper__laptop{
+        display: none;
+      }
+      .pie-chart{
+        width: 100%;
+        max-width: none;
+        min-width: 280px;
+        margin-top: 16px;
+        margin-right: 0;
+        h5{
+          display: block;
+        }
+
+
+      }
+      .statistic{
+        margin-top: 17px;
+        min-width: auto;
+        width: 100%;
+        h5{
+          display: block;
+        }
+        .description{
+          h5, p{
+            font-size: 16px;
+            line-height: 20px;
+          }
+        }
+        .ets-items{
+          padding: 26px 30px 0;
+        }
+      }
+      .showLaptop{
+        display: block;
+      }
+    }
+  }
+  .ets{
+    margin-top: 0;
   }
 }

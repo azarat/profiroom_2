@@ -24,8 +24,8 @@ export class HomePageHowWorkComponent implements OnInit {
 
   }
   public decreaseSlide(){
-    this.currentSlide > 0 ? this.currentSlide-- : this.currentSlide; 
+    this.currentSlide > 0 ? this.currentSlide-- : this.currentSlide;
 
   }
-  
+
 }
