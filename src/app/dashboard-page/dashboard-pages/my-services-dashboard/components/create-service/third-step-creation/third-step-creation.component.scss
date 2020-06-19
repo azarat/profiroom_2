@@ -223,7 +223,7 @@ input[type=number] {
     }
 
     .input-wrap {
-      
+
       width: 100%;
       height: 100%;
       // margin: auto;
@@ -251,7 +251,7 @@ input[type=number] {
     }
 
     .select-wrap {
-      
+
 
       .mat-select {
         height: 60px;
@@ -281,7 +281,7 @@ input[type=number] {
       flex-direction: row;
       border-bottom: 1px solid #dce0e6;
 
-      
+
       .title {
         display: flex;
         align-items: center;
@@ -1063,6 +1063,91 @@ input[type=number] {
       &:first-of-type{
         padding: 10px 24px;
       }
+    }
+  }
+}
+
+
+@media (max-width: 1024px) {
+  form {
+    h5{
+      margin: 0 0 5px;
+    }
+    h3 {
+      font-size: 16px;
+      line-height: 20px;
+      text-align: center;
+      margin-bottom: 3px;
+    }
+    .steps-counter{
+      display: block;
+      margin-bottom: 16px;
+      font-size: 14px;
+      line-height: 18px;
+      text-align: center;
+      color: #99ACB7;
+    }
+  }
+  .step-wrapper{
+    padding-right: 15px;
+    .offer-packages{
+      .packages-description{
+        height: 150px;
+      }
+    }
+  }
+  .form-group{
+    margin-bottom: 0;
+  }
+  .form-buttons{
+    margin-top: 25px;
+    button{
+      padding: 10px 24px;
+      &:first-of-type {
+        padding: 10px 72px;
+      }
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  :host ::ng-deep .step-wrapper{
+    form .form-title{
+      flex-direction: column;
+      margin-left: auto;
+      margin-bottom: 10px;
+    }
+    .offer-packages{
+      width: 560px;
+      border: 1px solid #dce0e6;
+      margin-bottom: 10px;
+      .packages-description{
+        height: 150px;
+      }
+      .package-name > div{
+        min-height: 40px;
+        h6{
+          padding: 15px 0 15px;
+        }
+      }
+    }
+    .offer-packages_wrapper{
+      overflow: scroll;
+      width: 100%;
+      margin-bottom: 20px;
+      &::-webkit-scrollbar {  height: 6px;}
+    }
+  }
+  .extra-packages-wrap .extra-packages{
+    .deffault-field .option-wrap{
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 10px;
+    }
+    .time-option .option-wrap{
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 10px;
     }
   }
 }

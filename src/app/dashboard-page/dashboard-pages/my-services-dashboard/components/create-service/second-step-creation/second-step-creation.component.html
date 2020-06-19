@@ -1,9 +1,9 @@
 <div class="step-wrapper">
     <form #form="ngForm" (ngSubmit)="nextStep(form)">
         <h3>{{'dashboard.create-service.second-step.title' | translate}}</h3>
-
+        <span class="steps-counter">{{'dashboard.create-service.second-step.steps-counter' | translate}}</span>
         <h5>{{'dashboard.create-service.second-step.subtitle' | translate}}</h5>
-        <div class="form-group" [ngClass]="{'error': 
+        <div class="form-group" [ngClass]="{'error':
              (characterLength == 0 || characterLength <= 100  ||
              characterLength >500) && submitted}">
             <quill-editor [modules]="config" [(ngModel)]="userService.description" name="editor" placeholder="" (onContentChanged)="onEditorCreated($event)" ngbPopover="{{'dashboard.create-service.second-step.tool-tip.subtitle' | translate}}" popoverTitle="{{'dashboard.create-service.second-step.tool-tip.title' | translate}}"

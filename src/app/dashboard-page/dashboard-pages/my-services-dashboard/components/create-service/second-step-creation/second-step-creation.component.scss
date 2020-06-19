@@ -16,6 +16,9 @@ form {
     line-height: 23px;
     color: #323c47;
   }
+  .steps-counter{
+    display: none;
+  }
 }
 
 form::ng-deep {
@@ -413,4 +416,58 @@ ngb-popover-window {
       }
     }
   }
+}
+
+@media (max-width: 1024px) {
+  form {
+    h5{
+      margin: 0 0 5px;
+    }
+    h3 {
+      font-size: 16px;
+      line-height: 20px;
+      text-align: center;
+      margin-bottom: 3px;
+    }
+    .steps-counter{
+      display: block;
+      margin-bottom: 16px;
+      font-size: 14px;
+      line-height: 18px;
+      text-align: center;
+      color: #99ACB7;
+    }
+  }
+  .step-wrapper{
+    padding-right: 15px;
+  }
+  .form-group{
+    margin-bottom: 0;
+  }
+  .form-buttons{
+    margin-top: 25px;
+    button{
+      padding: 10px 24px;
+      &:first-of-type {
+        padding: 10px 72px;
+      }
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .form-buttons{
+    margin-top: 25px;
+    flex-direction: column;
+    align-items: center;
+    button{
+      padding: 10px 24px;
+      max-width: 220px;
+      width: 100%;
+      &:first-of-type {
+        margin-bottom: 15px;
+      }
+    }
+  }
+
 }

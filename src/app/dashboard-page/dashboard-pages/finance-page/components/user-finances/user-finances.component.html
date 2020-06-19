@@ -3,8 +3,8 @@
         <!-- User finance statistic -->
         <section class="compressed-statistic">
 
-          <ngx-slick-carousel #slickModal="slick-carousel" [config]="slideConfig" class="main-statistic-carousel">
-            <div class="statistic-item" *ngFor="let el of allStatisticInfo, let i = index">
+          <ngx-slick-carousel #slickModall="slick-carousel" [config]="slideConfig" class="main-statistic-carousel">
+            <div ngxSlickItem  class="statistic-item" *ngFor="let el of allStatisticInfo, let i = index">
               <div class="icon">
                   <img src="/assets/images/icons/finance/{{el.type}}.png" alt="">
               </div>
