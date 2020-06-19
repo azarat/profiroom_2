@@ -78,7 +78,7 @@ export class CollocutorListComponent implements OnInit, OnDestroy {
   private _getChatRooms() {
     this.chatService.getChatRooms(this.chatType)
       .subscribe((res: CollocutorInterface[]) => {
-        this.collocutors = this._sortMessagesByTime(res);
+        // this.collocutors = this._sortMessagesByTime(res);
         this._isAnyChatOpen();
       });
   }
@@ -86,25 +86,25 @@ export class CollocutorListComponent implements OnInit, OnDestroy {
   //  Check querry params
   private _isAnyChatOpen() {
     this.querrySubscription = this.route.queryParams
-      .pipe(untilDestroyed(this))
+      // .pipe(untilDestroyed(this))
       .subscribe((res: { offers_id?: any, dealId?: any, id?: any, roomId: string } | any) => {
 
-        if (res.hasOwnProperty('offers_id') && this.chatType === 'work' && this.currentUserState === 2) {
-          this._getDealData(res.id);
-        } else if (res.hasOwnProperty('dealId') && this.chatType === 'work') {
-          // If Work chat
-          this._getDealData(res.dealId);
-        } else if (res.hasOwnProperty('id') && this.chatType === 'classic') {
-          // Classic chat
-          this._getCollocutorData(res.id);
-        } else if (this.chatType === 'work') {
-          const translatedPath = this.localize.translateRoute('/dashboard/projects');
-          this.router.navigate([translatedPath], {
-            relativeTo: this.route,
-            queryParams: {},
-          });
-        }
-        this._connectToCurrentChatSocket(res.roomId);
+        // if (res.hasOwnProperty('offers_id') && this.chatType === 'work' && this.currentUserState === 2) {
+        //   this._getDealData(res.id);
+        // } else if (res.hasOwnProperty('dealId') && this.chatType === 'work') {
+        //   // If Work chat
+        //   this._getDealData(res.dealId);
+        // } else if (res.hasOwnProperty('id') && this.chatType === 'classic') {
+        //   // Classic chat
+        //   this._getCollocutorData(res.id);
+        // } else if (this.chatType === 'work') {
+        //   const translatedPath = this.localize.translateRoute('/dashboard/projects');
+        //   this.router.navigate([translatedPath], {
+        //     relativeTo: this.route,
+        //     queryParams: {},
+        //   });
+        // }
+        // this._connectToCurrentChatSocket(res.roomId);
       });
   }
 
@@ -144,16 +144,17 @@ export class CollocutorListComponent implements OnInit, OnDestroy {
   }
 
   public openChat(collocutorData) {
+    console.log(collocutorData)
     if (this.chatType === 'classic') {
       // clear router from params if click on anther chat
-      const translatedPath = this.localize.translateRoute('/dashboard/chat-room');
+      let translatedPath = this.localize.translateRoute('/dashboard/chat-room');
       this.router.navigate([translatedPath], {
         relativeTo: this.route,
         queryParams: { id: collocutorData.id, roomId: collocutorData.roomId },
       });
     } else if (this.chatType === 'work') {
       // clear router from params if click on anther deal
-      const translatedPath = this.localize.translateRoute('/dashboard/projects');
+      let translatedPath = this.localize.translateRoute('/dashboard/projects');
       this.router.navigate([translatedPath], {
         relativeTo: this.route,
         queryParams: { dealId: collocutorData.id, roomId: collocutorData.roomId },

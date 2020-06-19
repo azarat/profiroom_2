@@ -35,6 +35,7 @@ export class ArbitrationPageComponent implements OnInit {
     this.arbitrationService.getArbitrationsList()
     .subscribe((res: any) => {
       this.arbitrationList = res;
+      console.log(res)
     })
   }
 
@@ -50,8 +51,8 @@ export class ArbitrationPageComponent implements OnInit {
   }
   public WinerIs(id: number) {
     this.arbitrForm.vinner_id = id;
-    this.arbitrForm.loser_id = this.arbitrForm.vinner_id === this.dealInArbitration.freelanser_id? 
-    this.dealInArbitration.customer_id : this.dealInArbitration.freelanser_id;
+    this.arbitrForm.loser_id = this.arbitrForm.vinner_id === this.dealInArbitration.freelancer_id? 
+    this.dealInArbitration.customer_id : this.dealInArbitration.freelancer_id;
   }
   public closeDeal() {
     this.messages = null;

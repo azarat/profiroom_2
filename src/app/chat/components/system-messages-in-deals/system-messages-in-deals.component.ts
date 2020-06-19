@@ -103,10 +103,12 @@ export class SystemMessagesInDealsComponent implements OnInit {
   }
 
   public submitFinishWork() {
-    this.dealService.submitFinishDeal(this.collocutorData.id);
+    this.dealService.submitFinishDeal(this.collocutorData.id)
+    .subscribe()
   }
   public cancelFinishDeal() {
     console.log(this.collocutorData.id)
     this.dealService.cancelFinishDeal(this.collocutorData.id)
+    .subscribe()
   }
 }

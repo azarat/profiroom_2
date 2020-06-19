@@ -11,7 +11,7 @@ export class ProjectsFilterComponent implements OnInit {
 
   public projectTypes: { name: string, type: string }[] = projectTypesConst;
   public currentType = 'all';
-  public currentTypeName = 'Все';
+  public currentTypeName = 'chat.work_chat.deal-filter.all';
   public isListVisible: boolean = null;
 
   @Output() setCurrentType = new EventEmitter();

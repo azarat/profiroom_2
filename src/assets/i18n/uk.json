@@ -273,6 +273,7 @@
 	"dashboard.create-service.third-step.main-form.tool-tip.time-to-do-subtitle": "Час доставки - це кількість часу, який ви повинні пропрацювати з посилкою, починаючи з моменту, коли покупець розміщує замовлення.\n      Встановіть час доставки, яке має сенс для вас, ґрунтуючись на сукупному часу, яке у вас йде на створення кожної частини пакета.",
 	"dashboard.create-service.third-step.main-form.tool-tip.time-to-do-title": "Термін реалізації або вполненниє",
 	"dashboard.create-service.third-step.title": "3. Пакети послуг і ціни",
+	"dashboard.create-service.go-back": "вийти",
 	"dashboard.create-service.title": "Створення послуги",
 	"dashboard.finances.my-profit": "мій дохід",
 	"dashboard.home-page.accaunt-statistic": "показники аккаунта",

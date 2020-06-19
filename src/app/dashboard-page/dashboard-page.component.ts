@@ -13,6 +13,7 @@ import { UserStateService } from './services/user-state.service';
 import { LocalizeRouterService } from 'localize-router';
 import { BehaviorSubject } from 'rxjs';
 import { filter } from 'rxjs/operators';
+import { SiteLocaleService } from '../core/services/site-locale.service';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -42,12 +43,14 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
     private userStatseService: UserStateService,
     private localize: LocalizeRouterService,
     private activatedRoute: ActivatedRoute,
-    private socketService: SocketService
+    private socketService: SocketService,
+    private siteLocaleService: SiteLocaleService
   ) {
 
   }
 
   ngOnInit() {
+    this.checkCurrentLang();
     this.notifyShow();
     this.defineCurrentUser();
     this.subscribeUserMinData();
@@ -56,6 +59,11 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
 
+  }
+
+  private checkCurrentLang() {
+    let lang = this.localize.parser.currentLang;
+    this.siteLocaleService.changeLangTo(lang);
   }
 
   private defineCurrentUser() {

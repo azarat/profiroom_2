@@ -80,6 +80,7 @@ export class MessengerToolsComponent implements OnInit, OnDestroy {
   private checkIsUserFreelancer() {
     const userId = this.localStorageService.getItem('userId').value;
     this.isUserFreelancer = this.collocutorData.freelancer_id === +userId ? true : null; // check is user Freelancer
+    console.log(this.isUserFreelancer)
   }
 
   // getDeal() {
@@ -159,7 +160,7 @@ export class MessengerToolsComponent implements OnInit, OnDestroy {
 
   private checkDealCanBePayed() { // check is user customer, brief submitted and deal status is inProgress
     this.canDealBePayed = (!this.isUserFreelancer && this.collocutorData.moneyHolden !== 1
-      && this.collocutorData.brief === 1 && this.collocutorData.status === 'inProgress') ? true : null;
+      && this.collocutorData.brief === 1 && this.collocutorData.status === "approved") ? true : null;
   }
 
   private freelancerStartWorking() { // check does freelancer cen start working

@@ -23,6 +23,7 @@ const dashboardRoutes: Routes = [
     children: [
       {
         path: '',
+        pathMatch: 'full',
         redirectTo: 'home'
       },
       {
@@ -32,7 +33,6 @@ const dashboardRoutes: Routes = [
       },
       {
         path: 'projects',
-        pathMatch: 'full',
         loadChildren: () => import('./dashboard-pages/projects-page/projects-page.module').then(m => m.ProjectsPageModule)
       },
       {

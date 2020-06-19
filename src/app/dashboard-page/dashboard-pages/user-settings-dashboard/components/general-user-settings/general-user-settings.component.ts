@@ -18,7 +18,7 @@ export class GeneralUserSettingsComponent implements OnInit {
   @Input() userSettingsModel: UserSettingsModel;
   public mainSettingsFrom: FormGroup;
   public succesRessult = false;
-  public popUpStatus = false;
+  public popUpStatus = null;
   public submitted: boolean = null;
 
   constructor(
@@ -41,13 +41,20 @@ export class GeneralUserSettingsComponent implements OnInit {
         this.userSettingsService.onloadUserModelCopy$.next(cloneDeep(this.userSettingsModel));
         this.succesRessult = true;
         this.userService.getMinUserData();
-        this.togglePopUp();
+        this.popUpStatus = true;
+        timer(5000)
+        .subscribe(time => {
+          console.log(time)
+          this.togglePopUp();
+        });
       }
     );
 
   }
 
   public togglePopUp() {
-    this.popUpStatus = !this.popUpStatus;
+    this.popUpStatus = null;
   }
+
+  
 }
