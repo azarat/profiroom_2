@@ -33,10 +33,12 @@ const dashboardRoutes: Routes = [
       },
       {
         path: 'projects',
+        pathMatch: 'full',
         loadChildren: () => import('./dashboard-pages/projects-page/projects-page.module').then(m => m.ProjectsPageModule)
       },
       {
         path: 'my-services',
+         pathMatch: 'full',
         loadChildren: () =>
           import('./dashboard-pages/my-services-dashboard/my-services-dashboard.module').then(m => m.MyServicesDashboardModule)
       },

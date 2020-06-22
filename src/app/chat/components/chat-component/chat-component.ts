@@ -47,6 +47,11 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.socketService.subscribeOnCollocutorList(this.chatType);
   }
 
+  /* 
+    ** 
+    Reset messager path after brief filling
+    **
+  */
   public resetChat(event) {
     this._resetChat();
   }
@@ -58,6 +63,10 @@ export class ChatComponent implements OnInit, OnDestroy {
       this.isChat = true;
     }, 100);
   }
+
+  /* 
+   subscribe on collucutor/ deal data
+  */
 
   private getDealData() {
     this.collocutorService.collocutorData$
@@ -76,7 +85,6 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   public openPayment(e) {
     this.moneyRequired = e;
-    console.log(e)
   }
 
 

@@ -25,6 +25,7 @@ import { DealService } from '../../services/deal.service';
 import { CollocutorService } from '../../services/collocutor.service';
 import { ErrorChatMessageService } from '../../services/error-chat-message.service';
 import { untilDestroyed } from 'ngx-take-until-destroy';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-messenger-tools',
@@ -92,7 +93,10 @@ export class MessengerToolsComponent implements OnInit, OnDestroy {
 
   private getDealData() {
     this.collocutorService.collocutorData$
-      .pipe(untilDestroyed(this))
+      .pipe(
+        untilDestroyed(this),
+        filter((res: any) => !!res)
+      )
       .subscribe((res: any) => {
         this.collocutorData = res;
         if (this.collocutorData) {
