@@ -60,6 +60,16 @@ export class CatalogComponent implements OnInit {
         this.GetOffersService.setFilters(qParams);
         this.catalogFilters = plainToClass(CatalogFiltersModel, qParams);
         this.catalogFilters.online = (qParams.online === "true") ? true: false;
+        for(const prop in this.catalogFilters) {
+          console.log(this.catalogFilters[prop])
+
+          if(this.catalogFilters[prop] == 'true') {
+            this.catalogFilters[prop] = true;
+          } else if(this.catalogFilters[prop] == 'false') {
+            this.catalogFilters[prop] = false;
+          }
+        }
+
         this.GetOffersService.getOffers(this.catalogFilters);
       }
     });

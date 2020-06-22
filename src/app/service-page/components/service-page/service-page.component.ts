@@ -11,6 +11,7 @@ import { SimilarOffersInterface } from 'src/app/shared/interfaces/similar-offers
 import { UserService } from 'src/app/core/services/user.service';
 import { LocalizeRouterService } from 'localize-router';
 import { Title } from '@angular/platform-browser';
+import { IpServiceService } from 'src/app/core/services/ip-service.service';
 
 
 @Component({
@@ -49,7 +50,8 @@ export class ServicePageComponent implements OnInit {
     private router: Router,
     private titleService: Title,
     private localStorageService: LocalStorageService,
-    private userService: UserService
+    private userService: UserService,
+    private ipService: IpServiceService
 
   ) {
     this._route.queryParams
@@ -72,7 +74,13 @@ export class ServicePageComponent implements OnInit {
 
   ngOnInit() {
     // this.offerDataService.dataChange
-    this.getLoginedUserId() 
+    this.getLoginedUserId();
+
+    this.ipService.getIp()
+    .pipe(filter((res: any) => !!res))
+    .subscribe(res => {
+      this.saveOfferrWievs(res.ip);
+    })
   }
 
  
@@ -83,6 +91,11 @@ export class ServicePageComponent implements OnInit {
       this.loginedUserId = res;
     })
     console.log(this.loginedUserId )
+  }
+
+  private saveOfferrWievs(ip) {
+    this.servicePageService.saveOfferrWievs(ip, this.offerId)
+    .subscribe()
   }
 
   getOfferData(offerId: { offerId: string }) {

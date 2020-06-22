@@ -12,6 +12,7 @@ import { Subject } from 'rxjs';
 import { WindowScrollBlockService } from '../core/services/window-scrolling.service';
 import { onlineCont } from '../shared/consts/online.const';
 import { LocalStorageService } from '../core/services/local-storage.service';
+import { IpServiceService } from '../core/services/ip-service.service';
 
 @Component({
   selector: 'app-user-page',
@@ -88,7 +89,8 @@ export class UserPageComponent implements OnDestroy, OnInit  {
     private _windowScrollBlockService: WindowScrollBlockService,
     // tslint:disable-next-line: variable-name
     private _location: Location,
-    private localStorageService : LocalStorageService
+    private localStorageService : LocalStorageService,
+    private ipService: IpServiceService
   ) {
     this.windowScrolling = _windowScrollBlockService;
   }
@@ -102,7 +104,14 @@ export class UserPageComponent implements OnDestroy, OnInit  {
     });
 
     this.currentUserId = Number(this.localStorageService.getItem('userId').value);
+
+    this.ipService.getIp()
+    .pipe(filter((res: any) => !!res))
+    .subscribe(res => {
+      this.saveUserViews(res.ip);
+    })
   }
+
 
   getUserData(id: { id: number }) {
     this.userService.loadUserDate(id)
@@ -110,6 +119,11 @@ export class UserPageComponent implements OnDestroy, OnInit  {
       .subscribe(userData => {
         this.userData = userData.user;
       });
+  }
+
+  private saveUserViews(ip) {
+    this.userService.saveUserWievs(ip, this.id.id)
+    .subscribe()
   }
 
   scrollTo(target: string) {

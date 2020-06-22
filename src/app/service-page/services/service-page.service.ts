@@ -57,6 +57,7 @@ export class ServicePageService {
     this.messageNotAuthorized.next(state);
   };
 
-
-
+  public saveOfferrWievs(ip, id ) {
+    return this.http.post('/updateOfferViews', {visitorUniq: ip, offerId: id});
+  }
 }

@@ -13,4 +13,8 @@ export class UserDataService {
   loadUserDate(userId: object) {
     return this.http.post('/getUser', userId);
   }
+
+  public saveUserWievs(ip, id ) {
+    return this.http.post('/updateUserViews', {visitorUniq: ip, userId: id});
+  }
 }

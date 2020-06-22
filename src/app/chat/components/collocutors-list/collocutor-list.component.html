@@ -18,23 +18,23 @@
                 <div class="collocutor" *ngIf="!(collocutor.freelancer_id == userId && collocutor.brief == 0) &&
         currentFilterType === 'all' || currentFilterType === collocutor.status" (click)="openChat(collocutor)" [ngClass]="{'unread': userId === +(collocutor.unread)}">
                     <span *ngIf="chatType == 'work'" class="status {{ collocutor.status }}"></span>
-                    <p class="date" *ngIf="collocutor.message.length !== 0">
-                        {{ collocutor.message[0].dateTime | dateFormatPipe: 'dd.MM HH:mm' }}
+                    <p class="date" *ngIf="collocutor.message">
+                        {{ collocutor.message.dateTime | dateFormatPipe: 'dd.MM HH:mm' }}
                     </p>
-                    <p class="date" *ngIf="collocutor.message.length === 0">
+                    <p class="date" *ngIf="!collocutor.message">
                         {{ collocutor.created_at | dateFormatPipe: 'dd.MM HH:mm' }}
                     </p>
                     <div class="message-preview">
                         <div class="photo">
-                            <img [src]="collocutor.collocutorAva" alt="collocutor-photo" />
+                            <img *ngIf="collocutor.collocutorAva" [src]="collocutor.collocutorAva" alt="collocutor-photo" />
                             <span class="status {{ collocutor.status }}"></span>
                         </div>
                         <div class="message-information">
                             <p class="collocutor-name">{{ collocutor.collocutorName }} {{ collocutor.collocutorSurname }} </p>
-                            <p class="collocutor-message" *ngIf="collocutors[i].message.length !== 0 && chatType !== 'work'">
-                                <span *ngIf="userId == collocutor.message[0].author">Вы: </span>
-                                <span *ngIf="collocutor.message[0].type === 'string'">{{ collocutor.message[0].message }}</span>
-                                <span *ngIf="collocutor.message[0].type === 'file'">{{'general.file' | translate}}</span>
+                            <p class="collocutor-message" *ngIf="collocutors[i].message && chatType !== 'work'">
+                                <span *ngIf="userId == collocutor.message.author">Вы: </span>
+                                <span *ngIf="collocutor.message.type === 'string'">{{ collocutor.message.message }}</span>
+                                <span *ngIf="collocutor.message.type === 'file'">{{'general.file' | translate}}</span>
                             </p>
                             <p *ngIf="chatType == 'work'"> {{ collocutor.offers_title }}</p>
                         </div>

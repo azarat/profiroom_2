@@ -21,13 +21,13 @@
         <br>
 
         <div>
-            <h5>Winer is ...
-                <span *ngIf="arbitrForm.vinner_id === dealInArbitration.freelanser_id">Freelancer</span>
+            <h5>Winner is ...
+                <span *ngIf="arbitrForm.vinner_id === dealInArbitration.freelancer_id">Freelancer</span>
                 <span *ngIf="arbitrForm.vinner_id === dealInArbitration.customer_id">Customer</span>
             </h5>
             <div>
-                <button (click)="WinerIs(dealInArbitration.customer_id)">Customer id: {{ dealInArbitration.freelanser_id }}</button>
-                <button (click)="WinerIs(dealInArbitration.freelanser_id)">Freelancer id:{{ dealInArbitration.customer_id }} </button>
+                <button (click)="WinerIs(dealInArbitration.customer_id)">Customer id: {{ dealInArbitration.freelancer_id }}</button>
+                <button (click)="WinerIs(dealInArbitration.freelancer_id)">Freelancer id:{{ dealInArbitration.customer_id }} </button>
             </div>
 
 

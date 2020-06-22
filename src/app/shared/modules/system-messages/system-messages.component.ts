@@ -15,6 +15,7 @@ import { untilDestroyed } from 'ngx-take-until-destroy';
 export class SystemMessagesComponent implements OnInit, OnDestroy {
 
   @Input() user: UserModel;
+  @Input() pageType: string;
   public showMessagesListBlock = false;
   public messageListEmpty = false;
   public systemMessagesArr: any[] = [];

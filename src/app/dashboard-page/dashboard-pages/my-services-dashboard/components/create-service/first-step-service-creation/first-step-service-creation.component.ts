@@ -108,6 +108,11 @@ export class FirstStepServiceCreationComponent implements OnInit {
     if (!form.valid) {
       return;
     }
+
+    if(this.userService.mainImage.includes("offerFiles/gefaultOffer.jpg")) {
+      this.putAsMainPhoto(this.previewUrl[0].link);
+    }
+
     this.userOffersService.updateService(this.userService)
       .pipe(filter((res: any) => !!res))
       .subscribe(
@@ -128,12 +133,12 @@ export class FirstStepServiceCreationComponent implements OnInit {
   }
 
   //  ----------  choose Main OfferPhoto  ----------
-  putAsMainPhoto = (link: string) => {
+  public putAsMainPhoto = (link: string) => {
     this.userService.mainImage = link;
   }
 
   //  --------------- file uploading ---------------
-  fileProgress = (event: any) => {
+  public fileProgress = (event: any) => {
     const formData: FormData = new FormData();
     formData.append('offerId', this.userService.id);
     this.files = [];
@@ -150,6 +155,8 @@ export class FirstStepServiceCreationComponent implements OnInit {
     this.userOffersService.uploadFiles(formData)
       .subscribe((res: []) => {
         this.previewUrl = res;
+
+        // this.putAsMainPhoto(this.previewUrl[0]);
       });
   }
 

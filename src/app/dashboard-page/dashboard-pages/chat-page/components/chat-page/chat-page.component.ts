@@ -9,6 +9,7 @@ import { Title } from '@angular/platform-browser';
 export class ChatPageComponent implements OnInit {
 
   chatType = 'classic';
+
   constructor(
     private titleService: Title
   ) { }

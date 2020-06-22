@@ -45,7 +45,7 @@
             </nav>
         </div>
         <div class="auth" *ngIf="pageName !== 'authoriz'">
-            <app-system-messages *ngIf="token"></app-system-messages>
+            <app-system-messages [pageType]="'main-pg'" *ngIf="token"></app-system-messages>
             <app-user-header-menu *ngIf="token" (userIdChange)="userExited()"></app-user-header-menu>
             <app-language></app-language>
             <div *ngIf="!token">

@@ -10,14 +10,14 @@
         <form class="questions" [formGroup]="briefForm">
             <div class="question-item {{ briefItem.answer_type }}" *ngFor="let briefItem of offerBrief, let i = index">
                 <label class="question-title">
-          {{i+1}}. {{ briefItem.title }}. <span *ngIf="briefItem.answer_required === '1'" [ngClass]="{'required': briefForm.controls[briefItem.title].invalid && submitted  }" >(Поле обязательное до заполнения)
+          {{i+1}}. {{ briefItem.title }}. <span *ngIf="briefItem.answer_required === '1'" [ngClass]="{'required': briefForm.controls[briefItem.title +'_' + i].invalid && submitted  }" >(Поле обязательное до заполнения)
           </span>
         </label >
         <div class="answer {{ briefItem.answer_type }}"
           [ngClass]="{ 'check-box': briefItem.answer_type === 'radio' && briefItem.multi_answers === 1, 'radio-btns': briefItem.answer_type === 'radio' && briefItem.multi_answers === 0  }">
 
           <!--text Answer -->
-          <textarea *ngIf="briefItem.answer_type === 'text'" name="answer" [required]="briefItem.answer_required === '1'" [formControlName]="briefItem.title" ></textarea>
+          <textarea *ngIf="briefItem.answer_type === 'text'" name="answer-{{ i }}" [required]="briefItem.answer_required === '1'" [formControlName]="briefItem.title +'_' + i" ></textarea>
 
 
           <!-- different types -->
@@ -27,13 +27,13 @@
               <input [ngClass]="briefItem.multi_answers === 0? 'radioButton ': 'tgl tgl-classic'"
               name="radio-{{ i }}" value="{{variant.answer }}" id="{{ i + '-' + j }}"
               [required]="briefItem.answer_required === '1'"
-              (change)="onCheckChange($event, briefItem.title)"
+              (change)="onCheckChange($event, briefItem.title+'_' + i)"
               [type]="briefItem.multi_answers === 0? 'radio': 'checkbox'">
 
              <label for="{{i + '-' + j}}">{{ variant.answer }}</label>
                 </li>
                 </ul>
-                </fieldset>
+        </fieldset>
 
             </div>
 </div>

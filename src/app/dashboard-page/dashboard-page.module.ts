@@ -23,6 +23,7 @@ const dashboardRoutes: Routes = [
     children: [
       {
         path: '',
+        pathMatch: 'full',
         redirectTo: 'home'
       },
       {
@@ -37,6 +38,7 @@ const dashboardRoutes: Routes = [
       },
       {
         path: 'my-services',
+         pathMatch: 'full',
         loadChildren: () =>
           import('./dashboard-pages/my-services-dashboard/my-services-dashboard.module').then(m => m.MyServicesDashboardModule)
       },

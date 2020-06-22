@@ -1,5 +1,6 @@
 <div class="inform" *ngIf="collocutorData">
     <div class="tools" *ngIf="canDealBePayed || canDealBeStarted || isCancelButton || isArbiterBtn || isFinishDealButton">
+        
         <h6>{{'chat.work_chat.offer-data.title-moves' | translate}}</h6>
         <button *ngIf="canDealBePayed" class="btn" (click)="holdDealMoney()">{{'chat.work_chat.offer-data.hold-money' | translate}}</button>
         <button *ngIf="canDealBeStarted" class="btn" (click)="goToWork()">{{'chat.work_chat.offer-data.start-work' | translate}}</button>

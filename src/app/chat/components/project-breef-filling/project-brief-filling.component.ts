@@ -66,10 +66,12 @@ export class ProjectBriefFillingComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private localize: LocalizeRouterService,
-  ) { }
+  ) { 
+    this.getCollocutorData();
+  }
 
   ngOnInit() {
-    this.getCollocutorData();
+    
 
 
   }
@@ -97,24 +99,28 @@ export class ProjectBriefFillingComponent implements OnInit {
 
   private createFormGroup() {
     this.briefForm = this.fb.group({});
-    this.offerBrief.forEach((el: Brief) => {
+    this.offerBrief.forEach((el: Brief, i) => {
       if (el.answer_type === 'radio') {
         if (el.answer_required === '1') {
-          this.briefForm.addControl(el.title, new FormArray([], [Validators.required]));
+          this.briefForm.addControl(el.title +'_' + i, new FormArray([
+            new FormControl(null)
+          ], [Validators.required]));
         } else {
-          this.briefForm.addControl(el.title, new FormArray([]));
+          this.briefForm.addControl(el.title+'_' + i, new FormArray([
+            new FormControl(null)
+          ]));
         }
       } else {
         if (el.answer_required === '1') {
-          this.briefForm.addControl(el.title, this.fb.control(null, Validators.required));
+          this.briefForm.addControl(el.title+'_' + i, this.fb.control(null, Validators.required));
         } else {
-          this.briefForm.addControl(el.title, this.fb.control(null));
+          this.briefForm.addControl(el.title+'_' + i, this.fb.control(null));
         }
       }
     });
   }
 
-  sendBrief() {
+  public sendBrief() {
     this.submitted = true;
     if (this.briefForm.invalid) {
       return;
