@@ -1,7 +1,7 @@
 <div class="step-wrapper">
     <form #form="ngForm" (ngSubmit)="nextStep(form)">
         <h3>{{'dashboard.create-service.fifth-step.title' | translate}}</h3>
-
+        <span class="steps-counter">{{'dashboard.create-service.fifth-step.steps-counter' | translate}}</span>
         <h5>{{'dashboard.create-service.fifth-step.subtitle' | translate}}</h5>
         <div class="brief-item" *ngFor="let item of userService.offerbrief; let i = index" [style.border]="showedItem !== i+1 && !brief.valid ? '1px solid #f44336': 'none'" [ngClass]="{ hiddenItem: showedItem !== i+1 }">
             <form #brief="ngForm">
@@ -88,7 +88,7 @@
       </button>
         </div>
 
-        <div class="form-butons">
+        <div class="form-buttons">
             <button class="back" type="button">{{'general.exit' | translate}}</button>
             <button class="save" type="submit">{{'dashboard.create-service.save-and-next' | translate}}</button>
         </div>

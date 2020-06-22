@@ -21,6 +21,9 @@ form {
     line-height: 23px;
     color: #323c47;
   }
+  .steps-counter{
+    display: none;
+  }
 
   h6 {
     background: #f4f7fc;
@@ -253,7 +256,7 @@ quill-editor::ng-deep {
 
 // -----------------buttons ----------------------//
 
-.form-butons {
+.form-buttons {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -348,12 +351,102 @@ ngb-popover-window {
       width: 100%;
     }
   }
-  .form-butons {
+  .form-buttons {
     button {
       font-size: 13px;
       padding: 10px 24px;
       &:first-of-type{
         padding: 10px 24px;
+      }
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  form {
+    h5{
+      margin: 0 0 5px;
+    }
+    h3 {
+      font-size: 16px;
+      line-height: 20px;
+      text-align: center;
+      margin-bottom: 3px;
+    }
+    .steps-counter{
+      display: block;
+      margin-bottom: 16px;
+      font-size: 14px;
+      line-height: 18px;
+      text-align: center;
+      color: #99ACB7;
+    }
+    .faq-item{
+      margin-bottom: 15px;
+      &.hiddenItem{
+        margin-bottom: 15px;
+      }
+    }
+    .question-title{
+      padding: 14px 24px 13px;
+    }
+  }
+  .add-item{
+    margin: 25px 0 20px;
+    & > *{
+      font-size: 12px;
+      line-height: 20px;
+      margin: 10px 0 10px;
+      text-transform: uppercase;
+    }
+  }
+  .options{
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 767px) {
+  form {
+    h6{
+      padding: 8px 0px 36px 24px;
+    }
+    h3 {
+      font-size: 16px;
+      line-height: 20px;
+      text-align: center;
+      margin-bottom: 3px;
+    }
+    .faq-item{
+      margin-bottom: 15px;
+      &.hiddenItem{
+        margin-bottom: 15px;
+      }
+      .item-options{
+        right: 0;
+        top: auto;
+        bottom: 5px;
+        transform: none;
+        button:last-of-type{
+          margin-right: 10px;
+        }
+      }
+    }
+    .question-title{
+      padding: 14px 14px 13px;
+    }
+  }
+  .quill-editor::ng-deep .ql-container{
+    padding: 14px 14px;
+  }
+  .form-buttons{
+    flex-direction: column;
+    margin-bottom: 10px;
+    button{
+      width: 100%;
+      max-width: 250px;
+      margin: 0 auto;
+      &:first-of-type{
+        margin: 0 auto 20px;
       }
     }
   }

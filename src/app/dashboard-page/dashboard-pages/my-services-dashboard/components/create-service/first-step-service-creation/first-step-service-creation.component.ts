@@ -20,7 +20,7 @@ import { SiteLocaleService } from 'src/app/core/services/site-locale.service';
   styleUrls: ['./first-step-service-creation.component.scss']
 })
 
-export class FirstStepServiceCreationComponent implements OnInit{
+export class FirstStepServiceCreationComponent implements OnInit {
   public categoryList: CategoryInterface[] = [];
   public firstStepForm: FormGroup;
   public categories = [];
@@ -57,9 +57,9 @@ export class FirstStepServiceCreationComponent implements OnInit{
   @Input() userService: UserServiceModel;
 
   ngOnInit() {
-    console.log('width', window.innerWidth)
 
-    if(window.innerWidth >=768) {
+    this.subscribeLang();
+    if (window.innerWidth >= 768) {
       this.titlePosition = 'right';
     } else {
       this.titlePosition = 'botom';
@@ -72,6 +72,7 @@ export class FirstStepServiceCreationComponent implements OnInit{
       )
       .subscribe((res: any) => {
         this.categoryList = res.category;
+
         if (this.userService.category) {
           this.loadSubcategoryFilter(this.userService.category);
         }
@@ -81,18 +82,18 @@ export class FirstStepServiceCreationComponent implements OnInit{
       this.previewUrl = this.userService.files;
     }
     this.tags = this.userService.tags;
-    this.subscribeLang();
   }
   // tslint:disable-next-line: use-lifecycle-interface
   ngOnDestroy() {
    }
 
   private subscribeLang() {
+    console.log('start');
     this.siteLocaleService.currentLang$
     .pipe(filter((res: any) => !!res))
-    .subscribe(res => {
+    .subscribe((res: any) => {
       this.currentLang = res;
-    })
+    });
   }
 
   // tslint:disable-next-line: variable-name

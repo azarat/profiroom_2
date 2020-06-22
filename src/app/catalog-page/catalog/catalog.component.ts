@@ -112,7 +112,7 @@ export class CatalogComponent implements OnInit {
     .subscribe((res: any) => {
       this.currentLang = res;
     });
-    console.log(this.currentLang)
+    console.log(this.currentLang);
   }
 }
 
