@@ -37,6 +37,17 @@ export class BaseInterceptor implements HttpInterceptor {
     // http://194.28.103.239/
     // const url = 'http://dev.thecubetest.site/Backend/api';
 
+
+    // const url = 'http://test.thecubetest.site/Backend/api';
+
+    //let url;
+    //if (location.origin === 'http://localhost:4200') {
+    //  url = 'http://test.thecubetest.site/Backend/api';
+  //    // url = 'http://dev.thecubetest.site/Backend/api';
+  //  } else {
+ //     url =  location.origin + '/Backend/api';
+//    }
+
     const url = 'http://test.thecubetest.site/Backend/api';
     // const url = 'http://167.71.70.221/Backend/api'
 
@@ -50,6 +61,7 @@ export class BaseInterceptor implements HttpInterceptor {
     //   console.log(location.origin)
     //   url =  location.origin + '/Backend/api'
     // };
+
 
 
     const token = this.localStorageService.getItem('token').value;

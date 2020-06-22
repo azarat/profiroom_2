@@ -26,11 +26,22 @@ export class OutsideTolltipHoverDirective {
 
   @HostListener('document:mouseover', ['$event', '$event.target']) onHover(event: MouseEvent, targetElement: HTMLElement): void {
 
+
+    const clickedInside = this.el.nativeElement.contains(targetElement);
+    if (clickedInside == true && window.innerWidth > 1024) {
+
     const hoveredInside = this.el.nativeElement.contains(targetElement);
     if (hoveredInside == true) {
+
       if(!this.tooltip) {
-        this.show(); 
+        this.show();
       }
+
+
+    } else if(clickedInside == false) {
+      if (this.tooltip) {
+        setTimeout(() => {
+
      
     } else if(hoveredInside == false) {
       if (this.tooltip) { 
@@ -60,13 +71,13 @@ export class OutsideTolltipHoverDirective {
         this.renderer.removeChild(document.body, this.tooltip);
         this.tooltip = null;
       }
-      
+
     // }, 500)
 
 
   }
 
-  private create() { 
+  private create() {
     this.tooltip = this.renderer.createElement('div');
     let title = this.renderer.createElement('p');
     let description = this.renderer.createElement('p');

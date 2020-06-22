@@ -3,7 +3,7 @@
 
         <ngx-slick-carousel #slickModal="slick-carousel" [config]="slideConfig" class="main-statistic-carousel">
 
-          <div class="main-statistic-item" *ngFor="let el of statsicArr, let i = index">
+          <div ngxSlickItem class="main-statistic-item" *ngFor="let el of statsicArr, let i = index">
             <div class="icon">
                 <img src="/assets/images/icons/finance/{{el.icon}}.png" alt="">
             </div>

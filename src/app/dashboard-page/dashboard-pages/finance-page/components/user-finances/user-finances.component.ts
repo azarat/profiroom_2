@@ -12,7 +12,7 @@ import { SlickCarouselComponent } from 'ngx-slick-carousel';
 })
 export class UserFinancesComponent implements OnInit, AfterViewInit {
 
-  @ViewChild('slickModal', {static: false}) slickModal: SlickCarouselComponent;
+  @ViewChild('slickModall', {static: false}) slickModal: SlickCarouselComponent;
 
   public userFinance: FinanceInterface;
   public transactions = {
@@ -25,6 +25,7 @@ export class UserFinancesComponent implements OnInit, AfterViewInit {
   public allStatisticInfo: any[] = compressedFinanceInfoConst;
   public submited: boolean = null;
   public errorMessage: boolean = null;
+
   constructor(
     private userFinanceService: UserFinanceService
   ) { }
@@ -37,10 +38,10 @@ export class UserFinancesComponent implements OnInit, AfterViewInit {
       {
         'breakpoint': 767,
         'settings': {
-        'slidesToShow': 1,
-        'centerMode': true,
-        'centerPadding': '60px',
-        'variableWidth': true
+          'slidesToShow': 1,
+          'centerMode': true,
+          'centerPadding': '40px',
+          'variableWidth': true
         }
       }
     ]
@@ -49,7 +50,9 @@ export class UserFinancesComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.getFinanceData();
   }
-  ngAfterViewInit() {this.getScreenSize()}
+  ngAfterViewInit() {
+    this.getScreenSize();
+  }
 
   getFinanceData() {
     this.userFinanceService.getUserFinanceData()
@@ -90,21 +93,21 @@ export class UserFinancesComponent implements OnInit, AfterViewInit {
   }
 
   @HostListener('window:resize', ['$event'])
-  getScreenSize(event ? ) {
+  getScreenSize(event?: Event) {
 
+    setTimeout(() => {
 
-      if (window.innerWidth > 1024) {
-        if (this.slickModal.initialized) {
-          this.slickModal.unslick();
-          console.log('unslick');
+        console.log('defined');
+        if (window.innerWidth > 1024) {
+          console.log('biger');
+          if (this.slickModal.initialized) { this.slickModal.unslick(); console.log('unslick');}
+        } else if (!this.slickModal.initialized) {
+          this.slickModal.initSlick();
         }
-      } else if (!this.slickModal.initialized) {
-        this.slickModal.initSlick();
-        console.log('slick');
-      }
+
+    }, 1000);
 
   }
-
   next() {
     this.slickModal.slickNext();
   }

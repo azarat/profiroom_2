@@ -143,3 +143,9 @@ input[type=checkbox].tgl-classic + label{
 .form-butons{
   margin: 0 auto;
 }
+
+@media (max-width: 1024px) {
+  ::ng-deep.inform_section__fields{
+    padding: 15px 15px 20px;
+  }
+}
