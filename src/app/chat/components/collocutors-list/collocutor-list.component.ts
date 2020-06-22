@@ -45,7 +45,7 @@ export class CollocutorListComponent implements OnInit, OnDestroy {
 
   private querrySubscription: Subscription;
   private userStateSubscription: Subscription;
-  private currentUserState: number = null; // 1=> free, 2=> cusxtomer
+  private currentUserState: number = null; // 1=> free, 2=> customer
   constructor(
     private chatService: ChatService,
     private socketService: SocketService,
@@ -86,7 +86,7 @@ export class CollocutorListComponent implements OnInit, OnDestroy {
   //  Check querry params
   private _isAnyChatOpen() {
     this.querrySubscription = this.route.queryParams
-      .pipe(untilDestroyed(this))
+      // .pipe(untilDestroyed(this))
       .subscribe((res: { offers_id?: any, dealId?: any, id?: any, roomId: string } | any) => {
 
         if (res.hasOwnProperty('offers_id') && this.chatType === 'work' && this.currentUserState === 2) {
@@ -144,16 +144,17 @@ export class CollocutorListComponent implements OnInit, OnDestroy {
   }
 
   public openChat(collocutorData) {
+    console.log(collocutorData)
     if (this.chatType === 'classic') {
       // clear router from params if click on anther chat
-      const translatedPath = this.localize.translateRoute('/dashboard/chat-room');
+      let translatedPath = this.localize.translateRoute('/dashboard/chat-room');
       this.router.navigate([translatedPath], {
         relativeTo: this.route,
         queryParams: { id: collocutorData.id, roomId: collocutorData.roomId },
       });
     } else if (this.chatType === 'work') {
       // clear router from params if click on anther deal
-      const translatedPath = this.localize.translateRoute('/dashboard/projects');
+      let translatedPath = this.localize.translateRoute('/dashboard/projects');
       this.router.navigate([translatedPath], {
         relativeTo: this.route,
         queryParams: { dealId: collocutorData.id, roomId: collocutorData.roomId },
@@ -176,6 +177,7 @@ export class CollocutorListComponent implements OnInit, OnDestroy {
     this.userStateSubscription = this.userStateService.userState$
       .pipe(untilDestroyed(this))
       .subscribe(res => {
+        if(this.chatType === 'work') {
         if(!this.currentUserState) {
           this.currentUserState = res;
           this._getChatRooms();
@@ -190,8 +192,10 @@ export class CollocutorListComponent implements OnInit, OnDestroy {
         });
         }
         
-        // this._getChatRooms();
-        // this.collocutorService.setCollocutorInfo(null);
+        this._getChatRooms();
+        this.collocutorService.setCollocutorInfo(null);
+        }
+
 
         
       });
@@ -204,7 +208,7 @@ export class CollocutorListComponent implements OnInit, OnDestroy {
     } else {
       this.collocutors.push(obj);
     }
-    if (+(obj.message[0].author) !== this.userId && obj.unread !== 0) {
+    if (+(obj.message.author) !== this.userId && obj.unread !== 0) {
       sound.play();
     }
 
@@ -213,8 +217,8 @@ export class CollocutorListComponent implements OnInit, OnDestroy {
   // Sort Messages new on top
   private _sortMessagesByTime(arr) {
     const x = arr.sort((a, b) => {
-      const filedAOrder = a.message.length === 0 ? a.created_at : a.message[0].dateTime;
-      const filedBOrder = b.message.length === 0 ? b.created_at : b.message[0].dateTime;
+      const filedAOrder = a.message ? a.created_at : a.message.dateTime;
+      const filedBOrder = b.message ? b.created_at : b.message.dateTime;
       return filedBOrder.localeCompare(filedAOrder);
     });
     // this.collocutors = x;

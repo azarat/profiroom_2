@@ -37,7 +37,6 @@ export class AuthentificationPageComponent implements OnInit {
               };
             }
           });
-
       }
     });
   }

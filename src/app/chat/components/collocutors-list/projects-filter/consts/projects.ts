@@ -6,11 +6,11 @@ export const projectTypesConst = [
   },
   {
     name: 'chat.work_chat.deal-filter.brief',
-    type: 'new'
+    type: 'sentBreef'
   },
   {
     name: 'chat.work_chat.deal-filter.new',
-    type: 'sentBrief'
+    type: 'approved'
   },
   {
     name: 'chat.work_chat.deal-filter.in-proccess',

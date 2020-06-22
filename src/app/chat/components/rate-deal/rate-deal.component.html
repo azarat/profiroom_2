@@ -27,7 +27,7 @@
                 </div>
             </div>
             <div class="rate-item">
-                <div class="title">{{(isUserFreelancer? 'chat.work_chat.rating.task.freelancer-three': ' chat.work_chat.rating.task.customer-three') | translate}}</div>
+                <div class="title">{{(isUserFreelancer? 'chat.work_chat.rating.task.freelancer-three': 'chat.work_chat.rating.task.customer-three') | translate}}</div>
                 <div (mouseenter)="isHover_third = true" (mouseleave)="isHover_third = false">
                     <div class="star" *ngFor="let el of starsArr, let i = index" (click)="getCivility(i+1, isUserFreelancer? 'contactLevel' : 'civility')" (mouseenter)="hoveredEl = i+1" (mouseleave)="hoveredEl = i+1" [ngClass]="{ 'full-star': civilityRating >=i+1 && !isHover_third || isHover_third && hoveredEl >=i+1 }">
                         <span class="rate-description" *ngIf="isHover_third && hoveredEl === i+1">

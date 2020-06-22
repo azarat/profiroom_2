@@ -26,17 +26,28 @@ export class OutsideTolltipHoverDirective {
 
   @HostListener('document:mouseover', ['$event', '$event.target']) onHover(event: MouseEvent, targetElement: HTMLElement): void {
 
+
     const clickedInside = this.el.nativeElement.contains(targetElement);
     if (clickedInside == true && window.innerWidth > 1024) {
+
+    const hoveredInside = this.el.nativeElement.contains(targetElement);
+    if (hoveredInside == true) {
+
       if(!this.tooltip) {
         this.show();
       }
 
+
     } else if(clickedInside == false) {
       if (this.tooltip) {
         setTimeout(() => {
+
+     
+    } else if(hoveredInside == false) {
+      if (this.tooltip) { 
+        // setTimeout(() => {
           this.hide()
-        }, 500)
+        // }, 500)
          }
     }
 

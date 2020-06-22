@@ -60,6 +60,8 @@ export class LanguageComponent implements OnInit {
     this.localize.changeLanguage(language);
     this.activeLang = language;
     this.siteLocaleService.changeLangTo(this.activeLang);
+    this.localize.translateRoute(this._router.url);
+    
     this.hideMenu();
   }
 
