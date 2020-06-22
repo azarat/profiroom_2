@@ -453,6 +453,9 @@ ngb-popover-window {
       }
     }
   }
+  .ng-tooltip, .popover  {
+    display: none !important;
+  }
 }
 
 @media (max-width: 767px) {
@@ -482,4 +485,6 @@ ngb-popover-window {
   .form-buttons{
     margin-top: 10px;
   }
+
+
 }

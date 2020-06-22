@@ -36,9 +36,11 @@ export class OutsideTolltiDirective {
   }
 
   private show() {
-    this.create();
-    this.setPosition();
-    this.renderer.addClass(this.tooltip, 'ng-tooltip-show');
+    if (window.innerWidth > 1024) {
+      this.create();
+      this.setPosition();
+      this.renderer.addClass(this.tooltip, 'ng-tooltip-show');
+    }
   }
   private hide() {
     if(this.tooltip) {

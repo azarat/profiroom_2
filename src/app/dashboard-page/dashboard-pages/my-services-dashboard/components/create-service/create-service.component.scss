@@ -474,4 +474,12 @@
   //   }
   // }
 
+  .step-detail::ng-deep {
+    form {
+      ngb-popover-window, .ng-tooltip-outside {
+        display: none !important;
+      }
+    }
+  }
+
 }

@@ -608,7 +608,9 @@ form::ng-deep {
   .dr-dp{
     margin-bottom: 40px;
   }
-
+  .ng-tooltip {
+    display: none !important;
+  }
 }
 
 
@@ -660,4 +662,9 @@ form::ng-deep {
   }
 
 
+  .items {
+    .img-item {
+      margin-bottom: 15px;
+    }
+  }
 }

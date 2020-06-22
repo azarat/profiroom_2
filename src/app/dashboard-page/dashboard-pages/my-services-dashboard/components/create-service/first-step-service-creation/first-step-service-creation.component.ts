@@ -109,7 +109,7 @@ export class FirstStepServiceCreationComponent implements OnInit {
       return;
     }
 
-    if(this.userService.mainImage.includes("offerFiles/gefaultOffer.jpg")) {
+    if (this.userService.mainImage.includes("offerFiles/gefaultOffer.jpg")) {
       this.putAsMainPhoto(this.previewUrl[0].link);
     }
 

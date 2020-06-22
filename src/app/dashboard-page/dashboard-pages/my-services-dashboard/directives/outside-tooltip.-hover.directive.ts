@@ -40,21 +40,21 @@ export class OutsideTolltipHoverDirective {
 
     } else if(clickedInside == false) {
       if (this.tooltip) {
-        setTimeout(() => {
-
-     
-    } else if(hoveredInside == false) {
-      if (this.tooltip) { 
         // setTimeout(() => {
-          this.hide()
-        // }, 500)
+
+
+    // } else if(hoveredInside == false) {
+    //   if (this.tooltip) {
+    //     // setTimeout(() => {
+    //       this.hide()
+    //     // }, 500)
          }
     }
 
 
     // if (!clickedInside) {
     //   if (this.tooltip) { this.hide() }
-    // }
+    }
   }
 
 

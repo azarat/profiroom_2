@@ -616,6 +616,9 @@ form ::ng-deep {
   .options{
     margin-bottom: 10px;
   }
+  .ng-tooltip {
+    display: none !important;
+  }
 }
 
 @media (max-width: 767px) {
@@ -625,10 +628,10 @@ form ::ng-deep {
       font-size: 12px;
     }
     h3 {
-      font-size: 12px;
-      line-height: 16px;
+      font-size: 16px;
+      line-height: 18px;
       text-align: center;
-      margin-bottom: 3px;
+      margin-bottom: 8px;
     }
     .steps-counter{
       display: block;
@@ -652,7 +655,7 @@ form ::ng-deep {
         padding-right: 0px;
       }
       .service-selects .mat-form-field{
-        width: 270px;
+        width: 100%;
         margin-right: 0;
         margin-bottom: 10px;
       }
@@ -669,6 +672,7 @@ form ::ng-deep {
     }
     .form-buttons{
       flex-direction: column;
+      margin-bottom: 20px;
       button{
         width: 100%;
         max-width: 250px;

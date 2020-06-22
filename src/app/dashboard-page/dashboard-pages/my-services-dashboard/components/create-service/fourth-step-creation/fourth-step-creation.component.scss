@@ -403,6 +403,9 @@ ngb-popover-window {
   .options{
     margin-bottom: 10px;
   }
+  .ng-tooltip {
+    display: none !important;
+  }
 }
 
 @media (max-width: 767px) {

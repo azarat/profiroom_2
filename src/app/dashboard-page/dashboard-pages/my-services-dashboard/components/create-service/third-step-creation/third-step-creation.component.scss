@@ -1113,6 +1113,9 @@ ngb-popover-window {
       }
     }
   }
+  .ng-tooltip {
+    display: none !important;
+  }
 }
 
 @media (max-width: 767px) {
@@ -1281,7 +1284,7 @@ ngb-popover-window {
           }
         }
         &.expanded{
-          padding: 20px 10px 35px 0px;
+          padding: 20px 10px 35px 10px;
         }
       }
       span{
