@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewChecked, Input, ViewChild, ElementRef, AfterViewInit, ViewChildren, QueryList } from '@angular/core';
+import { Component, OnInit, AfterViewChecked, Input, ViewChild, ElementRef, AfterViewInit, ViewChildren, QueryList, EventEmitter, Output } from '@angular/core';
 import { ChatService } from '../../services/chat.service';
 import { MessageScrollService } from '../../services/message-scroll/message-scroll.service';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
@@ -18,6 +18,7 @@ export class MessageListComponent implements OnInit, AfterViewChecked, AfterView
   @Input() chatRoom: string;
   @Input() messagesList: any[];
   @Input() collocutorData: CollocutorListModel;
+  @Output() swipeDirection = new EventEmitter();
   public userId: any;
   public userAvatar: any;
   public messCheck = null;
@@ -36,6 +37,8 @@ export class MessageListComponent implements OnInit, AfterViewChecked, AfterView
     this.userId = (this.localStorageService.getItem('userId').value).toString();
     this.userAvatar = this.localStorageService.getItem('userImage').value;
   }
+
+  SWIPE_ACTION = { LEFT: 'swipeleft', RIGHT: 'swiperight' };
 
   @ViewChild('messagesWrap', { static: false }) messagesWrap: ElementRef;
 
@@ -137,5 +140,15 @@ export class MessageListComponent implements OnInit, AfterViewChecked, AfterView
         this.typingUser = res;
         this.typing = null;
       });
+  }
+
+
+  public swipeEvent(event: any) {
+    console.log(event);
+    if (event.type === 'swipeleft') {
+      this.swipeDirection.emit('swipeleft');
+    } else if (event.type === 'swiperight') {
+      this.swipeDirection.emit('swipeleft');
+    }
   }
 }

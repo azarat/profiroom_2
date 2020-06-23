@@ -55,7 +55,7 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
     this.notifyShow();
     this.defineCurrentUser();
     this.subscribeUserMinData();
-    
+
   }
 
   ngAfterViewInit() {
@@ -147,6 +147,21 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
     this.sideMenuClose = !this.sideMenuClose;
   }
   public toggleMobileSideMenu() {
+    console.log('toogle');
     this.mobileMenuOpen = !this.mobileMenuOpen;
+  }
+  public closeMobileMenu(x) {
+    console.log(x);
+
+    if (x) {
+      console.log('close');
+      this.mobileMenuOpen = false;
+    }
+    // setTimeout(() => {
+    //   if (this.mobileMenuOpen === true) {
+    //     console.log('close');
+    //     this.mobileMenuOpen = false;
+    //   }
+    // }, 100);
   }
 }

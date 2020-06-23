@@ -157,3 +157,38 @@
     }
   }
 }
+
+@media (max-width: 1024px) {
+  .wrapper::ng-deep {
+    .collocutors{
+      display: none!important;
+    }
+    .collocutors-tools{
+      // display: none!important;
+
+      transition: all .3s;
+      position: absolute;
+      &.open{
+        right: 10px;
+      }
+      &.hidden{
+        right: -190px;
+      }
+    }
+    .messager{
+      width: 100%;
+      .line {
+        .collocutor {
+            a {
+              font-size: 14px;
+              line-height: 18px;
+            }
+        }
+        .messager-tools {
+            width: 64px;
+            // background-color: red;
+        }
+      }
+    }
+  }
+}

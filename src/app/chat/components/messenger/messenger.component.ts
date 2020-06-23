@@ -41,9 +41,11 @@ export class MessengerComponent implements OnInit, OnDestroy {
   @Input() isFileLoaderVisible: boolean;
   @Output() isFileLoaderVisibleChange = new EventEmitter<boolean>();
 
+
   @ViewChild('textarea', { static: false }) textareaInput: ElementRef;
   @ViewChildren(MessageListComponent) messagesWrap: QueryList<MessageListComponent>;
   @ViewChildren(MessageListComponent) messages: QueryList<ElementRef>;
+
 
   constructor(
     private chatService: ChatService,
@@ -54,7 +56,6 @@ export class MessengerComponent implements OnInit, OnDestroy {
   ) {
     this.userId = this.localStorageService.getItem('userId').value;
   }
-
 
 
   ngOnInit() {

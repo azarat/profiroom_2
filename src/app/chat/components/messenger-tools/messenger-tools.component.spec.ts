@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MassagerToolsComponent } from './massager-tools.component';
+import { MessengerToolsComponent } from './messenger-tools.component';
 
 describe('MassagerToolsComponent', () => {
-  let component: MassagerToolsComponent;
-  let fixture: ComponentFixture<MassagerToolsComponent>;
+  let component: MessengerToolsComponent;
+  let fixture: ComponentFixture<MessengerToolsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MassagerToolsComponent ]
+      declarations: [ MessengerToolsComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MassagerToolsComponent);
+    fixture = TestBed.createComponent(MessengerToolsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

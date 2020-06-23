@@ -7,6 +7,7 @@ import { CollocutorInterface } from '../../interfaces/collocutor.interface';
 import { UserStateService } from 'src/app/dashboard-page/services/user-state.service';
 import { CollocutorService } from '../../services/collocutor.service';
 import { untilDestroyed } from 'ngx-take-until-destroy';
+import { HammerGestureConfig } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-chat',
@@ -16,6 +17,7 @@ import { untilDestroyed } from 'ngx-take-until-destroy';
 export class ChatComponent implements OnInit, OnDestroy {
 
   @Input() chatType: string;
+
   uploadedBriefFiles: any;
 
   public collocutorData: CollocutorInterface = null;
@@ -24,6 +26,11 @@ export class ChatComponent implements OnInit, OnDestroy {
   public exitFromBriefPopUpVisible: boolean = null;
   public isChat = true;
   public moneyRequired = null;
+  public rightBarInit: boolean = null; // true on window width < 980px
+
+  public rightBarVisible: boolean = null;
+
+  SWIPE_ACTION = { LEFT: 'swipeleft', RIGHT: 'swiperight' };
 
   constructor(
     private chatService: ChatService,
@@ -47,8 +54,8 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.socketService.subscribeOnCollocutorList(this.chatType);
   }
 
-  /* 
-    ** 
+  /*
+    **
     Reset messager path after brief filling
     **
   */
@@ -64,7 +71,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     }, 100);
   }
 
-  /* 
+  /*
    subscribe on collucutor/ deal data
   */
 
@@ -87,5 +94,42 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.moneyRequired = e;
   }
 
+
+  public swipeEvent(event: any) {
+    console.log(event)
+    if (event.type === 'swipeleft') {
+
+      // if(window.innerWidth > 768) {
+
+        if (this.rightBarVisible === null || this.rightBarVisible === false) {
+          this.rightBarVisible = true;
+        }
+      // } else if (window.innerWidth < 768) {
+
+      // }
+
+
+    } else if (event.type === 'swiperight') {
+      if (this.rightBarVisible === true) {
+        this.rightBarVisible = false;
+      }
+    }
+  }
+
+  public showRightBar() {
+    if (this.rightBarVisible === null) {
+      this.rightBarVisible = true;
+    } else {
+      this.rightBarVisible = !this.rightBarVisible;
+    }
+  }
+
+  public hideRightBar() {
+    this.rightBarVisible = false;
+  }
+
+  swipeDirectionFromMessage(evnt){
+    console.log('swipeDirectionFromMessage ' + evnt);
+  }
 
 }
