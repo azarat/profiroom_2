@@ -335,8 +335,8 @@ button {
   }
   img {
     object-fit: contain;
-    width: 196px;
-    height: 196px;
+    width: 100%;
+    height: 100%;
     padding: 2px;
   }
 }
@@ -344,10 +344,15 @@ button {
 @media (max-width: 1499px) {
   .studyPeriod{
     width: 490px;
+    flex-direction: column;
+    align-items: flex-start;
+    &:before{
+      display: none;
+    }
     .period-wrapper{
       .field-block{
         width: 105px;
-  
+
         &:first-child{
           margin-right: 22px;
         }
@@ -365,3 +370,92 @@ button {
 //     }
 //   }
 // }
+
+@media (max-width: 1024px) {
+  .fields{
+    &-value{
+      padding: 9px;
+    }
+  }
+  .add-education{
+    height: 20px;
+    position: relative;
+  }
+  .items {
+    .img-item {
+      width: 167px;
+      height: 167px;
+    }
+  }
+}
+
+@media (max-width: 767.98px) {
+  .fields{
+    margin-bottom: 15px;
+    &-title{
+      font-size: 14px;
+      line-height: 20px;
+      margin-bottom: 4px;
+    }
+    &-value{
+      font-size: 14px;
+      padding: 11px;
+      &.institution-name{
+        max-width: calc(100% - 100px);
+      }
+    }
+  }
+
+  button {
+    &.change{
+      top: 33px;
+      right: 35px;
+    }
+    &.delete-education{
+      top: 31px;
+      right: -10px;
+    }
+  }
+  .field-block{
+    margin-bottom: 15px;
+  }
+  .academicBlock{
+    flex-direction: column;
+  }
+
+  //--------------------------- selects styling -----------------------------
+  .service-selects ::ng-deep{
+    mat-select {
+      font-size: 14px;
+      line-height: 18px;
+      padding: 10px 15px 10px;
+    }
+
+    .ng-star-inserted{
+      font-size: 14px;
+      line-height: 18px;
+    }
+    .mat-form-field {
+      .ng-star-inserted {
+        font-size: 14px;
+        line-height: 18px;
+      }
+    }
+  }
+  ::ng-deep .cdk-overlay-container {
+    .mat-option {
+      font-size: 14px;
+      line-height: 18px;
+    }
+  }
+
+  .items {
+    .img-item {
+      width: 159px;
+      height: 159px;
+    }
+  }
+  .single-additional-education-block::after{
+    width: 100%;
+  }
+}

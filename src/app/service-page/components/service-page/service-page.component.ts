@@ -87,10 +87,12 @@ export class ServicePageComponent implements OnInit {
 
   private getLoginedUserId () {
     this.userService.user$
+    .pipe(filter((res: any) => !!res))
     .subscribe(res => {
-      this.loginedUserId = res;
+      this.loginedUserId = res.id;
+      
     })
-    console.log(this.loginedUserId )
+    
   }
 
   private saveOfferrWievs(ip) {

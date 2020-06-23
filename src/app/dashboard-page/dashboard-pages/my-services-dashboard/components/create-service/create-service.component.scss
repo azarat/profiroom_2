@@ -432,3 +432,46 @@
     }
   }
 }
+
+@media (max-width: 1024px) {
+  .step-wrapper{
+    padding-right: 15px;
+  }
+  .wrapper{
+    padding: 20px 10px 20px 15px;
+    .steps {
+        display: none;
+
+      width: auto;
+      position: absolute;
+      left: 15px;
+      top: 20px;
+      h3{
+        font-size: 18px;
+        line-height: 23px;
+      }
+      .steps-wrap{
+        display: none;
+      }
+    }
+    .step-detail{
+      width: 100%;
+      padding-left: 0;
+      padding-bottom: 20px;
+    }
+  }
+  // .step-detail::ng-deep {
+  //   form {
+  //     ng-tooltip{
+  //       display: none!important;
+  //     }
+  //     ngb-popover-window {
+  //       border: none;
+  //       &.popover {
+  //         display: none!important;
+  //       }
+  //     }
+  //   }
+  // }
+
+}

@@ -74,7 +74,7 @@ h1{
     align-items: center;
     text-align: center;
     letter-spacing: 1px;
-  
+
     color: #FFFFFF;
     background: #3C7EEA;
     box-shadow: 0px 2px 4px rgba(60, 9, 179, 0.3);
@@ -102,7 +102,7 @@ h1{
       transform: translate(-50%, -50%);
       max-width: 350px;
       // max-height: 350px;
-  
+
       padding: 55px 35px;
       background: #FFFFFF;
       box-shadow: 0px 15px 30px rgba(16, 27, 79, 0.15);
@@ -168,7 +168,7 @@ h1{
 
 @media (max-width: 1499px) {
   h1{
-    margin: 30px auto 0px 15px; 
+    margin: 30px auto 0px 15px;
   }
   .mat-tab-group ::ng-deep{
     .mat-tab-label{
@@ -182,4 +182,8 @@ h1{
   ::ng-deep.save-all{
     padding: 10px 35px;
   }
+}
+
+@media (max-width: 1024px) {
+
 }

@@ -3,8 +3,8 @@
         <!-- User finance statistic -->
         <section class="compressed-statistic">
 
-          <ngx-slick-carousel #slickModal="slick-carousel" [config]="slideConfig" class="main-statistic-carousel">
-            <div class="statistic-item" *ngFor="let el of allStatisticInfo, let i = index">
+          <ngx-slick-carousel #slickModall="slick-carousel" [config]="slideConfig" class="main-statistic-carousel">
+            <div ngxSlickItem  class="statistic-item" *ngFor="let el of allStatisticInfo, let i = index">
               <div class="icon">
                   <img src="/assets/images/icons/finance/{{el.type}}.png" alt="">
               </div>
@@ -78,13 +78,13 @@
                         <div class="count">
                             <p>{{'dashboard.cash-box.wright-summ' | translate}}</p>
                             <div>
-                                <input [(ngModel)]="transactions.amount" id="count" type="text" name="amount" [ngClass]="{'invalid': submited && form.controls.name.invalid }"><label for="count">
+                                <input name="amount" [(ngModel)]="transactions.amount" id="count" type="text"  [ngClass]="{'invalid': submited && form.controls.name.invalid }"><label for="count">
                     <span>UAH</span></label>
                             </div>
                         </div>
                         <div class="password">
                             <p>{{'dashboard.cash-box.ur-password' | translate}}</p>
-                            <input type="password" required [(ngModel)]="transactions.password" name="password" [ngClass]="{'invalid': submited && form.controls.password.invalid }">
+                            <input type="password" name="password" required [(ngModel)]="transactions.password"  [ngClass]="{'invalid': submited && form.controls.password.invalid }">
                         </div>
                         <button class="btn" type="submit" (click)="makePayment(form)">{{'general.success' | translate}}</button>
                     </div>
@@ -103,7 +103,7 @@
         </div>
         <div class="wallet-section">
             <div class="title">{{'dashboard.payment-history.input-output' | translate}}</div>
-            <form class="form" #form="ngForm">
+            <form class="form" #formTwo="ngForm">
                 <div class="operation-type">
                     <mat-select name="transactionType" [(ngModel)]="transactions.transactionType" [(value)]="transactions.transactionType">
                         <mat-option [value]="'deffault'" disabled>{{'dashboard.cash-box.choose-operation-type' | translate}}</mat-option>
@@ -119,7 +119,7 @@
                     <div class="count">
                         <p>{{'dashboard.cash-box.wright-summ' | translate}}</p>
                         <div>
-                            <input [(ngModel)]="transactions.amount" id="count" type="text"><label for="count">
+                            <input name="amount" [(ngModel)]="transactions.amount" id="count" type="text"><label for="count">
                   <span>UAH</span></label>
                         </div>
 
@@ -128,9 +128,9 @@
 
                     <div class="password">
                         <p>{{'dashboard.cash-box.ur-password' | translate}}</p>
-                        <input type="password" [(ngModel)]="transactions.password">
+                        <input type="password" name="password" [(ngModel)]="transactions.password">
                     </div>
-                    <button class="btn" type="submit" (click)="makePayment(form)">{{'general.success' | translate}}</button>
+                    <button class="btn" type="submit" (click)="makePayment(formTwo)">{{'general.success' | translate}}</button>
                 </div>
             </form>
 

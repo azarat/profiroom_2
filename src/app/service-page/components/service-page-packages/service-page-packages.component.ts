@@ -14,7 +14,7 @@ export class ServicePagePackagesComponent implements OnInit {
   // tslint:disable-next-line: no-output-on-prefix
   @Output() checkoutState = new EventEmitter<any>();
   @Output() scrollToThis = new EventEmitter<any>();
-  @Input() loginedUserId: any;
+  @Input() loginedUserId: number;
 
   private token: any = null;
   public openFeatures = false;

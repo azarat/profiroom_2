@@ -22,6 +22,9 @@ form {
     line-height: 23px;
     color: #323c47;
   }
+  .steps-counter{
+    display: none;
+  }
 }
 
 form::ng-deep {
@@ -571,4 +574,84 @@ form::ng-deep {
   form ::ng-deep {
     width: 100%;
   }
+}
+
+@media (max-width: 1024px) {
+  form {
+    h5{
+      margin: 0 0 5px;
+    }
+    h3 {
+      font-size: 16px;
+      line-height: 20px;
+      text-align: center;
+      margin-bottom: 3px;
+    }
+    .steps-counter{
+      display: block;
+      margin-bottom: 6px;
+      font-size: 14px;
+      line-height: 18px;
+      text-align: center;
+      color: #99ACB7;
+    }
+    .tags span{
+      margin: 6px 0 15px;
+    }
+  }
+  .step-wrapper{
+    padding-right: 15px;
+  }
+  .service-selects{
+    margin: 15px 0;
+  }
+  .dr-dp{
+    margin-bottom: 40px;
+  }
+
+}
+
+
+@media (max-width: 767px) {
+  form {
+    h5{
+      font-size: 12px;
+      margin: 0;
+    }
+    h3 {
+      margin-bottom: 13px;
+      margin-top: 40px;
+    }
+    .steps-counter{
+      margin-bottom: 15px;
+    }
+  }
+  .service-selects{
+    width: 100%;
+    flex-direction: column;
+    & > div{
+      width: 100%;
+    }
+  }
+  form::ng-deep {
+    ngb-popover-window {
+      &.popover {
+        display: none;
+      }
+    }
+  }
+  .form-butons{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    button{
+      min-width: 235px;
+      width: auto;
+      &:first-of-type {
+        margin-bottom: 20px;
+      }
+    }
+  }
+
+
 }

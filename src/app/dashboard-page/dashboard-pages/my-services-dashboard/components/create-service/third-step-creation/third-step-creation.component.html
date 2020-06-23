@@ -2,6 +2,7 @@
     <form #form="ngForm" (ngSubmit)="nextStep(form)">
         <div class="form-title">
             <h3>3. Пакеты услуг и цены</h3>
+            <span class="steps-counter">{{'dashboard.create-service.third-step.steps-counter' | translate}}</span>
             <div class="pckg-swap">
                 <input class="tgl tgl-swp" id="cb2" type="checkbox" name="change-pack-val" [(ngModel)]="userService.allPackages" />
                 <label class="tgl-btn" for="cb2"></label>
@@ -10,7 +11,8 @@
         </div>
 
         <!-------------------- main options -------------------->
-        <div class="offer-packages">
+        <div class="offer-packages_wrapper">
+          <div class="offer-packages">
             <!-------------------- block hidden 2 pack -------------------->
             <div class="show-all-pack" *ngIf="userService.allPackages === 0 || userService.allPackages === false">
                 <h4>{{'dashboard.create-service.third-step.description-block.title' | translate}}</h4>
@@ -50,7 +52,7 @@
                 <div class="packages-title" *ngFor="let package of packagesTypes; index as x" >
                     <div class="textarea">
                         <textarea [(ngModel)]="userService.packagesTitle[package +'Title']" name="title_{{ package }}"
-                                  rows="2" [maxlength]="35" [required]="(x == 0 &&( userService.allPackages === false || userService.allPackages === 0)) || 
+                                  rows="2" [maxlength]="35" [required]="(x == 0 &&( userService.allPackages === false || userService.allPackages === 0)) ||
                                   (userService.allPackages === true ||  userService.allPackages === 1 )"
                                   [ngClass]="{ 'submited': submited }"
                                   ></textarea>
@@ -70,7 +72,7 @@
                 <div class="textarea-wrap description-wrapper" *ngFor="let package of packagesTypes; let x = index" >
                     <textarea name="{{package + 'Description'}}" id="" [ngClass]="{ 'submited': submited }"
                               [(ngModel)]="userService.packagesDescriptions[package + 'Description']"  [maxlength]="270"
-                              [required]="(x == 0 &&( userService.allPackages === false || userService.allPackages === 0)) || 
+                              [required]="(x == 0 &&( userService.allPackages === false || userService.allPackages === 0)) ||
                               (userService.allPackages === true ||  userService.allPackages === 1 )"></textarea>
                 </div>
             </div>
@@ -87,7 +89,7 @@
                 <div *ngFor="let package of packagesTypes; let x = index" >
                     <div class="input-wrap">
                         <input name="{{package + 'Term'}}" type="text" knifeOnlyNumbers maxlength="3" [(ngModel)]="userService.packagesTerms[package + 'Term']"
-                                [required]="(x == 0 &&( userService.allPackages === false || userService.allPackages === 0)) || 
+                                [required]="(x == 0 &&( userService.allPackages === false || userService.allPackages === 0)) ||
                                 (userService.allPackages === true || userService.allPackages === 1 )"
                                 [ngClass]="{ 'submited': submited }">
                     </div>
@@ -103,8 +105,8 @@
                 </div>
                 <div *ngFor="let package of packagesTypes; let x = index" >
                     <div class="select-wrap">
-                        <mat-select [(ngModel)]="userService.packagesChanges[package + 'Changes']" name="{{package + 'Changes'}}" 
-                        [required]="(x == 0 &&( userService.allPackages === false || userService.allPackages === 0)) || 
+                        <mat-select [(ngModel)]="userService.packagesChanges[package + 'Changes']" name="{{package + 'Changes'}}"
+                        [required]="(x == 0 &&( userService.allPackages === false || userService.allPackages === 0)) ||
                         (userService.allPackages === true || userService.allPackages === 1 )"
                         [ngClass]="{ 'submited': submited }"
                         >
@@ -126,7 +128,7 @@
                 <div *ngFor="let package of packagesTypes; let x = index">
                     <div class="input-wrap">
                         <input type="number" knifeOnlyNumbers maxlength="7" #packagePrice="ngModel"
-                               [required]="(x == 0 &&( userService.allPackages === false || userService.allPackages === 0)) || 
+                               [required]="(x == 0 &&( userService.allPackages === false || userService.allPackages === 0)) ||
                                (userService.allPackages === true ||  userService.allPackages === 1 )"
                                [(ngModel)]="userService.packagesPrices[package + 'Price']" name="{{package + 'Price'}}"
                             [min]="250" (ngModelChange)="priceChange($event, package)" placeholder="min 250"
@@ -168,6 +170,8 @@
                 </div>
             </form>
         </div>
+        </div>
+
         <!-------------------- Extra Options -------------------->
         <div class="extra-packages-wrap">
 
