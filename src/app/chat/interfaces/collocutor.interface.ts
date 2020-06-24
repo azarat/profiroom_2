@@ -37,7 +37,7 @@ export interface CollocutorInterface {
     dateTime?: Date;
     authorAva?: string;
     type?: string;
-  };
+  }[];
   extra_features: any [];
   history?: any[];
   negative_comments_count?: any;

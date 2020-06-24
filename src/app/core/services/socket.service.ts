@@ -10,7 +10,7 @@ export class SocketService {
   // var socket = require('socket.io-client')('http://localhost');
   socket: any;
   private host = 'http://194.28.103.239:6001';
-  // private host = 'https://profiroom.com/:6001';
+  // private host = 'http://167.71.70.221:6001';
   // private socket: any = io.connect(this.host);
   public socketId: string = null;
   private keyPath = 'gigroom_database_private-';

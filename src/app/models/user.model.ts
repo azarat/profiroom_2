@@ -16,6 +16,7 @@ export class UserModel {
   @Expose() avatar: string;
   @Expose() purse: any;
   @Expose() rating: number;
+  @Expose() views: number;
   // tslint:disable-next-line: variable-name
   @Expose() rank_id: number;
   // tslint:disable-next-line: variable-name
@@ -28,6 +29,7 @@ export class UserModel {
   @Expose() allDealsperMonths: number[];
   @Expose() achivements: any;
   @Expose() pieChart: number[];
+  @Expose() offerViews: any[];
 
   @Type(() => UserServiceModel) userservice: UserServiceModel[];
 

@@ -77,7 +77,10 @@ export class ChatComponent implements OnInit, OnDestroy {
   private _dealUpdating() {
     this.socketService.dealUpdating()
     .subscribe((res: any) => {
-      this.collocutorService.setCollocutorInfo(res);
+      if(this.collocutorData.id === res.is) {
+        this.collocutorService.setCollocutorInfo(res);
+      }
+      
     });
   }
 

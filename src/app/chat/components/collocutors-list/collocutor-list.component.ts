@@ -42,10 +42,8 @@ export class CollocutorListComponent implements OnInit, OnDestroy {
     roomId: string;
   } = null;
   // @Output() currentRoom = new EventEmitter();
-
-  private querrySubscription: Subscription;
-  private userStateSubscription: Subscription;
   private currentUserState: number = null; // 1=> free, 2=> customer
+  
   constructor(
     private chatService: ChatService,
     private socketService: SocketService,
@@ -88,30 +86,27 @@ export class CollocutorListComponent implements OnInit, OnDestroy {
 
   //  Check querry params
   private _isAnyChatOpen() {
-    this.querrySubscription = this.route.queryParams
-      // .pipe(untilDestroyed(this))
+    this.route.queryParams
+      .pipe(untilDestroyed(this))
       .subscribe((res: { offers_id?: any, dealId?: any, id?: any, roomId: string } | any) => {
 
         if (res.hasOwnProperty('offers_id') && this.chatType === 'work' && this.currentUserState === 2) {
            this._getDealData(res.id);
-           return;
         } else if (res.hasOwnProperty('dealId') && this.chatType === 'work') {
           // If Work chat
           this._getDealData(res.dealId);
-          return;
         } else if (res.hasOwnProperty('id') && this.chatType === 'classic') {
           // Classic chat
           this._getCollocutorData(res.id);
-          return;
         } 
         // need to check 
-        // else if (this.chatType === 'work') {
-        //   const translatedPath = this.localize.translateRoute('/dashboard/projects');
-        //   this.router.navigate([translatedPath], {
-        //     relativeTo: this.route,
-        //     queryParams: {},
-        //   });
-        // }
+        else if (this.chatType === 'work') {
+          const translatedPath = this.localize.translateRoute('/dashboard/projects');
+          this.router.navigate([translatedPath], {
+            relativeTo: this.route,
+            queryParams: {},
+          });
+        }
         this._connectToCurrentChatSocket(res.roomId);
       });
   }
@@ -141,8 +136,8 @@ export class CollocutorListComponent implements OnInit, OnDestroy {
   private _getDealData(dealId) {
     this.dealService.getDealData(dealId)
       .pipe(
-        filter((res: any) => !!res),
-        first())
+        filter((res: any) => !!res))
+        // first())
       .subscribe((res: any) => {
         this.collocutorService.setCollocutorInfo(res);
       });
@@ -180,14 +175,14 @@ export class CollocutorListComponent implements OnInit, OnDestroy {
       .pipe(untilDestroyed(this))
       .subscribe(res => {
         this._pushNewMessage(this.collocutors, res);
-        this._sortMessagesByTime(this.collocutors);
+        
       });
   }
 
 
   //  Clearing route on brief 
   private _checkUserState() {
-    this.userStateSubscription = this.userStateService.userState$
+    this.userStateService.userState$
       .pipe(untilDestroyed(this))
       .subscribe(res => {
         if(this.chatType === 'work') {
@@ -195,7 +190,9 @@ export class CollocutorListComponent implements OnInit, OnDestroy {
             this.currentUserState = res;
             this._getChatRooms();
             this.collocutorService.setCollocutorInfo(null);
-          } else {
+            return;
+          } else if(this.currentUserState !== res) {
+            this.currentUserState = res;
             this._getChatRooms();
             this.collocutorService.setCollocutorInfo(null);
             const translatedPath = this.localize.translateRoute('/dashboard/projects');
@@ -224,6 +221,8 @@ export class CollocutorListComponent implements OnInit, OnDestroy {
     if (+(obj.message[0].author) !== this.userId && obj.unread !== 0) {
       sound.play();
     }
+
+    this._sortMessagesByTime(this.collocutors);
 
   }
 

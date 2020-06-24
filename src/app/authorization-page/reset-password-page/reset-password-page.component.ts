@@ -36,7 +36,7 @@ export class ResetPasswordPageComponent implements OnInit {
     const changedLang = this.localStorageService.getItem('userLanguage');
     const defaultLanguage = this.localize.parser.getLocationLang().toString();
    
-    this.currentLanguage = changedLang === null ? defaultLanguage : changedLang.value.toString()
+    this.currentLanguage = changedLang ? defaultLanguage : changedLang.value.toString()
 
   }
 

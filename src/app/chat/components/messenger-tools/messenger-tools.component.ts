@@ -190,8 +190,8 @@ export class MessengerToolsComponent implements OnInit, OnDestroy {
   }
 
   private isArbiterBtnVisible() {
-    this.isArbiterBtn = (this.collocutorData.status == "workStarted" || this.collocutorData.status !== 'arbiter')
-    && this.collocutorData.dealDone !== 1 && this.collocutorData.status !== 'archived' && this.collocutorData.early_closing !== 1 
+    this.isArbiterBtn = this.collocutorData.status == "workStarted" 
+    && this.collocutorData.dealDone !== 1  && this.collocutorData.early_closing !== 1 
     && this.collocutorData.workEnded !== 1 ? true : null;
   }
 
