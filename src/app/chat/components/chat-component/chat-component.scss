@@ -165,7 +165,8 @@
     }
     .collocutors-tools{
       // display: none!important;
-
+      width: 30%;
+      border: 1px solid red;;
       transition: all .3s;
       position: absolute;
       &.open{
