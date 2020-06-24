@@ -80,13 +80,12 @@ export class SocketService {
 
   //  user List subscribing
   // tslint:disable-next-line:variable-name
-  public subscribeOnCollocutorList(_chatType?: string) {
-    if (_chatType === this.typeOfChat) {
-      return;
-    } else {
-      this.typeOfChat =  _chatType ? this._resetChatRoom(_chatType) : this.typeOfChat;
+  public subscribeOnCollocutorList(_chatType: string) {
+    // if (_chatType === this.typeOfChat) {
+      this.typeOfChat =  _chatType !== this.typeOfChat ? this._resetChatRoom(_chatType) : this.typeOfChat;
+      console.log('socketList', this.keyPath + this.typeOfChat + this.socketId)
       this.socket.emit('join', this.keyPath + this.typeOfChat + this.socketId);
-    }
+    // }
   }
 
   // tslint:disable-next-line:variable-name

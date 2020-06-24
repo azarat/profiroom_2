@@ -42,17 +42,15 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.getDealData();
-    this.subscribeCollocutorList();
+    // this.subscribeCollocutorList();
     this._dealUpdating();
   }
   ngOnDestroy(): void {
-    this.socketService.closeCollocutorSocket(this.chatType);
-    this.collocutorService.setCollocutorInfo(null);
+    // this.socketService.closeCollocutorSocket(this.chatType);
+    // this.collocutorService.setCollocutorInfo(null);
   }
 
-  private subscribeCollocutorList() {
-    this.socketService.subscribeOnCollocutorList(this.chatType);
-  }
+
 
   /*
     **
@@ -86,7 +84,10 @@ export class ChatComponent implements OnInit, OnDestroy {
   private _dealUpdating() {
     this.socketService.dealUpdating()
     .subscribe((res: any) => {
-      this.collocutorService.setCollocutorInfo(res);
+      if(this.collocutorData.id === res.is) {
+        this.collocutorService.setCollocutorInfo(res);
+      }
+      
     });
   }
 

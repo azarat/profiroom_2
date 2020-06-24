@@ -92,10 +92,23 @@
                         <img src="/assets/images/icons/profile.png" alt="">
                         <div class="description">
                             <p>Мой профиль</p>
-                            <p>31 просмотров </p>
+                            <p>{{ user.views }} просмотр(ов) </p>
                         </div>
                     </div>
-                    <div>
+                    <p>Самые просматриваемые  услуги:</p>
+                    <div class="offers-views">
+                        <a *ngFor="let el of user.offerViews" [routerLink]="['/service'] | localize" [queryParams]="{'offerId': el.id}">
+                            <div class="image">
+                                <img [src]="el.subCatImg" alt="subcategory-icon">
+                            </div>
+                            <div>
+                                 <div class="offer-title">{{ el.title }}</div>
+                                <div>{{ el.Views }} просмотров</div>
+                        </div>
+                    </a>
+
+                    </div>
+                    <!-- <div>
                         <img src="/assets/images/icons/deals-icons/brief.png" alt="">
                         <div class="description">
                             <p>Заказы</p>
@@ -108,7 +121,7 @@
                             <p>Сотрудничества</p>
                             <p>2 проекта</p>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="btns_wrapper__laptop">

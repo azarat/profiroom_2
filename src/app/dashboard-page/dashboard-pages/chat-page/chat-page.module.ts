@@ -9,6 +9,7 @@ import { ChatPageComponent } from './components/chat-page/chat-page.component';
 const servicesRoutes: Routes = [
   {
     path: '',
+    pathMatch:'full',
     component: ChatPageComponent,
   }
 ];
@@ -17,7 +18,7 @@ const servicesRoutes: Routes = [
   declarations: [ChatPageComponent, ],
   imports: [
     CommonModule,
-    LocalizeRouterModule.forRoot(servicesRoutes),
+    LocalizeRouterModule.forChild(servicesRoutes),
     RouterModule.forChild(servicesRoutes),
     ChatModule
   ]

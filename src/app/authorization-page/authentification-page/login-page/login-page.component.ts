@@ -31,11 +31,11 @@ import { UserModel } from 'src/app/models/user.model';
 })
 export class LoginPageComponent implements OnInit {
 
-  submitted = false;
-  public showPassword = false;
+  public submitted: boolean = false;
+  public showPassword: boolean = false;
   public loginForm: FormGroup;
-  hide = true;
-  message: InfoMessageInterface | boolean;
+  public hide: boolean = true;
+  public message: InfoMessageInterface | boolean;
 
   constructor(
     private fb: FormBuilder,

@@ -79,8 +79,7 @@ export class ProjectBriefFillingComponent implements OnInit {
   private getCollocutorData() {
     this.collocutorSevice.collocutorData$
       .pipe(
-        filter((res: any) => !!res),
-        first()
+        filter((res: any) => !!res)
       )
       .subscribe(res => {
         this.collocutorData = res;

@@ -161,10 +161,11 @@ export class MessengerToolsComponent implements OnInit, OnDestroy {
         }
       });
   }
-
+  
   private checkDealCanBePayed() { // check is user customer, brief submitted and deal status is inProgress
     this.canDealBePayed = (!this.isUserFreelancer && this.collocutorData.moneyHolden !== 1
-      && this.collocutorData.brief === 1 && this.collocutorData.status === "approved") ? true : null;
+      && this.collocutorData.early_closing !== 1 
+      && this.collocutorData.brief === 1 && this.collocutorData.status === "approved" ) ? true : null;
   }
 
   private freelancerStartWorking() { // check does freelancer cen start working
@@ -181,15 +182,17 @@ export class MessengerToolsComponent implements OnInit, OnDestroy {
   }
 
   private cenDealBeFinished() {
-    this.isFinishDealButton = this.isUserFreelancer && this.collocutorData.status !== 'arbiter'
-    && this.collocutorData.moneyHolden === 1 && this.collocutorData.early_closing !== 1
-      && this.collocutorData.workStarted === 1 && this.collocutorData.workEnded !== 1 && this.collocutorData.dealDone !== 1 ? true : null;
+    this.isFinishDealButton = 
+    this.isUserFreelancer && this.collocutorData.status !== 'arbiter' && 
+    this.collocutorData.moneyHolden === 1 && this.collocutorData.early_closing !== 1 && 
+    this.collocutorData.workStarted === 1 && this.collocutorData.workEnded !== 1 && 
+    this.collocutorData.dealDone !== 1 ? true : null;
   }
 
   private isArbiterBtnVisible() {
-    this.isArbiterBtn = this.collocutorData.moneyHolden === 1 && this.collocutorData.status !== 'arbiter'
-    && this.collocutorData.dealDone !== 1
-      && this.collocutorData.workEnded !== 1 ? true : null;
+    this.isArbiterBtn = this.collocutorData.status == "workStarted" 
+    && this.collocutorData.dealDone !== 1  && this.collocutorData.early_closing !== 1 
+    && this.collocutorData.workEnded !== 1 ? true : null;
   }
 
 
@@ -207,7 +210,7 @@ export class MessengerToolsComponent implements OnInit, OnDestroy {
   public cancelWork() {
     const message = {
       type: 'cancel',
-      colocutorId: this.collocutorData.id
+      dealId: this.collocutorData.id
     };
 
     this.errorChatMessagesService.setErrorMessage(message);

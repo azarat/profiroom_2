@@ -42,21 +42,6 @@ const routes: Routes = [
 
 ];
 
-// const socialConfig = new AuthServiceConfig([
-//   {
-//     id: GoogleLoginProvider.PROVIDER_ID,
-//     provider: new GoogleLoginProvider('525258845420-q37hm7hqfvct3sm379nl7eisl9ock8tm.apps.googleusercontent.com')
-//   },
-//   // {
-//   //   id: FacebookLoginProvider.PROVIDER_ID,
-//   //   provider: new FacebookLoginProvider('Facebook-App-Id')
-//   // }
-// ]);
-
-// export function provideConfig() {
-//   return socialConfig;
-// }
-
 
 @NgModule({
   declarations: [

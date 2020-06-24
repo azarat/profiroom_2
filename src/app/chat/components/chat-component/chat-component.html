@@ -29,6 +29,6 @@
     <section class="file-loader" *ngIf="isFileLoaderVisible && collocutorData">
         <app-upload-file [(isFileLoaderVisible)]="isFileLoaderVisible" [collocutorData]="collocutorData" (uploadedBreefFiles)="uploadedBriefFiles" [chatType]="chatType"></app-upload-file>
     </section>
-    <app-chat-errors></app-chat-errors>
+    <app-chat-errors [collocutorData]="collocutorData"></app-chat-errors>
     <app-make-payment *ngIf="moneyRequired" [(moneyRequired)]="moneyRequired"></app-make-payment>
 </section>

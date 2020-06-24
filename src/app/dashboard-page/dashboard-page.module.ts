@@ -24,27 +24,27 @@ const dashboardRoutes: Routes = [
     children: [
       {
         path: '',
-        pathMatch: 'full',
+        // pathMatch: 'full',
         redirectTo: 'home'
       },
       {
         path: 'home',
-        pathMatch: 'full',
+        // pathMatch: 'full',
         loadChildren: () => import('./dashboard-pages/home-dashboard-page/home-dashboard.module').then(m => m.HomeDashboardPageModule)
       },
       {
         path: 'projects',
-        pathMatch: 'full',
+        // pathMatch: 'full',
         loadChildren: () => import('./dashboard-pages/projects-page/projects-page.module').then(m => m.ProjectsPageModule)
       },
       {
         path: 'my-services',
-         pathMatch: 'full',
         loadChildren: () =>
           import('./dashboard-pages/my-services-dashboard/my-services-dashboard.module').then(m => m.MyServicesDashboardModule)
       },
       {
         path: 'chat-room',
+        // pathMatch: 'full',
         loadChildren: () => import('./dashboard-pages/chat-page/chat-page.module').then(m => m.ChatPageModule)
       },
       {

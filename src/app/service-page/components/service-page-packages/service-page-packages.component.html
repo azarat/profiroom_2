@@ -31,7 +31,7 @@
             </ng-container>
           </ul>
         </div>
-        <form class="extra-features" [formGroup]="extraFeaturesForm">
+        <form class="extra-features" [formGroup]="extraFeaturesForm" *ngIf=" !loginedUserId || (loginedUserId && offerData.user_id !== loginedUserId)">
           <div class="show-extra-features" (click)="showFeatures()" [ngClass]="{open: openFeatures}">{{'service-page.select-advanced-options' | translate}}</div>
           <ul class="extra-features__list" [ngClass]="{open: openFeatures}">
             <ng-container *ngFor="let extra_term of offerData.extra_terms">
@@ -74,7 +74,7 @@
 
           </ul>
         </form>
-        <div class="btn-order-service 2" *ngIf=" !loginedUserId || loginedUserId && offerData.user_id !== loginedUserId.id" (click)="goCheckout(package); scrollToElement('page-top')" >
+        <div class="btn-order-service 2" *ngIf=" !loginedUserId || (loginedUserId && offerData.user_id !== loginedUserId)" (click)="goCheckout(package); scrollToElement('page-top')" >
         <!-- <div class="btn-order-service 2" (click)="setState()" > -->
           {{'service-page.order-service' | translate}} <span>(за {{ offerData[package].price }} ₴)</span>
         </div>

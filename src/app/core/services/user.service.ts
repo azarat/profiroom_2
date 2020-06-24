@@ -25,6 +25,8 @@ export class UserService {
     public getMinUserData() {
       this.http.get('/getUserMinInfo')
       .subscribe((res: any) => {
+
+        console.log('userDAta Observable', res)
         this.user.next(res);
       })
     }

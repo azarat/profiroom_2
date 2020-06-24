@@ -1,6 +1,7 @@
 import {
   Component,
-  OnInit
+  OnInit,
+  Input
 } from '@angular/core';
 import {
   ErrorChatMessageService
@@ -14,6 +15,7 @@ import {
 import {
   errorTextConst
 } from '../../consts/error.text.const';
+import { CollocutorInterface } from '../../interfaces/collocutor.interface';
 
 @Component({
   selector: 'app-chat-errors',
@@ -22,9 +24,11 @@ import {
 })
 export class ChatErrorsComponent implements OnInit {
 
+  @Input() collocutorData: CollocutorInterface;
+
   public errorMessage: {
     type: string,
-    collocutorId: number
+    dealId: number
   } = null;
   public errorTexts = errorTextConst;
   public errorMessageText: {
@@ -54,7 +58,7 @@ export class ChatErrorsComponent implements OnInit {
         this.errorMessageText = errorTextConst.filter(el => {
           return el.type === this.errorMessage.type;
         })[0];
-        console.log(this.errorMessageText)
+        // console.log(this.errorMessageText)
       })
   }
 
@@ -75,15 +79,14 @@ export class ChatErrorsComponent implements OnInit {
 
 
   private cancelWork() {
-    this.dealService.cancelWork(this.errorMessage.collocutorId)
-      .pipe(filter((res: any) => !!res))
+    this.dealService.cancelWork(this.errorMessage.dealId)
       .subscribe(res => {
         this.cancel();
       });
   }
 
   private makePayment() {
-    this.dealService.holdMoney(this.errorMessage.collocutorId)
+    this.dealService.holdMoney(this.errorMessage.dealId)
       .subscribe(res => {
         // this.resetDealData(this.collocutorData.id)
       });

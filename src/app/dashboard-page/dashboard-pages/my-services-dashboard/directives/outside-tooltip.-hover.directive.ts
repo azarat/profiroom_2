@@ -33,12 +33,17 @@ export class OutsideTolltipHoverDirective {
     const hoveredInside = this.el.nativeElement.contains(targetElement);
     if (hoveredInside == true) {
 
-      if(!this.tooltip) {
+      if (!this.tooltip) {
         this.show();
       }
 
 
-    } else if(clickedInside == false) {
+    // } else if(clickedInside == false) {
+    //   if (this.tooltip) {
+    //     setTimeout(() => {
+
+
+    } else if(hoveredInside == false) {
       if (this.tooltip) {
         // setTimeout(() => {
 
@@ -56,6 +61,7 @@ export class OutsideTolltipHoverDirective {
     //   if (this.tooltip) { this.hide() }
     }
   }
+
 
 
   private show() {

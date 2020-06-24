@@ -42,10 +42,8 @@ export class CollocutorListComponent implements OnInit, OnDestroy {
     roomId: string;
   } = null;
   // @Output() currentRoom = new EventEmitter();
-
-  private querrySubscription: Subscription;
-  private userStateSubscription: Subscription;
   private currentUserState: number = null; // 1=> free, 2=> customer
+  
   constructor(
     private chatService: ChatService,
     private socketService: SocketService,
@@ -59,6 +57,8 @@ export class CollocutorListComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnDestroy(): void {
+    this.socketService.closeCollocutorSocket(this.chatType);
+    this.collocutorService.setCollocutorInfo(null);
   }
 
   ngOnInit() {
@@ -80,24 +80,27 @@ export class CollocutorListComponent implements OnInit, OnDestroy {
       .subscribe((res: CollocutorInterface[]) => {
         this.collocutors = this._sortMessagesByTime(res);
         this._isAnyChatOpen();
+        this.subscribeCollocutorList();
       });
   }
 
   //  Check querry params
   private _isAnyChatOpen() {
-    this.querrySubscription = this.route.queryParams
-      // .pipe(untilDestroyed(this))
+    this.route.queryParams
+      .pipe(untilDestroyed(this))
       .subscribe((res: { offers_id?: any, dealId?: any, id?: any, roomId: string } | any) => {
 
         if (res.hasOwnProperty('offers_id') && this.chatType === 'work' && this.currentUserState === 2) {
-          this._getDealData(res.id);
+           this._getDealData(res.id);
         } else if (res.hasOwnProperty('dealId') && this.chatType === 'work') {
           // If Work chat
           this._getDealData(res.dealId);
         } else if (res.hasOwnProperty('id') && this.chatType === 'classic') {
           // Classic chat
           this._getCollocutorData(res.id);
-        } else if (this.chatType === 'work') {
+        } 
+        // need to check 
+        else if (this.chatType === 'work') {
           const translatedPath = this.localize.translateRoute('/dashboard/projects');
           this.router.navigate([translatedPath], {
             relativeTo: this.route,
@@ -111,6 +114,10 @@ export class CollocutorListComponent implements OnInit, OnDestroy {
 
   private _connectToCurrentChatSocket(roomId) {
     this.socketService.openChat(roomId);
+  }
+
+  private subscribeCollocutorList() {
+    this.socketService.subscribeOnCollocutorList(this.chatType);
   }
 
   private _getCollocutorData(chatId) {
@@ -129,8 +136,8 @@ export class CollocutorListComponent implements OnInit, OnDestroy {
   private _getDealData(dealId) {
     this.dealService.getDealData(dealId)
       .pipe(
-        filter((res: any) => !!res),
-        first())
+        filter((res: any) => !!res))
+        // first())
       .subscribe((res: any) => {
         this.collocutorService.setCollocutorInfo(res);
       });
@@ -144,17 +151,18 @@ export class CollocutorListComponent implements OnInit, OnDestroy {
   }
 
   public openChat(collocutorData) {
-    console.log(collocutorData)
-    if (this.chatType === 'classic') {
+    console.log(collocutorData, this.chatType)
+    if (this.chatType == 'classic') {
       // clear router from params if click on anther chat
-      let translatedPath = this.localize.translateRoute('/dashboard/chat-room');
-      this.router.navigate([translatedPath], {
+      const translatedClassicPath = this.localize.translateRoute('/dashboard/chat-room');
+      this.router.navigate([translatedClassicPath], {
         relativeTo: this.route,
         queryParams: { id: collocutorData.id, roomId: collocutorData.roomId },
+        
       });
     } else if (this.chatType === 'work') {
       // clear router from params if click on anther deal
-      let translatedPath = this.localize.translateRoute('/dashboard/projects');
+      const translatedPath = this.localize.translateRoute('/dashboard/projects');
       this.router.navigate([translatedPath], {
         relativeTo: this.route,
         queryParams: { dealId: collocutorData.id, roomId: collocutorData.roomId },
@@ -167,30 +175,32 @@ export class CollocutorListComponent implements OnInit, OnDestroy {
       .pipe(untilDestroyed(this))
       .subscribe(res => {
         this._pushNewMessage(this.collocutors, res);
-        this._sortMessagesByTime(this.collocutors);
+        
       });
   }
 
 
   //  Clearing route on brief 
   private _checkUserState() {
-    this.userStateSubscription = this.userStateService.userState$
+    this.userStateService.userState$
       .pipe(untilDestroyed(this))
       .subscribe(res => {
         if(this.chatType === 'work') {
-        if(!this.currentUserState) {
-          this.currentUserState = res;
-          this._getChatRooms();
-        this.collocutorService.setCollocutorInfo(null);
-        } else {
-          this._getChatRooms();
-          this.collocutorService.setCollocutorInfo(null);
-          const translatedPath = this.localize.translateRoute('/dashboard/projects');
-        
-        this.router.navigate([translatedPath], {
-          relativeTo: this.route,
-        });
-        }
+          if(!this.currentUserState) {
+            this.currentUserState = res;
+            this._getChatRooms();
+            this.collocutorService.setCollocutorInfo(null);
+            return;
+          } else if(this.currentUserState !== res) {
+            this.currentUserState = res;
+            this._getChatRooms();
+            this.collocutorService.setCollocutorInfo(null);
+            const translatedPath = this.localize.translateRoute('/dashboard/projects');
+          
+            this.router.navigate([translatedPath], {
+              relativeTo: this.route,
+            });
+          }
         
         this._getChatRooms();
         this.collocutorService.setCollocutorInfo(null);
@@ -208,17 +218,19 @@ export class CollocutorListComponent implements OnInit, OnDestroy {
     } else {
       this.collocutors.push(obj);
     }
-    if (+(obj.message.author) !== this.userId && obj.unread !== 0) {
+    if (+(obj.message[0].author) !== this.userId && obj.unread !== 0) {
       sound.play();
     }
+
+    this._sortMessagesByTime(this.collocutors);
 
   }
 
   // Sort Messages new on top
   private _sortMessagesByTime(arr) {
     const x = arr.sort((a, b) => {
-      const filedAOrder = a.message ? a.created_at : a.message.dateTime;
-      const filedBOrder = b.message ? b.created_at : b.message.dateTime;
+      const filedAOrder = a.message.length === 0 ? a.created_at : a.message[0].dateTime;
+      const filedBOrder = b.message.length === 0 ? b.created_at : b.message[0].dateTime;
       return filedBOrder.localeCompare(filedAOrder);
     });
     // this.collocutors = x;

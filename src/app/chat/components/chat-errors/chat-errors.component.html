@@ -1,4 +1,4 @@
-<div class="wrapper" *ngIf="errorMessage">
+<div class="wrapper" *ngIf="errorMessage && errorMessageText">
 
     <div class="message">
         <span class="close-popup" (click)="cancel()"></span>
@@ -11,7 +11,7 @@
         </p>
         <div>
             <button class="cancel-popup" (click)="cancel()"><span>{{ errorMessageText.btn_cancel }}</span> </button>
-            <button class="submit-popup"><span>{{ errorMessageText.btn_submit }}</span> </button>
+            <button class="submit-popup" (click)="onSubmit()"><span>{{ errorMessageText.btn_submit }}</span> </button>
         </div>
     </div>
 </div>
