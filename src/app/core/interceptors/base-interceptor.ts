@@ -64,6 +64,7 @@ export class BaseInterceptor implements HttpInterceptor {
 
 
 
+
     const token = this.localStorageService.getItem('token').value;
     if (req.url.indexOf('http' || 'https') !== 0) {
       req = req.clone({
