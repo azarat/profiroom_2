@@ -26,9 +26,12 @@ export class ChatComponent implements OnInit, OnDestroy {
   public exitFromBriefPopUpVisible: boolean = null;
   public isChat = true;
   public moneyRequired = null;
-  public rightBarInit: boolean = null; // true on window width < 980px
+  public rightBarInit: boolean = null; // true on window width < 1024px
+  public leftBarInit: boolean = null; // true on window width < 1024px
 
-  public rightBarVisible: boolean = null;
+
+  public rightBarVisible: boolean = false;
+  public leftBarVisible: boolean = false;
 
   SWIPE_ACTION = { LEFT: 'swipeleft', RIGHT: 'swiperight' };
 
@@ -87,7 +90,7 @@ export class ChatComponent implements OnInit, OnDestroy {
       if(this.collocutorData.id === res.is) {
         this.collocutorService.setCollocutorInfo(res);
       }
-      
+
     });
   }
 
@@ -125,10 +128,28 @@ export class ChatComponent implements OnInit, OnDestroy {
     }
   }
 
+  public showLeftBar() {
+    if (this.leftBarVisible === null) {
+      this.leftBarVisible = true;
+    } else {
+      this.leftBarVisible = !this.leftBarVisible;
+    }
+  }
+
   public hideRightBar() {
     this.rightBarVisible = false;
   }
 
+  public hidLeftBar() {
+    this.leftBarVisible = false;
+  }
+
+  toggleCollocutorsTools() {
+    this.rightBarVisible = !this.rightBarVisible;
+  }
+  toggleCollocutors() {
+    this.leftBarVisible = !this.leftBarVisible;
+  }
   swipeDirectionFromMessage(evnt){
     console.log('swipeDirectionFromMessage ' + evnt);
   }

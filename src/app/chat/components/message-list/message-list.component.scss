@@ -322,8 +322,8 @@
     .text {
       padding: 14px 20px;
       min-width: auto;
-      width: calc(100% - 110px);
-      margin-left: auto;
+      width: auto;
+      margin-left: inherit;
       font-size: 14px;
       line-height: 18px;
     }
@@ -349,5 +349,18 @@
   }
   .brief-message__container{
     width: calc(100% - 100px);
+  }
+}
+
+@media (max-width: 767px) {
+  .message {
+    flex-direction: column;
+    align-items: flex-end;
+    margin-bottom: 10px;
+
+    &.author {
+      flex-direction: column;
+      align-items: flex-start;
+    }
   }
 }

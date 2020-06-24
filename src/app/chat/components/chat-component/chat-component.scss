@@ -122,6 +122,9 @@
   background: rgba(224, 225, 249, 0.3);
   backdrop-filter: blur(4px);
 }
+.toggleCollocutoInfo, .toggleCollocutor{
+  display: none;
+}
 
 @media (max-width: 1499px) {
   .wrapper::ng-deep {
@@ -160,24 +163,29 @@
 
 @media (max-width: 1024px) {
   .wrapper::ng-deep {
-    .collocutors{
-      display: none!important;
-    }
+    justify-content: space-between;
     .collocutors-tools{
       // display: none!important;
       width: 30%;
-      border: 1px solid red;;
+      border: 1px solid #eae8ed;
       transition: all .3s;
       position: absolute;
+      right: 5px;
+      z-index: 10;
       &.open{
-        right: 10px;
+        right: 5px;
       }
       &.hidden{
         right: -190px;
       }
+      .information{
+        .rating{
+          flex-wrap: wrap;
+        }
+      }
     }
     .messager{
-      width: 100%;
+      width: 60%;
       .line {
         .collocutor {
             a {
@@ -191,5 +199,98 @@
         }
       }
     }
+    .collocutors {
+      width: calc(40% - 15px);
+    }
+  }
+  .toggleCollocutoInfo, .toggleCollocutor{
+    display: block;
+    background: #1565D8;
+    border-radius: 50%;
+    position: absolute;
+    width: 28px;
+    height: 28px!important;
+    top: 40%;
+    left: -15px;
+    &::before{
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      background-image: url(/assets/images/icons/white-chevron-right.png);
+      background-size: cover;
+      height: 13px;
+      width: 6px;
+      transform: translate(-50%, -50%) ;
+    }
+    &.open{
+      &::before{
+        transform: translate(-50%, -50%) ;
+      }
+    }
+    &.hidden{
+      &::before{
+        transform: translate(-50%, -50%) rotate(180deg);
+      }
+    }
+  }
+  .toggleCollocutor{
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .wrapper::ng-deep {
+    .collocutors-tools{
+      max-width: 270px;
+      width: 100%;
+      right: 5px;
+      &.open{
+        right: 5px;
+      }
+      &.hidden{
+        right: -250px;
+      }
+      .information{
+        .rating{
+          flex-wrap: wrap;
+        }
+      }
+    }
+    .messager{
+      width: 100%;
+      z-index: 1;
+      .line {
+        .collocutor {
+            a {
+              font-size: 14px;
+              line-height: 18px;
+            }
+        }
+        .messager-tools {
+            width: 64px;
+            // background-color: red;
+        }
+      }
+      .text{
+        width: 100%;
+      }
+      .photo{
+        display: none;
+      }
+    }
+    .collocutors {
+      width: 290px;
+      position: absolute;
+      z-index: 9;
+      left: 10px;
+      border: 1px solid #eae8ed;
+      &.hidden{
+        left: -275px;;
+      }
+    }
+  }
+  .toggleCollocutor{
+    display: block;
   }
 }

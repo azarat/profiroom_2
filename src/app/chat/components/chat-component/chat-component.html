@@ -1,8 +1,9 @@
 <section class="wrapper" [ngClass]="{'attention': exitFromBriefPopUpVisible}" *ngIf="isChat"
 (swipeleft)="swipeEvent($event)"
 (swipeRight)="swipeEvent($event)">
-    <section class="collocutors">
+    <section class="collocutors" [ngClass]="{ 'hidden': leftBarVisible === false, 'open': leftBarVisible === true }">
         <app-collocutor-list [chatType]="chatType"></app-collocutor-list>
+        <div class="toggleCollocutor" [ngClass]="{ 'hidden': rightBarVisible === false, 'open': rightBarVisible === true }" (click)="toggleCollocutorsTools()"></div>
     </section>
     <section class="messager" *ngIf="collocutorData"
       (swipeleft)="swipeEvent($event)"
@@ -16,14 +17,13 @@
 
     </section>
     <section class="collocutors-tools"
-
     [ngClass]="{ 'hidden': rightBarVisible === false, 'open': rightBarVisible === true }">
         <!-- right chat bar -->
         <!-- <button (click)="showRightBar()">Swipe</button> -->
         <app-messenger-tools *ngIf="chatType === 'work' && collocutorData" (noMoney)="openPayment($event)"></app-messenger-tools>
         <app-collocutor-information *ngIf="chatType === 'classic' && collocutorData">
         </app-collocutor-information>
-
+        <div class="toggleCollocutoInfo" [ngClass]="{ 'hidden': rightBarVisible === false, 'open': rightBarVisible === true }" (click)="toggleCollocutorsTools()"></div>
     </section>
     <!-- file loader -->
     <section class="file-loader" *ngIf="isFileLoaderVisible && collocutorData">
