@@ -27,17 +27,17 @@ export class FirstStepServiceCreationComponent implements OnInit{
   // tslint:disable-next-line: variable-name
   public sub_categories = [];
   // separatorKeysCodes = [ENTER, SPACE, TAB];
-  files: any = [];
-  previewUrl: any;
-  visible = true;
-  selectable = true;
-  removable = true;
-  addOnBlur = true;
+  public files: any = [];
+  public previewUrl: any;
+  public visible = true;
+  public selectable = true;
+  public removable = true;
+  public addOnBlur = true;
   readonly separatorKeysCodes: number[] = [ENTER, SPACE, TAB];
-  tags: { tag: string }[] = [];
-  translatedPath: any = this.localize.translateRoute('/dashboard/my-services');
+  public tags: { tag: string }[] = [];
+  private translatedPath: any = this.localize.translateRoute('/dashboard/my-services');
 
-  titlePosition: string;
+  public titlePosition: string;
   public currentLang: string = null;
 
 
@@ -59,7 +59,7 @@ export class FirstStepServiceCreationComponent implements OnInit{
   ngOnInit() {
     console.log('width', window.innerWidth)
 
-    if(window.innerWidth >=768) {
+    if (window.innerWidth >= 768) {
       this.titlePosition = 'right';
     } else {
       this.titlePosition = 'botom';
@@ -83,16 +83,14 @@ export class FirstStepServiceCreationComponent implements OnInit{
     this.tags = this.userService.tags;
     this.subscribeLang();
   }
-  // tslint:disable-next-line: use-lifecycle-interface
-  ngOnDestroy() {
-   }
+
 
   private subscribeLang() {
     this.siteLocaleService.currentLang$
     .pipe(filter((res: any) => !!res))
     .subscribe(res => {
       this.currentLang = res;
-    })
+    });
   }
 
   // tslint:disable-next-line: variable-name
@@ -108,7 +106,7 @@ export class FirstStepServiceCreationComponent implements OnInit{
       return;
     }
 
-    if(this.userService.mainImage.includes("offerFiles/gefaultOffer.jpg")) {
+    if (this.userService.mainImage.includes('offerFiles/gefaultOffer.jpg')) {
       this.putAsMainPhoto(this.previewUrl[0].link);
     }
 
@@ -121,15 +119,14 @@ export class FirstStepServiceCreationComponent implements OnInit{
       );
   }
 
-  // ------------- put offerId in params -----------//
-
-  private setQuerryParams(obj: object) {
-    this.router.navigate([this.router.url], {
-      relativeTo: this.activatedRoute,
-      queryParams: obj,
-      queryParamsHandling: 'merge',
-    });
-  }
+  //  put offerId in params
+  // private setQuerryParams(obj: object) {
+  //   this.router.navigate([this.router.url], {
+  //     relativeTo: this.activatedRoute,
+  //     queryParams: obj,
+  //     queryParamsHandling: 'merge',
+  //   });
+  // }
 
   //  ----------  choose Main OfferPhoto  ----------
   public putAsMainPhoto = (link: string) => {
@@ -154,13 +151,11 @@ export class FirstStepServiceCreationComponent implements OnInit{
     this.userOffersService.uploadFiles(formData)
       .subscribe((res: []) => {
         this.previewUrl = res;
-
-        // this.putAsMainPhoto(this.previewUrl[0]);
       });
   }
 
   // --------------- delete files -----------------//
-  deleteAttachment = (index: number) => {
+  public deleteAttachment = (index: number) => {
     this.userOffersService.deleteFile({ id: index })
       .subscribe((res: any) => {
         if (res.status === 'ok') {
@@ -172,7 +167,7 @@ export class FirstStepServiceCreationComponent implements OnInit{
   }
 
   // ------------ tag-chips----------------------------//
-  add = (event: MatChipInputEvent): void => {
+  public add = (event: MatChipInputEvent): void => {
     const input = event.input;
     const value = event.value;
 
@@ -187,13 +182,15 @@ export class FirstStepServiceCreationComponent implements OnInit{
     }
   }
 
-  remove = (tag): void => {
+// Delete tag
+  public remove = (tag): void => {
     const index = this.tags.indexOf(tag);
 
     if (index >= 0) {
       this.tags.splice(index, 1);
     }
   }
+
   public quite = () => {
     this.router.navigate([this.translatedPath]);
   }

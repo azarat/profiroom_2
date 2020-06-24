@@ -1,16 +1,20 @@
-import { Component, EventEmitter, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, OnDestroy } from '@angular/core';
 import { CatalogFiltersModel } from 'src/app/models/catalog-filter/filter.model';
 
 import { GetOffersService } from '../../services/get-offers.service';
 import { WindowScrollBlockService } from 'src/app/core/services/window-scrolling.service';
+import { Subject, Subscription, BehaviorSubject } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
+import { untilDestroyed } from 'ngx-take-until-destroy';
 
 @Component({
   selector: 'app-filter',
   templateUrl: './catalog-filter.component.html',
   styleUrls: ['./catalog-filter.component.scss']
 })
-export class FilterComponent implements OnInit {
+export class FilterComponent implements OnInit, OnDestroy {
 
+  @Input() catalogFilters: CatalogFiltersModel;
   // private catalogFilters: CatalogFiltersModel
   public fliterOpen = null;
   public showMobilesFilters = false;
@@ -27,7 +31,9 @@ export class FilterComponent implements OnInit {
   };
 
   private windowScrolling: WindowScrollBlockService;
-  @Input() catalogFilters: CatalogFiltersModel;
+  private modelChanged = new BehaviorSubject(this.catalogFilters);
+  public subscription: Subscription;
+  private debounceTime = 3000;
   // public catalogFilters: CatalogFiltersModel;
 
   constructor(
@@ -40,16 +46,29 @@ export class FilterComponent implements OnInit {
 
   ngOnInit() {
   }
+  ngOnDestroy() {}
 
 
   onFilterChange() {
-
-    setTimeout(() => {
-      if(Number(this.catalogFilters.minPrice) > Number(this.catalogFilters.maxPrice)) {
+    this.subscription = this.modelChanged
+    .pipe(
+      debounceTime(this.debounceTime),
+      untilDestroyed(this)
+    )
+    .subscribe(() => {
+      console.log('call')
+      if (Number(this.catalogFilters.minPrice) > Number(this.catalogFilters.maxPrice)) {
         this.catalogFilters.maxPrice = null;
       }
       this._getOffersService.setFilters(this.catalogFilters);
-    }, 2000);
+    });
+
+    // setTimeout(() => {
+    //   if(Number(this.catalogFilters.minPrice) > Number(this.catalogFilters.maxPrice)) {
+    //     this.catalogFilters.maxPrice = null;
+    //   }
+    //   this._getOffersService.setFilters(this.catalogFilters);
+    // }, 2000);
   }
 
   clearTerms() {

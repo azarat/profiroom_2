@@ -37,7 +37,6 @@ export class CatalogPaginationComponent implements OnInit {
     this.getOffersService.filterVaraibles
     .subscribe((res: any) => {
       this.curentFilters = res;
-      console.log(this.curentFilters);
     });
   }
 
@@ -95,7 +94,6 @@ export class CatalogPaginationComponent implements OnInit {
   public loadMore() {
     this.currentPage++;
     this.loader = false;
-    console.log(this.curentFilters);
     this.curentFilters.page = this.currentPage;
 
     this.getOffersService.loadMoreOffers(this.curentFilters)

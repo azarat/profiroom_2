@@ -117,14 +117,12 @@ export class SocketService {
     });
   }
 
-
-
   // 'typing'
-  onTypingEvent(event: string, userId) {
+  public onTypingEvent(event: string, userId) {
     this.socket.emit(event, this.keyPath + this.chatRoomId, userId);
   }
 
-  onTypingListener() {
+  public onTypingListener() {
     return new Observable(observer => {
       this.socket.on('typing', (data) => {
         observer.next(data);
@@ -132,7 +130,7 @@ export class SocketService {
     });
   }
 
-  onStopTypingListener() {
+  public onStopTypingListener() {
     return new Observable(observer => {
       this.socket.on('stopTyping', (data) => {
         observer.next(data);

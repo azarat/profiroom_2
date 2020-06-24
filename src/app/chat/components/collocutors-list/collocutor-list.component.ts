@@ -43,7 +43,7 @@ export class CollocutorListComponent implements OnInit, OnDestroy {
   } = null;
   // @Output() currentRoom = new EventEmitter();
   private currentUserState: number = null; // 1=> free, 2=> customer
-  
+
   constructor(
     private chatService: ChatService,
     private socketService: SocketService,
@@ -64,8 +64,6 @@ export class CollocutorListComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.userId = this.localStorageService.getItem('userId').value;
     this._getChatRooms();
-
-    this._subscribeNewMessages();
     this._checkUserState();
   }
 
@@ -98,8 +96,8 @@ export class CollocutorListComponent implements OnInit, OnDestroy {
         } else if (res.hasOwnProperty('id') && this.chatType === 'classic') {
           // Classic chat
           this._getCollocutorData(res.id);
-        } 
-        // need to check 
+        }
+        // need to check
         else if (this.chatType === 'work') {
           const translatedPath = this.localize.translateRoute('/dashboard/projects');
           this.router.navigate([translatedPath], {
@@ -108,6 +106,7 @@ export class CollocutorListComponent implements OnInit, OnDestroy {
           });
         }
         this._connectToCurrentChatSocket(res.roomId);
+        this._subscribeNewMessages();
       });
   }
 
@@ -158,7 +157,7 @@ export class CollocutorListComponent implements OnInit, OnDestroy {
       this.router.navigate([translatedClassicPath], {
         relativeTo: this.route,
         queryParams: { id: collocutorData.id, roomId: collocutorData.roomId },
-        
+
       });
     } else if (this.chatType === 'work') {
       // clear router from params if click on anther deal
@@ -175,12 +174,12 @@ export class CollocutorListComponent implements OnInit, OnDestroy {
       .pipe(untilDestroyed(this))
       .subscribe(res => {
         this._pushNewMessage(this.collocutors, res);
-        
+
       });
   }
 
 
-  //  Clearing route on brief 
+  //  Clearing route on brief
   private _checkUserState() {
     this.userStateService.userState$
       .pipe(untilDestroyed(this))
@@ -196,18 +195,18 @@ export class CollocutorListComponent implements OnInit, OnDestroy {
             this._getChatRooms();
             this.collocutorService.setCollocutorInfo(null);
             const translatedPath = this.localize.translateRoute('/dashboard/projects');
-          
+
             this.router.navigate([translatedPath], {
               relativeTo: this.route,
             });
           }
-        
-        this._getChatRooms();
-        this.collocutorService.setCollocutorInfo(null);
+
+          // this._getChatRooms();
+          // this.collocutorService.setCollocutorInfo(null);
         }
 
 
-        
+
       });
   }
 

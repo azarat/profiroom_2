@@ -100,6 +100,6 @@ export class BriefMessageShowingComponent implements OnInit {
 
   private isDealApproved() {
 
-    this.dealApproved  = this.collocutorData.history.find(el => el.answer === 'approveBrief');
+    this.dealApproved  = this.collocutorData.history.find(el => el.answer === 'approved');
   }
 }
