@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { ClickOutsideModule } from 'ng-click-outside';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
+import { ArrReverceModule } from '../../pipes/arr-reverse/arr-reverse.module';
 
 
 
@@ -18,7 +19,8 @@ import { TranslateModule } from '@ngx-translate/core';
     RouterModule,
     ClickOutsideModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ArrReverceModule
   ],
   exports: [
     UsersCommentsComponent

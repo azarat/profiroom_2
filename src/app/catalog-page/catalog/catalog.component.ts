@@ -49,23 +49,23 @@ export class CatalogComponent implements OnInit {
       this.GetOffersService.getOffers(this.catalogFilters);
     });
 
-    //----------- проверка наличия каких либо парметров в queryParams ------------//
+    // ----------- проверка наличия каких либо парметров в queryParams ------------//
     this._route.queryParams.subscribe(qParams => {
       if (qParams && (Object.keys(qParams).length === 0)) {
-    //----------- используем даные (категория, подкатегория) из ActivatedRoute.params ------------//
+    // ----------- используем даные (категория, подкатегория) из ActivatedRoute.params ------------//
         this.GetOffersService.getOffers(this.catalogFilters);
       } else {
         this.catalogFilters.current_page = 1;
     //----------- устанавливаем параметры из ActivatedRoute.queryParams ------------//
         this.GetOffersService.setFilters(qParams);
         this.catalogFilters = plainToClass(CatalogFiltersModel, qParams);
-        this.catalogFilters.online = (qParams.online === "true") ? true: false;
-        for(const prop in this.catalogFilters) {
-          console.log(this.catalogFilters[prop])
+        this.catalogFilters.online = (qParams.online === 'true') ? true : false;
+        for (const prop in this.catalogFilters) {
 
-          if(this.catalogFilters[prop] == 'true') {
+
+          if (this.catalogFilters[prop] === 'true') {
             this.catalogFilters[prop] = true;
-          } else if(this.catalogFilters[prop] == 'false') {
+          } else if (this.catalogFilters[prop] === 'false') {
             this.catalogFilters[prop] = false;
           }
         }
@@ -84,7 +84,6 @@ export class CatalogComponent implements OnInit {
       if (this.offersList) {
         this.pagesToShow();
       }
-      console.log(this.offersList);
     });
     this.subscribeOffers();
 
@@ -110,8 +109,6 @@ export class CatalogComponent implements OnInit {
   }
 
   public getedOffers(arr: any) {
-    console.log(this.offersList.data);
-    console.log(arr.data);
     this.offersList.data = this.offersList.data.concat(arr.data);
   }
 
@@ -122,7 +119,6 @@ export class CatalogComponent implements OnInit {
     .subscribe((res: any) => {
       this.currentLang = res;
     });
-    console.log(this.currentLang);
   }
 }
 

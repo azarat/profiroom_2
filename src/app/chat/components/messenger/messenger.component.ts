@@ -70,6 +70,7 @@ export class MessengerComponent implements OnInit, OnDestroy {
           newMessage.message = typeof newMessage.message === 'string' ? JSON.parse(newMessage.message) : [];
         }
         this.messagesList.push(newMessage);
+        console.log('new message', this.messagesList);
       });
 
     this.keyword$
@@ -88,6 +89,7 @@ export class MessengerComponent implements OnInit, OnDestroy {
     this.chatService.getPreviousMessages(this.collocutorData.roomId, 0, this.chatType)
       .subscribe((res: any) => {
         this.messagesList = this.filterArrayOnMessTypes(res[0]);
+        console.log(this.messagesList);
       });
   }
 

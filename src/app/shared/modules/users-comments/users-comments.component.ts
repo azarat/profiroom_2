@@ -75,10 +75,10 @@ export class UsersCommentsComponent implements OnInit {
     }
   };
 
-  private checkCommentsCount() {
-    this.commentsCount = this.userData['negativeComments' + this.userType].length +
-    this.userData['positiveComments' + this.userType].length;
-  }
+  // private checkCommentsCount() {
+  //   this.commentsCount = this.userData['negativeComments' + this.userType].length +
+  //   this.userData['positiveComments' + this.userType].length;
+  // }
   public toggleTab(tab: any) {
     this.currentTab = tab;
   }

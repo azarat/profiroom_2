@@ -129,7 +129,7 @@ export class MessageListComponent implements OnInit, AfterViewChecked, AfterView
   private typingEventListener() {
     this.socketService.onTypingListener()
       .subscribe((res: any) => {
-        this.typingUser = res;
+        this.typingUser = res.toString();
         this.typing = true;
       });
     this.typingStoppedEventListener();

@@ -15,7 +15,7 @@ userData['positiveComments' + userRole].length > 0">
         </div>
     </div>
     <ng-container>
-        <div class="comment" *ngFor="let comment of userData[currentTab.value + 'Comments' + userRole ]; let parrentCommentIndex = index">
+        <div class="comment" *ngFor="let comment of userData[currentTab.value + 'Comments' + userRole ] | reverse; let parrentCommentIndex = index">
 
             <h5 class="comment__service-name" *ngIf="comment.offers">
                 <a [routerLink]="'/service'| localize" [queryParams]="{ offerId: comment.offers.id }"> {{comment.offers.title}}</a>
