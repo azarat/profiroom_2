@@ -32,7 +32,7 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
   public newWorkMessage: boolean = null;
   public sideMenuClose = true;
   public mobileMenuOpen = false;
-
+  public userLvls = [];
 
 
   constructor(
@@ -55,13 +55,17 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
     this.notifyShow();
     this.defineCurrentUser();
     this.subscribeUserMinData();
-
+    this.createLvlsArr();
   }
 
   ngAfterViewInit() {
 
   }
-
+  private createLvlsArr(){
+    for (var i = 0; i <= 4; i++) {
+      this.userLvls.push(i);
+    }
+  }
   private checkCurrentLang() {
     let lang = this.localize.parser.currentLang;
     this.siteLocaleService.changeLangTo(lang);

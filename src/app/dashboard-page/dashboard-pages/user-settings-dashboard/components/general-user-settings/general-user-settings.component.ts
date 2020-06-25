@@ -30,7 +30,7 @@ export class GeneralUserSettingsComponent implements OnInit {
 
   updateSettings() {
     this.submitted = true;
-     if(this.userSettingsModel.language.length == 1 && (this.userSettingsModel.language[0].langName === null )) {
+    if (this.userSettingsModel.language.length == 1 && (this.userSettingsModel.language[0].langName === null )) {
       this.userSettingsModel.language = [];
      }
     this.userSettingsService.updateService(this.userSettingsModel)
@@ -42,11 +42,11 @@ export class GeneralUserSettingsComponent implements OnInit {
         this.succesRessult = true;
         this.userService.getMinUserData();
         this.popUpStatus = true;
-        timer(5000)
-        .subscribe(time => {
-          console.log(time)
-          this.togglePopUp();
-        });
+        // timer(5000)
+        // .subscribe(time => {
+        //   console.log(time);
+        //   this.togglePopUp();
+        // });
       }
     );
 
@@ -54,7 +54,8 @@ export class GeneralUserSettingsComponent implements OnInit {
 
   public togglePopUp() {
     this.popUpStatus = null;
+    this.succesRessult = true;
   }
 
-  
+
 }

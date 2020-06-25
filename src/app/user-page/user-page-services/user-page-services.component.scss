@@ -208,3 +208,22 @@
     }
   }
 }
+
+@media (max-width: 1024px) {
+  .user-services{
+    .cards-list{
+      .card{
+      width: calc(33.3% - 30px);
+      margin: 0px 15px 30px;
+      }
+    }
+    .card-preview__bg{
+      height: 150px;
+      img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+}

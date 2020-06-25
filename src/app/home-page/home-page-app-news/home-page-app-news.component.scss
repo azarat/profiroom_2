@@ -6,6 +6,7 @@
   width: 50%;
   color: #C3DAFA;
   position: relative;
+  padding: 90px 0 100px;
 
   &__wrap {
     position: relative;
@@ -57,7 +58,6 @@
 .section-img {
   width: 50%;
   position: relative;
-
   .img-wrap {
     position: absolute;
     top: 50%;
@@ -124,22 +124,21 @@
     width: 100%;
     position: relative;
     z-index: 0;
-
-    &::before {
-      content: "";
-      width: 730px;
-      height: 560px;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 960px;
-      height: 1070px;
-      background-image: url(/assets/images/home-page/app-news-decoration2.svg);
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: contain;
-    }
+  }
+  &::before {
+    content: "";
+    width: 730px;
+    height: 560px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-60%, -50%);
+    width: 960px;
+    height: 1070px;
+    background-image: url(/assets/images/home-page/app-news-decoration2.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
   }
 }
 
@@ -219,7 +218,7 @@
         width: 660px;
         height: 500px;
         top: 50%;
-        left: 50%;  
+        left: 50%;
       }
     }
   }
@@ -237,7 +236,7 @@
     &__title {
       font-size: 22px;
       line-height: 26px;
-      margin: 0 0 15px;  
+      margin: 0 0 15px;
     }
 
     &__text {
@@ -258,7 +257,7 @@
     width: 40%;
     .img-wrap {
       width: 166.02px;
-      height: 339px;  
+      height: 339px;
       padding: 29px 6px 35px;
       .phone-message {
         &.small {
@@ -301,7 +300,7 @@
     &__title {
       font-size: 18px;
       line-height: 21px;
-      margin: 0 0 18px;  
+      margin: 0 0 18px;
     }
 
     &__text {
@@ -334,7 +333,7 @@
         &.big {
           width: 94.88px;
           height: 41.75px;
-      
+
         }
       }
       &::before{

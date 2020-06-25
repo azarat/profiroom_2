@@ -183,10 +183,12 @@
   }
 }
 
-@media (max-width: 1199.98px) {
-
+@media (max-width: 1024px) {
+  .wrapper{
+    max-width: 690px;
+  }
 }
-@media (max-width: 767.98px) {
+@media (max-width: 767px) {
   .wrapper{
     display: none;
   }

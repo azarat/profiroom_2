@@ -26,16 +26,16 @@
             <div class="lines"></div>
             <div class="avatar-wrapper">
                 <div class="avatar-aura">
-                    <ng-container *ngFor="let lvl of [0,1,2,3,4]">
+                    <ng-container *ngFor="let lvl of userLvls">
                         <img src="assets/images/images/aura_lvl{{lvl}}.svg" alt="user-lvl" *ngIf="user.rank_id === lvl">
                     </ng-container>
                 </div>
                 <img [src]="user.avatar" alt="avatar" />
-                <p class="name">{{ user.name }} {{ user.surname}}</p>
+            </div>
+                            <p class="name">{{ user.name }} {{ user.surname}}</p>
                 <div class="rating">
                     <app-star-rating [currentRating]="user.rating"></app-star-rating>
                 </div>
-            </div>
         </section>
         <section class="menu" [ngClass]='{open: mobileMenuOpen}'>
             <nav>

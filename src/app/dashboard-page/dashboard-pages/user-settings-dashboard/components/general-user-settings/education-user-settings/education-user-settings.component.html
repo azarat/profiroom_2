@@ -6,6 +6,7 @@
     <div class="field-block-multiple">
 
       <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+
         <div class="single-education-block" *ngFor="let arrayItem of userSettings.education; let i = index">
 
          <div class="field-block">
@@ -28,7 +29,7 @@
 
           </div>
 
-          <div class="toggle_block" [ngClass]="{ hidden: openItem !== i+ 1}">
+          <div class="toggle_block" [ngClass]="{ hidden: openItem !== i + 1 && !closeAfterSaveSettings || closeAfterSaveSettings}">
             <div class="academicBlock">
               <div class="field-block academic-degrees service-selects">
                 <label class="block-title" for="academicDegree">{{'user-settings.academic-degree' | translate}}</label>
