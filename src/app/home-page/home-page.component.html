@@ -34,15 +34,15 @@
 <section class="app-news">
     <app-home-page-app-news></app-home-page-app-news>
 </section>
-<section class="support">
+<!-- <section class="support">
     <app-home-page-support></app-home-page-support>
-</section>
+</section> -->
 <section class="get-start">
     <div class="wrapper">
         <div class="get-start__wrap">
             <div class="top">
                 <h3 class="get-start__title">{{'home-page.get-start-subtitle' | translate}}</h3>
-                <p class="get-start__text">{{'home-page.get-start-title' | translate}}</p>    
+                <p class="get-start__text">{{'home-page.get-start-title' | translate}}</p>
             </div>
             <a class="btn" [routerLink]="['/auth'] | localize" [queryParams]="{type: 'signup'}" role="button">{{'home-page.get-start-btn' | translate}}</a>
         </div>
