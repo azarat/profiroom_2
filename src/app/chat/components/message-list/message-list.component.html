@@ -48,7 +48,7 @@
             <!--/ message -->
 
         </div>
-        <div class="message typing" *ngIf="typing && typingUser !== +userId">
+        <div class="message typing" *ngIf="typing">
             <div class="photo">
                 <img [src]="collocutorData.collocutorAva" alt="avatar">
                 {{ typingUser }}

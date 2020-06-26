@@ -24,7 +24,7 @@
         </div>
     </div>
     <button class="btn-third brief-wrap-btn" (click)="showHideBrief()" [ngClass]="isBriefElVisible? 'up': 'down'"> {{ buttonText }}</button>
-    <div class="brief-decisions-options" *ngIf="collocutorData.freelancer_id === userId && collocutorData.status == 'sentBrief' && !dealApproved && collocutorData.early_closing === 0">
+    <div class="brief-decisions-options" *ngIf="collocutorData.freelancer_id === userId && collocutorData.status == 'sentBrief' && collocutorData.early_closing === 0">
         <button class="btn-sec" (click)="refuseBrief()">{{'general.decline' | translate}}</button>
         <button class="btn" (click)="approveBrief()">{{'chat.breef.message.succes' | translate}}</button>
     </div>
