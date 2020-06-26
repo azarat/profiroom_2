@@ -38,8 +38,15 @@ import { MessageListComponent } from './components/message-list/message-list.com
 import { RateDealComponent } from './components/rate-deal/rate-deal.component';
 import { DragDropModule } from '../shared/directives/drag-drop/drag-drop.module';
 import { MakePaymentComponent } from './components/make-payment/make-payment.component';
+import { HAMMER_GESTURE_CONFIG, HammerGestureConfig } from '@angular/platform-browser';
+import * as Hammer from 'hammerjs';
 
-
+export class MyHammerConfig extends HammerGestureConfig {
+  // tslint:disable-next-line: no-angle-bracket-type-assertion
+  overrides = <any> {
+    swipe: { direction: Hammer.DIRECTION_ALL  }
+  };
+}
 
 @NgModule({
   declarations: [
@@ -94,7 +101,11 @@ import { MakePaymentComponent } from './components/make-payment/make-payment.com
   ],
   providers: [
     ChatService,
-    MessageScrollService
+    MessageScrollService,
+    {
+      provide: HAMMER_GESTURE_CONFIG,
+      useClass: HammerGestureConfig
+    }
   ]
 })
 export class ChatModule {

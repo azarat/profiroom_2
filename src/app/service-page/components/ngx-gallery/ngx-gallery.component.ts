@@ -70,8 +70,13 @@ export class NgxGalleryComponent implements OnInit {
       },
       {
         breakpoint: 380,
+        width: '350px',
+        height: '205px',
+      },
+      {
+        breakpoint: 350,
         width: '290px',
-        height: '145px',
+        height: '205px',
       }
     ];
     $('.fantom_full-size').on('click', () => {

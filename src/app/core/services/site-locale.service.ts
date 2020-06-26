@@ -18,6 +18,7 @@ export class SiteLocaleService {
 
     public changeLangTo(lang: string) {
         this.currentLang.next(lang);
+        console.log(lang);
     }
 
 

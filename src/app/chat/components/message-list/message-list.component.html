@@ -1,4 +1,6 @@
-<section class="message-wrap" *ngIf="messagesList && collocutorData">
+<section class="message-wrap" *ngIf="messagesList && collocutorData"
+(swipeleft)="swipeEvent($event)"
+(swipeRight)="swipeEvent($event)">
     <div class="more-messages" *ngIf="isShowMoreMessagesBtn && isMessages" (click)="showMoreMessages()">{{'chat.previous-message-btn' | translate}}</div>
     <div class="message-list" id="messages-wrap" #messagesWrap (scroll)="onScroll($event)">
         <!-- <div  #messagesHeight > -->

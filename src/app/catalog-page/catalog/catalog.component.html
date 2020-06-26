@@ -4,7 +4,7 @@
   <div class="bread-crumbs">
     <ul *ngIf="catalogFilters.subCategory && offersList">
       <li><a [routerLink]="['/'] | localize">Главная</a></li>
-      <li><a [routerLink]="['/' + 'catalog/' + category] | localize">{{ category }}</a></li>
+      <li><a [routerLink]="['/' + 'catalog/' + category] | localize">{{ offersList['category_' + currentLang] }}</a></li>
       <li><a>{{ offersList['name_' + currentLang] }}</a></li>
 
     </ul>

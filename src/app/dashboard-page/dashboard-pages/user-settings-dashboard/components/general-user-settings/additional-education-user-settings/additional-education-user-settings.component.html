@@ -15,7 +15,7 @@
               type="text"
               required
               #institution="ngModel"
-              minlength="4"
+              minlength="2"
               name="institution-{{i}}"
               placeholder="{{'user-settings.institution-name' | translate}}"
               [(ngModel)]="userSettings.additionalEducation[i].additionalInstitution"
@@ -26,7 +26,7 @@
             </div>
           </div>
 
-          <div class="toggle_block" [ngClass]="{ hidden: openItem !== i+1 }">
+          <div class="toggle_block" [ngClass]="{ hidden: openItem !== i+1 && !closeAfterSaveSettings || closeAfterSaveSettings }">
             <div class="field-block">
               <h5 class="fields-title">{{'user-settings.course-name' | translate}}</h5>
               <input

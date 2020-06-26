@@ -43,3 +43,24 @@ button.hide-option{
     margin-left: 10px;
   }
 }
+
+@media (max-width: 767px) {
+  .option-wrap{
+    .create{
+      left: auto;
+      right: 20px;
+      bottom: -25px;
+      top: auto;
+      display: block;
+      width: max-content;
+    }
+    .delete-pack{
+      left: auto;
+      right: 60px;
+      bottom: -25px;
+      top: auto;
+      display: block;
+      width: max-content;
+    }
+  }
+}

@@ -175,8 +175,8 @@ h1 {
 
 .app-news{
   background: #3C7DEA;
-  padding: 90px 0 100px;
-  // overflow: hidden;
+  // padding: 90px 0 100px;
+  // overflow-x: hidden;
 }
 .support{
   z-index: 9;
@@ -184,7 +184,7 @@ h1 {
 
 .get-start{
   background: linear-gradient(180deg, #F6FAFF 0%, rgba(250, 251, 251, 0.0001) 100%);
-  padding: 100px 200px;
+  padding: 200px 200px 100px;
   .wrapper{
     position: relative;
     &::after {

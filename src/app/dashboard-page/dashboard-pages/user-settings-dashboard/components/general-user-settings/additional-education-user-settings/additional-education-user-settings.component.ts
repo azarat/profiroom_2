@@ -10,7 +10,7 @@ import { UserSettingsService } from '../../../services/user-settings.service';
 export class AdditionalEducationUserSettingsComponent implements OnInit, OnChanges {
 
   @Input() userSettings: UserSettingsModel;
-  @Input() closeAfterSaveSettings = false;
+  @Input() closeAfterSaveSettings: boolean;
   public submited = false;
   public month = [];
   public monthTranslate = [
@@ -113,7 +113,7 @@ export class AdditionalEducationUserSettingsComponent implements OnInit, OnChang
   }
 
   public deleteDiplomaPhoto(imgName, institutIndex, imgIndex){
-    
+
     this.userSettingsService.deleteFile({link: imgName})
     .subscribe((res: any) => {
       console.log(res);
@@ -127,6 +127,7 @@ export class AdditionalEducationUserSettingsComponent implements OnInit, OnChang
       this.openItem = null;
     } else {
       this.openItem = i;
+      this.closeAfterSaveSettings = false;
     }
   }
 

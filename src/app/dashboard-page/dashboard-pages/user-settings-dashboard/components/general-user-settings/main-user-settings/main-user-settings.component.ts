@@ -16,7 +16,8 @@ export class MainUserSettingsComponent implements OnInit {
   avaUrl: string;
   file: any;
 
-  public unamePattern = "^[a-zA-Zа-яА-ЯёЁЇїІіЄєҐґ'\s-]{3,15}$";
+  // public unamePattern = "^[a-zA-Zа-яА-ЯёЁЇїІіЄєҐґ'-\s ]{3,15}$";
+  public unamePattern = "^([А-ЯЁЇІЄҐ]{1}[а-яёїієґ]{3,15})|([A-Z]{1}[a-z]{29})$";
 
   constructor(
     private userSettingsService: UserSettingsService,

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { UserSettingsModel } from 'src/app/models/user-settings.model';
 import { UserSettingsService } from '../../../services/user-settings.service';
 // import { FormGroup } from '@angular/forms';
@@ -8,10 +8,10 @@ import { UserSettingsService } from '../../../services/user-settings.service';
   templateUrl: './education-user-settings.component.html',
   styleUrls: ['./education-user-settings.component.scss']
 })
-export class EducationUserSettingsComponent implements OnInit, OnChanges  {
+export class EducationUserSettingsComponent implements OnInit  {
 
   @Input() userSettings: UserSettingsModel;
-  @Input() closeAfterSaveSettings = false;
+  @Input() closeAfterSaveSettings: boolean;
   @Input() formSubmitted: boolean;
 
   private educationId: number;
@@ -42,9 +42,6 @@ export class EducationUserSettingsComponent implements OnInit, OnChanges  {
     this.createYearsFinished(1960);
     this.createYears(2020);
     this.openItem = null;
-  }
-  ngOnChanges() {
-    this.closeAfterSaveSettings ? this.openItem = null: this.openItem = this.userSettings.education.length;
   }
 
   // --------------- create education-item -----------------//
@@ -107,11 +104,11 @@ export class EducationUserSettingsComponent implements OnInit, OnChanges  {
       this.userSettings.education[i].diploma.push(this.previewUrl);
     });
 
-    
+
   }
 
   public deleteDiplomaPhoto(imgName, institutIndex, imgIndex){
-    
+
     this.userSettingsService.deleteFile({link: imgName})
     .subscribe((res: any) => {
       console.log(res);
@@ -126,6 +123,7 @@ export class EducationUserSettingsComponent implements OnInit, OnChanges  {
       this.openItem = null;
     } else {
       this.openItem = i;
+      this.closeAfterSaveSettings = false;
     }
   }
 

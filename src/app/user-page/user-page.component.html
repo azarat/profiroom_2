@@ -33,7 +33,7 @@
                 <div class="general-information__lvl">{{'general.level' | translate}}: <span class="value">{{lvlTranslation[userData.rank_id]  | translate}}</span>
                 </div>
             </div>
-            <div class="general-information__wrapper" *ngIf="userTypeFreelancer">
+            <div class="general-information__wrapper status" *ngIf="userTypeFreelancer">
                 <div class="general-information__available">{{'user-page.accessibility-status' | translate}}:
                     <span class="value free" *ngIf="!userData.busy">{{'user-page.user-free' | translate}}</span>
                     <span class="value" *ngIf="userData.busy">{{'user-page.user-busy' | translate}}</span>
@@ -73,6 +73,14 @@
             </div>
             <div class="switching-user-types__text">{{'user-page.help-message' | translate}}</div>
         </section>
+        <div class="general-information__wrapper status mobile" *ngIf="userTypeFreelancer">
+          <div class="general-information__available">{{'user-page.accessibility-status' | translate}}:
+              <span class="value free" *ngIf="!userData.busy">{{'user-page.user-free' | translate}}</span>
+              <span class="value" *ngIf="userData.busy">{{'user-page.user-busy' | translate}}</span>
+          </div>
+          <div class="general-information__inProcess">{{'user-page.projects-in-progress' | translate}}: <span class="value">{{userData.dealsCounts.inProgressOffers}}</span></div>
+          <div class="general-information__awaiting">{{'user-page.projects-awaiting' | translate}}: <span class="value">{{userData.dealsCounts.QueuedOffers}}</span></div>
+        </div>
         <section class="about-user">
             <div class="about-user__wrapper">
                 <div class="about-user__info-block">
@@ -197,7 +205,7 @@
                     <div class="rating__name">{{'raitings.average-rating' | translate}}</div>
                     <div class="star-rating" [ngClass]="{'empty-rating': userData.averageRating.freelancer.averageMark == 0}">
                         {{ userData.averageRating.freelancer.averageMark}}</div>
-                    <span class="comments-count">( {{ userData.comments_freelancer_count}} {{'general.comments' | translate}}):</span>
+                    <span class="comments-count">( {{ userData.comments_freelancer_count}} {{'general.comments' | translate}})</span>
                 </div>
             </div>
             <div class="rating__wrapper" *ngIf="!userTypeFreelancer">
@@ -220,7 +228,7 @@
                     <div class="rating__name">{{'raitings.average-rating' | translate}}</div>
                     <div class="star-rating" [ngClass]="{'empty-rating': userData.averageRating.customer.averageMark == 0}">
                         {{ userData.averageRating.customer.averageMark}}</div>
-                    <span class="comments-count">( {{ userData.comments_customer_count}} {{'general.comments' | translate}}):</span>
+                    <span class="comments-count">( {{ userData.comments_customer_count}} {{'general.comments' | translate}})</span>
                 </div>
             </div>
         </section>

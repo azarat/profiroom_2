@@ -12,7 +12,7 @@
   }
 
 
-  .form-butons {
+  .form-buttons {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -94,12 +94,26 @@
         width: 100%;
       }
     }
-    .form-butons {
+    .form-buttons {
       button {
         font-size: 13px;
         padding: 10px 24px;
         &:first-of-type{
           padding: 10px 24px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 767px) {
+    .form-buttons{
+      flex-direction: column;
+      button{
+        width: 100%;
+        max-width: 250px;
+        margin: 0 auto;
+        &:first-of-type{
+          margin: 0 auto 20px;
         }
       }
     }

@@ -33,7 +33,7 @@ export class OutsideTolltipHoverDirective {
     const hoveredInside = this.el.nativeElement.contains(targetElement);
     if (hoveredInside == true) {
 
-      if(!this.tooltip) {
+      if (!this.tooltip) {
         this.show();
       }
 
@@ -42,21 +42,26 @@ export class OutsideTolltipHoverDirective {
     //   if (this.tooltip) {
     //     setTimeout(() => {
 
-     
+
     } else if(hoveredInside == false) {
-      if (this.tooltip) { 
+      if (this.tooltip) {
         // setTimeout(() => {
-          this.hide()
-        // }, 500)
+
+
+    // } else if(hoveredInside == false) {
+    //   if (this.tooltip) {
+    //     // setTimeout(() => {
+    //       this.hide()
+    //     // }, 500)
          }
     }
 
 
     // if (!clickedInside) {
     //   if (this.tooltip) { this.hide() }
-    // }
+    }
   }
-}
+
 
 
   private show() {

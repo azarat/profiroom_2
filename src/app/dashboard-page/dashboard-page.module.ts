@@ -13,6 +13,7 @@ import { SystemMessagesModule } from '../shared/modules/system-messages/system-m
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { LanguageModule } from '../shared/modules/language/language.module';
+import { ClickOutsideModule } from 'ng-click-outside';
 
 
 const dashboardRoutes: Routes = [
@@ -79,6 +80,7 @@ const dashboardRoutes: Routes = [
     MatIconModule,
     MatBadgeModule,
 
+    ClickOutsideModule,
     StarRatingModule,
     SystemMessagesModule
   ],

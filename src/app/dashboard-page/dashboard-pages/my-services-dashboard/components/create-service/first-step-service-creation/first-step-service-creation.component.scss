@@ -505,7 +505,7 @@ form::ng-deep {
 
 // -----------------buttons ----------------------//
 
-.form-butons {
+.form-buttons {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -560,7 +560,7 @@ form::ng-deep {
       margin-bottom: 1%;
     }
   }
-  .form-butons {
+  .form-buttons {
     button {
       font-size: 13px;
       padding: 10px 24px;
@@ -608,7 +608,9 @@ form::ng-deep {
   .dr-dp{
     margin-bottom: 40px;
   }
-
+  .ng-tooltip {
+    display: none !important;
+  }
 }
 
 
@@ -625,6 +627,12 @@ form::ng-deep {
     .steps-counter{
       margin-bottom: 15px;
     }
+    textarea{
+      height: 80px;
+      resize: none;
+      margin: 10px 0px 10px;
+      font-size: 14px;
+    }
   }
   .service-selects{
     width: 100%;
@@ -640,7 +648,7 @@ form::ng-deep {
       }
     }
   }
-  .form-butons{
+  .form-buttons{
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -654,4 +662,9 @@ form::ng-deep {
   }
 
 
+  .items {
+    .img-item {
+      margin-bottom: 15px;
+    }
+  }
 }

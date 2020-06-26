@@ -208,8 +208,6 @@ export class MessengerToolsComponent implements OnInit, OnDestroy {
   // API
 
   public goToWork() {
-
-
     this.dealService.startWork(this.collocutorData.id)
       .subscribe(res => {
         console.log(res);

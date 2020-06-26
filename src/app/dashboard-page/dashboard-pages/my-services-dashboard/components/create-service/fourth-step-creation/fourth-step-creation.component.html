@@ -1,6 +1,7 @@
 <div class="step-wrapper">
     <form #form="ngForm" (ngSubmit)="nextStep(form)">
         <h3>{{'dashboard.create-service.forth-step.title' | translate}}</h3>
+        <span class="steps-counter">{{'dashboard.create-service.forth-step.steps-counter' | translate}}</span>
         <div class="form-group">
             <div *ngFor="let item of userService.offer_faq; let i = index">
                 <div class="faq-item" [ngClass]="{ hiddenItem: showedItem !== i+1 }" [style.borderColor]="showedItem !== i+1
@@ -39,7 +40,7 @@
         </button>
             </div>
         </div>
-        <div class="form-butons">
+        <div class="form-buttons">
             <button (click)="quite()" class="back">{{'general.exit' | translate}}</button>
             <button class="save" type="submit">{{'dashboard.create-service.save-and-next' | translate}}</button>
         </div>

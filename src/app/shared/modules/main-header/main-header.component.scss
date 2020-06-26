@@ -18,6 +18,7 @@
   }
 }
 .logo {
+  width: 220px;
   height: 50px;
   display: flex;
   align-items: center;
@@ -114,6 +115,9 @@ nav {
   }
 }
 @media (max-width: 1499px) {
+  .logo{
+    width: max-content;
+  }
   .wrapper{
     max-width: 1110px;
     margin: 0 auto;

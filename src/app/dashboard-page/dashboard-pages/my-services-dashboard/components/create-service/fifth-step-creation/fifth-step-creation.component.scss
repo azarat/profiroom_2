@@ -29,6 +29,9 @@ form ::ng-deep {
         line-height: 23px;
         color: #323c47;
     }
+    .steps-counter{
+      display: none;
+    }
     h5 {
         font-family: "Source Sans Pro", sans-serif;
         font-style: normal;
@@ -475,7 +478,7 @@ form ::ng-deep {
             }
         }
     }
-    .form-butons {
+    .form-buttons {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -562,7 +565,7 @@ form ::ng-deep {
     .step-wrapper>form {
         width: 100%;
     }
-    .form-butons {
+    .form-buttons {
         button {
             font-size: 13px;
             padding: 10px 24px;
@@ -572,3 +575,118 @@ form ::ng-deep {
         }
     }
 }
+
+@media (max-width: 1024px) {
+  form ::ng-deep {
+    h5{
+      margin: 0 0 5px;
+    }
+    h3 {
+      font-size: 16px;
+      line-height: 20px;
+      text-align: center;
+      margin-bottom: 3px;
+    }
+    .steps-counter{
+      display: block;
+      margin-bottom: 16px;
+      font-size: 14px;
+      line-height: 18px;
+      text-align: center;
+      color: #99ACB7;
+    }
+    h6{
+      padding: 10px 80px 10px 0px;
+    }
+    .hiddenItem .item-options{
+      top: 23px;
+      position: absolute;
+      margin-left: auto;
+      width: max-content;
+    }
+    .add-brief{
+      margin-top: 0px;
+    }
+  }
+  .add-item{
+    font-size: 12px;
+    line-height: 20px;
+    margin: 10px 0 10px;
+  }
+  .options{
+    margin-bottom: 10px;
+  }
+  .ng-tooltip {
+    display: none !important;
+  }
+}
+
+@media (max-width: 767px) {
+  form ::ng-deep {
+    h5{
+      margin: 0 0 8px;
+      font-size: 12px;
+    }
+    h3 {
+      font-size: 16px;
+      line-height: 18px;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+    .steps-counter{
+      display: block;
+      margin-bottom: 16px;
+      font-size: 14px;
+      line-height: 18px;
+      text-align: center;
+      color: #99ACB7;
+    }
+    h6{
+      padding: 10px 80px 10px 0px;
+      font-size: 14px;
+      line-height: 16px;
+    }
+    .brief-item{
+      margin-bottom: 20px;
+      .title{
+        padding: 10px 10px;
+      }
+      .multi{
+        padding-right: 0px;
+      }
+      .service-selects .mat-form-field{
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 10px;
+      }
+      .options{
+        flex-wrap: wrap;
+        align-items: flex-start;
+      }
+    }
+    .add-brief button{
+      font-size: 12px;
+      line-height: 18px;
+      margin-bottom: 18px;
+      text-transform: uppercase;
+    }
+    .form-buttons{
+      flex-direction: column;
+      margin-bottom: 20px;
+      button{
+        width: 100%;
+        max-width: 250px;
+        margin: 0 auto;
+        &:first-of-type{
+          margin: 0 auto 20px;
+        }
+      }
+    }
+  }
+  .add-item{
+    font-size: 12px;
+    line-height: 20px;
+    margin: 10px 0 10px;
+  }
+}
+

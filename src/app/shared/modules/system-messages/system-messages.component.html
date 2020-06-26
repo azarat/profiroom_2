@@ -1,5 +1,5 @@
 <section class="notifications" >
-    <mat-icon aria-hidden="false" matBadge="1" aria-label="Example home icon" matBadgeColor="warn" (click)="toggleMessageList()" 
+    <mat-icon aria-hidden="false" matBadge="1" aria-label="Example home icon" matBadgeColor="warn" (click)="toggleMessageList()"
     class="test" [ngClass]="{active: newSystemMessages, 'main-pg': pageType === 'main-pg'}">notifications
     </mat-icon>
     <div class="notifications-wrap" *ngIf="showMessagesListBlock" (clickOutside)="toggleMessageList()" [exclude]="'.test'">
