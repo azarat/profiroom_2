@@ -10,14 +10,14 @@ import { SocketService } from '../../../core/services/socket.service';
   selector: 'app-message-list',
   templateUrl: './message-list.component.html',
   styleUrls: ['./message-list.component.scss'],
-  // providers:  [ MessageScrollerService ]
 })
+
 export class MessageListComponent implements OnInit, AfterViewChecked, AfterViewInit {
 
   @Input() chatType: string;
-  @Input() chatRoom: string;
   @Input() messagesList: any[];
   @Input() collocutorData: CollocutorListModel;
+
   public userId: any;
   public userAvatar: any;
   public messCheck = null;
@@ -33,7 +33,7 @@ export class MessageListComponent implements OnInit, AfterViewChecked, AfterView
     private localStorageService: LocalStorageService,
     private socketService: SocketService
   ) {
-    this.userId = (this.localStorageService.getItem('userId').value).toString();
+    this.userId = this.localStorageService.getItem('userId').value;
     this.userAvatar = this.localStorageService.getItem('userImage').value;
   }
 
@@ -41,12 +41,9 @@ export class MessageListComponent implements OnInit, AfterViewChecked, AfterView
 
   ngOnInit() {
     this.messageScrollService.onMessageScrollBottom();
-    // this.typingEventListener();
-    // console.log(this.messagesList);
-    // console.log(this.collocutorData);
     this.typingEventListener();
-
   }
+
   ngAfterViewInit(): void {
     // this._checkOnUnreadedMessages();
   }
@@ -126,15 +123,14 @@ export class MessageListComponent implements OnInit, AfterViewChecked, AfterView
   private typingEventListener() {
     this.socketService.onTypingListener()
       .subscribe((res: any) => {
-        this.typingUser = res.toString();
-        this.typing = true;
+        this.typing = this.typingUser === this.userId ? true : false;
       });
     this.typingStoppedEventListener();
   }
   private typingStoppedEventListener() {
     this.socketService.onStopTypingListener()
       .subscribe((res: any) => {
-        this.typingUser = res;
+
         this.typing = null;
       });
   }

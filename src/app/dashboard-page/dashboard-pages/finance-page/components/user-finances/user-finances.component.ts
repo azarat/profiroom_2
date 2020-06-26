@@ -25,7 +25,7 @@ export class UserFinancesComponent implements OnInit, AfterViewInit {
   public allStatisticInfo: any[] = compressedFinanceInfoConst;
   public submited: boolean = null;
   public errorMessage: boolean = null;
-
+  public iframeUrl: string = null;
   constructor(
     private userFinanceService: UserFinanceService
   ) { }
@@ -73,7 +73,9 @@ export class UserFinancesComponent implements OnInit, AfterViewInit {
       if (res.message === 'fail') {
         this.errorMessage = true;
       } else {
-        this.userFinanceService.ranLiqPay(res);
+        this.userFinanceService.concordMakePayment(res)
+        // this.iframeUrl = res;
+
       }
 
 

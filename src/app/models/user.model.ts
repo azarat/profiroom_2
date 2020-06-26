@@ -29,7 +29,7 @@ export class UserModel {
   @Expose() allDealsperMonths: number[];
   @Expose() achivements: any;
   @Expose() pieChart: number[];
-  @Expose() offerViews: any[];
+  @Expose() offerViews: any;
 
   @Type(() => UserServiceModel) userservice: UserServiceModel[];
 

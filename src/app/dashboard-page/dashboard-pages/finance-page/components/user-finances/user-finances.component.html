@@ -78,7 +78,7 @@
                         <div class="count">
                             <p>{{'dashboard.cash-box.wright-summ' | translate}}</p>
                             <div>
-                                <input name="amount" [(ngModel)]="transactions.amount" id="count" type="text"  [ngClass]="{'invalid': submited && form.controls.name.invalid }"><label for="count">
+                                <input name="amount" [(ngModel)]="transactions.amount" id="count" type="text"  [ngClass]="{'invalid': submited && form.controls.amount.invalid }"><label for="count">
                     <span>UAH</span></label>
                             </div>
                         </div>
@@ -145,3 +145,4 @@
     </div>
 
 </div>
+<app-iframe-payment *ngIf="iframeUrl" [iframeUrl]="iframeUrl"></app-iframe-payment>
