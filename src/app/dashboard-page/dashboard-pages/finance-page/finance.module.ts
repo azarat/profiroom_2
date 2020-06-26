@@ -19,6 +19,7 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { TranslateModule } from '@ngx-translate/core';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { IframePaymentModule } from 'src/app/shared/modules/iframe-payment/iframe-payment.module';
 
 const routes: Routes = [
   {
@@ -44,6 +45,7 @@ const routes: Routes = [
     MatSelectModule,
     NgKnifeModule,
     SlickCarouselModule,
+    IframePaymentModule,
     CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
 
     // Pipes

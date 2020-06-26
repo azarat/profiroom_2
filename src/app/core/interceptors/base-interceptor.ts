@@ -28,39 +28,23 @@ export class BaseInterceptor implements HttpInterceptor {
     private authService: AuthentificationService,
     private localStorageService: LocalStorageService,
     private router: Router
-  ) {}
+  ) { }
 
   intercept(
-    req: HttpRequest < any > ,
+    req: HttpRequest<any>,
     next: HttpHandler
-  ): Observable < HttpEvent < any >> {
-    // http://194.28.103.239/
-    // const url = 'http://dev.thecubetest.site/Backend/api';
-
-
-    // const url = 'http://test.thecubetest.site/Backend/api';
-
-    //let url;
-    //if (location.origin === 'http://localhost:4200') {
-    //  url = 'http://test.thecubetest.site/Backend/api';
-  //    // url = 'http://dev.thecubetest.site/Backend/api';
-  //  } else {
- //     url =  location.origin + '/Backend/api';
-//    }
-
-    // const url = 'http://test.thecubetest.site/Backend/api';
-    // const url = 'http://167.71.70.221/Backend/api'
+  ): Observable<HttpEvent<any>> {
 
     let url;
-     if(location.origin === 'http://localhost:4200') {
-      url = 'http://test.thecubetest.site/Backend/api'
+    if (location.origin === 'http://localhost:4200') {
+      url = 'http://test.thecubetest.site/Backend/api';
+      // url = 'http://dev.thecubetest.site/Backend/api';
       // url = 'http://167.71.70.221/Backend/api'
 
       // url = 'http://dev.thecubetest.site/Backend/api';
     } else {
-      console.log(location.origin)
-      url =  location.origin + '/Backend/api'
-    };
+      url = location.origin + '/Backend/api';
+    }
 
 
 

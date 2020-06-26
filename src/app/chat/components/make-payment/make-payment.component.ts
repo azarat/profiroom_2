@@ -45,15 +45,15 @@ export class MakePaymentComponent implements OnInit {
     }
     this.transaction.amount = this.moneyRequired;
     this.userFinanceService.makePayment(this.transaction)
-    .subscribe((res: any) => {
-        if (res.message === 'fail') {
-          this.errorMessage = true;
-        } else {
-          this.userFinanceService.ranLiqPay(res);
-        }
+    // .subscribe((res: any) => {
+    //     if (res.message === 'fail') {
+    //       this.errorMessage = true;
+    //     } else {
+    //       this.userFinanceService.concordMakePayment(res);
+    //     }
 
 
-    });
+    // });
   }
 
   public tryPayAgain() {

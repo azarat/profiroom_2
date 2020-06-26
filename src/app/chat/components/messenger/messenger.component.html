@@ -13,7 +13,7 @@
     </div>
     <div class="massager-wrap">
         <div class="previous-massages" [ngClass]="canChatting? '': 'full'">
-            <app-message-list [chatRoom]="collocutorData" *ngIf="collocutorData && messagesList" [messagesList]="messagesList" [chatType]="chatType" [collocutorData]="collocutorData"></app-message-list>
+            <app-message-list *ngIf="collocutorData && messagesList" [messagesList]="messagesList" [chatType]="chatType" [collocutorData]="collocutorData"></app-message-list>
         </div>
         <form *ngIf="canChatting" #message="ngForm" (ngSubmit)="sendMessage(message)" class="message-input">
             <div class="text-input">

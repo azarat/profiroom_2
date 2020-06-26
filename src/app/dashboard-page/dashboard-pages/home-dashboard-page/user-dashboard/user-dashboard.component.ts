@@ -42,7 +42,7 @@ export class UserDashboardComponent implements OnInit, AfterViewInit {
   public statsicArr = mainStatisticConst;
   public currentFinanceFilter = 'M';
   public chartLabels: any[] = [];
-  public showPieChart = true;
+  public showPieChart: boolean = true;
   // public allStatisticInfo: any[] = compressedFinanceInfoConst;
   private userStateSubscription: Subscription;
   public userRole: string;

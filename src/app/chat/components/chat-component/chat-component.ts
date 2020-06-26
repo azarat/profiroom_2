@@ -49,8 +49,8 @@ export class ChatComponent implements OnInit, OnDestroy {
     this._dealUpdating();
   }
   ngOnDestroy(): void {
-    // this.socketService.closeCollocutorSocket(this.chatType);
-    // this.collocutorService.setCollocutorInfo(null);
+    this.socketService.closeCollocutorSocket(this.chatType);
+    this.collocutorService.setCollocutorInfo(null);
   }
 
 
