@@ -370,6 +370,11 @@
       text-transform: uppercase;
       margin-bottom: 36px;
     }
+    .description {
+      p{
+        margin: 0 0 0 20px;
+      }
+    }
 
     p {
       font-family: Source Sans Pro, sans-serif;
@@ -379,6 +384,9 @@
       line-height: 23px;
       color: #323C47;
       margin: 0 0 0 20px;
+      &:last-of-type {
+        margin: 0;
+      }
     }
 
     .offers-views {
@@ -408,7 +416,7 @@
           font-weight: normal;
           font-size: 18px;
           line-height: 23px;
-
+          width: calc(100% - 50px);
           .offer-title {
             display: block;
             color: #323C47;
@@ -446,9 +454,10 @@
         align-items: center;
         padding-bottom: 20px;
 
-      //   &:not(:first-of-type) {
-      //     margin-top: 20px;
-      //   }
+        &:first-of-type {
+          border-bottom: 1px solid #F4F7FC;
+          margin-bottom: 20px;
+        }
 
       //   &:not(:last-of-type) {
       //     border-bottom: 1px solid #F4F7FC;

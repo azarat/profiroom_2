@@ -321,6 +321,7 @@ export class CollocutorListComponent implements OnInit, OnDestroy {
   private _getChatRooms() {
     this.chatService.getChatRooms(this.chatType)
       .subscribe((res: CollocutorInterface[]) => {
+        console.log(res);
         this.collocutors = this._sortMessagesByTime(res);
         this._isAnyChatOpen();
         this.subscribeCollocutorList();

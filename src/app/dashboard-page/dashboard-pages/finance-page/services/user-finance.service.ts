@@ -26,71 +26,91 @@ export class UserFinanceService {
   }
 
   public makePayment(userData) {
-    return this.http.post('/payment', userData);
-    // .subscribe((res: any) => {
-    //   if (res.message === 'fail') {
-    //   } else {
-    //     this.concordMakePayment(res);
-    //   }
+    return this.http.post('/payment', userData)
+    .subscribe((res: any) => {
+      if (res.message === 'fail') {
+      } else {
+        this.concordMakePayment(res);
+      }
 
-    // });
+    });
+
+
   }
 
   public concordMakePayment(params) {
 
-
-    function updateProgress (oEvent) {
-      if (oEvent.lengthComputable) {
-        var percentComplete = oEvent.loaded / oEvent.total;
-        // ...
-      } else {
-        // Невозможно вычислить состояние загрузки, так как размер неизвестен
-      }
-    }
-
-    function transferComplete(evt) {
-      // alert("Загрузка завершена.");
-      console.log(evt);
-    }
-
-    function transferFailed(evt) {
-      // alert("При загрузке файла произошла ошибка.");
-      console.log(evt);
-    }
-
-    function transferCanceled(evt) {
-      // alert("Пользователь отменил загрузку.");
-      console.log(evt);
-    }
-
-
-
     const formData = new FormData();
-    formData.append('merchant_id', 'nySPrgd-Yh-u3546cQ1Ai1uHIv2');
-    formData.append('operation', 'Purchase');
-    formData.append('description', 'Пополнение счета в Gigroom');
-    formData.append('amount', params.amount);
-    formData.append('order_id', params.order_id);
-    formData.append('currency_iso', 'UAH');
-    formData.append('signature', params.signature);
-    formData.append('callback_url', 'http://dev.thecubetest.site/Backend/api/concordCallback');
-    formData.append('order_id', params.order_id);
-    formData.append('redirect', 'false');
+    Object.keys(params).map((key) => formData.append(key, params[key]));
 
-    const url = 'https://pay.concord.ua/api/';
+    // const request = new XMLHttpRequest();
+    // request.open('POST', 'https://pay.concord.ua/api/');
+    // request.send(formData);
+    // request.onload = ( response: any) => {
+    //   console.log(response.responseText);
+    // };
 
-    const request = new XMLHttpRequest();
-    request.open('POST', url + ((/\?/).test(url) ? '&' : '?') + (new Date()).getTime(), true);
-    request.onload = function () {
-      console.log(request); // http://example.com/test
-    };
+    this.http.post('https://pay.concord.ua/api/', formData)
+    .subscribe((res: any) => {
+      console.log(res.url)
+      window.open(res.url, '_blank');
 
-    request.upload.addEventListener('progress', updateProgress, false);
-    request.upload.addEventListener('load', transferComplete, false);
-    request.upload.addEventListener('error', transferFailed, false);
-    request.upload.addEventListener('abort', transferCanceled, false);
-    // request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    request.send(formData);
+    })
+
+
+    // function updateProgress (oEvent) {
+    //   if (oEvent.lengthComputable) {
+    //     var percentComplete = oEvent.loaded / oEvent.total;
+    //     // ...
+    //   } else {
+    //     // Невозможно вычислить состояние загрузки, так как размер неизвестен
+    //   }
+    // }
+
+    // function transferComplete(evt) {
+    //   // alert("Загрузка завершена.");
+    //   console.log(evt);
+    // }
+
+    // function transferFailed(evt) {
+    //   // alert("При загрузке файла произошла ошибка.");
+    //   console.log(evt);
+    // }
+
+    // function transferCanceled(evt) {
+    //   // alert("Пользователь отменил загрузку.");
+    //   console.log(evt);
+    // }
+
+
+
+    // const formData = new FormData();
+    // formData.append('merchant_id', 'nySPrgd-Yh-u3546cQ1Ai1uHIv2');
+    // formData.append('operation', 'Purchase');
+    // formData.append('description', 'Пополнение счета в Gigroom');
+    // formData.append('amount', params.amount);
+    // formData.append('order_id', params.order_id);
+    // formData.append('currency_iso', 'UAH');
+    // formData.append('signature', params.signature);
+    // formData.append('callback_url', 'http://dev.thecubetest.site/Backend/api/concordCallback');
+    // formData.append('order_id', params.order_id);
+    // formData.append('redirect', 'false');
+
+    // const url = 'https://pay.concord.ua/api/';
+
+    // const request = new XMLHttpRequest();
+    // request.open('POST', url + ((/\?/).test(url) ? '&' : '?') + (new Date()).getTime(), true);
+    // request.setRequestHeader('Content-Type', 'multipart/form-data');
+    // request.onload = () => {
+    //   console.log(request); // http://example.com/test
+    // };
+
+    // // request.upload.addEventListener('progress', updateProgress, false);
+    // // request.upload.addEventListener('load', transferComplete, false);
+    // // request.upload.addEventListener('error', transferFailed, false);
+    // // request.upload.addEventListener('abort', transferCanceled, false);
+    // // request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    // request.send(formData);
 
     // for (const key in params) {
 
