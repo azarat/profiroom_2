@@ -32,7 +32,7 @@
                 [pattern]="unamePattern" type="text" name='langName_{{i}}'
                 [ngClass]="{not_Valid: !langName.valid && langName.control.touched}" required>
               <div *ngIf="langName.control.touched && langName.control.status === 'INVALID'" class="alert-danger">
-                <p>{{'user-settings.alert-required' | translate}}</p>
+                <p>{{'user-settings.alert-incorrect-symbols' | translate}}</p>
               </div>
             </div>
 

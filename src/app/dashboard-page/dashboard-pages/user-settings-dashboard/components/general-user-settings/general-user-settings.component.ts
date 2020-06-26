@@ -42,11 +42,11 @@ export class GeneralUserSettingsComponent implements OnInit {
         this.succesRessult = true;
         this.userService.getMinUserData();
         this.popUpStatus = true;
-        // timer(5000)
-        // .subscribe(time => {
-        //   console.log(time);
-        //   this.togglePopUp();
-        // });
+        timer(5000)
+        .subscribe(time => {
+          console.log(time);
+          this.togglePopUp();
+        });
       }
     );
 
