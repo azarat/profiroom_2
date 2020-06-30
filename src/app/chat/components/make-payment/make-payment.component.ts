@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output,EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { UserFinanceService } from 'src/app/dashboard-page/dashboard-pages/finance-page/services/user-finance.service';
+import { UserFinanceService } from 'src/app/core/services/user-finance.service';
 
 
 @Component({
@@ -44,16 +44,8 @@ export class MakePaymentComponent implements OnInit {
       return;
     }
     this.transaction.amount = this.moneyRequired;
-    this.userFinanceService.makePayment(this.transaction)
-    // .subscribe((res: any) => {
-    //     if (res.message === 'fail') {
-    //       this.errorMessage = true;
-    //     } else {
-    //       this.userFinanceService.concordMakePayment(res);
-    //     }
+    this.userFinanceService.makePayment(this.transaction);
 
-
-    // });
   }
 
   public tryPayAgain() {

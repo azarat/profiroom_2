@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { compressedFinanceInfoConst } from './consts/compressed-finance-info.const';
-import { UserFinanceService } from './services/user-finance.service';
+import { UserFinanceService } from '../../../core/services/user-finance.service';
 import { filter } from 'rxjs/operators';
 import { FinanceInterface } from './interfaces/finance.interface';
 import { FormControl } from '@angular/forms';

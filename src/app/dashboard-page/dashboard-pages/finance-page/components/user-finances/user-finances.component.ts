@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, HostListener, AfterViewInit } from '@angu
 import { FinanceInterface } from '../../interfaces/finance.interface';
 import { FormControl, NgForm } from '@angular/forms';
 import { compressedFinanceInfoConst } from '../../consts/compressed-finance-info.const';
-import { UserFinanceService } from '../../services/user-finance.service';
+import { UserFinanceService } from '../../../../../core/services/user-finance.service';
 import { SlickCarouselComponent } from 'ngx-slick-carousel';
 
 @Component({
@@ -54,7 +54,7 @@ export class UserFinancesComponent implements OnInit, AfterViewInit {
     this.getScreenSize();
   }
 
-  getFinanceData() {
+  private getFinanceData() {
     this.userFinanceService.getUserFinanceData()
       .subscribe((res: any) => {
         this.userFinance = res;
@@ -63,23 +63,13 @@ export class UserFinancesComponent implements OnInit, AfterViewInit {
 
 
 
-  makePayment(form: NgForm) {
+  public makePayment(form: NgForm) {
     this.submited = true;
     if (form.invalid) {
       return;
     }
     this.userFinanceService.makePayment(this.transactions)
-  //   .subscribe((res: any) => {
-  //     if (res.message === 'fail') {
-  //       this.errorMessage = true;
-  //     } else {
-  //       this.userFinanceService.concordMakePayment(res);
-  //       // this.iframeUrl = res;
 
-  //     }
-
-
-  // });
   }
 
  public unrollPaymentsList() {
@@ -98,15 +88,12 @@ export class UserFinancesComponent implements OnInit, AfterViewInit {
   getScreenSize(event?: Event) {
 
     setTimeout(() => {
-
-        console.log('defined');
         if (window.innerWidth > 1024) {
           console.log('biger');
           if (this.slickModal.initialized) { this.slickModal.unslick(); console.log('unslick');}
         } else if (!this.slickModal.initialized) {
           this.slickModal.initSlick();
         }
-
     }, 1000);
 
   }

@@ -46,7 +46,7 @@ export class BriefMessageShowingComponent implements OnInit {
     // })
     this.getDealData();
 
-    console.log('Brief', this.collocutorData)
+
   }
 
   private convertObjToArr() {
@@ -89,17 +89,17 @@ export class BriefMessageShowingComponent implements OnInit {
 
   private getDealData() {
     this.collocutorService.collocutorData$
-    .pipe(filter((res: any)=> !!res))
     .subscribe(res => {
       this.collocutorData = res;
-      if(this.collocutorData.history) {
-        this.isDealApproved();
-      }
+      console.log('Brief', this.collocutorData)
+      // if(this.collocutorData.history) {
+      //   this.isDealApproved();
+      // }
     });
   }
 
   private isDealApproved() {
 
-    this.dealApproved  = this.collocutorData.history.find(el => el.answer === 'approved');
+    this.dealApproved  = this.collocutorData.history.find(el => el.answer === 'approveBrief');
   }
 }

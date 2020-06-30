@@ -60,7 +60,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     Reset messager path after brief filling
     **
   */
-  public resetChat(event) {
+  public resetChat() {
     this._resetChat();
   }
 
@@ -87,7 +87,8 @@ export class ChatComponent implements OnInit, OnDestroy {
   private _dealUpdating() {
     this.socketService.dealUpdating()
     .subscribe((res: any) => {
-      if(this.collocutorData.id === res.is) {
+      if(this.collocutorData.id === res.id) {
+
         this.collocutorService.setCollocutorInfo(res);
       }
 

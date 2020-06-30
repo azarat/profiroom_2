@@ -34,7 +34,7 @@ import { filter } from 'rxjs/operators';
 })
 export class MessengerToolsComponent implements OnInit, OnDestroy {
 
-  @Output() noMoney = new EventEmitter<{  }>();
+  @Output() noMoney = new EventEmitter<{}>();
 
   public collocutorData: CollocutorInterface;
   // public deal: CollocutorInterface;
@@ -100,18 +100,18 @@ export class MessengerToolsComponent implements OnInit, OnDestroy {
       .subscribe((res: any) => {
         this.collocutorData = res;
         console.log(this.collocutorData);
-        if (this.collocutorData) {
-          this.convertPackagePrice();
-          this.checkIsUserFreelancer();
-          this.checkDealCanBePayed(); // check does deal can be payed
-          this.freelancerStartWorking(); // check does freelancer cen start working
-          this.cenDealBeCanceled();
-          this.cenDealBeFinished();
-          this.isArbiterBtnVisible();
-          if (this.collocutorData.workStarted === 1) {
-            this.setTimer();
-          }
+        // if (this.collocutorData) {
+        this.convertPackagePrice();
+        this.checkIsUserFreelancer();
+        this.checkDealCanBePayed(); // check does deal can be payed
+        this.freelancerStartWorking(); // check does freelancer cen start working
+        this.cenDealBeCanceled();
+        this.cenDealBeFinished();
+        this.isArbiterBtnVisible();
+        if (this.collocutorData.workStarted === 1) {
+          this.setTimer();
         }
+        // }
       });
   }
 
@@ -157,7 +157,7 @@ export class MessengerToolsComponent implements OnInit, OnDestroy {
   public holdDealMoney() {
     this.dealService.holdMoney(this.collocutorData.id)
       .subscribe((res: any) => {
-        if ( res.message === 'not enough money') {
+        if (res.message === 'not enough money') {
           this.noMoney.emit(res.amount);
         }
       });
@@ -166,7 +166,7 @@ export class MessengerToolsComponent implements OnInit, OnDestroy {
   private checkDealCanBePayed() { // check is user customer, brief submitted and deal status is inProgress
     this.canDealBePayed = (!this.isUserFreelancer && this.collocutorData.moneyHolden !== 1
       && this.collocutorData.early_closing !== 1
-      && this.collocutorData.brief === 1 && this.collocutorData.status === 'approved' ) ? true : null;
+      && this.collocutorData.brief === 1 && this.collocutorData.status === 'approved') ? true : null;
     console.log('canDealBePayed', this.canDealBePayed);
   }
 
@@ -180,25 +180,25 @@ export class MessengerToolsComponent implements OnInit, OnDestroy {
 
   private cenDealBeCanceled() {
     this.isCancelButton = this.collocutorData.early_closing !== 1 && this.collocutorData.dealDone !== 1
-    && this.collocutorData.status !== 'arbiter'
+      && this.collocutorData.status !== 'arbiter'
       && this.collocutorData.brief === 1 && this.collocutorData.status !== 'archived' ? true : null;
-  console.log('isCancelButton', this.isCancelButton);
+    console.log('isCancelButton', this.isCancelButton);
   }
 
   private cenDealBeFinished() {
     this.isFinishDealButton =
-    this.isUserFreelancer && this.collocutorData.status !== 'arbiter' &&
-    this.collocutorData.moneyHolden === 1 && this.collocutorData.early_closing !== 1 &&
-    this.collocutorData.workStarted === 1 && this.collocutorData.workEnded !== 1 &&
-    this.collocutorData.dealDone !== 1 ? true : null;
+      this.isUserFreelancer && this.collocutorData.status !== 'arbiter' &&
+        this.collocutorData.moneyHolden === 1 && this.collocutorData.early_closing !== 1 &&
+        this.collocutorData.workStarted === 1 && this.collocutorData.workEnded !== 1 &&
+        this.collocutorData.dealDone !== 1 ? true : null;
 
     console.log('isFinishDealButton', this.isFinishDealButton);
   }
 
   private isArbiterBtnVisible() {
     this.isArbiterBtn = this.collocutorData.status !== 'arbiter' && this.collocutorData.workStarted === 1
-    && this.collocutorData.dealDone !== 1  && this.collocutorData.early_closing !== 1
-    && this.collocutorData.workEnded !== 1 ? true : null;
+      && this.collocutorData.dealDone !== 1 && this.collocutorData.early_closing !== 1
+      && this.collocutorData.workEnded !== 1 ? true : null;
 
     console.log('isArbiterBtn', this.isArbiterBtn);
   }

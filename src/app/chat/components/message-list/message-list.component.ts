@@ -61,21 +61,23 @@ export class MessageListComponent implements OnInit, AfterViewChecked, AfterView
     // if (this.messagesList[1].hasOwnProperty('breef')) {
     //   return this.isShowMoreMessagesBtn = null;
     // }
+    if (this.messagesList.length > 5) {
+      const x = event.target.scrollHeight - event.target.scrollTop;
+      this.messageScrollService.onScroll(this.messagesWrap);
+      if (x > event.target.clientHeight + 300) {
+        this.isScrollDownBtn = true;
+      } else {
+        this.isScrollDownBtn = null;
+      }
+      const isBriefVisible = this.messagesList[0].hasOwnProperty('brief');
 
-    const x = event.target.scrollHeight - event.target.scrollTop;
-    this.messageScrollService.onScroll(this.messagesWrap);
-    if (x > event.target.clientHeight + 300) {
-      this.isScrollDownBtn = true;
-    } else {
-      this.isScrollDownBtn = null;
+      if (event.target.scrollTop === 0 && isBriefVisible !== true ) {
+        this.isShowMoreMessagesBtn = true;
+      } else {
+        this.isShowMoreMessagesBtn = null;
+      }
     }
-    const isBriefVisible = this.messagesList[0].hasOwnProperty('brief');
 
-    if (event.target.scrollTop === 0 && isBriefVisible !== true ) {
-      this.isShowMoreMessagesBtn = true;
-    } else {
-      this.isShowMoreMessagesBtn = null;
-    }
   }
 
   public scrollToStart() {
@@ -85,6 +87,7 @@ export class MessageListComponent implements OnInit, AfterViewChecked, AfterView
   }
 
   public showMoreMessages() {
+
     const firstMessage = $('.message:first');
     const cerOffset = firstMessage.offset().top - $('#messages-wrap').scrollTop() - 1;
     this.chatService.getPreviousMessages(this.collocutorData.roomId, this.messagesList.length, this.chatType)

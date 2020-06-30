@@ -58,6 +58,7 @@ export class SocketService {
     console.log(_roomId, this.chatRoomId)
 
     if (!this.chatRoomId) {
+      this.chatRoomId = _roomId;
       this.socket.emit('join', this.keyPath + _roomId);
 
     } else if (_roomId === this.chatRoomId) {

@@ -12,7 +12,7 @@
         <!-- messager -->
         <app-messenger *ngIf="collocutorData && chatType === 'classic'  || collocutorData && collocutorData.brief == 1 && chatType === 'work'" [chatType]="chatType" [(isFileLoaderVisible)]="isFileLoaderVisible" (swipeDirection)='swipeDirectionFromMessage($event)'></app-messenger>
         <!-- breef -->
-        <app-project-brief-filling *ngIf="collocutorData && collocutorData.brief == 0 && chatType === 'work'" [(exitFromBriefPopUpVisible)]="exitFromBriefPopUpVisible" (resetChat)="resetChat($event)">
+        <app-project-brief-filling *ngIf="collocutorData && collocutorData.brief == 0 && chatType === 'work'" [(exitFromBriefPopUpVisible)]="exitFromBriefPopUpVisible" (resetChat)="resetChat()">
         </app-project-brief-filling>
 
     </section>

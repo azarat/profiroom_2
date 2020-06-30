@@ -19,7 +19,8 @@ import {
   AuthentificationService
 } from '../services/auth.service';
 import { LocalStorageService } from '../services/local-storage.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { LocalizeRouterService } from 'localize-router';
 
 @Injectable()
 export class BaseInterceptor implements HttpInterceptor {
@@ -27,7 +28,9 @@ export class BaseInterceptor implements HttpInterceptor {
   constructor(
     private authService: AuthentificationService,
     private localStorageService: LocalStorageService,
-    private router: Router
+    private router: Router,
+    private localize: LocalizeRouterService,
+    private route: ActivatedRoute,
   ) { }
 
   intercept(
@@ -66,9 +69,16 @@ export class BaseInterceptor implements HttpInterceptor {
     return next.handle(req).pipe(
       catchError(err => {
         const error = err.error.message || err.statusText;
+
         if (err.status === 401) {
           this.authService.logOut();
           location.reload();
+        }
+        if (err.status === 403) {
+          let url = this.localize.translateRoute('');
+          this.router.navigate([url], {
+            relativeTo: this.route,
+          });
         }
         return throwError(error);
       })

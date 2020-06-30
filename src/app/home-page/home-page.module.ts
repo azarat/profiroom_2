@@ -17,6 +17,7 @@ import { HomePageSupportPersonalComponent } from './home-page-support/home-page-
 import { CategoriesHeaderModule } from '../shared/modules/categories-header/categories-header.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { FooterModule } from '../shared/modules/footer/footer.module';
+import { LinkService } from '../core/services/link-service.service';
 // import { HomePageSupportPersonalComponent } from './home-page-support/home-page-support-personal/home-page-support-personal.component';
 
 const routes: Routes = [
@@ -52,7 +53,10 @@ const routes: Routes = [
     MatExpansionModule,
     ChatModule,
     CategoriesHeaderModule,
-    FooterModule
+    FooterModule,
+  ],
+  providers: [
+    LinkService
   ]
 })
 export class HomePageModule { }

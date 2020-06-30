@@ -321,10 +321,10 @@ export class CollocutorListComponent implements OnInit, OnDestroy {
   private _getChatRooms() {
     this.chatService.getChatRooms(this.chatType)
       .subscribe((res: CollocutorInterface[]) => {
-        console.log(res);
         this.collocutors = this._sortMessagesByTime(res);
         this._isAnyChatOpen();
         this.subscribeCollocutorList();
+        console.log( this.collocutors)
       });
   }
 
@@ -433,7 +433,7 @@ export class CollocutorListComponent implements OnInit, OnDestroy {
           if(!this.currentUserState) {
             this.currentUserState = res;
             this._getChatRooms();
-            this.collocutorService.setCollocutorInfo(null);
+            // this.collocutorService.setCollocutorInfo(null);
             return;
           } else if(this.currentUserState !== res) {
             this.currentUserState = res;
@@ -447,7 +447,7 @@ export class CollocutorListComponent implements OnInit, OnDestroy {
           }
 
         this._getChatRooms();
-        this.collocutorService.setCollocutorInfo(null);
+        // this.collocutorService.setCollocutorInfo(null);
         }
 
 
