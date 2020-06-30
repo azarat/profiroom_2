@@ -71,7 +71,6 @@ export class FirstStepServiceCreationComponent implements OnInit {
       )
       .subscribe((res: any) => {
         this.categoryList = res.category;
-
         if (this.userService.category) {
           this.loadSubcategoryFilter(this.userService.category);
         }
@@ -81,6 +80,7 @@ export class FirstStepServiceCreationComponent implements OnInit {
       this.previewUrl = this.userService.files;
     }
     this.tags = this.userService.tags;
+    this.subscribeLang();
   }
 
 

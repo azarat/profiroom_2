@@ -18,7 +18,8 @@ export class OutsideTolltipHoverDirective {
 
   // tslint:disable-next-line: variable-name
   constructor(private el: ElementRef,
-    private renderer: Renderer2) {
+              private renderer: Renderer2
+              ) {
   }
 
   @Output()
@@ -26,39 +27,24 @@ export class OutsideTolltipHoverDirective {
 
   @HostListener('document:mouseover', ['$event', '$event.target']) onHover(event: MouseEvent, targetElement: HTMLElement): void {
 
-
-    const clickedInside = this.el.nativeElement.contains(targetElement);
-    if (clickedInside == true && window.innerWidth > 1024) {
-
     const hoveredInside = this.el.nativeElement.contains(targetElement);
-    if (hoveredInside == true) {
 
-      if (!this.tooltip) {
-        this.show();
+    if (window.innerWidth > 1024) {
+
+
+      if (hoveredInside === true) {
+        if (!this.tooltip) {
+          this.show();
+        }
+      } else if (hoveredInside === false) {
+        if (this.tooltip) {
+          this.hide();
+        }
       }
 
 
-    // } else if(clickedInside == false) {
-    //   if (this.tooltip) {
-    //     setTimeout(() => {
-
-
-    } else if(hoveredInside == false) {
-      if (this.tooltip) {
-        // setTimeout(() => {
-
-
-    // } else if(hoveredInside == false) {
-    //   if (this.tooltip) {
-    //     // setTimeout(() => {
-    //       this.hide()
-    //     // }, 500)
-         }
-    }
-
-
-    // if (!clickedInside) {
-    //   if (this.tooltip) { this.hide() }
+      // if (!clickedInside) {
+      //   if (this.tooltip) { this.hide() }
     }
   }
 
@@ -72,11 +58,11 @@ export class OutsideTolltipHoverDirective {
 
   private hide() {
     // setTimeout(()=>{
-      if(this.tooltip) {
-        this.renderer.removeClass(this.tooltip, 'ng-tooltip-show');
-        this.renderer.removeChild(document.body, this.tooltip);
-        this.tooltip = null;
-      }
+    if (this.tooltip) {
+      this.renderer.removeClass(this.tooltip, 'ng-tooltip-show');
+      this.renderer.removeChild(document.body, this.tooltip);
+      this.tooltip = null;
+    }
 
     // }, 500)
 

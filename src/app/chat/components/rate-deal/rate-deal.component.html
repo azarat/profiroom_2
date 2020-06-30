@@ -8,7 +8,8 @@
 
                 <div class="title">{{ (isUserFreelancer? 'chat.work_chat.rating.task.freelancer-one': 'chat.work_chat.rating.task.custoner-one') | translate }}</div>
                 <div (mouseenter)="isHover_first = true" (mouseleave)="isHover_first = false">
-                    <div class="star" *ngFor="let el of starsArr, let i = index" (click)="getQuality(i+1, isUserFreelancer? 'requirementsClarity' : 'quality')" (mouseenter)="hoveredEl = i+1" (mouseleave)="hoveredEl  = i+1" [ngClass]="{ 'full-star': qualityRating >=i+1 && !isHover_first || isHover_first && hoveredEl >=i+1 }">
+                    <div class="star" *ngFor="let el of starsArr, let i = index" (click)="getQuality(i+1, isUserFreelancer? 'requirementsClarity' : 'quality')"
+                    (mouseenter)="hoveredEl = i+1" (mouseleave)="hoveredEl  = i+1" [ngClass]="{ 'full-star': qualityRating >=i+1 && !isHover_first || isHover_first && hoveredEl >=i+1 }">
 
                         <span class="rate-description" *ngIf="isHover_first && hoveredEl === i+1">
               {{ 'dealRate.firstRate' + userType + 'Count' + (i+1) | translate}}
@@ -17,9 +18,11 @@
                 </div>
             </div>
             <div class="rate-item">
+
                 <div class="title">{{(isUserFreelancer? 'chat.work_chat.rating.task.freelancer-two': 'chat.work_chat.rating.task.customer-two') | translate}} </div>
                 <div (mouseenter)="isHover_second = true" (mouseleave)="isHover_second = false">
-                    <div class="star" *ngFor="let el of starsArr, let i = index" (click)="getTerm(i+1, isUserFreelancer? 'taskClarity' : 'term')" (mouseenter)="hoveredEl = i+1" (mouseleave)="hoveredEl  = i+1" [ngClass]="{ 'full-star': termRating >=i+1 && !isHover_second || isHover_second && hoveredEl >=i+1 }">
+                    <div class="star" *ngFor="let el of starsArr, let i = index" (click)="getTerm(i+1, isUserFreelancer? 'taskClarity' : 'term')"
+                    (mouseenter)="hoveredEl = i+1" (mouseleave)="hoveredEl  = i+1" [ngClass]="{ 'full-star': termRating >=i+1 && !isHover_second || isHover_second && hoveredEl >=i+1 }">
                         <span class="rate-description" *ngIf="isHover_second && hoveredEl === i+1">
               {{ 'dealRate.secondRate' + userType + 'Count' + (i+1) | translate}}
             </span>
@@ -29,7 +32,8 @@
             <div class="rate-item">
                 <div class="title">{{(isUserFreelancer? 'chat.work_chat.rating.task.freelancer-three': 'chat.work_chat.rating.task.customer-three') | translate}}</div>
                 <div (mouseenter)="isHover_third = true" (mouseleave)="isHover_third = false">
-                    <div class="star" *ngFor="let el of starsArr, let i = index" (click)="getCivility(i+1, isUserFreelancer? 'contactLevel' : 'civility')" (mouseenter)="hoveredEl = i+1" (mouseleave)="hoveredEl = i+1" [ngClass]="{ 'full-star': civilityRating >=i+1 && !isHover_third || isHover_third && hoveredEl >=i+1 }">
+                    <div class="star" *ngFor="let el of starsArr, let i = index" (click)="getCivility(i+1, isUserFreelancer? 'contactLevel' : 'civility')"
+                    (mouseenter)="hoveredEl = i+1" (mouseleave)="hoveredEl = i+1" [ngClass]="{ 'full-star': civilityRating >=i+1 && !isHover_third || isHover_third && hoveredEl >=i+1 }">
                         <span class="rate-description" *ngIf="isHover_third && hoveredEl === i+1">
               {{ 'dealRate.thirdRate' + userType + 'Count' + (i+1) | translate}}
             </span>

@@ -21,7 +21,7 @@ export class CollocutorService {
       this._collocutorData.next(deal);
   }
 
-  public unsubscribeCollocutorData() {
-    this._collocutorData.unsubscribe();
-  }
+  // public unsubscribeCollocutorData() {
+  //   this._collocutorData.unsubscribe();
+  // }
 }
