@@ -17,9 +17,7 @@ export class MessageListComponent implements OnInit, AfterViewChecked, AfterView
   @Input() chatType: string;
   @Input() messagesList: any[];
   @Input() collocutorData: CollocutorListModel;
-
   @Output() swipeDirection = new EventEmitter();
-
   public userId: any;
   public userAvatar: any;
   public messCheck = null;
