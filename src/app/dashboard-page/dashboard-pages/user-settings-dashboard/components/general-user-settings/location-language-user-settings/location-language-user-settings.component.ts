@@ -39,13 +39,16 @@ export class LocationLanguageUserSettingsComponent implements OnInit {
     );
   }
   private createLAngFieldsIfAMpty() {
-    if(this.userSettings.language.length === 0 ) {
+    if (this.userSettings.language.length === 0 ) {
       let lang = {
         langName: null,
         langLevel: 1
-      }
-      this.userSettings.language.push(lang)
+      };
+      this.userSettings.language.push(lang);
 
     }
+  }
+  onSearchChange(searchValue: string): void {
+    console.log(searchValue);
   }
 }
