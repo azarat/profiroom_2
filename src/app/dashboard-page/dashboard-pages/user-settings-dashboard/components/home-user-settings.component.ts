@@ -34,16 +34,17 @@ export class HomeUserSettingsComponent implements OnInit, ComponentCanDeactivate
     // returning false will show a confirm alert before navigating away
 
     if (isEqual(this.onloadUserModelCopy, this.userSettingsModel)) {
-      return true
+      return true;
     }
-    return false
+    return false;
   }
 
   // @HostListener allows us to also guard against browser refresh, close, etc.
   @HostListener('window:beforeunload', ['$event'])
   unloadNotification($event: any) {
     if (!this.canDeactivate()) {
-        $event.returnValue = "Вы уверены, что хотите выйти. У вас есть несохраненные изменения. Нажмите Отмена, чтобы вернуться и сохранить эти изменения, или OK, чтобы потерять эти изменения.";
+        // tslint:disable-next-line: max-line-length
+        $event.returnValue = 'Вы уверены, что хотите выйти. У вас есть несохраненные изменения. Нажмите Отмена, чтобы вернуться и сохранить эти изменения, или OK, чтобы потерять эти изменения.';
     }
   }
 
@@ -51,6 +52,7 @@ export class HomeUserSettingsComponent implements OnInit, ComponentCanDeactivate
     this.getUserService();
 
     this.userSettingsService.onloadUserModelCopy$.subscribe((res: UserSettingsModel) => {
+      console.log('onloadUserModelCopy$');
       this.onloadUserModelCopy = res;
     });
 

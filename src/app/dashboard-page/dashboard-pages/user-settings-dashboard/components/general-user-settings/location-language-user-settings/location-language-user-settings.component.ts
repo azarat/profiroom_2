@@ -10,7 +10,7 @@ export class LocationLanguageUserSettingsComponent implements OnInit {
 
   @Input() userSettings: UserSettingsModel;
 
-  public unamePattern = "^[a-zA-Zа-яА-ЯёЁЇїІіЄєҐґ'-()]{3,15}$";
+  public unamePattern = "^[a-zA-Zа-яА-ЯёЁЇїІіЄєҐґ' '-]{3,15}$";
 
   public languagesLevel = [1, 2, 3, 4, 5];
   public languageTranslates = [
@@ -39,13 +39,16 @@ export class LocationLanguageUserSettingsComponent implements OnInit {
     );
   }
   private createLAngFieldsIfAMpty() {
-    if(this.userSettings.language.length === 0 ) {
+    if (this.userSettings.language.length === 0 ) {
       let lang = {
         langName: null,
         langLevel: 1
-      }
-      this.userSettings.language.push(lang)
-    
+      };
+      this.userSettings.language.push(lang);
+
     }
+  }
+  onSearchChange(searchValue: string): void {
+    console.log(searchValue);
   }
 }

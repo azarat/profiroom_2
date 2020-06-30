@@ -87,10 +87,10 @@
                     <div class="about-user__title">{{'general.country' | translate}}, {{'general.city' | translate}}</div>
                     <div class="about-user__value">{{userData.country}} <br> {{userData.city}}</div>
                 </div>
-                <div class="about-user__info-block">
+                <!-- <div class="about-user__info-block">
                     <div class="about-user__title">{{'general.registration-date' | translate}}</div>
                     <div class="about-user__value">{{userData.email_verified_at | dateFormatPipe: 'dd.MM.yyyy' }}</div>
-                </div>
+                </div> -->
                 <div class="about-user__info-block fixed-width-block" *ngIf="userData.dealsCounts.EndedWorks > 0">
                     <div class="about-user__title" *ngIf="userData.dealsCounts.EndedWorks ">{{'user-page.ended-works' | translate}}</div>
                     <div class="about-user__value">{{userData.dealsCounts.EndedWorks}}</div>
@@ -107,10 +107,10 @@
                     <div class="about-user__title">{{'user-page.arbitration-appeals' | translate}}</div>
                     <div class="about-user__value">{{userData.arbitration.customer}}</div>
                 </div>
-                <div class="about-user__info-block">
+                <!-- <div class="about-user__info-block">
                     <div class="about-user__title">{{'user-fields.answer-time' | translate}}</div>
                     <div class="about-user__value">{{userData.answerTime}}</div>
-                </div>
+                </div> -->
             </div>
             <div class="about-user__description" *ngIf="userTypeFreelancer && userData.description != ''">
                 <p>{{userData.description}}</p>

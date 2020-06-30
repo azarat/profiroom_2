@@ -8,7 +8,7 @@
 
         <div class="field-block">
           <h5 class="fields-title">{{'general.country' | translate}}</h5>
-          <input class="fields-value" type="text" [(ngModel)]="userSettings.country" #country="ngModel" name="country" [pattern]="unamePattern">
+          <input class="fields-value" type="text" [(ngModel)]="userSettings.country" #country="ngModel" name="country" [pattern]="unamePattern" (input)="onSearchChange($event.target.value)">
           <div [hidden]="country.valid || country.untouched" class="alert-danger">
             <p>{{'user-settings.alert-incorrect-symbols' | translate}}</p>
           </div>
@@ -32,7 +32,7 @@
                 [pattern]="unamePattern" type="text" name='langName_{{i}}'
                 [ngClass]="{not_Valid: !langName.valid && langName.control.touched}" required>
               <div *ngIf="langName.control.touched && langName.control.status === 'INVALID'" class="alert-danger">
-                <p>{{'user-settings.alert-required' | translate}}</p>
+                <p>{{'user-settings.alert-incorrect-symbols' | translate}}</p>
               </div>
             </div>
 
