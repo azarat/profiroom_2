@@ -63,7 +63,7 @@ export class MessageListComponent implements OnInit, AfterViewChecked, AfterView
     // if (this.messagesList[1].hasOwnProperty('breef')) {
     //   return this.isShowMoreMessagesBtn = null;
     // }
-    if (this.messagesList.length > 20) {
+    if (this.messagesList.length > 5) {
       const x = event.target.scrollHeight - event.target.scrollTop;
       this.messageScrollService.onScroll(this.messagesWrap);
       if (x > event.target.clientHeight + 300) {

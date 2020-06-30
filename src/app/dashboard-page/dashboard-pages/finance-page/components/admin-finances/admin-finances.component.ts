@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FinanceInterface } from '../../interfaces/finance.interface';
 import { FormControl } from '@angular/forms';
 import { compressedFinanceInfoConst } from '../../consts/compressed-finance-info.const';
-import { UserFinanceService } from '../../services/user-finance.service';
+import { UserFinanceService } from '../../../../../core/services/user-finance.service';
 
 @Component({
   selector: 'app-admin-finances',
