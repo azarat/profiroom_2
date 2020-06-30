@@ -8,7 +8,7 @@ import { Subscription, pipe, Observable } from 'rxjs';
 import { OffersListInterface } from 'src/app/shared/interfaces/offers-list.interface';
 import { plainToClass } from 'class-transformer';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Title } from '@angular/platform-browser';
+import { Title, Meta } from '@angular/platform-browser';
 import { SiteLocaleService } from 'src/app/core/services/site-locale.service';
 import { filter } from 'rxjs/operators';
 
@@ -39,7 +39,8 @@ export class CatalogComponent implements OnInit {
     private _route: ActivatedRoute,
     private router: Router,
     private titleService: Title,
-    private siteLocalService: SiteLocaleService
+    private siteLocalService: SiteLocaleService,
+    private metaTagService: Meta
   ) {
 
     this._route.params.subscribe(Params => {
@@ -78,6 +79,9 @@ export class CatalogComponent implements OnInit {
   ngOnInit() {
     this.subscribeLang();
     this.titleService.setTitle('Каталог');
+    this.metaTagService.updateTag(
+      { name: 'description', content: 'Биржа удаленных работников для найма фрилансеров быстро, недорого, выполнение работы качественно и в срок. Найдите своего идеального фриансера!' }
+    );
 
     this.GetOffersService.offersList.subscribe(data => {
       this.offersList = data;

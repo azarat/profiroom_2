@@ -25,18 +25,15 @@
   margin-right: 20px;
   box-sizing: border-box;
   padding-bottom: 3px;
-
-  a {
-    font-family: "Proxima Nova", sans-serif;
-    text-decoration: none;
-    font-size: 24px;
-    line-height: 24px;
-    font-weight: 800;
-    color: #3c7eea;
-    text-transform: lowercase;
+  .img-wrapper{
+    height: 38px;
+    margin-right: 13px;
   }
   img {
-    margin-right: 13px;
+    width: 64%;
+    height: 100%;
+    position: relative;
+    left: -13px;
   }
 }
 .hamburger-menu{
@@ -151,7 +148,12 @@ nav {
     }
   }
   .logo{
-    margin-right: 0;
+    margin-right: auto;
+    .img-wrapper{
+      height: 28px;
+      margin-right: 13px;
+      max-width: 180px;
+    }
   }
   .menu{
     display: none;
@@ -166,6 +168,9 @@ nav {
       font-size: 16px;
       line-height: 20px;
       color: #3C7EEA;
+    }
+    img{
+      left: 0;
     }
   }
 

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AuthentificationService } from 'src/app/core/services/auth.service';
 import { InfoMessageInterface } from 'src/app/shared/interfaces/info-message.interface';
-import { Title } from '@angular/platform-browser';
+import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-authentification-page',
@@ -21,7 +21,8 @@ export class AuthentificationPageComponent implements OnInit {
     // tslint:disable-next-line: variable-name
     private _route: ActivatedRoute,
     private authService: AuthentificationService,
-    private titleService: Title
+    private titleService: Title,
+    private metaTagService: Meta
   ) {
     this._route.queryParams.subscribe(data => {
       if (data.type) {
@@ -42,7 +43,10 @@ export class AuthentificationPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.titleService.setTitle('Авторизация')
+    this.titleService.setTitle('Авторизация');
+    this.metaTagService.updateTag(
+      { name: 'description', content: 'Биржа удаленных работников для найма фрилансеров быстро, недорого, выполнение работы качественно и в срок. Найдите своего идеального фриансера!' }
+    );
   }
   swipeBtn() {
       this.auth = !this.auth;

@@ -212,7 +212,7 @@ h1 {
     z-index: 9;
     position: relative;
     .top{
-      width: 55%;
+      width: 70%;
     }
   }
   &__title{
@@ -403,6 +403,9 @@ h1 {
       right: -25%;
     }
   }
+  .app-news{
+    padding: 0;
+  }
   .advantages{
     height: 55%;
   }
@@ -544,7 +547,7 @@ h1 {
     padding-bottom: 50px;
   }
   .app-news{
-    padding: 40px 0 40px;
+    padding: 0;
     overflow: hidden;
   }
   .get-start{

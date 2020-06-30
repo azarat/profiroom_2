@@ -17,6 +17,7 @@
                 </div>
                 <div class="tabs-text" *ngIf="activeTab === 1">
                     <p>{{'home-page.how-work-text3' | translate}}</p>
+                    <p>{{'home-page.how-work-text4' | translate}}</p>
                 </div>
             </div>
         </div>
@@ -31,7 +32,7 @@
                         <div class="step-img-wrap front"><img src="assets/images/images/step1.svg" alt=""></div>
                         <div class="step-img-wrap back"><img src="assets/images/images/step1.svg" alt=""></div>
                     </div>
-                </div> 
+                </div>
                 <div class="step-text" *ngIf="activeTab === 0">{{'home-page.how-work-item1-customer' | translate}}</div>
                 <div class="step-text" *ngIf="activeTab === 1">{{'home-page.how-work-item1-freelancer' | translate}}</div>
             </div>
@@ -42,7 +43,7 @@
                         <div class="step-img-wrap front"><img src="assets/images/images/step2.1.svg" alt=""></div>
                         <div class="step-img-wrap back"><img src="assets/images/images/step2.svg" alt=""></div>
                     </div>
-                </div> 
+                </div>
                 <div class="step-text" *ngIf="activeTab === 0">{{'home-page.how-work-item2-customer' | translate}}</div>
                 <div class="step-text" *ngIf="activeTab === 1">{{'home-page.how-work-item2-freelancer' | translate}}</div>
             </div>
@@ -53,10 +54,10 @@
                         <div class="step-img-wrap front"><img src="assets/images/images/step3.1.svg" alt=""></div>
                         <div class="step-img-wrap back"><img src="assets/images/images/step3.svg" alt=""></div>
                     </div>
-                </div> 
+                </div>
                 <div class="step-text" *ngIf="activeTab === 0">{{'home-page.how-work-item3-customer' | translate}}</div>
                 <div class="step-text" *ngIf="activeTab === 1">{{'home-page.how-work-item3-freelancer' | translate}}</div>
-            </div> 
+            </div>
             <div class="step">
                 <div class="step-number">4</div>
                 <div class="flip-container" [ngClass]="{customer: activeTab === 0, freelancer: activeTab === 1}"ontouchstart="this.classList.toggle('hover');">
@@ -64,7 +65,7 @@
                         <div class="step-img-wrap front"><img src="assets/images/images/step4.1.svg" alt=""></div>
                         <div class="step-img-wrap back"><img src="assets/images/images/step4.svg" alt=""></div>
                     </div>
-                </div> 
+                </div>
                 <div class="step-text" *ngIf="activeTab === 0">{{'home-page.how-work-item4-customer' | translate}}</div>
                 <div class="step-text" *ngIf="activeTab === 1">{{'home-page.how-work-item4-freelancer' | translate}}</div>
             </div>

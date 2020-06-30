@@ -17,7 +17,7 @@
   color: #323C47;
 
   &__text {
-    font-size: 24px;
+    font-size: 20px;
     line-height: 33px;
     letter-spacing: 0.5px;
     margin: 0 0 60px;
@@ -137,6 +137,9 @@
 
   &:nth-child(3) {
     z-index: 1;
+    .features-item__title{
+      white-space: normal;
+    }
   }
 }
 
@@ -160,7 +163,7 @@
     display: flex;
     align-items: center;
     width: 100%;
-    margin: 0 0 25px;
+    margin: 0 0 15px;
   }
 
   &__icon {
@@ -187,8 +190,8 @@
   }
 
   &__text {
-    font-size: 18px;
-    line-height: 24px;
+    font-size: 17px;
+    line-height: 22px;
     color: #707683;
     margin: 0;
   }
@@ -474,7 +477,7 @@
       transition: all .5s ease-out;
       &.openTab{
         .features-item__text{
-          max-height: 82px;
+          max-height: 90px;
           height: 100%;
           padding-bottom: 10px;
         }
@@ -487,7 +490,7 @@
       &::before{
         display: none;
       }
-      &:hover{  
+      &:hover{
         .features-item{
           transform: none;
         }

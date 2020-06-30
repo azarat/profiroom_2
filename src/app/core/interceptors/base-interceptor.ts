@@ -37,8 +37,8 @@ export class BaseInterceptor implements HttpInterceptor {
 
     let url;
     if (location.origin === 'http://localhost:4200') {
-      url = 'http://test.thecubetest.site/Backend/api';
-      // url = 'http://dev.thecubetest.site/Backend/api';
+      // url = 'http://test.thecubetest.site/Backend/api';
+      url = 'http://dev.thecubetest.site/Backend/api';
       // url = 'http://167.71.70.221/Backend/api'
 
       // url = 'http://dev.thecubetest.site/Backend/api';
