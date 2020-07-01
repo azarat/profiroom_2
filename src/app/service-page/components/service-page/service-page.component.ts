@@ -106,7 +106,7 @@ export class ServicePageComponent implements OnInit {
       this.offerData = offerData.userOffer;
 
       this.formateCommentCount();
-      this.titleService.setTitle('Gigrum | ' +  this.offerData.title);
+      this.titleService.setTitle('Profiroom | ' +  this.offerData.title);
       this.metaTagService.updateTag(
         { name: 'description', content: 'Биржа удаленных работников для найма фрилансеров быстро, недорого, выполнение работы качественно и в срок. Найдите своего идеального фриансера!' }
       );
