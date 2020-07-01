@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
+import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-chat-page',
@@ -11,11 +11,15 @@ export class ChatPageComponent implements OnInit {
   public chatType = 'classic';
 
   constructor(
-    private titleService: Title
+    private titleService: Title,
+    private metaTagService: Meta
   ) { }
 
   ngOnInit() {
     this.titleService.setTitle('Чат');
+    this.metaTagService.updateTag(
+      { name: 'description', content: 'Биржа удаленных работников для найма фрилансеров быстро, недорого, выполнение работы качественно и в срок. Найдите своего идеального фриансера!' }
+    );
   }
 
 }

@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { plainToClass } from 'class-transformer';
 import { UserSettingsService } from '../services/user-settings.service';
-import { Title } from '@angular/platform-browser';
+import { Title, Meta } from '@angular/platform-browser';
 import { ComponentCanDeactivate } from '../user-settings-dashboard.module';
 import { Observable } from 'rxjs/internal/Observable';
 import cloneDeep from 'lodash/clonedeep';
@@ -25,7 +25,8 @@ export class HomeUserSettingsComponent implements OnInit, ComponentCanDeactivate
     // tslint:disable-next-line: variable-name
     private _route: ActivatedRoute,
     private userSettingsService: UserSettingsService,
-    private titleService: Title
+    private titleService: Title,
+    private metaTagService: Meta
   ) { }
 
   canDeactivate(): Observable<boolean> | boolean {
@@ -57,6 +58,9 @@ export class HomeUserSettingsComponent implements OnInit, ComponentCanDeactivate
     });
 
     this.titleService.setTitle('Настройки');
+    this.metaTagService.updateTag(
+      { name: 'description', content: 'Биржа удаленных работников для найма фрилансеров быстро, недорого, выполнение работы качественно и в срок. Найдите своего идеального фриансера!' }
+    );
   }
 
   //  ** load userServiceData from server

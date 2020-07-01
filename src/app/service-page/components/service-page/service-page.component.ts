@@ -10,7 +10,7 @@ import { ScrollToService, ScrollToConfigOptions } from '@nicky-lenaers/ngx-scrol
 import { SimilarOffersInterface } from 'src/app/shared/interfaces/similar-offers.interface';
 import { UserService } from 'src/app/core/services/user.service';
 import { LocalizeRouterService } from 'localize-router';
-import { Title } from '@angular/platform-browser';
+import { Title, Meta } from '@angular/platform-browser';
 import { IpServiceService } from 'src/app/core/services/ip-service.service';
 
 
@@ -49,6 +49,7 @@ export class ServicePageComponent implements OnInit {
     private localize: LocalizeRouterService,
     private router: Router,
     private titleService: Title,
+    private metaTagService: Meta,
     private localStorageService: LocalStorageService,
     private userService: UserService,
     private ipService: IpServiceService
@@ -83,21 +84,19 @@ export class ServicePageComponent implements OnInit {
     })
   }
 
- 
+
 
   private getLoginedUserId () {
     this.userService.user$
     .pipe(filter((res: any) => !!res))
     .subscribe(res => {
       this.loginedUserId = res.id;
-      
-    })
-    
+    });
   }
 
   private saveOfferrWievs(ip) {
     this.servicePageService.saveOfferrWievs(ip, this.offerId)
-    .subscribe()
+    .subscribe();
   }
 
   getOfferData(offerId: { offerId: string }) {
@@ -108,6 +107,9 @@ export class ServicePageComponent implements OnInit {
 
       this.formateCommentCount();
       this.titleService.setTitle('Gigrum | ' +  this.offerData.title);
+      this.metaTagService.updateTag(
+        { name: 'description', content: 'Биржа удаленных работников для найма фрилансеров быстро, недорого, выполнение работы качественно и в срок. Найдите своего идеального фриансера!' }
+      );
     });
   }
 
