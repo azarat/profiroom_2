@@ -168,7 +168,7 @@
       // display: none!important;
       width: 30%;
       border: 1px solid #eae8ed;
-      transition: all .3s;
+      transition: all .3s ease-out;
       position: absolute;
       right: 5px;
       z-index: 10;
@@ -201,6 +201,7 @@
     }
     .collocutors {
       width: calc(40% - 15px);
+      transition: all .3s ease-out;
     }
   }
   .toggleCollocutoInfo, .toggleCollocutor{
@@ -211,7 +212,7 @@
     width: 28px;
     height: 28px!important;
     top: 40%;
-    left: -15px;
+
     &::before{
       content: '';
       position: absolute;
@@ -221,7 +222,13 @@
       background-size: cover;
       height: 13px;
       width: 6px;
-      transform: translate(-50%, -50%) ;
+      transform: translate(-50%, -50%);
+    }
+  }
+  .toggleCollocutoInfo{
+    left: -15px;
+    &:before{
+      transform: translate(-50%, -50%) rotate(180deg);
     }
     &.open{
       &::before{
@@ -235,6 +242,22 @@
     }
   }
   .toggleCollocutor{
+    right: -15px;
+        &:before{
+      transform: translate(-50%, -50%);
+    }
+    &.open{
+      &::before{
+        transform: translate(-50%, -50%) rotate(180deg);
+      }
+    }
+    &.hidden{
+      &::before{
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+  .toggleCollocutor{
     display: none;
   }
 }
@@ -242,14 +265,16 @@
 @media (max-width: 767px) {
   .wrapper::ng-deep {
     .collocutors-tools{
-      max-width: 270px;
+      max-width: 260px;
       width: 100%;
       right: 5px;
       &.open{
-        right: 5px;
+        right: 0;
+        z-index: 9;
       }
       &.hidden{
-        right: -250px;
+        right: -245px;
+        z-index: 99;
       }
       .information{
         .rating{
@@ -280,13 +305,18 @@
       }
     }
     .collocutors {
-      width: 290px;
+      width: 260px;
       position: absolute;
       z-index: 9;
       left: 10px;
       border: 1px solid #eae8ed;
       &.hidden{
-        left: -275px;;
+        left: -245px;
+        z-index: 9;
+      }
+      &.open{
+        z-index: 99;
+        left: 0;
       }
     }
   }
