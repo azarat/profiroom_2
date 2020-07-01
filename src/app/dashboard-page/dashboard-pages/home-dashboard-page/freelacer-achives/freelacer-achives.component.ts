@@ -19,6 +19,7 @@ export class FreelacerAchivesComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log(this.achivements);
     this.checkNeibourRanks();
   }
 

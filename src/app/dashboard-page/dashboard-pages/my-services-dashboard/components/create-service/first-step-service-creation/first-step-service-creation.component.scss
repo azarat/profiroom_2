@@ -433,6 +433,9 @@ form::ng-deep {
   border: 1px dashed #dce0e6;
   position: relative;
   z-index: 2;
+  &.invalid {
+    border-color: red;
+  }
   .upload {
     position: relative;
     height: 41px;

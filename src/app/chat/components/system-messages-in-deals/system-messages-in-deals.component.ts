@@ -31,7 +31,6 @@ export class SystemMessagesInDealsComponent implements OnInit {
   ngOnInit() {
     this.getDealData();
     this._CheckMessage();
-
   }
 
   private getDealData() {
@@ -99,7 +98,8 @@ export class SystemMessagesInDealsComponent implements OnInit {
   }
 
   public submitDealCancel() {
-    this.dealService.submitDealCancel(this.collocutorData.id);
+    this.dealService.submitDealCancel(this.collocutorData.id)
+    .subscribe();
   }
 
   public submitFinishWork() {
@@ -110,5 +110,10 @@ export class SystemMessagesInDealsComponent implements OnInit {
     console.log(this.collocutorData.id)
     this.dealService.cancelFinishDeal(this.collocutorData.id)
     .subscribe()
+  }
+
+  public callArbiter() {
+    this.dealService.callToArbiter(this.collocutorData.id)
+      .subscribe(res => console.log(res));
   }
 }

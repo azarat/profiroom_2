@@ -39,7 +39,7 @@ export class FirstStepServiceCreationComponent implements OnInit {
 
   public titlePosition: string;
   public currentLang: string = null;
-
+  public noImagesError: boolean = null;
 
 
   constructor(
@@ -85,7 +85,6 @@ export class FirstStepServiceCreationComponent implements OnInit {
 
 
   private subscribeLang() {
-    console.log('start');
     this.siteLocaleService.currentLang$
     .pipe(filter((res: any) => !!res))
     .subscribe((res: any) => {
@@ -102,9 +101,17 @@ export class FirstStepServiceCreationComponent implements OnInit {
 
   public goNextStep = (form: NgForm) => {
     this.userService.tags = this.tags;
+    if(this.previewUrl.length === 0) {
+      this.noImagesError = true;
+    } else {
+      this.noImagesError = false;
+    }
+
     if (!form.valid) {
       return;
     }
+
+
 
     if (this.userService.mainImage.includes('offerFiles/gefaultOffer.jpg')) {
       this.putAsMainPhoto(this.previewUrl[0].link);

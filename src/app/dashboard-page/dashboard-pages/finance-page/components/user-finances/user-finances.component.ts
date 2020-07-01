@@ -69,7 +69,6 @@ export class UserFinancesComponent implements OnInit, AfterViewInit {
       return;
     }
     this.userFinanceService.makePayment(this.transactions)
-
   }
 
  public unrollPaymentsList() {

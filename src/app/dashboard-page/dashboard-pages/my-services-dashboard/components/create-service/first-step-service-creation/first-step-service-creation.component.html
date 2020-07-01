@@ -68,7 +68,7 @@
 
                 </ng-container>
 
-                <div class="dr-dp" appDragDrop (onFileDropped)="fileProgress($event)" >
+                <div class="dr-dp" appDragDrop (onFileDropped)="fileProgress($event)" [ngClass]="{ 'invalid': noImagesError === true }" >
                     <div class="upload"></div>
                     <span>.JPG .PNG .GIF </span>
                     <span class="dr-dr-text">{{'file-loader.drop-files' | translate}}</span>

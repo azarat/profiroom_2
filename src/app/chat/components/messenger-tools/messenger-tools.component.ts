@@ -179,7 +179,8 @@ export class MessengerToolsComponent implements OnInit, OnDestroy {
   }
 
   private cenDealBeCanceled() {
-    this.isCancelButton = this.collocutorData.early_closing !== 1 && this.collocutorData.dealDone !== 1
+    this.isCancelButton = this.collocutorData.early_closing !== 1
+    && this.collocutorData.dealDone !== 1 && this.collocutorData.workEnded !== 1
       && this.collocutorData.status !== 'arbiter'
       && this.collocutorData.brief === 1 && this.collocutorData.status !== 'archived' ? true : null;
     console.log('isCancelButton', this.isCancelButton);
