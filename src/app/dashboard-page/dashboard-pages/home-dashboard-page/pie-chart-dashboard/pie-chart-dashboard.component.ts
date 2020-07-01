@@ -67,7 +67,7 @@ export class PieChartDashboardComponent implements OnInit {
     });
   }
 
-  private translateCompleatedToolTip() { // translations of legenf
+  private translateCompleatedToolTip() { // translations of legend
     this.translate.get('user-pie-chart.compleatedDeals')
       .pipe(first())
       .subscribe(res => {
@@ -75,7 +75,7 @@ export class PieChartDashboardComponent implements OnInit {
       });
   }
 
-  private translateInProgressToolTip() { // translations of legenf
+  private translateInProgressToolTip() { // translations of legend
     this.translate.get('user-pie-chart.inProgress')
       .pipe(first())
       .subscribe(res => {
@@ -83,8 +83,8 @@ export class PieChartDashboardComponent implements OnInit {
       });
   }
 
-  private translateFailedToolTip() { // translations of legenf
-    this.translate.get('user-pie-chart.compleatedDeals')
+  private translateFailedToolTip() { // translations of legend
+    this.translate.get('user-pie-chart.falledDeals')
       .pipe(first())
       .subscribe(res => {
         this.falledDeals = res;
