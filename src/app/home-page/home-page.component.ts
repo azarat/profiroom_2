@@ -16,7 +16,7 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit() {
     this.titleService.setTitle('Gigrum | Главная');
-    this.linkService.addTag( { rel: 'canonical', href: 'url here'} );
+    this.linkService.addTag( { rel: 'canonical', href: 'https://profiroom.com/'} );
   }
 
 }

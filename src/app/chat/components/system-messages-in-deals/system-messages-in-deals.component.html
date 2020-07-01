@@ -15,17 +15,22 @@
                 <p>{{'chat.work_chat.system_messages.' + systemMessage.message.name+ 'DescriptionDealer' | translate}} </p>
             </ng-container>
             <div class="actions" [ngClass]="{ btwn: dealCancel }">
-                <button class="btn-sec" *ngIf="dealCancel && messageClass === 'deal-cancel' && collocutorData.canceled !== 1">Обратится в арбитраж</button>
-                <button class="btn" *ngIf="dealCancel && messageClass === 'deal-cancel' && collocutorData.canceled !== 1" (click)="submitDealCancel()">Подтвердть отмену</button>
+                <button class="btn-sec"
+                *ngIf="dealCancel && messageClass === 'deal-cancel'
+                && collocutorData.canceled !== 1 "
+                (click)="callArbiter()">Обратится в арбитраж</button>
+                <button class="btn"
+                *ngIf="dealCancel && messageClass === 'deal-cancel' && collocutorData.canceled !== 1 " (click)="submitDealCancel()">Подтвердть отмену</button>
                 <!-- Deal preFinish -->
-                <button class="btn-sec" *ngIf="!isUserFreelancer && dealCancel && messageClass === 'DealFinishedByFreelancer' && collocutorData.workEnded === 1 && collocutorData.dealDone !== 1" (click)="cancelFinishDeal()">вернуть к работе </button>
-                <button class="btn" *ngIf="!isUserFreelancer && dealCancel && messageClass === 'DealFinishedByFreelancer' && collocutorData.workEnded === 1 && collocutorData.dealDone !== 1" (click)="submitFinishWork()"> работа завершена</button>
-            </div>
+                  <button class="btn-sec" *ngIf="!isUserFreelancer && dealCancel && messageClass === 'DealFinishedByFreelancer' && collocutorData.workEnded === 1 && collocutorData.dealDone !== 1" (click)="cancelFinishDeal()">вернуть к работе </button>
+                  <button class="btn" *ngIf="!isUserFreelancer && dealCancel && messageClass === 'DealFinishedByFreelancer' && collocutorData.workEnded === 1 && collocutorData.dealDone !== 1" (click)="submitFinishWork()"> работа завершена</button>
+
+             </div>
         </div>
     </div>
 </div>
 <!-- earlyClosing -->
-<div class="system-message arbiter-mess" *ngIf="systemMessage.message.name === 'moneyGivenToCustomer' || systemMessage.message.name === 'moneyGivenToFreelancer'">
+<div class="system-message arbiter-mess" *ngIf="(systemMessage.message.name === 'moneyGivenToCustomer' || systemMessage.message.name === 'moneyGivenToFreelancer' ) && collocutorData.early_closing !== 1">
     <div class="icon">
         <img [src]="'/assets/images/icons/deals-icons/arbiter-answer.png'" alt="system-icon">
     </div>

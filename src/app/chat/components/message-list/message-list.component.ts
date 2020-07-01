@@ -44,6 +44,8 @@ export class MessageListComponent implements OnInit, AfterViewChecked, AfterView
   ngOnInit() {
     this.messageScrollService.onMessageScrollBottom();
     this.typingEventListener();
+    // this.getLastEndWorkMessage();
+    console.log(this.messagesList)
   }
 
   ngAfterViewInit(): void {
@@ -55,13 +57,21 @@ export class MessageListComponent implements OnInit, AfterViewChecked, AfterView
 
   }
 
+  // private getLastEndWorkMessage() {
+
+  //   let elIndex;
+  //   this.messagesList.forEach((el, index) => {
+  //     if(el.message.name === 'DealCloseByFreelancer') {
+  //       return elIndex = index;
+  //     }
+  //   });
+  //   this.messagesList[elIndex].dealFinishIndex = true;
+  //   // console.log(elIndex)
+  // }
+
 
   public onScroll(event) {
-
-    // if (this.messagesList[1].hasOwnProperty('breef')) {
-    //   return this.isShowMoreMessagesBtn = null;
-    // }
-    if (this.messagesList.length > 5) {
+    if (this.messagesList.length > 3) {
       const x = event.target.scrollHeight - event.target.scrollTop;
       this.messageScrollService.onScroll(this.messagesWrap);
       if (x > event.target.clientHeight + 300) {
@@ -142,7 +152,6 @@ export class MessageListComponent implements OnInit, AfterViewChecked, AfterView
 
 
   public swipeEvent(event: any) {
-    console.log(event);
     if (event.type === 'swipeleft') {
       this.swipeDirection.emit('swipeleft');
     } else if (event.type === 'swiperight') {
