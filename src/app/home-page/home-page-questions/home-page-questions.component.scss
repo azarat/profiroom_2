@@ -63,7 +63,7 @@
             border-top-right-radius: 10px;
             transition: all 0.33s cubic-bezier(0.38, 0.8, 0.32, 1.07);
             &.activeOne{
-                transform: translateX(0); 
+                transform: translateX(0);
             }
             &.activeTwo{
                 transform: translateX(calc(500px - 95%));
@@ -188,7 +188,7 @@
       transform: translate(-50%, -50%) rotate(0deg);
       background-color: #005AED;
     }
-    &::after{                                               
+    &::after{
       background-color: #005AED;
     }
   }
@@ -251,7 +251,7 @@
          .indicator{
               width: 135px;
               &.activeOne{
-                  transform: translateX(0); 
+                  transform: translateX(0);
               }
               &.activeTwo{
                   transform: translateX(calc(300px - 100%));
@@ -309,7 +309,7 @@
   }
 }
 
-@media (max-width: 1199.98px) {
+@media (max-width: 1199px) {
   .main-info{
     width: 50%;
     &__text{
@@ -408,7 +408,7 @@
   }
 }
 
-@media (max-width: 767.98px) {
+@media (max-width: 767px) {
   .wrapper{
     flex-direction: column;
   }

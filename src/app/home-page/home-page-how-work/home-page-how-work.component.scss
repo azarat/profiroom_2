@@ -362,7 +362,7 @@
   }
 }
 
-@media (max-width: 1199.98px) {
+@media (max-width: 1199px) {
   .main-info {
     width: 40%;
   }
@@ -503,7 +503,7 @@
   }
 }
 
-@media (max-width: 767.98px) {
+@media (max-width: 767px) {
   .wrapper {
     flex-direction: column;
   }
@@ -572,13 +572,13 @@
           outline: none;
           margin: 0 15px;
           transition: all .3s;
-          
+
         &::before {
           content: '';
           position: absolute;
           left: 50%;
           top: 50%;
-          
+
           height: 10px;
           width: 13px;
           background-image: url(/assets/images/home-page/shevron-blue.svg);
