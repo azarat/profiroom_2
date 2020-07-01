@@ -33,6 +33,9 @@ export class EducationUserSettingsComponent implements OnInit  {
     "academicDegrees.lvl4",
     "academicDegrees.lvl5"
   ];
+  private validFileExtensions = [".jpg", ".jpeg", ".bmp", ".gif", ".png"]; 
+  private sCurExtension: string;
+  private valideFormat = null;
 
   constructor(
     private userSettingsService: UserSettingsService,
@@ -82,29 +85,40 @@ export class EducationUserSettingsComponent implements OnInit  {
 
     const formData: FormData = new FormData();
     this.files = [];
-
+    this.valideFormat = false;
     // tslint:disable-next-line: prefer-for-of
     for (let index = 0; index < event.length; index++) {
       this.files.push(event[index]);
     }
 
-    this.files.forEach((el: any) => {
-      formData.append('filesname[]', el, el.name);
-    });
-
-    formData.append('id', id);
-
-    this.userSettingsService.uploadDiplomaPhotos(formData)
-    .subscribe((res: any) => {
-      this.previewUrl = res.diploma[0].url;
-
-      if(this.userSettings.education[i].diploma == undefined) {
-        this.userSettings.education[i].diploma = [];
+    if(event[0].name.length > 0) {
+      for (var j = 0; j < this.validFileExtensions.length; j++) {
+        this.sCurExtension = this.validFileExtensions[j];
+        if (event[0].name.substr(event[0].name.length - this.sCurExtension.length, this.sCurExtension.length).toLowerCase() === this.sCurExtension.toLowerCase()) {
+            this.valideFormat = true;
+            break;
+        }
       }
-      this.userSettings.education[i].diploma.push(this.previewUrl);
-    });
+    };
 
+    if(this.valideFormat) {
+      this.files.forEach((el: any) => {
+        formData.append('filesname[]', el, el.name);
+      });
 
+      formData.append('id', id);
+
+      this.userSettingsService.uploadDiplomaPhotos(formData)
+      .subscribe((res: any) => {
+        this.previewUrl = res.diploma[0].url;
+
+        if(this.userSettings.education[i].diploma == undefined) {
+          this.userSettings.education[i].diploma = [];
+        }
+        this.userSettings.education[i].diploma.push(this.previewUrl);
+      });
+    }
+    
   }
 
   public deleteDiplomaPhoto(imgName, institutIndex, imgIndex){
