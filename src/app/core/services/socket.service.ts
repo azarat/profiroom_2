@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 export class SocketService {
   // var socket = require('socket.io-client')('http://localhost');
   socket: any;
-  private host = 'http://194.28.103.239:6001';
+  private host: string;
   // private host = '/';
   // private socket: any = io.connect(this.host);
   public socketId: string = null;
@@ -22,6 +22,11 @@ export class SocketService {
   constructor(
     private http: HttpClient
   ) {
+    if (location.origin !== 'https://profiroom.com') {
+      this.host = 'http://194.28.103.239:6001'
+    } else {
+      this.host = '/';
+    }
     this.socket = io.connect(this.host , {secure: true});
   }
 

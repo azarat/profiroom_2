@@ -20,6 +20,7 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { TranslateModule } from '@ngx-translate/core';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { IframePaymentModule } from 'src/app/shared/modules/iframe-payment/iframe-payment.module';
+import { NgxMaskModule, IConfig } from 'ngx-mask';
 
 const routes: Routes = [
   {
@@ -27,6 +28,10 @@ const routes: Routes = [
     component: FinancePageComponent,
   },
 ];
+const maskConfig: Partial<IConfig> = {
+  validation: false,
+};
+
 
 @NgModule({
   declarations: [FinancePageComponent, UserFinancesComponent, AdminFinancesComponent],
@@ -47,7 +52,7 @@ const routes: Routes = [
     SlickCarouselModule,
     IframePaymentModule,
     CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
-
+    NgxMaskModule.forRoot(maskConfig),
     // Pipes
     DataFormatModule,
     ThousandSeparatorModule,

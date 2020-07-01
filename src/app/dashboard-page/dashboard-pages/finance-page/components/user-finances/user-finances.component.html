@@ -62,7 +62,7 @@
         <div class="wallet wallet-section-copy laptop">
             <div class="wallet-section ">
                 <div class="title">{{'dashboard.payment-history.input-output' | translate}}</div>
-                <form class="form" #form=ngForm>
+                <form class="form" #form=ngForm >
                     <div class="operation-type">
                         <mat-select name="transactionType" [(ngModel)]="transactions.transactionType" [(value)]="transactions.transactionType" required>
                             <mat-option [value]="'deffault'" disabled>{{'dashboard.cash-box.choose-operation-type' | translate}}</mat-option>
@@ -74,11 +74,20 @@
                             </mat-option>
                         </mat-select>
                     </div>
+                                    <div class="card-number" *ngIf="transactions.transactionType === 'output'">
+                  <div class="card-number-wrap">
+                    <p>{{'dashboard.cash-box.card-number-placeholder' | translate}}</p>
+                    <div>
+                        <input name="creditCard" matInput mask="0000 0000 0000 0000"  require maxlength=19 minlength=19 [(ngModel)]="transactions.creditCard" id="creditCard" type="text">
+                    </div>
+
+                </div>
+                </div>
                     <div class="cash-form">
                         <div class="count">
                             <p>{{'dashboard.cash-box.wright-summ' | translate}}</p>
                             <div>
-                                <input name="amount" [(ngModel)]="transactions.amount" id="count" type="text"  [ngClass]="{'invalid': submited && form.controls.amount.invalid }"><label for="count">
+                                <input name="amount" knifeOnlyNumbers [(ngModel)]="transactions.amount" id="count" type="text"  [ngClass]="{'invalid': submited && form.controls.amount.invalid }"><label for="count">
                     <span>UAH</span></label>
                             </div>
                         </div>
@@ -115,11 +124,20 @@
                         </mat-option>
                     </mat-select>
                 </div>
+                <div class="card-number" *ngIf="transactions.transactionType === 'output'">
+                  <div class="card-number-wrap">
+                    <p>{{'dashboard.cash-box.card-number-placeholder' | translate}}</p>
+                    <div>
+                        <input name="creditCard" matInput mask="0000 0000 0000 0000"  require maxlength=19 minlength=19 [(ngModel)]="transactions.creditCard" id="creditCard" type="text">
+                    </div>
+
+                </div>
+                </div>
                 <div class="cash-form">
                     <div class="count">
                         <p>{{'dashboard.cash-box.wright-summ' | translate}}</p>
                         <div>
-                            <input name="amount" [(ngModel)]="transactions.amount" id="count" type="text"><label for="count">
+                            <input name="amount" knifeOnlyNumbers [(ngModel)]="transactions.amount" id="count" type="text"><label for="count">
                   <span>UAH</span></label>
                         </div>
 

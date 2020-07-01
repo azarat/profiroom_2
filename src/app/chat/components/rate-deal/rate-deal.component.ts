@@ -30,7 +30,8 @@ export class RateDealComponent implements OnInit, OnDestroy {
   public hoveredEl: number = null;
   public userType: string = null;
   public rated: boolean = null;
-  public submit: boolean = null;
+  public submitted: boolean = null;
+
 
   constructor(
     private fb: FormBuilder,
@@ -100,7 +101,7 @@ export class RateDealComponent implements OnInit, OnDestroy {
   }
 
   public submitRating() {
-    this.submit = true;
+    this.submitted = true;
 
     if (this.rateForm.invalid) {
       return;

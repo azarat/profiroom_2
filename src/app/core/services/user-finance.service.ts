@@ -36,7 +36,11 @@ export class UserFinanceService {
       .subscribe((res: any) => {
         window.open(res.url, '_blank');
       });
-
   }
+
+
+  // public getCash(data) {
+  //   return this.http.post('/payment')
+  // }
 }
 
