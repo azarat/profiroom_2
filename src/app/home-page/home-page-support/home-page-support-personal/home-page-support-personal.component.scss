@@ -229,26 +229,26 @@ $orbit-color: $gray;
     left: 50%;
     top: 50%;
     position: absolute;
-  
+
     &.small {
       z-index: 3;
       border-radius: 50%;
       left: 100px;
       top: 100px;
-  
+
       .sphere {
         animation: spinBack 18s linear infinite;
         &:nth-child(1) {
           bottom: 0;
           right: -40px;
         }
-  
+
         &:nth-child(2) {
           right: 20px;
         }
       }
     }
-  
+
     &.medium {
       z-index: 2;
       left: 50px;
@@ -256,19 +256,19 @@ $orbit-color: $gray;
       border-radius: 50%;
       .sphere {
         animation: spinBack 24s linear infinite;
-  
+
         &:nth-child(1) {
           bottom: 0;
           left: -40px;
         }
-  
+
         &:nth-child(2) {
           top: 40px;
           left: 0;
         }
       }
     }
-  
+
     &.large {
       border-radius: 50%;
       .sphere {
@@ -282,7 +282,7 @@ $orbit-color: $gray;
           right: 0;
         }
       }
-  
+
       &::before {
         width: 330px;
         height: 330px;
@@ -298,65 +298,65 @@ $orbit-color: $gray;
         left: 50%;
         padding-top: 6px;
       }
-  
+
       &.small {
         width: 60px;
         height: 60px;
       }
-  
+
       &.medium {
         width: 95px;
         height: 95px;
       }
-  
+
       &.large {
         width: 110px;
         height: 110px;
         border: 3px solid #fff;
       }
     }
-  
+
   }
   .orbit.small {
     @include orbit(250px, 0, 18s);
   }
-  
+
   .orbit.medium {
     @include orbit(350px, 0, 24s);
   }
-  
+
   .orbit.large {
     @include orbit(450px, 0, 30s);
   }
 }
 
-@media (max-width: 1199.98px) {
+@media (max-width: 1199px) {
   .orbit {
     border: solid 1px #E9ECFB;
     left: 50%;
     top: 50%;
     position: absolute;
-  
+
     &.small {
       z-index: 3;
       border-radius: 50%;
       left: 100px;
       top: 100px;
-  
+
       .sphere {
         animation: spinBack 18s linear infinite;
         &:nth-child(1) {
           bottom: 0;
           right: -40px;
         }
-  
+
         &:nth-child(2) {
           top: 40px;
           left: 25px;
         }
       }
     }
-  
+
     &.medium {
       z-index: 2;
       left: 50px;
@@ -364,19 +364,19 @@ $orbit-color: $gray;
       border-radius: 50%;
       .sphere {
         animation: spinBack 24s linear infinite;
-  
+
         &:nth-child(1) {
           bottom: -30px;
           left: 0px;
         }
-  
+
         &:nth-child(2) {
           top: 40px;
           left: 0;
         }
       }
     }
-  
+
     &.large {
       border-radius: 50%;
       .sphere {
@@ -390,87 +390,87 @@ $orbit-color: $gray;
           right: 0;
         }
       }
-  
+
       &::before {
         width: 260px;
         height: 260px;
       }
     }
     .sphere {
-  
+
       &.small {
         width: 55px;
         height: 55px;
       }
-  
+
       &.medium {
         width: 75px;
         height: 75px;
       }
-  
+
       &.large {
         width: 95px;
         height: 95px;
         border: 3px solid #fff;
       }
     }
-  
+
   }
   .orbit.small {
     @include orbit(250px, 0, 18s);
   }
-  
+
   .orbit.medium {
     @include orbit(300px, 0, 24s);
   }
-  
+
   .orbit.large {
     @include orbit(400px, 0, 30s);
   }
 }
 
-@media (max-width: 767.98px) {
+@media (max-width: 767px) {
   .personal{
     margin-top: 80px;
   }
   .orbit {
-  
+
     &.small {
       top: 17%;
       left: 22%;
-  
+
       .sphere {
         animation: spinBack 18s linear infinite;
         &:nth-child(1) {
           bottom: 0;
           right: -40px;
         }
-  
+
         &:nth-child(2) {
           top: 40px;
           left: 25px;
         }
       }
     }
-  
+
     &.medium {
       left: 18%;
       top: 10%;
       .sphere {
         animation: spinBack 24s linear infinite;
-  
+
         &:nth-child(1) {
           bottom: -30px;
           left: 0px;
         }
-  
+
         &:nth-child(2) {
           top: 40px;
           left: 0;
         }
       }
     }
-  
+
     &.large {
       top: 0;
       left: 8%;
@@ -485,23 +485,23 @@ $orbit-color: $gray;
           right: 0;
         }
       }
-  
+
       &::before {
 
       }
     }
     .sphere {
-  
+
       &.small {
         width: 55px;
         height: 55px;
       }
-  
+
       &.medium {
         width: 75px;
         height: 75px;
       }
-  
+
       &.large {
         width: 95px;
         height: 95px;
@@ -512,11 +512,11 @@ $orbit-color: $gray;
   .orbit.small {
     @include orbit(230px, 0, 18s);
   }
-  
+
   .orbit.medium {
     @include orbit(260px, 0, 24s);
   }
-  
+
   .orbit.large {
     @include orbit(340px, 0, 30s);
   }
@@ -528,12 +528,12 @@ $orbit-color: $gray;
       top: 18%;
       left: 24%;
     }
-  
+
     &.medium {
       left: 16%;
       top: 8%;
     }
-  
+
     &.large {
       left: 10%;
       .sphere {
@@ -545,11 +545,11 @@ $orbit-color: $gray;
     .orbit.small {
       @include orbit(200px, 0, 18s);
     }
-    
+
     .orbit.medium {
       @include orbit(260px, 0, 24s);
     }
-    
+
     .orbit.large {
       @include orbit(310px, 0, 30s);
     }
@@ -561,17 +561,17 @@ $orbit-color: $gray;
     @include orbit(200px, 0, 18s);
   }
   .orbit {
-  
+
     &.small {
       top: 18%;
       left: 20%;
     }
-  
+
     &.medium {
       left: 10%;
       top: 8%;
     }
-  
+
     &.large {
       left: 10px;
       .sphere {
@@ -590,12 +590,12 @@ $orbit-color: $gray;
       // top: 18%;
       left: 20%;
     }
-  
+
     &.medium {
       left: 8%;
       top: 10%;
     }
-  
+
     &.large {
       top: 20%;
       left: 17%;
