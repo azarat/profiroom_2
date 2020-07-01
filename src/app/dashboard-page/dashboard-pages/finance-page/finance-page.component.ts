@@ -5,7 +5,7 @@ import { filter } from 'rxjs/operators';
 import { FinanceInterface } from './interfaces/finance.interface';
 import { FormControl } from '@angular/forms';
 import { UserStateService } from '../../services/user-state.service';
-import { Title } from '@angular/platform-browser';
+import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-finance-page',
@@ -17,11 +17,15 @@ export class FinancePageComponent implements OnInit {
   public userRole: number;
   constructor(
     private userStateService: UserStateService,
-    private titleService: Title
+    private titleService: Title,
+    private metaTagService: Meta
   ) { }
 
   ngOnInit() {
     this.titleService.setTitle('Финансы');
+    this.metaTagService.updateTag(
+      { name: 'description', content: 'Биржа удаленных работников для найма фрилансеров быстро, недорого, выполнение работы качественно и в срок. Найдите своего идеального фриансера!' }
+    );
     // this.transactions.transactionType = null;
     this.getUserRole();
   }

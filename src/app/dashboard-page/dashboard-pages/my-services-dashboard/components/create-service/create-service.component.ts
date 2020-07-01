@@ -6,7 +6,7 @@ import { plainToClass } from 'class-transformer';
 import { UserServiceModel } from 'src/app/models/user-services/user-service.model';
 import { serviceCreationSteps } from '../../consts/steps.const';
 import { UserOffersService } from '../../services/user-offers.service';
-import { Title } from '@angular/platform-browser';
+import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-create-service',
@@ -21,13 +21,17 @@ export class CreateServiceComponent implements OnInit {
     // tslint:disable-next-line: variable-name
     private _route: ActivatedRoute,
     private userOffersService: UserOffersService,
-    private titleService: Title
+    private titleService: Title,
+    private metaTagService: Meta
   ) { }
 
   ngOnInit() {
     this.getUserService();
     // this.currentStep = 1;
     this.titleService.setTitle('Создание услуги');
+    this.metaTagService.updateTag(
+      { name: 'description', content: 'Биржа удаленных работников для найма фрилансеров быстро, недорого, выполнение работы качественно и в срок. Найдите своего идеального фриансера!' }
+    );
   }
 
   //  ** load userServiceData from server

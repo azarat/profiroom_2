@@ -32,7 +32,7 @@ import {
 import {
   tabsConst
 } from '../../consts/tabs.const';
-import { Title } from '@angular/platform-browser';
+import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-my-services-home',
@@ -59,13 +59,17 @@ export class MyServicesHomeComponent implements OnInit {
     private router: Router,
     private localize: LocalizeRouterService,
     private userOfferService: UserOffersService,
-    private titleService: Title
+    private titleService: Title,
+    private metaTagService: Meta
     // tslint:disable-next-line: variable-name
   ) {}
 
   ngOnInit() {
     this.getUserServices();
     this.titleService.setTitle('Мои услуги');
+    this.metaTagService.updateTag(
+      { name: 'description', content: 'Биржа удаленных работников для найма фрилансеров быстро, недорого, выполнение работы качественно и в срок. Найдите своего идеального фриансера!' }
+    );
   }
 
   // ngOnDestroy() {

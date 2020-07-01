@@ -36,15 +36,15 @@ export class HomePageQuestionsComponent implements OnInit {
     customer: [
       {
         title: "home-page.guestion-itme1-customer-title",
-        text: "home-page.guestion-itme1-freelancer-text"
+        text: "home-page.guestion-itme1-customer-text"
       },
       {
         title: "home-page.guestion-itme2-customer-title",
-        text: "home-page.guestion-itme2-freelancer-text"
+        text: "home-page.guestion-itme2-customer-text"
       },
       {
         title: "home-page.guestion-itme3-customer-title",
-        text: "home-page.guestion-itme3-freelancer-text"
+        text: "home-page.guestion-itme3-customer-text"
       }
     ]
   };
