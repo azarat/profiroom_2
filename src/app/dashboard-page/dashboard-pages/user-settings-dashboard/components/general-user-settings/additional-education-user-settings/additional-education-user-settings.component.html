@@ -104,6 +104,7 @@
               <input type="file" id="additionalDiplomaFiles-{{i}}" class="input-file" #file name="file"
                 (change)="fileProgress($event.target.files, userSettings.additionalEducation[i].id, i)" />
               <label for="additionalDiplomaFiles-{{i}}">{{'user-settings.onload-diploma' | translate}}</label>
+              <p class="format-files">Возможные форматы файлов jpg, jpeg, png</p>
             </div>
 
             <button type="button" class="delete-education">

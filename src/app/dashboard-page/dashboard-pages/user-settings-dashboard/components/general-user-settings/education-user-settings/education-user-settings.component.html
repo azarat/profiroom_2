@@ -98,7 +98,7 @@
                 (change)="fileProgress($event.target.files, userSettings.education[i].id, i)" />
               <label for="diplomaFiles-{{i}}">{{'user-settings.onload-diploma' | translate}}</label>
             </div>
-
+            <p class="format-files">Возможные форматы файлов jpg, jpeg, png</p>
             <button type="button" class="change">
               <i class="material-icons create" (click)="chooseItem(i+1)">create</i>
             </button>

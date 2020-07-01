@@ -27,6 +27,10 @@ export class AdditionalEducationUserSettingsComponent implements OnInit, OnChang
     'Ноябрь',
     'Декабрь'
   ];
+  private validFileExtensions = [".jpg", ".jpeg", ".bmp", ".png"]; 
+  private sCurExtension: string;
+  private valideFormat = null;
+
   public openItem: number;
 
   public yearsArr = [];
@@ -135,26 +139,39 @@ export class AdditionalEducationUserSettingsComponent implements OnInit, OnChang
   fileProgress = (event: any, id: any, i: number) => {
     const formData: FormData = new FormData();
     this.files = [];
+    this.valideFormat = false;
 
-    console.log(this.files);
-    // tslint:disable-next-line: prefer-for-of
-    for (let index = 0; index < event.length; index++) {
-      this.files.push(event[index]);
+    if(event[0].name.length > 0) {
+      for (var j = 0; j < this.validFileExtensions.length; j++) {
+        this.sCurExtension = this.validFileExtensions[j];
+        if (event[0].name.substr(event[0].name.length - this.sCurExtension.length, this.sCurExtension.length).toLowerCase() === this.sCurExtension.toLowerCase()) {
+            this.valideFormat = true;
+            break;
+        }
+      }
+    };
+
+    if(this.valideFormat) {
+      // tslint:disable-next-line: prefer-for-of
+      for (let index = 0; index < event.length; index++) {
+        this.files.push(event[index]);
+      }
+
+      this.files.forEach((el: any) => {
+        formData.append('filesname[]', el, el.name);
+      });
+
+      formData.append('id', id);
+
+      this.userSettingsService.uploadAdditionalDiplomaPhotos(formData)
+      .subscribe((res: any) => {
+        this.previewUrl = res.additionalDiploma[0].url;
+
+
+        this.userSettings.additionalEducation[i].additionalDiploma.push(this.previewUrl);
+      });
     }
 
-    this.files.forEach((el: any) => {
-      formData.append('filesname[]', el, el.name);
-    });
-
-    formData.append('id', id);
-
-    this.userSettingsService.uploadAdditionalDiplomaPhotos(formData)
-    .subscribe((res: any) => {
-      this.previewUrl = res.additionalDiploma[0].url;
-
-
-      this.userSettings.additionalEducation[i].additionalDiploma.push(this.previewUrl);
-    });
   }
 
   // --------------- save changes -----------------//
