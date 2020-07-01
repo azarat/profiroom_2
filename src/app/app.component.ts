@@ -22,7 +22,7 @@ import { SiteLocaleService } from './core/services/site-locale.service';
   // encapsulation: ViewEncapsulation.Emulated
 })
 export class AppComponent implements OnInit {
-  title = 'gigrum-app';
+  // title = 'gigrum-app';
 
   constructor(
     private translate: TranslateService,

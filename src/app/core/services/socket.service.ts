@@ -23,15 +23,15 @@ export class SocketService {
     private http: HttpClient
   ) {
     if (location.origin !== 'https://profiroom.com') {
-      this.host = 'http://194.28.103.239:6001'
+      this.host = 'http://194.28.103.239:6001';
     } else {
       this.host = '/';
     }
     this.socket = io.connect(this.host , {secure: true});
+
   }
 
   public connect() {
-
     this.http.get('/checkAuthorization')
       .subscribe((res: any) => {
         if (!res.auth) {
@@ -46,7 +46,6 @@ export class SocketService {
       });
 
     this.socket.on('disconnect', () => {
-      console.log('[INFO] Disconnected from ws');
     });
   }
 
@@ -63,19 +62,23 @@ export class SocketService {
     console.log(_roomId, this.chatRoomId)
 
     if (!this.chatRoomId) {
+      console.log('room null', _roomId)
       this.chatRoomId = _roomId;
       this.socket.emit('join', this.keyPath + _roomId);
-
-    } else if (_roomId === this.chatRoomId) {
+      console.log('room null')
       return;
-    } else {
-      this.chatRoomId = this._resetChatRoom(_roomId);
+    } else if (_roomId === this.chatRoomId) {
+      console.log('room same')
+      return;
+    } else if(_roomId !== this.chatRoomId) {
+      console.log('room different')
+      this.chatRoomId = this.resetChatRoom(_roomId);
       this.socket.emit('join', this.keyPath + this.chatRoomId);
-}
+    }
   }
 
   // open new chat
-  private _resetChatRoom(newRoom) {
+  public resetChatRoom(newRoom) {
   this.socket.emit('leave', this.keyPath + this.chatRoomId);
   return newRoom;
 }
@@ -93,7 +96,7 @@ export class SocketService {
   // tslint:disable-next-line:variable-name
   public subscribeOnCollocutorList(_chatType: string) {
   // if (_chatType === this.typeOfChat) {
-  this.typeOfChat = _chatType !== this.typeOfChat ? this._resetChatRoom(_chatType) : this.typeOfChat;
+  // this.typeOfChat = _chatType !== this.typeOfChat ? this._resetChatRoom(_chatType) : this.typeOfChat;
 
   this.socket.emit('join', this.keyPath + this.typeOfChat + this.socketId);
   // }

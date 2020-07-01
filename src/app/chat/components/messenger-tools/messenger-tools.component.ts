@@ -81,7 +81,6 @@ export class MessengerToolsComponent implements OnInit, OnDestroy {
   private checkIsUserFreelancer() {
     const userId = this.localStorageService.getItem('userId').value;
     this.isUserFreelancer = this.collocutorData.freelancer_id === +userId ? true : null; // check is user Freelancer
-    console.log(this.isUserFreelancer)
   }
 
   // getDeal() {
@@ -99,7 +98,6 @@ export class MessengerToolsComponent implements OnInit, OnDestroy {
       )
       .subscribe((res: any) => {
         this.collocutorData = res;
-        console.log(this.collocutorData);
         // if (this.collocutorData) {
         this.convertPackagePrice();
         this.checkIsUserFreelancer();
@@ -167,7 +165,6 @@ export class MessengerToolsComponent implements OnInit, OnDestroy {
     this.canDealBePayed = (!this.isUserFreelancer && this.collocutorData.moneyHolden !== 1
       && this.collocutorData.early_closing !== 1
       && this.collocutorData.brief === 1 && this.collocutorData.status === 'approved') ? true : null;
-    console.log('canDealBePayed', this.canDealBePayed);
   }
 
   private freelancerStartWorking() { // check does freelancer can start working
@@ -175,7 +172,6 @@ export class MessengerToolsComponent implements OnInit, OnDestroy {
     this.canDealBeStarted = this.isUserFreelancer && this.collocutorData.workStarted !== 1 && this.collocutorData.early_closing !== 1
       && this.collocutorData.status !== 'arbiter'
       && this.collocutorData.moneyHolden === 1 && this.collocutorData.status !== 'archived' ? true : null;
-    console.log('freelancerStartWorking', this.canDealBeStarted);
   }
 
   private cenDealBeCanceled() {
@@ -183,7 +179,6 @@ export class MessengerToolsComponent implements OnInit, OnDestroy {
     && this.collocutorData.dealDone !== 1 && this.collocutorData.workEnded !== 1
       && this.collocutorData.status !== 'arbiter'
       && this.collocutorData.brief === 1 && this.collocutorData.status !== 'archived' ? true : null;
-    console.log('isCancelButton', this.isCancelButton);
   }
 
   private cenDealBeFinished() {
@@ -193,8 +188,6 @@ export class MessengerToolsComponent implements OnInit, OnDestroy {
         this.collocutorData.moneyHolden === 1 && this.collocutorData.early_closing !== 1 &&
         this.collocutorData.workStarted === 1 && this.collocutorData.workEnded !== 1 &&
         this.collocutorData.dealDone !== 1 ? true : null;
-
-    console.log('isFinishDealButton', this.isFinishDealButton);
   }
 
   private isArbiterBtnVisible() {
@@ -202,8 +195,6 @@ export class MessengerToolsComponent implements OnInit, OnDestroy {
     && this.collocutorData.workStarted === 1 && this.collocutorData.status !== 'archived'
       && this.collocutorData.dealDone !== 1 && this.collocutorData.early_closing !== 1
       && this.collocutorData.workEnded !== 1 ? true : null;
-
-    console.log('isArbiterBtn', this.isArbiterBtn);
   }
 
 
@@ -213,7 +204,6 @@ export class MessengerToolsComponent implements OnInit, OnDestroy {
   public goToWork() {
     this.dealService.startWork(this.collocutorData.id)
       .subscribe(res => {
-        console.log(res);
         // this.resetDealData(this.collocutorData.id)
       });
   }
@@ -237,7 +227,7 @@ export class MessengerToolsComponent implements OnInit, OnDestroy {
 
   public callArbiter() {
     this.dealService.callToArbiter(this.collocutorData.id)
-      .subscribe(res => console.log(res));
+      .subscribe();
   }
 
 }

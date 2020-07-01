@@ -34,7 +34,12 @@ export class UserFinanceService {
     Object.keys(params).map((key) => formData.append(key, params[key]));
     this.http.post('https://pay.concord.ua/api/', formData)
       .subscribe((res: any) => {
-        window.open(res.url, '_blank');
+        if (res === 'ok') {
+          return;
+        } else {
+          window.open(res.url, '_blank');
+        }
+
       });
   }
 
