@@ -6,7 +6,7 @@
             <div class="rate-item">
 
 
-                <div class="title">{{ (isUserFreelancer? 'chat.work_chat.rating.task.freelancer-one': 'chat.work_chat.rating.task.custoner-one') | translate }}</div>
+                <div class="title" [ngClass]="{ 'invalid': qualityRating === 0 && submitted }">{{ (isUserFreelancer? 'chat.work_chat.rating.task.freelancer-one': 'chat.work_chat.rating.task.custoner-one') | translate }}</div>
                 <div (mouseenter)="isHover_first = true" (mouseleave)="isHover_first = false">
                     <div class="star" *ngFor="let el of starsArr, let i = index" (click)="getQuality(i+1, isUserFreelancer? 'requirementsClarity' : 'quality')"
                     (mouseenter)="hoveredEl = i+1" (mouseleave)="hoveredEl  = i+1" [ngClass]="{ 'full-star': qualityRating >=i+1 && !isHover_first || isHover_first && hoveredEl >=i+1 }">
@@ -19,7 +19,7 @@
             </div>
             <div class="rate-item">
 
-                <div class="title">{{(isUserFreelancer? 'chat.work_chat.rating.task.freelancer-two': 'chat.work_chat.rating.task.customer-two') | translate}} </div>
+                <div class="title" [ngClass]="{ 'invalid': termRating === 0 && submitted }">{{(isUserFreelancer? 'chat.work_chat.rating.task.freelancer-two': 'chat.work_chat.rating.task.customer-two') | translate}} </div>
                 <div (mouseenter)="isHover_second = true" (mouseleave)="isHover_second = false">
                     <div class="star" *ngFor="let el of starsArr, let i = index" (click)="getTerm(i+1, isUserFreelancer? 'taskClarity' : 'term')"
                     (mouseenter)="hoveredEl = i+1" (mouseleave)="hoveredEl  = i+1" [ngClass]="{ 'full-star': termRating >=i+1 && !isHover_second || isHover_second && hoveredEl >=i+1 }">
@@ -30,7 +30,7 @@
                 </div>
             </div>
             <div class="rate-item">
-                <div class="title">{{(isUserFreelancer? 'chat.work_chat.rating.task.freelancer-three': 'chat.work_chat.rating.task.customer-three') | translate}}</div>
+                <div class="title" [ngClass]="{ 'invalid': civilityRating === 0 && submitted }">{{(isUserFreelancer? 'chat.work_chat.rating.task.freelancer-three': 'chat.work_chat.rating.task.customer-three') | translate}}</div>
                 <div (mouseenter)="isHover_third = true" (mouseleave)="isHover_third = false">
                     <div class="star" *ngFor="let el of starsArr, let i = index" (click)="getCivility(i+1, isUserFreelancer? 'contactLevel' : 'civility')"
                     (mouseenter)="hoveredEl = i+1" (mouseleave)="hoveredEl = i+1" [ngClass]="{ 'full-star': civilityRating >=i+1 && !isHover_third || isHover_third && hoveredEl >=i+1 }">
@@ -41,10 +41,10 @@
                 </div>
             </div>
         </div>
-        <div class="comment" [ngClass]="{'invalid': submit && rateForm.invalid }">
+        <div class="comment" [ngClass]="{'invalid': submitted && rateForm.invalid }">
             <label for="comment">{{'chat.work_chat.rating.give-ur-mind' | translate}}</label>
             <textarea name="comment" id="comment" cols="30" rows="10" formControlName="comment" placeholder="Ваш комментарий"></textarea>
-            <div *ngIf="submit && rateForm.invalid" class="error-message">{{'chat.work_chat.rating.requireed' | translate}}</div>
+            <div *ngIf="submitted && rateForm.invalid" class="error-message">{{'chat.work_chat.rating.requireed' | translate}}</div>
         </div>
 
         <button class="btn" type="submit">{{'chat.work_chat.rating.sent' | translate}}</button>

@@ -185,6 +185,7 @@
 	"dashboard.cards-on-top.customers-quantity": "кол-во всех заказчиков",
 	"dashboard.cards-on-top.freezed-money": "замороженные средства",
 	"dashboard.cards-on-top.output-cesh": "выведенные средства",
+	"dashboard.cash-box.card-number-placeholder": "Введите номер карточки",
 	"dashboard.cash-box.choose-operation-type": "Выберите операцию",
 	"dashboard.cash-box.input-money": " Ввести деньги",
 	"dashboard.cash-box.output-money": "Вывести деньги",

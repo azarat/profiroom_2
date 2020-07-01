@@ -18,6 +18,7 @@ export class UserFinancesComponent implements OnInit, AfterViewInit {
   public transactions = {
     transactionType: 'deffault',
     amount: null,
+    creditCard: null,
     password: null,
   };
   public paymentsFullSize =  false;

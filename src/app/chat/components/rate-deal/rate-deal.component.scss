@@ -52,6 +52,9 @@
             line-height: 20px;
             color: #707683;
             margin-right: 80px;
+            &.invalid {
+              color: red;
+            }
             &+div {
                 width: 140px;
                 display: flex;
