@@ -306,8 +306,9 @@ export class CollocutorListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.userId = this.localStorageService.getItem('userId').value;
-    this._getChatRooms();
-
+    if(this.chatType === 'classic') {
+      this._getChatRooms();
+      }
     this._subscribeNewMessages();
     this._checkUserState();
   }
@@ -446,7 +447,7 @@ export class CollocutorListComponent implements OnInit, OnDestroy {
             });
           }
 
-        this._getChatRooms();
+        // this._getChatRooms();
         // this.collocutorService.setCollocutorInfo(null);
         }
 

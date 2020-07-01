@@ -40,10 +40,8 @@ export class ArbitrationPageComponent implements OnInit {
   }
 
   public openDeal(deal: any) {
-    
     this.arbitrationService.lookOnDeal(deal.roomId)
     .subscribe((res: any) => {
-      console.log('Данные по арбитражу', res);
       this.messages = res;
       this.dealInArbitration = deal;
       this.arbitrForm.deal_id = deal.id;
@@ -51,7 +49,7 @@ export class ArbitrationPageComponent implements OnInit {
   }
   public WinerIs(id: number) {
     this.arbitrForm.vinner_id = id;
-    this.arbitrForm.loser_id = this.arbitrForm.vinner_id === this.dealInArbitration.freelancer_id? 
+    this.arbitrForm.loser_id = this.arbitrForm.vinner_id === this.dealInArbitration.freelancer_id?
     this.dealInArbitration.customer_id : this.dealInArbitration.freelancer_id;
   }
   public closeDeal() {
@@ -64,12 +62,13 @@ export class ArbitrationPageComponent implements OnInit {
 
     this.arbitrationService.makeArbitration(this.arbitrForm)
     .subscribe(res=> {
-      console.log(res);
       if(res === 'ok') {
-        this.closeDeal()
+        this.arbitrationList = this.arbitrationList.filter((el) => {
+          return el.deal_id !== this.arbitrForm.deal_id;
+        });
+        this.closeDeal();
       }
-      
-    })
+    });
 
   }
 
