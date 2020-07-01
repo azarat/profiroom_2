@@ -12,7 +12,7 @@
     &::after{
         content: "";
         position: absolute;
-        
+
         z-index: 0;
         top: -70px;
         right: 0px;
@@ -113,7 +113,7 @@
     }
 }
 
-@media (max-width: 1199.98px) {
+@media (max-width: 1199px) {
     .wrapper{
         padding: 80px 0 80px;
     }
@@ -121,7 +121,7 @@
         max-width: 440px;
         margin-bottom: 30px;
         &__wrap{
-            margin-bottom: 30px; 
+            margin-bottom: 30px;
         }
     }
     .freelancer-list{
@@ -168,7 +168,7 @@
         }
     }
 }
-@media (max-width: 767.98px) {
+@media (max-width: 767px) {
     .wrapper{
         padding: 10px 15px 20px;
     }
@@ -177,7 +177,7 @@
         width: 100%;
         margin: 0 15px 25px;
     }
-    .freelancer-item{      
+    .freelancer-item{
         padding: 21px 10px 20px 19px;
         &__top{
             align-items: center;

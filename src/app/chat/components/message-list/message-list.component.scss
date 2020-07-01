@@ -353,14 +353,29 @@
 }
 
 @media (max-width: 767px) {
-  .message {
-    flex-direction: column;
-    align-items: flex-end;
-    margin-bottom: 10px;
-
-    &.author {
-      flex-direction: column;
-      align-items: flex-start;
+    .message-wrap{
+        .message-list{
+            & > div{
+                padding-right: 10px;
+            }
+        }
     }
-  }
+    .message {
+        flex-direction: column;
+        align-items: flex-end;
+        margin-bottom: 10px;
+
+        &.author {
+        flex-direction: column;
+        align-items: flex-start;
+        }
+    }
+    .brief-message__container{
+        width: 100%;
+    }
+    .title{
+        p{
+            margin: 4px 0 5px;
+        }
+    }
 }

@@ -132,6 +132,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   public showLeftBar() {
     if (this.leftBarVisible === null) {
       this.leftBarVisible = true;
+      this.rightBarVisible = false;
     } else {
       this.leftBarVisible = !this.leftBarVisible;
     }
@@ -146,10 +147,16 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   toggleCollocutorsTools() {
-    this.rightBarVisible = !this.rightBarVisible;
-  }
-  toggleCollocutors() {
+    if(this.rightBarVisible){
+      this.rightBarVisible = !this.rightBarVisible;
+    }
     this.leftBarVisible = !this.leftBarVisible;
+  }
+  toggleCollocutorsInfo() {
+    if(this.leftBarVisible){
+      this.leftBarVisible = !this.leftBarVisible;
+    }
+    this.rightBarVisible = !this.rightBarVisible;
   }
   swipeDirectionFromMessage(evnt){
     console.log('swipeDirectionFromMessage ' + evnt);
