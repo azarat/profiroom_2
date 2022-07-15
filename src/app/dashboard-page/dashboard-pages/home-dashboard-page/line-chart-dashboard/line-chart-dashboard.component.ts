@@ -60,7 +60,7 @@ export class LineChartDashboardComponent implements OnInit {
         ticks: {
 
           beginAtZero: true,
-          callback: function (value) {
+          callback: function (value: number | string) {
             if (Number.isInteger(value)) {
               return value;
             }
